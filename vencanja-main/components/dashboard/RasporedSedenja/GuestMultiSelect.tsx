@@ -46,14 +46,12 @@ export default function GuestMultiSelect({
 }: Props) {
   const [open, setOpen] = React.useState(false);
   const toggle = (id: string) => {
-    // ako je već izabran, dozvoli da ga skine
     if (value.includes(id)) {
       onChange(value.filter((x) => x !== id));
       return;
     }
 
-    // dostignut limit
-    if (available && value.length >= available) {
+    if (typeof available === "number" && value.length >= available) {
       toast.error(`Za ovaj sto možete dodati još ${available} gosta.`);
       return;
     }
@@ -87,7 +85,7 @@ export default function GuestMultiSelect({
         </Button>
       </PopoverTrigger>
 
-      <PopoverContent className="w-[350px] p-0">
+      <PopoverContent className="w-[var(--radix-popover-trigger-width)] min-w-[280px] p-0">
         <Command>
           <CommandInput placeholder="Pretraži gosta..." />
 
@@ -97,7 +95,9 @@ export default function GuestMultiSelect({
             <CommandGroup>
               {options.map((guest) => {
                 const limitReached =
-                  !value.includes(guest.value) && value.length >= available!;
+                  typeof available === "number" &&
+                  !value.includes(guest.value) &&
+                  value.length >= available;
                 return (
                   <CommandItem
                     key={guest.value}

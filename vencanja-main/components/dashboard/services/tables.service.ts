@@ -43,7 +43,7 @@ export const createTableService = async (
 
 export const updateTableService = async (
   id: string,
-  updates: Partial<Table>,
+  updates: Partial<CreateTableDto>,
 ): Promise<Table> => {
   const { data, error } = await supabase
     .from("tables")

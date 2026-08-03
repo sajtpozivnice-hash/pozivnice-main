@@ -18,10 +18,9 @@ import {
 type TableContextType = {
   tables: Table[];
   loading: boolean;
-
   refresh: () => Promise<void>;
   createTable: (table: CreateTableDto) => Promise<void>;
-  updateTable: (id: string, updates: Partial<Table>) => Promise<void>;
+  updateTable: (id: string, updates: Partial<CreateTableDto>) => Promise<void>;
   deleteTable: (id: string) => Promise<void>;
 };
 
@@ -46,57 +45,62 @@ export const TableProvider = ({ children }: { children: ReactNode }) => {
       setTables(data);
     } catch (error) {
       console.error(error);
+      throw error;
     } finally {
       setLoading(false);
     }
   }, [activeProject?.id]);
 
   useEffect(() => {
-    refresh();
+    void refresh().catch(() => undefined);
   }, [refresh]);
 
   const createTable = async (table: CreateTableDto) => {
     if (!activeProject?.id) return;
+
+    setLoading(true);
     try {
-      setLoading(true);
-
       const created = await createTableService(activeProject.id, table);
-
       setTables((prev) => [created, ...prev]);
     } catch (error) {
       console.error(error);
+      throw error;
     } finally {
       setLoading(false);
     }
   };
 
-  const updateTable = async (id: string, updates: Partial<CreateTableDto>) => {
+  const updateTable = async (
+    id: string,
+    updates: Partial<CreateTableDto>,
+  ) => {
+    setLoading(true);
     try {
-      setLoading(true);
       const updated = await updateTableService(id, updates);
-
       setTables((prev) =>
-        prev.map((guest) => (guest.id === id ? updated : guest)),
+        prev.map((table) => (table.id === id ? updated : table)),
       );
     } catch (error) {
       console.error(error);
+      throw error;
     } finally {
       setLoading(false);
     }
   };
 
   const deleteTable = async (id: string) => {
+    setLoading(true);
     try {
-      setLoading(true);
       await deleteTableService(id);
-
-      setTables((prev) => prev.filter((guest) => guest.id !== id));
+      setTables((prev) => prev.filter((table) => table.id !== id));
     } catch (error) {
       console.error(error);
+      throw error;
     } finally {
       setLoading(false);
     }
   };
+
   return (
     <TableContext.Provider
       value={{

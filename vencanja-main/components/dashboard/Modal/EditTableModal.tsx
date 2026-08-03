@@ -1,7 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Field, FieldGroup } from "@/components/ui/field";
+import {
+  Field,
+  FieldDescription,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   SheetDescription,
   SheetFooter,
@@ -10,7 +14,7 @@ import {
 } from "@/components/ui/sheet";
 import { useDialog } from "../context/ModalContext";
 import { useEffect, useState } from "react";
-import { Table } from "../types";
+import { CreateTableDto } from "../types";
 import { useTables } from "../context/TableContext";
 import { toast } from "sonner";
 import Loader from "../loaders/Loader";
@@ -21,8 +25,10 @@ const EditTableModal = () => {
   const { guests } = useGuests();
   const { updateTable, loading } = useTables();
   const id = data?.id ?? "";
-  const { name, number_of_guests } = data?.data;
-  const [form, setForm] = useState<Partial<Table>>({
+  const name = data?.data?.name ?? "";
+  const numberOfGuests = Number(data?.data?.number_of_guests ?? 1);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [form, setForm] = useState<CreateTableDto>({
     name: "",
     number_of_guests: 1,
   });
@@ -30,38 +36,60 @@ const EditTableModal = () => {
   const currentGuestsCount = guests.filter(
     (guest) => guest.table_id === id,
   ).length;
+  const tableGuests = guests.filter((guest) => guest.table_id === id);
 
   useEffect(() => {
     setForm({
-      name: name,
-      number_of_guests: number_of_guests,
+      name,
+      number_of_guests: numberOfGuests,
     });
-  }, []);
+  }, [name, numberOfGuests]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name: fieldName, value } = e.target;
     setForm((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [fieldName]: fieldName === "number_of_guests" ? Number(value) : value,
     }));
+    setErrors((prev) => ({ ...prev, [fieldName]: "" }));
+  };
+
+  const validate = () => {
+    const nextErrors: Record<string, string> = {};
+
+    if (!form.name.trim()) {
+      nextErrors.name = "Naziv stola je obavezan.";
+    }
+
+    if (!form.number_of_guests || form.number_of_guests < 1) {
+      nextErrors.number_of_guests = "Unesite najmanje 1 mesto.";
+    }
+
+    if (form.number_of_guests < currentGuestsCount) {
+      nextErrors.number_of_guests = `Trenutno sedi ${currentGuestsCount} gostiju. Prvo ih premestite.`;
+    }
+
+    setErrors(nextErrors);
+    return Object.keys(nextErrors).length === 0;
   };
 
   const submitHandler = async (e: React.SyntheticEvent<HTMLFormElement>) => {
-    if (
-      form.number_of_guests != null &&
-      form.number_of_guests < currentGuestsCount
-    ) {
-      toast.error(
-        `Za ovim stolom trenutno sedi ${currentGuestsCount} gostiju. Najpre premestite ili uklonite goste.`,
-      );
+    e.preventDefault();
+
+    if (!validate()) {
+      toast.error("Proverite uneta polja.", { position: "top-center" });
       return;
     }
-    e.preventDefault();
+
     try {
-      await updateTable(id, form);
+      await updateTable(id, {
+        name: form.name.trim(),
+        number_of_guests: Number(form.number_of_guests),
+      });
       toast.success("Sto je uspešno izmenjen.", { position: "top-center" });
       closeModal();
     } catch {
-      toast.error("Došlo je do greške. Pokušajte ponovo", {
+      toast.error("Došlo je do greške. Pokušajte ponovo.", {
         position: "top-center",
       });
     }
@@ -69,25 +97,33 @@ const EditTableModal = () => {
 
   return (
     <>
-      <SheetHeader>
-        <SheetTitle>Uredi {name}</SheetTitle>
-        <SheetDescription>ovde ide opis</SheetDescription>
+      <SheetHeader className="space-y-2">
+        <SheetTitle>Uredi sto</SheetTitle>
+        <SheetDescription>
+          Izmenite naziv i kapacitet stola {name ? `„${name}“` : ""}.
+        </SheetDescription>
       </SheetHeader>
-      <div>ovde ide spisak gostiju</div>
-      <form onSubmit={submitHandler}>
-        <FieldGroup>
+
+      <form onSubmit={submitHandler} className="space-y-6">
+        <FieldGroup className="rounded-xl border bg-muted/20 p-4">
           <Field>
-            <Label htmlFor="name">Naizv Stola</Label>
+            <FieldLabel htmlFor="name">Naziv stola</FieldLabel>
             <Input
               id="name"
               name="name"
-              value={form.name ?? ""}
+              value={form.name}
               onChange={handleChange}
-              placeholder="Upisite naziv Stola"
+              placeholder="Unesite naziv stola"
             />
+            {errors.name ? (
+              <p className="text-sm text-destructive">{errors.name}</p>
+            ) : null}
           </Field>
           <Field>
-            <Label htmlFor="number_of_guests">Broj mesta za stolom</Label>
+            <FieldLabel htmlFor="number_of_guests">Broj mesta</FieldLabel>
+            <FieldDescription>
+              Trenutno raspoređeno: {currentGuestsCount}
+            </FieldDescription>
             <Input
               id="number_of_guests"
               name="number_of_guests"
@@ -96,24 +132,49 @@ const EditTableModal = () => {
               value={form.number_of_guests}
               onChange={handleChange}
             />
+            {errors.number_of_guests ? (
+              <p className="text-sm text-destructive">
+                {errors.number_of_guests}
+              </p>
+            ) : null}
           </Field>
-          <p className="text-xs text-muted-foreground">
-            Trenutno raspoređeno gostiju:{" "}
-            <span className="font-semibold">{currentGuestsCount}</span>
-          </p>
+
+          <div className="space-y-2">
+            <p className="text-sm font-medium">Gosti za stolom</p>
+            {tableGuests.length === 0 ? (
+              <p className="text-sm text-muted-foreground">Nema gostiju.</p>
+            ) : (
+              <div className="space-y-2">
+                {tableGuests.map((guest) => (
+                  <div
+                    key={guest.id}
+                    className="rounded-lg border bg-background px-3 py-2 text-sm"
+                  >
+                    {guest.name}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </FieldGroup>
+
         <SheetFooter>
-          <Button type="submit">
+          <Button type="submit" disabled={loading} className="cursor-pointer">
             {loading ? (
               <>
                 Čuvanje...
                 <Loader className="mr-2" size={16} />
               </>
             ) : (
-              "Izmeni sto"
+              "Sačuvaj izmene"
             )}
           </Button>
-          <Button variant="outline" onClick={closeModal}>
+          <Button
+            type="button"
+            variant="outline"
+            onClick={closeModal}
+            className="cursor-pointer"
+          >
             Odustani
           </Button>
         </SheetFooter>

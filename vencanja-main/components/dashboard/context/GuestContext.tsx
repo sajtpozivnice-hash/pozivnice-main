@@ -21,13 +21,9 @@ import {
 type GuestsContextType = {
   guests: Guest[];
   loading: boolean;
-
   refresh: () => Promise<void>;
-
   createGuest: (guest: CreateGuestDto) => Promise<void>;
-
-  updateGuest: (id: string, updates: Partial<Guest>) => Promise<void>;
-
+  updateGuest: (id: string, updates: Partial<CreateGuestDto>) => Promise<void>;
   deleteGuest: (id: string) => Promise<void>;
 };
 
@@ -49,59 +45,62 @@ export const GuestsProvider = ({ children }: { children: ReactNode }) => {
 
     try {
       const data = await getGuestsByProjectService(activeProject.id);
-
       setGuests(data);
     } catch (error) {
       console.error(error);
+      throw error;
     } finally {
       setLoading(false);
     }
   }, [activeProject?.id]);
 
   useEffect(() => {
-    refresh();
+    void refresh().catch(() => undefined);
   }, [refresh]);
 
   const createGuest = async (guest: CreateGuestDto) => {
     if (!activeProject?.id) return;
+
+    setLoading(true);
     try {
-      setLoading(true);
-
       const created = await createGuestService(activeProject.id, guest);
-
       setGuests((prev) => [created, ...prev]);
     } catch (error) {
-      setLoading(false);
+      console.error(error);
       throw error;
     } finally {
       setLoading(false);
     }
   };
 
-  const updateGuest = async (id: string, updates: Partial<CreateGuestDto>) => {
+  const updateGuest = async (
+    id: string,
+    updates: Partial<CreateGuestDto>,
+  ) => {
+    setLoading(true);
     try {
-      setLoading(true);
       const updated = await updateGuestService(id, updates);
-
       setGuests((prev) =>
         prev.map((guest) => (guest.id === id ? updated : guest)),
       );
-      setLoading(false);
     } catch (error) {
       console.error(error);
+      throw error;
+    } finally {
       setLoading(false);
     }
   };
 
   const deleteGuest = async (id: string) => {
+    setLoading(true);
     try {
-      setLoading(true);
       await deleteGuestService(id);
       setGuests((prev) => prev.filter((guest) => guest.id !== id));
-      setLoading(false);
     } catch (error) {
-      setLoading(false);
       console.error(error);
+      throw error;
+    } finally {
+      setLoading(false);
     }
   };
 
