@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@theme {
+  --color-wedding-gold: #d4af37;
+  --color-wedding-cream: #fdfbf7;
+  --color-wedding-dark: #1a1a1a;
+}
+
+@layer base {
+  body {
+    @apply bg-wedding-cream text-wedding-dark font-sans antialiased;
+    font-family: var(--font-secondary);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  button,
+  span {
+    font-family: var(--font-primary);
+  }
+  p,
+  a {
+    font-family: var(--font-secondary);
+  }
+}
+
+.glass-card {
+  @apply bg-white/40 backdrop-blur-md border border-white/20 shadow-xl;
+}
+
+.section-padding {
+  @apply py-20 px-6 md:px-12 lg:px-24;
+}

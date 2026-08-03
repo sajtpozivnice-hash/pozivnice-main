@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.title {
+  color: #fff;
+  margin-right: 10px;
+  font-size: 26px;
+  font-family: sans-serif;
+}

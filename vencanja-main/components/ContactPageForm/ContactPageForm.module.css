@@ -1,0 +1,62 @@
+.container {
+  background: var(--color-bg);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-light);
+  gap: 15px;
+  height: 100%;
+}
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.innerContainer {
+  display: flex;
+  gap: 25px;
+}
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.inputStyle,
+.textAreaInput,
+.selectInput {
+  padding: 16px 20px;
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-light);
+  border: 2px solid var(--color-accent);
+}
+.inputStyle:hover,
+.inputStyle:active,
+.textAreaInput:hover,
+.textAreaInput:focus,
+.selectInput:hover,
+.selectInput:focus {
+  border: 2px solid var(--color-hot);
+  outline: none;
+}
+.inputStyle:focus-visible,
+.inputStyle:active,
+.textAreaInput:focus-visible,
+input:-webkit-autofill,
+.selectInput:focus-visible,
+.selectInput:active {
+  background-color: var(--color-bg);
+  border: 2px solid var(--color-hot);
+  outline: none;
+}
+.inputError {
+  border-color: var(--color-warning) !important;
+}
+@media (max-width: 640px) {
+  .innerContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+}

@@ -1,0 +1,48 @@
+.container {
+  border-radius: var(--radius);
+  padding: 30px 20px;
+  position: relative;
+  height: 100%;
+  min-height: 350px;
+  overflow: hidden;
+}
+.background {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--color-text);
+  z-index: 3;
+  opacity: 0.6;
+  /* pointer-events: none; */
+}
+.content {
+  position: relative;
+  z-index: 5;
+  color: white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.header {
+  margin-bottom: 3px;
+  margin-top: 3px;
+  color: var(--color-bg);
+}
+.description {
+  color: var(--color-bg);
+  margin-bottom: 3px;
+}
+.button {
+  margin-top: 5px;
+}
+.link {
+  color: var(--color-bg);
+}

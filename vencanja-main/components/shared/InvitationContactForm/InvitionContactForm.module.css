@@ -1,0 +1,80 @@
+.container {
+  background: var(--color-bg);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-deep);
+  gap: 15px;
+}
+.innerContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.inputStyle,
+.textAreaInput {
+  padding: 16px 20px;
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-light);
+  border: 2px solid var(--color-accent);
+}
+.inputStyle:hover,
+.inputStyle:active,
+.textAreaInput:hover,
+.textAreaInput:focus {
+  border: 2px solid var(--color-hot);
+  outline: none;
+}
+.inputStyle:focus-visible,
+.inputStyle:active,
+.textAreaInput:focus-visible,
+input:-webkit-autofill {
+  background-color: var(--color-bg);
+  border: 2px solid var(--color-hot);
+  outline: none;
+}
+.qrContainer {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: nowrap;
+}
+.qrInner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.toggleLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  user-select: none;
+  position: relative;
+}
+.checkboxRow {
+  display: flex;
+  gap: 10px;
+}
+.inputError {
+  border-color: var(--color-warning) !important;
+}
+@media (max-width: 640px) {
+  .innerContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .checkboxRow {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: nowrap;
+  }
+}

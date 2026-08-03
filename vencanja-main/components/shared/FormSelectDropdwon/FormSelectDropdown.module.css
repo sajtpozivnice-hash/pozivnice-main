@@ -1,0 +1,53 @@
+.customSelectWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.selectInput {
+  padding: 16px 20px;
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-light);
+  border: 2px solid var(--color-accent);
+  background-color: var(--color-bg);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-playfair);
+}
+
+.selectInput:hover,
+.selectInput:focus {
+  border: 2px solid var(--color-hot);
+}
+
+.arrow {
+  margin-left: 10px;
+  font-size: 0.7rem;
+}
+
+.customOptions {
+  position: absolute;
+  width: 100%;
+  background: #fff;
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius);
+  margin-top: 4px;
+  box-shadow: var(--shadow-light);
+  list-style: none;
+  padding: 0;
+  z-index: 10;
+}
+
+.customOptionItem {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  color: var(--color-text);
+  font-family: var(--font-playfair);
+}
+
+.customOptionItem:hover {
+  background-color: var(--color-hot);
+  color: #fff;
+}

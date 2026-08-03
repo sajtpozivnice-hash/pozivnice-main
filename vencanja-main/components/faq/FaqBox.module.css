@@ -1,0 +1,45 @@
+.faqContainer {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 10px 0;
+  border: 2px solid var(--color-bg);
+  cursor: pointer;
+  padding: 20px;
+  border-radius: var(--radius);
+}
+.headingContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.activeItem {
+  color: var(--color-hot);
+  transition: all 0.1s ease-in;
+}
+.headingContainer:hover h3 {
+  color: var(--color-hot);
+  transition: all 0.1s ease-in;
+}
+
+.iconWrapper {
+  width: 35px;
+  height: 35px;
+  position: relative;
+  background: var(--color-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 10px;
+  box-shadow: var(--shadow-light);
+}
+.line {
+  position: absolute;
+  width: 16px;
+  height: 2px;
+  background-color: var(--color-accent);
+  border-radius: 2px;
+  transform-origin: center;
+}

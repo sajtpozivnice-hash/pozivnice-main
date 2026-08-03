@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.innerContainer {
+  display: flex;
+  box-shadow: var(--shadow-deep);
+  border: 2px solid var(--color-hot);
+  border-radius: var(--radius);
+}
+.action {
+  padding: 12px 25px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 9px;
+}

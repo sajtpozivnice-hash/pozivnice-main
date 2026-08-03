@@ -1,0 +1,13 @@
+.container {
+  background-color: var(--color-bg);
+  border-radius: var(--radius-middle);
+  display: inline-block;
+  padding: 6px 14px;
+  align-self: flex-start;
+  box-shadow: var(--shadow-hover);
+}
+.text {
+  margin-bottom: 0;
+  color: var(--color-accent);
+  font-size: 22px;
+}

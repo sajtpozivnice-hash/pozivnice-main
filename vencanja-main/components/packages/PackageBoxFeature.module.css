@@ -1,0 +1,16 @@
+.container {
+  background-color: var(--color-hot);
+  position: absolute;
+  top: -20px;
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  width: 150px;
+  text-align: center;
+}
+.featuredText {
+  color: var(--color-bg);
+  font-weight: 900;
+}

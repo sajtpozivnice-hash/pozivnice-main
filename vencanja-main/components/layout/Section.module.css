@@ -1,0 +1,10 @@
+.section {
+  width: 100%;
+  padding-block: clamp(48px, 4vw, 72px);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}

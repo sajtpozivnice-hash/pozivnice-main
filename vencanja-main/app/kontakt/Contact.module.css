@@ -1,0 +1,81 @@
+.contactHeroContainer {
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(255, 255, 255, 0.5)),
+    url("/contact-hero.jpg");
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 30px;
+}
+.contactMainTitle {
+  font-size: 64px;
+  color: var(--color-bg);
+  margin-bottom: 10px;
+  line-height: 70px;
+}
+.contactMainTitleSpan {
+  color: var(--color-hot);
+}
+.contactMainDescription {
+  font-size: 22px;
+  color: var(--color-bg);
+}
+.container {
+  background-color: var(--color-muted);
+  padding: 30px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-hover);
+  flex: 1;
+}
+.contentContainer {
+  display: flex;
+  gap: 30px;
+}
+.infoContainer {
+  flex: 0.7;
+  margin-top: 30px;
+}
+.infoContainerInner {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.infoContainerInnerContent {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.smallHeading {
+  margin-bottom: 0;
+}
+.formContainer {
+  flex: 1;
+}
+.iconWrapper {
+  background-color: var(--color-hot);
+  border-radius: var(--radius);
+  max-width: 60px;
+  height: 60px;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+.info {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-hover);
+  padding: 30px;
+  margin-top: 20px;
+}
+@media (max-width: 768px) {
+  .contactHeroContainer {
+    height: 100vh;
+  }
+  .infoContainer {
+    flex: 1;
+  }
+  .contentContainer {
+    flex-direction: column;
+  }
+}

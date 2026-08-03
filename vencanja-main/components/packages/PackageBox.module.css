@@ -1,0 +1,27 @@
+.container {
+  border: 2px solid var(--color-hot);
+  border-radius: var(--radius);
+  max-width: 350px;
+  padding: 30px 20px;
+  box-shadow: var(--shadow-deep);
+  position: relative;
+}
+.title {
+  margin-bottom: 0;
+}
+.price {
+  color: var(--color-hot);
+  font-weight: bold;
+}
+.listedItem {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  padding: 3px 0;
+}
+.listedItem svg {
+  flex-shrink: 0;
+}
+.description {
+  padding: 10px 0;
+}

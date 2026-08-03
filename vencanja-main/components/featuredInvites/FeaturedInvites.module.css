@@ -1,0 +1,24 @@
+.boxContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 748px) {
+  .boxContainer {
+    grid-template-columns: 1fr;
+    justify-content: center;
+  }
+}
+.titleContainer {
+  padding-bottom: 50px;
+}
+.buttonContainer {
+  max-width: 350px;
+  margin: 0 auto;
+  padding-top: 30px;
+}
+.heading {
+  text-align: center;
+  color: var(--color-hot);
+}

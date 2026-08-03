@@ -1,0 +1,143 @@
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.1);
+  animation: pulse 10s ease-in-out infinite;
+  z-index: 0;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 10;
+}
+
+.heroSubtitle {
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  animation: fadeIn 1s ease forwards;
+}
+
+.heroTitle {
+  font-size: 4rem;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.heroDate {
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  margin-bottom: 3rem;
+  font-size: 1rem;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.countdownBox {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1rem;
+  border-radius: 0.75rem;
+  width: 5rem;
+}
+
+.countdownNumber {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.countdownLabel {
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.8;
+}
+
+.rsvpBtn {
+  display: inline-block;
+  margin-top: 3rem;
+  padding: 1rem 2.5rem;
+  border-radius: 9999px;
+  background: white;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.rsvpBtn:hover {
+  transform: scale(1.05);
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .heroSubtitle {
+    font-size: 1.5rem;
+  }
+  .heroTitle {
+    font-size: 6rem;
+  }
+  .heroDate {
+    font-size: 1.25rem;
+  }
+  .countdownBox {
+    width: 7rem;
+    padding: 1.5rem;
+  }
+  .countdownNumber {
+    font-size: 2rem;
+  }
+  .countdownLabel {
+    font-size: 0.75rem;
+  }
+}

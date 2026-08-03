@@ -1,0 +1,13 @@
+.wrapper {
+  background-color: var(--color-muted);
+}
+.boxesWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 40px;
+}
+.heading {
+  text-align: center;
+  color: var(--color-accent);
+}

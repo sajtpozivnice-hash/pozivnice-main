@@ -1,0 +1,8 @@
+.container {
+  margin-left: 15px;
+  font-size: 16px;
+}
+.required {
+  color: var(--color-warning);
+  margin-left: 2px;
+}

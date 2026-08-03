@@ -1,0 +1,24 @@
+.container {
+  background-color: var(--color-muted);
+  padding: 30px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-hover);
+  flex: 1;
+  min-width: 300px;
+}
+.iconWrapper {
+  background-color: var(--color-bg);
+  border-radius: var(--radius);
+  padding: 9px 14px;
+  max-width: 60px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+.title {
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+.description {
+  color: var(--color-text);
+}

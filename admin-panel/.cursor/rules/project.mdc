@@ -1,0 +1,54 @@
+---
+description: Project coding rules
+alwaysApply: true
+---
+
+# General
+
+- Use TypeScript only.
+- Never use `any`.
+- Never break existing APIs.
+- Preserve architecture.
+- Reuse existing components.
+- Prefer composition over duplication.
+
+# React
+
+- Functional components only.
+- Keep components small.
+- Split large components.
+
+# Next.js
+
+- Use App Router.
+- Prefer Server Components.
+- Use Client Components only when required.
+
+# Supabase
+
+- Database logic belongs in services.
+- Components never call Supabase directly.
+
+# Styling
+
+- TailwindCSS only.
+- Reuse existing UI.
+
+# Architecture
+
+- Always analyze before editing.
+- Never create duplicate utilities.
+- Never create duplicate contexts.
+
+# Refactoring
+
+- Keep behavior unchanged.
+- Refactor only requested files.
+
+# AI
+
+Before coding:
+
+1. Read related files.
+2. Explain implementation.
+3. Then edit.

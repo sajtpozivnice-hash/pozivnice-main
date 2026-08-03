@@ -1,0 +1,31 @@
+.wrapper {
+  background-color: var(--color-text);
+}
+.container {
+  display: flex;
+  gap: 20px;
+}
+.item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px 0;
+  border-radius: 8px;
+}
+
+.footerMainTitle {
+  color: var(--color-hot);
+  margin-bottom: 20px;
+}
+.footerSecondaryTitle {
+  color: var(--color-accent);
+  margin-bottom: 20px;
+}
+.description {
+  color: var(--color-primary);
+}
+.footerBottom {
+  border-top: 1px solid var(--color-primary);
+  padding: 25px 0;
+}

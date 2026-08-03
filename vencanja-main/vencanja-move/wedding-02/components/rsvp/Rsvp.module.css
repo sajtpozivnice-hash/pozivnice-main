@@ -1,0 +1,139 @@
+.rsvpSection {
+  padding: 6rem 1.5rem;
+}
+.container {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 2rem;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+.cardHeader {
+  color: white;
+  padding: 3rem;
+  text-align: center;
+}
+.cardHeader h2 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+.cardHeader p {
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+.cardForm {
+  padding: 3rem;
+}
+.grid2 {
+  display: grid;
+  gap: 1.5rem;
+}
+.grid2Cols {
+  grid-template-columns: 1fr 1fr;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+}
+.field label {
+  font-size: 0.625rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #555;
+  margin-bottom: 0.25rem;
+}
+.input,
+.textarea,
+.select {
+  padding: 0.5rem;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  outline: none;
+  font-size: 0.875rem;
+  transition: border-color 0.3s;
+  padding: 15px;
+  border-radius: 1rem;
+}
+.textarea {
+  border-radius: 0.5rem;
+  resize: none;
+  height: 6rem;
+  padding: 0.75rem;
+}
+.submitBtn {
+  width: 100%;
+  color: white;
+  padding: 1rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition:
+    background 0.3s,
+    transform 0.3s;
+}
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 648px) {
+  .container {
+    padding: 10px;
+  }
+  .grid2Cols {
+    grid-template-columns: 1fr;
+  }
+}
+.formMessageContainer {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  padding: 20px;
+}
+
+.formMessageContent {
+  background-color: #fff;
+  position: absolute;
+  width: 100%;
+  max-width: 500px;
+  left: 50%;
+  top: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 80px 30px;
+  border-radius: var(--radius);
+  -webkit-box-shadow: -2px -2px 18px -2px #fff;
+  box-shadow: -2px -2px 18px -2px #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+@media (max-width: 500px) {
+  .formMessageContent {
+    width: 90%;
+  }
+}
+.error {
+  color: red;
+}

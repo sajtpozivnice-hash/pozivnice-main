@@ -1,0 +1,23 @@
+.wrapper {
+  background-color: var(--color-muted);
+}
+.cardsContainer {
+  display: flex;
+  gap: 24px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 772px) {
+  .cardsContainer {
+    justify-content: center;
+  }
+}
+
+.sectionTitle {
+  text-align: center;
+  color: var(--color-hot);
+}
+.titleContainer {
+  padding-bottom: 50px;
+}

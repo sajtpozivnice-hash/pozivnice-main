@@ -1,0 +1,10 @@
+.menuList {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  justify-content: center;
+  margin-bottom: 0;
+}
+.link {
+  font-size: 18px;
+}

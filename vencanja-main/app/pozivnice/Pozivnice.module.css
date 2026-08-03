@@ -1,0 +1,36 @@
+.pozivniceContainer {
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(255, 255, 255, 0.5)),
+    url("/contact-hero.jpg");
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 30px;
+}
+.pozivniceMainTitle {
+  font-size: 64px;
+  color: var(--color-bg);
+  margin-bottom: 10px;
+  line-height: 70px;
+}
+.pozivniceMainTitleSpan {
+  color: var(--color-hot);
+}
+.pozivniceMainDescription {
+  font-size: 22px;
+  color: var(--color-bg);
+}
+.container {
+  background-color: var(--color-muted);
+  padding: 30px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-hover);
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .pozivniceContainer {
+    height: 100vh;
+  }
+}

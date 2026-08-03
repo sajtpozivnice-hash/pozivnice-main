@@ -1,0 +1,29 @@
+import { redirect } from "next/navigation";
+import { createClient } from "@/lib/supabase/server";
+import { getCurrentClient } from "@/lib/client/getCurrentClient";
+import { DashboardProvider } from "@/components/dashboard/context/DashboardContext";
+import { ProjectProvider } from "@/components/dashboard/context/ProjectContext";
+import { Toaster } from "@/components/ui/sonner";
+
+export default async function DashboardLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const current = await getCurrentClient();
+
+  if (!current) {
+    redirect("/login");
+  }
+  console.log(current, "current");
+  return (
+    <DashboardProvider
+      user={current.user}
+      client={current.client}
+      projects={current.projects}
+    >
+      <ProjectProvider>{children}</ProjectProvider>
+      <Toaster />
+    </DashboardProvider>
+  );
+}

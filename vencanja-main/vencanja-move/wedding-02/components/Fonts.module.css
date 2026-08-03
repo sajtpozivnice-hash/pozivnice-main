@@ -1,0 +1,9 @@
+.fontPrimary {
+  font-family: var(--font-primary);
+}
+.fontSecondary {
+  font-family: var(--font-secondary);
+}
+.fontTernary {
+  font-family: var(--font-ternary);
+}
