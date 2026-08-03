@@ -1,7 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Field, FieldGroup } from "@/components/ui/field";
+import {
+  Field,
+  FieldDescription,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   SheetDescription,
   SheetFooter,
@@ -11,11 +15,14 @@ import {
 import { useDialog } from "../../context/ModalContext";
 import Loader from "../../loaders/Loader";
 import { useProject } from "../../context/ProjectContext";
-import { EyeIcon, EyeOff } from "lucide-react";
+import { Plus } from "lucide-react";
 import { ScheduleSection } from "@/types/sections";
 import { useEffect, useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { UniversalProjectConfig } from "@/types/config";
+import { RepeaterItemCard } from "./RepeaterItemCard";
+import { Badge } from "@/components/ui/badge";
+import { SectionModalVisibilityBar } from "./SectionModalVisibilityBar";
 
 type ScheduleItem = NonNullable<ScheduleSection["data"]["items"]>[number];
 
@@ -85,6 +92,11 @@ const ScheduleSectionEditModal = () => {
   };
 
   const removeItem = (itemId: string) => {
+    const confirmed = window.confirm(
+      "Da li ste sigurni da želite da uklonite ovu stavku?",
+    );
+    if (!confirmed) return;
+
     setForm((prev) => ({
       ...prev,
       items: prev.items.filter((item) => item.id !== itemId),
@@ -127,119 +139,139 @@ const ScheduleSectionEditModal = () => {
 
   return (
     <>
-      <SheetHeader>
-        <SheetTitle>Izmenite sekciju Raspored </SheetTitle>
-        <SheetDescription>
-          Ovde mozete izmeniti sve vezano za Raspored sekciju
-        </SheetDescription>
-        <div className="flex flex-row items-center gap-4">
-          <Button
-            type="button"
-            variant="outline"
-            onClick={() => setIsVisible((prev) => !prev)}
-          >
-            {isVisible ? "Sakrij sa sajta" : "Prikaži na sajtu"}
-            {isVisible ? <EyeOff /> : <EyeIcon />}
-          </Button>
-          <SheetDescription
-            className={`${isVisible ? "text-green-700" : "text-red-700"} font-bold`}
-          >
-            Status: {isVisible ? "Vidljiva na sajtu" : "Nije Vidljiva na sajtu"}
+      <SheetHeader className="space-y-3">
+        <div className="space-y-1">
+          <SheetTitle>Raspored</SheetTitle>
+          <SheetDescription>
+            Uredite naslov i vremensku liniju događaja tokom dana.
           </SheetDescription>
         </div>
+        <SectionModalVisibilityBar
+          isVisible={isVisible}
+          onToggle={() => setIsVisible((prev) => !prev)}
+        />
       </SheetHeader>
-      <form onSubmit={handleSubmit}>
-        <FieldGroup>
+
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <FieldGroup className="rounded-xl border bg-muted/20 p-4">
           <Field>
-            <Label htmlFor="title">Izmenite Naslov</Label>
+            <FieldLabel htmlFor="title">Naslov</FieldLabel>
+            <FieldDescription>Glavni naslov sekcije rasporeda.</FieldDescription>
             <Input
               id="title"
               name="title"
-              placeholder="Upišite naslov sekcije"
+              placeholder="npr. Veliki dan"
               onChange={handleChange}
               value={form.title ?? ""}
             />
           </Field>
           <Field>
-            <Label htmlFor="subtitle">Izmenite Podnaslov</Label>
+            <FieldLabel htmlFor="subtitle">Podnaslov</FieldLabel>
+            <FieldDescription>
+              Kratka rečenica ispod naslova.
+            </FieldDescription>
             <Input
               id="subtitle"
               name="subtitle"
-              placeholder="Upišite podnaslov sekcije"
+              placeholder="npr. Sve što treba da znate"
               onChange={handleChange}
               value={form.subtitle ?? ""}
             />
           </Field>
-          {form.items.map((item, index) => (
-            <FieldGroup key={item.id}>
-              <Label>Stavka {index + 1}</Label>
-              <Field>
-                <Label htmlFor={`item-time-${item.id}`}>Vreme</Label>
-                <Input
-                  id={`item-time-${item.id}`}
-                  placeholder="Vreme"
-                  value={item.time ?? ""}
-                  onChange={(e) =>
-                    handleItemChange(item.id, "time", e.target.value)
-                  }
-                />
-              </Field>
-              <Field>
-                <Label htmlFor={`item-title-${item.id}`}>Naslov</Label>
-                <Input
-                  id={`item-title-${item.id}`}
-                  placeholder="Naslov događaja"
-                  value={item.title ?? ""}
-                  onChange={(e) =>
-                    handleItemChange(item.id, "title", e.target.value)
-                  }
-                />
-              </Field>
-              <Field>
-                <Label htmlFor={`item-description-${item.id}`}>Opis</Label>
-                <Textarea
-                  id={`item-description-${item.id}`}
-                  placeholder="Opis"
-                  value={item.description ?? ""}
-                  onChange={(e) =>
-                    handleItemChange(item.id, "description", e.target.value)
-                  }
-                />
-              </Field>
-              <Button
-                type="button"
-                variant="outline"
-                className="cursor-pointer"
-                onClick={() => removeItem(item.id)}
+        </FieldGroup>
+
+        <div className="space-y-3">
+          <div className="flex items-center justify-between gap-2">
+            <div>
+              <p className="text-sm font-semibold">Stavke rasporeda</p>
+              <p className="text-xs text-muted-foreground">
+                Dodajte vreme, naziv i opis svakog dela dana.
+              </p>
+            </div>
+            <Badge variant="secondary">{form.items.length}</Badge>
+          </div>
+
+          {form.items.length === 0 ? (
+            <div className="rounded-xl border border-dashed bg-muted/30 px-4 py-6 text-center">
+              <p className="text-sm font-medium">Nema stavki</p>
+              <p className="mt-1 text-xs text-muted-foreground">
+                Dodajte prvu stavku da gosti vide raspored dana.
+              </p>
+            </div>
+          ) : (
+            form.items.map((item, index) => (
+              <RepeaterItemCard
+                key={item.id}
+                title={`Stavka ${index + 1}`}
+                onRemove={() => removeItem(item.id)}
               >
-                Ukloni stavku
-              </Button>
-            </FieldGroup>
-          ))}
+                <Field>
+                  <FieldLabel htmlFor={`item-time-${item.id}`}>Vreme</FieldLabel>
+                  <Input
+                    id={`item-time-${item.id}`}
+                    placeholder="npr. 16:00"
+                    value={item.time ?? ""}
+                    onChange={(e) =>
+                      handleItemChange(item.id, "time", e.target.value)
+                    }
+                  />
+                </Field>
+                <Field>
+                  <FieldLabel htmlFor={`item-title-${item.id}`}>
+                    Naslov
+                  </FieldLabel>
+                  <Input
+                    id={`item-title-${item.id}`}
+                    placeholder="npr. Ceremonija"
+                    value={item.title ?? ""}
+                    onChange={(e) =>
+                      handleItemChange(item.id, "title", e.target.value)
+                    }
+                  />
+                </Field>
+                <Field>
+                  <FieldLabel htmlFor={`item-description-${item.id}`}>
+                    Opis
+                  </FieldLabel>
+                  <Textarea
+                    id={`item-description-${item.id}`}
+                    placeholder="Mesto ili dodatni detalj"
+                    value={item.description ?? ""}
+                    onChange={(e) =>
+                      handleItemChange(item.id, "description", e.target.value)
+                    }
+                  />
+                </Field>
+              </RepeaterItemCard>
+            ))
+          )}
+
           <Button
             type="button"
             variant="outline"
-            className="cursor-pointer"
+            className="w-full cursor-pointer"
             onClick={addItem}
           >
+            <Plus className="h-4 w-4" />
             Dodaj stavku
           </Button>
-        </FieldGroup>
+        </div>
+
         <SheetFooter>
-          <Button className="cursor-pointer" type="submit">
+          <Button className="cursor-pointer" type="submit" disabled={saving}>
             {saving ? (
               <>
                 Čuvam...
                 <Loader className="mr-2" size={16} />
               </>
             ) : (
-              `Sačuvaj Izmene`
+              "Sačuvaj izmene"
             )}
           </Button>
-
           <Button
             className="cursor-pointer"
             variant="outline"
+            type="button"
             onClick={closeModal}
           >
             Odustani

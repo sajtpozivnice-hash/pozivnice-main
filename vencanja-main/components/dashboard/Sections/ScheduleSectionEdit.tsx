@@ -1,16 +1,10 @@
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { ClipboardList } from "lucide-react";
 import { useDialog } from "../context/ModalContext";
 import { useProject } from "../context/ProjectContext";
 import { ScheduleSection } from "@/types/sections";
-import SectionLoader from "../loaders/SectionLoader";
+import { SectionEditCard } from "./SectionEditCard";
+import { SectionPreviewField } from "./SectionPreviewField";
+import { SectionItemsPreview } from "./SectionItemsPreview";
 
 export const ScheduleSectionEdit = () => {
   const { openModal } = useDialog();
@@ -21,48 +15,48 @@ export const ScheduleSectionEdit = () => {
     return null;
   }
 
-  const isVisible = scheduleSection.visible;
-  const editModalHandler = () => openModal("schedule_edit");
-
-  if (loading) {
-    return <SectionLoader />;
-  }
+  const items = scheduleSection.data.items ?? [];
 
   return (
-    <Card className="w-full max-w-sm">
-      <CardHeader>
-        <CardTitle>
-          Sekcija: <span className="font-bold">Raspored</span>
-        </CardTitle>
-        <CardDescription
-          className={`${isVisible ? "text-green-700" : "text-red-700"} font-bold`}
-        >
-          Status: {isVisible ? "Vidljiva na sajtu" : "Nije Vidljiva na sajtu"}
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p>
-          <span className="font-bold">Naslov:</span>{" "}
-          {scheduleSection.data.title}
-        </p>
-        <p>
-          <span className="font-bold">Podnaslov:</span>{" "}
-          {scheduleSection.data.subtitle}
-        </p>
-        <p>
-          <span className="font-bold">Broj stavki:</span>{" "}
-          {scheduleSection.data.items?.length ?? 0}
-        </p>
-      </CardContent>
-      <CardFooter className="flex-col gap-2">
-        <Button
-          type="submit"
-          className="w-full cursor-pointer"
-          onClick={editModalHandler}
-        >
-          Izmeni / Podesi Sekciju
-        </Button>
-      </CardFooter>
-    </Card>
+    <SectionEditCard
+      title="Raspored"
+      description="Vremenska linija događaja tokom dana."
+      icon={ClipboardList}
+      visible={scheduleSection.visible}
+      loading={loading}
+      onEdit={() => openModal("schedule_edit")}
+    >
+      <SectionPreviewField label="Naslov" value={scheduleSection.data.title} />
+      <SectionPreviewField
+        label="Podnaslov"
+        value={scheduleSection.data.subtitle}
+      />
+      <SectionItemsPreview
+        label="Stavke rasporeda"
+        count={items.length}
+        emptyTitle="Nema stavki"
+        emptyDescription="Dodajte vremena i događaje u uređivaču."
+      >
+        {items.slice(0, 3).map((item) => (
+          <div
+            key={item.id}
+            className="rounded-xl border bg-muted/30 px-3 py-2"
+          >
+            <p className="truncate text-sm font-medium">
+              {item.title || "Bez naslova"}
+            </p>
+            <p className="truncate text-xs text-muted-foreground">
+              {[item.time, item.description].filter(Boolean).join(" · ") ||
+                "Nema detalja"}
+            </p>
+          </div>
+        ))}
+        {items.length > 3 ? (
+          <p className="text-xs text-muted-foreground">
+            + još {items.length - 3} stavki
+          </p>
+        ) : null}
+      </SectionItemsPreview>
+    </SectionEditCard>
   );
 };

@@ -1,7 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Field, FieldGroup } from "@/components/ui/field";
+import {
+  Field,
+  FieldDescription,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   SheetDescription,
   SheetFooter,
@@ -11,10 +15,10 @@ import {
 import { useDialog } from "../../context/ModalContext";
 import Loader from "../../loaders/Loader";
 import { useProject } from "../../context/ProjectContext";
-import { EyeIcon, EyeOff } from "lucide-react";
-import { CountdownSection, HeroSection } from "@/types/sections";
+import { CountdownSection } from "@/types/sections";
 import { useEffect, useState } from "react";
 import { UniversalProjectConfig } from "@/types/config";
+import { SectionModalVisibilityBar } from "./SectionModalVisibilityBar";
 
 const CountdownSectionEditModal = () => {
   const { closeModal } = useDialog();
@@ -78,55 +82,49 @@ const CountdownSectionEditModal = () => {
 
   return (
     <>
-      <SheetHeader>
-        <SheetTitle>Izmenite sekciju Odbrojavanja </SheetTitle>
-        <SheetDescription>
-          Ovde mozete izmeniti sve vezano za Hero sekciju
-        </SheetDescription>
-        <div className="flex flex-row items-center gap-4">
-          <Button
-            type="button"
-            variant="outline"
-            onClick={() => setIsVisible((prev) => !prev)}
-          >
-            {isVisible ? "Sakrij sa sajta" : "Prikaži na sajtu"}
-            {isVisible ? <EyeOff /> : <EyeIcon />}
-          </Button>
-          <SheetDescription
-            className={`${isVisible ? "text-green-700" : "text-red-700"} font-bold`}
-          >
-            Status: {isVisible ? "Vidljiva na sajtu" : "Nije Vidljiva na sajtu"}
+      <SheetHeader className="space-y-3">
+        <div className="space-y-1">
+          <SheetTitle>Odbrojavanje</SheetTitle>
+          <SheetDescription>
+            Uredite tekst iznad brojača do dana venčanja.
           </SheetDescription>
         </div>
+        <SectionModalVisibilityBar
+          isVisible={isVisible}
+          onToggle={() => setIsVisible((prev) => !prev)}
+        />
       </SheetHeader>
-      <form onSubmit={handleSubmit}>
-        <FieldGroup>
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <FieldGroup className="rounded-xl border bg-muted/20 p-4">
           <Field>
-            <Label htmlFor="title">Izmenite Naslov</Label>
+            <FieldLabel htmlFor="title">Naslov</FieldLabel>
+            <FieldDescription>
+              Tekst koji se prikazuje uz odbrojavanje.
+            </FieldDescription>
             <Input
               id="title"
               name="title"
-              placeholder="Upišite glavni naslov za Hero sekciju"
+              placeholder="npr. Odbrojavanje do našeg zauvek"
               onChange={handleChange}
               value={form.title ?? ""}
             />
           </Field>
         </FieldGroup>
         <SheetFooter>
-          <Button className="cursor-pointer" type="submit">
+          <Button className="cursor-pointer" type="submit" disabled={saving}>
             {saving ? (
               <>
                 Čuvam...
                 <Loader className="mr-2" size={16} />
               </>
             ) : (
-              `Sačuvaj Izmene`
+              "Sačuvaj izmene"
             )}
           </Button>
-
           <Button
             className="cursor-pointer"
             variant="outline"
+            type="button"
             onClick={closeModal}
           >
             Odustani

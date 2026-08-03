@@ -1,7 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Field, FieldGroup } from "@/components/ui/field";
+import {
+  Field,
+  FieldDescription,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   SheetDescription,
   SheetFooter,
@@ -11,11 +15,14 @@ import {
 import { useDialog } from "../../context/ModalContext";
 import Loader from "../../loaders/Loader";
 import { useProject } from "../../context/ProjectContext";
-import { EyeIcon, EyeOff } from "lucide-react";
+import { Plus } from "lucide-react";
 import { CardItem, LocationsSection } from "@/types/sections";
 import { useEffect, useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { UniversalProjectConfig } from "@/types/config";
+import { RepeaterItemCard } from "./RepeaterItemCard";
+import { Badge } from "@/components/ui/badge";
+import { SectionModalVisibilityBar } from "./SectionModalVisibilityBar";
 
 type LocationsForm = {
   title: string;
@@ -89,6 +96,11 @@ const LocationsSectionEditModal = () => {
   };
 
   const removeCard = (cardId: number) => {
+    const confirmed = window.confirm(
+      "Da li ste sigurni da želite da uklonite ovu lokaciju?",
+    );
+    if (!confirmed) return;
+
     setForm((prev) => ({
       ...prev,
       cards: prev.cards.filter((card) => card.id !== cardId),
@@ -131,130 +143,151 @@ const LocationsSectionEditModal = () => {
 
   return (
     <>
-      <SheetHeader>
-        <SheetTitle>Izmenite sekciju Lokacije </SheetTitle>
-        <SheetDescription>
-          Ovde mozete izmeniti sve vezano za Lokacije sekciju
-        </SheetDescription>
-        <div className="flex flex-row items-center gap-4">
-          <Button
-            type="button"
-            variant="outline"
-            onClick={() => setIsVisible((prev) => !prev)}
-          >
-            {isVisible ? "Sakrij sa sajta" : "Prikaži na sajtu"}
-            {isVisible ? <EyeOff /> : <EyeIcon />}
-          </Button>
-          <SheetDescription
-            className={`${isVisible ? "text-green-700" : "text-red-700"} font-bold`}
-          >
-            Status: {isVisible ? "Vidljiva na sajtu" : "Nije Vidljiva na sajtu"}
+      <SheetHeader className="space-y-3">
+        <div className="space-y-1">
+          <SheetTitle>Lokacije</SheetTitle>
+          <SheetDescription>
+            Uredite naslov sekcije i kartice sa adresama, vremenima i opisima.
           </SheetDescription>
         </div>
+        <SectionModalVisibilityBar
+          isVisible={isVisible}
+          onToggle={() => setIsVisible((prev) => !prev)}
+        />
       </SheetHeader>
-      <form onSubmit={handleSubmit}>
-        <FieldGroup>
+
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <FieldGroup className="rounded-xl border bg-muted/20 p-4">
           <Field>
-            <Label htmlFor="title">Izmenite Naslov</Label>
+            <FieldLabel htmlFor="title">Naslov</FieldLabel>
+            <FieldDescription>Glavni naslov sekcije lokacija.</FieldDescription>
             <Input
               id="title"
               name="title"
-              placeholder="Upišite naslov sekcije"
+              placeholder="npr. Lokacije"
               onChange={handleChange}
               value={form.title ?? ""}
             />
           </Field>
           <Field>
-            <Label htmlFor="subtitle">Izmenite Podnaslov</Label>
+            <FieldLabel htmlFor="subtitle">Podnaslov</FieldLabel>
+            <FieldDescription>
+              Kratka rečenica ispod naslova.
+            </FieldDescription>
             <Input
               id="subtitle"
               name="subtitle"
-              placeholder="Upišite podnaslov sekcije"
+              placeholder="npr. Važne adrese našeg dana"
               onChange={handleChange}
               value={form.subtitle ?? ""}
             />
           </Field>
-          {form.cards.map((card, index) => (
-            <FieldGroup key={card.id}>
-              <Label>Kartica {index + 1}</Label>
-              <Field>
-                <Label htmlFor={`card-title-${card.id}`}>Naslov</Label>
-                <Input
-                  id={`card-title-${card.id}`}
-                  placeholder="Naslov kartice"
-                  value={card.title ?? ""}
-                  onChange={(e) =>
-                    handleCardChange(card.id, "title", e.target.value)
-                  }
-                />
-              </Field>
-              <Field>
-                <Label htmlFor={`card-time-${card.id}`}>Vreme</Label>
-                <Input
-                  id={`card-time-${card.id}`}
-                  placeholder="Vreme"
-                  value={card.time ?? ""}
-                  onChange={(e) =>
-                    handleCardChange(card.id, "time", e.target.value)
-                  }
-                />
-              </Field>
-              <Field>
-                <Label htmlFor={`card-location-${card.id}`}>Lokacija</Label>
-                <Textarea
-                  id={`card-location-${card.id}`}
-                  placeholder="Adresa / lokacija"
-                  value={card.location ?? ""}
-                  onChange={(e) =>
-                    handleCardChange(card.id, "location", e.target.value)
-                  }
-                />
-              </Field>
-              <Field>
-                <Label htmlFor={`card-text-${card.id}`}>Opis</Label>
-                <Textarea
-                  id={`card-text-${card.id}`}
-                  placeholder="Opis"
-                  value={card.text ?? ""}
-                  onChange={(e) =>
-                    handleCardChange(card.id, "text", e.target.value)
-                  }
-                />
-              </Field>
-              <Button
-                type="button"
-                variant="outline"
-                className="cursor-pointer"
-                onClick={() => removeCard(card.id)}
+        </FieldGroup>
+
+        <div className="space-y-3">
+          <div className="flex items-center justify-between gap-2">
+            <div>
+              <p className="text-sm font-semibold">Kartice lokacija</p>
+              <p className="text-xs text-muted-foreground">
+                Svaka kartica predstavlja jedno mesto ili događaj.
+              </p>
+            </div>
+            <Badge variant="secondary">{form.cards.length}</Badge>
+          </div>
+
+          {form.cards.length === 0 ? (
+            <div className="rounded-xl border border-dashed bg-muted/30 px-4 py-6 text-center">
+              <p className="text-sm font-medium">Nema kartica</p>
+              <p className="mt-1 text-xs text-muted-foreground">
+                Dodajte prvu lokaciju da gosti vide gde treba da dođu.
+              </p>
+            </div>
+          ) : (
+            form.cards.map((card, index) => (
+              <RepeaterItemCard
+                key={card.id}
+                title={`Lokacija ${index + 1}`}
+                onRemove={() => removeCard(card.id)}
+                removeLabel="Ukloni"
               >
-                Ukloni karticu
-              </Button>
-            </FieldGroup>
-          ))}
+                <Field>
+                  <FieldLabel htmlFor={`card-title-${card.id}`}>
+                    Naslov
+                  </FieldLabel>
+                  <Input
+                    id={`card-title-${card.id}`}
+                    placeholder="npr. Crkveno venčanje"
+                    value={card.title ?? ""}
+                    onChange={(e) =>
+                      handleCardChange(card.id, "title", e.target.value)
+                    }
+                  />
+                </Field>
+                <Field>
+                  <FieldLabel htmlFor={`card-time-${card.id}`}>Vreme</FieldLabel>
+                  <Input
+                    id={`card-time-${card.id}`}
+                    placeholder="npr. 15:00"
+                    value={card.time ?? ""}
+                    onChange={(e) =>
+                      handleCardChange(card.id, "time", e.target.value)
+                    }
+                  />
+                </Field>
+                <Field>
+                  <FieldLabel htmlFor={`card-location-${card.id}`}>
+                    Adresa / lokacija
+                  </FieldLabel>
+                  <Textarea
+                    id={`card-location-${card.id}`}
+                    placeholder="Adresa ili naziv mesta"
+                    value={card.location ?? ""}
+                    onChange={(e) =>
+                      handleCardChange(card.id, "location", e.target.value)
+                    }
+                  />
+                </Field>
+                <Field>
+                  <FieldLabel htmlFor={`card-text-${card.id}`}>Opis</FieldLabel>
+                  <Textarea
+                    id={`card-text-${card.id}`}
+                    placeholder="Kratak opis za goste"
+                    value={card.text ?? ""}
+                    onChange={(e) =>
+                      handleCardChange(card.id, "text", e.target.value)
+                    }
+                  />
+                </Field>
+              </RepeaterItemCard>
+            ))
+          )}
+
           <Button
             type="button"
             variant="outline"
-            className="cursor-pointer"
+            className="w-full cursor-pointer"
             onClick={addCard}
           >
-            Dodaj karticu
+            <Plus className="h-4 w-4" />
+            Dodaj lokaciju
           </Button>
-        </FieldGroup>
+        </div>
+
         <SheetFooter>
-          <Button className="cursor-pointer" type="submit">
+          <Button className="cursor-pointer" type="submit" disabled={saving}>
             {saving ? (
               <>
                 Čuvam...
                 <Loader className="mr-2" size={16} />
               </>
             ) : (
-              `Sačuvaj Izmene`
+              "Sačuvaj izmene"
             )}
           </Button>
-
           <Button
             className="cursor-pointer"
             variant="outline"
+            type="button"
             onClick={closeModal}
           >
             Odustani

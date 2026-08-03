@@ -1,16 +1,10 @@
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Images } from "lucide-react";
 import { useDialog } from "../context/ModalContext";
 import { useProject } from "../context/ProjectContext";
 import { OurGallerySection } from "@/types/sections";
-import SectionLoader from "../loaders/SectionLoader";
+import { SectionEditCard } from "./SectionEditCard";
+import { SectionPreviewField } from "./SectionPreviewField";
+import { SectionItemsPreview } from "./SectionItemsPreview";
 
 export const OurGallerySectionEdit = () => {
   const { openModal } = useDialog();
@@ -21,48 +15,58 @@ export const OurGallerySectionEdit = () => {
     return null;
   }
 
-  const isVisible = ourGallerySection.visible;
-  const editModalHandler = () => openModal("our_gallery_edit");
-
-  if (loading) {
-    return <SectionLoader />;
-  }
+  const images = ourGallerySection.data.images ?? [];
 
   return (
-    <Card className="w-full max-w-sm">
-      <CardHeader>
-        <CardTitle>
-          Sekcija: <span className="font-bold">Galerija</span>
-        </CardTitle>
-        <CardDescription
-          className={`${isVisible ? "text-green-700" : "text-red-700"} font-bold`}
-        >
-          Status: {isVisible ? "Vidljiva na sajtu" : "Nije Vidljiva na sajtu"}
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p>
-          <span className="font-bold">Naslov:</span>{" "}
-          {ourGallerySection.data.title}
-        </p>
-        <p>
-          <span className="font-bold">Opis:</span>{" "}
-          {ourGallerySection.data.description}
-        </p>
-        <p>
-          <span className="font-bold">Broj slika:</span>{" "}
-          {ourGallerySection.data.images?.length ?? 0}
-        </p>
-      </CardContent>
-      <CardFooter className="flex-col gap-2">
-        <Button
-          type="submit"
-          className="w-full cursor-pointer"
-          onClick={editModalHandler}
-        >
-          Izmeni / Podesi Sekciju
-        </Button>
-      </CardFooter>
-    </Card>
+    <SectionEditCard
+      title="Galerija"
+      description="Kolekcija fotografija koje žele da vide gosti."
+      icon={Images}
+      visible={ourGallerySection.visible}
+      loading={loading}
+      onEdit={() => openModal("our_gallery_edit")}
+    >
+      <SectionPreviewField
+        label="Naslov"
+        value={ourGallerySection.data.title}
+      />
+      <SectionPreviewField
+        label="Opis"
+        value={ourGallerySection.data.description}
+        multiline
+      />
+      <SectionItemsPreview
+        label="Slike"
+        count={images.length}
+        emptyTitle="Nema slika"
+        emptyDescription="Dodajte URL-ove fotografija u uređivaču."
+      >
+        <div className="grid grid-cols-3 gap-2">
+          {images.slice(0, 3).map((image, index) => (
+            <div
+              key={`${image.url}-${index}`}
+              className="aspect-square overflow-hidden rounded-lg border bg-muted"
+            >
+              {image.url ? (
+                <img
+                  src={image.url}
+                  alt={`Galerija ${index + 1}`}
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <div className="flex h-full items-center justify-center text-[10px] text-muted-foreground">
+                  Prazno
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+        {images.length > 3 ? (
+          <p className="text-xs text-muted-foreground">
+            + još {images.length - 3} slika
+          </p>
+        ) : null}
+      </SectionItemsPreview>
+    </SectionEditCard>
   );
 };

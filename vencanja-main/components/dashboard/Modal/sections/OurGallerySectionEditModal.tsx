@@ -1,7 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Field, FieldGroup } from "@/components/ui/field";
+import {
+  Field,
+  FieldDescription,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   SheetDescription,
   SheetFooter,
@@ -11,11 +15,14 @@ import {
 import { useDialog } from "../../context/ModalContext";
 import Loader from "../../loaders/Loader";
 import { useProject } from "../../context/ProjectContext";
-import { EyeIcon, EyeOff } from "lucide-react";
+import { Plus } from "lucide-react";
 import { OurGallerySection } from "@/types/sections";
 import { useEffect, useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { UniversalProjectConfig } from "@/types/config";
+import { RepeaterItemCard } from "./RepeaterItemCard";
+import { Badge } from "@/components/ui/badge";
+import { SectionModalVisibilityBar } from "./SectionModalVisibilityBar";
 
 type GalleryImage = OurGallerySection["data"]["images"][number];
 
@@ -73,6 +80,11 @@ const OurGallerySectionEditModal = () => {
   };
 
   const removeImage = (index: number) => {
+    const confirmed = window.confirm(
+      "Da li ste sigurni da želite da uklonite ovu sliku?",
+    );
+    if (!confirmed) return;
+
     setForm((prev) => ({
       ...prev,
       images: prev.images.filter((_, imageIndex) => imageIndex !== index),
@@ -115,95 +127,122 @@ const OurGallerySectionEditModal = () => {
 
   return (
     <>
-      <SheetHeader>
-        <SheetTitle>Izmenite sekciju Galerija </SheetTitle>
-        <SheetDescription>
-          Ovde mozete izmeniti sve vezano za Galerija sekciju
-        </SheetDescription>
-        <div className="flex flex-row items-center gap-4">
-          <Button
-            type="button"
-            variant="outline"
-            onClick={() => setIsVisible((prev) => !prev)}
-          >
-            {isVisible ? "Sakrij sa sajta" : "Prikaži na sajtu"}
-            {isVisible ? <EyeOff /> : <EyeIcon />}
-          </Button>
-          <SheetDescription
-            className={`${isVisible ? "text-green-700" : "text-red-700"} font-bold`}
-          >
-            Status: {isVisible ? "Vidljiva na sajtu" : "Nije Vidljiva na sajtu"}
+      <SheetHeader className="space-y-3">
+        <div className="space-y-1">
+          <SheetTitle>Galerija</SheetTitle>
+          <SheetDescription>
+            Uredite naslov, opis i listu fotografija galerije.
           </SheetDescription>
         </div>
+        <SectionModalVisibilityBar
+          isVisible={isVisible}
+          onToggle={() => setIsVisible((prev) => !prev)}
+        />
       </SheetHeader>
-      <form onSubmit={handleSubmit}>
-        <FieldGroup>
+
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <FieldGroup className="rounded-xl border bg-muted/20 p-4">
           <Field>
-            <Label htmlFor="title">Izmenite Naslov</Label>
+            <FieldLabel htmlFor="title">Naslov</FieldLabel>
+            <FieldDescription>Glavni naslov galerije.</FieldDescription>
             <Input
               id="title"
               name="title"
-              placeholder="Upišite naslov sekcije"
+              placeholder="npr. Naša galerija"
               onChange={handleChange}
               value={form.title ?? ""}
             />
           </Field>
           <Field>
-            <Label htmlFor="description">Izmenite Opis</Label>
+            <FieldLabel htmlFor="description">Opis</FieldLabel>
+            <FieldDescription>
+              Kratki tekst iznad fotografija.
+            </FieldDescription>
             <Textarea
               id="description"
               name="description"
-              placeholder="Upišite opis sekcije"
+              placeholder="Opis galerije"
               onChange={handleChange}
               value={form.description ?? ""}
             />
           </Field>
-          {form.images.map((image, index) => (
-            <FieldGroup key={`gallery-image-${index}`}>
-              <Label>Slika {index + 1}</Label>
-              <Field>
-                <Label htmlFor={`image-url-${index}`}>URL slike</Label>
-                <Input
-                  id={`image-url-${index}`}
-                  placeholder="https://..."
-                  value={image.url ?? ""}
-                  onChange={(e) => handleImageChange(index, e.target.value)}
-                />
-              </Field>
-              <Button
-                type="button"
-                variant="outline"
-                className="cursor-pointer"
-                onClick={() => removeImage(index)}
+        </FieldGroup>
+
+        <div className="space-y-3">
+          <div className="flex items-center justify-between gap-2">
+            <div>
+              <p className="text-sm font-semibold">Fotografije</p>
+              <p className="text-xs text-muted-foreground">
+                Dodajte URL svake slike koju želite da prikažete.
+              </p>
+            </div>
+            <Badge variant="secondary">{form.images.length}</Badge>
+          </div>
+
+          {form.images.length === 0 ? (
+            <div className="rounded-xl border border-dashed bg-muted/30 px-4 py-6 text-center">
+              <p className="text-sm font-medium">Nema slika</p>
+              <p className="mt-1 text-xs text-muted-foreground">
+                Dodajte prvu fotografiju u galeriju.
+              </p>
+            </div>
+          ) : (
+            form.images.map((image, index) => (
+              <RepeaterItemCard
+                key={`gallery-image-${index}`}
+                title={`Slika ${index + 1}`}
+                onRemove={() => removeImage(index)}
               >
-                Ukloni sliku
-              </Button>
-            </FieldGroup>
-          ))}
+                <Field>
+                  <FieldLabel htmlFor={`image-url-${index}`}>
+                    URL slike
+                  </FieldLabel>
+                  <Input
+                    id={`image-url-${index}`}
+                    placeholder="https://..."
+                    value={image.url ?? ""}
+                    onChange={(e) => handleImageChange(index, e.target.value)}
+                  />
+                </Field>
+                {image.url ? (
+                  <div className="overflow-hidden rounded-lg border">
+                    <img
+                      src={image.url}
+                      alt={`Pregled ${index + 1}`}
+                      className="h-28 w-full object-cover"
+                    />
+                  </div>
+                ) : null}
+              </RepeaterItemCard>
+            ))
+          )}
+
           <Button
             type="button"
             variant="outline"
-            className="cursor-pointer"
+            className="w-full cursor-pointer"
             onClick={addImage}
           >
+            <Plus className="h-4 w-4" />
             Dodaj sliku
           </Button>
-        </FieldGroup>
+        </div>
+
         <SheetFooter>
-          <Button className="cursor-pointer" type="submit">
+          <Button className="cursor-pointer" type="submit" disabled={saving}>
             {saving ? (
               <>
                 Čuvam...
                 <Loader className="mr-2" size={16} />
               </>
             ) : (
-              `Sačuvaj Izmene`
+              "Sačuvaj izmene"
             )}
           </Button>
-
           <Button
             className="cursor-pointer"
             variant="outline"
+            type="button"
             onClick={closeModal}
           >
             Odustani

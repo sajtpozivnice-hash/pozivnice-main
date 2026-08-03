@@ -1,16 +1,10 @@
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { MapPinned } from "lucide-react";
 import { useDialog } from "../context/ModalContext";
 import { useProject } from "../context/ProjectContext";
 import { LocationsSection } from "@/types/sections";
-import SectionLoader from "../loaders/SectionLoader";
+import { SectionEditCard } from "./SectionEditCard";
+import { SectionPreviewField } from "./SectionPreviewField";
+import { SectionItemsPreview } from "./SectionItemsPreview";
 
 export const LocationsSectionEdit = () => {
   const { openModal } = useDialog();
@@ -21,48 +15,49 @@ export const LocationsSectionEdit = () => {
     return null;
   }
 
-  const isVisible = locationsSection.visible;
+  const cards = locationsSection.data.cards ?? [];
   const editModalHandler = () => openModal("locations_edit");
 
-  if (loading) {
-    return <SectionLoader />;
-  }
-
   return (
-    <Card className="w-full max-w-sm">
-      <CardHeader>
-        <CardTitle>
-          Sekcija: <span className="font-bold">Lokacije</span>
-        </CardTitle>
-        <CardDescription
-          className={`${isVisible ? "text-green-700" : "text-red-700"} font-bold`}
-        >
-          Status: {isVisible ? "Vidljiva na sajtu" : "Nije Vidljiva na sajtu"}
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p>
-          <span className="font-bold">Naslov:</span>{" "}
-          {locationsSection.data.title}
-        </p>
-        <p>
-          <span className="font-bold">Podnaslov:</span>{" "}
-          {locationsSection.data.subtitle}
-        </p>
-        <p>
-          <span className="font-bold">Broj kartica:</span>{" "}
-          {locationsSection.data.cards?.length ?? 0}
-        </p>
-      </CardContent>
-      <CardFooter className="flex-col gap-2">
-        <Button
-          type="submit"
-          className="w-full cursor-pointer"
-          onClick={editModalHandler}
-        >
-          Izmeni / Podesi Sekciju
-        </Button>
-      </CardFooter>
-    </Card>
+    <SectionEditCard
+      title="Lokacije"
+      description="Adrese i detalji važnih mesta tokom dana."
+      icon={MapPinned}
+      visible={locationsSection.visible}
+      loading={loading}
+      onEdit={editModalHandler}
+    >
+      <SectionPreviewField label="Naslov" value={locationsSection.data.title} />
+      <SectionPreviewField
+        label="Podnaslov"
+        value={locationsSection.data.subtitle}
+      />
+      <SectionItemsPreview
+        label="Kartice lokacija"
+        count={cards.length}
+        emptyTitle="Nema dodatih lokacija"
+        emptyDescription="Dodajte kartice sa adresama i vremenima u uređivaču."
+      >
+        {cards.slice(0, 3).map((card) => (
+          <div
+            key={card.id}
+            className="rounded-xl border bg-muted/30 px-3 py-2"
+          >
+            <p className="truncate text-sm font-medium">
+              {card.title || "Bez naslova"}
+            </p>
+            <p className="truncate text-xs text-muted-foreground">
+              {[card.time, card.location].filter(Boolean).join(" · ") ||
+                "Nema detalja"}
+            </p>
+          </div>
+        ))}
+        {cards.length > 3 ? (
+          <p className="text-xs text-muted-foreground">
+            + još {cards.length - 3} lokacija
+          </p>
+        ) : null}
+      </SectionItemsPreview>
+    </SectionEditCard>
   );
 };

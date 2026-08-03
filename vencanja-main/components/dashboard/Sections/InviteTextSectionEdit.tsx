@@ -1,16 +1,9 @@
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { TextQuote } from "lucide-react";
 import { useDialog } from "../context/ModalContext";
 import { useProject } from "../context/ProjectContext";
 import { InviteTextSection } from "@/types/sections";
-import SectionLoader from "../loaders/SectionLoader";
+import { SectionEditCard } from "./SectionEditCard";
+import { SectionPreviewField } from "./SectionPreviewField";
 
 export const InviteTextSectionEdit = () => {
   const { openModal } = useDialog();
@@ -21,40 +14,20 @@ export const InviteTextSectionEdit = () => {
     return null;
   }
 
-  const isVisible = inviteTextSection.visible;
-  const editModalHandler = () => openModal("invite_text_edit");
-
-  if (loading) {
-    return <SectionLoader />;
-  }
-
   return (
-    <Card className="w-full max-w-sm">
-      <CardHeader>
-        <CardTitle>
-          Sekcija: <span className="font-bold">Tekst Pozivnice</span>
-        </CardTitle>
-        <CardDescription
-          className={`${isVisible ? "text-green-700" : "text-red-700"} font-bold`}
-        >
-          Status: {isVisible ? "Vidljiva na sajtu" : "Nije Vidljiva na sajtu"}
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p>
-          <span className="font-bold">Naslov:</span>{" "}
-          {inviteTextSection.data.description}
-        </p>
-      </CardContent>
-      <CardFooter className="flex-col gap-2">
-        <Button
-          type="submit"
-          className="w-full cursor-pointer"
-          onClick={editModalHandler}
-        >
-          Izmeni / Podesi Sekciju
-        </Button>
-      </CardFooter>
-    </Card>
+    <SectionEditCard
+      title="Tekst pozivnice"
+      description="Glavna poruka kojom pozivate goste."
+      icon={TextQuote}
+      visible={inviteTextSection.visible}
+      loading={loading}
+      onEdit={() => openModal("invite_text_edit")}
+    >
+      <SectionPreviewField
+        label="Tekst"
+        value={inviteTextSection.data.description}
+        multiline
+      />
+    </SectionEditCard>
   );
 };
