@@ -1,7 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Field, FieldGroup } from "@/components/ui/field";
+import {
+  Field,
+  FieldDescription,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   SheetDescription,
   SheetFooter,
@@ -11,12 +15,12 @@ import {
 import { useDialog } from "../../context/ModalContext";
 import Loader from "../../loaders/Loader";
 import { useProject } from "../../context/ProjectContext";
-import { EyeIcon, EyeOff } from "lucide-react";
 import { OurStorySection } from "@/types/sections";
 import { useEffect, useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { UniversalProjectConfig } from "@/types/config";
 import ImagePreviewInput from "../../ImagePreviewInput";
+import { SectionModalVisibilityBar } from "./SectionModalVisibilityBar";
 
 const OurStorySectionEditModal = () => {
   const { closeModal } = useDialog();
@@ -88,31 +92,22 @@ const OurStorySectionEditModal = () => {
 
   return (
     <>
-      <SheetHeader>
-        <SheetTitle>Izmenite sekciju Naša Priča </SheetTitle>
-        <SheetDescription>
-          Ovde mozete izmeniti sve vezano za Naša Priča sekciju
-        </SheetDescription>
-        <div className="flex flex-row items-center gap-4">
-          <Button
-            type="button"
-            variant="outline"
-            onClick={() => setIsVisible((prev) => !prev)}
-          >
-            {isVisible ? "Sakrij sa sajta" : "Prikaži na sajtu"}
-            {isVisible ? <EyeOff /> : <EyeIcon />}
-          </Button>
-          <SheetDescription
-            className={`${isVisible ? "text-green-700" : "text-red-700"} font-bold`}
-          >
-            Status: {isVisible ? "Vidljiva na sajtu" : "Nije Vidljiva na sajtu"}
+      <SheetHeader className="space-y-3">
+        <div className="space-y-1">
+          <SheetTitle>Naša priča</SheetTitle>
+          <SheetDescription>
+            Uredite naslov, podnaslov, tekst i fotografiju vaše priče.
           </SheetDescription>
         </div>
+        <SectionModalVisibilityBar
+          isVisible={isVisible}
+          onToggle={() => setIsVisible((prev) => !prev)}
+        />
       </SheetHeader>
-      <form onSubmit={handleSubmit}>
-        <FieldGroup>
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <FieldGroup className="rounded-xl border bg-muted/20 p-4">
           <Field>
-            <Label htmlFor="title">Izmenite Naslov</Label>
+            <FieldLabel htmlFor="title">Naslov</FieldLabel>
             <Input
               id="title"
               name="title"
@@ -122,17 +117,18 @@ const OurStorySectionEditModal = () => {
             />
           </Field>
           <Field>
-            <Label htmlFor="overline">Izmenite Podnaslov</Label>
+            <FieldLabel htmlFor="overline">Podnaslov</FieldLabel>
             <Input
               id="overline"
               name="overline"
-              placeholder="Upišite podnaslov sekcije"
+              placeholder="Upišite podnaslov"
               onChange={handleChange}
               value={form.overline ?? ""}
             />
           </Field>
           <Field>
-            <Label htmlFor="text">Izmenite Opis</Label>
+            <FieldLabel htmlFor="text">Opis</FieldLabel>
+            <FieldDescription>Glavni tekst vaše priče.</FieldDescription>
             <Textarea
               id="text"
               name="text"
@@ -142,27 +138,24 @@ const OurStorySectionEditModal = () => {
             />
           </Field>
           <Field>
-            <ImagePreviewInput
-              preview={form.image}
-              label="Izmenite Sliku"
-            />
+            <ImagePreviewInput preview={form.image} label="Slika" />
           </Field>
         </FieldGroup>
         <SheetFooter>
-          <Button className="cursor-pointer" type="submit">
+          <Button className="cursor-pointer" type="submit" disabled={saving}>
             {saving ? (
               <>
                 Čuvam...
                 <Loader className="mr-2" size={16} />
               </>
             ) : (
-              `Sačuvaj Izmene`
+              "Sačuvaj izmene"
             )}
           </Button>
-
           <Button
             className="cursor-pointer"
             variant="outline"
+            type="button"
             onClick={closeModal}
           >
             Odustani

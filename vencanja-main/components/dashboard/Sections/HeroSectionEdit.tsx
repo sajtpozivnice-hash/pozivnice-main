@@ -1,18 +1,10 @@
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-
+import { Image } from "lucide-react";
 import { useProject } from "../context/ProjectContext";
 import { HeroSection } from "@/types/sections";
-import SectionLoader from "../loaders/SectionLoader";
 import { useDialog } from "../context/ModalContext";
 import ImagePreviewInCard from "../ImagePrewiewInCard";
+import { SectionEditCard } from "./SectionEditCard";
+import { SectionPreviewField } from "./SectionPreviewField";
 
 export const HeroSectionEdit = () => {
   const { openModal } = useDialog();
@@ -23,51 +15,29 @@ export const HeroSectionEdit = () => {
     return null;
   }
 
-  const isVisible = heroSection.visible;
-
-  const editModalHandler = () => openModal("hero_edit");
-
-  if (loading) {
-    return <SectionLoader />;
-  }
-
   return (
-    <Card className="w-full max-w-sm">
-      <CardHeader>
-        <CardTitle>
-          Sekcija: <span className="font-bold">Naslovna</span>
-        </CardTitle>
-        <CardDescription
-          className={`${isVisible ? "text-green-700" : "text-red-700"} font-bold`}
-        >
-          Status: {isVisible ? "Vidljiva na sajtu" : "Nije Vidljiva na sajtu"}
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p>
-          <span className="font-bold">Naslov:</span> {heroSection.data.title}
+    <SectionEditCard
+      title="Naslovna"
+      description="Prvi utisak — imena, poruka i pozadinska slika."
+      icon={Image}
+      visible={heroSection.visible}
+      loading={loading}
+      onEdit={() => openModal("hero_edit")}
+    >
+      <SectionPreviewField label="Naslov" value={heroSection.data.title} />
+      <SectionPreviewField
+        label="Podnaslov"
+        value={heroSection.data.subtitle}
+      />
+      <div className="space-y-2">
+        <p className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
+          Pozadinska slika
         </p>
-        <p>
-          <span className="font-bold">Podnaslov: </span>
-          {heroSection.data.subtitle}
-        </p>
-        <div className="mt-4">
-          <p className="mb-2 font-bold">Pozadinska Slika:</p>
-          <ImagePreviewInCard
-            src={heroSection.data.backgroundImage}
-            alt="Hero pozadina"
-          />
-        </div>
-      </CardContent>
-      <CardFooter className="flex-col gap-2">
-        <Button
-          type="submit"
-          className="w-full cursor-pointer"
-          onClick={editModalHandler}
-        >
-          Izmeni / Podesi Sekciju
-        </Button>
-      </CardFooter>
-    </Card>
+        <ImagePreviewInCard
+          src={heroSection.data.backgroundImage}
+          alt="Hero pozadina"
+        />
+      </div>
+    </SectionEditCard>
   );
 };

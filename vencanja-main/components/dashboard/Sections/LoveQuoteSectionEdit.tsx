@@ -1,16 +1,9 @@
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Quote } from "lucide-react";
 import { useDialog } from "../context/ModalContext";
 import { useProject } from "../context/ProjectContext";
 import { LoveQuoteSection } from "@/types/sections";
-import SectionLoader from "../loaders/SectionLoader";
+import { SectionEditCard } from "./SectionEditCard";
+import { SectionPreviewField } from "./SectionPreviewField";
 
 export const LoveQuoteSectionEdit = () => {
   const { openModal } = useDialog();
@@ -21,36 +14,20 @@ export const LoveQuoteSectionEdit = () => {
     return null;
   }
 
-  const isVisible = loveQuoteSection.visible;
-  const editModalHandler = () => openModal("love_quote_edit");
-
-  if (loading) {
-    return <SectionLoader />;
-  }
-
   return (
-    <Card className="w-full max-w-sm">
-      <CardHeader>
-        <CardTitle>
-          Sekcija: <span className="font-bold">Ljubavni Citat</span>
-        </CardTitle>
-        <CardDescription
-          className={`${isVisible ? "text-green-700" : "text-red-700"} font-bold`}
-        >
-          Status: {isVisible ? "Vidljiva na sajtu" : "Nije Vidljiva na sajtu"}
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p>
-          <span className="font-bold">Naslov:</span>{" "}
-          {loveQuoteSection.data.title}
-        </p>
-      </CardContent>
-      <CardFooter className="flex-col gap-2">
-        <Button className="w-full cursor-pointer" onClick={editModalHandler}>
-          Izmeni / Podesi Sekciju
-        </Button>
-      </CardFooter>
-    </Card>
+    <SectionEditCard
+      title="Ljubavni citat"
+      description="Istaknuta poruka ili citat na pozivnici."
+      icon={Quote}
+      visible={loveQuoteSection.visible}
+      loading={loading}
+      onEdit={() => openModal("love_quote_edit")}
+    >
+      <SectionPreviewField
+        label="Citat"
+        value={loveQuoteSection.data.title}
+        multiline
+      />
+    </SectionEditCard>
   );
 };

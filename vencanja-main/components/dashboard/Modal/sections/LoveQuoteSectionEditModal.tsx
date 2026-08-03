@@ -1,6 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { Field, FieldGroup } from "@/components/ui/field";
-import { Label } from "@/components/ui/label";
+import {
+  Field,
+  FieldDescription,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field";
 import {
   SheetDescription,
   SheetFooter,
@@ -10,11 +14,11 @@ import {
 import { useDialog } from "../../context/ModalContext";
 import Loader from "../../loaders/Loader";
 import { useProject } from "../../context/ProjectContext";
-import { EyeIcon, EyeOff } from "lucide-react";
 import { LoveQuoteSection } from "@/types/sections";
 import { useEffect, useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { UniversalProjectConfig } from "@/types/config";
+import { SectionModalVisibilityBar } from "./SectionModalVisibilityBar";
 
 const LoveQuoteSectionEditModal = () => {
   const { closeModal } = useDialog();
@@ -75,31 +79,25 @@ const LoveQuoteSectionEditModal = () => {
 
   return (
     <>
-      <SheetHeader>
-        <SheetTitle>Izmenite sekciju Ljubavni Citat </SheetTitle>
-        <SheetDescription>
-          Ovde mozete izmeniti sve vezano za Ljubavni citat sekciju
-        </SheetDescription>
-        <div className="flex flex-row items-center gap-4">
-          <Button
-            type="button"
-            variant="outline"
-            onClick={() => setIsVisible((prev) => !prev)}
-          >
-            {isVisible ? "Sakrij sa sajta" : "Prikaži na sajtu"}
-            {isVisible ? <EyeOff /> : <EyeIcon />}
-          </Button>
-          <SheetDescription
-            className={`${isVisible ? "text-green-700" : "text-red-700"} font-bold`}
-          >
-            Status: {isVisible ? "Vidljiva na sajtu" : "Nije Vidljiva na sajtu"}
+      <SheetHeader className="space-y-3">
+        <div className="space-y-1">
+          <SheetTitle>Ljubavni citat</SheetTitle>
+          <SheetDescription>
+            Uredite citat koji se prikazuje u ovoj sekciji.
           </SheetDescription>
         </div>
+        <SectionModalVisibilityBar
+          isVisible={isVisible}
+          onToggle={() => setIsVisible((prev) => !prev)}
+        />
       </SheetHeader>
-      <form onSubmit={handleSubmit}>
-        <FieldGroup>
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <FieldGroup className="rounded-xl border bg-muted/20 p-4">
           <Field>
-            <Label htmlFor="title">Izmenite Tekst</Label>
+            <FieldLabel htmlFor="title">Citat</FieldLabel>
+            <FieldDescription>
+              Tekst ljubavnog citata za goste.
+            </FieldDescription>
             <Textarea
               id="title"
               name="title"
@@ -110,20 +108,20 @@ const LoveQuoteSectionEditModal = () => {
           </Field>
         </FieldGroup>
         <SheetFooter>
-          <Button className="cursor-pointer" type="submit">
+          <Button className="cursor-pointer" type="submit" disabled={saving}>
             {saving ? (
               <>
                 Čuvam...
                 <Loader className="mr-2" size={16} />
               </>
             ) : (
-              `Sačuvaj Izmene`
+              "Sačuvaj izmene"
             )}
           </Button>
-
           <Button
             className="cursor-pointer"
             variant="outline"
+            type="button"
             onClick={closeModal}
           >
             Odustani

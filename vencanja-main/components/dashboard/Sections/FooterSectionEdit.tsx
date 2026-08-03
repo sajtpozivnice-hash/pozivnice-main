@@ -1,16 +1,9 @@
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { PanelBottom } from "lucide-react";
 import { useDialog } from "../context/ModalContext";
 import { useProject } from "../context/ProjectContext";
-import { FooterSection, InviteTextSection } from "@/types/sections";
-import SectionLoader from "../loaders/SectionLoader";
+import { FooterSection } from "@/types/sections";
+import { SectionEditCard } from "./SectionEditCard";
+import { SectionPreviewField } from "./SectionPreviewField";
 
 export const FooterSectionEdit = () => {
   const { openModal } = useDialog();
@@ -21,39 +14,20 @@ export const FooterSectionEdit = () => {
     return null;
   }
 
-  const isVisible = footerSection.visible;
-  const editModalHandler = () => openModal("footer_edit");
-
-  if (loading) {
-    return <SectionLoader />;
-  }
-
   return (
-    <Card className="w-full max-w-sm">
-      <CardHeader>
-        <CardTitle>
-          Sekcija: <span className="font-bold">Zaglavlje Sajta</span>
-        </CardTitle>
-        <CardDescription
-          className={`${isVisible ? "text-green-700" : "text-red-700"} font-bold`}
-        >
-          Status: {isVisible ? "Vidljiva na sajtu" : "Nije Vidljiva na sajtu"}
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p>
-          <span className="font-bold">Naslov:</span> {footerSection.data.title}
-        </p>
-      </CardContent>
-      <CardFooter className="flex-col gap-2">
-        <Button
-          type="submit"
-          className="w-full cursor-pointer"
-          onClick={editModalHandler}
-        >
-          Izmeni / Podesi Sekciju
-        </Button>
-      </CardFooter>
-    </Card>
+    <SectionEditCard
+      title="Završna poruka"
+      description="Završni tekst na dnu pozivnice."
+      icon={PanelBottom}
+      visible={footerSection.visible}
+      loading={loading}
+      onEdit={() => openModal("footer_edit")}
+    >
+      <SectionPreviewField
+        label="Poruka"
+        value={footerSection.data.title}
+        multiline
+      />
+    </SectionEditCard>
   );
 };
