@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
-
-import { Field, FieldGroup } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import {
+  Field,
+  FieldDescription,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field";
 import {
   SheetDescription,
   SheetFooter,
@@ -21,9 +23,13 @@ const AddGuestToTableModal = () => {
   const { closeModal, data } = useDialog();
   const { guests, updateGuest, loading } = useGuests();
   const [selectedGuests, setSelectedGuests] = useState<string[]>([]);
+
   const id = data?.id ?? "";
-  const { name, number_of_guests } = data?.data;
+  const name = data?.data?.name ?? "sto";
+  const numberOfGuests = Number(data?.data?.number_of_guests ?? 0);
+
   const tableGuests = guests.filter((guest) => guest.table_id === id);
+  const availableSeats = Math.max(numberOfGuests - tableGuests.length, 0);
 
   const guestsForSelect = guests
     .filter((guest) => guest.table_id == null)
@@ -34,6 +40,20 @@ const AddGuestToTableModal = () => {
     }));
 
   const addGuests = async () => {
+    if (!id) return;
+
+    if (selectedGuests.length === 0) {
+      toast.error("Izaberite bar jednog gosta.", { position: "top-center" });
+      return;
+    }
+
+    if (selectedGuests.length > availableSeats) {
+      toast.error(`Možete dodati još ${availableSeats} gosta.`, {
+        position: "top-center",
+      });
+      return;
+    }
+
     try {
       await Promise.all(
         selectedGuests.map((guestId) =>
@@ -42,10 +62,12 @@ const AddGuestToTableModal = () => {
           }),
         ),
       );
-      toast.success("Uspešno dodati gosti.", { position: "top-center" });
+      toast.success("Gosti su uspešno dodati za sto.", {
+        position: "top-center",
+      });
       closeModal();
     } catch {
-      toast.error("Došlo je do greške. Pokušajte ponovo", {
+      toast.error("Došlo je do greške. Pokušajte ponovo.", {
         position: "top-center",
       });
     }
@@ -53,48 +75,77 @@ const AddGuestToTableModal = () => {
 
   return (
     <>
-      <SheetHeader>
-        <SheetTitle>Dodaj Novog Gosta za {name} </SheetTitle>
+      <SheetHeader className="space-y-2">
+        <SheetTitle>Dodaj goste za {name}</SheetTitle>
         <SheetDescription>
-          Imate još {number_of_guests - tableGuests.length} slobodna mesta
-          <br />
-          <ProgressBar
-            occupied={tableGuests.length}
-            capacity={number_of_guests}
-          />
+          Izaberite goste koji su potvrdili dolazak i još nisu raspoređeni.
         </SheetDescription>
       </SheetHeader>
-      <FieldGroup>
-        <Field>
-          <p>Gosti koji su potvrdili dolazak</p>
-          <GuestMultiSelect
-            options={guestsForSelect}
-            value={selectedGuests}
-            onChange={setSelectedGuests}
-            available={number_of_guests - tableGuests.length}
-          />
-        </Field>
-        <div>
-          <p>Gosti koji su za stolom:</p>
-          {tableGuests.map((guest) => (
-            <p key={guest.id}>{guest.name}</p>
-          ))}
+
+      <div className="space-y-4">
+        <div className="rounded-xl border bg-muted/20 p-4">
+          <ProgressBar occupied={tableGuests.length} capacity={numberOfGuests} />
         </div>
-      </FieldGroup>
-      <SheetFooter>
-        {!!selectedGuests.length && (
-          <Button className="cursor-pointer" onClick={addGuests}>
-            {loading ? (
-              <>
-                Dodajem...
-                <Loader className="mr-2" size={16} />
-              </>
+
+        <FieldGroup className="rounded-xl border bg-muted/20 p-4">
+          <Field>
+            <FieldLabel>Dostupni gosti</FieldLabel>
+            <FieldDescription>
+              Preostalo mesta: {availableSeats}
+            </FieldDescription>
+            {guestsForSelect.length === 0 ? (
+              <div className="rounded-xl border border-dashed bg-background px-3 py-4 text-center text-sm text-muted-foreground">
+                Nema slobodnih gostiju sa statusom „Dolazi“.
+              </div>
             ) : (
-              `Dodaj ${selectedGuests.length} gosta za ${name}`
+              <GuestMultiSelect
+                options={guestsForSelect}
+                value={selectedGuests}
+                onChange={setSelectedGuests}
+                available={availableSeats}
+              />
             )}
-          </Button>
-        )}
+          </Field>
+
+          <div className="space-y-2">
+            <p className="text-sm font-medium">Gosti za ovim stolom</p>
+            {tableGuests.length === 0 ? (
+              <p className="text-sm text-muted-foreground">
+                Trenutno nema raspoređenih gostiju.
+              </p>
+            ) : (
+              <div className="space-y-2">
+                {tableGuests.map((guest) => (
+                  <div
+                    key={guest.id}
+                    className="rounded-lg border bg-background px-3 py-2 text-sm"
+                  >
+                    {guest.name}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </FieldGroup>
+      </div>
+
+      <SheetFooter>
         <Button
+          className="cursor-pointer"
+          onClick={addGuests}
+          disabled={loading || selectedGuests.length === 0}
+        >
+          {loading ? (
+            <>
+              Dodajem...
+              <Loader className="mr-2" size={16} />
+            </>
+          ) : (
+            `Dodaj ${selectedGuests.length || ""} gosta`
+          )}
+        </Button>
+        <Button
+          type="button"
           className="cursor-pointer"
           variant="outline"
           onClick={closeModal}

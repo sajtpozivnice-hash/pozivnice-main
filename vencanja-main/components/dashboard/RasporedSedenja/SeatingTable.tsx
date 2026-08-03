@@ -8,16 +8,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
 import { Button } from "@/components/ui/button";
 import { useDialog } from "../context/ModalContext";
-import { CircleX } from "lucide-react";
+import { CircleX, Pencil, Trash2, UserPlus } from "lucide-react";
 import { useGuests } from "../context/GuestContext";
 import Loader from "../loaders/Loader";
 import {
   Tooltip,
   TooltipContent,
-  TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { toast } from "sonner";
@@ -66,105 +64,119 @@ const SeatingTable: FC<SeatingTableProps> = ({
     });
   };
 
-  const removeGuestFromTable = async (id: string, data: Partial<Guest>) => {
-    console.log(data, "data");
+  const removeGuestFromTable = async (guestId: string, guestName: string) => {
     try {
-      setRemovingGuestId(id);
-      await updateGuest(id, data);
-      toast.success(`${data.name} je uspesno uklonjen.`, {
+      setRemovingGuestId(guestId);
+      await updateGuest(guestId, {
+        table_id: null,
+      });
+      toast.success(`${guestName} je uspešno uklonjen sa stola.`, {
         position: "top-center",
       });
     } catch {
+      toast.error("Došlo je do greške. Pokušajte ponovo.", {
+        position: "top-center",
+      });
+    } finally {
       setRemovingGuestId(null);
     }
   };
 
-  const isFull = number_of_guests != null && guests.length >= number_of_guests;
+  const isFull =
+    number_of_guests != null && guests.length >= number_of_guests;
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>{name}</CardTitle>
-        <CardDescription>
+    <Card className="border shadow-sm transition-shadow hover:shadow-md">
+      <CardHeader className="border-b pb-4">
+        <CardTitle className="text-base font-semibold">{name}</CardTitle>
+        <CardDescription className="pt-2">
           <ProgressBar
             occupied={guests.length}
             capacity={number_of_guests || 0}
           />
         </CardDescription>
       </CardHeader>
-      <CardContent>
+
+      <CardContent className="space-y-2 pt-1">
         {guests.length > 0 ? (
-          <div className="space-y-2">
-            {guests.map((guest) => (
-              <div
-                key={guest.id}
-                className="flex items-center justify-between rounded-md border p-1"
-              >
-                <span>{guest.name}</span>
-                {removingGuestId === guest.id ? (
-                  <Loader />
-                ) : (
-                  <Tooltip>
-                    <TooltipTrigger
-                      render={
-                        <CircleX
-                          onClick={() =>
-                            removeGuestFromTable(guest.id, {
-                              table_id: null,
-                              name: guest.name,
-                            })
-                          }
-                          className="cursor-pointer"
-                          color="red"
-                        />
-                      }
-                    />
-                    <TooltipContent>
-                      <p>Ukloni gosta sa stola: {guest.name}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                )}
-              </div>
-            ))}
-          </div>
+          guests.map((guest) => (
+            <div
+              key={guest.id}
+              className="flex items-center justify-between gap-3 rounded-xl border bg-muted/20 px-3 py-2"
+            >
+              <span className="truncate text-sm font-medium">{guest.name}</span>
+              {removingGuestId === guest.id ? (
+                <Loader size={16} />
+              ) : (
+                <Tooltip>
+                  <TooltipTrigger
+                    render={
+                      <button
+                        type="button"
+                        className="rounded-md p-1 text-destructive transition-colors hover:bg-destructive/10"
+                        onClick={() =>
+                          removeGuestFromTable(guest.id, guest.name)
+                        }
+                        aria-label={`Ukloni ${guest.name}`}
+                      >
+                        <CircleX className="h-4 w-4" />
+                      </button>
+                    }
+                  />
+                  <TooltipContent>
+                    <p>Ukloni gosta sa stola: {guest.name}</p>
+                  </TooltipContent>
+                </Tooltip>
+              )}
+            </div>
+          ))
         ) : (
-          <p className="text-sm text-muted-foreground">
+          <div className="rounded-xl border border-dashed bg-muted/20 px-3 py-6 text-center text-sm text-muted-foreground">
             Nema raspoređenih gostiju
-          </p>
+          </div>
         )}
       </CardContent>
+
       <CardFooter className="flex flex-col gap-2">
         {isFull ? (
           <Tooltip>
-            <TooltipTrigger>
-              <span className="inline-block w-full">
-                <Button className="w-full" disabled>
-                  Dodaj Gosta Za Sto
-                </Button>
-              </span>
-            </TooltipTrigger>
-
+            <TooltipTrigger
+              render={
+                <span className="inline-block w-full">
+                  <Button className="w-full" disabled>
+                    <UserPlus className="h-4 w-4" />
+                    Dodaj gosta za sto
+                  </Button>
+                </span>
+              }
+            />
             <TooltipContent>
               Sto je popunjen. Prvo uklonite nekog gosta.
             </TooltipContent>
           </Tooltip>
         ) : (
-          <Button className="w-full" onClick={addGuestToTable}>
-            Dodaj Gosta Za Sto
+          <Button className="w-full cursor-pointer" onClick={addGuestToTable}>
+            <UserPlus className="h-4 w-4" />
+            Dodaj gosta za sto
           </Button>
         )}
 
-        <div className="flex">
-          <Button className="flex-1 cursor-pointer" onClick={editTable}>
-            Uredi Sto
+        <div className="flex w-full gap-2">
+          <Button
+            variant="outline"
+            className="flex-1 cursor-pointer"
+            onClick={editTable}
+          >
+            <Pencil className="h-4 w-4" />
+            Uredi
           </Button>
-
           <Button
             className="flex-1 cursor-pointer"
-            variant="destructive"
+            variant="outline"
             onClick={handleDeleteTableModal}
           >
-            Obriši Sto
+            <Trash2 className="h-4 w-4 text-destructive" />
+            Obriši
           </Button>
         </div>
       </CardFooter>

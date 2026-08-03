@@ -1,7 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Field, FieldGroup } from "@/components/ui/field";
+import {
+  Field,
+  FieldDescription,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   SheetDescription,
   SheetFooter,
@@ -9,82 +13,119 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { toast } from "sonner";
-
 import { useEffect, useState } from "react";
 import { useDialog } from "../context/ModalContext";
-import { CreateGuestDto } from "../types";
+import { CreateGuestDto, RSVPStatus } from "../types";
 import { useGuests } from "../context/GuestContext";
 import { useTables } from "../context/TableContext";
 import SelectInput, { SelectOption } from "../SelectInput";
 import Loader from "../loaders/Loader";
-import { statusSelect } from "./AddNewGuestModal";
+import { guestStatusOptions } from "../guestOptions";
 import { MinusCircle, PlusCircle } from "lucide-react";
+
 const EditGuestModal = () => {
   const { data, closeModal } = useDialog();
   const { updateGuest, loading, guests } = useGuests();
   const { tables, createTable, loading: tablesLoading } = useTables();
   const [showTableForm, setShowTableForm] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [form, setForm] = useState<CreateGuestDto>({
     name: "",
     email: "",
-    rsvp_status: "",
+    rsvp_status: "pending",
     message: "",
     notes: "",
-    table_id: "",
+    table_id: null,
   });
   const [newTable, setNewTable] = useState({
     new_table_name: "",
     new_number_of_guests: 1,
   });
-  console.log(data, "data");
 
   const tableOccupancy = tables.reduce(
     (acc, table) => {
       acc[table.id] = guests.filter(
         (guest) => guest.table_id === table.id,
       ).length;
-
       return acc;
     },
     {} as Record<string, number>,
   );
 
-  const tablesForSelect: SelectOption[] = tables.map((table) => ({
-    label: table.name,
-    value: table.id,
-    disabled: tableOccupancy[table.id] >= table.number_of_guests,
-  }));
+  const tablesForSelect: SelectOption[] = tables.map((table) => {
+    const isCurrent = form.table_id === table.id;
+    const isFull = tableOccupancy[table.id] >= table.number_of_guests;
+
+    return {
+      label: table.name,
+      value: table.id,
+      disabled: isFull && !isCurrent,
+    };
+  });
 
   useEffect(() => {
-    if (!data) return;
+    if (!data?.data) return;
+
     setForm({
-      name: data?.data.name,
-      email: data?.data.email,
-      rsvp_status: data?.data.rsvp_status,
-      message: data?.data.message,
-      notes: data?.data.notes,
-      table_id: data?.data.table_id,
+      name: data.data.name ?? "",
+      email: data.data.email ?? "",
+      rsvp_status: data.data.rsvp_status ?? "pending",
+      message: data.data.message ?? "",
+      notes: data.data.notes ?? "",
+      table_id: data.data.table_id ?? null,
     });
   }, [data]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
     setForm((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }));
+    setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   const handleTableChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
     setNewTable((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: name === "new_number_of_guests" ? Number(value) : value,
     }));
   };
 
+  const validate = () => {
+    const nextErrors: Record<string, string> = {};
+
+    if (!form.name.trim()) {
+      nextErrors.name = "Ime i prezime su obavezni.";
+    }
+
+    if (form.email?.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      nextErrors.email = "Unesite ispravnu email adresu.";
+    }
+
+    if (!form.rsvp_status) {
+      nextErrors.rsvp_status = "Izaberite status dolaska.";
+    }
+
+    setErrors(nextErrors);
+    return Object.keys(nextErrors).length === 0;
+  };
+
   const submitHandler = async (e: React.SyntheticEvent<HTMLFormElement>) => {
-    const isChangingTable = form.table_id !== data?.data.table_id;
-    if (isChangingTable && form.table_id) {
-      const selectedTable = tables.find((table) => table.id === form.table_id);
+    e.preventDefault();
+
+    if (!validate()) {
+      toast.error("Popunite obavezna polja.", { position: "top-center" });
+      return;
+    }
+
+    const nextTableId =
+      form.rsvp_status === "accepted" ? form.table_id || null : null;
+    const isChangingTable = nextTableId !== (data?.data?.table_id ?? null);
+
+    if (isChangingTable && nextTableId) {
+      const selectedTable = tables.find((table) => table.id === nextTableId);
 
       if (selectedTable) {
         const guestsAtTable = guests.filter(
@@ -92,34 +133,51 @@ const EditGuestModal = () => {
         ).length;
 
         if (guestsAtTable >= selectedTable.number_of_guests) {
-          toast.error("Izabrani sto je popunjen.");
+          toast.error("Izabrani sto je popunjen.", { position: "top-center" });
           return;
         }
       }
     }
-    e.preventDefault();
+
     try {
       await updateGuest(data?.id || "", {
         ...form,
+        name: form.name.trim(),
+        email: form.email?.trim() || null,
+        table_id: nextTableId,
       });
-      toast.success("Gost je uspešno Izmenjen.", { position: "top-center" });
+      toast.success("Gost je uspešno izmenjen.", { position: "top-center" });
       closeModal();
     } catch {
-      toast.error("Došlo je do greške. Pokušajte ponovo", {
+      toast.error("Došlo je do greške. Pokušajte ponovo.", {
         position: "top-center",
       });
     }
   };
 
   const submitNewTableHandler = async () => {
+    if (!newTable.new_table_name.trim()) {
+      toast.error("Unesite ime stola.", { position: "top-center" });
+      return;
+    }
+
+    if (newTable.new_number_of_guests < 1) {
+      toast.error("Broj mesta mora biti najmanje 1.", {
+        position: "top-center",
+      });
+      return;
+    }
+
     try {
       await createTable({
-        name: newTable.new_table_name,
-        number_of_guests: newTable.new_number_of_guests,
+        name: newTable.new_table_name.trim(),
+        number_of_guests: Number(newTable.new_number_of_guests),
       });
       toast.success("Sto je uspešno dodat.", { position: "top-center" });
+      setShowTableForm(false);
+      setNewTable({ new_table_name: "", new_number_of_guests: 1 });
     } catch {
-      toast.error("Došlo je do greške. Pokušajte ponovo", {
+      toast.error("Došlo je do greške. Pokušajte ponovo.", {
         position: "top-center",
       });
     }
@@ -127,95 +185,118 @@ const EditGuestModal = () => {
 
   return (
     <>
-      <SheetHeader>
-        <SheetTitle>Izmenite Podatke o Gostu</SheetTitle>
-        <SheetDescription>ovde ide opis</SheetDescription>
+      <SheetHeader className="space-y-2">
+        <SheetTitle>Izmeni podatke o gostu</SheetTitle>
+        <SheetDescription>
+          Ažurirajte status, napomene i raspored sedenja za ovog gosta.
+        </SheetDescription>
       </SheetHeader>
-      <form onSubmit={submitHandler}>
-        <FieldGroup>
+
+      <form onSubmit={submitHandler} className="space-y-6">
+        <FieldGroup className="rounded-xl border bg-muted/20 p-4">
           <Field>
-            <Label htmlFor="name-1">Ime I Prezime</Label>
+            <FieldLabel htmlFor="name">Ime i prezime</FieldLabel>
             <Input
               id="name"
               name="name"
-              placeholder="Marko Markovic"
+              placeholder="Marko Marković"
               value={form.name}
               onChange={handleChange}
             />
+            {errors.name ? (
+              <p className="text-sm text-destructive">{errors.name}</p>
+            ) : null}
           </Field>
+
           <Field>
-            <Label htmlFor="email">Email Adresa</Label>
+            <FieldLabel htmlFor="email">Email adresa</FieldLabel>
             <Input
               id="email"
               name="email"
-              placeholder="npr. nikola@gmail.com"
+              type="email"
+              placeholder="npr. marko@email.com"
               value={form.email ?? ""}
               onChange={handleChange}
             />
+            {errors.email ? (
+              <p className="text-sm text-destructive">{errors.email}</p>
+            ) : null}
           </Field>
+
           <Field>
-            <Label htmlFor="status">Status Dolaska</Label>
+            <FieldLabel htmlFor="status">Status dolaska</FieldLabel>
             <SelectInput
-              items={statusSelect}
+              items={guestStatusOptions}
               value={form.rsvp_status ?? ""}
-              onChange={(value) =>
+              onChange={(value) => {
+                const status = (value ?? "pending") as RSVPStatus;
                 setForm((prev) => ({
                   ...prev,
-                  rsvp_status: value,
-                }))
-              }
+                  rsvp_status: status,
+                  table_id: status === "accepted" ? prev.table_id : null,
+                }));
+              }}
             />
+            {errors.rsvp_status ? (
+              <p className="text-sm text-destructive">{errors.rsvp_status}</p>
+            ) : null}
           </Field>
+
           <Field>
             {tables.length === 0 ? (
-              <div className="flex flex-col gap-3">
-                <div className="flex flex-row items-center gap-2">
+              <div className="space-y-3 rounded-xl border border-dashed bg-background p-3">
+                <div className="flex items-center justify-between gap-2">
                   <p className="text-sm text-muted-foreground">
                     {!showTableForm
-                      ? "Kliknite na + da bi dodali novi sto."
+                      ? "Nemate stolove. Dodajte novi sto."
                       : "Kreiraj novi sto"}
                   </p>
-                  {showTableForm ? (
-                    <MinusCircle
-                      onClick={() => setShowTableForm(false)}
-                      size={30}
-                      className="cursor-pointer"
-                    />
-                  ) : (
-                    <PlusCircle
-                      onClick={() => setShowTableForm(true)}
-                      size={30}
-                      className="cursor-pointer"
-                    />
-                  )}
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    className="cursor-pointer"
+                    onClick={() => setShowTableForm((prev) => !prev)}
+                  >
+                    {showTableForm ? (
+                      <MinusCircle className="h-5 w-5" />
+                    ) : (
+                      <PlusCircle className="h-5 w-5" />
+                    )}
+                  </Button>
                 </div>
 
-                {showTableForm && (
-                  <>
+                {showTableForm ? (
+                  <div className="space-y-3">
                     <Field>
-                      <Label htmlFor="new_table_name">Ime Stola</Label>
+                      <FieldLabel htmlFor="new_table_name">Ime stola</FieldLabel>
                       <Input
                         id="new_table_name"
                         name="new_table_name"
-                        placeholder="npr. sto broj 1"
-                        value={newTable.new_table_name ?? ""}
+                        placeholder="npr. Sto broj 1"
+                        value={newTable.new_table_name}
                         onChange={handleTableChange}
                       />
                     </Field>
                     <Field>
-                      <Label htmlFor="new_number_of_guests">
-                        Broj mesta za stolom
-                      </Label>
+                      <FieldLabel htmlFor="new_number_of_guests">
+                        Broj mesta
+                      </FieldLabel>
                       <Input
                         id="new_number_of_guests"
                         name="new_number_of_guests"
                         type="number"
                         min={1}
-                        value={newTable.new_number_of_guests ?? ""}
+                        value={newTable.new_number_of_guests}
                         onChange={handleTableChange}
                       />
                     </Field>
-                    <Button onClick={submitNewTableHandler}>
+                    <Button
+                      type="button"
+                      className="w-full cursor-pointer"
+                      onClick={submitNewTableHandler}
+                      disabled={tablesLoading}
+                    >
                       {tablesLoading ? (
                         <>
                           <Loader className="mr-2" size={16} />
@@ -225,17 +306,17 @@ const EditGuestModal = () => {
                         "Kreiraj novi sto"
                       )}
                     </Button>
-                  </>
-                )}
+                  </div>
+                ) : null}
               </div>
             ) : (
               <>
-                <Label htmlFor="table">Sto</Label>
+                <FieldLabel htmlFor="table">Sto</FieldLabel>
+                <FieldDescription>
+                  Dostupno samo za goste sa statusom „Dolazi“.
+                </FieldDescription>
                 <SelectInput
-                  disabled={
-                    form.rsvp_status === "declined" ||
-                    form.rsvp_status === "pending"
-                  }
+                  disabled={form.rsvp_status !== "accepted"}
                   items={tablesForSelect}
                   value={form.table_id ?? ""}
                   onChange={(value) =>
@@ -250,28 +331,41 @@ const EditGuestModal = () => {
           </Field>
 
           <Field>
-            <Label htmlFor="notes">Napomene</Label>
+            <FieldLabel htmlFor="notes">Napomene</FieldLabel>
             <Input
               id="notes"
               name="notes"
-              placeholder="Npr, gost posti, alergican je na nesto"
+              placeholder="npr. posti, alergija..."
               value={form.notes ?? ""}
               onChange={handleChange}
             />
           </Field>
+
+          <Field>
+            <FieldLabel htmlFor="message">Poruka</FieldLabel>
+            <Input
+              id="message"
+              name="message"
+              placeholder="Poruka gosta"
+              value={form.message ?? ""}
+              onChange={handleChange}
+            />
+          </Field>
         </FieldGroup>
+
         <SheetFooter>
-          <Button type="submit" className="cursor-pointer">
+          <Button type="submit" disabled={loading} className="cursor-pointer">
             {loading ? (
               <>
                 <Loader className="mr-2" size={16} />
-                Izmene u toku...
+                Čuvanje...
               </>
             ) : (
-              "Potvrdi Izmene"
+              "Sačuvaj izmene"
             )}
           </Button>
           <Button
+            type="button"
             variant="outline"
             onClick={closeModal}
             className="cursor-pointer"

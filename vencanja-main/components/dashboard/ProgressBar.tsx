@@ -7,17 +7,17 @@ type ProgressProps = {
 };
 
 const ProgressBar: FC<ProgressProps> = ({ occupied, capacity }) => {
-  const progress = (occupied / capacity) * 100;
+  const safeCapacity = capacity > 0 ? capacity : 1;
+  const progress = Math.min((occupied / safeCapacity) * 100, 100);
 
   return (
     <div className="space-y-2">
-      <div className="flex justify-between text-sm">
+      <div className="flex justify-between text-xs text-muted-foreground">
         <span>Popunjenost</span>
-        <span>
+        <span className="font-medium text-foreground">
           {occupied} / {capacity}
         </span>
       </div>
-
       <Progress value={progress} />
     </div>
   );

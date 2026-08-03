@@ -58,7 +58,7 @@ export const createGuestService = async (
 
 export const updateGuestService = async (
   id: string,
-  updates: Partial<Guest>,
+  updates: Partial<CreateGuestDto>,
 ): Promise<Guest> => {
   const { data, error } = await supabase
     .from("guests")

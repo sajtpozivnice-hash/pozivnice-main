@@ -1,9 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-
-import { Field, FieldGroup } from "@/components/ui/field";
+import {
+  Field,
+  FieldDescription,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   SheetDescription,
   SheetFooter,
@@ -12,31 +15,18 @@ import {
 } from "@/components/ui/sheet";
 import { useGuests } from "../context/GuestContext";
 import { useState } from "react";
-import { CreateGuestDto } from "../types";
+import { CreateGuestDto, RSVPStatus } from "../types";
 import { useDialog } from "../context/ModalContext";
 import Loader from "../loaders/Loader";
 import SelectInput, { SelectOption } from "../SelectInput";
 import { useTables } from "../context/TableContext";
+import { guestStatusOptions } from "../guestOptions";
 
-export const statusSelect = [
-  {
-    label: "Jos uvek ne zna",
-    value: "pending",
-  },
-  {
-    label: "Dolazi",
-    value: "accepted",
-  },
-  {
-    label: "Ne Dolazi",
-    value: "declined",
-  },
-];
-export type RSVPStatus = "pending" | "accepted" | "declined";
 const AddNewGuestModal = () => {
   const { closeModal } = useDialog();
   const { createGuest, loading } = useGuests();
   const { tables } = useTables();
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const [form, setForm] = useState<CreateGuestDto>({
     name: "",
@@ -44,7 +34,7 @@ const AddNewGuestModal = () => {
     email: "",
     rsvp_status: "pending",
     message: "",
-    table_id: undefined,
+    table_id: null,
   });
 
   const tablesForSelect: SelectOption[] = tables.map((table) => ({
@@ -53,24 +43,53 @@ const AddNewGuestModal = () => {
   }));
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
     setForm((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }));
+    setErrors((prev) => ({ ...prev, [name]: "" }));
+  };
+
+  const validate = () => {
+    const nextErrors: Record<string, string> = {};
+
+    if (!form.name.trim()) {
+      nextErrors.name = "Ime i prezime su obavezni.";
+    }
+
+    if (form.email?.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      nextErrors.email = "Unesite ispravnu email adresu.";
+    }
+
+    if (!form.rsvp_status) {
+      nextErrors.rsvp_status = "Izaberite status dolaska.";
+    }
+
+    setErrors(nextErrors);
+    return Object.keys(nextErrors).length === 0;
   };
 
   const submitHandler = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!form.rsvp_status) {
-      toast.error("Izaberite status dolaska.", { position: "top-center" });
+
+    if (!validate()) {
+      toast.error("Popunite obavezna polja.", { position: "top-center" });
       return;
     }
+
     try {
-      await createGuest(form);
+      await createGuest({
+        ...form,
+        name: form.name.trim(),
+        email: form.email?.trim() || null,
+        table_id:
+          form.rsvp_status === "accepted" ? form.table_id || null : null,
+      });
       toast.success("Gost je uspešno dodat.", { position: "top-center" });
       closeModal();
     } catch {
-      toast.error("Došlo je do greške. Pokušajte ponovo", {
+      toast.error("Došlo je do greške. Pokušajte ponovo.", {
         position: "top-center",
       });
     }
@@ -78,62 +97,72 @@ const AddNewGuestModal = () => {
 
   return (
     <>
-      <SheetHeader>
-        <SheetTitle>Dodaj Novog Gosta</SheetTitle>
-        <SheetDescription>ovde ide opis</SheetDescription>
+      <SheetHeader className="space-y-2">
+        <SheetTitle>Dodaj novog gosta</SheetTitle>
+        <SheetDescription>
+          Unesite osnovne podatke, status dolaska i po želji dodelite sto.
+        </SheetDescription>
       </SheetHeader>
-      <form onSubmit={submitHandler}>
-        <FieldGroup>
+
+      <form onSubmit={submitHandler} className="space-y-6">
+        <FieldGroup className="rounded-xl border bg-muted/20 p-4">
           <Field>
-            <Label htmlFor="name">Ime I Prezime</Label>
+            <FieldLabel htmlFor="name">Ime i prezime</FieldLabel>
+            <FieldDescription>Obavezno polje.</FieldDescription>
             <Input
               id="name"
               name="name"
-              placeholder="npr. Marko Markovic"
+              placeholder="npr. Marko Marković"
               onChange={handleChange}
               value={form.name}
             />
+            {errors.name ? (
+              <p className="text-sm text-destructive">{errors.name}</p>
+            ) : null}
           </Field>
+
           <Field>
-            <Label htmlFor="email">Email Adresa</Label>
+            <FieldLabel htmlFor="email">Email adresa</FieldLabel>
             <Input
               id="email"
               name="email"
-              placeholder="npr. nikola@gmail.com"
+              type="email"
+              placeholder="npr. marko@email.com"
               onChange={handleChange}
               value={form.email ?? ""}
             />
+            {errors.email ? (
+              <p className="text-sm text-destructive">{errors.email}</p>
+            ) : null}
           </Field>
+
           <Field>
-            <Label htmlFor="notes">Napomene</Label>
-            <Input
-              id="notes"
-              name="notes"
-              placeholder="Mozete navesti da li gost posti..."
-              value={form.notes ?? ""}
-              onChange={handleChange}
-            />
-          </Field>
-          <Field>
-            <Label htmlFor="notes">Status Dolaska</Label>
+            <FieldLabel htmlFor="rsvp_status">Status dolaska</FieldLabel>
             <SelectInput
-              items={statusSelect}
-              value={form.rsvp_status}
-              onChange={(value) =>
+              items={guestStatusOptions}
+              value={form.rsvp_status ?? ""}
+              onChange={(value) => {
+                const status = (value ?? "pending") as RSVPStatus;
                 setForm((prev) => ({
                   ...prev,
-                  rsvp_status: value,
-                }))
-              }
+                  rsvp_status: status,
+                  table_id: status === "accepted" ? prev.table_id : null,
+                }));
+                setErrors((prev) => ({ ...prev, rsvp_status: "" }));
+              }}
             />
+            {errors.rsvp_status ? (
+              <p className="text-sm text-destructive">{errors.rsvp_status}</p>
+            ) : null}
           </Field>
+
           <Field>
-            <Label htmlFor="table">Izaberi Sto</Label>
+            <FieldLabel htmlFor="table">Sto</FieldLabel>
+            <FieldDescription>
+              Dostupno samo za goste sa statusom „Dolazi“.
+            </FieldDescription>
             <SelectInput
-              disabled={
-                form.rsvp_status === "declined" ||
-                form.rsvp_status === "pending"
-              }
+              disabled={form.rsvp_status !== "accepted"}
               items={tablesForSelect}
               value={form.table_id ?? ""}
               onChange={(value) =>
@@ -144,12 +173,24 @@ const AddNewGuestModal = () => {
               }
             />
           </Field>
+
           <Field>
-            <Label htmlFor="message">Poruka</Label>
+            <FieldLabel htmlFor="notes">Napomene</FieldLabel>
+            <Input
+              id="notes"
+              name="notes"
+              placeholder="npr. posti, alergija..."
+              value={form.notes ?? ""}
+              onChange={handleChange}
+            />
+          </Field>
+
+          <Field>
+            <FieldLabel htmlFor="message">Poruka</FieldLabel>
             <Input
               id="message"
               name="message"
-              placeholder="Poruka"
+              placeholder="Poruka gosta"
               value={form.message ?? ""}
               onChange={handleChange}
             />
@@ -168,6 +209,7 @@ const AddNewGuestModal = () => {
             )}
           </Button>
           <Button
+            type="button"
             variant="outline"
             className="cursor-pointer"
             onClick={closeModal}

@@ -13,18 +13,20 @@ import Loader from "../loaders/Loader";
 
 const DeleteTableModal = () => {
   const { closeModal, data } = useDialog();
-  const { refresh, loading } = useGuests();
+  const { refresh } = useGuests();
+  const { deleteTable, loading } = useTables();
   const id = data?.id ?? "";
-  const { deleteTable } = useTables();
 
   const deleteTableHandler = async () => {
+    if (!id) return;
+
     try {
       await deleteTable(id);
       await refresh();
-      toast.success("Sto je uspešno obirisan.", { position: "top-center" });
+      toast.success("Sto je uspešno obrisan.", { position: "top-center" });
       closeModal();
     } catch {
-      toast.error("Došlo je do greške. Pokušajte ponovo", {
+      toast.error("Došlo je do greške. Pokušajte ponovo.", {
         position: "top-center",
       });
     }
@@ -32,21 +34,28 @@ const DeleteTableModal = () => {
 
   return (
     <>
-      <SheetHeader>
-        <SheetTitle>
-          Da li želite da obrišete sto: {data?.data?.name || ""} ?
-        </SheetTitle>
+      <SheetHeader className="space-y-2">
+        <SheetTitle>Obriši sto</SheetTitle>
         <SheetDescription>
-          Ova akcija se ne može poništiti. Brisanjem stola svi gosti koji su mu
-          dodeljeni izgubiće raspored i više neće biti povezani ni sa jednim
-          stolom.
+          Da li želite da obrišete sto{" "}
+          <span className="font-semibold text-foreground">
+            {data?.data?.name || ""}
+          </span>
+          ?
         </SheetDescription>
       </SheetHeader>
+
+      <div className="rounded-xl border border-destructive/20 bg-destructive/5 p-4 text-sm text-muted-foreground">
+        Ova akcija se ne može poništiti. Gosti dodeljeni ovom stolu više neće
+        biti povezani ni sa jednim stolom.
+      </div>
+
       <SheetFooter>
         <Button
           onClick={deleteTableHandler}
           variant="destructive"
           className="cursor-pointer"
+          disabled={loading}
         >
           {loading ? (
             <>
@@ -58,6 +67,7 @@ const DeleteTableModal = () => {
           )}
         </Button>
         <Button
+          type="button"
           variant="outline"
           onClick={closeModal}
           className="cursor-pointer"

@@ -71,7 +71,9 @@ const ModalContainer = () => {
 
   return (
     <Sheet open={open} onOpenChange={closeModal}>
-      <SheetContent className="p-4">{modalContentHandler()}</SheetContent>
+      <SheetContent className="flex w-full flex-col gap-4 overflow-y-auto p-4 sm:max-w-md">
+        {modalContentHandler()}
+      </SheetContent>
     </Sheet>
   );
 };
