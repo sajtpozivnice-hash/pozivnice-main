@@ -6,7 +6,11 @@ import { LoveQuoteData } from "@/types/sections";
 import DynamicSectionRenderer from "../components/DynamicSectionPanelRederer";
 
 export const loveQuote = createSectionSchema<LoveQuoteData>({
-  fields: [{ key: "title", label: "Naslov", type: "text" }],
+  fields: [
+    { key: "title", label: "Naslov", type: "text" },
+    { key: "description", label: "Opis", type: "textarea" },
+    { key: "imageUrl", label: "Pozadinska slika", type: "image" },
+  ],
 });
 
 const LoveQuotePanel = () => {

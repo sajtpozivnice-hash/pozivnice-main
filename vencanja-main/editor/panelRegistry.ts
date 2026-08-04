@@ -10,6 +10,7 @@ import SchedulePanel from "./panels/SchedulePanel";
 import ImagesUpload from "./panels/ImagesUploadPanel";
 import InvitePanel from "./panels/InvitePanel";
 import OurGalleryPanel from "./panels/OurGalleryPanel";
+import RsvpPanel from "./panels/RsvpPanel";
 
 export const panelRegistry: Partial<
   Record<SectionType, React.ComponentType<object>>
@@ -24,5 +25,6 @@ export const panelRegistry: Partial<
   locations: LocationsPanel,
   ourGallery: OurGalleryPanel,
   uploadImagesSection: ImagesUpload,
+  rsvp: RsvpPanel,
   footer: FooterPanel,
 };

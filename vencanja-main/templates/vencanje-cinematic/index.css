@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@theme {
+  --color-vc-void: #070707;
+  --color-vc-fog: #f4f1ec;
+  --color-vc-mist: rgba(244, 241, 236, 0.72);
+  --color-vc-ember: #d4a574;
+  --color-vc-line: rgba(244, 241, 236, 0.22);
+}
+
+@layer components {
+  .vc-scene {
+    @apply relative flex min-h-[100svh] w-full items-center overflow-hidden;
+  }
+
+  .vc-scene-media {
+    @apply absolute inset-0 h-full w-full object-cover;
+  }
+
+  .vc-scene-fallback {
+    @apply absolute inset-0;
+    background:
+      radial-gradient(ellipse at 40% 20%, rgba(212, 165, 116, 0.18), transparent 50%),
+      linear-gradient(165deg, #141414 0%, #070707 55%, #0f0f0f 100%);
+  }
+
+  .vc-overlay {
+    @apply absolute inset-0;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(7, 7, 7, 0.45) 0%,
+        rgba(7, 7, 7, 0.2) 40%,
+        rgba(7, 7, 7, 0.72) 100%
+      );
+  }
+
+  .vc-overlay-heavy {
+    @apply absolute inset-0 bg-black/65;
+  }
+
+  .vc-stage {
+    @apply relative z-10 mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 lg:px-12 lg:py-28;
+  }
+
+  .vc-stage-narrow {
+    @apply relative z-10 mx-auto w-full max-w-3xl px-5 py-20 sm:px-8 lg:py-28;
+  }
+
+  .vc-eyebrow {
+    @apply text-[10px] font-medium uppercase tracking-[0.48em] text-white/60;
+    font-family: var(--font-secondary);
+  }
+
+  .vc-title {
+    @apply text-4xl leading-[0.95] tracking-tight text-white sm:text-5xl lg:text-6xl;
+    font-family: var(--font-primary);
+  }
+
+  .vc-body {
+    @apply text-base leading-relaxed text-white/75 sm:text-lg;
+    font-family: var(--font-secondary);
+  }
+
+  .vc-rule {
+    @apply mx-auto h-px w-14 bg-white/30;
+  }
+
+  .vc-input {
+    @apply w-full border-0 border-b border-white/25 bg-transparent px-0 py-3 text-sm text-white outline-none transition placeholder:text-white/35 focus:border-white/70;
+    font-family: var(--font-secondary);
+  }
+
+  .vc-label {
+    @apply mb-2 block text-[10px] uppercase tracking-[0.3em] text-white/45;
+    font-family: var(--font-secondary);
+  }
+
+  .vc-reel {
+    @apply flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .vc-reel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .vc-reel-card {
+    @apply relative w-[82vw] shrink-0 snap-center overflow-hidden sm:w-[58vw] lg:w-[42vw];
+  }
+}

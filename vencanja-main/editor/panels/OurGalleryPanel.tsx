@@ -11,6 +11,12 @@ export const ourGallerySchema = createSectionSchema<OurGalleryData>({
   fields: [
     { key: "title", label: "Naslov", type: "text" },
     { key: "description", label: "Opis", type: "textarea" },
+    {
+      key: "images",
+      label: "Slike",
+      type: "repeater",
+      itemSchema: [{ key: "url", label: "Slika", type: "image" }],
+    },
   ],
 });
 

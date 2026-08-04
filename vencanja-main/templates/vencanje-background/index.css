@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme {
+  --color-vb-bronze: #e2c4a0;
+}
+
+@layer components {
+  .vb-section {
+    @apply relative z-10 w-full px-4 py-14 sm:px-6 sm:py-20 lg:px-10 lg:py-24;
+  }
+
+  .vb-section-hero {
+    @apply relative z-10 flex min-h-[100svh] w-full items-center px-4 py-20 sm:px-6 lg:px-10;
+  }
+
+  .vb-wrap {
+    @apply mx-auto w-full max-w-5xl;
+  }
+
+  .vb-wrap-narrow {
+    @apply mx-auto w-full max-w-2xl;
+  }
+
+  .vb-glass {
+    @apply rounded-[1.75rem] border border-white/25 bg-[#0c0a09]/72 shadow-[0_30px_80px_-28px_rgba(0,0,0,0.85)] backdrop-blur-2xl;
+  }
+
+  .vb-glass-soft {
+    @apply rounded-[1.5rem] border border-white/20 bg-[#0c0a09]/55 backdrop-blur-xl;
+  }
+
+  .vb-eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-[0.4em] text-white/80;
+    font-family: var(--font-secondary);
+  }
+
+  .vb-title {
+    @apply text-3xl font-semibold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl;
+    font-family: var(--font-primary);
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  .vb-body {
+    @apply text-base leading-relaxed text-white/90 sm:text-lg;
+    font-family: var(--font-secondary);
+  }
+
+  .vb-rule {
+    @apply mx-auto h-px w-14 bg-white/50;
+  }
+
+  .vb-input {
+    @apply w-full rounded-2xl border border-white/25 bg-white/15 px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-white/45 focus:border-white/55;
+    font-family: var(--font-secondary);
+  }
+
+  .vb-label {
+    @apply mb-2 block text-[11px] font-medium uppercase tracking-[0.28em] text-white/70;
+    font-family: var(--font-secondary);
+  }
+}

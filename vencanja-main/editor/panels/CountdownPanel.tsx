@@ -9,6 +9,7 @@ export const countdownSchema = createSectionSchema<CountdownData>({
   fields: [
     { key: "title", label: "Naslov", type: "text" },
     { key: "description", label: "Opis", type: "text" },
+    { key: "imageUrl", label: "Pozadinska slika", type: "image" },
   ],
 });
 

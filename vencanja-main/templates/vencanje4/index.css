@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@theme {
+  --color-v4-night: #0c0b0a;
+  --color-v4-fog: #f5f1ea;
+  --color-v4-mist: rgba(245, 241, 234, 0.72);
+  --color-v4-gold: #c9a86a;
+  --color-v4-line: rgba(245, 241, 234, 0.28);
+}
+
+@layer components {
+  .v4-scene {
+    @apply relative flex min-h-[100svh] w-full items-center overflow-hidden;
+  }
+
+  .v4-scene-bg {
+    @apply absolute inset-0 h-full w-full object-cover;
+  }
+
+  .v4-scene-fallback {
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(201, 168, 106, 0.22), transparent 45%),
+      linear-gradient(160deg, #1a1714 0%, #0c0b0a 55%, #151210 100%);
+  }
+
+  .v4-overlay {
+    @apply absolute inset-0;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(12, 11, 10, 0.55) 0%,
+        rgba(12, 11, 10, 0.35) 45%,
+        rgba(12, 11, 10, 0.72) 100%
+      );
+  }
+
+  .v4-overlay-soft {
+    @apply absolute inset-0;
+    background:
+      radial-gradient(
+        ellipse at center,
+        rgba(12, 11, 10, 0.15) 0%,
+        rgba(12, 11, 10, 0.55) 70%,
+        rgba(12, 11, 10, 0.8) 100%
+      );
+  }
+
+  .v4-content {
+    @apply relative z-10 mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 lg:px-12 lg:py-28;
+  }
+
+  .v4-content-narrow {
+    @apply relative z-10 mx-auto w-full max-w-3xl px-5 py-20 sm:px-8 lg:py-28;
+  }
+
+  .v4-glass {
+    @apply rounded-3xl border border-white/15 bg-white/10 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.8)] backdrop-blur-xl;
+  }
+
+  .v4-glass-strong {
+    @apply rounded-3xl border border-white/20 bg-black/35 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.85)] backdrop-blur-2xl;
+  }
+
+  .v4-eyebrow {
+    @apply text-[11px] font-medium uppercase tracking-[0.4em] text-white/70;
+    font-family: var(--font-secondary);
+  }
+
+  .v4-heading {
+    @apply text-4xl leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl;
+    font-family: var(--font-primary);
+  }
+
+  .v4-line {
+    @apply mx-auto h-px w-16 bg-white/40;
+  }
+
+  .v4-input {
+    @apply w-full rounded-2xl border border-white/20 bg-white/10 px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-white/40 focus:border-white/50;
+    font-family: var(--font-secondary);
+  }
+
+  .v4-label {
+    @apply mb-2 block text-[11px] uppercase tracking-[0.28em] text-white/55;
+    font-family: var(--font-secondary);
+  }
+}

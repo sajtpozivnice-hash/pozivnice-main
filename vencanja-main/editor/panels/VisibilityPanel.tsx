@@ -7,16 +7,20 @@ type VisibilityPanelProps = {
   id: string;
   title: string;
   visible: boolean;
-  order: number;
+  order?: number;
 };
 
 const VisibilityPanel: FC<VisibilityPanelProps> = ({
   id,
   title,
   visible,
-  order,
 }) => {
   const { config, updateSection, moveSection } = useEditor();
+  const sortedSections = [...config.sections].sort((a, b) => a.order - b.order);
+  const index = sortedSections.findIndex((section) => section.id === id);
+  const isFirst = index <= 0;
+  const isLast = index === sortedSections.length - 1;
+
   const toggleSectionVisibility = () => {
     updateSection(id, { visible: !visible });
   };
@@ -67,7 +71,7 @@ const VisibilityPanel: FC<VisibilityPanelProps> = ({
 
       <div className="flex gap-2">
         <button
-          disabled={order === 0}
+          disabled={isFirst}
           onClick={() => moveSection(id, "up")}
           className="flex-1 flex items-center justify-center gap-2 py-2 bg-white rounded-xl text-[10px] font-bold uppercase tracking-wider text-black/60 hover:text-black disabled:opacity-20 transition-all border border-black/5"
         >
@@ -75,7 +79,7 @@ const VisibilityPanel: FC<VisibilityPanelProps> = ({
           <span>Pomeri Gore</span>
         </button>
         <button
-          disabled={order === config.sections.length - 1}
+          disabled={isLast}
           onClick={() => moveSection(id, "down")}
           className="flex-1 flex items-center justify-center gap-2 py-2 bg-white rounded-xl text-[10px] font-bold uppercase tracking-wider text-black/60 hover:text-black disabled:opacity-20 transition-all border border-black/5"
         >

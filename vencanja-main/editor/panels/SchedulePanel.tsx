@@ -11,6 +11,7 @@ export const scheduleSchema = createSectionSchema<ScheduleData>({
   fields: [
     { key: "title", label: "Naslov", type: "text" },
     { key: "subtitle", label: "Podnaslov", type: "text" },
+    { key: "imageUrl", label: "Pozadinska slika", type: "image" },
     {
       key: "items",
       label: "Stavke",

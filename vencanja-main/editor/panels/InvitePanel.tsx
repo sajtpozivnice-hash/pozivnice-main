@@ -6,7 +6,10 @@ import { InviteTextSectionData } from "@/types/sections";
 import DynamicSectionRenderer from "../components/DynamicSectionPanelRederer";
 
 export const inviteText = createSectionSchema<InviteTextSectionData>({
-  fields: [{ key: "description", label: "Tekst", type: "textarea" }],
+  fields: [
+    { key: "description", label: "Tekst", type: "textarea" },
+    { key: "imageUrl", label: "Pozadinska slika", type: "image" },
+  ],
 });
 
 const InvitePanel = () => {

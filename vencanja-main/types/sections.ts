@@ -43,6 +43,7 @@ export type CountdownSection = BaseSectionConfig<
   {
     title?: string;
     description?: string;
+    imageUrl?: string;
   },
   "countdown"
 >;
@@ -51,6 +52,7 @@ export type CalendarSection = BaseSectionConfig<
   {
     title?: string;
     description?: string;
+    imageUrl?: string;
   },
   "calendar"
 >;
@@ -59,6 +61,7 @@ export type ScheduleSection = BaseSectionConfig<
   {
     title: string;
     subtitle?: string;
+    imageUrl?: string;
     items?: {
       id: string;
       time: string;
@@ -86,6 +89,7 @@ export type LocationsSection = BaseSectionConfig<
     title: string;
     subtitle?: string;
     description?: string;
+    imageUrl?: string;
     cards?: CardItem[];
   },
   "locations"
@@ -119,6 +123,7 @@ export type RSVPSection = BaseSectionConfig<
     title: string;
     description?: string;
     buttonText?: string;
+    imageUrl?: string;
   },
   "rsvp"
 >;
@@ -137,6 +142,7 @@ export type UploadImagesSection = BaseSectionConfig<
     title?: string;
     subtitle?: string;
     description?: string;
+    imageUrl?: string;
   },
   "uploadImagesSection"
 >;
@@ -144,6 +150,7 @@ export type UploadImagesSection = BaseSectionConfig<
 export type InviteTextSection = BaseSectionConfig<
   {
     description?: string;
+    imageUrl?: string;
   },
   "inviteText"
 >;

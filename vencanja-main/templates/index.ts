@@ -1,17 +1,40 @@
 import { vencanjeDefaultConfig } from "./vencanje/config";
 import { vencanjeRenderers } from "./vencanje/renderers";
-import { vencanje2DefaultConfig } from "./vencanje2/defaultConfig";
-
-import { vencanje2Renderers } from "./vencanje2/renderers";
+import { vencanje3DefaultConfig } from "./vencanje3/config";
+import { vencanje3Renderers } from "./vencanje3/renderers";
+import { vencanje4DefaultConfig } from "./vencanje4/config";
+import { vencanje4Renderers } from "./vencanje4/renderers";
+import { vencanjePremiumDefaultConfig } from "./vencanje-premium/config";
+import { vencanjePremiumRenderers } from "./vencanje-premium/renderers";
+import { vencanjeCinematicDefaultConfig } from "./vencanje-cinematic/config";
+import { vencanjeCinematicRenderers } from "./vencanje-cinematic/renderers";
+import { vencanjeBackgroundDefaultConfig } from "./vencanje-background/config";
+import { vencanjeBackgroundRenderers } from "./vencanje-background/renderers";
 
 export const templates = {
   vencanje: {
     renderers: vencanjeRenderers,
     defaultConfig: vencanjeDefaultConfig,
   },
-  vencanje2: {
-    renderers: vencanje2Renderers,
-    defaultConfig: vencanje2DefaultConfig,
+  vencanje3: {
+    renderers: vencanje3Renderers,
+    defaultConfig: vencanje3DefaultConfig,
+  },
+  vencanje4: {
+    renderers: vencanje4Renderers,
+    defaultConfig: vencanje4DefaultConfig,
+  },
+  "vencanje-premium": {
+    renderers: vencanjePremiumRenderers,
+    defaultConfig: vencanjePremiumDefaultConfig,
+  },
+  "vencanje-cinematic": {
+    renderers: vencanjeCinematicRenderers,
+    defaultConfig: vencanjeCinematicDefaultConfig,
+  },
+  "vencanje-background": {
+    renderers: vencanjeBackgroundRenderers,
+    defaultConfig: vencanjeBackgroundDefaultConfig,
   },
 };
 
