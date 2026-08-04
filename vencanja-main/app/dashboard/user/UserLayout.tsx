@@ -24,29 +24,51 @@ export type DashboardCurrentView =
 export const UserLayout = () => {
   const { openModal } = useDialog();
   return (
-    <div className="p-6">
-      <LogoutButton />
-      <Tabs defaultValue="overview">
-        <TabsList>
-          <TabsTrigger className="p-5" value="sections">
-            Sekcije
-          </TabsTrigger>
-          <TabsTrigger className="p-5" value="images">
-            Slike
-          </TabsTrigger>
-          <TabsTrigger className="p-5" value="coming">
-            Gosti
-          </TabsTrigger>
-          <TabsTrigger className="p-5" value="seating">
-            Raspored Stolova i Sedenja
-          </TabsTrigger>
-          <TabsTrigger className="p-5" value="finansije">
-            Finansije
-          </TabsTrigger>
-        </TabsList>
-        <TabsContent value="sections">
-          <Card>
-            <CardHeader>
+    <div className="mx-auto w-full min-w-0 max-w-7xl space-y-4 overflow-x-hidden p-3 sm:p-4 md:p-6">
+      <div className="flex items-center justify-end">
+        <LogoutButton />
+      </div>
+
+      <Tabs defaultValue="sections" className="w-full min-w-0 gap-4">
+        <div className="w-full min-w-0 overflow-x-auto overscroll-x-contain [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <TabsList className="h-auto min-h-9 w-max max-w-none gap-1 p-1">
+            <TabsTrigger
+              className="shrink-0 px-3 py-2 text-xs sm:text-sm"
+              value="sections"
+            >
+              Sekcije
+            </TabsTrigger>
+            <TabsTrigger
+              className="shrink-0 px-3 py-2 text-xs sm:text-sm"
+              value="images"
+            >
+              Slike
+            </TabsTrigger>
+            <TabsTrigger
+              className="shrink-0 px-3 py-2 text-xs sm:text-sm"
+              value="coming"
+            >
+              Gosti
+            </TabsTrigger>
+            <TabsTrigger
+              className="shrink-0 px-3 py-2 text-xs sm:text-sm"
+              value="seating"
+            >
+              <span className="sm:hidden">Raspored</span>
+              <span className="hidden sm:inline">Raspored Stolova i Sedenja</span>
+            </TabsTrigger>
+            <TabsTrigger
+              className="shrink-0 px-3 py-2 text-xs sm:text-sm"
+              value="finansije"
+            >
+              Finansije
+            </TabsTrigger>
+          </TabsList>
+        </div>
+
+        <TabsContent value="sections" className="min-w-0">
+          <Card className="min-w-0">
+            <CardHeader className="gap-2">
               <CardTitle>Sekcije</CardTitle>
               <CardDescription>
                 Ovde možete prilagoditi izgled i sadržaj vaše pozivnice.
@@ -55,14 +77,15 @@ export const UserLayout = () => {
                 pozivnicu po svojoj meri.
               </CardDescription>
             </CardHeader>
-            <CardContent className="text-sm text-muted-foreground p-4">
+            <CardContent className="min-w-0 p-3 text-sm text-muted-foreground sm:p-4">
               <Sections />
             </CardContent>
           </Card>
         </TabsContent>
-        <TabsContent value="images">
-          <Card>
-            <CardHeader>
+
+        <TabsContent value="images" className="min-w-0">
+          <Card className="min-w-0">
+            <CardHeader className="gap-2">
               <CardTitle>Slike</CardTitle>
               <CardDescription>
                 Pregled fotografija koje su gosti podelili. Ovde možete
@@ -71,14 +94,15 @@ export const UserLayout = () => {
                 Uređivanje fotografija nije dostupno.
               </CardDescription>
             </CardHeader>
-            <CardContent className="text-sm text-muted-foreground">
+            <CardContent className="min-w-0 p-3 text-sm text-muted-foreground sm:p-4">
               <Images />
             </CardContent>
           </Card>
         </TabsContent>
-        <TabsContent value="coming">
-          <Card>
-            <CardHeader>
+
+        <TabsContent value="coming" className="min-w-0">
+          <Card className="min-w-0">
+            <CardHeader className="gap-2">
               <CardTitle>Gosti</CardTitle>
               <CardDescription>
                 Upravljajte svim potvrdama dolaska na jednom mestu. Pregledajte
@@ -88,66 +112,49 @@ export const UserLayout = () => {
                 koji ste napravili.
               </CardDescription>
             </CardHeader>
-            <CardContent className="text-sm text-muted-foreground">
-              <div className="flex gap-3 justify-end align center">
+            <CardContent className="min-w-0 space-y-4 p-3 text-sm text-muted-foreground sm:p-4">
+              <div className="flex flex-col gap-2 sm:flex-row sm:justify-end">
                 <Button
-                  className="cursor-pointer"
+                  className="w-full cursor-pointer sm:w-auto"
                   onClick={() => openModal("add_guest")}
                 >
                   Dodaj novog gosta
                 </Button>
-                <Button
-                  className="cursor-pointer"
-                  onClick={() => openModal("add_guest")}
-                >
-                  Preuzmi spisak
-                </Button>
+                
               </div>
               <PotvrdjeniDolasci />
             </CardContent>
           </Card>
         </TabsContent>
-        <TabsContent value="seating">
-          <Card>
-            <CardHeader>
-              <CardTitle>Raspored Stolova i Sedenja</CardTitle>
-              <CardDescription className="flex flex-row  gap-3 justify-between">
-                <p>
-                  Kreirajte i organizujte raspored sedenja za vaše goste.
-                  Dodajte stolove, rasporedite goste po mestima, po potrebi
-                  izmenite raspored i izvezite ga kao PDF dokument spreman za
-                  štampu.
-                </p>
-                <Button
-                  variant="default"
-                  className="cursor-pointer"
-                  onClick={() => openModal("add_table")}
-                >
-                  Kreiraj Novi Sto
-                </Button>
+
+        <TabsContent value="seating" className="min-w-0">
+          <Card className="min-w-0">
+            <CardHeader className="gap-2">
+              <CardTitle className="text-lg sm:text-xl">
+                Raspored Stolova i Sedenja
+              </CardTitle>
+              <CardDescription>
+                Kreirajte i organizujte raspored sedenja za vaše goste.
+                Dodajte stolove, rasporedite goste po mestima, po potrebi
+                izmenite raspored i izvezite ga kao PDF dokument spreman za
+                štampu.
               </CardDescription>
             </CardHeader>
-            <CardContent className="text-sm text-muted-foreground">
+            <CardContent className="min-w-0 p-3 text-sm text-muted-foreground sm:p-4">
               <RasporedSedenja />
             </CardContent>
           </Card>
         </TabsContent>
-        <TabsContent value="finansije">
-          <Card>
-            <CardHeader>
+
+        <TabsContent value="finansije" className="min-w-0">
+          <Card className="min-w-0">
+            <CardHeader className="gap-2">
               <CardTitle>Finansije</CardTitle>
-              <CardDescription className="flex flex-row  gap-3 justify-between">
-                <p>
-                  Kreirajte i organizujte raspored sedenja za vaše goste.
-                  Dodajte stolove, rasporedite goste po mestima, po potrebi
-                  izmenite raspored i izvezite ga kao PDF dokument spreman za
-                  štampu.
-                </p>
+              <CardDescription>
+                Pregled i upravljanje finansijama vezanim za vaše venčanje.
               </CardDescription>
             </CardHeader>
-            <CardContent className="text-sm text-muted-foreground">
-              {/* <RasporedSedenja /> */}
-            </CardContent>
+            <CardContent className="min-w-0 p-3 text-sm text-muted-foreground sm:p-4" />
           </Card>
         </TabsContent>
       </Tabs>

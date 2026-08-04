@@ -65,27 +65,29 @@ export default function GuestMultiSelect({
         <Button
           variant="outline"
           role="combobox"
-          className="w-full justify-between min-h-10"
+          className="h-auto min-h-10 w-full min-w-0 justify-between gap-2 px-3 py-2"
         >
-          <div className="flex flex-wrap gap-1">
+          <div className="flex min-w-0 flex-1 flex-wrap gap-1">
             {value.length === 0 ? (
-              <span className="text-muted-foreground">{placeholder}</span>
+              <span className="truncate text-left text-muted-foreground">
+                {placeholder}
+              </span>
             ) : (
               options
                 .filter((o) => value.includes(o.value))
                 .map((o) => (
-                  <Badge key={o.value} variant="secondary">
+                  <Badge key={o.value} variant="secondary" className="max-w-full truncate">
                     {o.label}
                   </Badge>
                 ))
             )}
           </div>
 
-          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          <ChevronsUpDown className="h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
 
-      <PopoverContent className="w-[var(--radix-popover-trigger-width)] min-w-[280px] p-0">
+      <PopoverContent className="w-[var(--radix-popover-trigger-width)] max-w-[calc(100vw-1.5rem)] p-0">
         <Command>
           <CommandInput placeholder="Pretraži gosta..." />
 

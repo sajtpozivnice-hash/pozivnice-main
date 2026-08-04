@@ -45,24 +45,24 @@ export const SectionEditCard = ({
   }
 
   return (
-    <Card className="w-full border shadow-sm transition-shadow hover:shadow-md">
+    <Card className="min-w-0 border shadow-sm transition-shadow hover:shadow-md">
       <CardHeader className="border-b pb-4">
-        <div className="flex items-start gap-3">
+        <div className="flex min-w-0 items-start gap-3">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-muted text-foreground">
             <Icon className="h-5 w-5" />
           </div>
           <div className="min-w-0 flex-1 space-y-1">
-            <CardTitle className="text-base font-semibold tracking-tight">
+            <CardTitle className="truncate text-base font-semibold tracking-tight">
               {title}
             </CardTitle>
             {description ? (
-              <CardDescription className="text-xs leading-relaxed">
+              <CardDescription className="text-xs leading-relaxed break-words">
                 {description}
               </CardDescription>
             ) : null}
           </div>
         </div>
-        <CardAction>
+        <CardAction className="shrink-0 self-start">
           <Badge variant={visible ? "default" : "destructive"}>
             {visible ? "Vidljiva" : "Sakrivena"}
           </Badge>

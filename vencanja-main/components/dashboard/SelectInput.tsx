@@ -40,25 +40,32 @@ const SelectInput: FC<SelectInputProps> = ({
   return (
     <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger>
+        <TooltipTrigger className="w-full" render={<div className="w-full" />}>
           <Select value={value} onValueChange={onChange} disabled={disabled}>
-            <SelectTrigger className="w-full">
+            <SelectTrigger className="h-9 w-full min-w-0 justify-between">
               {selectedLabel ? (
-                <span>{selectedLabel}</span>
+                <span className="truncate">{selectedLabel}</span>
               ) : (
                 <SelectValue placeholder={placeholder} />
               )}
             </SelectTrigger>
 
-            <SelectContent>
+            <SelectContent
+              alignItemWithTrigger={false}
+              align="start"
+              className="w-[var(--anchor-width)] max-w-[calc(100vw-1.5rem)]"
+            >
               <SelectGroup>
                 {items.map((item) => (
                   <SelectItem
                     key={item.value}
                     value={item.value}
                     disabled={item.disabled}
+                    className="items-start whitespace-normal"
                   >
-                    <span>{item.label}</span>
+                    <span className="whitespace-normal break-words">
+                      {item.label}
+                    </span>
                     {item.disabled && (
                       <span className="text-xs text-red-500">Popunjen</span>
                     )}

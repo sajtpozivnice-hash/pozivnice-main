@@ -86,9 +86,9 @@ const SeatingTable: FC<SeatingTableProps> = ({
     number_of_guests != null && guests.length >= number_of_guests;
 
   return (
-    <Card className="border shadow-sm transition-shadow hover:shadow-md">
+    <Card className="w-full min-w-0 border shadow-sm transition-shadow hover:shadow-md">
       <CardHeader className="border-b pb-4">
-        <CardTitle className="text-base font-semibold">{name}</CardTitle>
+        <CardTitle className="truncate text-base font-semibold">{name}</CardTitle>
         <CardDescription className="pt-2">
           <ProgressBar
             occupied={guests.length}
