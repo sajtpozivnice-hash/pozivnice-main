@@ -6,6 +6,7 @@ import { Camera } from "lucide-react";
 import { UploadImagesSection } from "@/types/sections";
 import { EventConfig, ThemeConfig } from "@/types/config";
 import { SceneShell } from "../components/SceneShell";
+import GuestPhotoUploadControl from "@/components/shared/GuestPhotoUploadControl";
 
 type Props = {
   section: UploadImagesSection;
@@ -47,12 +48,13 @@ const UploadImages: FC<Props> = ({ section, theme }) => {
               {data.description}
             </p>
           ) : null}
-          <button
-            type="button"
-            className="mt-8 inline-flex cursor-pointer items-center justify-center rounded-full border border-white/30 px-8 py-3.5 text-sm font-medium text-white transition hover:bg-white/10"
-          >
-            Dodaj fotografije
-          </button>
+          <div className="mt-8">
+            <GuestPhotoUploadControl
+              buttonText={data.buttonText || "Dodaj fotografije"}
+              buttonClassName="inline-flex w-full cursor-pointer items-center justify-center rounded-full border border-white/30 px-8 py-3.5 text-sm font-medium text-white transition hover:bg-white/10 sm:w-auto"
+              inputClassName="w-full rounded-full border border-white/20 bg-white/10 px-4 py-3 text-sm text-white outline-none placeholder:text-white/50"
+            />
+          </div>
         </motion.div>
       </div>
     </SceneShell>

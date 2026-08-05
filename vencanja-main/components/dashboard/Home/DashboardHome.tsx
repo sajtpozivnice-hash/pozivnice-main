@@ -306,8 +306,8 @@ const DashboardHome = ({ onNavigate }: DashboardHomeProps) => {
           {
             tab: "images",
             accent: DASHBOARD_ACCENTS.gallery,
-            title: "Galerija",
-            desc: "Fotografije",
+            title: "Slike",
+            desc: "Fotografije gostiju",
             icon: Images,
           },
         ].map((item) => {

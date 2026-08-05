@@ -4,6 +4,7 @@ import { ThemeConfig } from "@/types/config";
 import { UploadImagesSection } from "@/types/sections";
 import { motion } from "framer-motion";
 import { ImageIcon } from "lucide-react";
+import GuestPhotoUploadControl from "@/components/shared/GuestPhotoUploadControl";
 
 type Props = {
   section: UploadImagesSection;
@@ -63,13 +64,15 @@ const UploadImages: React.FC<Props> = ({ section, theme }) => {
           </div>
 
           <div className="pt-4">
-            <label
-              style={{ background: colors?.base?.secondary?.value }}
-              className="group inline-flex cursor-pointer items-center gap-3 rounded-full px-8 py-4 text-xs font-bold tracking-[0.2em] text-white uppercase shadow-2xl shadow-black/20 transition-all hover:scale-[1.03] active:scale-[0.97] sm:gap-4 sm:px-10 sm:py-5"
-            >
-              <ImageIcon size={18} />
-              <span>Dodajte Slike i Video zapise</span>
-            </label>
+            <GuestPhotoUploadControl
+              buttonText={data.buttonText || "Dodajte Slike i Video zapise"}
+              buttonStyle={{
+                background: colors?.base?.secondary?.value,
+                color: "#fff",
+              }}
+              buttonClassName="group inline-flex w-full cursor-pointer items-center justify-center gap-3 rounded-full px-8 py-4 text-xs font-bold tracking-[0.2em] uppercase shadow-2xl shadow-black/20 transition-all hover:scale-[1.03] active:scale-[0.97] sm:w-auto sm:gap-4 sm:px-10 sm:py-5"
+              inputClassName="w-full rounded-full border border-black/10 bg-white px-4 py-3 text-sm outline-none"
+            />
           </div>
         </motion.div>
       </div>

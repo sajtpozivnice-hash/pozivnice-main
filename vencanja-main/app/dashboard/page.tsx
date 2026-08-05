@@ -6,6 +6,7 @@ import { DialogProvider } from "@/components/dashboard/context/ModalContext";
 import { TableProvider } from "@/components/dashboard/context/TableContext";
 import { BudgetProvider } from "@/components/dashboard/context/BudgetContext";
 import { PlannerProvider } from "@/components/dashboard/context/PlannerContext";
+import { GuestPhotosProvider } from "@/components/dashboard/context/GuestPhotosContext";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
 const Dashboard = () => {
@@ -16,7 +17,9 @@ const Dashboard = () => {
           <TableProvider>
             <BudgetProvider>
               <PlannerProvider>
-                <UserLayout />
+                <GuestPhotosProvider>
+                  <UserLayout />
+                </GuestPhotosProvider>
               </PlannerProvider>
             </BudgetProvider>
           </TableProvider>
