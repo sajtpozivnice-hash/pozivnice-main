@@ -208,3 +208,28 @@ export type UpdatePlannerTaskDto = Partial<CreatePlannerTaskDto> & {
   completed_at?: string | null;
 };
 
+export type GuestPhoto = {
+  id: string;
+  project_id: string;
+  public_id: string;
+  secure_url: string;
+  file_name: string | null;
+  guest_name: string | null;
+  width: number | null;
+  height: number | null;
+  bytes: number | null;
+  format: string | null;
+  created_at: string;
+};
+
+export type CreateGuestPhotoDto = {
+  public_id: string;
+  secure_url: string;
+  file_name?: string | null;
+  guest_name?: string | null;
+  width?: number | null;
+  height?: number | null;
+  bytes?: number | null;
+  format?: string | null;
+};
+

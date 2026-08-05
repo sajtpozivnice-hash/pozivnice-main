@@ -147,7 +147,7 @@ export const UserLayout = () => {
             <SectionPageShell
               accent="gallery"
               title="Slike"
-              description="Pregled fotografija iz galerije na pozivnici."
+              description="Fotografije koje su gosti uploadovali sa pozivnice. Vidljive samo vama."
             >
               <Images />
             </SectionPageShell>

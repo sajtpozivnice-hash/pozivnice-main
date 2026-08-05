@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import { getProjectBySlug } from "@/lib/db";
 import { TemplateRenderer } from "@/engine/TemplateRenderer";
-import { vencanjeDefaultConfig } from "@/templates/vencanje/config";
 
 export default async function SitePage({
   params,
@@ -9,12 +8,16 @@ export default async function SitePage({
   params: Promise<{ site: string }>;
 }) {
   const { site } = await params;
+  const project = await getProjectBySlug(site);
 
-  // const config = await getProjectBySlug(site);
-  const config = vencanjeDefaultConfig;
-  if (!config) {
+  if (!project?.config_json) {
     notFound();
   }
 
-  return <TemplateRenderer config={config} />;
+  return (
+    <TemplateRenderer
+      config={project.config_json}
+      projectId={project.id}
+    />
+  );
 }

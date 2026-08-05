@@ -2,9 +2,10 @@
 
 import { FC } from "react";
 import { motion } from "framer-motion";
-import { Camera, Upload } from "lucide-react";
+import { Camera } from "lucide-react";
 import { UploadImagesSection } from "@/types/sections";
 import { EventConfig, ThemeConfig } from "@/types/config";
+import GuestPhotoUploadControl from "@/components/shared/GuestPhotoUploadControl";
 
 type Props = {
   section: UploadImagesSection;
@@ -66,10 +67,13 @@ const UploadImages: FC<Props> = ({ section, theme }) => {
               </p>
             ) : null}
 
-            <button type="button" className="bday-btn mt-8">
-              <Upload className="h-4 w-4" />
-              {data.buttonText || "Dodaj fotografije"}
-            </button>
+            <div className="mt-8">
+              <GuestPhotoUploadControl
+                buttonText={data.buttonText || "Dodaj fotografije"}
+                buttonClassName="bday-btn w-full sm:w-auto"
+                inputClassName="bday-input text-left"
+              />
+            </div>
           </div>
         </motion.div>
       </div>

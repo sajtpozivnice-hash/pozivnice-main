@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Camera } from "lucide-react";
 import { UploadImagesSection } from "@/types/sections";
 import { EventConfig, ThemeConfig } from "@/types/config";
+import GuestPhotoUploadControl from "@/components/shared/GuestPhotoUploadControl";
 
 type Props = {
   section: UploadImagesSection;
@@ -39,13 +40,14 @@ const UploadImages: FC<Props> = ({ section, theme }) => {
           {data.description ? (
             <p className="v3-subheading mx-auto max-w-xl">{data.description}</p>
           ) : null}
-          <button
-            type="button"
-            className="mt-8 inline-flex cursor-pointer items-center justify-center rounded-full px-8 py-3 text-sm font-medium text-white transition hover:opacity-90"
-            style={{ background: ink }}
-          >
-            Dodaj fotografije
-          </button>
+          <div className="mt-8">
+            <GuestPhotoUploadControl
+              buttonText={data.buttonText || "Dodaj fotografije"}
+              buttonStyle={{ background: ink, color: "#fff" }}
+              buttonClassName="inline-flex w-full cursor-pointer items-center justify-center rounded-full px-8 py-3 text-sm font-medium text-white transition hover:opacity-90 sm:w-auto"
+              inputClassName="w-full rounded-full border border-black/10 bg-white px-4 py-3 text-sm outline-none"
+            />
+          </div>
         </motion.div>
       </div>
     </section>

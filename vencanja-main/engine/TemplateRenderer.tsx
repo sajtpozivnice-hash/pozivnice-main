@@ -15,13 +15,14 @@ import {
   dancingScript,
   parisienne,
 } from "@/fonts";
+import { InvitationProjectProvider } from "@/components/invitation/InvitationProjectContext";
 
 type Props = {
   config: UniversalProjectConfig;
+  /** Present on live invitation sites — enables guest photo upload */
+  projectId?: string | null;
 };
 
-/** Only theme.backgroundImage drives the fixed page backdrop (e.g. glass packs).
- * Hero images stay section-local so bright packs (birthday) are not forced dark. */
 function getPageBackgroundUrl(config: UniversalProjectConfig): string {
   if (config.theme.backgroundImage?.trim()) {
     return config.theme.backgroundImage.trim();
@@ -30,7 +31,7 @@ function getPageBackgroundUrl(config: UniversalProjectConfig): string {
   return "";
 }
 
-export function TemplateRenderer({ config }: Props) {
+export function TemplateRenderer({ config, projectId = null }: Props) {
   const renderers = getTemplateRenderers(config.template);
   const pageBackgroundUrl = getPageBackgroundUrl(config);
 
@@ -39,10 +40,11 @@ export function TemplateRenderer({ config }: Props) {
   }, [config.template]);
 
   return (
-    <div
-      key={config.template}
-      data-template={config.template}
-      className={`
+    <InvitationProjectProvider projectId={projectId}>
+      <div
+        key={config.template}
+        data-template={config.template}
+        className={`
         relative min-h-full
         ${cormorant.variable}
         ${inter.variable}
@@ -53,33 +55,34 @@ export function TemplateRenderer({ config }: Props) {
         ${dancingScript.variable}
         ${parisienne.variable}
       `}
-      style={
-        {
-          ["--font-primary" as string]:
-            fontMap[config.theme.fonts?.primary || "playfair"],
-          ["--font-secondary" as string]:
-            fontMap[config.theme.fonts?.secondary || "inter"],
-          ["--color-primary" as string]:
-            config.theme.colors?.base?.primary?.value,
-          ["--color-secondary" as string]:
-            config.theme.colors?.base?.secondary?.value,
-          ...(pageBackgroundUrl
-            ? {
-                backgroundColor: "#120f0e",
-                backgroundImage: `linear-gradient(180deg, rgba(8,6,5,0.45) 0%, rgba(8,6,5,0.55) 50%, rgba(8,6,5,0.7) 100%), url("${pageBackgroundUrl}")`,
-                backgroundSize: "cover",
-                backgroundPosition: "center center",
-                backgroundRepeat: "no-repeat",
-                backgroundAttachment: "fixed",
-              }
-            : {
-                backgroundColor:
-                  config.theme.colors?.background?.value || undefined,
-              }),
-        } as React.CSSProperties
-      }
-    >
-      <ConfigRenderer config={config} renderers={renderers} />
-    </div>
+        style={
+          {
+            ["--font-primary" as string]:
+              fontMap[config.theme.fonts?.primary || "playfair"],
+            ["--font-secondary" as string]:
+              fontMap[config.theme.fonts?.secondary || "inter"],
+            ["--color-primary" as string]:
+              config.theme.colors?.base?.primary?.value,
+            ["--color-secondary" as string]:
+              config.theme.colors?.base?.secondary?.value,
+            ...(pageBackgroundUrl
+              ? {
+                  backgroundColor: "#120f0e",
+                  backgroundImage: `linear-gradient(180deg, rgba(8,6,5,0.45) 0%, rgba(8,6,5,0.55) 50%, rgba(8,6,5,0.7) 100%), url("${pageBackgroundUrl}")`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center center",
+                  backgroundRepeat: "no-repeat",
+                  backgroundAttachment: "fixed",
+                }
+              : {
+                  backgroundColor:
+                    config.theme.colors?.background?.value || undefined,
+                }),
+          } as React.CSSProperties
+        }
+      >
+        <ConfigRenderer config={config} renderers={renderers} />
+      </div>
+    </InvitationProjectProvider>
   );
 }

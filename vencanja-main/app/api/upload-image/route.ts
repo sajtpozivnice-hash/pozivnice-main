@@ -1,29 +1,32 @@
-import { v2 as cloudinary } from "cloudinary";
+import cloudinary from "@/lib/cloudinary";
+import { NextResponse } from "next/server";
 
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_NAME,
-  api_key: process.env.CLOUDINARY_KEY,
-  api_secret: process.env.CLOUDINARY_SECRET,
-});
+type UploadBody = {
+  image?: string;
+  fileName?: string;
+  resourceType?: "image" | "auto" | "raw";
+  /** Optional Cloudinary folder; defaults to wedding for invitation editor assets */
+  folder?: string;
+};
+
+function resolveFolder(folder?: string): string {
+  if (folder && /^[a-z0-9/_-]+$/i.test(folder) && folder.length <= 120) {
+    return folder;
+  }
+  return "wedding";
+}
 
 export async function POST(req: Request) {
   try {
-    const body = (await req.json()) as {
-      image?: string;
-      fileName?: string;
-      resourceType?: "image" | "auto" | "raw";
-    };
-
-    const { image, fileName, resourceType = "image" } = body;
+    const body = (await req.json()) as UploadBody;
+    const { image, fileName, resourceType = "image", folder } = body;
 
     if (!image) {
-      return new Response(JSON.stringify({ error: "No image provided" }), {
-        status: 400,
-      });
+      return NextResponse.json({ error: "No image provided" }, { status: 400 });
     }
 
     const result = await cloudinary.uploader.upload(image, {
-      folder: "wedding",
+      folder: resolveFolder(folder),
       resource_type: resourceType,
       public_id: fileName
         ? fileName.replace(/\.[^/.]+$/, "").slice(0, 80)
@@ -34,18 +37,17 @@ export async function POST(req: Request) {
       fetch_format: resourceType === "image" ? "auto" : undefined,
     });
 
-    return new Response(
-      JSON.stringify({
-        public_id: result.public_id,
-        secure_url: result.secure_url,
-      }),
-      { status: 200 },
-    );
+    return NextResponse.json({
+      public_id: result.public_id,
+      secure_url: result.secure_url,
+      width: result.width ?? null,
+      height: result.height ?? null,
+      bytes: result.bytes ?? null,
+      format: result.format ?? null,
+    });
   } catch (err: unknown) {
     console.error("Cloudinary upload error:", err);
     const message = err instanceof Error ? err.message : "Upload failed";
-    return new Response(JSON.stringify({ error: message }), {
-      status: 500,
-    });
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

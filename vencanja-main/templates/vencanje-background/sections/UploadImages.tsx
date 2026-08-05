@@ -6,6 +6,7 @@ import { Camera } from "lucide-react";
 import { UploadImagesSection } from "@/types/sections";
 import { EventConfig, ThemeConfig } from "@/types/config";
 import { GlassPanel } from "../components/GlassPanel";
+import GuestPhotoUploadControl from "@/components/shared/GuestPhotoUploadControl";
 
 type Props = {
   section: UploadImagesSection;
@@ -41,12 +42,11 @@ const UploadImages: FC<Props> = ({ section, theme }) => {
             {data.description ? (
               <p className="vb-body mb-8 text-white/60">{data.description}</p>
             ) : null}
-            <button
-              type="button"
-              className="inline-flex cursor-pointer items-center justify-center rounded-full border border-white/30 px-8 py-3 text-xs uppercase tracking-[0.28em] text-white transition hover:bg-white/10"
-            >
-              Dodaj fotografije
-            </button>
+            <GuestPhotoUploadControl
+              buttonText={data.buttonText || "Dodaj fotografije"}
+              buttonClassName="inline-flex w-full cursor-pointer items-center justify-center rounded-full border border-white/30 px-8 py-3 text-xs uppercase tracking-[0.28em] text-white transition hover:bg-white/10 sm:w-auto"
+              inputClassName="w-full rounded-full border border-white/20 bg-white/10 px-4 py-3 text-sm text-white outline-none placeholder:text-white/50"
+            />
           </motion.div>
         </GlassPanel>
       </div>
