@@ -317,6 +317,7 @@ const EditGuestModal = () => {
                 </FieldDescription>
                 <SelectInput
                   disabled={form.rsvp_status !== "accepted"}
+                  disabledTooltip='Gost mora imati status "Dolazi" da bi mogao biti raspoređen za sto.'
                   items={tablesForSelect}
                   value={form.table_id ?? ""}
                   onChange={(value) =>

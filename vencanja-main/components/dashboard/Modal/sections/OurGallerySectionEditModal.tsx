@@ -17,12 +17,13 @@ import Loader from "../../loaders/Loader";
 import { useProject } from "../../context/ProjectContext";
 import { Plus } from "lucide-react";
 import { OurGallerySection } from "@/types/sections";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { UniversalProjectConfig } from "@/types/config";
 import { RepeaterItemCard } from "./RepeaterItemCard";
 import { Badge } from "@/components/ui/badge";
 import { SectionModalVisibilityBar } from "./SectionModalVisibilityBar";
+import EditorImage from "@/editor/components/EditorImage";
 
 type GalleryImage = OurGallerySection["data"]["images"][number];
 
@@ -36,23 +37,27 @@ const OurGallerySectionEditModal = () => {
   const { closeModal } = useDialog();
   const { config, saving, getSection, saveConfig } = useProject();
   const ourGallerySection = getSection<OurGallerySection>("ourGallery");
-  const [isVisible, setIsVisible] = useState(false);
+  const [sectionKey, setSectionKey] = useState<string | null>(
+    ourGallerySection?.id ?? null,
+  );
+  const [isVisible, setIsVisible] = useState(
+    ourGallerySection?.visible ?? false,
+  );
   const [form, setForm] = useState<OurGalleryForm>({
-    title: "",
-    description: "",
-    images: [],
+    title: ourGallerySection?.data.title || "",
+    description: ourGallerySection?.data.description || "",
+    images: ourGallerySection?.data.images || [],
   });
 
-  useEffect(() => {
-    if (ourGallerySection) {
-      setForm({
-        title: ourGallerySection.data.title || "",
-        description: ourGallerySection.data.description || "",
-        images: ourGallerySection.data.images || [],
-      });
-      setIsVisible(ourGallerySection.visible);
-    }
-  }, []);
+  if (ourGallerySection && ourGallerySection.id !== sectionKey) {
+    setSectionKey(ourGallerySection.id);
+    setIsVisible(ourGallerySection.visible);
+    setForm({
+      title: ourGallerySection.data.title || "",
+      description: ourGallerySection.data.description || "",
+      images: ourGallerySection.data.images || [],
+    });
+  }
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -80,11 +85,6 @@ const OurGallerySectionEditModal = () => {
   };
 
   const removeImage = (index: number) => {
-    const confirmed = window.confirm(
-      "Da li ste sigurni da želite da uklonite ovu sliku?",
-    );
-    if (!confirmed) return;
-
     setForm((prev) => ({
       ...prev,
       images: prev.images.filter((_, imageIndex) => imageIndex !== index),
@@ -193,26 +193,11 @@ const OurGallerySectionEditModal = () => {
                 title={`Slika ${index + 1}`}
                 onRemove={() => removeImage(index)}
               >
-                <Field>
-                  <FieldLabel htmlFor={`image-url-${index}`}>
-                    URL slike
-                  </FieldLabel>
-                  <Input
-                    id={`image-url-${index}`}
-                    placeholder="https://..."
-                    value={image.url ?? ""}
-                    onChange={(e) => handleImageChange(index, e.target.value)}
-                  />
-                </Field>
-                {image.url ? (
-                  <div className="overflow-hidden rounded-lg border">
-                    <img
-                      src={image.url}
-                      alt={`Pregled ${index + 1}`}
-                      className="h-28 w-full object-cover"
-                    />
-                  </div>
-                ) : null}
+                <EditorImage
+                  label="Fotografija"
+                  value={image.url ?? ""}
+                  onChange={(url) => handleImageChange(index, url)}
+                />
               </RepeaterItemCard>
             ))
           )}

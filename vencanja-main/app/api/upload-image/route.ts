@@ -8,7 +8,13 @@ cloudinary.config({
 
 export async function POST(req: Request) {
   try {
-    const { image } = await req.json();
+    const body = (await req.json()) as {
+      image?: string;
+      fileName?: string;
+      resourceType?: "image" | "auto" | "raw";
+    };
+
+    const { image, fileName, resourceType = "image" } = body;
 
     if (!image) {
       return new Response(JSON.stringify({ error: "No image provided" }), {
@@ -18,10 +24,14 @@ export async function POST(req: Request) {
 
     const result = await cloudinary.uploader.upload(image, {
       folder: "wedding",
-      width: 1920,
-      crop: "limit",
-      quality: "auto",
-      fetch_format: "auto",
+      resource_type: resourceType,
+      public_id: fileName
+        ? fileName.replace(/\.[^/.]+$/, "").slice(0, 80)
+        : undefined,
+      width: resourceType === "image" ? 1920 : undefined,
+      crop: resourceType === "image" ? "limit" : undefined,
+      quality: resourceType === "image" ? "auto" : undefined,
+      fetch_format: resourceType === "image" ? "auto" : undefined,
     });
 
     return new Response(
@@ -31,11 +41,11 @@ export async function POST(req: Request) {
       }),
       { status: 200 },
     );
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error("Cloudinary upload error:", err);
-    return new Response(
-      JSON.stringify({ error: err.message || "Upload failed" }),
-      { status: 500 },
-    );
+    const message = err instanceof Error ? err.message : "Upload failed";
+    return new Response(JSON.stringify({ error: message }), {
+      status: 500,
+    });
   }
 }

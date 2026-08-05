@@ -16,8 +16,8 @@ import { useDialog } from "../../context/ModalContext";
 import Loader from "../../loaders/Loader";
 import { useProject } from "../../context/ProjectContext";
 import { HeroSection } from "@/types/sections";
-import { useEffect, useState } from "react";
-import ImagePreviewInput from "../../ImagePreviewInput";
+import { useState } from "react";
+import EditorImage from "@/editor/components/EditorImage";
 import { UniversalProjectConfig } from "@/types/config";
 import { SectionModalVisibilityBar } from "./SectionModalVisibilityBar";
 
@@ -25,24 +25,23 @@ const HeroSectionEditModal = () => {
   const { closeModal } = useDialog();
   const { config, saving, getSection, saveConfig } = useProject();
   const heroSection = getSection<HeroSection>("hero");
+  const [sectionKey, setSectionKey] = useState(heroSection?.id ?? null);
   const [form, setForm] = useState({
-    title: "",
-    subtitle: "",
-    backgroundImage: "",
+    title: heroSection?.data.title ?? "",
+    subtitle: heroSection?.data.subtitle ?? "",
+    backgroundImage: heroSection?.data.backgroundImage ?? "",
   });
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(heroSection?.visible ?? false);
 
-  useEffect(() => {
-    if (heroSection) {
-      setForm({
-        title: heroSection.data.title,
-        subtitle: heroSection.data.subtitle ?? "",
-        backgroundImage: heroSection.data.backgroundImage ?? "",
-      });
-
-      setIsVisible(heroSection.visible);
-    }
-  }, [heroSection]);
+  if (heroSection && heroSection.id !== sectionKey) {
+    setSectionKey(heroSection.id);
+    setForm({
+      title: heroSection.data.title,
+      subtitle: heroSection.data.subtitle ?? "",
+      backgroundImage: heroSection.data.backgroundImage ?? "",
+    });
+    setIsVisible(heroSection.visible);
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm((prev) => ({
@@ -124,9 +123,12 @@ const HeroSectionEditModal = () => {
             />
           </Field>
           <Field>
-            <ImagePreviewInput
-              preview={form.backgroundImage}
+            <EditorImage
               label="Pozadinska slika"
+              value={form.backgroundImage}
+              onChange={(url) =>
+                setForm((prev) => ({ ...prev, backgroundImage: url }))
+              }
             />
           </Field>
         </FieldGroup>

@@ -20,9 +20,23 @@ import LocationsSectionEditModal from "./sections/LocationsSectionEditModal";
 import OurStorySectionEditModal from "./sections/OurStorySectionEditModal";
 import ScheduleSectionEditModal from "./sections/ScheduleSectionEditModal";
 import OurGallerySectionEditModal from "./sections/OurGallerySectionEditModal";
+import AddBudgetItemModal from "./budget/AddBudgetItemModal";
+import EditBudgetItemModal from "./budget/EditBudgetItemModal";
+import DeleteBudgetItemModal from "./budget/DeleteBudgetItemModal";
+import AddBudgetCategoryModal from "./budget/AddBudgetCategoryModal";
+import BudgetItemDetailsModal from "./budget/BudgetItemDetailsModal";
+import AddPlannerTaskModal from "./planner/AddPlannerTaskModal";
+import EditPlannerTaskModal from "./planner/EditPlannerTaskModal";
+import DeletePlannerTaskModal from "./planner/DeletePlannerTaskModal";
+import AddPlannerCategoryModal from "./planner/AddPlannerCategoryModal";
 
 const ModalContainer = () => {
   const { type, open, closeModal } = useDialog();
+
+  const isWide =
+    type === "budget_item_details" ||
+    type === "add_budget_item" ||
+    type === "edit_budget_item";
 
   const modalContentHandler = useCallback(() => {
     switch (type) {
@@ -64,6 +78,24 @@ const ModalContainer = () => {
         return <ScheduleSectionEditModal />;
       case "our_gallery_edit":
         return <OurGallerySectionEditModal />;
+      case "add_budget_item":
+        return <AddBudgetItemModal />;
+      case "edit_budget_item":
+        return <EditBudgetItemModal />;
+      case "delete_budget_item":
+        return <DeleteBudgetItemModal />;
+      case "add_budget_category":
+        return <AddBudgetCategoryModal />;
+      case "budget_item_details":
+        return <BudgetItemDetailsModal />;
+      case "add_planner_task":
+        return <AddPlannerTaskModal />;
+      case "edit_planner_task":
+        return <EditPlannerTaskModal />;
+      case "delete_planner_task":
+        return <DeletePlannerTaskModal />;
+      case "add_planner_category":
+        return <AddPlannerCategoryModal />;
       default:
         return <></>;
     }
@@ -71,7 +103,11 @@ const ModalContainer = () => {
 
   return (
     <Sheet open={open} onOpenChange={closeModal}>
-      <SheetContent className="flex w-full max-w-full flex-col gap-4 overflow-y-auto p-3 sm:max-w-md sm:p-4">
+      <SheetContent
+        className={`flex w-full max-w-full flex-col gap-4 overflow-y-auto border-l border-border/60 bg-gradient-to-b from-white to-slate-50/80 p-3 sm:p-5 ${
+          isWide ? "sm:max-w-lg" : "sm:max-w-md"
+        }`}
+      >
         {modalContentHandler()}
       </SheetContent>
     </Sheet>

@@ -16,35 +16,39 @@ import { useDialog } from "../../context/ModalContext";
 import Loader from "../../loaders/Loader";
 import { useProject } from "../../context/ProjectContext";
 import { OurStorySection } from "@/types/sections";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { UniversalProjectConfig } from "@/types/config";
-import ImagePreviewInput from "../../ImagePreviewInput";
+import EditorImage from "@/editor/components/EditorImage";
 import { SectionModalVisibilityBar } from "./SectionModalVisibilityBar";
 
 const OurStorySectionEditModal = () => {
   const { closeModal } = useDialog();
   const { config, saving, getSection, saveConfig } = useProject();
   const ourStorySection = getSection<OurStorySection>("ourStory");
-  const [isVisible, setIsVisible] = useState(false);
+  const [sectionKey, setSectionKey] = useState<string | null>(
+    ourStorySection?.id ?? null,
+  );
+  const [isVisible, setIsVisible] = useState(
+    ourStorySection?.visible ?? false,
+  );
   const [form, setForm] = useState({
-    title: "",
-    overline: "",
-    text: "",
-    image: "",
+    title: ourStorySection?.data.title || "",
+    overline: ourStorySection?.data.overline || "",
+    text: ourStorySection?.data.text || "",
+    image: ourStorySection?.data.image || "",
   });
 
-  useEffect(() => {
-    if (ourStorySection) {
-      setForm({
-        title: ourStorySection.data.title || "",
-        overline: ourStorySection.data.overline || "",
-        text: ourStorySection.data.text || "",
-        image: ourStorySection.data.image || "",
-      });
-      setIsVisible(ourStorySection.visible);
-    }
-  }, []);
+  if (ourStorySection && ourStorySection.id !== sectionKey) {
+    setSectionKey(ourStorySection.id);
+    setIsVisible(ourStorySection.visible);
+    setForm({
+      title: ourStorySection.data.title || "",
+      overline: ourStorySection.data.overline || "",
+      text: ourStorySection.data.text || "",
+      image: ourStorySection.data.image || "",
+    });
+  }
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -138,7 +142,11 @@ const OurStorySectionEditModal = () => {
             />
           </Field>
           <Field>
-            <ImagePreviewInput preview={form.image} label="Slika" />
+            <EditorImage
+              label="Slika"
+              value={form.image}
+              onChange={(url) => setForm((prev) => ({ ...prev, image: url }))}
+            />
           </Field>
         </FieldGroup>
         <SheetFooter>

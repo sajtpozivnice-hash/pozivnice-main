@@ -4,6 +4,8 @@ import { GuestsProvider } from "@/components/dashboard/context/GuestContext";
 import { UserLayout } from "./user/UserLayout";
 import { DialogProvider } from "@/components/dashboard/context/ModalContext";
 import { TableProvider } from "@/components/dashboard/context/TableContext";
+import { BudgetProvider } from "@/components/dashboard/context/BudgetContext";
+import { PlannerProvider } from "@/components/dashboard/context/PlannerContext";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
 const Dashboard = () => {
@@ -12,7 +14,11 @@ const Dashboard = () => {
       <DialogProvider>
         <GuestsProvider>
           <TableProvider>
-            <UserLayout />
+            <BudgetProvider>
+              <PlannerProvider>
+                <UserLayout />
+              </PlannerProvider>
+            </BudgetProvider>
           </TableProvider>
         </GuestsProvider>
       </DialogProvider>

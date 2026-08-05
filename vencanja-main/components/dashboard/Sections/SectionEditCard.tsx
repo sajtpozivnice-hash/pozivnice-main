@@ -45,10 +45,10 @@ export const SectionEditCard = ({
   }
 
   return (
-    <Card className="min-w-0 border shadow-sm transition-shadow hover:shadow-md">
-      <CardHeader className="border-b pb-4">
+    <Card className="min-w-0 overflow-hidden border-0 bg-gradient-to-br from-stone-50 via-white to-white shadow-[0_1px_2px_rgb(15_23_42_/_0.04),0_8px_24px_rgb(15_23_42_/_0.05)] ring-1 ring-border/50 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgb(15_23_42_/_0.08)]">
+      <CardHeader className="border-b border-border/50 pb-4">
         <div className="flex min-w-0 items-start gap-3">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-muted text-foreground">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-stone-100 text-stone-700">
             <Icon className="h-5 w-5" />
           </div>
           <div className="min-w-0 flex-1 space-y-1">
@@ -63,7 +63,14 @@ export const SectionEditCard = ({
           </div>
         </div>
         <CardAction className="shrink-0 self-start">
-          <Badge variant={visible ? "default" : "destructive"}>
+          <Badge
+            variant="outline"
+            className={
+              visible
+                ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+                : "border-rose-200 bg-rose-50 text-rose-700"
+            }
+          >
             {visible ? "Vidljiva" : "Sakrivena"}
           </Badge>
         </CardAction>

@@ -3,7 +3,6 @@ import { createContext, useContext, useMemo, useState, ReactNode } from "react";
 export type ModalType =
   | "add_table"
   | "add_guest"
-  | "confirm_delete_guest"
   | "add_guest_to_table"
   | "edit_table"
   | "edit_guest"
@@ -20,10 +19,21 @@ export type ModalType =
   | "locations_edit"
   | "our_story_edit"
   | "schedule_edit"
-  | "our_gallery_edit";
+  | "our_gallery_edit"
+  | "add_budget_item"
+  | "edit_budget_item"
+  | "delete_budget_item"
+  | "add_budget_category"
+  | "budget_item_details"
+  | "add_planner_task"
+  | "edit_planner_task"
+  | "delete_planner_task"
+  | "add_planner_category";
 
 type ModalData = {
   id?: string;
+  // Existing modals pass heterogeneous payloads (guest/table/section data).
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data?: any;
 };
 
