@@ -11,6 +11,7 @@ import ImagesUpload from "./panels/ImagesUploadPanel";
 import InvitePanel from "./panels/InvitePanel";
 import OurGalleryPanel from "./panels/OurGalleryPanel";
 import RsvpPanel from "./panels/RsvpPanel";
+import FeatureCardsPanel from "./panels/FeatureCardsPanel";
 
 export const panelRegistry: Partial<
   Record<SectionType, React.ComponentType<object>>
@@ -27,4 +28,5 @@ export const panelRegistry: Partial<
   uploadImagesSection: ImagesUpload,
   rsvp: RsvpPanel,
   footer: FooterPanel,
+  featureCards: FeatureCardsPanel,
 };

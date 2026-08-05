@@ -17,6 +17,8 @@ import { usePlanner } from "../../context/PlannerContext";
 import SelectInput, { SelectOption } from "../../SelectInput";
 import Loader from "../../loaders/Loader";
 import { CreatePlannerTaskDto, PlannerPriority } from "../../types";
+import { useDashboard } from "../../context/DashboardContext";
+import { getEventCopy } from "@/helpers/eventType";
 
 const PRIORITY_OPTIONS: SelectOption[] = [
   { label: "Nizak", value: "low" },
@@ -40,6 +42,8 @@ const emptyForm = (category = ""): CreatePlannerTaskDto => ({
 
 const AddPlannerTaskModal = () => {
   const { closeModal } = useDialog();
+  const { activeProject } = useDashboard();
+  const copy = getEventCopy(activeProject?.config_json);
   const { categories, createTask, loading } = usePlanner();
   const defaultCategory = categories[0]?.name ?? "Ostalo";
   const [form, setForm] = useState<CreatePlannerTaskDto>(() =>
@@ -94,7 +98,7 @@ const AddPlannerTaskModal = () => {
       <SheetHeader className="space-y-2">
         <SheetTitle>Novi zadatak</SheetTitle>
         <SheetDescription>
-          Dodajte obavezu za pripremu venčanja.
+          {copy.plannerTaskHint}
         </SheetDescription>
       </SheetHeader>
 

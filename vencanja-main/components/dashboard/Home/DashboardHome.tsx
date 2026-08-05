@@ -30,6 +30,7 @@ import {
 import { cn } from "@/lib/utils";
 import { DASHBOARD_ACCENTS } from "../theme";
 import SectionLoader from "../loaders/SectionLoader";
+import { getEventCopy } from "@/helpers/eventType";
 
 type DashboardHomeProps = {
   onNavigate: (tab: string) => void;
@@ -37,6 +38,7 @@ type DashboardHomeProps = {
 
 const DashboardHome = ({ onNavigate }: DashboardHomeProps) => {
   const { activeProject } = useDashboard();
+  const copy = getEventCopy(activeProject?.config_json);
   const { guests, loading: guestsLoading } = useGuests();
   const { tables, loading: tablesLoading } = useTables();
   const { items, loading: budgetLoading } = useBudget();
@@ -109,10 +111,10 @@ const DashboardHome = ({ onNavigate }: DashboardHomeProps) => {
         <div className="pointer-events-none absolute -bottom-20 left-10 h-40 w-40 rounded-full bg-rose-400/20 blur-3xl" />
         <div className="relative space-y-2">
           <p className="text-xs font-medium tracking-[0.18em] text-white/60 uppercase">
-            Pregled venčanja
+            {copy.overviewLabel}
           </p>
           <h2 className="max-w-2xl text-2xl font-semibold tracking-tight sm:text-3xl">
-            {activeProject?.title ?? "Vaše venčanje"}
+            {activeProject?.title ?? copy.fallbackTitle}
           </h2>
           <p className="max-w-xl text-sm leading-relaxed text-white/70">
             Sve što je bitno za organizaciju — gosti, raspored, budžet i zadaci —

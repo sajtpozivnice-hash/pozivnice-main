@@ -12,6 +12,8 @@ export const rsvpSchema = createSectionSchema<RsvpData>({
     { key: "title", label: "Naslov", type: "text" },
     { key: "description", label: "Opis", type: "textarea" },
     { key: "buttonText", label: "Tekst dugmeta", type: "text" },
+    { key: "messageLabel", label: "Labela poruke", type: "text" },
+    { key: "messagePlaceholder", label: "Placeholder poruke", type: "text" },
     { key: "imageUrl", label: "Pozadinska slika", type: "image" },
   ],
 });

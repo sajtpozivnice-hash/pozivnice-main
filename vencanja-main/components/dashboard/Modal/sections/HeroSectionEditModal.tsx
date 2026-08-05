@@ -20,6 +20,7 @@ import { useState } from "react";
 import EditorImage from "@/editor/components/EditorImage";
 import { UniversalProjectConfig } from "@/types/config";
 import { SectionModalVisibilityBar } from "./SectionModalVisibilityBar";
+import { Textarea } from "@/components/ui/textarea";
 
 const HeroSectionEditModal = () => {
   const { closeModal } = useDialog();
@@ -29,7 +30,12 @@ const HeroSectionEditModal = () => {
   const [form, setForm] = useState({
     title: heroSection?.data.title ?? "",
     subtitle: heroSection?.data.subtitle ?? "",
+    description: heroSection?.data.description ?? "",
+    badge: heroSection?.data.badge ?? "",
+    ctaText: heroSection?.data.ctaText ?? "",
+    ctaHref: heroSection?.data.ctaHref ?? "",
     backgroundImage: heroSection?.data.backgroundImage ?? "",
+    image: heroSection?.data.image ?? "",
   });
   const [isVisible, setIsVisible] = useState(heroSection?.visible ?? false);
 
@@ -38,12 +44,19 @@ const HeroSectionEditModal = () => {
     setForm({
       title: heroSection.data.title,
       subtitle: heroSection.data.subtitle ?? "",
+      description: heroSection.data.description ?? "",
+      badge: heroSection.data.badge ?? "",
+      ctaText: heroSection.data.ctaText ?? "",
+      ctaHref: heroSection.data.ctaHref ?? "",
       backgroundImage: heroSection.data.backgroundImage ?? "",
+      image: heroSection.data.image ?? "",
     });
     setIsVisible(heroSection.visible);
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setForm((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -53,6 +66,12 @@ const HeroSectionEditModal = () => {
   if (!heroSection) {
     return null;
   }
+
+  const showExtended =
+    "badge" in heroSection.data ||
+    "ctaText" in heroSection.data ||
+    "description" in heroSection.data ||
+    "image" in heroSection.data;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -74,6 +93,15 @@ const HeroSectionEditModal = () => {
             title: form.title,
             subtitle: form.subtitle,
             backgroundImage: form.backgroundImage,
+            ...(showExtended
+              ? {
+                  description: form.description,
+                  badge: form.badge,
+                  ctaText: form.ctaText,
+                  ctaHref: form.ctaHref,
+                  image: form.image,
+                }
+              : {}),
           },
         };
       }),
@@ -90,7 +118,7 @@ const HeroSectionEditModal = () => {
         <div className="space-y-1">
           <SheetTitle>Naslovna</SheetTitle>
           <SheetDescription>
-            Uredite naslov, podnaslov i pozadinsku sliku hero sekcije.
+            Uredite naslov, podnaslov i slike hero sekcije.
           </SheetDescription>
         </div>
         <SectionModalVisibilityBar
@@ -122,6 +150,58 @@ const HeroSectionEditModal = () => {
               value={form.subtitle ?? ""}
             />
           </Field>
+          {showExtended ? (
+            <>
+              <Field>
+                <FieldLabel htmlFor="description">Opis</FieldLabel>
+                <Textarea
+                  id="description"
+                  name="description"
+                  rows={3}
+                  onChange={handleChange}
+                  value={form.description}
+                />
+              </Field>
+              <Field>
+                <FieldLabel htmlFor="badge">Bedž</FieldLabel>
+                <Input
+                  id="badge"
+                  name="badge"
+                  placeholder="npr. 7 godina"
+                  onChange={handleChange}
+                  value={form.badge}
+                />
+              </Field>
+              <Field>
+                <FieldLabel htmlFor="ctaText">CTA tekst</FieldLabel>
+                <Input
+                  id="ctaText"
+                  name="ctaText"
+                  onChange={handleChange}
+                  value={form.ctaText}
+                />
+              </Field>
+              <Field>
+                <FieldLabel htmlFor="ctaHref">CTA link</FieldLabel>
+                <Input
+                  id="ctaHref"
+                  name="ctaHref"
+                  placeholder="#rsvp"
+                  onChange={handleChange}
+                  value={form.ctaHref}
+                />
+              </Field>
+              <Field>
+                <EditorImage
+                  label="Portret / glavna slika"
+                  value={form.image}
+                  onChange={(url) =>
+                    setForm((prev) => ({ ...prev, image: url }))
+                  }
+                />
+              </Field>
+            </>
+          ) : null}
           <Field>
             <EditorImage
               label="Pozadinska slika"

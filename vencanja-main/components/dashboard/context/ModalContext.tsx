@@ -20,6 +20,7 @@ export type ModalType =
   | "our_story_edit"
   | "schedule_edit"
   | "our_gallery_edit"
+  | "feature_cards_edit"
   | "add_budget_item"
   | "edit_budget_item"
   | "delete_budget_item"

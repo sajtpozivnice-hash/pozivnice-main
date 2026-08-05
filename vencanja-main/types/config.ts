@@ -1,6 +1,15 @@
-import { templates } from "@/templates";
 import { SectionConfig } from "./sections";
 import { FontKey } from "@/helpers/fontMap";
+
+/** Keep in sync when registering new packs in templates/index.ts */
+export type TemplateKey =
+  | "vencanje"
+  | "vencanje3"
+  | "vencanje4"
+  | "vencanje-premium"
+  | "vencanje-cinematic"
+  | "vencanje-background"
+  | "rodjendan-01";
 
 export type MetaConfig = {
   title: string;
@@ -61,8 +70,13 @@ export type FieldConfig = {
   condition?: (data: any) => boolean;
 };
 
+/** Optional — missing value is treated as "wedding" for backwards compatibility. */
+export type EventType = "wedding" | "birthday" | "baptism";
+
 export type UniversalProjectConfig = {
-  template: keyof typeof templates;
+  template: TemplateKey;
+  /** Discriminator for copy, seeds and future template packs. Additive; optional. */
+  eventType?: EventType;
   meta: MetaConfig;
   event: EventConfig;
   theme: ThemeConfig;

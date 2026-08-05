@@ -35,6 +35,10 @@ export type HeroSection = BaseSectionConfig<
     description?: string;
     backgroundImage?: string;
     image?: string;
+    /** e.g. age badge — "7 godina" */
+    badge?: string;
+    ctaText?: string;
+    ctaHref?: string;
   },
   "hero"
 >;
@@ -124,8 +128,30 @@ export type RSVPSection = BaseSectionConfig<
     description?: string;
     buttonText?: string;
     imageUrl?: string;
+    messageLabel?: string;
+    messagePlaceholder?: string;
   },
   "rsvp"
+>;
+
+export type FeatureCardItem = {
+  id: string;
+  title: string;
+  description?: string;
+  icon?: string;
+  image?: string;
+  accent?: string;
+};
+
+/** Flexible card grid — gifts, dress code, parent info, activities, etc. */
+export type FeatureCardsSection = BaseSectionConfig<
+  {
+    title: string;
+    subtitle?: string;
+    description?: string;
+    cards?: FeatureCardItem[];
+  },
+  "featureCards"
 >;
 
 export type LoveQuoteSection = BaseSectionConfig<
@@ -170,13 +196,13 @@ export type SectionComponentProps = {
   onChange?: (sectionId: string, newData: any) => void;
 };
 
-export type SectionRendererMap = {
+export type SectionRendererMap = Partial<{
   [K in SectionConfig["type"]]: React.ComponentType<{
     section: Extract<SectionConfig, { type: K }>;
     event: EventConfig;
     theme: ThemeConfig;
   }>;
-};
+}>;
 
 export type LocationsData = LocationsSection["data"];
 export type CalendarData = CalendarSection["data"];
@@ -200,6 +226,7 @@ export type SectionConfig =
   | UploadImagesSection
   | RSVPSection
   | InviteTextSection
-  | FooterSection;
+  | FooterSection
+  | FeatureCardsSection;
 
 export type SectionType = SectionConfig["type"];

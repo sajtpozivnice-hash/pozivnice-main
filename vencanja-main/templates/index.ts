@@ -10,35 +10,56 @@ import { vencanjeCinematicDefaultConfig } from "./vencanje-cinematic/config";
 import { vencanjeCinematicRenderers } from "./vencanje-cinematic/renderers";
 import { vencanjeBackgroundDefaultConfig } from "./vencanje-background/config";
 import { vencanjeBackgroundRenderers } from "./vencanje-background/renderers";
+import { rodjendan01DefaultConfig } from "./rodjendan-01/config";
+import { rodjendan01Renderers } from "./rodjendan-01/renderers";
+import { EventType, TemplateKey } from "@/types/config";
 
 export const templates = {
   vencanje: {
     renderers: vencanjeRenderers,
-    defaultConfig: vencanjeDefaultConfig,
+    defaultConfig: { ...vencanjeDefaultConfig, eventType: "wedding" as const },
+    eventTypes: ["wedding"] as EventType[],
   },
   vencanje3: {
     renderers: vencanje3Renderers,
-    defaultConfig: vencanje3DefaultConfig,
+    defaultConfig: { ...vencanje3DefaultConfig, eventType: "wedding" as const },
+    eventTypes: ["wedding"] as EventType[],
   },
   vencanje4: {
     renderers: vencanje4Renderers,
-    defaultConfig: vencanje4DefaultConfig,
+    defaultConfig: { ...vencanje4DefaultConfig, eventType: "wedding" as const },
+    eventTypes: ["wedding"] as EventType[],
   },
   "vencanje-premium": {
     renderers: vencanjePremiumRenderers,
-    defaultConfig: vencanjePremiumDefaultConfig,
+    defaultConfig: {
+      ...vencanjePremiumDefaultConfig,
+      eventType: "wedding" as const,
+    },
+    eventTypes: ["wedding"] as EventType[],
   },
   "vencanje-cinematic": {
     renderers: vencanjeCinematicRenderers,
-    defaultConfig: vencanjeCinematicDefaultConfig,
+    defaultConfig: {
+      ...vencanjeCinematicDefaultConfig,
+      eventType: "wedding" as const,
+    },
+    eventTypes: ["wedding"] as EventType[],
   },
   "vencanje-background": {
     renderers: vencanjeBackgroundRenderers,
-    defaultConfig: vencanjeBackgroundDefaultConfig,
+    defaultConfig: {
+      ...vencanjeBackgroundDefaultConfig,
+      eventType: "wedding" as const,
+    },
+    eventTypes: ["wedding"] as EventType[],
+  },
+  "rodjendan-01": {
+    renderers: rodjendan01Renderers,
+    defaultConfig: rodjendan01DefaultConfig,
+    eventTypes: ["birthday"] as EventType[],
   },
 };
-
-export type TemplateKey = keyof typeof templates;
 
 export function getTemplateRenderers(templateKey: string) {
   const template = templates[templateKey as TemplateKey];
@@ -59,8 +80,16 @@ export function getDefaultProject(templateKey: string) {
 
   if (!template) {
     console.warn(`Template "${templateKey}" not found, fallback to "vencanje"`);
-    return templates["vencanje"].defaultConfig;
+    return templates.vencanje.defaultConfig;
   }
 
   return template.defaultConfig;
 }
+
+export function getTemplatesForEventType(eventType: EventType): TemplateKey[] {
+  return (Object.keys(templates) as TemplateKey[]).filter((key) =>
+    templates[key].eventTypes.includes(eventType),
+  );
+}
+
+export type { TemplateKey };

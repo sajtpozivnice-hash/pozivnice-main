@@ -15,6 +15,7 @@ import LogoutButton from "@/components/dashboard/LogoutButton";
 import { useDashboard } from "@/components/dashboard/context/DashboardContext";
 import SelectInput from "@/components/dashboard/SelectInput";
 import { DASHBOARD_ACCENTS } from "@/components/dashboard/theme";
+import { getEventCopy } from "@/helpers/eventType";
 import { cn } from "@/lib/utils";
 import {
   CalendarCheck2,
@@ -33,6 +34,7 @@ export const UserLayout = () => {
   const { projects, activeProjectId, setActiveProject, activeProject } =
     useDashboard();
   const [activeTab, setActiveTab] = useState("home");
+  const copy = getEventCopy(activeProject?.config_json);
 
   return (
     <div className="dashboard-shell">
@@ -40,10 +42,10 @@ export const UserLayout = () => {
         <div className="flex flex-col gap-4 rounded-2xl border border-border/60 bg-white/75 p-4 shadow-[0_8px_30px_rgb(15_23_42_/_0.04)] backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between sm:p-5">
           <div className="min-w-0">
             <p className="text-[11px] font-medium tracking-[0.16em] text-muted-foreground uppercase">
-              Wedding dashboard
+              {copy.productLabel}
             </p>
             <h1 className="truncate text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
-              {activeProject?.title ?? "Vaše venčanje"}
+              {activeProject?.title ?? copy.fallbackTitle}
             </h1>
           </div>
           <div className="flex w-full flex-col gap-2 min-[420px]:flex-row min-[420px]:items-center sm:w-auto">
@@ -185,7 +187,7 @@ export const UserLayout = () => {
             <SectionPageShell
               accent="planner"
               title="Planer zadataka"
-              description="Organizujte obaveze do dana venčanja i pratite napredak."
+              description={copy.plannerEmptyHint}
             >
               <PlanerZadataka />
             </SectionPageShell>

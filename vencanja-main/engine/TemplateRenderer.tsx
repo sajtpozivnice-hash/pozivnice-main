@@ -20,23 +20,9 @@ type Props = {
   config: UniversalProjectConfig;
 };
 
+/** Only theme.backgroundImage drives the fixed page backdrop (e.g. glass packs).
+ * Hero images stay section-local so bright packs (birthday) are not forced dark. */
 function getPageBackgroundUrl(config: UniversalProjectConfig): string {
-  const hero = config.sections.find((section) => section.type === "hero");
-
-  if (hero && "backgroundImage" in hero.data) {
-    const value = hero.data.backgroundImage;
-    if (typeof value === "string" && value.trim()) {
-      return value.trim();
-    }
-  }
-
-  if (hero && "image" in hero.data) {
-    const value = hero.data.image;
-    if (typeof value === "string" && value.trim()) {
-      return value.trim();
-    }
-  }
-
   if (config.theme.backgroundImage?.trim()) {
     return config.theme.backgroundImage.trim();
   }
@@ -55,6 +41,7 @@ export function TemplateRenderer({ config }: Props) {
   return (
     <div
       key={config.template}
+      data-template={config.template}
       className={`
         relative min-h-full
         ${cormorant.variable}
@@ -68,10 +55,14 @@ export function TemplateRenderer({ config }: Props) {
       `}
       style={
         {
-          "--font-primary": fontMap[config.theme.fonts?.primary || "playfair"],
-          "--font-secondary": fontMap[config.theme.fonts?.secondary || "inter"],
-          "--color-primary": config.theme.colors?.base?.primary?.value,
-          "--color-secondary": config.theme.colors?.base?.secondary?.value,
+          ["--font-primary" as string]:
+            fontMap[config.theme.fonts?.primary || "playfair"],
+          ["--font-secondary" as string]:
+            fontMap[config.theme.fonts?.secondary || "inter"],
+          ["--color-primary" as string]:
+            config.theme.colors?.base?.primary?.value,
+          ["--color-secondary" as string]:
+            config.theme.colors?.base?.secondary?.value,
           ...(pageBackgroundUrl
             ? {
                 backgroundColor: "#120f0e",
@@ -81,7 +72,10 @@ export function TemplateRenderer({ config }: Props) {
                 backgroundRepeat: "no-repeat",
                 backgroundAttachment: "fixed",
               }
-            : {}),
+            : {
+                backgroundColor:
+                  config.theme.colors?.background?.value || undefined,
+              }),
         } as React.CSSProperties
       }
     >

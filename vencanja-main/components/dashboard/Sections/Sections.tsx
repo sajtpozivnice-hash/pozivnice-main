@@ -10,6 +10,7 @@ import { OurGallerySectionEdit } from "./OurGallerySectionEdit";
 import { OurStorySectionEdit } from "./OurStorySectionEdit";
 import { RSVPSectionEdit } from "./RSVPSectionEdit";
 import { ScheduleSectionEdit } from "./ScheduleSectionEdit";
+import { FeatureCardsSectionEdit } from "./FeatureCardsSectionEdit";
 import { ReactNode } from "react";
 
 const MasonryItem = ({ children }: { children: ReactNode }) => (
@@ -36,6 +37,9 @@ const Sections = () => {
       </MasonryItem>
       <MasonryItem>
         <ScheduleSectionEdit />
+      </MasonryItem>
+      <MasonryItem>
+        <FeatureCardsSectionEdit />
       </MasonryItem>
       <MasonryItem>
         <LoveQuoteSectionEdit />

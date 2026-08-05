@@ -34,6 +34,7 @@ export const vencanjeDefaultConfig: UniversalProjectConfig = {
       visible: true,
       order: 1,
       data: {
+        title: "Nevena & Jovan",
         subtitle: "Pozivnica za naše venčanje",
         backgroundImage:
           "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1770731795/wedding/zjbcsvlstvj7ojt8v5uw.jpg",

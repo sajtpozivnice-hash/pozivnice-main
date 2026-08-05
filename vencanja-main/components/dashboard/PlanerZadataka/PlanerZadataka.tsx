@@ -20,9 +20,13 @@ import {
 } from "./plannerHelpers";
 import { FolderPlus, ListTodo, Plus } from "lucide-react";
 import { matchesSearchQuery } from "../utils/search";
+import { useDashboard } from "../context/DashboardContext";
+import { getEventCopy } from "@/helpers/eventType";
 
 const PlanerZadataka = () => {
   const { openModal } = useDialog();
+  const { activeProject } = useDashboard();
+  const copy = getEventCopy(activeProject?.config_json);
   const { tasks, categories, loading } = usePlanner();
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<PlannerStatusFilter>("all");
@@ -88,7 +92,7 @@ const PlanerZadataka = () => {
     <div className="w-full min-w-0 space-y-4">
       <div className="flex w-full min-w-0 flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm text-muted-foreground">
-          Organizujte sve obaveze do dana venčanja na jednom mestu.
+          {copy.plannerBlurb}
         </p>
         <div className="grid w-full grid-cols-1 gap-2 min-[420px]:grid-cols-2 sm:w-auto">
           <Button

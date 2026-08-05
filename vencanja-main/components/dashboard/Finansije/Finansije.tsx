@@ -18,9 +18,13 @@ import FilterEmptyState from "../shared/FilterEmptyState";
 import { getBudgetItemStatus } from "./budgetHelpers";
 import { FolderPlus, Plus, Wallet } from "lucide-react";
 import { matchesSearchQuery } from "../utils/search";
+import { useDashboard } from "../context/DashboardContext";
+import { getEventCopy } from "@/helpers/eventType";
 
 const Finansije = () => {
   const { openModal } = useDialog();
+  const { activeProject } = useDashboard();
+  const copy = getEventCopy(activeProject?.config_json);
   const { items, categories, loading } = useBudget();
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<BudgetStatusFilter>("all");
@@ -120,7 +124,7 @@ const Finansije = () => {
     <div className="w-full min-w-0 space-y-4">
       <div className="flex w-full min-w-0 flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm text-muted-foreground">
-          Pratite kompletan budžet venčanja, uplate i dokumenta.
+          {copy.budgetBlurb}
         </p>
         <div className="grid w-full grid-cols-1 gap-2 min-[420px]:grid-cols-2 sm:w-auto">
           <Button
@@ -166,7 +170,7 @@ const Finansije = () => {
       {items.length === 0 ? (
         <EmptyMessage
           title="Nemate unetih troškova"
-          description="Dodajte prvi trošak da biste počeli da pratite budžet venčanja."
+          description={copy.budgetEmpty}
           icon={Wallet}
           accent="budget"
           action={

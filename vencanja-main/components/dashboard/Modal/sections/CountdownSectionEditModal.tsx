@@ -86,7 +86,7 @@ const CountdownSectionEditModal = () => {
         <div className="space-y-1">
           <SheetTitle>Odbrojavanje</SheetTitle>
           <SheetDescription>
-            Uredite tekst iznad brojača do dana venčanja.
+            Uredite tekst iznad brojača do dana događaja.
           </SheetDescription>
         </div>
         <SectionModalVisibilityBar

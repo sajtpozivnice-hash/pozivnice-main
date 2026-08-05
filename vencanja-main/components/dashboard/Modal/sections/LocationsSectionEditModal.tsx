@@ -216,7 +216,7 @@ const LocationsSectionEditModal = () => {
                   </FieldLabel>
                   <Input
                     id={`card-title-${card.id}`}
-                    placeholder="npr. Crkveno venčanje"
+                    placeholder="npr. Svečana lokacija"
                     value={card.title ?? ""}
                     onChange={(e) =>
                       handleCardChange(card.id, "title", e.target.value)

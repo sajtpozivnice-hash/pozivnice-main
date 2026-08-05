@@ -27,9 +27,10 @@ import {
   updatePlannerTaskService,
 } from "../services/planner.service";
 import {
-  DEFAULT_PLANNER_CATEGORIES,
-  DEFAULT_PLANNER_TASKS,
+  getPlannerCategoriesForEvent,
+  getPlannerTasksForEvent,
 } from "../PlanerZadataka/defaultTasks";
+import { resolveEventType } from "@/helpers/eventType";
 
 type PlannerContextType = {
   categories: PlannerCategory[];
@@ -66,9 +67,10 @@ export const PlannerProvider = ({ children }: { children: ReactNode }) => {
       let seededCategories = false;
 
       if (nextCategories.length === 0) {
+        const eventType = resolveEventType(activeProject.config_json);
         nextCategories = await createPlannerCategoriesBulkService(
           activeProject.id,
-          DEFAULT_PLANNER_CATEGORIES.map((name, index) => ({
+          getPlannerCategoriesForEvent(eventType).map((name, index) => ({
             name,
             sort_order: index + 1,
           })),
@@ -79,9 +81,10 @@ export const PlannerProvider = ({ children }: { children: ReactNode }) => {
       let nextTasks = await getPlannerTasksByProjectService(activeProject.id);
 
       if (seededCategories && nextTasks.length === 0) {
+        const eventType = resolveEventType(activeProject.config_json);
         nextTasks = await createPlannerTasksBulkService(
           activeProject.id,
-          DEFAULT_PLANNER_TASKS.map((task) => ({
+          getPlannerTasksForEvent(eventType).map((task) => ({
             title: task.title,
             category: task.category,
             description: task.description,
@@ -101,7 +104,7 @@ export const PlannerProvider = ({ children }: { children: ReactNode }) => {
     } finally {
       setLoading(false);
     }
-  }, [activeProject?.id]);
+  }, [activeProject?.id, activeProject?.config_json]);
 
   useEffect(() => {
     void refresh().catch(() => undefined);

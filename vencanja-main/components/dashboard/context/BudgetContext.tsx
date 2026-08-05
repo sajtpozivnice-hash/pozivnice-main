@@ -33,7 +33,8 @@ import {
   getBudgetItemsByProjectService,
   updateBudgetItemService,
 } from "../services/budget.service";
-import { DEFAULT_BUDGET_CATEGORIES } from "../Finansije/defaultCategories";
+import { getBudgetCategoriesForEvent } from "../Finansije/defaultCategories";
+import { resolveEventType } from "@/helpers/eventType";
 
 type BudgetContextType = {
   categories: BudgetCategory[];
@@ -89,9 +90,10 @@ export const BudgetProvider = ({ children }: { children: ReactNode }) => {
       );
 
       if (nextCategories.length === 0) {
+        const eventType = resolveEventType(activeProject.config_json);
         nextCategories = await createBudgetCategoriesBulkService(
           activeProject.id,
-          DEFAULT_BUDGET_CATEGORIES,
+          getBudgetCategoriesForEvent(eventType),
         );
       }
 
@@ -104,7 +106,7 @@ export const BudgetProvider = ({ children }: { children: ReactNode }) => {
     } finally {
       setLoading(false);
     }
-  }, [activeProject?.id]);
+  }, [activeProject?.id, activeProject?.config_json]);
 
   useEffect(() => {
     void refresh().catch(() => undefined);
