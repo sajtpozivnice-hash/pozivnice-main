@@ -15,13 +15,10 @@ const InstructionsForTemplates = () => {
     <div className={styles.wrapper}>
       <Section>
         <div className={styles.titleContainer}>
-          <Heading className={styles.heading}>
-            Kreirajte digitalnu pozivnicu za vaš događaj
-          </Heading>
+          <Heading className={styles.heading}>Kako funkcioniše</Heading>
           <Paragraph variant="subtitle">
-            Napravite elegantan sajt-pozivnicu za venčanje, rođendan ili
-            proslavu za samo nekoliko minuta. Izaberite dizajn, unesite svoje
-            podatke i vaša pozivnica je spremna za deljenje.
+            Od izbora dizajna do slanja linka gostima — i dalje sve uređujete
+            sami iz svog naloga.
           </Paragraph>
         </div>
         <div className={styles.cardsContainer}>
@@ -35,7 +32,7 @@ const InstructionsForTemplates = () => {
           buttonDelay={0.5}
           buttonDuration={0.6}
         >
-          <Link href={"/pozivnice"}>Pogledaj Pozivnice</Link>
+          <Link href="/pozivnice">Pogledaj primere</Link>
         </Button>
       </Section>
     </div>

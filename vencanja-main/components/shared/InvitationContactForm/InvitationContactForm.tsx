@@ -8,7 +8,7 @@ import { useToast } from "@/components/Toast/ToastContext";
 import Heading from "../typography/Heading";
 
 interface InviteContactFormProps {
-  config: any;
+  config: unknown;
 }
 
 const requiredFieldNames: Record<string, string> = {
@@ -87,7 +87,7 @@ const InvitationContactForm: FC<InviteContactFormProps> = ({ config }) => {
       });
 
       if (!res.ok) throw new Error("Slanje nije uspelo");
-      addToast("Forma je poslata! Očekujte naš odgovor!", "success");
+      addToast("Poruka je poslata. Javićemo vam se uskoro.", "success");
       setFormData({
         name: "",
         email: "",
@@ -95,9 +95,11 @@ const InvitationContactForm: FC<InviteContactFormProps> = ({ config }) => {
         message: "",
       });
       setErrors({});
-    } catch (err: any) {
+    } catch (err: unknown) {
+      const message =
+        err instanceof Error ? err.message : "Slanje nije uspelo";
       console.error(err);
-      addToast(`${err.message}. Molimo Vas pokušajte ponovo.`, "error");
+      addToast(`${message}. Molimo Vas pokušajte ponovo.`, "error");
     } finally {
       setLoading(false);
     }
@@ -113,11 +115,10 @@ const InvitationContactForm: FC<InviteContactFormProps> = ({ config }) => {
         }}
       >
         <div>
-          <Heading className="text-center">Naruči Pozivnicu</Heading>
+          <Heading className="text-center">Pošaljite upit</Heading>
           <p className="text-center margin-bottom30">
-            Posaljite nam email sa vasim podacima, na email dobijate instrukcije
-            za plaćanje. Nakon uplate Vaša online pozivnica će biti dostupna u
-            roku od sat vremena.
+            Napišite nam svoje podatke i poruku. Ako vam se dopada ovaj dizajn —
+            ili želite nešto drugačije — javićemo se i dogovoriti izradu.
           </p>
         </div>
         <div className={styles.innerContainer}>

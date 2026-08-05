@@ -15,15 +15,19 @@ const Hero = () => {
   return (
     <div className={styles.background}>
       <div className={styles.heroContent}>
-        <HeroBadge text={"Ekskluzivne pozivnice"} />
-        <Heading className={`${styles.mainTitle}`}>
-          <span className={styles.mainTitleSpan}>Elegantne</span> <br />
-          online pozivnice
+        <HeroBadge text="Pozivnica i prostor za organizaciju" />
+        <Heading className={styles.mainTitle}>
+          <span className={styles.brand}>eVenčanje</span>
+          <span className={styles.mainTitleSpan}>
+            Lepša pozivnica.
+            <br />
+            Lakša organizacija.
+          </span>
         </Heading>
         <Paragraph center={false} variant="subtitle">
-          Od venčanja do rođendana, pravimo unikatne pozivnice
-          <br />
-          za svaki važan događaj
+          Online pozivnica i privatni nalog u kojem menjate tekstove i slike,
+          pratite ko dolazi, pravite raspored sedenja i vodite pripreme do dana
+          događaja.
         </Paragraph>
         <motion.div
           className={styles.heroButtons}
@@ -40,8 +44,8 @@ const Hero = () => {
             buttonDuration={0.7}
             maxWidth={300}
           >
-            <Link href={"/pozivnice"} className="white-color">
-              Pogledaj Pozivnice
+            <Link href="/pozivnice" className="white-color">
+              Pogledaj primere
             </Link>
           </Button>
           <Button
@@ -54,7 +58,7 @@ const Hero = () => {
             maxWidth={300}
           >
             <Link href="/kontakt" className="white-color">
-              Pošalji Upit
+              Kontaktirajte nas
             </Link>
           </Button>
         </motion.div>

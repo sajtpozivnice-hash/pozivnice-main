@@ -4,7 +4,8 @@ import Section from "../layout/Section";
 import Heading, { HeadingVariant } from "../shared/typography/Heading";
 import Paragraph from "../shared/typography/Paragraph";
 import styles from "./Footer.module.css";
-import { motion } from "framer-motion";
+import Link from "next/link";
+
 const Footer = () => {
   return (
     <div className={styles.wrapper}>
@@ -15,42 +16,64 @@ const Footer = () => {
               variant={HeadingVariant.H2}
               className={styles.footerMainTitle}
             >
-              Pozivnice
+              eVenčanje
             </Heading>
             <Paragraph center={false} color="var(--color-primary)">
-              Od venčanja do rođendana, pravimo unikatne pozivnice za svaki
-              važan događaj
+              Digitalne pozivnice i privatni nalog za goste, stolove, budžet i
+              planiranje događaja.
             </Paragraph>
           </div>
-          <div className={styles.item} style={{ color: "var(--color-accent)" }}>
+
+          <div className={styles.item}>
             <Heading
               variant={HeadingVariant.H2}
               className={styles.footerSecondaryTitle}
             >
-              Linkovi
+              Navigacija
             </Heading>
+            <nav className={styles.linkList}>
+              <Link href="/">Početna</Link>
+              <Link href="/pozivnice">Pozivnice</Link>
+              <Link href="/#cenovnik">Cenovnik</Link>
+              <Link href="/kontakt">Kontakt</Link>
+              <Link href="/login">Prijava</Link>
+            </nav>
           </div>
-          <div className={styles.item} style={{ color: "var(--color-accent)" }}>
+
+          <div className={styles.item}>
             <Heading
               variant={HeadingVariant.H2}
               className={styles.footerSecondaryTitle}
             >
-              Kontaktirajte Nas
+              Sledeći korak
             </Heading>
+            <nav className={styles.linkList}>
+              <Link href="/pozivnice">Pogledaj primere</Link>
+              <Link href="/kontakt">Pošaljite upit</Link>
+              <Link href="/login">Uđite u svoj nalog</Link>
+            </nav>
           </div>
-          <div className={styles.item} style={{ color: "var(--color-accent)" }}>
+
+          <div className={styles.item}>
             <Heading
               variant={HeadingVariant.H2}
               className={styles.footerSecondaryTitle}
             >
-              Pratite Nas
+              Kontakt
             </Heading>
+            <Paragraph center={false} color="var(--color-primary)">
+              Javite se zbog postojećeg dizajna ili potpuno prilagođene
+              pozivnice — odgovaramo lično i dogovorimo izradu.
+            </Paragraph>
+            <Link className={styles.inlineLink} href="/kontakt">
+              Idi na kontakt
+            </Link>
           </div>
         </div>
       </Section>
       <div className={`${styles.footerBottom} text-center`}>
         <p className={styles.description}>
-          © 2026 Celebrations Event Planning. Sva prava zadržana.
+          © {new Date().getFullYear()} eVenčanje. Sva prava zadržana.
         </p>
       </div>
     </div>

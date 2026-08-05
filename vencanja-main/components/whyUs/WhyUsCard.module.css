@@ -1,24 +1,35 @@
 .container {
-  background-color: var(--color-muted);
-  padding: 30px;
-  border-radius: var(--radius);
+  background: white;
+  padding: 24px 20px;
+  border-radius: calc(var(--radius) + 4px);
   box-shadow: var(--shadow-hover);
-  flex: 1;
-  min-width: 300px;
+  border: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent);
+  min-height: 220px;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
+
+.container:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-deep);
+}
+
 .iconWrapper {
-  background-color: var(--color-bg);
+  background: color-mix(in srgb, var(--color-hot) 10%, white);
   border-radius: var(--radius);
-  padding: 9px 14px;
-  max-width: 60px;
+  padding: 10px 12px;
+  max-width: 56px;
   display: flex;
   justify-content: center;
   margin-bottom: 14px;
 }
+
 .title {
   color: var(--color-text);
   margin-bottom: 8px;
 }
+
 .description {
-  color: var(--color-text);
+  color: color-mix(in srgb, var(--color-text) 72%, white);
 }

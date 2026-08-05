@@ -78,7 +78,7 @@ const PackageBox: FC<PackageBoxProps> = (data) => {
           buttonDelay={0}
           buttonDuration={0.7}
         >
-          <Link href="/pozivnice">Pogledaj</Link>
+          <Link href={link}>Pogledaj primere</Link>
         </Button>
       </motion.div>
     </motion.div>

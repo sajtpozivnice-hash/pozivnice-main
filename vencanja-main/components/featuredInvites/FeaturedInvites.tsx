@@ -36,9 +36,10 @@ const FeaturedInvites = () => {
     <Section>
       <div>
         <div className={styles.titleContainer}>
-          <Heading className={styles.heading}>Istaknute Pozivnice</Heading>
+          <Heading className={styles.heading}>Istaknute pozivnice</Heading>
           <Paragraph variant="subtitle">
-            Otkrijte čaroliju u našim izdvojenim digitalnim pozivnicama
+            Otvorite primer i proverite šta možete da promenite pre nego što nas
+            kontaktirate.
           </Paragraph>
         </div>
 

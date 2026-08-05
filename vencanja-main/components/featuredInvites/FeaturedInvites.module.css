@@ -11,14 +11,20 @@
   }
 }
 .titleContainer {
-  padding-bottom: 50px;
+  max-width: 720px;
+  margin: 0 auto;
+  padding-bottom: 40px;
+  text-align: center;
 }
+
+.heading {
+  text-align: center;
+  color: var(--color-text);
+  margin-bottom: 10px;
+}
+
 .buttonContainer {
   max-width: 350px;
   margin: 0 auto;
   padding-top: 30px;
-}
-.heading {
-  text-align: center;
-  color: var(--color-hot);
 }

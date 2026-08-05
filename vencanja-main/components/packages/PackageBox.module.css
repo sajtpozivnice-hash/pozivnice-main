@@ -1,10 +1,19 @@
 .container {
-  border: 2px solid var(--color-hot);
-  border-radius: var(--radius);
-  max-width: 350px;
-  padding: 30px 20px;
-  box-shadow: var(--shadow-deep);
+  border: 1px solid color-mix(in srgb, var(--color-hot) 45%, white);
+  border-radius: calc(var(--radius) + 4px);
+  max-width: 380px;
+  width: 100%;
+  padding: 28px 22px;
+  box-shadow: var(--shadow-hover);
   position: relative;
+  background: white;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.container:hover {
+  box-shadow: var(--shadow-deep);
 }
 .title {
   margin-bottom: 0;

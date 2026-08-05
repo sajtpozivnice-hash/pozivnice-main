@@ -1,5 +1,4 @@
-import { Icon } from "next/dist/lib/metadata/types/metadata-types";
-import { ReactNode } from "react";
+import { ComponentType } from "react";
 
 export type AnimatedIconProps = {
   size?: number;
@@ -21,15 +20,16 @@ export type PackageBoxProps = {
 export type InstructionsCardProps = {
   title: string;
   description: string;
-  icon: any;
+  icon: ComponentType<AnimatedIconProps>;
   iconColor: string;
   isLast: boolean;
   index: number;
 };
+
 export type WhyUsCardProps = {
   title: string;
   description: string;
-  icon: any;
+  icon: ComponentType<AnimatedIconProps>;
   iconColor: string;
   index: number;
 };

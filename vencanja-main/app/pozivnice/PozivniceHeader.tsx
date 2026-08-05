@@ -7,31 +7,32 @@ const PozivniceHeader = () => {
   return (
     <div className={styles.pozivniceContainer}>
       <div className={styles.contactHeroContent}>
-        <HeroBadge text={"Primeri Pozivnica"} />
-        <Heading className={`${styles.pozivniceMainTitle} `}>
-          Kreirajte Vašu
-          <span className={styles.pozivniceMainTitleSpan}> Pozivnicu</span>
+        <HeroBadge text="Primeri pozivnica" />
+        <Heading className={styles.pozivniceMainTitle}>
+          Izaberite dizajn,
+          <span className={styles.pozivniceMainTitleSpan}>
+            {" "}
+            ili opišite svoj
+          </span>
         </Heading>
         <motion.p
-          className={`${styles.pozivniceMainDescription}`}
+          className={styles.pozivniceMainDescription}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{
-            delay: 0.5,
+            delay: 0.35,
             duration: 0.5,
             ease: [0.25, 0.46, 0.45, 0.94],
           }}
         >
-          Pregledajte naše elegantne šablone i izaberite dizajn koji vam se
-          najviše dopada. <br />
-          Sve pozivnice su potpuno prilagodljive – menjajte tekstove, slike,
-          <br />
-          boje i fontove, birajte sekcije koje želite i upravljajte spiskom
-          gostiju <br />i planom sedenja direktno u svom nalogu.
+          Otvorite primer i vidite šta možete da promenite: tekstove, slike,
+          boje i fontove. Ako vam se dopada — kontaktirajte nas. Ako ne — opišite
+          želje i predložićemo drugo rešenje.
         </motion.p>
       </div>
     </div>
   );
 };
+
 export default PozivniceHeader;

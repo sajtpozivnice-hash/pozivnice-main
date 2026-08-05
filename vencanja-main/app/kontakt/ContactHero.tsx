@@ -9,24 +9,24 @@ const ContactHero = () => {
   return (
     <div className={styles.contactHeroContainer}>
       <div className={styles.contactHeroContent}>
-        <HeroBadge text={"Kontaktirajte Nas"} />
-        <Heading className={`${styles.contactMainTitle} `}>
-          Pokrenimo Vašu
-          <span className={styles.contactMainTitleSpan}> Priču</span>
+        <HeroBadge text="Razgovaramo o vašoj pozivnici" />
+        <Heading className={styles.contactMainTitle}>
+          Kontaktirajte nas
+          <span className={styles.contactMainTitleSpan}> kad god ste spremni</span>
         </Heading>
         <motion.p
-          className={`${styles.contactMainDescription}`}
+          className={styles.contactMainDescription}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{
-            delay: 0.5,
+            delay: 0.35,
             duration: 0.5,
             ease: [0.25, 0.46, 0.45, 0.94],
           }}
         >
-          Bez obzira da li imate jasnu viziju ili tek početnu ideju,
-          <br /> naš tim je tu da vam pomogne da je pretvorite u stvarnost.
+          Dopada vam se neki od naših dizajna? Ili želite potpuno jedinstvenu
+          pozivnicu? Pišite nam — zajedno dogovorimo šta vam treba.
         </motion.p>
       </div>
     </div>
