@@ -86,7 +86,7 @@ const SeatingTable: FC<SeatingTableProps> = ({
     number_of_guests != null && guests.length >= number_of_guests;
 
   return (
-    <Card className="w-full min-w-0 border shadow-sm transition-shadow hover:shadow-md">
+    <Card className="w-full min-w-0 overflow-hidden border-0 bg-gradient-to-br from-violet-50/50 via-white to-white shadow-[0_1px_2px_rgb(15_23_42_/_0.04)] ring-1 ring-violet-100/80 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgb(139_92_246_/_0.12)]">
       <CardHeader className="border-b pb-4">
         <CardTitle className="truncate text-base font-semibold">{name}</CardTitle>
         <CardDescription className="pt-2">

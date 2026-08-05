@@ -1,5 +1,4 @@
 import { redirect } from "next/navigation";
-import { createClient } from "@/lib/supabase/server";
 import { getCurrentClient } from "@/lib/client/getCurrentClient";
 import { DashboardProvider } from "@/components/dashboard/context/DashboardContext";
 import { ProjectProvider } from "@/components/dashboard/context/ProjectContext";
@@ -15,7 +14,6 @@ export default async function DashboardLayout({
   if (!current) {
     redirect("/login");
   }
-  console.log(current, "current");
   return (
     <DashboardProvider
       user={current.user}

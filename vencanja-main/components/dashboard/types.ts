@@ -61,3 +61,150 @@ export type Project = {
   created_at: string;
   updated_at: string | null;
 };
+
+export type BudgetPaymentMethod = "cash" | "card" | "transfer" | "other";
+
+export type BudgetAttachmentType =
+  | "contract"
+  | "invoice"
+  | "offer"
+  | "receipt"
+  | "other";
+
+export type BudgetItemStatus = "unpaid" | "partial" | "paid";
+
+export type BudgetCategory = {
+  id: string;
+  project_id: string;
+  name: string;
+  icon: string;
+  color: string;
+  sort_order: number;
+  created_at: string;
+};
+
+export type CreateBudgetCategoryDto = {
+  name: string;
+  icon?: string;
+  color?: string;
+  sort_order?: number;
+};
+
+export type BudgetPayment = {
+  id: string;
+  budget_item_id: string;
+  amount: number;
+  payment_date: string;
+  method: BudgetPaymentMethod;
+  note?: string | null;
+  created_at: string;
+};
+
+export type CreateBudgetPaymentDto = {
+  amount: number;
+  payment_date: string;
+  method: BudgetPaymentMethod;
+  note?: string | null;
+};
+
+export type BudgetAttachment = {
+  id: string;
+  budget_item_id: string;
+  file_url: string;
+  file_name: string;
+  type: BudgetAttachmentType;
+  created_at: string;
+};
+
+export type CreateBudgetAttachmentDto = {
+  file_url: string;
+  file_name: string;
+  type: BudgetAttachmentType;
+};
+
+export type BudgetItem = {
+  id: string;
+  project_id: string;
+  category_id: string;
+  title: string;
+  vendor_name?: string | null;
+  planned_amount: number;
+  currency: string;
+  due_date?: string | null;
+  payment_date?: string | null;
+  phone?: string | null;
+  email?: string | null;
+  website?: string | null;
+  notes?: string | null;
+  created_at: string;
+  updated_at: string;
+  budget_categories?: Pick<
+    BudgetCategory,
+    "id" | "name" | "icon" | "color"
+  > | null;
+  budget_payments?: BudgetPayment[];
+  budget_attachments?: BudgetAttachment[];
+};
+
+export type CreateBudgetItemDto = {
+  category_id: string;
+  title: string;
+  vendor_name?: string | null;
+  planned_amount: number;
+  currency: string;
+  due_date?: string | null;
+  payment_date?: string | null;
+  phone?: string | null;
+  email?: string | null;
+  website?: string | null;
+  notes?: string | null;
+};
+
+export type UpdateBudgetItemDto = Partial<CreateBudgetItemDto>;
+
+export type PlannerPriority = "low" | "medium" | "high";
+
+export type PlannerTaskStatus = "completed" | "in_progress" | "overdue";
+
+export type PlannerCategory = {
+  id: string;
+  project_id: string;
+  name: string;
+  sort_order: number;
+  created_at: string;
+};
+
+export type CreatePlannerCategoryDto = {
+  name: string;
+  sort_order?: number;
+};
+
+export type PlannerTask = {
+  id: string;
+  project_id: string;
+  category: string;
+  title: string;
+  description?: string | null;
+  priority: PlannerPriority;
+  due_date?: string | null;
+  completed: boolean;
+  completed_at?: string | null;
+  sort_order: number;
+  created_at: string;
+  updated_at: string;
+};
+
+export type CreatePlannerTaskDto = {
+  category: string;
+  title: string;
+  description?: string | null;
+  priority: PlannerPriority;
+  due_date?: string | null;
+  completed?: boolean;
+  sort_order?: number;
+};
+
+export type UpdatePlannerTaskDto = Partial<CreatePlannerTaskDto> & {
+  completed_at?: string | null;
+};
+
