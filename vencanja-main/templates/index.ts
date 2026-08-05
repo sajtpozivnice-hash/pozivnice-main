@@ -31,7 +31,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
     catalog: {
       title: "Večna ljubav",
       description:
-        "Klasičan i sofisticiran dizajn za bezvremensku eleganciju.",
+        "Klasičan venčani dizajn. Menjate tekstove, slike i sadržaj; uz pozivnicu dobijate i nalog za organizaciju.",
       style: "classic",
       price: 40,
       featured: true,
@@ -43,7 +43,8 @@ export const templates: Record<TemplateKey, TemplatePack> = {
     eventTypes: ["wedding"],
     catalog: {
       title: "Minimal elegance",
-      description: "Čist, moderan raspored sa naglaskom na tipografiju.",
+      description:
+        "Čist raspored sa jakim tipografskim fokusom. Potpuno prilagodljiv, uz praćenje gostiju u vašem nalogu.",
       style: "modern",
       price: 40,
       featured: true,
@@ -55,7 +56,8 @@ export const templates: Record<TemplateKey, TemplatePack> = {
     eventTypes: ["wedding"],
     catalog: {
       title: "Cinematic scenes",
-      description: "Full-screen scene layout za dramatičan utisak.",
+      description:
+        "Veliki kadrovi preko celog ekrana. Prilagodite sadržaj, a goste i stolove vodite u nalogu.",
       style: "cinematic",
       price: 40,
       featured: true,
@@ -70,7 +72,8 @@ export const templates: Record<TemplateKey, TemplatePack> = {
     eventTypes: ["wedding"],
     catalog: {
       title: "Premium editorial",
-      description: "Luksuzni editorial stil za svečana venčanja.",
+      description:
+        "Svečani editorial stil. Boje, fontovi i galerija ostaju promenljivi i kasnije.",
       style: "premium",
       price: 40,
       featured: true,
@@ -85,7 +88,8 @@ export const templates: Record<TemplateKey, TemplatePack> = {
     eventTypes: ["wedding"],
     catalog: {
       title: "Film stills",
-      description: "Filmska estetika sa jakim vizuelnim kadrovima.",
+      description:
+        "Filmski utisak sa jakim fotografijama. Otvorite primer i javite nam se ako vam se dopada.",
       style: "cinematic",
       price: 40,
     },
@@ -99,7 +103,8 @@ export const templates: Record<TemplateKey, TemplatePack> = {
     eventTypes: ["wedding"],
     catalog: {
       title: "Glass on background",
-      description: "Plutajući glass paneli preko jedne pozadine.",
+      description:
+        "Prozirni paneli preko jedne pozadine. Menjajte sadržaj i pošaljite link gostima.",
       style: "modern",
       price: 40,
     },
@@ -110,7 +115,8 @@ export const templates: Record<TemplateKey, TemplatePack> = {
     eventTypes: ["birthday"],
     catalog: {
       title: "Rođendanska žurka",
-      description: "Živahan, moderni template za dečiji ili odrasli rođendan.",
+      description:
+        "Živahan dizajn za rođendan. Menjate sadržaj i pratite goste i pripreme u nalogu.",
       style: "playful",
       price: 40,
       featured: true,

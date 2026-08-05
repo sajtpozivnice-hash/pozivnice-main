@@ -3,11 +3,17 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { FC, useEffect, useRef, useState } from "react";
 import Heading, { HeadingVariant } from "../shared/typography/Heading";
-import { FaqBoxProps, FaqBoxType } from "@/app/types/types";
 import styles from "./FaqBox.module.css";
 import FaqBoxAnswer from "./FaqBoxAnswer";
 
-const FaqBox: FC<FaqBoxProps & FaqBoxType> = ({
+type FaqBoxProps = {
+  title: string;
+  description: string;
+  isOpen: boolean;
+  setIsOpen: () => void;
+};
+
+const FaqBox: FC<FaqBoxProps> = ({
   title,
   description,
   isOpen,

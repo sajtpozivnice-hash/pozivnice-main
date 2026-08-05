@@ -69,7 +69,7 @@ const FeaturedBox: FC<FeaturedBoxProps> = ({
             className={styles.button}
             maxWidth={300}
           >
-            Pogledaj
+            Pogledaj primer
           </Button>
         </MotionLink>
       </div>

@@ -8,19 +8,19 @@ import Paragraph from "../shared/typography/Paragraph";
 
 const Packages = () => {
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} id="cenovnik">
       <Section>
         <div className={styles.titleContainer}>
           <Heading className={styles.sectionTitle}>Cenovnik</Heading>
           <Paragraph variant="subtitle">
-            Kompletno iskustvo – prilagodite, delite i pratite sve online
+            Cena paketa uključuje online pozivnicu i privatni nalog. Izradu
+            dogovorimo kada nas kontaktirate.
           </Paragraph>
         </div>
-        <div>
-          <ListedPackages />
-        </div>
+        <ListedPackages />
       </Section>
     </div>
   );
 };
+
 export default Packages;

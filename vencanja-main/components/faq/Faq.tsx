@@ -2,7 +2,6 @@
 
 import Section from "../layout/Section";
 import styles from "./Faq.module.css";
-import { motion } from "framer-motion";
 import Heading from "../shared/typography/Heading";
 import { faqQuestions } from "@/data/data";
 import FaqBox from "./FaqBox";
@@ -11,16 +10,15 @@ import Paragraph from "../shared/typography/Paragraph";
 
 const Faq = () => {
   const [openedId, setOpenedId] = useState(0);
+
   return (
     <div className={styles.wrapper}>
       <Section>
         <div>
-          <Heading className={styles.heading}>
-            Često postavljana pitanja
-          </Heading>
+          <Heading className={styles.heading}>Česta pitanja</Heading>
           <Paragraph variant="subtitle">
-            Saznajte sve što vam treba da brzo i lako kreirate savršene
-            digitalne pozivnice za svaki događaj.
+            Jasni odgovori o tome šta dobijate, šta možete da menjate i kako
+            funkcioniše vaš nalog.
           </Paragraph>
 
           <div className={styles.boxesWrapper}>

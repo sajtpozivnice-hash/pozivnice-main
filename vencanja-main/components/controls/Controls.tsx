@@ -9,22 +9,30 @@ import Paragraph from "../shared/typography/Paragraph";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 
+const CONTROL_POINTS = [
+  "Prikazujete ili sakrivate delove pozivnice",
+  "Menjate redosled sadržaja kako vama odgovara",
+  "Ažurirate tekstove, slike, boje i fontove kad god poželite",
+  "Vidite ko je potvrdio dolazak",
+  "Pravite raspored sedenja i spremate ga za štampu",
+  "Pratite budžet, uplate i listu obaveza",
+  "Primáte privatne fotografije koje gosti pošalju",
+  "Delite pozivnicu linkom sa gostima",
+];
+
 const Controls = () => {
   const router = useRouter();
 
-  const handleClick = () => {
-    router.push("/pozivnice");
-  };
   return (
     <Section fullWidth>
       <div className={styles.wrapper}>
         <div className={styles.headingContainer}>
           <Heading className={styles.heading}>
-            Potpuna kontrola nad vašim šablonom
+            Šta možete sami da promenite
           </Heading>
           <Paragraph variant="subtitle">
-            Svi naši šabloni su <strong>modularni i editabilni</strong>. To
-            znači da možete:
+            Pozivnica nije gotov fajl koji više ne dirate. Dobijate prostor u
+            kojem sve uređujete sami — jednostavno, u nekoliko klikova.
           </Paragraph>
         </div>
         <div className={styles.container}>
@@ -35,53 +43,13 @@ const Controls = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
           >
-            <ul>
-              <li className={styles.liElement}>
-                <Check color="var(--color-accent)" size={24} />
-                <Paragraph center={false}>
-                  Kreirajte Vašu pozivnicu za par minuta
-                </Paragraph>
-              </li>
-              <li className={styles.liElement}>
-                <Check color="var(--color-accent)" size={24} />
-                <Paragraph center={false}>
-                  Birajte koje sekcije želite da prikažete
-                </Paragraph>
-              </li>
-              <li className={styles.liElement}>
-                <Check color="var(--color-accent)" size={24} />
-                <Paragraph center={false}>
-                  Uključujte ili isključujte sekcije po želji
-                </Paragraph>
-              </li>
-              <li className={styles.liElement}>
-                <Check color="var(--color-accent)" size={24} />{" "}
-                <Paragraph center={false}>
-                  Menjajte redosled sekcija direktno na šablonu
-                </Paragraph>
-              </li>
-              <li className={styles.liElement}>
-                <Check color="var(--color-accent)" size={24} />
-                <Paragraph center={false}>
-                  Menjajte tekstove, slike, boje i fontove čak i nakon kupovine
-                </Paragraph>
-              </li>
-              <li className={styles.liElement}>
-                <Check color="var(--color-accent)" size={24} />
-                <Paragraph center={false}>
-                  Uvid u spisak potvrđenih dolazaka
-                </Paragraph>
-              </li>
-              <li className={styles.liElement}>
-                <Check color="var(--color-accent)" size={24} />
-                <Paragraph center={false}>Napravite spisak sedenja</Paragraph>
-              </li>
-              <li className={styles.liElement}>
-                <Check color="var(--color-accent)" size={24} />
-                <Paragraph center={false}>
-                  Preuzmite spisak sedenja - jednostavno i brzo
-                </Paragraph>
-              </li>
+            <ul className={styles.list}>
+              {CONTROL_POINTS.map((point) => (
+                <li key={point} className={styles.liElement}>
+                  <Check color="var(--color-accent)" size={22} />
+                  <Paragraph center={false}>{point}</Paragraph>
+                </li>
+              ))}
             </ul>
           </motion.div>
           <motion.div
@@ -92,15 +60,18 @@ const Controls = () => {
           >
             <img
               src="/preview.jpg"
-              alt="Demo editabilnog šablona"
+              alt="Primer kako izgleda uređivanje pozivnice"
               className={styles.previewImage}
             />
           </motion.div>
         </div>
       </div>
       <div className={styles.buttonContainer}>
-        <Button onClick={handleClick} icon={AnimatedArrowRight}>
-          Pogledaj primere
+        <Button
+          onClick={() => router.push("/pozivnice")}
+          icon={AnimatedArrowRight}
+        >
+          Pogledaj kako izgleda
         </Button>
       </div>
     </Section>

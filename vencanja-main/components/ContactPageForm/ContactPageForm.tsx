@@ -8,9 +8,10 @@ import Heading from "../shared/typography/Heading";
 import { motion } from "framer-motion";
 import FormSelectDropdown from "../shared/FormSelectDropdwon/FormSelectDropdown";
 import { useToast } from "../Toast/ToastContext";
+import type { UniversalProjectConfig } from "@/types/config";
 
 interface InviteContactFormProps {
-  config: any;
+  config?: UniversalProjectConfig | null;
 }
 
 const requiredFieldNames: Record<string, string> = {
@@ -22,7 +23,7 @@ const requiredFieldNames: Record<string, string> = {
 
 const options = ["Venčanje", "Rođendan", "Krštenje"];
 
-const ContactPageForm: FC<InviteContactFormProps> = ({ config }) => {
+const ContactPageForm: FC<InviteContactFormProps> = ({ config = null }) => {
   const { addToast } = useToast();
   const [type, setType] = useState("");
   const [loading, setLoading] = useState(false);
@@ -101,7 +102,7 @@ const ContactPageForm: FC<InviteContactFormProps> = ({ config }) => {
       });
 
       if (!res.ok) throw new Error("Slanje nije uspelo");
-      addToast("Forma je poslata! Očekujte naš odgovor!", "success");
+      addToast("Poruka je poslata. Javićemo vam se uskoro.", "success");
       setFormData({
         name: "",
         lastname: "",
@@ -112,9 +113,11 @@ const ContactPageForm: FC<InviteContactFormProps> = ({ config }) => {
       });
       setType("");
       setErrors({});
-    } catch (err: any) {
+    } catch (err: unknown) {
+      const message =
+        err instanceof Error ? err.message : "Slanje nije uspelo";
       console.error(err);
-      addToast(`${err.message}. Molimo Vas pokušajte ponovo.`, "error");
+      addToast(`${message}. Molimo Vas pokušajte ponovo.`, "error");
     } finally {
       setLoading(false);
     }
@@ -123,7 +126,11 @@ const ContactPageForm: FC<InviteContactFormProps> = ({ config }) => {
   return (
     <div className={styles.container}>
       <div>
-        <Heading>Pošaljite Nam Poruku</Heading>
+        <Heading>Pošaljite nam poruku</Heading>
+        <p className={styles.formIntro}>
+          Napišite koji dizajn vam se dopada ili opišite želje za prilagođenu
+          pozivnicu.
+        </p>
       </div>
       <form
         className={styles.formContainer}
@@ -292,7 +299,7 @@ const ContactPageForm: FC<InviteContactFormProps> = ({ config }) => {
             value={formData.message}
             className={styles.textAreaInput}
             name="message"
-            placeholder="Opišite Vaše Zahteve"
+            placeholder="Npr. dopada mi se dizajn „Večna ljubav“, ili: želim potpuno prilagođenu pozivnicu u bojama…"
             required={false}
             rows={7}
             onChange={(e) => {

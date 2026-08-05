@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { motion } from "framer-motion";
 import styles from "./FaqBoxAnswer.module.css";
 import Paragraph from "../shared/typography/Paragraph";
 
@@ -16,4 +15,5 @@ const FaqBoxAnswer: FC<FaqBoxAnswerProps> = ({ descripiton }) => {
     </div>
   );
 };
+
 export default FaqBoxAnswer;

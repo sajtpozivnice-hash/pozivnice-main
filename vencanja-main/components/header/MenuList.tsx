@@ -40,8 +40,8 @@ const MenuList: FC<MenuListProps> = ({ textColor }) => {
   const links = [
     { label: "Početna", href: "/" },
     { label: "Pozivnice", href: "/pozivnice" },
-    { label: "Logo", href: "/" },
-    { label: "Cenovnik", href: "/" },
+    { label: "eVenčanje", href: "/" },
+    { label: "Cenovnik", href: "/#cenovnik" },
     { label: "Kontakt", href: "/kontakt" },
   ];
 

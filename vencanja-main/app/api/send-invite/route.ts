@@ -5,17 +5,20 @@ export async function POST(req: Request) {
   try {
     const { formText, config } = await req.json();
 
-    if (!config) {
-      return NextResponse.json({ error: "Missing config" }, { status: 400 });
+    if (!formText || typeof formText !== "string") {
+      return NextResponse.json({ error: "Missing formText" }, { status: 400 });
     }
 
-    const attachments = [
-      {
-        filename: "invite-config.json",
-        content: JSON.stringify(config, null, 2),
-        contentType: "application/json",
-      },
-    ];
+    const attachments =
+      config != null
+        ? [
+            {
+              filename: "invite-config.json",
+              content: JSON.stringify(config, null, 2),
+              contentType: "application/json",
+            },
+          ]
+        : undefined;
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -25,20 +28,27 @@ export async function POST(req: Request) {
       },
     });
 
+    const bodyText =
+      config != null
+        ? `${formText}\n\nU prilogu se nalazi JSON konfiguracija pozivnice.`
+        : formText;
+
     await transporter.sendMail({
       from: `"Web Pozivnice" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_USER,
-      subject: "Nova web pozivnica – konfiguracija",
-      text: `${formText}. U prilogu se nalazi JSON konfiguracija pozivnice.`,
+      subject:
+        config != null
+          ? "Nova web pozivnica – upit sa primerom"
+          : "Novi kontakt upit – eVenčanje",
+      text: bodyText,
       attachments,
     });
 
     return NextResponse.json({ success: true });
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const message =
+      error instanceof Error ? error.message : "Server error";
     console.error("SEND INVITE ERROR:", error);
-    return NextResponse.json(
-      { error: error.message || "Server error" },
-      { status: 500 },
-    );
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

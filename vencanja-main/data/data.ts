@@ -13,109 +13,93 @@ import {
   WhyUsCardProps,
 } from "@/types/general";
 
+const SHARED_PACKAGE_FEATURES = [
+  "Digitalna pozivnica na internetu, spremna za deljenje linkom",
+  "Menjate tekstove, slike, boje i fontove kad god poželite",
+  "Gosti potvrđuju dolazak online — vi vidite ko dolazi",
+  "Raspored sedenja i organizacija stolova",
+  "Praćenje budžeta, uplata i računa",
+  "Lista obaveza do dana proslave",
+  "Privatne fotografije koje vam gosti pošalju",
+  "Privatni nalog za uređivanje pozivnice i organizaciju",
+];
+
 export const packages: PackageBoxProps[] = [
   {
     id: "1",
     title: "Venčanja",
     price: "40€",
-    description: "Sve što vam treba za savršen dan, brzo i lako organizovano",
-    list: [
-      "Personalizovan domen",
-      "Odbrojavanje do datuma rođendana",
-      "Detalji lokacije sa mapama i navigacijom",
-      "Galerija slika koju kreiraju vaši gosti",
-      "Online RSVP (potvrda) forma na vaš email",
-      "Krieranje spiska gostiju",
-      "Kreiranje plana sedenja",
-      "Plan sedenja i spisak gostiju možete preuzeti i odštampati",
-      "Editabilno i nakon kupovine – menjajte tekstove, slike, boje i fontove",
-    ],
-    link: "/",
+    description:
+      "Pozivnica i privatni prostor u kojem organizujete celo venčanje.",
+    list: SHARED_PACKAGE_FEATURES,
+    link: "/pozivnice",
   },
   {
     id: "2",
     title: "Krštenja",
     price: "40€",
-    description: "Kompletno iskustvo, prilagođeno vašim željama",
-    list: [
-      "Personalizovan domen",
-      "Odbrojavanje do datuma rođendana",
-      "Detalji lokacije sa mapama i navigacijom",
-      "Galerija slika koju kreiraju vaši gosti",
-      "Online RSVP (potvrda) forma na vaš email",
-      "Krieranje spiska gostiju",
-      "Kreiranje plana sedenja",
-      "Plan sedenja i spisak gostiju možete preuzeti i odštampati",
-      "Editabilno i nakon kupovine – menjajte tekstove, slike, boje i fontove",
-    ],
-    link: "/",
+    description:
+      "Isto iskustvo — prilagođeno krštenju, sa gostima, stolovima i planiranjem.",
+    list: SHARED_PACKAGE_FEATURES,
+    link: "/pozivnice",
   },
   {
     id: "3",
     title: "Rođendani",
     price: "40€",
-    description: "Premium iskustvo, za slavlje iz snova",
-    list: [
-      "Personalizovan domen",
-      "Odbrojavanje do datuma rođendana",
-      "Detalji lokacije sa mapama i navigacijom",
-      "Galerija slika koju kreiraju vaši gosti",
-      "Online RSVP (potvrda) forma na vaš email",
-      "Krieranje spiska gostiju",
-      "Kreiranje plana sedenja",
-      "Plan sedenja i spisak gostiju možete preuzeti i odštampati",
-      "Editabilno i nakon kupovine – menjajte tekstove, slike, boje i fontove",
-    ],
-    link: "/",
+    description:
+      "Živahna pozivnica i mesto gde pratite goste, troškove i pripreme.",
+    list: SHARED_PACKAGE_FEATURES,
+    link: "/pozivnice",
   },
 ];
 
 export const whyUsCardsData: WhyUsCardProps[] = [
   {
-    title: "Pažljivo planiranje",
+    title: "Više od lepe pozivnice",
     description:
-      "Brinemo o detaljima i rokovima kako biste vi mogli bezbrižno da uživate.",
-    icon: AnimatedCalendar,
+      "Uz pozivnicu dobijate privatni nalog: menjate sadržaj, pratite goste, budžet i obaveze — bez pomoći programera.",
+    icon: AnimatedPenIcon,
     iconColor: "var(--color-hot)",
     index: 1,
   },
   {
-    title: "Kreativan Dizajn",
+    title: "Sve na jednom mestu",
     description:
-      "Kreiramo moderan i funkcionalan dizajn koji ostavlja snažan i dugotrajan utisak",
-    icon: AnimatedSparkle,
+      "Potvrde dolaska, raspored sedenja, novac i lista zadataka više nisu u pet različitih beležnica ili tabela.",
+    icon: AnimatedCalendar,
     iconColor: "var(--color-accent)",
     index: 2,
   },
   {
-    title: "Lični pečat",
+    title: "Menjate kad god želite",
     description:
-      "Svaki događaj oblikujemo kroz detalje koji pričaju vašu priču.",
-    icon: AnimatedHeart,
+      "Ako se promeni lokacija, satnica ili fotografija — ispravite to sami, za nekoliko minuta.",
+    icon: AnimatedSparkle,
     iconColor: "var(--color-hot)",
     index: 3,
   },
   {
-    title: "Brza izrada",
+    title: "Od primera do gotove pozivnice",
     description:
-      "Kompletna realizacija projekta u roku od par minuta, bez kompromisa na kvalitetu.",
+      "Izaberete dizajn koji vam se dopada ili nam opišete šta želite — zatim zajedno dogovorimo izradu.",
     icon: AnimatedClock,
     iconColor: "var(--color-accent)",
     index: 4,
   },
   {
-    title: "Upravljanje gostima i plan sedenja",
+    title: "Jasno ko dolazi",
     description:
-      "Pratite ko dolazi na događaj, kreirajte plan sedenja i preuzmite ga u PDF-u za štampu.",
+      "Vidite ko je potvrdio dolazak, dodajete goste i pravite raspored sedenja spreman za štampu.",
     icon: AnimatedUser,
     iconColor: "var(--color-hot)",
     index: 5,
   },
   {
-    title: "Potpuna kontrola i editabilnost",
+    title: "Privatne uspomene",
     description:
-      "Nakon plaćanja možete se ulogovati i menjati tekstove, slike, boje i fontove kada god želite.",
-    icon: AnimatedPenIcon,
+      "Fotografije koje gosti pošalju vide samo vi — ne idu na javnu pozivnicu.",
+    icon: AnimatedHeart,
     iconColor: "var(--color-accent)",
     index: 6,
   },
@@ -123,54 +107,54 @@ export const whyUsCardsData: WhyUsCardProps[] = [
 
 export const instructionsData: InstructionsCardProps[] = [
   {
-    title: "1. Izaberite šablon",
+    title: "1. Pregledajte primere",
     description:
-      "Pregledajte dostupne dizajne i odaberite onaj koji vam se najviše dopada.",
+      "Otvorite katalog i pogledajte dizajne za venčanje, rođendan ili krštenje.",
     icon: AnimatedMousePointer,
     iconColor: "var(--color-hot)",
     isLast: false,
     index: 1,
   },
   {
-    title: "2. Prilagodite pozivnicu",
+    title: "2. Isprobajte izgled",
     description:
-      "Unesite sve detalje o događaju i prilagodite izgled. Možete menjati tekstove, fotografije, boje i fontove kako biste dobili potpuno jedinstvenu pozivnicu",
+      "Otvorite primer koji vam se dopada i vidite kako izgleda sa vašim tekstovima i slikama.",
     icon: AnimatedPenIcon,
     iconColor: "var(--color-hot)",
     isLast: false,
     index: 2,
   },
   {
-    title: "3. Pošaljite zahtev",
+    title: "3. Javite nam se",
     description:
-      "Kada završite, pošaljite podatke putem kontakt forme. Na vaš email stižu instrukcije za plaćanje",
-    icon: AnimatedEyeIcon,
+      "Pišite nam ako vam se dopada postojeći dizajn — ili opišite želje za potpuno prilagođenu pozivnicu.",
+    icon: AnimatedMail,
     iconColor: "var(--color-hot)",
     isLast: false,
     index: 3,
   },
   {
-    title: "4. Vaša pozivnica je online za 10 minuta",
+    title: "4. Dogovorimo izradu",
     description:
-      "Nakon potvrde uplate, vaš sajt sa digitalnom pozivnicom biće aktivan i spreman za deljenje sa gostima.",
-    icon: AnimatedMail,
+      "Javljamo se, uskladimo detalje i pripremimo vašu pozivnicu i pristup nalogu.",
+    icon: AnimatedEyeIcon,
     iconColor: "var(--color-hot)",
     isLast: false,
     index: 4,
   },
   {
-    title: "5. Spisak gostiju i plan sedenja",
+    title: "5. Uređujte iz naloga",
     description:
-      "Pratite ko dolazi na događaj i na osnovu potvrda jednostavno napravite plan sedenja koji možete exportovati u PDF i odštampati.",
+      "Kada je sve spremno, u nalogu menjate sadržaj, pratite goste, stolove, budžet i obaveze.",
     icon: AnimatedSparkle,
     iconColor: "var(--color-hot)",
     isLast: false,
     index: 5,
   },
   {
-    title: "6. Potpuna kontrola i nakon kupovine",
+    title: "6. Podelite sa gostima",
     description:
-      "Nakon plaćanja dobijate pristup svom nalogu gde možete u bilo kom trenutku menjati tekstove, slike, boje i fontove, kao i upravljati spiskom gostiju i planom sedenja.",
+      "Pošaljete link pozivnice. Svaku izmenu i dalje radite sami, kad god zatreba.",
     icon: AnimatedHeart,
     iconColor: "var(--color-hot)",
     isLast: true,
@@ -178,59 +162,128 @@ export const instructionsData: InstructionsCardProps[] = [
   },
 ];
 
+export type BackofficeFeature = {
+  title: string;
+  description: string;
+};
+
+export const backofficeFeatures: BackofficeFeature[] = [
+  {
+    title: "Uređivanje pozivnice",
+    description:
+      "Promenite tekstove, slike i raspored na pozivnici u nekoliko klikova.",
+  },
+  {
+    title: "Boje, fontovi i slike",
+    description:
+      "Uskladite izgled sa vašim stilom i zamenite fotografije kad god poželite.",
+  },
+  {
+    title: "Ko dolazi na proslavu",
+    description:
+      "Pratite ko je potvrdio dolazak, dodajte goste i sačuvajte spisak kad vam zatreba.",
+  },
+  {
+    title: "Raspored sedenja",
+    description:
+      "Napravite stolove, rasporedite goste i pripremite raspored za štampu.",
+  },
+  {
+    title: "Novac i troškovi",
+    description:
+      "Beležite budžet, uplate i preostalo stanje — uz priloge računa ako želite.",
+  },
+  {
+    title: "Lista obaveza",
+    description:
+      "Zapišite šta još treba uraditi do dana događaja i štiklirajte završeno.",
+  },
+  {
+    title: "Fotografije od gostiju",
+    description:
+      "Primite uspomene koje gosti pošalju sa pozivnice — vidite ih samo vi.",
+  },
+  {
+    title: "Pregled cele organizacije",
+    description:
+      "Na jednom mestu vidite goste, obaveze i finansije za svoj događaj.",
+  },
+];
+
+export type WorkflowStep = {
+  step: string;
+  title: string;
+  description: string;
+};
+
+export const workflowSteps: WorkflowStep[] = [
+  {
+    step: "01",
+    title: "Izaberite ili opišite dizajn",
+    description:
+      "Pregledajte gotove primere ili nam napišite kakvu pozivnicu želite.",
+  },
+  {
+    step: "02",
+    title: "Kontaktirajte nas",
+    description:
+      "Pošaljite poruku preko forme ili drugih kontakata — dogovorimo izradu zajedno.",
+  },
+  {
+    step: "03",
+    title: "Organizujte iz svog naloga",
+    description:
+      "Kada pozivnica bude spremna, pratite goste, stolove, budžet i obaveze na jednom mestu.",
+  },
+];
+
 export const faqQuestions = [
   {
     id: 1,
-    title: "Kako mogu napraviti digitalnu pozivnicu?",
+    title: "Šta dobijam uz pozivnicu?",
     description:
-      "Jednostavno izaberite jedan od naših dizajna, prilagodite tekst, slike, boje i fontove, i pošaljete kontakt formu sa Vašim podacima. Sve se radi online, bez potrebe za dodatnim softverom.",
-  },
-  {
-    id: 9,
-    title: "Koliko traje proces izrade pozivnice?",
-    description:
-      "Nakon evidentiranog plaćanja Vaša pozivnica je dostupna u roku od 10 minuta!",
+      "Digitalnu pozivnicu na vašem linku i privatni nalog u kojem menjate sadržaj, pratite ko dolazi, pravite raspored sedenja, vodite budžet, listu obaveza i primáte fotografije od gostiju.",
   },
   {
     id: 2,
-    title: "Kako mogu poslati pozivnicu svojim gostima?",
+    title: "Mogu li da menjam pozivnicu kasnije?",
     description:
-      "Pozivnicu možete poslati direktno putem email-a, WhatsApp-a, Viber-a, tokođe dobijate QR kod koji direktno vodi na Vaš sajt.",
+      "Da. U svom nalogu menjate tekstove, slike, boje i fontove, kao i koje delove pozivnice gost vidi.",
   },
   {
     id: 3,
-    title: "Mogu li prilagoditi dizajn pozivnice?",
+    title: "Kako gosti potvrđuju dolazak?",
     description:
-      "Da! Možete menjati tekst, boje, fontove, dodavati slike i čak logo ili fotografiju, tako da pozivnica bude potpuno personalizovana.",
+      "Na pozivnici postoji jednostavna forma. Potvrde dolaska pratite u svom nalogu.",
   },
   {
     id: 4,
-    title: "Koliko košta pozivnica?",
+    title: "Da li mogu da napravim raspored sedenja?",
     description:
-      "Pozivnica košta 40 eura, u tu cenu su uključene sve sekcije i funkcionalnosti, bez skrivenih troškova.",
+      "Da. Kreirate stolove, dodeljujete goste i spremite raspored za štampu.",
   },
   {
     id: 5,
-    title: "Da li može da se menja sadržaj nakon kupovine?",
+    title: "Šta je sa budžetom i listom obaveza?",
     description:
-      "Naravno! Nakon kupovine možete da se ulogujete na Vaš sajt i sami da vršite sve promene!",
+      "U nalogu beležite troškove i uplate, kao i šta još treba uraditi do dana događaja — sve vezano za istu proslavu.",
   },
   {
     id: 6,
-    title: "Da li mogu da napravim spisak sedenja gostiju?",
+    title: "Da li su fotografije koje gosti pošalju javne?",
     description:
-      "Naravno! Možete da organizujete sedenje gostiju i jednim klikom isporučite spisak u fajl koji se spreman za štampanje!",
+      "Ne. Te fotografije su privatne i dostupne samo vama u nalogu, u delu za slike.",
   },
   {
     id: 7,
-    title: "Šta se dešava kada mi gost potvrdi dolazak?",
+    title: "Kako naručujem pozivnicu?",
     description:
-      "Nakon potvrde prisustva dobijate poruku na Vašu email adresu. Ceo spisak gostiju možete videti kada se ulogujete na sajt!",
+      "Nema automatske kupovine na sajtu. Kontaktirajte nas ako vam se dopada neki od primera, ili nam opišite želje za potpuno prilagođenu pozivnicu — zatim dogovorimo izradu.",
   },
   {
     id: 8,
-    title: "Da li su naše slike koje gosti uploaduju javno dostupne?",
+    title: "Kako delimo pozivnicu gostima?",
     description:
-      "Ne, samo Vi možete da vidite te slike. Čuvamo Vašu privatnost!",
+      "Kada pozivnica bude online, šaljete link gostima — emailom, Viberom, WhatsApp-om ili kako vama odgovara.",
   },
 ];

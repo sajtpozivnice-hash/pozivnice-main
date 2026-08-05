@@ -12,8 +12,8 @@ const cardsContainerVariants: Variants = {
   hidden: {},
   show: {
     transition: {
-      staggerChildren: 0.18,
-      delayChildren: 0.25,
+      staggerChildren: 0.12,
+      delayChildren: 0.15,
     },
   },
 };
@@ -22,9 +22,10 @@ const WhyUs = () => {
   return (
     <Section>
       <div className={styles.titleContainer}>
-        <Heading className={styles.heading}>Zašto izabrati nas?</Heading>
+        <Heading className={styles.heading}>Zašto eVenčanje</Heading>
         <Paragraph variant="subtitle">
-          U svaki događaj unosimo energiju, kreativnost i preciznu organizaciju.
+          Jer uz pozivnicu dobijate prostor koji vam olakšava organizaciju do
+          samog dana događaja.
         </Paragraph>
       </div>
       <motion.div
