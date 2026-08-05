@@ -12,25 +12,27 @@ type Props = {
 const OurStory: React.FC<Props> = ({ section, theme }) => {
   const { data, id } = section;
   const { colors } = theme;
+
   return (
     <section id={id} className="section-padding bg-wedding-cream">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className="mx-auto max-w-6xl">
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative"
+            className="relative mx-auto w-full max-w-md lg:max-w-none"
           >
-            <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
-              <img
-                src={data.image}
-                alt="Nasa Prica"
-                className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
-              />
-            </div>
+            {data.image ? (
+              <div className="img-1-1 rounded-2xl shadow-2xl">
+                <img
+                  src={data.image}
+                  alt={data.title || "Naša priča"}
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            ) : null}
           </motion.div>
 
           <motion.div
@@ -39,21 +41,23 @@ const OurStory: React.FC<Props> = ({ section, theme }) => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <span
-              style={{ color: colors?.base?.primary?.value }}
-              className="text-wedding-gold uppercase tracking-[0.2em] text-sm font-semibold mb-4 block"
-            >
-              {data.overline}
-            </span>
+            {data.overline ? (
+              <span
+                style={{ color: colors?.base?.primary?.value }}
+                className="mb-4 block text-sm font-semibold tracking-[0.2em] uppercase"
+              >
+                {data.overline}
+              </span>
+            ) : null}
             <h2
               style={{ color: colors?.base?.secondary?.value }}
-              className="text-5xl md:text-6xl font-display mb-8 leading-tight"
+              className="mb-6 font-display text-4xl leading-tight sm:mb-8 sm:text-5xl md:text-6xl"
             >
               {data.title}
             </h2>
             <div
               style={{ color: colors?.base?.secondary?.value }}
-              className="space-y-6 text-lg leading-relaxed opacity-80 font-serif italic whitespace-pre-wrap"
+              className="space-y-6 font-serif text-base leading-relaxed italic opacity-80 whitespace-pre-wrap sm:text-lg"
             >
               {data.text}
             </div>

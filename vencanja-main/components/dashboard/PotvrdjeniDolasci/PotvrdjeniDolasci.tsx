@@ -15,10 +15,11 @@ import { useGuests } from "../context/GuestContext";
 import { CreateGuestDto, Guest, RSVPStatus } from "../types";
 import EmptyMessage from "../EmptyMessage";
 import { GuestStatusBadge } from "./GuestStatusBadge";
-import { formatGuestDate } from "../guestOptions";
-import { ArrowUpDown, Pencil, Trash2, Users } from "lucide-react";
+import { formatGuestDate, guestStatusLabel } from "../guestOptions";
+import { ArrowUpDown, Pencil, Search, Trash2, Users, X } from "lucide-react";
 import SectionLoader from "../loaders/SectionLoader";
 import SelectInput, { SelectOption } from "../SelectInput";
+import { Input } from "@/components/ui/input";
 
 type GuestSortKey =
   | "name-asc"
@@ -66,6 +67,34 @@ const getTableLabel = (guest: Guest) =>
 
 const getGuestDate = (guest: Guest) =>
   new Date(guest.updated_at || guest.created_at).getTime();
+
+const normalizeSearch = (value: string) =>
+  value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim();
+
+const guestMatchesSearch = (guest: Guest, query: string) => {
+  const normalizedQuery = normalizeSearch(query);
+  if (!normalizedQuery) return true;
+
+  const haystack = [
+    guest.name,
+    guest.email ?? "",
+    guest.message ?? "",
+    guest.notes ?? "",
+    guest.tables?.name ?? "",
+    guest.table_id ? "" : "nije rasporedjen bez stola",
+    guestStatusLabel(guest.rsvp_status),
+  ]
+    .map(normalizeSearch)
+    .join(" ");
+
+  return normalizedQuery
+    .split(/\s+/)
+    .every((term) => haystack.includes(term));
+};
 
 const sortGuests = (guests: Guest[], sortKey: GuestSortKey) => {
   const sorted = [...guests];
@@ -155,6 +184,7 @@ const PotvrdjeniDolasci = () => {
   const { openModal } = useDialog();
   const { guests, loading } = useGuests();
   const [sortKey, setSortKey] = useState<GuestSortKey>("name-asc");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleNewGuestModal = () => {
     openModal("add_guest");
@@ -185,9 +215,14 @@ const PotvrdjeniDolasci = () => {
     });
   };
 
+  const filteredGuests = useMemo(
+    () => guests.filter((guest) => guestMatchesSearch(guest, searchQuery)),
+    [guests, searchQuery],
+  );
+
   const sortedGuests = useMemo(
-    () => sortGuests(guests, sortKey),
-    [guests, sortKey],
+    () => sortGuests(filteredGuests, sortKey),
+    [filteredGuests, sortKey],
   );
 
   if (loading && guests.length === 0) {
@@ -220,42 +255,109 @@ const PotvrdjeniDolasci = () => {
 
   return (
     <div className="w-full min-w-0 space-y-4">
-      <div className="flex flex-wrap items-center gap-2">
-        <div className="inline-flex items-center gap-2 rounded-xl border bg-muted/30 px-3 py-2 text-sm">
-          <Users className="h-4 w-4 text-muted-foreground" />
-          <span className="font-medium">{guests.length} gostiju</span>
+      <div className="flex w-full min-w-0 flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex min-w-0 flex-wrap items-center gap-2">
+          <div className="inline-flex items-center gap-2 rounded-xl border bg-muted/30 px-3 py-2 text-sm">
+            <Users className="h-4 w-4 text-muted-foreground" />
+            <span className="font-medium">{guests.length} gostiju</span>
+          </div>
+          <div className="rounded-xl border px-3 py-2 text-xs text-muted-foreground">
+            Dolazi:{" "}
+            <span className="font-semibold text-foreground">{acceptedCount}</span>
+          </div>
+          <div className="rounded-xl border px-3 py-2 text-xs text-muted-foreground">
+            Ne zna:{" "}
+            <span className="font-semibold text-foreground">{pendingCount}</span>
+          </div>
+          <div className="rounded-xl border px-3 py-2 text-xs text-muted-foreground">
+            Ne dolazi:{" "}
+            <span className="font-semibold text-foreground">{declinedCount}</span>
+          </div>
         </div>
-        <div className="rounded-xl border px-3 py-2 text-xs text-muted-foreground">
-          Dolazi:{" "}
-          <span className="font-semibold text-foreground">{acceptedCount}</span>
-        </div>
-        <div className="rounded-xl border px-3 py-2 text-xs text-muted-foreground">
-          Ne zna:{" "}
-          <span className="font-semibold text-foreground">{pendingCount}</span>
-        </div>
-        <div className="rounded-xl border px-3 py-2 text-xs text-muted-foreground">
-          Ne dolazi:{" "}
-          <span className="font-semibold text-foreground">{declinedCount}</span>
-        </div>
+
+        <Button
+          className="h-9 w-full shrink-0 cursor-pointer sm:w-auto"
+          onClick={handleNewGuestModal}
+        >
+          Dodaj novog gosta
+        </Button>
       </div>
 
-      <div className="flex w-full min-w-0 flex-col gap-1.5">
-        <div className="flex items-center gap-2 text-sm text-foreground">
-          <ArrowUpDown className="h-4 w-4 shrink-0 text-muted-foreground" />
-          <span>Sortiraj</span>
+      <div className="flex w-full min-w-0 flex-col gap-3">
+        <div className="flex w-full min-w-0 flex-col gap-1.5">
+          <div className="flex items-center gap-2 text-sm text-foreground">
+            <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
+            <span>Pretraga</span>
+          </div>
+          <div className="relative w-full min-w-0">
+            <Search className="pointer-events-none absolute top-1/2 left-2.5 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              value={searchQuery}
+              onChange={(event) => setSearchQuery(event.target.value)}
+              placeholder="Traži po imenu, stolu, statusu, poruci..."
+              className="h-9 pr-9 pl-9"
+              aria-label="Pretraga gostiju"
+            />
+            {searchQuery ? (
+              <button
+                type="button"
+                className="absolute top-1/2 right-2 -translate-y-1/2 rounded-md p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                onClick={() => setSearchQuery("")}
+                aria-label="Obriši pretragu"
+              >
+                <X className="h-3.5 w-3.5" />
+              </button>
+            ) : null}
+          </div>
         </div>
-        <div className="w-full min-w-0">
-          <SelectInput
-            items={SORT_OPTIONS}
-            value={sortKey}
-            onChange={(value) => {
-              if (value) setSortKey(value as GuestSortKey);
-            }}
-            placeholder="Izaberite sortiranje"
-          />
+
+        <div className="flex w-full min-w-0 flex-col gap-1.5">
+          <div className="flex items-center gap-2 text-sm text-foreground">
+            <ArrowUpDown className="h-4 w-4 shrink-0 text-muted-foreground" />
+            <span>Sortiraj</span>
+          </div>
+          <div className="w-full min-w-0">
+            <SelectInput
+              items={SORT_OPTIONS}
+              value={sortKey}
+              onChange={(value) => {
+                if (value) setSortKey(value as GuestSortKey);
+              }}
+              placeholder="Izaberite sortiranje"
+            />
+          </div>
         </div>
+
+        {searchQuery.trim() ? (
+          <p className="text-xs text-muted-foreground">
+            Pronađeno:{" "}
+            <span className="font-medium text-foreground">
+              {sortedGuests.length}
+            </span>{" "}
+            od {guests.length}
+          </p>
+        ) : null}
       </div>
 
+      {sortedGuests.length === 0 ? (
+        <div className="rounded-xl border border-dashed bg-muted/20 px-4 py-10 text-center">
+          <p className="text-sm font-medium text-foreground">
+            Nema rezultata za „{searchQuery.trim()}”
+          </p>
+          <p className="mt-1 text-xs text-muted-foreground">
+            Probajte drugo ime, sto ili status.
+          </p>
+          <Button
+            variant="outline"
+            size="sm"
+            className="mt-4 cursor-pointer"
+            onClick={() => setSearchQuery("")}
+          >
+            Obriši pretragu
+          </Button>
+        </div>
+      ) : (
+        <>
       {/* Mobile cards */}
       <div className="grid gap-3 md:hidden">
         {sortedGuests.map((guest) => (
@@ -403,6 +505,8 @@ const PotvrdjeniDolasci = () => {
           </TableBody>
         </Table>
       </div>
+        </>
+      )}
     </div>
   );
 };

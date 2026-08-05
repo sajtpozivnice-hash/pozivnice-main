@@ -20,13 +20,13 @@ const Locations: React.FC<Props> = ({ section, theme }) => {
 
   return (
     <section id={id} className="section-padding bg-wedding-cream/30">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-12 text-center sm:mb-16">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-5xl font-display mb-4"
+            className="mb-4 font-display text-4xl md:text-5xl"
             style={{ color: colors?.base?.secondary?.value }}
           >
             {data.title}
@@ -36,14 +36,14 @@ const Locations: React.FC<Props> = ({ section, theme }) => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-lg opacity-60 font-display"
+            className="font-display text-base opacity-60 sm:text-lg"
             style={{ color: colors?.base?.primary?.value }}
           >
             {data.subtitle}
           </motion.p>
         </div>
 
-        <div className={`grid gap-12 ${columns}`}>
+        <div className={`grid gap-6 sm:gap-8 lg:gap-10 ${columns}`}>
           {data.cards?.map((loc, index) => (
             <motion.div
               key={index}
@@ -51,25 +51,34 @@ const Locations: React.FC<Props> = ({ section, theme }) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
-              className="bg-white rounded-3xl overflow-hidden shadow-xl border border-wedding-gold/5 flex flex-col"
+              className="flex flex-col overflow-hidden rounded-3xl border border-wedding-gold/5 bg-white shadow-xl"
             >
-              <div className="p-8 flex-1 flex flex-col">
+              {loc.image ? (
+                <div className="img-1-1">
+                  <img
+                    src={loc.image}
+                    alt={loc.title ?? "Lokacija"}
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+              ) : null}
+              <div className="flex flex-1 flex-col p-6 sm:p-8">
                 <div className="mb-6">
                   <span
                     style={{ color: colors?.base?.primary?.value }}
-                    className="text-xs font-bold uppercase tracking-widest text-wedding-gold mb-2 block"
+                    className="mb-2 block text-xs font-bold tracking-widest uppercase"
                   >
                     {loc.title}
                   </span>
                   <h3
                     style={{ color: colors?.base?.secondary?.value }}
-                    className="text-3xl font-display mb-4"
+                    className="mb-4 font-display text-2xl sm:text-3xl"
                   >
                     {loc.time}
                   </h3>
                   <p
                     style={{ color: colors?.base?.secondary?.value }}
-                    className="opacity-70 font-serif italic mb-6"
+                    className="mb-6 font-serif italic opacity-70"
                   >
                     {loc.text}
                   </p>
@@ -79,21 +88,21 @@ const Locations: React.FC<Props> = ({ section, theme }) => {
                   <div className="flex items-start gap-3 text-sm opacity-80">
                     <MapPin
                       color={colors?.base?.primary?.value}
-                      className="w-4 h-4 text-wedding-gold shrink-0 mt-0.5"
+                      className="mt-0.5 h-4 w-4 shrink-0"
                     />
                     <span>{loc.location}</span>
                   </div>
-                  <div className="pt-6 flex gap-4">
+                  <div className="flex gap-4 pt-4 sm:pt-6">
                     <a
                       href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(loc.location ?? "")}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 bg-wedding-dark text-white text-center py-3 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 hover:bg-wedding-gold transition-colors duration-300"
+                      className="flex flex-1 items-center justify-center gap-2 rounded-xl py-3 text-center text-sm font-semibold text-white transition-colors duration-300 hover:opacity-90"
                       style={{
                         background: colors?.base?.secondary?.value,
                       }}
                     >
-                      <MapPin className="w-4 h-4" /> Navigacija
+                      <MapPin className="h-4 w-4" /> Navigacija
                     </a>
                   </div>
                 </div>

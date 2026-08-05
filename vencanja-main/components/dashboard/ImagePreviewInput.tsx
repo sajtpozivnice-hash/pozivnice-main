@@ -85,11 +85,11 @@ const ImagePreviewInput = ({
       <Card className="overflow-hidden">
         <CardContent className="space-y-2 p-2">
           {displaySrc ? (
-            <div className="relative">
+            <div className="relative aspect-square overflow-hidden rounded-lg">
               <img
                 src={displaySrc}
                 alt="Preview"
-                className={`h-28 w-full rounded-lg object-cover ${
+                className={`h-full w-full object-cover ${
                   loading ? "opacity-60" : ""
                 }`}
                 referrerPolicy="no-referrer"
@@ -108,7 +108,7 @@ const ImagePreviewInput = ({
               ) : null}
             </div>
           ) : (
-            <div className="flex h-28 flex-col items-center justify-center rounded-lg border border-dashed text-muted-foreground">
+            <div className="flex aspect-square flex-col items-center justify-center rounded-lg border border-dashed text-muted-foreground">
               <ImageIcon size={28} />
               <p className="mt-1 text-xs">Nema izabrane slike</p>
             </div>

@@ -11,8 +11,6 @@ import PotvrdjeniDolasci from "@/components/dashboard/PotvrdjeniDolasci/Potvrdje
 import Sections from "@/components/dashboard/Sections/Sections";
 import Images from "@/components/dashboard/Images/Images";
 import RasporedSedenja from "@/components/dashboard/RasporedSedenja/RasporedSedenja";
-import { Button } from "@/components/ui/button";
-import { useDialog } from "@/components/dashboard/context/ModalContext";
 import LogoutButton from "@/components/dashboard/LogoutButton";
 
 export type DashboardCurrentView =
@@ -22,7 +20,6 @@ export type DashboardCurrentView =
   | "seating";
 
 export const UserLayout = () => {
-  const { openModal } = useDialog();
   return (
     <div className="mx-auto w-full min-w-0 max-w-7xl space-y-4 overflow-x-hidden p-3 sm:p-4 md:p-6">
       <div className="flex items-center justify-end">
@@ -113,15 +110,6 @@ export const UserLayout = () => {
               </CardDescription>
             </CardHeader>
             <CardContent className="min-w-0 space-y-4 p-3 text-sm text-muted-foreground sm:p-4">
-              <div className="flex flex-col gap-2 sm:flex-row sm:justify-end">
-                <Button
-                  className="w-full cursor-pointer sm:w-auto"
-                  onClick={() => openModal("add_guest")}
-                >
-                  Dodaj novog gosta
-                </Button>
-                
-              </div>
               <PotvrdjeniDolasci />
             </CardContent>
           </Card>

@@ -65,14 +65,20 @@ const Schedule: React.FC<Props> = ({ section }) => {
       : fallbackSchedule;
 
   return (
-    <section id={id} className="section-padding bg-white">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-20">
+    <section id={id} className="section-padding relative overflow-hidden bg-white">
+      {data.imageUrl ? (
+        <div className="section-bg opacity-[0.08]">
+          <img src={data.imageUrl} alt="" referrerPolicy="no-referrer" />
+        </div>
+      ) : null}
+
+      <div className="relative z-10 mx-auto max-w-6xl">
+        <div className="mb-16 text-center md:mb-20">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-5xl font-display mb-4"
+            className="mb-4 font-display text-4xl md:text-5xl"
           >
             {data.title || "The Big Day"}
           </motion.h2>
@@ -81,7 +87,7 @@ const Schedule: React.FC<Props> = ({ section }) => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-lg opacity-60 font-serif italic"
+            className="font-serif text-lg italic opacity-60"
           >
             {data.subtitle ||
               "Everything you need to know about our celebration"}

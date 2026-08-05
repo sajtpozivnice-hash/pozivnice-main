@@ -11,12 +11,19 @@ type Props = {
   theme: ThemeConfig;
 };
 
+type TimeLeft = {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+};
+
 const Countdown: React.FC<Props> = ({ section, event, theme }) => {
   const { data, id } = section;
   const { date } = event;
   const { colors } = theme;
   const targetDate = new Date(date).getTime();
-  const [timeLeft, setTimeLeft] = useState<any>({
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>({
     days: 0,
     hours: 0,
     minutes: 0,
@@ -55,20 +62,26 @@ const Countdown: React.FC<Props> = ({ section, event, theme }) => {
   return (
     <section
       id={id}
-      className="section-padding bg-white relative overflow-hidden"
+      className="section-padding relative overflow-hidden bg-white"
     >
-      <div className="max-w-4xl mx-auto text-center relative z-10">
+      {data.imageUrl ? (
+        <div className="section-bg opacity-[0.08]">
+          <img src={data.imageUrl} alt="" referrerPolicy="no-referrer" />
+        </div>
+      ) : null}
+
+      <div className="relative z-10 mx-auto max-w-4xl text-center">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-display mb-12"
+          className="mb-12 font-display text-4xl md:text-5xl"
           style={{ color: colors?.base?.secondary?.value }}
         >
           {data.title}
         </motion.h2>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-8">
           {items.map((item, index) => (
             <motion.div
               key={item.label}
@@ -80,18 +93,18 @@ const Countdown: React.FC<Props> = ({ section, event, theme }) => {
             >
               <div
                 style={{ borderColor: colors?.base?.primary?.value }}
-                className="w-24 h-24 md:w-32 md:h-32 rounded-full border border-wedding-gold/20 flex items-center justify-center mb-4 bg-wedding-cream/30"
+                className="mb-4 flex h-24 w-24 items-center justify-center rounded-full border bg-wedding-cream/30 md:h-32 md:w-32"
               >
                 <span
                   style={{ color: colors?.base?.primary?.value }}
-                  className="text-3xl md:text-4xl font-serif text-wedding-gold"
+                  className="font-serif text-3xl md:text-4xl"
                 >
                   {String(item.value).padStart(2, "0")}
                 </span>
               </div>
               <span
                 style={{ color: colors?.base?.primary?.value }}
-                className="uppercase tracking-widest text-xs font-semibold opacity-60"
+                className="text-xs font-semibold tracking-widest uppercase opacity-60"
               >
                 {item.label}
               </span>
@@ -99,8 +112,6 @@ const Countdown: React.FC<Props> = ({ section, event, theme }) => {
           ))}
         </div>
       </div>
-      <div className="absolute top-0 left-0 w-64 h-64 bg-wedding-gold/5 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-wedding-gold/5 rounded-full translate-x-1/2 translate-y-1/2 blur-3xl" />
     </section>
   );
 };

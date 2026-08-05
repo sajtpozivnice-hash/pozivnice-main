@@ -21,14 +21,20 @@ const Calendar: React.FC<Props> = ({ section, event, theme }) => {
   return (
     <section
       id={id}
-      className="section-padding bg-white relative overflow-hidden"
+      className="section-padding relative overflow-hidden bg-white"
     >
-      <div className="max-w-4xl mx-auto text-center relative z-10">
+      {data.imageUrl ? (
+        <div className="section-bg opacity-[0.08]">
+          <img src={data.imageUrl} alt="" referrerPolicy="no-referrer" />
+        </div>
+      ) : null}
+
+      <div className="relative z-10 mx-auto max-w-4xl text-center">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-display mb-12"
+          className="mb-12 font-display text-4xl md:text-5xl"
           style={{ color: colors?.base?.secondary?.value }}
         >
           {data.title}

@@ -16,13 +16,16 @@ const ImagePreviewInCard = ({
     <Card className={className}>
       <CardContent className="p-2">
         {src ? (
-          <img
-            src={src}
-            alt={alt}
-            className="h-32 w-full rounded-lg object-cover"
-          />
+          <div className="aspect-square overflow-hidden rounded-lg">
+            <img
+              src={src}
+              alt={alt}
+              className="h-full w-full object-cover"
+              referrerPolicy="no-referrer"
+            />
+          </div>
         ) : (
-          <div className="flex h-32 flex-col items-center justify-center rounded-lg border border-dashed text-muted-foreground">
+          <div className="flex aspect-square flex-col items-center justify-center rounded-lg border border-dashed text-muted-foreground">
             <ImageIcon size={32} />
             <p className="mt-2 text-sm">Nema slike</p>
           </div>

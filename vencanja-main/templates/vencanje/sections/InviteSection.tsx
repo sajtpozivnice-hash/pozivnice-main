@@ -12,25 +12,35 @@ type Props = {
 const InviteSection: React.FC<Props> = ({ section, theme }) => {
   const { data, id } = section;
   const { colors } = theme;
+
   return (
     <section
       id={id}
-      className="relative py-32 px-6 flex items-center justify-center bg-wedding-cream/30"
+      className="section-padding relative overflow-hidden bg-wedding-cream/30"
     >
-      <div className="max-w-3xl mx-auto text-center">
+      {data.imageUrl ? (
+        <div className="section-bg opacity-[0.12]">
+          <img
+            src={data.imageUrl}
+            alt=""
+            referrerPolicy="no-referrer"
+          />
+        </div>
+      ) : null}
+
+      <div className="relative z-10 mx-auto max-w-3xl text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="space-y-8"
         >
-          <h1
+          <p
             style={{ color: colors?.base?.primary?.value }}
-            className="text-2xl md:text-2xl opacity-70 leading-relaxed"
+            className="text-lg leading-relaxed opacity-80 sm:text-xl md:text-2xl"
           >
             {data.description}
-          </h1>
+          </p>
         </motion.div>
       </div>
     </section>

@@ -41,24 +41,27 @@ const RSVP: React.FC<Props> = ({ section, event, theme }) => {
   return (
     <section
       id={id}
-      className="section-padding bg-wedding-dark text-white relative overflow-hidden"
+      className="section-padding relative overflow-hidden bg-wedding-dark text-white"
     >
-      <div className="absolute top-0 right-0 w-full h-full opacity-10 pointer-events-none">
-        <img
-          src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=2000"
-          alt="RSVP Background"
-          className="w-full h-full object-cover"
-          referrerPolicy="no-referrer"
-        />
+      <div className="section-bg opacity-15">
+        {data.imageUrl ? (
+          <img src={data.imageUrl} alt="" referrerPolicy="no-referrer" />
+        ) : (
+          <img
+            src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=2000"
+            alt=""
+            referrerPolicy="no-referrer"
+          />
+        )}
       </div>
 
-      <div className="max-w-3xl mx-auto relative z-10">
-        <div className="text-center mb-12">
+      <div className="relative z-10 mx-auto max-w-3xl">
+        <div className="mb-12 text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-5xl font-display mb-4 text-white"
+            className="mb-4 font-display text-4xl text-white md:text-5xl"
           >
             {data.title}
           </motion.h2>
@@ -67,7 +70,7 @@ const RSVP: React.FC<Props> = ({ section, event, theme }) => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-lg opacity-60 font-serif italic"
+            className="font-serif text-lg italic opacity-60"
           >
             {data.description} {formatDate(rsvpDate, "DD_MMM_YYYY")}
           </motion.p>
