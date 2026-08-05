@@ -1,11 +1,19 @@
 .container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
 }
-@media (max-width: 748px) {
+
+.empty {
+  text-align: center;
+  padding: 48px 16px;
+  color: var(--color-text);
+  opacity: 0.65;
+  font-size: 15px;
+}
+
+@media (max-width: 900px) {
   .container {
     grid-template-columns: 1fr;
-    justify-content: center;
   }
 }

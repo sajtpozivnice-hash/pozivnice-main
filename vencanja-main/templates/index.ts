@@ -12,52 +12,109 @@ import { vencanjeBackgroundDefaultConfig } from "./vencanje-background/config";
 import { vencanjeBackgroundRenderers } from "./vencanje-background/renderers";
 import { rodjendan01DefaultConfig } from "./rodjendan-01/config";
 import { rodjendan01Renderers } from "./rodjendan-01/renderers";
-import { EventType, TemplateKey } from "@/types/config";
+import { EventType, TemplateKey, UniversalProjectConfig } from "@/types/config";
+import { TemplateCatalogMeta } from "@/types/catalog";
+import { SectionRendererMap } from "@/types/sections";
 
-export const templates = {
+type TemplatePack = {
+  renderers: SectionRendererMap;
+  defaultConfig: UniversalProjectConfig;
+  eventTypes: EventType[];
+  catalog: TemplateCatalogMeta;
+};
+
+export const templates: Record<TemplateKey, TemplatePack> = {
   vencanje: {
     renderers: vencanjeRenderers,
-    defaultConfig: { ...vencanjeDefaultConfig, eventType: "wedding" as const },
-    eventTypes: ["wedding"] as EventType[],
+    defaultConfig: { ...vencanjeDefaultConfig, eventType: "wedding" },
+    eventTypes: ["wedding"],
+    catalog: {
+      title: "Večna ljubav",
+      description:
+        "Klasičan i sofisticiran dizajn za bezvremensku eleganciju.",
+      style: "classic",
+      price: 40,
+      featured: true,
+    },
   },
   vencanje3: {
     renderers: vencanje3Renderers,
-    defaultConfig: { ...vencanje3DefaultConfig, eventType: "wedding" as const },
-    eventTypes: ["wedding"] as EventType[],
+    defaultConfig: { ...vencanje3DefaultConfig, eventType: "wedding" },
+    eventTypes: ["wedding"],
+    catalog: {
+      title: "Minimal elegance",
+      description: "Čist, moderan raspored sa naglaskom na tipografiju.",
+      style: "modern",
+      price: 40,
+      featured: true,
+    },
   },
   vencanje4: {
     renderers: vencanje4Renderers,
-    defaultConfig: { ...vencanje4DefaultConfig, eventType: "wedding" as const },
-    eventTypes: ["wedding"] as EventType[],
+    defaultConfig: { ...vencanje4DefaultConfig, eventType: "wedding" },
+    eventTypes: ["wedding"],
+    catalog: {
+      title: "Cinematic scenes",
+      description: "Full-screen scene layout za dramatičan utisak.",
+      style: "cinematic",
+      price: 40,
+      featured: true,
+    },
   },
   "vencanje-premium": {
     renderers: vencanjePremiumRenderers,
     defaultConfig: {
       ...vencanjePremiumDefaultConfig,
-      eventType: "wedding" as const,
+      eventType: "wedding",
     },
-    eventTypes: ["wedding"] as EventType[],
+    eventTypes: ["wedding"],
+    catalog: {
+      title: "Premium editorial",
+      description: "Luksuzni editorial stil za svečana venčanja.",
+      style: "premium",
+      price: 40,
+      featured: true,
+    },
   },
   "vencanje-cinematic": {
     renderers: vencanjeCinematicRenderers,
     defaultConfig: {
       ...vencanjeCinematicDefaultConfig,
-      eventType: "wedding" as const,
+      eventType: "wedding",
     },
-    eventTypes: ["wedding"] as EventType[],
+    eventTypes: ["wedding"],
+    catalog: {
+      title: "Film stills",
+      description: "Filmska estetika sa jakim vizuelnim kadrovima.",
+      style: "cinematic",
+      price: 40,
+    },
   },
   "vencanje-background": {
     renderers: vencanjeBackgroundRenderers,
     defaultConfig: {
       ...vencanjeBackgroundDefaultConfig,
-      eventType: "wedding" as const,
+      eventType: "wedding",
     },
-    eventTypes: ["wedding"] as EventType[],
+    eventTypes: ["wedding"],
+    catalog: {
+      title: "Glass on background",
+      description: "Plutajući glass paneli preko jedne pozadine.",
+      style: "modern",
+      price: 40,
+    },
   },
   "rodjendan-01": {
     renderers: rodjendan01Renderers,
     defaultConfig: rodjendan01DefaultConfig,
-    eventTypes: ["birthday"] as EventType[],
+    eventTypes: ["birthday"],
+    catalog: {
+      title: "Rođendanska žurka",
+      description: "Živahan, moderni template za dečiji ili odrasli rođendan.",
+      style: "playful",
+      price: 40,
+      featured: true,
+    },
   },
 };
 

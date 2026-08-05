@@ -1,11 +1,18 @@
 .container {
   border-radius: var(--radius);
-  padding: 30px 20px;
+  padding: 28px 22px;
   position: relative;
   height: 100%;
-  min-height: 350px;
+  min-height: 380px;
   overflow: hidden;
+  box-shadow: var(--shadow-hover);
+  transition: box-shadow 0.35s ease;
 }
+
+.container:hover {
+  box-shadow: var(--shadow-deep);
+}
+
 .background {
   background-position: center;
   background-size: cover;
@@ -13,15 +20,26 @@
   position: absolute;
   inset: 0;
   z-index: 2;
+  transform: scale(1.02);
+  transition: transform 0.55s ease;
 }
+
+.container:hover .background {
+  transform: scale(1.08);
+}
+
 .overlay {
   position: absolute;
   inset: 0;
-  background: var(--color-text);
   z-index: 3;
-  opacity: 0.6;
-  /* pointer-events: none; */
+  background: linear-gradient(
+    180deg,
+    rgba(20, 16, 14, 0.2) 0%,
+    rgba(20, 16, 14, 0.55) 45%,
+    rgba(20, 16, 14, 0.82) 100%
+  );
 }
+
 .content {
   position: relative;
   z-index: 5;
@@ -30,19 +48,41 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  gap: 8px;
 }
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-bg);
+  background: color-mix(in srgb, var(--color-bg) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-bg) 28%, transparent);
+}
+
 .header {
-  margin-bottom: 3px;
-  margin-top: 3px;
+  margin: 0;
   color: var(--color-bg);
 }
-.description {
-  color: var(--color-bg);
-  margin-bottom: 3px;
-}
+
 .button {
-  margin-top: 5px;
+  margin-top: 8px;
 }
+
 .link {
   color: var(--color-bg);
+  width: fit-content;
 }
