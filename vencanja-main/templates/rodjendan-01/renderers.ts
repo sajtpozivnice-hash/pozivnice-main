@@ -6,6 +6,7 @@ import Schedule from "./sections/Schedule";
 import FeatureCards from "./sections/FeatureCards";
 import Locations from "./sections/Locations";
 import OurGallery from "./sections/OurGallery";
+import UploadImages from "./sections/UploadImages";
 import RSVP from "./sections/RSVP";
 import Footer from "./sections/Footer";
 
@@ -17,6 +18,7 @@ export const rodjendan01Renderers: SectionRendererMap = {
   featureCards: FeatureCards,
   locations: Locations,
   ourGallery: OurGallery,
+  uploadImagesSection: UploadImages,
   rsvp: RSVP,
   footer: Footer,
 };

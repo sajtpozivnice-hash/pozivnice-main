@@ -246,11 +246,26 @@ export const rodjendan01DefaultConfig: UniversalProjectConfig = {
       },
     },
     {
+      id: "uploadImagesSection",
+      name: "Dodavanje slika",
+      type: "uploadImagesSection",
+      visible: true,
+      order: 8,
+      data: {
+        title: "Podeli uspomene sa žurke",
+        subtitle: "Gostujuće fotografije",
+        description:
+          "Uslikaj trenutak, smeh ili tortu — i dodaj u zajedničku galeriju proslave.",
+        buttonText: "Dodaj fotografije",
+        imageUrl: IMG.party,
+      },
+    },
+    {
       id: "rsvp",
       name: "RSVP",
       type: "rsvp",
       visible: true,
-      order: 8,
+      order: 9,
       data: {
         title: "Hoćeš li doći?",
         description: "Potvrdi dolazak najkasnije do ",
@@ -265,7 +280,7 @@ export const rodjendan01DefaultConfig: UniversalProjectConfig = {
       name: "Podnožje",
       type: "footer",
       visible: true,
-      order: 9,
+      order: 10,
       data: {
         title: "Vidimo se uskoro!",
         subtitle: "Sa ljubavlju, porodica",

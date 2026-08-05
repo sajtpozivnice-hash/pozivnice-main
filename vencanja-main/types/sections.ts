@@ -169,6 +169,7 @@ export type UploadImagesSection = BaseSectionConfig<
     subtitle?: string;
     description?: string;
     imageUrl?: string;
+    buttonText?: string;
   },
   "uploadImagesSection"
 >;

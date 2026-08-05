@@ -10,6 +10,7 @@ export const imagesUploadSchema = createSectionSchema<UploadImageData>({
     { key: "title", label: "Naslov", type: "text" },
     { key: "subtitle", label: "Podnaslov", type: "text" },
     { key: "description", label: "Opis", type: "textarea" },
+    { key: "buttonText", label: "Tekst dugmeta", type: "text" },
     { key: "imageUrl", label: "Pozadinska slika", type: "image" },
   ],
 });
