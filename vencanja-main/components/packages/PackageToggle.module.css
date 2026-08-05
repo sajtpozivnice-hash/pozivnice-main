@@ -16,4 +16,18 @@
   cursor: pointer;
   user-select: none;
   border-radius: 9px;
+  border: none;
+  background: transparent;
+  font: inherit;
+}
+@media (max-width: 640px) {
+  .innerContainer {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+  .action {
+    flex: 1 1 auto;
+    min-width: 40%;
+  }
 }

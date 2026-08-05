@@ -1,6 +1,5 @@
 "use client";
 
-import { featuredProjectsCardData } from "@/data/data";
 import Section from "../layout/Section";
 import Heading from "../shared/typography/Heading";
 import FeaturedBox from "./FeaturedBox";
@@ -9,6 +8,8 @@ import { motion, Variants } from "framer-motion";
 import Paragraph from "../shared/typography/Paragraph";
 import Button from "../button/Button";
 import AnimatedArrowRight from "../icons/AnimatedArrowRight";
+import Link from "next/link";
+import { getFeaturedCatalogTemplates } from "@/templates/catalog";
 
 const containerVariants: Variants = {
   hidden: {},
@@ -29,7 +30,7 @@ const itemVariants: Variants = {
 };
 
 const FeaturedInvites = () => {
-  const boxes = [1, 2, 3, 4];
+  const featured = getFeaturedCatalogTemplates(4);
 
   return (
     <Section>
@@ -48,14 +49,16 @@ const FeaturedInvites = () => {
           whileInView="show"
           viewport={{ once: true }}
         >
-          {featuredProjectsCardData.map((data) => (
+          {featured.map((data, index) => (
             <motion.div key={data.id} variants={itemVariants}>
-              <FeaturedBox {...data} />
+              <FeaturedBox {...data} index={index} />
             </motion.div>
           ))}
         </motion.div>
         <div className={styles.buttonContainer}>
-          <Button icon={AnimatedArrowRight}>Pogledaj sve pozivnice</Button>
+          <Link href="/pozivnice">
+            <Button icon={AnimatedArrowRight}>Pogledaj sve pozivnice</Button>
+          </Link>
         </div>
       </div>
     </Section>

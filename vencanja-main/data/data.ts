@@ -8,10 +8,8 @@ import AnimatedMousePointer from "../components/icons/AnimatedMousePointer";
 import AnimatedPenIcon from "../components/icons/AnimatedPenIcon";
 import AnimatedSparkle from "../components/icons/AnimatedSparkle";
 import {
-  FeaturedProjectsCard,
   InstructionsCardProps,
   PackageBoxProps,
-  Tag,
   WhyUsCardProps,
 } from "@/types/general";
 
@@ -177,120 +175,6 @@ export const instructionsData: InstructionsCardProps[] = [
     iconColor: "var(--color-hot)",
     isLast: true,
     index: 6,
-  },
-];
-
-export const featuredProjectsCardData: FeaturedProjectsCard[] = [
-  {
-    id: 1,
-    title: "Večna ljubav",
-    description: "Klasičan i sofisticiran dizajn za bezvremensku eleganciju.",
-    tag: Tag.WEDDING,
-    imageLink:
-      "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1770201793/wedding/sry3niphtrknisoezmmr.jpg",
-    projectLink: "/editor/vencanje",
-  },
-  {
-    id: 2,
-    title: "Svečani zavet",
-    description: "Formalan i elegantan izgled za tradicionalna venčanja",
-    tag: Tag.WEDDING,
-    imageLink:
-      "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2000",
-    projectLink: "/pozivnice/vencanja/wedding-02",
-  },
-  {
-    id: 3,
-    title: "treci projekat",
-    description: "treci description",
-    tag: Tag.BIRTHDAY,
-    imageLink:
-      "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1770470248/wedding/nszozuac7jgrgdapopt7.jpg",
-    projectLink: "pozivnice/rodjendan/birthday-01",
-  },
-  {
-    id: 4,
-    title: "cetvrti projekat",
-    description: "cetvrti description",
-    tag: Tag.BAPTISM,
-    imageLink:
-      "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1770470248/wedding/nszozuac7jgrgdapopt7.jpg",
-    projectLink: "pozivnice/rodjendan/birthday-01",
-  },
-];
-
-export const allProjects: FeaturedProjectsCard[] = [
-  {
-    id: 1,
-    title: "Večna ljubav",
-    description: "Klasičan i sofisticiran dizajn za bezvremensku eleganciju.",
-    tag: Tag.WEDDING,
-    imageLink:
-      "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1770201793/wedding/sry3niphtrknisoezmmr.jpg",
-    projectLink: "/editor/vencanje",
-  },
-  {
-    id: 2,
-    title: "Svečani zavet",
-    description: "Formalan i elegantan izgled za tradicionalna venčanja",
-    tag: Tag.WEDDING,
-    imageLink:
-      "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1770201793/wedding/sry3niphtrknisoezmmr.jpg",
-    projectLink: "/editor/vencanje",
-  },
-  {
-    id: 3,
-    title: "prvi projekat",
-    description: "prvi description",
-    tag: Tag.BIRTHDAY,
-    imageLink:
-      "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1770201793/wedding/sry3niphtrknisoezmmr.jpg",
-    projectLink: "/editor/vencanje",
-  },
-  {
-    id: 4,
-    title: "prvi projekat",
-    description: "prvi description",
-    tag: Tag.BAPTISM,
-    imageLink:
-      "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1770201793/wedding/sry3niphtrknisoezmmr.jpg",
-    projectLink: "/editor/vencanje",
-  },
-  {
-    id: 5,
-    title: "prvi projekat",
-    description: "prvi description",
-    tag: Tag.BIRTHDAY,
-    imageLink:
-      "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1770201793/wedding/sry3niphtrknisoezmmr.jpg",
-    projectLink: "/editor/vencanje",
-  },
-  {
-    id: 6,
-    title: "prvi projekat",
-    description: "prvi description",
-    tag: Tag.WEDDING,
-    imageLink:
-      "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1770201793/wedding/sry3niphtrknisoezmmr.jpg",
-    projectLink: "/editor/vencanje",
-  },
-  {
-    id: 7,
-    title: "prvi projekat",
-    description: "prvi description",
-    tag: Tag.WEDDING,
-    imageLink:
-      "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1770201793/wedding/sry3niphtrknisoezmmr.jpg",
-    projectLink: "/editor/vencanje",
-  },
-  {
-    id: 8,
-    title: "prvi projekat",
-    description: "prvi description",
-    tag: Tag.BAPTISM,
-    imageLink:
-      "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1770201793/wedding/sry3niphtrknisoezmmr.jpg",
-    projectLink: "/editor/vencanje",
   },
 ];
 

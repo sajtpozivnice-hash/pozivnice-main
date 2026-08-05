@@ -9,12 +9,6 @@ export type AnimatedIconProps = {
   delay?: number;
 };
 
-export enum SwitchToggleValues {
-  BIRTHDAY = "birthday",
-  WEDDING = "wedding",
-  BAPTISM = "baptism",
-}
-
 export type PackageBoxProps = {
   id: string;
   title: string;
@@ -44,13 +38,4 @@ export enum Tag {
   WEDDING = "Venčanje",
   BIRTHDAY = "Rođendan",
   BAPTISM = "Krštenje",
-}
-
-export type FeaturedProjectsCard = {
-  id: number;
-  title: string;
-  description: string;
-  tag: Tag;
-  imageLink: string;
-  projectLink: string;
 };
