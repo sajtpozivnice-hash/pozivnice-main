@@ -80,11 +80,12 @@ export default function DashboardLoginPage() {
         </form>
 
         <Paragraph>
-          Nemate nalog? Kontaktirajte administratora da vam kreira nalog.
+          Nemate nalog? Administrator će vam poslati invite mejl sa linkom za
+          lozinku.
         </Paragraph>
         <Paragraph>
-          Lozinka je privremena ako ste pozvani putem emaila, promenite je nakon
-          prve prijave.
+          Prijavljujete se emailom na koji ste dobili invite i lozinkom koju
+          ste postavili.
         </Paragraph>
       </div>
     </div>

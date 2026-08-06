@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin } from "@/lib/requireAdmin";
 import { supabaseAdmin } from "@/lib/supabaseAdmin";
+import { inviteClientByEmail } from "@/lib/clientInvite";
 import { deleteClient } from "@/services/clients.service";
 
 export async function GET(req: NextRequest) {
@@ -9,7 +10,7 @@ export async function GET(req: NextRequest) {
 
   const { data, error } = await supabaseAdmin
     .from("clients")
-    .select("*")
+    .select("id, name, email, phone, auth_user_id, created_at, updated_at")
     .order("name", { ascending: true });
 
   if (error) {
@@ -31,34 +32,41 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const { data: authUser, error: authError } =
-    await supabaseAdmin.auth.admin.createUser({
+  try {
+    const invite = await inviteClientByEmail({
       email: email.trim(),
-      password: "Test123456!",
-      email_confirm: true,
+      name: name.trim(),
     });
 
-  if (authError) {
-    return NextResponse.json({ error: authError.message }, { status: 400 });
-  }
+    const { data, error } = await supabaseAdmin
+      .from("clients")
+      .insert([
+        {
+          name: name.trim(),
+          email: email.trim().toLowerCase(),
+          phone: phone || null,
+          auth_user_id: invite.userId,
+        },
+      ])
+      .select("id, name, email, phone, auth_user_id, created_at, updated_at")
+      .single();
 
-  const { data, error } = await supabaseAdmin
-    .from("clients")
-    .insert([
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 400 });
+    }
+
+    return NextResponse.json(
       {
-        name: name.trim(),
-        email: email.trim(),
-        phone: phone || null,
-        auth_user_id: authUser?.user?.id,
+        ...data,
+        invite_sent: true,
+        invite_type: invite.linkType,
       },
-    ])
-    .select()
-    .single();
-
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 400 });
+      { status: 201 },
+    );
+  } catch (err) {
+    const message = err instanceof Error ? err.message : "Greška";
+    return NextResponse.json({ error: message }, { status: 400 });
   }
-  return NextResponse.json(data, { status: 201 });
 }
 
 export async function PUT(req: NextRequest) {
@@ -79,7 +87,7 @@ export async function PUT(req: NextRequest) {
       updated_at: new Date().toISOString(),
     })
     .eq("id", id)
-    .select()
+    .select("id, name, email, phone, auth_user_id, created_at, updated_at")
     .single();
 
   if (error) {

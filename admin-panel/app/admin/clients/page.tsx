@@ -16,12 +16,14 @@ type Client = {
   name: string;
   email: string;
   phone: string | null;
+  auth_user_id?: string | null;
 };
 
 export default function AdminClientsPage() {
   const [clients, setClients] = useState<Client[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [notice, setNotice] = useState("");
   const [newClient, setNewClient] = useState({
     name: "",
     email: "",
@@ -30,6 +32,7 @@ export default function AdminClientsPage() {
   const [submitting, setSubmitting] = useState(false);
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [deleting, setDeleting] = useState(false);
+  const [invitingId, setInvitingId] = useState<string | null>(null);
 
   const loadClients = useCallback(async () => {
     setLoading(true);
@@ -54,6 +57,7 @@ export default function AdminClientsPage() {
     e.preventDefault();
     setSubmitting(true);
     setError("");
+    setNotice("");
     try {
       const res = await adminFetch("/api/admin/clients", {
         method: "POST",
@@ -62,6 +66,9 @@ export default function AdminClientsPage() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Kreiranje nije uspelo");
       setNewClient({ name: "", email: "", phone: "" });
+      setNotice(
+        `Klijent kreiran. Invite mejl poslat na ${data.email} — korisnik postavlja lozinku pa se prijavljuje tim emailom.`,
+      );
       await loadClients();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Greška");
@@ -72,6 +79,7 @@ export default function AdminClientsPage() {
 
   const updateClient = async (client: Client) => {
     setError("");
+    setNotice("");
     try {
       const res = await adminFetch("/api/admin/clients", {
         method: "PUT",
@@ -79,9 +87,28 @@ export default function AdminClientsPage() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Čuvanje nije uspelo");
+      setNotice("Klijent sačuvan.");
       await loadClients();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Greška");
+    }
+  };
+
+  const resendInvite = async (client: Client) => {
+    setInvitingId(client.id);
+    setError("");
+    setNotice("");
+    try {
+      const res = await adminFetch(`/api/admin/clients/${client.id}/invite`, {
+        method: "POST",
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Slanje nije uspelo");
+      setNotice(`Invite mejl ponovo poslat na ${client.email}.`);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Greška");
+    } finally {
+      setInvitingId(null);
     }
   };
 
@@ -108,7 +135,7 @@ export default function AdminClientsPage() {
     <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
       <PageHeader
         title="Klijenti"
-        description="Vlasnici projekata i nalozi za dashboard."
+        description="Pri kreiranju šalje se mejl za postavljanje lozinke. Login: isti email + ta lozinka."
       />
 
       <div className="mb-6 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
@@ -124,11 +151,12 @@ export default function AdminClientsPage() {
             required
           />
           <Field
-            label="Email"
+            label="Email (za login)"
             type="email"
             value={newClient.email}
             onChange={(v) => setNewClient((p) => ({ ...p, email: v }))}
             required
+            hint="Na ovaj email ide invite i njime se prijavljuje."
           />
           <Field
             label="Telefon"
@@ -137,11 +165,17 @@ export default function AdminClientsPage() {
           />
           <div className="flex items-end">
             <Button type="submit" disabled={submitting} className="w-full">
-              {submitting ? "Dodavanje…" : "Dodaj klijenta"}
+              {submitting ? "Slanje invite…" : "Kreiraj + pošalji invite"}
             </Button>
           </div>
         </form>
       </div>
+
+      {notice ? (
+        <div className="mb-4 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
+          {notice}
+        </div>
+      ) : null}
 
       {error ? (
         <div className="mb-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
@@ -154,7 +188,7 @@ export default function AdminClientsPage() {
       {!loading && clients.length === 0 ? (
         <EmptyState
           title="Nema klijenata"
-          description="Dodajte prvog klijenta da biste kreirali projekte."
+          description="Dodajte prvog klijenta — dobiće mejl za lozinku."
         />
       ) : null}
 
@@ -179,6 +213,15 @@ export default function AdminClientsPage() {
                     Sačuvaj
                   </Button>
                   <Button
+                    variant="outline"
+                    disabled={invitingId === client.id}
+                    onClick={() => resendInvite(client)}
+                  >
+                    {invitingId === client.id
+                      ? "Šaljem…"
+                      : "Pošalji invite ponovo"}
+                  </Button>
+                  <Button
                     variant="danger"
                     onClick={() => setDeleteId(client.id)}
                   >
@@ -194,7 +237,7 @@ export default function AdminClientsPage() {
               <thead className="border-b border-[var(--border)] bg-[var(--surface-2)]/60 text-xs uppercase tracking-wide text-[var(--muted)]">
                 <tr>
                   <th className="px-4 py-3 font-medium">Ime</th>
-                  <th className="px-4 py-3 font-medium">Email</th>
+                  <th className="px-4 py-3 font-medium">Email (login)</th>
                   <th className="px-4 py-3 font-medium">Telefon</th>
                   <th className="px-4 py-3 font-medium">Akcije</th>
                 </tr>
@@ -251,12 +294,19 @@ export default function AdminClientsPage() {
                       />
                     </td>
                     <td className="px-4 py-3">
-                      <div className="flex gap-2">
+                      <div className="flex flex-wrap gap-2">
                         <Button
                           variant="secondary"
                           onClick={() => updateClient(client)}
                         >
                           Sačuvaj
+                        </Button>
+                        <Button
+                          variant="outline"
+                          disabled={invitingId === client.id}
+                          onClick={() => resendInvite(client)}
+                        >
+                          {invitingId === client.id ? "…" : "Invite ponovo"}
                         </Button>
                         <Button
                           variant="danger"
