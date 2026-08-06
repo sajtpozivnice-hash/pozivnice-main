@@ -13,8 +13,8 @@ const Pozivnice = () => {
       <PozivniceHeader />
       <PozivniceContent />
       <Cta
-        title="Sviđa vam se dizajn?"
-        description="Javite nam koji primer želite — ili opišite kako zamišljate potpuno prilagođenu pozivnicu. Izradu dogovorimo lično."
+        title="Spremni da napravite svoju digitalnu pozivnicu?"
+        description="Izaberite dizajn, unesite podatke, podesite sve kako Vam odgovara i pošaljite zahtev. Nakon evidentirane uplate dobijate aktivnu pozivnicu koju možete odmah deliti sa gostima i uređivati kad god poželite."
         primaryLabel="Kontaktirajte nas"
         primaryHref="/kontakt"
         secondaryLabel="Pogledaj cenovnik"
