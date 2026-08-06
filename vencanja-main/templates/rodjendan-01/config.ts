@@ -3,26 +3,26 @@ import { UniversalProjectConfig } from "@/types/config";
 /** Royalty-free Unsplash placeholders — only in config, never hardcoded in components */
 const IMG = {
   hero:
-    "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=2000&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023489/photo-1530103862676-de8c9debad1d_rxuitz.avif",
   portrait:
-    "https://images.unsplash.com/photo-1464349153730-1a0ce10b685e?auto=format&fit=crop&w=1200&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023223/pexels-matheus-rodrigues-672111387-18212443_mr0hd2.jpg",
   balloons:
     "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=85",
   cake:
-    "https://images.unsplash.com/photo-1558636508-fd2fed7f94f2?auto=format&fit=crop&w=1400&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023931/pexels-junielly-oliveira-2736244-4960960_migtwt.jpg",
   party:
-    "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1600&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023854/photo-1513151233558-d860c5398176_xvejar.avif",
   venue:
-    "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1600&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023813/photo-1464366400600-7168b8af9bc3_dmpg2x.avif",
   gifts:
-    "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=1000&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023699/photo-1549465220-1a8b9238cd48_avxoqq.avif",
   activities:
-    "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=1000&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023761/photo-1527529482837-4698179dc6ce_x4mmyo.avif",
   gallery: [
     "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=900&q=85",
-    "https://images.unsplash.com/photo-1464349153730-1a0ce10b685e?auto=format&fit=crop&w=900&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023699/photo-1549465220-1a8b9238cd48_avxoqq.avif",
     "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=900&q=85",
-    "https://images.unsplash.com/photo-1558636508-fd2fed7f94f2?auto=format&fit=crop&w=900&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023813/photo-1464366400600-7168b8af9bc3_dmpg2x.avif",
     "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=900&q=85",
     "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=85",
   ],
@@ -85,7 +85,6 @@ export const rodjendan01DefaultConfig: UniversalProjectConfig = {
         badge: "7 godina",
         ctaText: "Potvrdi dolazak",
         ctaHref: "#rsvp",
-        backgroundImage: IMG.hero,
         image: IMG.portrait,
       },
     },

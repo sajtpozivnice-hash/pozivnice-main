@@ -115,10 +115,10 @@ const InvitationContactForm: FC<InviteContactFormProps> = ({ config }) => {
         }}
       >
         <div>
-          <Heading className="text-center">Pošaljite upit</Heading>
+          <Heading className="text-center">Aktivirajte svoju pozivnicu</Heading>
           <p className="text-center margin-bottom30">
-            Napišite nam svoje podatke i poruku. Ako vam se dopada ovaj dizajn —
-            ili želite nešto drugačije — javićemo se i dogovoriti izradu.
+          Popunite osnovne podatke i pošaljite zahtev za aktivaciju. Nakon prijema podataka šaljemo vam instrukcije za uplatu, a nakon evidentirane uplate vaša digitalna pozivnica postaje spremna za korišćenje.
+Dobijate svoj link pozivnice i privatni nalog iz kog možete menjati sadržaj, pratiti goste i organizovati sve detalje događaja.
           </p>
         </div>
         <div className={styles.innerContainer}>
@@ -179,7 +179,7 @@ const InvitationContactForm: FC<InviteContactFormProps> = ({ config }) => {
             value={formData.message}
             className={styles.textAreaInput}
             name="message"
-            placeholder="Vaša poruka"
+            placeholder="Dodajte dodatne informacije koje želite da znamo"
             required={false}
             rows={7}
             onChange={(e) => {
@@ -190,7 +190,7 @@ const InvitationContactForm: FC<InviteContactFormProps> = ({ config }) => {
         </div>
 
         <Button type="submit" icon={AnimatedMail} loading={loading}>
-          Pošalji
+        Pošaljite zahtev za aktivaciju
         </Button>
       </form>
     </div>
