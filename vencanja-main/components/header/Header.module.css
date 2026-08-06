@@ -1,0 +1,224 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  transition: height 0.25s ease;
+}
+
+.glass {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition:
+    background 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.scrolled {
+  height: 60px;
+}
+
+.scrolled .glass {
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom-color: color-mix(in srgb, var(--color-text) 8%, transparent);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+}
+
+.inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  font-family: var(--font-playfair);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-hot);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+  flex-shrink: 0;
+}
+
+.desktopNav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navLink {
+  text-decoration: none;
+  color: var(--color-text);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 999px;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.navLink:hover {
+  color: var(--color-hot);
+  background: color-mix(in srgb, var(--color-hot) 8%, transparent);
+}
+
+.active {
+  color: var(--color-hot);
+}
+
+.loginLink {
+  margin-left: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  background: var(--color-hot);
+  padding: 8px 16px;
+  border-radius: 999px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.loginLink:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--color-hot) 35%, transparent);
+}
+
+.menuButton {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid color-mix(in srgb, var(--color-text) 12%, transparent);
+  border-radius: 12px;
+  background: white;
+  color: var(--color-text);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.menuButton:hover {
+  color: var(--color-hot);
+  border-color: color-mix(in srgb, var(--color-hot) 35%, transparent);
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: rgba(17, 17, 17, 0.35);
+  cursor: pointer;
+  z-index: 1;
+}
+
+.mobileNav {
+  display: none;
+}
+
+@media (max-width: 860px) {
+  .desktopNav {
+    display: none;
+  }
+
+  .menuButton {
+    display: inline-flex;
+  }
+
+  .mobileNav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: fixed;
+    top: 80px;
+    left: 12px;
+    right: 12px;
+    padding: 14px;
+    border-radius: 16px;
+    background: white;
+    box-shadow: var(--shadow-deep);
+    border: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent);
+    z-index: 2;
+  }
+
+  .scrolled .mobileNav {
+    top: 68px;
+  }
+
+  .mobileLink {
+    text-decoration: none;
+    color: var(--color-text);
+    font-size: 16px;
+    font-weight: 600;
+    padding: 14px 14px;
+    border-radius: 12px;
+    transition:
+      background 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .mobileLink:hover,
+  .mobileLink.active {
+    color: var(--color-hot);
+    background: color-mix(in srgb, var(--color-hot) 8%, transparent);
+  }
+
+  .mobileLogin {
+    margin-top: 6px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+    background: var(--color-hot);
+    padding: 13px 16px;
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    height: 64px;
+  }
+
+  .scrolled {
+    height: 56px;
+  }
+
+  .brand {
+    font-size: 22px;
+  }
+
+  .inner {
+    padding: 0 14px;
+  }
+
+  .mobileNav {
+    top: 72px;
+  }
+
+  .scrolled .mobileNav {
+    top: 64px;
+  }
+}

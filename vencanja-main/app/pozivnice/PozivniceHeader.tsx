@@ -9,10 +9,9 @@ const PozivniceHeader = () => {
       <div className={styles.contactHeroContent}>
         <HeroBadge text="Primeri pozivnica" />
         <Heading className={styles.pozivniceMainTitle}>
-          Izaberite dizajn,
-          <span className={styles.pozivniceMainTitleSpan}>
+        Izaberite pozivnicu koja vam se<span className={styles.pozivniceMainTitleSpan}>
             {" "}
-            ili opišite svoj
+            najviše dopada 
           </span>
         </Heading>
         <motion.p
@@ -26,9 +25,7 @@ const PozivniceHeader = () => {
             ease: [0.25, 0.46, 0.45, 0.94],
           }}
         >
-          Otvorite primer i vidite šta možete da promenite: tekstove, slike,
-          boje i fontove. Ako vam se dopada — kontaktirajte nas. Ako ne — opišite
-          želje i predložićemo drugo rešenje.
+          Svaka pozivnica može se jednostavno prilagoditi vašem događaju. Isprobajte editor i pogledajte kako izgleda menjanje tekstova, fotografija, boja i fontova.
         </motion.p>
       </div>
     </div>
