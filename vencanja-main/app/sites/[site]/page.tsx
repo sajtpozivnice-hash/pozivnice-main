@@ -1,5 +1,7 @@
+import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import { getProjectBySlug } from "@/lib/db";
+import { INVITATION_SITE_HEADER } from "@/lib/domain";
 import { TemplateRenderer } from "@/engine/TemplateRenderer";
 
 export default async function SitePage({
@@ -8,16 +10,23 @@ export default async function SitePage({
   params: Promise<{ site: string }>;
 }) {
   const { site } = await params;
-  const project = await getProjectBySlug(site);
+  const slug = site.trim().toLowerCase();
+
+  // Defense in depth: only tenant rewrites set this header
+  const headerStore = await headers();
+  const invitationSite = headerStore.get(INVITATION_SITE_HEADER)?.toLowerCase();
+
+  if (!invitationSite || invitationSite !== slug) {
+    notFound();
+  }
+
+  const project = await getProjectBySlug(slug);
 
   if (!project?.config_json) {
     notFound();
   }
 
   return (
-    <TemplateRenderer
-      config={project.config_json}
-      projectId={project.id}
-    />
+    <TemplateRenderer config={project.config_json} projectId={project.id} />
   );
 }

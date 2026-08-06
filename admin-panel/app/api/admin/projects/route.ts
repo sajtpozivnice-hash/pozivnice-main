@@ -21,7 +21,19 @@ export async function POST(req: NextRequest) {
 
   const { data, error } = await supabaseAdmin
     .from("projects")
-    .insert([{ client_id, client_name, config_json, subdomain, title }])
+    .insert([
+      {
+        client_id,
+        client_name,
+        config_json,
+        subdomain:
+          typeof subdomain === "string"
+            ? subdomain.trim().toLowerCase()
+            : subdomain,
+        title,
+        published: true,
+      },
+    ])
     .select()
     .single();
 
@@ -32,17 +44,25 @@ export async function POST(req: NextRequest) {
 }
 
 export async function PUT(req: NextRequest) {
-  const { id, client_name, config_json, subdomain, title } = await req.json();
+  const body = await req.json();
+  const { id, client_name, config_json, subdomain, title, published } = body;
+
+  const updates: Record<string, unknown> = {
+    client_name,
+    config_json,
+    subdomain:
+      typeof subdomain === "string" ? subdomain.trim().toLowerCase() : subdomain,
+    title,
+    updated_at: new Date().toISOString(),
+  };
+
+  if (typeof published === "boolean") {
+    updates.published = published;
+  }
 
   const { data, error } = await supabaseAdmin
     .from("projects")
-    .update({
-      client_name,
-      config_json,
-      subdomain,
-      title,
-      updated_at: new Date(),
-    })
+    .update(updates)
     .eq("id", id)
     .select()
     .single();
