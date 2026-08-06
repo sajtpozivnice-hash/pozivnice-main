@@ -1,299 +1,258 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
-interface Client {
-  id: string;
-  name: string;
-  email: string;
-}
-
-interface Project {
-  id: string;
-  client_id: string;
-  client_name: string;
-  title: string;
-  config_json: any;
-  subdomain: string;
-}
+import { useCallback, useEffect, useState } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/Button";
+import { Field, SelectField } from "@/components/ui/Field";
+import {
+  EmptyState,
+  PageHeader,
+  Spinner,
+} from "@/components/ui/Page";
+import {
+  ProjectCard,
+  ProjectTable,
+} from "@/components/projects/ProjectList";
+import { adminFetch } from "@/lib/adminFetch";
+import type {
+  Client,
+  EventType,
+  ProjectListItem,
+  ProjectsListResult,
+  ProjectSortField,
+  TemplateCatalogItem,
+} from "@/types/project";
+import { EVENT_TYPE_LABELS } from "@/types/project";
 
 export default function AdminProjectsPage() {
-  const [projects, setProjects] = useState<Project[]>([]);
+  const [result, setResult] = useState<ProjectsListResult | null>(null);
   const [clients, setClients] = useState<Client[]>([]);
+  const [templates, setTemplates] = useState<TemplateCatalogItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const [newProject, setNewProject] = useState({
-    client_id: "",
-    client_name: "",
-    title: "",
-    config_json: "{}",
-    subdomain: "",
-  });
   const [error, setError] = useState("");
 
-  // Fetch clients
-  const fetchClients = async () => {
-    try {
-      const res = await fetch("/api/admin/clients");
-      const data = await res.json();
-      setClients(data);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  const [search, setSearch] = useState("");
+  const [eventType, setEventType] = useState<EventType | "all">("all");
+  const [template, setTemplate] = useState("all");
+  const [published, setPublished] = useState<"all" | "true" | "false">("all");
+  const [clientId, setClientId] = useState("all");
+  const [sort, setSort] = useState<ProjectSortField>("created_at");
+  const [order, setOrder] = useState<"asc" | "desc">("desc");
+  const [page, setPage] = useState(1);
 
-  // Fetch projects
-  const fetchProjects = async () => {
+  const loadMeta = useCallback(async () => {
+    const [clientsRes, templatesRes] = await Promise.all([
+      adminFetch("/api/admin/clients"),
+      adminFetch("/api/admin/templates"),
+    ]);
+    const clientsData = await clientsRes.json();
+    const templatesData = await templatesRes.json();
+    if (Array.isArray(clientsData)) setClients(clientsData);
+    if (Array.isArray(templatesData)) setTemplates(templatesData);
+  }, []);
+
+  const loadProjects = useCallback(async () => {
     setLoading(true);
+    setError("");
     try {
-      const res = await fetch("/api/admin/projects");
+      const params = new URLSearchParams({
+        search,
+        eventType,
+        template,
+        published,
+        clientId,
+        sort,
+        order,
+        page: String(page),
+        pageSize: "12",
+      });
+      const res = await adminFetch(`/api/admin/projects?${params}`);
       const data = await res.json();
-      setProjects(data);
+      if (!res.ok) throw new Error(data.error || "Greška pri učitavanju");
+      setResult(data);
     } catch (err) {
-      console.error(err);
+      setError(err instanceof Error ? err.message : "Greška");
+      setResult(null);
     } finally {
       setLoading(false);
     }
-  };
+  }, [search, eventType, template, published, clientId, sort, order, page]);
 
   useEffect(() => {
-    fetchClients();
-    fetchProjects();
-  }, []);
+    loadMeta();
+  }, [loadMeta]);
 
-  // Add new project
-  const addProject = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
+  useEffect(() => {
+    const t = setTimeout(loadProjects, 200);
+    return () => clearTimeout(t);
+  }, [loadProjects]);
 
-    if (
-      !newProject.client_id ||
-      !newProject.client_name ||
-      !newProject.config_json
-    ) {
-      setError("Client, name and config_json are required");
-      return;
-    }
-
-    try {
-      const res = await fetch("/api/admin/projects", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          client_id: newProject.client_id,
-          client_name: newProject.client_name,
-          title: newProject.title,
-          config_json: JSON.parse(newProject.config_json),
-          subdomain: newProject.subdomain,
-        }),
-      });
-      const data = await res.json();
-      if (res.ok) {
-        setNewProject({
-          client_id: "",
-          client_name: "",
-          title: "",
-          config_json: "{}",
-          subdomain: "",
-        });
-        fetchProjects();
-      } else {
-        setError(data.error || "Something went wrong");
-      }
-    } catch (err) {
-      setError("Invalid JSON in config");
-    }
-  };
-
-  // Update project
-  const updateProject = async (project: Project) => {
-    try {
-      const res = await fetch("/api/admin/projects", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          id: project.id,
-          client_name: project.client_name,
-          title: project.title,
-          config_json: project.config_json,
-          subdomain: project.subdomain,
-        }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        console.error(data.error);
-      } else {
-        fetchProjects();
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  // Delete project
-  const deleteProject = async (id: string) => {
-    if (!confirm("Da li zelite da obrisete ovaj projekat?")) return;
-    try {
-      const res = await fetch(`/api/admin/projects?id=${id}`, {
-        method: "DELETE",
-      });
-      const data = await res.json();
-      if (!res.ok) console.error(data.error);
-      else fetchProjects();
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  if (loading) return <p>Loading...</p>;
+  const items: ProjectListItem[] = result?.items || [];
 
   return (
-    <div className="max-w-5xl mx-auto p-8">
-      <h1 className="text-3xl mb-6">Admin – Projekti</h1>
+    <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+      <PageHeader
+        title="Projekti"
+        description="Upravljajte pozivnicama, subdomain-ima i aktivacijom."
+        actions={
+          <Link href="/admin/projects/new">
+            <Button>Novi projekat</Button>
+          </Link>
+        }
+      />
 
-      {/* Add Project Form */}
-      <form onSubmit={addProject} className="flex flex-col gap-4 mb-8">
-        <select
-          value={newProject.client_id}
-          onChange={(e) => {
-            const selectedClient = clients.find((c) => c.id === e.target.value);
-            setNewProject({
-              ...newProject,
-              client_id: e.target.value,
-              client_name: selectedClient?.name || "",
-            });
-          }}
-          className="border p-2 rounded bg-black text-white"
-          required
-        >
-          <option value="">Izaberi Klijenta</option>
-          {clients.map((c) => (
-            <option key={c.id} value={c.id} className="bg-black text-white">
-              {c.name} ({c.email})
-            </option>
-          ))}
-        </select>
+      <div className="mb-6 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+          <Field
+            label="Pretraga"
+            value={search}
+            onChange={(v) => {
+              setPage(1);
+              setSearch(v);
+            }}
+            placeholder="Naziv, klijent, subdomain…"
+            className="xl:col-span-2"
+          />
+          <SelectField
+            label="Tip događaja"
+            value={eventType}
+            onChange={(v) => {
+              setPage(1);
+              setEventType(v as EventType | "all");
+            }}
+            options={[
+              { value: "all", label: "Svi tipovi" },
+              ...(Object.keys(EVENT_TYPE_LABELS) as EventType[]).map((k) => ({
+                value: k,
+                label: EVENT_TYPE_LABELS[k],
+              })),
+            ]}
+          />
+          <SelectField
+            label="Template"
+            value={template}
+            onChange={(v) => {
+              setPage(1);
+              setTemplate(v);
+            }}
+            options={[
+              { value: "all", label: "Svi template-i" },
+              ...templates.map((t) => ({ value: t.key, label: t.title })),
+            ]}
+          />
+          <SelectField
+            label="Status"
+            value={published}
+            onChange={(v) => {
+              setPage(1);
+              setPublished(v as "all" | "true" | "false");
+            }}
+            options={[
+              { value: "all", label: "Svi statusi" },
+              { value: "true", label: "Aktivan" },
+              { value: "false", label: "Neaktivan" },
+            ]}
+          />
+          <SelectField
+            label="Klijent"
+            value={clientId}
+            onChange={(v) => {
+              setPage(1);
+              setClientId(v);
+            }}
+            options={[
+              { value: "all", label: "Svi klijenti" },
+              ...clients.map((c) => ({ value: c.id, label: c.name })),
+            ]}
+          />
+        </div>
 
-        <input
-          type="text"
-          placeholder="Naslov Projekta"
-          value={newProject.title}
-          onChange={(e) =>
-            setNewProject({ ...newProject, title: e.target.value })
+        <div className="mt-3 flex flex-wrap items-end gap-3">
+          <SelectField
+            label="Sortiraj po"
+            value={sort}
+            onChange={(v) => setSort(v as ProjectSortField)}
+            options={[
+              { value: "created_at", label: "Datum kreiranja" },
+              { value: "updated_at", label: "Poslednja izmena" },
+              { value: "title", label: "Naziv" },
+              { value: "subdomain", label: "Subdomain" },
+              { value: "published", label: "Status" },
+            ]}
+            className="min-w-[180px]"
+          />
+          <SelectField
+            label="Redosled"
+            value={order}
+            onChange={(v) => setOrder(v as "asc" | "desc")}
+            options={[
+              { value: "desc", label: "Opadajuće" },
+              { value: "asc", label: "Rastuće" },
+            ]}
+            className="min-w-[140px]"
+          />
+          {result ? (
+            <p className="ml-auto pb-2 text-sm text-[var(--muted)]">
+              {result.total} projekata
+            </p>
+          ) : null}
+        </div>
+      </div>
+
+      {error ? (
+        <div className="mb-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </div>
+      ) : null}
+
+      {loading ? <Spinner /> : null}
+
+      {!loading && items.length === 0 ? (
+        <EmptyState
+          title="Nema projekata"
+          description="Kreirajte prvi projekat ili promenite filtere."
+          action={
+            <Link href="/admin/projects/new">
+              <Button>Novi projekat</Button>
+            </Link>
           }
-          className="border p-2 rounded"
-          required
         />
+      ) : null}
 
-        <input
-          type="text"
-          placeholder="Sub domen"
-          value={newProject.subdomain}
-          onChange={(e) =>
-            setNewProject({ ...newProject, subdomain: e.target.value })
-          }
-          className="border p-2 rounded"
-        />
+      {!loading && items.length > 0 ? (
+        <>
+          <div className="grid gap-4 md:hidden">
+            {items.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </div>
+          <ProjectTable projects={items} />
 
-        <textarea
-          placeholder="Konfiguracija JSON"
-          value={newProject.config_json}
-          onChange={(e) =>
-            setNewProject({ ...newProject, config_json: e.target.value })
-          }
-          className="border p-2 rounded"
-          rows={6}
-          required
-        />
-
-        {error && <p className="text-red-500">{error}</p>}
-        <button type="submit" className="bg-blue-600 text-white p-2 rounded">
-          Dodaj Projekat
-        </button>
-      </form>
-
-      <table className="table-auto w-full border">
-        <thead>
-          <tr>
-            <th className="border p-2">Ime Klijenta</th>
-            <th className="border p-2">Naslov Projekta</th>
-            <th className="border p-2">Sabdomen</th>
-            <th className="border p-2">Konfiguracija JSON</th>
-            <th className="border p-2">Akcije</th>
-          </tr>
-        </thead>
-        <tbody>
-          {projects.map((project) => (
-            <tr key={project.id}>
-              <td className="border p-2">{project.client_name}</td>
-              <td className="border p-2">
-                <input
-                  type="text"
-                  value={project.title}
-                  onChange={(e) =>
-                    setProjects((prev) =>
-                      prev.map((p) =>
-                        p.id === project.id
-                          ? { ...p, title: e.target.value }
-                          : p,
-                      ),
-                    )
-                  }
-                  className="border p-1 rounded w-full"
-                />
-              </td>
-              <td className="border p-2">
-                <input
-                  type="text"
-                  value={project.subdomain}
-                  onChange={(e) =>
-                    setProjects((prev) =>
-                      prev.map((p) =>
-                        p.id === project.id
-                          ? { ...p, subdomain: e.target.value }
-                          : p,
-                      ),
-                    )
-                  }
-                  className="border p-1 rounded w-full"
-                />
-              </td>
-              <td className="border p-2">
-                <textarea
-                  value={JSON.stringify(project.config_json, null, 2)}
-                  onChange={(e) => {
-                    try {
-                      const parsed = JSON.parse(e.target.value);
-                      setProjects((prev) =>
-                        prev.map((p) =>
-                          p.id === project.id
-                            ? { ...p, config_json: parsed }
-                            : p,
-                        ),
-                      );
-                    } catch {}
-                  }}
-                  className="border p-1 rounded w-full"
-                  rows={4}
-                />
-              </td>
-              <td className="border p-2 flex gap-2">
-                <button
-                  className="bg-green-500 text-white p-1 rounded"
-                  onClick={() => updateProject(project)}
-                >
-                  Promeni
-                </button>
-                <button
-                  className="bg-red-500 text-white p-1 rounded"
-                  onClick={() => deleteProject(project.id)}
-                >
-                  Obrisi
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+          {result && result.totalPages > 1 ? (
+            <div className="mt-6 flex items-center justify-center gap-3">
+              <Button
+                variant="outline"
+                disabled={page <= 1}
+                onClick={() => setPage((p) => Math.max(1, p - 1))}
+              >
+                Prethodna
+              </Button>
+              <span className="text-sm text-[var(--muted)]">
+                {result.page} / {result.totalPages}
+              </span>
+              <Button
+                variant="outline"
+                disabled={page >= result.totalPages}
+                onClick={() =>
+                  setPage((p) => Math.min(result.totalPages, p + 1))
+                }
+              >
+                Sledeća
+              </Button>
+            </div>
+          ) : null}
+        </>
+      ) : null}
     </div>
   );
 }

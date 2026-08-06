@@ -1,0 +1,239 @@
+{
+  "template": "vencanje-cinematic",
+  "meta": {
+    "title": "Ana & Marko — Cinematic Story",
+    "description": "Interactive cinematic wedding invitation"
+  },
+  "event": {
+    "date": "2026-10-03",
+    "rsvpDate": "2026-09-03",
+    "names": "Ana & Marko"
+  },
+  "theme": {
+    "fonts": {
+      "primary": "playfair",
+      "secondary": "inter"
+    },
+    "colors": {
+      "base": {
+        "primary": {
+          "name": "Ember",
+          "value": "#d4a574"
+        },
+        "secondary": {
+          "name": "Void",
+          "value": "#070707"
+        }
+      }
+    }
+  },
+  "sections": [
+    {
+      "id": "hero",
+      "name": "Početak priče",
+      "type": "hero",
+      "visible": true,
+      "order": 1,
+      "data": {
+        "title": "A love in frames",
+        "subtitle": "Scene 01",
+        "backgroundImage": "https://images.unsplash.com/photo-1511285560929-80b4566047ec?auto=format&fit=crop&q=80&w=2000"
+      }
+    },
+    {
+      "id": "countdown",
+      "name": "Odbrojavanje",
+      "type": "countdown",
+      "visible": true,
+      "order": 2,
+      "data": {
+        "title": "The day approaches",
+        "imageUrl": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1600"
+      }
+    },
+    {
+      "id": "inviteText",
+      "name": "Tekst Pozivnice",
+      "type": "inviteText",
+      "visible": true,
+      "order": 3,
+      "data": {
+        "description": "We invite you into our story — not as guests of an evening, but as witnesses of a beginning.",
+        "imageUrl": "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&q=80&w=1600"
+      }
+    },
+    {
+      "id": "calendar",
+      "name": "Kalendar",
+      "type": "calendar",
+      "visible": true,
+      "order": 4,
+      "data": {
+        "title": "Mark this frame",
+        "imageUrl": "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&q=80&w=1600"
+      }
+    },
+    {
+      "id": "ourStory",
+      "name": "Naša Priča",
+      "type": "ourStory",
+      "visible": true,
+      "order": 5,
+      "data": {
+        "title": "How it began",
+        "overline": "Scene 02 — Meeting",
+        "text": "It started without a script — one glance, one conversation, one quiet certainty.\n\nSeasons passed as chapters. Cities became scenes. Ordinary days turned cinematic.\n\nNow we ask you to step into the next frame with us.",
+        "image": "https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&q=80&w=1600"
+      }
+    },
+    {
+      "id": "schedule",
+      "name": "Raspored",
+      "type": "schedule",
+      "visible": true,
+      "order": 6,
+      "data": {
+        "title": "The day, in sequence",
+        "subtitle": "Cut by cut",
+        "imageUrl": "https://images.unsplash.com/photo-1519225421980-715cb0215a07?auto=format&fit=crop&q=80&w=1600",
+        "items": [
+          {
+            "id": "1",
+            "time": "15:00",
+            "title": "Vows",
+            "description": "Open air, soft light"
+          },
+          {
+            "id": "2",
+            "time": "16:30",
+            "title": "Interlude",
+            "description": "Champagne and first embraces"
+          },
+          {
+            "id": "3",
+            "time": "18:30",
+            "title": "Dinner",
+            "description": "Long tables, warm voices"
+          },
+          {
+            "id": "4",
+            "time": "21:00",
+            "title": "Dance",
+            "description": "Until the credits roll"
+          }
+        ]
+      }
+    },
+    {
+      "id": "loveQuote",
+      "name": "Ljubavni Citat",
+      "type": "loveQuote",
+      "visible": true,
+      "order": 7,
+      "data": {
+        "title": "You are the frame I want every memory inside.",
+        "description": "Intertitle",
+        "imageUrl": "https://images.unsplash.com/photo-1606800052052-a08af7148863?auto=format&fit=crop&q=80&w=1600"
+      }
+    },
+    {
+      "id": "locations",
+      "name": "Lokacije",
+      "type": "locations",
+      "visible": true,
+      "order": 8,
+      "data": {
+        "title": "Where the story unfolds",
+        "subtitle": "Two scenes. One evening.",
+        "imageUrl": "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&q=80&w=1600",
+        "cards": [
+          {
+            "id": 1,
+            "title": "Ceremony",
+            "time": "15:00",
+            "location": "Villa Horizon Garden",
+            "text": "Vows beneath open sky.",
+            "image": "https://images.unsplash.com/photo-1478146896981-b80fe463b330?auto=format&fit=crop&q=80&w=1400"
+          },
+          {
+            "id": 2,
+            "title": "Reception",
+            "time": "18:30",
+            "location": "Villa Horizon Hall",
+            "text": "Dinner, toasts, and the night.",
+            "image": "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&q=80&w=1400"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ourGallery",
+      "name": "Galerija",
+      "type": "ourGallery",
+      "visible": true,
+      "order": 9,
+      "data": {
+        "title": "Still frames",
+        "description": "Swipe through the reel",
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&q=80&w=1200"
+          },
+          {
+            "url": "https://images.unsplash.com/photo-1519225421980-715cb0215a07?auto=format&fit=crop&q=80&w=1200"
+          },
+          {
+            "url": "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&q=80&w=1200"
+          },
+          {
+            "url": "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&q=80&w=1200"
+          },
+          {
+            "url": "https://images.unsplash.com/photo-1511285560929-80b4566047ec?auto=format&fit=crop&q=80&w=1200"
+          },
+          {
+            "url": "https://images.unsplash.com/photo-1606800052052-a08af7148863?auto=format&fit=crop&q=80&w=1200"
+          }
+        ]
+      }
+    },
+    {
+      "id": "uploadImagesSection",
+      "name": "Dodavanje Slika",
+      "type": "uploadImagesSection",
+      "visible": true,
+      "order": 10,
+      "data": {
+        "title": "Leave a frame",
+        "subtitle": "Your perspective",
+        "description": "If you catch a moment — add it to our reel.",
+        "imageUrl": "https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&q=80&w=1600"
+      }
+    },
+    {
+      "id": "rsvp",
+      "name": "Potvrda Prisutnosti",
+      "type": "rsvp",
+      "visible": true,
+      "order": 11,
+      "data": {
+        "title": "Will you appear in this scene?",
+        "description": "Reply by ",
+        "buttonText": "Confirm",
+        "imageUrl": "https://images.unsplash.com/photo-1515934751635-c81c6bc9efc1?auto=format&fit=crop&q=80&w=1600"
+      }
+    },
+    {
+      "id": "footer",
+      "name": "Završna poruka",
+      "type": "footer",
+      "visible": true,
+      "order": 12,
+      "data": {
+        "title": "Thank you for watching our story — and living it with us.",
+        "imageUrl": "https://images.unsplash.com/photo-1519225421980-715cb0215a07?auto=format&fit=crop&q=80&w=2000"
+      }
+    }
+  ],
+  "eventType": "wedding"
+}
