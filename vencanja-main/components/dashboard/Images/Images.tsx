@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useGuestPhotos } from "../context/GuestPhotosContext";
+import { useProject } from "../context/ProjectContext";
 import EmptyMessage from "../EmptyMessage";
 import SectionLoader from "../loaders/SectionLoader";
 import { Button } from "@/components/ui/button";
@@ -15,6 +16,7 @@ import {
 } from "lucide-react";
 import { GuestPhoto } from "../types";
 import SummaryStats from "../shared/SummaryStats";
+import GuestUploadQrCard from "./GuestUploadQrCard";
 
 const formatAddedAt = (iso: string): string => {
   try {
@@ -32,8 +34,15 @@ const formatAddedAt = (iso: string): string => {
 
 const Images = () => {
   const { photos, loading, deletePhoto } = useGuestPhotos();
+  const { project, config } = useProject();
   const [previewPhoto, setPreviewPhoto] = useState<GuestPhoto | null>(null);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+
+  const qrTitle =
+    config?.event?.names ||
+    config?.meta?.title ||
+    project?.title ||
+    "Naša proslava";
 
   const handleDownload = (url: string, fileName?: string | null) => {
     const anchor = document.createElement("a");
@@ -69,6 +78,12 @@ const Images = () => {
 
   return (
     <div className="w-full min-w-0 space-y-4">
+      <GuestUploadQrCard
+        subdomain={project?.subdomain || ""}
+        title={qrTitle}
+        eventDate={config?.event?.date}
+      />
+
       <SummaryStats
         items={[
           {
@@ -82,7 +97,7 @@ const Images = () => {
       {photos.length === 0 ? (
         <EmptyMessage
           title="Još nema fotografija gostiju"
-          description="Kada gosti uploaduju slike sa pozivnice, pojaviće se ovde."
+          description="Odštampajte QR kod iznad. Gosti skeniraju i šalju slike — pojaviće se ovde."
           icon={ImagesIcon}
           accent="gallery"
         />

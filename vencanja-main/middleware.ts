@@ -7,7 +7,7 @@ import {
 } from "@/lib/domain";
 
 /** Paths that exist under /sites/[site] besides the invitation root. */
-const TENANT_NESTED_ALLOWLIST = [/^\/admin(?:\/|$)/];
+const TENANT_NESTED_ALLOWLIST = [/^\/admin(?:\/|$)/, /^\/upload(?:\/|$)/];
 
 function buildSitePath(subdomain: string, pathname: string): string {
   const siteRoot = `/sites/${subdomain}`;

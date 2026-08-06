@@ -102,6 +102,7 @@ const GuestPhotoUploadControl = ({
         id={inputId}
         type="file"
         accept="image/*"
+        capture="environment"
         className="hidden"
         disabled={disabled}
         onChange={(event) => {
