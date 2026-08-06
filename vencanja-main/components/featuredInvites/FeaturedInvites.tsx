@@ -38,8 +38,7 @@ const FeaturedInvites = () => {
         <div className={styles.titleContainer}>
           <Heading className={styles.heading}>Istaknute pozivnice</Heading>
           <Paragraph variant="subtitle">
-            Otvorite primer i proverite šta možete da promenite pre nego što nas
-            kontaktirate.
+          Otvorite primer, isprobajte editor i pogledajte koliko lako možete prilagoditi pozivnicu svom događaju.
           </Paragraph>
         </div>
 

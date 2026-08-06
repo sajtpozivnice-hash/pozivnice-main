@@ -12,11 +12,9 @@ const Workflow = () => {
     <div className={styles.wrapper}>
       <Section>
         <div className={styles.header}>
-          <Heading className={styles.title}>Od izbora do organizacije</Heading>
+          <Heading className={styles.title}>Odaberite pozivnicu i podelite je za samo nekoliko koraka</Heading>
           <Paragraph variant="subtitle">
-            Pregledate dizajn, javite nam se i dogovorimo izradu. Kada pozivnica
-            bude spremna, organizujete događaj iz svog naloga.
-          </Paragraph>
+          Digitalna pozivnica je spremna za korišćenje odmah nakon evidentirane uplate. Dobijate svoj jedinstveni link koji možete podeliti sa porodicom i prijateljima putem Vibera, WhatsApp-a, Messengera, SMS-a, e-maila ili društvenih mreža.</Paragraph>
         </div>
 
         <div className={styles.steps}>

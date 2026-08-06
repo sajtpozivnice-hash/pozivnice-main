@@ -15,9 +15,9 @@ const Hero = () => {
   return (
     <div className={styles.background}>
       <div className={styles.heroContent}>
-        <HeroBadge text="Pozivnica i prostor za organizaciju" />
+        <HeroBadge text="Digitalne pozivnice sa privatnim nalogom." />
         <Heading className={styles.mainTitle}>
-          <span className={styles.brand}>eVenčanje</span>
+          <span className={styles.brand}>Više od digitalne pozivnice</span>
           <span className={styles.mainTitleSpan}>
             Lepša pozivnica.
             <br />
@@ -25,9 +25,7 @@ const Hero = () => {
           </span>
         </Heading>
         <Paragraph center={false} variant="subtitle">
-          Online pozivnica i privatni nalog u kojem menjate tekstove i slike,
-          pratite ko dolazi, pravite raspored sedenja i vodite pripreme do dana
-          događaja.
+        Napravite prelepu digitalnu pozivnicu i organizujte ceo događaj na jednom mestu. Nakon aktivacije dobijate privatni nalog iz kog možete uređivati pozivnicu, pratiti potvrde dolaska, organizovati raspored sedenja, voditi troškove i planirati sve do dana događaja.
         </Paragraph>
         <motion.div
           className={styles.heroButtons}

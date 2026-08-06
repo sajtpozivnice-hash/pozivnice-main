@@ -17,8 +17,7 @@ const InstructionsForTemplates = () => {
         <div className={styles.titleContainer}>
           <Heading className={styles.heading}>Kako funkcioniše</Heading>
           <Paragraph variant="subtitle">
-            Od izbora dizajna do slanja linka gostima — i dalje sve uređujete
-            sami iz svog naloga.
+          Od izbora pozivnice do slanja gostima – ceo proces je jednostavan i traje svega nekoliko koraka.
           </Paragraph>
         </div>
         <div className={styles.cardsContainer}>

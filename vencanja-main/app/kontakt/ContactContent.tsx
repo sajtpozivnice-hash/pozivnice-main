@@ -24,28 +24,24 @@ const ContactContent = () => {
           <div className={styles.infoContainerInner}>
             <Heading>Kako možemo da vam pomognemo</Heading>
             <Paragraph center={false}>
-              Na sajtu nema automatske kupovine. Pošaljite nam poruku — odgovaramo
-              lično i dogovorimo izradu pozivnice.
+            Ako imate pitanje u vezi sa digitalnim pozivnicama, editorom, privatnim nalogom ili bilo kojom funkcijom platforme, slobodno nam pošaljite poruku. Trudimo se da odgovorimo u najkraćem mogućem roku.
             </Paragraph>
 
             <div className={styles.scenario}>
               <Heading variant={HeadingVariant.H3} className={styles.smallHeading}>
-                Dopada vam se postojeći dizajn
+              Treba vam dodatna informacija?
               </Heading>
               <Paragraph center={false}>
-                Otvorite primer koji vam se sviđa, pa nam napišite koji je to
-                dizajn i osnovne podatke o događaju. Zatim dogovorimo izradu.
+              Ako niste sigurni kako funkcionišu digitalne pozivnice ili vas zanima neka od funkcija platforme, rado ćemo odgovoriti na sva vaša pitanja i pomoći vam da pronađete odgovarajuće rešenje.
               </Paragraph>
             </div>
 
             <div className={styles.scenario}>
               <Heading variant={HeadingVariant.H3} className={styles.smallHeading}>
-                Želite nešto drugačije
+              Već ste odabrali pozivnicu?
               </Heading>
               <Paragraph center={false}>
-                Ako vam nijedan primer ne odgovara, opišite šta želite — stil,
-                boje, sadržaj, posebne želje. Predložićemo odgovarajuće rešenje
-                ili potpuno prilagođenu pozivnicu.
+              Ako ste pronašli pozivnicu koja vam se dopada i imate pitanje pre slanja zahteva za aktivaciju, slobodno nam pišite. Tu smo da pomognemo.
               </Paragraph>
             </div>
 
@@ -118,11 +114,9 @@ const ContactContent = () => {
           </div>
           <div className={styles.info}>
             <div>
-              <Heading variant={HeadingVariant.H3}>Šta dobijate</Heading>
+              <Heading variant={HeadingVariant.H3}>Šta sve možete da očekujete?</Heading>
               <Paragraph center={false}>
-                Online pozivnicu i privatni nalog: menjate sadržaj, pratite ko
-                dolazi, pravite raspored sedenja, vodite budžet i primáte
-                fotografije od gostiju.
+              Naša platforma omogućava mnogo više od same digitalne pozivnice. Nakon aktivacije dobijate pristup privatnom nalogu iz kog možete uređivati sadržaj pozivnice, pratiti potvrde dolaska gostiju, organizovati raspored sedenja, voditi pregled troškova, planirati obaveze i pregledati fotografije koje vam gosti pošalju.
               </Paragraph>
               <Button
                 onClick={() => router.push("/pozivnice")}
@@ -136,8 +130,7 @@ const ContactContent = () => {
             <div>
               <Heading variant={HeadingVariant.H3}>Imate pitanja?</Heading>
               <Paragraph center={false}>
-                Pitajte preko forme ili drugih kontakata — rado ćemo objasniti
-                pakete i kako funkcioniše vaš nalog.
+              Pošaljite nam poruku putem forme. Bilo da vam treba dodatna informacija ili savet, odgovorićemo vam u najkraćem mogućem roku.
               </Paragraph>
             </div>
           </div>

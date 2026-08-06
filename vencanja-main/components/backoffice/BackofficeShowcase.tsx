@@ -16,12 +16,9 @@ const BackofficeShowcase = () => {
       <div className={styles.header}>
         <p className={styles.eyebrow}>Vaš privatni nalog</p>
         <Heading className={styles.title}>
-          Uz pozivnicu dobijate mesto gde sve uređujete sami
-        </Heading>
+        Sve što vam je potrebno za uređivanje pozivnice i organizaciju događaja nalazi se na jednom mestu.        </Heading>
         <Paragraph variant="subtitle">
-          eVenčanje nije samo lep dizajn na internetu. Dobijate svoj prostor u
-          kojem menjate pozivnicu, pratite goste i vodite organizaciju — bez
-          znanja o pravljenju sajtova.
+        Kupovinom digitalne pozivnice ne dobijate samo moderan dizajn. Dobijate svoj privatni nalog iz kog možete sami da uređujete pozivnicu, pratite goste i organizujete ceo događaj — jednostavno i bez ikakvog tehničkog znanja. Sve izmene koje napravite odmah se prikazuju na vašoj pozivnici, tako da gosti uvek vide najnoviju verziju. Nema ponovnog slanja linka niti čekanja nove verzije pozivnice.
         </Paragraph>
       </div>
 

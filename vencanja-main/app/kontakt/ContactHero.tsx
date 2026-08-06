@@ -25,9 +25,7 @@ const ContactHero = () => {
             ease: [0.25, 0.46, 0.45, 0.94],
           }}
         >
-          Dopada vam se neki od naših dizajna? Ili želite potpuno jedinstvenu
-          pozivnicu? Pišite nam — zajedno dogovorimo šta vam treba.
-        </motion.p>
+Tu smo da odgovorimo na sva vaša pitanja u vezi sa digitalnim pozivnicama, funkcijama platforme i načinom korišćenja. Pišite nam – rado ćemo pomoći.        </motion.p>
       </div>
     </div>
   );

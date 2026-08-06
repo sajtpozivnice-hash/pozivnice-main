@@ -13,9 +13,9 @@ const Kontakt = () => {
       <ContactHero />
       <ContactContent />
       <Cta
-        title="Još birate dizajn?"
-        description="Pregledajte primere pa nam se javite — ili odmah napišite šta želite, pa ćemo predložiti rešenje."
-        primaryLabel="Pogledaj primere"
+        title="Još razgledate pozivnice?"
+        description="Pregledajte našu kolekciju digitalnih pozivnica za venčanja, rođendane i krštenja. Isprobajte editor, pronađite dizajn koji vam najviše odgovara."
+        primaryLabel="Pogledajte pozivnice"
         primaryHref="/pozivnice"
         secondaryLabel="Cenovnik"
         secondaryHref="/#cenovnik"

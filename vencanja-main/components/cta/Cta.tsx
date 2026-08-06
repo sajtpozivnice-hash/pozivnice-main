@@ -19,9 +19,9 @@ type CtaProps = {
 };
 
 const Cta = ({
-  title = "Spremni za svoju pozivnicu?",
-  description = "Pregledajte primere ili nam opišite šta želite. Javite se preko kontakta — zajedno dogovorimo izradu.",
-  primaryLabel = "Pogledaj primere",
+  title = "Spremni da napravite svoju digitalnu pozivnicu??",
+  description = "Izaberite dizajn, unesite podatke, podesite sve kako Vam odgovara i pošaljite zahtev. Nakon evidentirane uplate dobijate aktivnu pozivnicu koju možete odmah deliti sa gostima i uređivati kad god poželite.",
+  primaryLabel = "Izaberite pozivnicu",
   primaryHref = "/pozivnice",
   secondaryLabel = "Kontaktirajte nas",
   secondaryHref = "/kontakt",

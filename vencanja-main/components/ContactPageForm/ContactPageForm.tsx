@@ -128,8 +128,7 @@ const ContactPageForm: FC<InviteContactFormProps> = ({ config = null }) => {
       <div>
         <Heading>Pošaljite nam poruku</Heading>
         <p className={styles.formIntro}>
-          Napišite koji dizajn vam se dopada ili opišite želje za prilagođenu
-          pozivnicu.
+        Tu smo da pomognemo oko organizacije Vašeg događaja.
         </p>
       </div>
       <form
@@ -299,7 +298,7 @@ const ContactPageForm: FC<InviteContactFormProps> = ({ config = null }) => {
             value={formData.message}
             className={styles.textAreaInput}
             name="message"
-            placeholder="Npr. dopada mi se dizajn „Večna ljubav“, ili: želim potpuno prilagođenu pozivnicu u bojama…"
+            placeholder="Napišite vaše pitanje ili poruku..."
             required={false}
             rows={7}
             onChange={(e) => {
