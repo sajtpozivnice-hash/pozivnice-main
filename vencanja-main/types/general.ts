@@ -15,6 +15,7 @@ export type PackageBoxProps = {
   description: string;
   list: string[];
   link: string;
+  index?: number;
 };
 
 export type InstructionsCardProps = {
