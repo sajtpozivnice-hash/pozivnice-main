@@ -1,4 +1,9 @@
+import { deleteProjectsByIds } from "@/services/cascadeDelete.service";
 import { supabaseAdmin } from "@/lib/supabaseAdmin";
+import {
+  applyFormOverridesToConfig,
+  validateConfigObject,
+} from "@/lib/configParse";
 import {
   buildInitialConfig,
   getDefaultConfigForTemplate,
@@ -196,12 +201,25 @@ export async function createProject(
   await assertSubdomainAvailable(subdomain);
   const client = await getClientName(input.client_id);
 
-  const config_json = buildInitialConfig({
-    template: input.template,
-    eventType: input.eventType,
-    title: input.title,
-    eventDate: input.eventDate,
-  });
+  let config_json: UniversalProjectConfig;
+
+  if (input.config_json) {
+    const validated = validateConfigObject(input.config_json);
+    if (!validated.ok) throw new Error(validated.error);
+    config_json = applyFormOverridesToConfig(validated.config, {
+      title: input.title,
+      eventDate: input.eventDate,
+      eventType: input.eventType,
+      template: input.template,
+    });
+  } else {
+    config_json = buildInitialConfig({
+      template: input.template,
+      eventType: input.eventType,
+      title: input.title,
+      eventDate: input.eventDate,
+    });
+  }
 
   const payload = {
     client_id: input.client_id,
@@ -293,11 +311,21 @@ export async function updateProject(
   }
 
   const templateChanging =
+    !input.config_json &&
     Boolean(input.template) &&
     isTemplateKey(input.template!) &&
     input.template !== currentConfig.template;
 
-  if (templateChanging) {
+  if (input.config_json) {
+    const validated = validateConfigObject(input.config_json);
+    if (!validated.ok) throw new Error(validated.error);
+    nextConfig = applyFormOverridesToConfig(validated.config, {
+      title: typeof input.title === "string" ? input.title : existing.title,
+      eventDate: input.eventDate,
+      eventType: input.eventType,
+      template: input.template,
+    });
+  } else if (templateChanging) {
     if (!input.resetConfig) {
       throw new Error(
         "Promena template-a zahteva potvrdu (resetConfig). Postojeći config bi bio zamenjen.",
@@ -365,6 +393,5 @@ export async function updateProject(
 }
 
 export async function deleteProject(id: string): Promise<void> {
-  const { error } = await supabaseAdmin.from("projects").delete().eq("id", id);
-  if (error) throw new Error(error.message);
+  await deleteProjectsByIds([id]);
 }

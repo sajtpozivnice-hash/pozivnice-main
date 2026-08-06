@@ -39,7 +39,6 @@ export type Client = {
   name: string;
   email: string;
   phone?: string | null;
-  paid?: boolean;
   auth_user_id?: string | null;
   created_at?: string;
   updated_at?: string | null;
@@ -112,6 +111,8 @@ export type CreateProjectInput = {
   eventType: EventType;
   eventDate?: string;
   published?: boolean;
+  /** Pasted invite-config.json from editor/email. If set, used instead of template seed. */
+  config_json?: UniversalProjectConfig;
 };
 
 export type UpdateProjectInput = {
@@ -125,6 +126,8 @@ export type UpdateProjectInput = {
   published?: boolean;
   /** When true, replace config_json with template default (destructive). */
   resetConfig?: boolean;
+  /** Replace entire config_json (e.g. pasted from email). */
+  config_json?: UniversalProjectConfig;
 };
 
 export type TemplateCatalogItem = {

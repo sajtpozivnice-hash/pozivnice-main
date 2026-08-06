@@ -63,19 +63,26 @@ export default function EditProjectPage() {
       subdomain: project.subdomain || "",
       eventDate: config?.event?.date || "",
       published: project.published === true,
+      configSource: "template",
+      configText: config ? JSON.stringify(config, null, 2) : "",
     };
   }, [project]);
 
   const handleSubmit = async (
     values: ProjectFormValues,
-    extras?: { resetConfig?: boolean },
+    extras?: {
+      resetConfig?: boolean;
+      config_json?: UniversalProjectConfig;
+    },
   ) => {
     if (!project) return;
     setSubmitting(true);
     setError("");
     try {
-      if (!values.template) {
-        setError("Izaberite template");
+      const template =
+        values.template || extras?.config_json?.template || "";
+      if (!template) {
+        setError("Izaberite template ili ubacite validan config JSON");
         return;
       }
       const res = await adminFetch(`/api/admin/projects/${project.id}`, {
@@ -84,11 +91,12 @@ export default function EditProjectPage() {
           client_id: values.client_id,
           title: values.title,
           subdomain: values.subdomain,
-          template: values.template,
+          template,
           eventType: values.eventType,
           eventDate: values.eventDate || undefined,
           published: values.published,
           resetConfig: extras?.resetConfig,
+          config_json: extras?.config_json,
         }),
       });
       const data = await res.json();

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin } from "@/lib/requireAdmin";
 import { supabaseAdmin } from "@/lib/supabaseAdmin";
+import { deleteClient } from "@/services/clients.service";
 
 export async function GET(req: NextRequest) {
   const auth = await requireAdmin(req);
@@ -49,7 +50,6 @@ export async function POST(req: NextRequest) {
         email: email.trim(),
         phone: phone || null,
         auth_user_id: authUser?.user?.id,
-        paid: false,
       },
     ])
     .select()
@@ -65,7 +65,7 @@ export async function PUT(req: NextRequest) {
   const auth = await requireAdmin(req);
   if (!auth.ok) return auth.response;
 
-  const { id, name, email, phone, paid } = await req.json();
+  const { id, name, email, phone } = await req.json();
   if (!id) {
     return NextResponse.json({ error: "ID je obavezan" }, { status: 400 });
   }
@@ -76,7 +76,6 @@ export async function PUT(req: NextRequest) {
       name,
       email,
       phone,
-      paid,
       updated_at: new Date().toISOString(),
     })
     .eq("id", id)
@@ -98,9 +97,11 @@ export async function DELETE(req: NextRequest) {
     return NextResponse.json({ error: "ID je obavezan" }, { status: 400 });
   }
 
-  const { error } = await supabaseAdmin.from("clients").delete().eq("id", id);
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 400 });
+  try {
+    await deleteClient(id);
+    return NextResponse.json({ success: true });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : "Greška";
+    return NextResponse.json({ error: message }, { status: 400 });
   }
-  return NextResponse.json({ success: true });
 }

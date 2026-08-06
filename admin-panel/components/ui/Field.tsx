@@ -1,6 +1,6 @@
 "use client";
 
-type Props = {
+type FieldProps = {
   label?: string;
   value: string;
   onChange: (value: string) => void;
@@ -22,7 +22,7 @@ export function Field({
   disabled,
   hint,
   className = "",
-}: Props) {
+}: FieldProps) {
   return (
     <label className={`flex flex-col gap-1.5 ${className}`}>
       {label ? (
@@ -39,6 +39,56 @@ export function Field({
         required={required}
         disabled={disabled}
         className="rounded-lg border border-[var(--border)] bg-[var(--surface)] px-3 py-2.5 text-sm text-[var(--foreground)] outline-none transition placeholder:text-[var(--muted)] focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent-soft)] disabled:opacity-60"
+      />
+      {hint ? <span className="text-xs text-[var(--muted)]">{hint}</span> : null}
+    </label>
+  );
+}
+
+type TextAreaProps = {
+  label?: string;
+  value: string;
+  onChange: (value: string) => void;
+  placeholder?: string;
+  required?: boolean;
+  disabled?: boolean;
+  hint?: string;
+  className?: string;
+  rows?: number;
+  mono?: boolean;
+};
+
+export function TextAreaField({
+  label,
+  value,
+  onChange,
+  placeholder,
+  required,
+  disabled,
+  hint,
+  className = "",
+  rows = 10,
+  mono,
+}: TextAreaProps) {
+  return (
+    <label className={`flex flex-col gap-1.5 ${className}`}>
+      {label ? (
+        <span className="text-sm font-medium text-[var(--foreground)]">
+          {label}
+          {required ? <span className="text-red-500"> *</span> : null}
+        </span>
+      ) : null}
+      <textarea
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+        required={required}
+        disabled={disabled}
+        rows={rows}
+        spellCheck={false}
+        className={`rounded-lg border border-[var(--border)] bg-[var(--surface)] px-3 py-2.5 text-sm text-[var(--foreground)] outline-none transition placeholder:text-[var(--muted)] focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent-soft)] disabled:opacity-60 ${
+          mono ? "font-mono text-xs leading-relaxed" : ""
+        }`}
       />
       {hint ? <span className="text-xs text-[var(--muted)]">{hint}</span> : null}
     </label>

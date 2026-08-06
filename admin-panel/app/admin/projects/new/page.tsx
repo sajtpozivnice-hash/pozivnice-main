@@ -25,6 +25,8 @@ export default function NewProjectPage() {
     subdomain: "",
     eventDate: "",
     published: true,
+    configSource: "paste",
+    configText: "",
   };
 
   useEffect(() => {
@@ -44,12 +46,17 @@ export default function NewProjectPage() {
     })();
   }, []);
 
-  const handleSubmit = async (values: ProjectFormValues) => {
+  const handleSubmit = async (
+    values: ProjectFormValues,
+    extras?: { config_json?: import("@/types/project").UniversalProjectConfig },
+  ) => {
     setSubmitting(true);
     setError("");
     try {
-      if (!values.template) {
-        setError("Izaberite template");
+      const template =
+        values.template || extras?.config_json?.template || "";
+      if (!template) {
+        setError("Izaberite template ili ubacite validan config JSON");
         return;
       }
       const res = await adminFetch("/api/admin/projects", {
@@ -58,10 +65,11 @@ export default function NewProjectPage() {
           client_id: values.client_id,
           title: values.title,
           subdomain: values.subdomain,
-          template: values.template,
+          template,
           eventType: values.eventType,
           eventDate: values.eventDate || undefined,
           published: values.published,
+          config_json: extras?.config_json,
         }),
       });
       const data = await res.json();
@@ -80,7 +88,7 @@ export default function NewProjectPage() {
     <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6">
       <PageHeader
         title="Novi projekat"
-        description="Kreira se početni config iz template default-a i povezuje sa klijentom."
+        description="Ubaci invite-config.json iz mejla ili koristi template default."
         actions={
           <Link href="/admin/projects">
             <Button variant="ghost">Nazad</Button>

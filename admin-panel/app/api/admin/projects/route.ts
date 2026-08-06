@@ -70,6 +70,7 @@ export async function POST(req: NextRequest) {
       eventType: body.eventType,
       eventDate: body.eventDate,
       published: body.published,
+      config_json: body.config_json,
     });
 
     return NextResponse.json(project, { status: 201 });

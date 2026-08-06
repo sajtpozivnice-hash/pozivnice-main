@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/Button";
 import { Field } from "@/components/ui/Field";
 import { Modal } from "@/components/ui/Modal";
 import {
-  Badge,
   EmptyState,
   PageHeader,
   Spinner,
@@ -17,7 +16,6 @@ type Client = {
   name: string;
   email: string;
   phone: string | null;
-  paid: boolean;
 };
 
 export default function AdminClientsPage() {
@@ -115,7 +113,10 @@ export default function AdminClientsPage() {
 
       <div className="mb-6 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
         <h2 className="mb-4 text-sm font-semibold">Novi klijent</h2>
-        <form onSubmit={addClient} className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <form
+          onSubmit={addClient}
+          className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4"
+        >
           <Field
             label="Ime"
             value={newClient.name}
@@ -165,28 +166,17 @@ export default function AdminClientsPage() {
                 key={client.id}
                 className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4"
               >
-                <div className="flex items-start justify-between gap-2">
-                  <div>
-                    <div className="font-medium">{client.name}</div>
-                    <div className="text-sm text-[var(--muted)]">
-                      {client.email}
-                    </div>
-                    <div className="text-sm text-[var(--muted)]">
-                      {client.phone || "—"}
-                    </div>
-                  </div>
-                  <Badge tone={client.paid ? "success" : "warning"}>
-                    {client.paid ? "Plaćeno" : "Neplaćeno"}
-                  </Badge>
+                <div className="font-medium">{client.name}</div>
+                <div className="text-sm text-[var(--muted)]">{client.email}</div>
+                <div className="text-sm text-[var(--muted)]">
+                  {client.phone || "—"}
                 </div>
                 <div className="mt-3 flex flex-wrap gap-2">
                   <Button
                     variant="secondary"
-                    onClick={() =>
-                      updateClient({ ...client, paid: !client.paid })
-                    }
+                    onClick={() => updateClient(client)}
                   >
-                    Toggle plaćeno
+                    Sačuvaj
                   </Button>
                   <Button
                     variant="danger"
@@ -206,7 +196,6 @@ export default function AdminClientsPage() {
                   <th className="px-4 py-3 font-medium">Ime</th>
                   <th className="px-4 py-3 font-medium">Email</th>
                   <th className="px-4 py-3 font-medium">Telefon</th>
-                  <th className="px-4 py-3 font-medium">Status</th>
                   <th className="px-4 py-3 font-medium">Akcije</th>
                 </tr>
               </thead>
@@ -262,24 +251,6 @@ export default function AdminClientsPage() {
                       />
                     </td>
                     <td className="px-4 py-3">
-                      <button
-                        type="button"
-                        onClick={() =>
-                          setClients((prev) =>
-                            prev.map((c) =>
-                              c.id === client.id
-                                ? { ...c, paid: !c.paid }
-                                : c,
-                            ),
-                          )
-                        }
-                      >
-                        <Badge tone={client.paid ? "success" : "warning"}>
-                          {client.paid ? "Plaćeno" : "Neplaćeno"}
-                        </Badge>
-                      </button>
-                    </td>
-                    <td className="px-4 py-3">
                       <div className="flex gap-2">
                         <Button
                           variant="secondary"
@@ -306,7 +277,7 @@ export default function AdminClientsPage() {
       <Modal
         open={Boolean(deleteId)}
         title="Obriši klijenta?"
-        description="Brisanje klijenta može obrisati i povezane projekte ako postoje FK veze. Ova akcija je trajna."
+        description="Brišu se i povezani projekti (i zavisni podaci). Ova akcija je trajna."
         confirmLabel="Obriši"
         danger
         loading={deleting}
