@@ -113,7 +113,7 @@ const DashboardHome = ({ onNavigate }: DashboardHomeProps) => {
           <p className="text-xs font-medium tracking-[0.18em] text-white/60 uppercase">
             {copy.overviewLabel}
           </p>
-          <h2 className="max-w-2xl text-2xl font-semibold tracking-tight sm:text-3xl">
+          <h2 className="max-w-2xl text-2xl text-white font-semibold tracking-tight sm:text-3xl">
             {activeProject?.title ?? copy.fallbackTitle}
           </h2>
           <p className="max-w-xl text-sm leading-relaxed text-white/70">
