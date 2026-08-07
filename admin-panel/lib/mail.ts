@@ -15,14 +15,29 @@ function getTransporter() {
   });
 }
 
+export async function sendEmail(params: {
+  to: string;
+  subject: string;
+  text: string;
+  html?: string;
+}): Promise<void> {
+  const from = process.env.EMAIL_USER!;
+  const transporter = getTransporter();
+
+  await transporter.sendMail({
+    from: `"Pozivnice" <${from}>`,
+    to: params.to,
+    subject: params.subject,
+    text: params.text,
+    html: params.html,
+  });
+}
+
 export async function sendClientInviteEmail(params: {
   to: string;
   name: string;
   actionLink: string;
 }): Promise<void> {
-  const from = process.env.EMAIL_USER!;
-  const transporter = getTransporter();
-
   const text = [
     `Zdravo${params.name ? ` ${params.name}` : ""},`,
     "",
@@ -51,8 +66,7 @@ export async function sendClientInviteEmail(params: {
     <p>Prijava: koristite ovaj email i lozinku koju postavite.</p>
   `;
 
-  await transporter.sendMail({
-    from: `"Pozivnice" <${from}>`,
+  await sendEmail({
     to: params.to,
     subject: "Postavite lozinku – nalog za pozivnice",
     text,

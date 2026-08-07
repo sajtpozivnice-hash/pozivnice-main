@@ -17,6 +17,7 @@ export default function Header() {
     { name: "Početna", href: "/admin" },
     { name: "Klijenti", href: "/admin/clients" },
     { name: "Projekti", href: "/admin/projects" },
+    { name: "Emailovi", href: "/admin/emails" },
   ];
 
   const isActive = (href: string) =>
