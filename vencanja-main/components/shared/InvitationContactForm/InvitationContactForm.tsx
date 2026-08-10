@@ -6,6 +6,7 @@ import FormError from "../FormError/FormError";
 import FormLabel from "../FormLabel/FormLabel";
 import { useToast } from "@/components/Toast/ToastContext";
 import Heading from "../typography/Heading";
+import { isDemoMode } from "@/lib/demo/mode";
 
 interface InviteContactFormProps {
   config: unknown;
@@ -80,6 +81,23 @@ const InvitationContactForm: FC<InviteContactFormProps> = ({ config }) => {
 
     try {
       setLoading(true);
+
+      if (isDemoMode()) {
+        await new Promise((resolve) => setTimeout(resolve, 400));
+        addToast(
+          "Demo režim — zahtev nije poslat. U pravom nalogu ovde šaljete upit.",
+          "success",
+        );
+        setFormData({
+          name: "",
+          email: "",
+          phoneNumber: "",
+          message: "",
+        });
+        setErrors({});
+        return;
+      }
+
       const res = await fetch("/api/send-invite", {
         method: "POST",
         body: JSON.stringify(payload),

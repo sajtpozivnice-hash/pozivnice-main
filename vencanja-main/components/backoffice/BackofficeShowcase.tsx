@@ -43,7 +43,7 @@ const BackofficeShowcase = () => {
 
       <div className={styles.cta}>
         <Button icon={AnimatedArrowRight}>
-          <Link href="/pozivnice">Pogledaj primere</Link>
+          <Link href="/demo">Isprobaj demo nalog</Link>
         </Button>
         <Button variant="secondary" icon={AnimatedArrowRight}>
           <Link href="/login">Prijavite se u nalog</Link>

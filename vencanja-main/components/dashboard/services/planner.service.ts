@@ -6,12 +6,25 @@ import {
   UpdatePlannerTaskDto,
 } from "@/components/dashboard/types";
 import { createClient } from "@/lib/supabase/client";
+import { isDemoMode } from "@/lib/demo/mode";
+import {
+  demoCreatePlannerCategoriesBulk,
+  demoCreatePlannerCategory,
+  demoCreatePlannerTask,
+  demoCreatePlannerTasksBulk,
+  demoDeletePlannerTask,
+  demoGetPlannerCategories,
+  demoGetPlannerTasks,
+  demoUpdatePlannerTask,
+} from "@/lib/demo/adapters";
 
 const supabase = createClient();
 
 export const getPlannerCategoriesByProjectService = async (
   projectId: string,
 ): Promise<PlannerCategory[]> => {
+  if (isDemoMode()) return demoGetPlannerCategories(projectId);
+
   const { data, error } = await supabase
     .from("planner_categories")
     .select("*")
@@ -26,6 +39,10 @@ export const createPlannerCategoriesBulkService = async (
   projectId: string,
   categories: CreatePlannerCategoryDto[],
 ): Promise<PlannerCategory[]> => {
+  if (isDemoMode()) {
+    return demoCreatePlannerCategoriesBulk(projectId, categories);
+  }
+
   const payload = categories.map((category, index) => ({
     project_id: projectId,
     name: category.name.trim(),
@@ -46,6 +63,8 @@ export const createPlannerCategoryService = async (
   projectId: string,
   category: CreatePlannerCategoryDto,
 ): Promise<PlannerCategory> => {
+  if (isDemoMode()) return demoCreatePlannerCategory(projectId, category);
+
   const { data, error } = await supabase
     .from("planner_categories")
     .insert({
@@ -63,6 +82,8 @@ export const createPlannerCategoryService = async (
 export const getPlannerTasksByProjectService = async (
   projectId: string,
 ): Promise<PlannerTask[]> => {
+  if (isDemoMode()) return demoGetPlannerTasks(projectId);
+
   const { data, error } = await supabase
     .from("planner_tasks")
     .select("*")
@@ -78,6 +99,8 @@ export const createPlannerTasksBulkService = async (
   projectId: string,
   tasks: CreatePlannerTaskDto[],
 ): Promise<PlannerTask[]> => {
+  if (isDemoMode()) return demoCreatePlannerTasksBulk(projectId, tasks);
+
   const payload = tasks.map((task, index) => ({
     project_id: projectId,
     category: task.category.trim(),
@@ -104,6 +127,8 @@ export const createPlannerTaskService = async (
   projectId: string,
   task: CreatePlannerTaskDto,
 ): Promise<PlannerTask> => {
+  if (isDemoMode()) return demoCreatePlannerTask(projectId, task);
+
   const { data, error } = await supabase
     .from("planner_tasks")
     .insert({
@@ -128,6 +153,8 @@ export const updatePlannerTaskService = async (
   id: string,
   updates: UpdatePlannerTaskDto,
 ): Promise<PlannerTask> => {
+  if (isDemoMode()) return demoUpdatePlannerTask(id, updates);
+
   const payload: Record<string, string | number | boolean | null> = {};
 
   if (updates.category !== undefined) payload.category = updates.category.trim();
@@ -162,6 +189,11 @@ export const updatePlannerTaskService = async (
 };
 
 export const deletePlannerTaskService = async (id: string): Promise<void> => {
+  if (isDemoMode()) {
+    demoDeletePlannerTask(id);
+    return;
+  }
+
   const { error } = await supabase.from("planner_tasks").delete().eq("id", id);
   if (error) throw error;
 };

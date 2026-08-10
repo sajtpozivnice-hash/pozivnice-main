@@ -1,3 +1,5 @@
+import { isDemoMode } from "@/lib/demo/mode";
+
 export type CloudinaryUploadResult = {
   public_id: string;
   secure_url: string;
@@ -12,10 +14,38 @@ type UploadImageOptions = {
   folder?: string;
 };
 
+const readFileAsDataUrl = (file: File): Promise<string> =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      if (typeof reader.result === "string") resolve(reader.result);
+      else reject(new Error("Failed to read file"));
+    };
+    reader.onerror = () => reject(new Error("Failed to read file"));
+    reader.readAsDataURL(file);
+  });
+
+const demoUploadImage = async (
+  file: File,
+  options: UploadImageOptions = {},
+): Promise<CloudinaryUploadResult> => {
+  const secure_url = await readFileAsDataUrl(file);
+  return {
+    public_id: `demo/${Date.now()}-${options.fileName ?? file.name}`,
+    secure_url,
+    width: undefined,
+    height: undefined,
+    bytes: file.size,
+    format: file.type.split("/")[1] || "jpg",
+  };
+};
+
 export const uploadImageToCloudinaryDetailed = async (
   file: File,
   options: UploadImageOptions = {},
 ): Promise<CloudinaryUploadResult> => {
+  if (isDemoMode()) return demoUploadImage(file, options);
+
   const reader = new FileReader();
 
   return new Promise<CloudinaryUploadResult>((resolve, reject) => {

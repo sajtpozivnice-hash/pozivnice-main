@@ -1,4 +1,18 @@
+import { isDemoMode } from "@/lib/demo/mode";
+
 export const uploadFileToCloudinary = async (file: File): Promise<string> => {
+  if (isDemoMode()) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        if (typeof reader.result === "string") resolve(reader.result);
+        else reject(new Error("Failed to read file"));
+      };
+      reader.onerror = () => reject(new Error("Failed to read file"));
+      reader.readAsDataURL(file);
+    });
+  }
+
   const reader = new FileReader();
 
   return new Promise<string>((resolve, reject) => {

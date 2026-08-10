@@ -20,7 +20,8 @@ const SHARED_PACKAGE_FEATURES = [
   "Raspored sedenja i organizacija stolova",
   "Praćenje budžeta, uplata i računa",
   "Lista obaveza do dana proslave",
-  "Privatne fotografije koje vam gosti pošalju",
+  "QR kod za štampu — gosti skeniraju i odmah uploaduju fotografije",
+  "Privatne fotografije koje vam gosti pošalju (vidite samo vi)",
   "Privatni nalog za uređivanje pozivnice i organizaciju",
 ];
 

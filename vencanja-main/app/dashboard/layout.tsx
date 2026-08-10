@@ -16,7 +16,10 @@ export default async function DashboardLayout({
   }
   return (
     <DashboardProvider
-      user={current.user}
+      user={{
+        id: current.user.id,
+        email: current.user.email,
+      }}
       client={current.client}
       projects={current.projects}
     >
