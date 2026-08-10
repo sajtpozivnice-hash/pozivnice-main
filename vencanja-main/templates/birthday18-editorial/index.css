@@ -1,14 +1,14 @@
 /* birthday18-editorial — fashion magazine / Y2K collage / THE MAIN CHARACTER */
 
 [data-template="birthday18-editorial"] {
-  --ed-ivory: #f4efe6;
-  --ed-paper: #ede6da;
-  --ed-cherry: #e11d48;
-  --ed-cobalt: #1d4ed8;
+  --ed-ivory: var(--color-background, #f4efe6);
+  --ed-paper: var(--color-background-secondary, #ede6da);
+  --ed-cherry: var(--color-primary, #e11d48);
+  --ed-cobalt: var(--color-ternary, #1d4ed8);
   --ed-lime: #d4ff00;
-  --ed-ink: #0a0a0a;
-  --ed-muted: #5c564c;
-  --ed-line: rgba(10, 10, 10, 0.18);
+  --ed-ink: var(--color-secondary, #0a0a0a);
+  --ed-muted: color-mix(in srgb, var(--color-secondary, #0a0a0a) 40%, #9a9288);
+  --ed-line: color-mix(in srgb, var(--color-secondary, #0a0a0a) 18%, transparent);
   color: var(--ed-ink);
   background: var(--ed-ivory);
   overflow-x: hidden;

@@ -55,10 +55,10 @@ const Countdown: FC<Props> = ({ section, event, theme }) => {
   }, [targetDate]);
 
   const items = [
-    { label: "Days", value: timeLeft.days },
-    { label: "Hours", value: timeLeft.hours },
-    { label: "Minutes", value: timeLeft.minutes },
-    { label: "Seconds", value: timeLeft.seconds },
+    { label: "Dani", value: timeLeft.days },
+    { label: "Sati", value: timeLeft.hours },
+    { label: "Min", value: timeLeft.minutes },
+    { label: "Sek", value: timeLeft.seconds },
   ];
 
   return (
@@ -72,7 +72,7 @@ const Countdown: FC<Props> = ({ section, event, theme }) => {
         >
           <PremiumMedia
             src={data.imageUrl}
-            alt={data.title || "Countdown"}
+            alt={data.title || "Odbrojavanje"}
             className="aspect-[4/5] w-full"
           />
         </motion.div>
@@ -85,7 +85,7 @@ const Countdown: FC<Props> = ({ section, event, theme }) => {
             className="vp-eyebrow mb-4"
             style={{ color: accent }}
           >
-            Countdown
+            Odbrojavanje
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 14 }}

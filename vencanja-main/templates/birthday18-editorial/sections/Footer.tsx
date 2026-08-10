@@ -25,7 +25,7 @@ const Footer: FC<Props> = ({ section, event }) => {
     <footer id={id} className="ed-footer">
       <div className="ed-shell">
         <p className="ed-display text-2xl tracking-[0.12em] sm:text-3xl">
-          {data.title || "THE BIRTHDAY ISSUE"}
+          {data.title || "ROĐENDANSKO IZDANJE"}
         </p>
         <p className="ed-label mt-3">{subtitle}</p>
         {data.description ? (

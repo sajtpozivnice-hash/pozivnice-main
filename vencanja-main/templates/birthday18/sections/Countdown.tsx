@@ -64,7 +64,7 @@ const Countdown: FC<Props> = ({ section, event }) => {
             className="h-full w-full object-cover"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-[#050506]/85" />
+          <div className="absolute inset-0 bg-[var(--b18-bg)]/85" />
         </div>
       ) : null}
 

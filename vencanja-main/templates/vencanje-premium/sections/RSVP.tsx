@@ -73,7 +73,7 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
             className="vp-eyebrow mb-4"
             style={{ color: accent }}
           >
-            RSVP
+            Potvrda
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 14 }}
@@ -101,7 +101,7 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
               >
                 <div>
                   <label className="vp-label" htmlFor="vp-fullName">
-                    Full name
+                    Ime i prezime
                   </label>
                   <input
                     id="vp-fullName"
@@ -111,7 +111,7 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
                       setFormData({ ...formData, fullName: e.target.value })
                     }
                     className="vp-input"
-                    placeholder="Your full name"
+                    placeholder="Vaše ime i prezime"
                   />
                 </div>
 
@@ -133,12 +133,12 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
                 </div>
 
                 <div>
-                  <p className="vp-label">Will you attend?</p>
+                  <p className="vp-label">Da li ćete doći?</p>
                   <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
                     {(
                       [
-                        { value: "yes", label: "Joyfully yes" },
-                        { value: "no", label: "Regretfully no" },
+                        { value: "yes", label: "Sa radošću, da" },
+                        { value: "no", label: "Nažalost, ne" },
                       ] as const
                     ).map((option) => (
                       <label key={option.value} className="cursor-pointer">
@@ -166,7 +166,7 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
                 {formData.attendance === "yes" ? (
                   <div>
                     <label className="vp-label" htmlFor="vp-guests">
-                      Number of guests
+                      Broj gostiju
                     </label>
                     <input
                       id="vp-guests"
@@ -186,7 +186,7 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
 
                 <div>
                   <label className="vp-label" htmlFor="vp-message">
-                    Message
+                    Poruka
                   </label>
                   <textarea
                     id="vp-message"
@@ -195,7 +195,7 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
                       setFormData({ ...formData, message: e.target.value })
                     }
                     className="vp-input min-h-24 resize-none"
-                    placeholder="A note for the couple"
+                    placeholder="Poruka za mladence"
                   />
                 </div>
 
@@ -210,7 +210,7 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
                   ) : (
                     <>
                       <Send className="h-3.5 w-3.5" />
-                      {data.buttonText || "Send reply"}
+                      {data.buttonText || "Pošalji odgovor"}
                     </>
                   )}
                 </button>

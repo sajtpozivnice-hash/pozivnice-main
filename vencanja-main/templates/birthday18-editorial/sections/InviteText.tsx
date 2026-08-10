@@ -29,7 +29,7 @@ const InviteText: FC<Props> = ({ section }) => {
             viewport={{ once: true }}
             className="ed-label mb-5 text-[rgba(244,239,230,0.55)]"
           >
-            Editor&apos;s letter
+            Pismo urednika
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 24 }}

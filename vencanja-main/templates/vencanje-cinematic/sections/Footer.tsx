@@ -26,7 +26,7 @@ const Footer: FC<Props> = ({ section, event, theme }) => {
           className="vc-eyebrow mb-6"
           style={{ color: accent }}
         >
-          The end — and the beginning
+          Kraj — i početak
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 18 }}

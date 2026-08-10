@@ -3,9 +3,13 @@
 @layer components {
   [data-template="birthday18"] {
     @apply relative overflow-x-hidden text-white antialiased;
-    background: #050506;
+    --b18-bg: var(--color-background, #050506);
+    --b18-fg: var(--color-primary, #e8e8ea);
+    --b18-ink: var(--color-secondary, #0a0a0b);
+    --b18-muted: var(--color-ternary, #8b8f98);
+    background: var(--b18-bg);
     font-family: var(--font-secondary);
-    color: #f2f2f4;
+    color: var(--b18-fg);
   }
 
   [data-template="birthday18"] ::selection {
@@ -22,22 +26,24 @@
   }
 
   .b18-eyebrow {
-    @apply text-[11px] font-semibold uppercase tracking-[0.28em] text-white/45;
+    @apply text-[11px] font-semibold uppercase tracking-[0.28em];
+    color: color-mix(in srgb, var(--b18-fg) 45%, transparent);
   }
 
   .b18-heading {
     @apply text-4xl leading-[0.95] tracking-tight uppercase sm:text-5xl lg:text-6xl;
     font-family: var(--font-primary);
     font-weight: 700;
+    color: var(--b18-fg);
   }
 
   .b18-metal {
     background: linear-gradient(
       120deg,
-      #9a9aa3 0%,
-      #f5f5f7 42%,
-      #8a8a93 58%,
-      #d8d8de 100%
+      color-mix(in srgb, var(--b18-fg) 55%, #666) 0%,
+      var(--b18-fg) 42%,
+      color-mix(in srgb, var(--b18-fg) 40%, #444) 58%,
+      var(--b18-fg) 100%
     );
     -webkit-background-clip: text;
     background-clip: text;
@@ -45,15 +51,21 @@
   }
 
   .b18-panel {
-    @apply rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-md;
+    @apply rounded-3xl border backdrop-blur-md;
+    border-color: color-mix(in srgb, var(--b18-fg) 12%, transparent);
+    background: color-mix(in srgb, var(--b18-fg) 4%, transparent);
     box-shadow: 0 30px 80px -40px rgba(0, 0, 0, 0.8);
   }
 
   .b18-btn {
     @apply inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 text-xs font-bold uppercase tracking-[0.18em] transition;
-    background: linear-gradient(135deg, #f4f4f6 0%, #c8c8d0 100%);
-    color: #0a0a0b;
-    box-shadow: 0 16px 40px -18px rgba(232, 232, 234, 0.55);
+    background: linear-gradient(
+      135deg,
+      var(--b18-fg) 0%,
+      color-mix(in srgb, var(--b18-fg) 70%, var(--b18-muted)) 100%
+    );
+    color: var(--b18-ink);
+    box-shadow: 0 16px 40px -18px color-mix(in srgb, var(--b18-fg) 55%, transparent);
   }
 
   .b18-btn:hover {
@@ -61,22 +73,55 @@
   }
 
   .b18-btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/5 px-7 py-3 text-xs font-bold uppercase tracking-[0.18em] text-white/90 backdrop-blur transition hover:border-white/50 hover:bg-white/10;
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 text-xs font-bold uppercase tracking-[0.18em] backdrop-blur transition;
+    border: 1px solid color-mix(in srgb, var(--b18-fg) 25%, transparent);
+    background: color-mix(in srgb, var(--b18-fg) 5%, transparent);
+    color: color-mix(in srgb, var(--b18-fg) 90%, transparent);
+  }
+
+  .b18-btn-ghost:hover {
+    border-color: color-mix(in srgb, var(--b18-fg) 50%, transparent);
+    background: color-mix(in srgb, var(--b18-fg) 10%, transparent);
   }
 
   .b18-input {
-    @apply w-full rounded-2xl border border-white/12 bg-black/40 px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-white/30 focus:border-white/40 focus:ring-4 focus:ring-white/10;
+    @apply w-full rounded-2xl px-4 py-3.5 text-sm outline-none transition;
+    border: 1px solid color-mix(in srgb, var(--b18-fg) 12%, transparent);
+    background: color-mix(in srgb, var(--b18-ink) 40%, transparent);
+    color: var(--b18-fg);
+  }
+
+  .b18-input::placeholder {
+    color: color-mix(in srgb, var(--b18-fg) 30%, transparent);
+  }
+
+  .b18-input:focus {
+    border-color: color-mix(in srgb, var(--b18-fg) 40%, transparent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--b18-fg) 10%, transparent);
   }
 
   .b18-overlay {
     background:
-      linear-gradient(180deg, rgba(5, 5, 6, 0.35) 0%, rgba(5, 5, 6, 0.72) 55%, rgba(5, 5, 6, 0.94) 100%),
-      radial-gradient(ellipse at 50% 20%, rgba(232, 232, 234, 0.12), transparent 55%);
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--b18-bg) 35%, transparent) 0%,
+        color-mix(in srgb, var(--b18-bg) 72%, transparent) 55%,
+        color-mix(in srgb, var(--b18-bg) 94%, transparent) 100%
+      ),
+      radial-gradient(
+        ellipse at 50% 20%,
+        color-mix(in srgb, var(--b18-fg) 12%, transparent),
+        transparent 55%
+      );
   }
 
   .b18-glow {
     @apply pointer-events-none absolute rounded-full blur-3xl;
-    background: radial-gradient(circle, rgba(232, 232, 234, 0.16), transparent 70%);
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--b18-fg) 16%, transparent),
+      transparent 70%
+    );
   }
 
   .b18-masonry {

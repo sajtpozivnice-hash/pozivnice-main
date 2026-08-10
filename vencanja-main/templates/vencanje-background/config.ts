@@ -25,8 +25,8 @@ const IMG = {
 export const vencanjeBackgroundDefaultConfig: UniversalProjectConfig = {
   template: "vencanje-background",
   meta: {
-    title: "Ema & Nikola — Background Invitation",
-    description: "Single-background floating glass wedding invitation",
+    title: "Ema & Nikola — Pozivnica sa pozadinom",
+    description: "Venčana pozivnica sa jednom pozadinom i staklenim panelima",
   },
   event: {
     date: "2026-11-14",

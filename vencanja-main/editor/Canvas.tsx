@@ -8,8 +8,10 @@ const Canvas: FC = () => {
   const { config } = useEditor();
 
   return (
-    <div className="h-full w-full min-w-0 overflow-auto bg-[#120f0e]">
-      <TemplateRenderer config={config} />
+    // transform creates a containing block so the opening overlay
+    // (position: fixed) stays inside the canvas and does not cover the sidebar.
+    <div className="relative h-full w-full min-w-0 overflow-auto bg-[#120f0e] [transform:translateZ(0)]">
+      <TemplateRenderer config={config} enableOpening />
     </div>
   );
 };

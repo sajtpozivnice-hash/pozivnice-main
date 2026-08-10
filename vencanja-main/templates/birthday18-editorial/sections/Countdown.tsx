@@ -53,19 +53,19 @@ const Countdown: FC<Props> = ({ section, event }) => {
   }, [targetDate]);
 
   const items = [
-    { label: "DAYS", value: timeLeft.days },
-    { label: "HOURS", value: timeLeft.hours },
-    { label: "MINUTES", value: timeLeft.minutes },
-    { label: "SECONDS", value: timeLeft.seconds },
+    { label: "DANI", value: timeLeft.days },
+    { label: "SATI", value: timeLeft.hours },
+    { label: "MINUTI", value: timeLeft.minutes },
+    { label: "SEKUNDE", value: timeLeft.seconds },
   ];
 
   return (
     <section id={id} className="ed-section ed-count">
       <div className="ed-grain" aria-hidden />
       <div className="ed-shell relative z-10">
-        <p className="ed-label text-white/70">{data.description || "COUNTDOWN"}</p>
+        <p className="ed-label text-white/70">{data.description || "ODBROJAVANJE"}</p>
         <h2 className="ed-display mt-3 text-4xl text-white sm:text-5xl lg:text-6xl">
-          {data.title || "UNTIL THE ISSUE DROPS"}
+          {data.title || "DO IZLASKA IZDANJA"}
         </h2>
 
         <div className="ed-count__rows">

@@ -53,10 +53,10 @@ const Countdown: FC<Props> = ({ section, event, theme }) => {
   }, [targetDate]);
 
   const items = [
-    { label: "Days", value: timeLeft.days },
-    { label: "Hours", value: timeLeft.hours },
+    { label: "Dani", value: timeLeft.days },
+    { label: "Sati", value: timeLeft.hours },
     { label: "Min", value: timeLeft.minutes },
-    { label: "Sec", value: timeLeft.seconds },
+    { label: "Sek", value: timeLeft.seconds },
   ];
 
   return (
@@ -69,7 +69,7 @@ const Countdown: FC<Props> = ({ section, event, theme }) => {
           className="vc-eyebrow mb-5"
           style={{ color: accent }}
         >
-          Title card
+          Naslovni kadar
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

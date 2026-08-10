@@ -26,7 +26,7 @@ const LoveQuote: FC<Props> = ({ section, theme }) => {
           className="vc-eyebrow mb-10"
           style={{ color: accent }}
         >
-          {data.description ?? "Intertitle"}
+          {data.description ?? "Međunaslov"}
         </motion.p>
         <motion.blockquote
           initial={{ opacity: 0, y: 24 }}

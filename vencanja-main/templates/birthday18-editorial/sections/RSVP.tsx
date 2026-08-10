@@ -48,7 +48,7 @@ const RSVP: FC<Props> = ({ section, event }) => {
     <section id={id} className="ed-section scroll-mt-8 overflow-hidden">
       <div className="ed-shell relative z-10 max-w-3xl">
         <div className="mb-8">
-          <p className="ed-label mb-3">RSVP desk</p>
+          <p className="ed-label mb-3">RSVP pult</p>
           <h2 className="ed-display text-5xl sm:text-6xl lg:text-7xl">
             {data.title}
           </h2>
@@ -67,7 +67,7 @@ const RSVP: FC<Props> = ({ section, event }) => {
           {submitted ? (
             <div className="py-10 text-center">
               <p className="ed-display text-4xl text-[var(--ed-cherry)]">
-                YOU&apos;RE ON THE LIST
+                NA LISTI SI
               </p>
               <p className="mt-3 text-[var(--ed-muted)]">
                 Potvrda je zabeležena. Vidimo se na naslovnoj.
@@ -109,9 +109,9 @@ const RSVP: FC<Props> = ({ section, event }) => {
                 <div className="ed-attend">
                   {(
                     [
-                      ["yes", "Yes"],
-                      ["no", "No"],
-                      ["maybe", "Maybe"],
+                      ["yes", "Da"],
+                      ["no", "Ne"],
+                      ["maybe", "Možda"],
                     ] as const
                   ).map(([value, label]) => (
                     <button
@@ -156,7 +156,7 @@ const RSVP: FC<Props> = ({ section, event }) => {
                   rows={4}
                   className="ed-input resize-none"
                   placeholder={
-                    data.messagePlaceholder || "Leave a message…"
+                    data.messagePlaceholder || "Ostavi poruku…"
                   }
                   value={formData.message}
                   onChange={(e) =>
@@ -172,7 +172,7 @@ const RSVP: FC<Props> = ({ section, event }) => {
                 disabled={loading}
                 className="ed-btn w-full"
               >
-                {loading ? "Sending…" : data.buttonText || "I'M IN"}
+                {loading ? "Slanje…" : data.buttonText || "DOLAZIM"}
                 <Send className="h-3.5 w-3.5" />
               </button>
             </form>

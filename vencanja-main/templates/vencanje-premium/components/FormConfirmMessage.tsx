@@ -16,24 +16,24 @@ const FormConfirmMessage: FC<Props> = ({ attendance, onClick, accent }) => {
   return (
     <div className="border border-vp-line bg-vp-ivory px-6 py-14 text-center sm:px-10">
       <p className="vp-eyebrow mb-4" style={{ color: accent }}>
-        {isYes ? "Thank you" : "We understand"}
+        {isYes ? "Hvala" : "Razumemo"}
       </p>
       <h3 className="vp-display text-3xl sm:text-4xl">
         {isYes
-          ? "Your reply has been received."
-          : "Thank you for letting us know."}
+          ? "Vaš odgovor je primljen."
+          : "Hvala što ste nam javili."}
       </h3>
       <p className="vp-body mx-auto mt-4 max-w-md text-vp-muted">
         {isYes
-          ? "We cannot wait to celebrate with you."
-          : "You will be missed — thank you for the message."}
+          ? "Jedva čekamo da slavimo sa Vama."
+          : "Nedostajaćete nam — hvala na poruci."}
       </p>
       <button
         type="button"
         onClick={onClick}
         className="mt-8 cursor-pointer text-xs uppercase tracking-[0.28em] text-vp-ink underline underline-offset-4"
       >
-        Send another reply
+        Pošalji novi odgovor
       </button>
     </div>
   );

@@ -65,7 +65,7 @@ const Hero: FC<Props> = ({ section, event, theme }) => {
           className="vc-eyebrow mb-6"
           style={{ color: accent }}
         >
-          {data.subtitle ?? "Scene 01"}
+          {data.subtitle ?? "Scena 01"}
         </motion.p>
 
         <motion.h1
@@ -104,7 +104,7 @@ const Hero: FC<Props> = ({ section, event, theme }) => {
           <div className="flex gap-6 border-t border-white/20 pt-4 sm:border-t-0 sm:border-l sm:pt-0 sm:pl-8">
             {[
               { label: "D", value: timeLeft.days },
-              { label: "H", value: timeLeft.hours },
+              { label: "S", value: timeLeft.hours },
               { label: "M", value: timeLeft.minutes },
             ].map((item) => (
               <div key={item.label} className="text-center">

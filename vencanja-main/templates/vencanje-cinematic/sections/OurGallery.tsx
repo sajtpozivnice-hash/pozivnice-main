@@ -48,7 +48,7 @@ const OurGallery: FC<Props> = ({ section, theme }) => {
               <div className="vc-stage flex min-h-[100svh] flex-col justify-between py-16">
                 <div>
                   <p className="vc-eyebrow" style={{ color: accent }}>
-                    Still frames
+                    Kadovi
                   </p>
                   <h2 className="vc-title mt-4 max-w-xl">{data.title}</h2>
                 </div>
@@ -65,7 +65,7 @@ const OurGallery: FC<Props> = ({ section, theme }) => {
                       type="button"
                       onClick={() => go(-1)}
                       className="flex h-12 w-12 cursor-pointer items-center justify-center border border-white/25 text-white transition hover:bg-white/10"
-                      aria-label="Previous"
+                      aria-label="Prethodna"
                     >
                       <ChevronLeft className="h-5 w-5" />
                     </button>
@@ -73,7 +73,7 @@ const OurGallery: FC<Props> = ({ section, theme }) => {
                       type="button"
                       onClick={() => go(1)}
                       className="flex h-12 w-12 cursor-pointer items-center justify-center border border-white/25 text-white transition hover:bg-white/10"
-                      aria-label="Next"
+                      aria-label="Sledeća"
                     >
                       <ChevronRight className="h-5 w-5" />
                     </button>
@@ -89,7 +89,7 @@ const OurGallery: FC<Props> = ({ section, theme }) => {
       <div className="lg:hidden">
         <div className="px-5 py-14 text-center sm:px-8">
           <p className="vc-eyebrow mb-4" style={{ color: accent }}>
-            Still frames
+            Kadovi
           </p>
           <h2 className="vc-title text-4xl">{data.title}</h2>
           {data.description ? (
@@ -99,14 +99,14 @@ const OurGallery: FC<Props> = ({ section, theme }) => {
 
         {images.length === 0 ? (
           <div className="px-5 pb-16 text-center text-sm text-white/40">
-            Gallery coming soon.
+            Galerija uskoro.
           </div>
         ) : (
           <StoryReel className="px-5 pb-16 sm:px-8">
             {images.map((image, index) => (
               <StoryReelSlide key={`${image.url}-${index}`} image={image.url}>
                 <p className="text-[10px] uppercase tracking-[0.35em] text-white/60">
-                  Frame {String(index + 1).padStart(2, "0")}
+                  Kadar {String(index + 1).padStart(2, "0")}
                 </p>
               </StoryReelSlide>
             ))}

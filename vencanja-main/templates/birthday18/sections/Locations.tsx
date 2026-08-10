@@ -35,7 +35,7 @@ const Locations: FC<Props> = ({ section, event }) => {
             className="h-full w-full object-cover"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#050506] via-[#050506]/75 to-[#050506]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[var(--b18-bg)] via-[var(--b18-bg)]/75 to-[var(--b18-bg)]" />
         </div>
       ) : null}
 

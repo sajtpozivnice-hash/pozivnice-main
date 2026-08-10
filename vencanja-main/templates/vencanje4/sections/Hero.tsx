@@ -77,7 +77,7 @@ const Hero: FC<Props> = ({ section, event, theme }) => {
           className="v4-eyebrow mb-8"
           style={{ color: accent }}
         >
-          {data.subtitle ?? "Wedding invitation"}
+          {data.subtitle ?? "Pozivnica za venčanje"}
         </motion.p>
 
         <motion.h1
@@ -152,7 +152,7 @@ const Hero: FC<Props> = ({ section, event, theme }) => {
         >
           <div className="h-12 w-px bg-white/35" />
           <span className="text-[10px] uppercase tracking-[0.35em] text-white/45">
-            Scroll
+            Skroluj
           </span>
         </motion.div>
       </div>

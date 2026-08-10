@@ -36,7 +36,7 @@ const Locations: FC<Props> = ({ section, event }) => {
       <div className="b18b-shell relative z-10 space-y-14">
         <div>
           <div className="mb-10 max-w-2xl">
-            <p className="b18b-eyebrow mb-3">Info</p>
+            <p className="b18b-eyebrow mb-3">Informacije</p>
             <h2 className="b18b-heading">{data.title || "KADA & GDE"}</h2>
             {data.description ? (
               <p className="mt-4 text-[var(--b18b-muted)]">{data.description}</p>

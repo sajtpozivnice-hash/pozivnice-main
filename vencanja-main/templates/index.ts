@@ -48,7 +48,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
     defaultConfig: { ...vencanje3DefaultConfig, eventType: "wedding" },
     eventTypes: ["wedding"],
     catalog: {
-      title: "Minimal elegance",
+      title: "Minimalna elegancija",
       description:
         "Čist raspored sa jakim tipografskim fokusom. Potpuno prilagodljiv, uz praćenje gostiju u vašem nalogu.",
       style: "modern",
@@ -61,7 +61,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
     defaultConfig: { ...vencanje4DefaultConfig, eventType: "wedding" },
     eventTypes: ["wedding"],
     catalog: {
-      title: "Cinematic scenes",
+      title: "Filmski kadrovi",
       description:
         "Veliki kadrovi preko celog ekrana. Prilagodite sadržaj, a goste i stolove vodite u nalogu.",
       style: "cinematic",
@@ -77,7 +77,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
     },
     eventTypes: ["wedding"],
     catalog: {
-      title: "Premium editorial",
+      title: "Premijum editorial",
       description:
         "Svečani editorial stil. Boje, fontovi i galerija ostaju promenljivi i kasnije.",
       style: "premium",
@@ -93,7 +93,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
     },
     eventTypes: ["wedding"],
     catalog: {
-      title: "Film stills",
+      title: "Filmski kadar",
       description:
         "Filmski utisak sa jakim fotografijama. Otvorite primer i javite nam se ako vam se dopada.",
       style: "cinematic",
@@ -108,7 +108,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
     },
     eventTypes: ["wedding"],
     catalog: {
-      title: "Glass on background",
+      title: "Staklo na pozadini",
       description:
         "Prozirni paneli preko jedne pozadine. Menjajte sadržaj i pošaljite link gostima.",
       style: "modern",
@@ -139,9 +139,9 @@ export const templates: Record<TemplateKey, TemplatePack> = {
     },
     eventTypes: ["comingOfAge"],
     catalog: {
-      title: "18 — Night Edition",
+      title: "18 — Noćno izdanje",
       description:
-        "Tamna premium pozivnica za punoletstvo: jak tipografski hero, countdown, plan večeri i RSVP.",
+        "Tamna premium pozivnica za punoletstvo: jak tipografski hero, odbrojavanje, plan večeri i potvrda prisustva.",
       style: "premium",
       price: 40,
       featured: true,
@@ -155,9 +155,9 @@ export const templates: Record<TemplateKey, TemplatePack> = {
     },
     eventTypes: ["comingOfAge"],
     catalog: {
-      title: "18 — Bright Edition",
+      title: "18 — Svetlo izdanje",
       description:
-        "Svetla, vesela i moderna pozivnica za 18. rođendan: kolor blokovi, gradienti, plan večeri i RSVP.",
+        "Svetla, vesela i moderna pozivnica za 18. rođendan: kolor blokovi, gradienti, plan večeri i potvrda prisustva.",
       style: "playful",
       price: 40,
       featured: true,
@@ -171,9 +171,9 @@ export const templates: Record<TemplateKey, TemplatePack> = {
     },
     eventTypes: ["comingOfAge"],
     catalog: {
-      title: "18 — The Main Character",
+      title: "18 — Glavni junak",
       description:
-        "Editorial / Y2K magazine pozivnica za punoletstvo: collage layout, jaka tipografija i fashion vibe.",
+        "Editorial / Y2K magazin pozivnica za punoletstvo: kolaž raspored, jaka tipografija i modni utisak.",
       style: "editorial",
       price: 40,
       featured: true,

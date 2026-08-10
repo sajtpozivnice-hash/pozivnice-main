@@ -95,7 +95,7 @@ export const birthday18DefaultConfig: UniversalProjectConfig = {
     },
     {
       id: "inviteText",
-      name: "Intro",
+      name: "Uvod",
       type: "inviteText",
       visible: true,
       order: 2,
@@ -135,7 +135,7 @@ export const birthday18DefaultConfig: UniversalProjectConfig = {
             subtitle: "Glavna lokacija",
             location: "Bulevar kralja Aleksandra 28, Beograd",
             time: "20:00",
-            text: "Ulaz od 20:00. Parking u blizini, rezervisan space za goste.",
+            text: "Ulaz od 20:00. Parking u blizini, rezervisan prostor za goste.",
             image: IMG.venue,
             icon: "map-pin",
           },
@@ -157,7 +157,7 @@ export const birthday18DefaultConfig: UniversalProjectConfig = {
             id: "1",
             time: "20:00",
             title: "Okupljanje",
-            description: "Dolazak, welcome drink i prvi kadrovi.",
+            description: "Dolazak, dobrodošlica i prvi kadrovi.",
           },
           {
             id: "2",
@@ -168,7 +168,7 @@ export const birthday18DefaultConfig: UniversalProjectConfig = {
           {
             id: "3",
             time: "22:00",
-            title: "Party",
+            title: "Žurka",
             description: "Plesni podijum, DJ set i atmosfera do zore.",
           },
           {
@@ -187,26 +187,26 @@ export const birthday18DefaultConfig: UniversalProjectConfig = {
       visible: true,
       order: 6,
       data: {
-        title: "MOOD",
+        title: "ATMOSFERA",
         description: "Ukus noći — crno, srebro i jak ritam.",
         images: IMG.gallery.map((url) => ({ url })),
       },
     },
     {
       id: "featureCards",
-      name: "Dress code",
+      name: "Kodeks odevanja",
       type: "featureCards",
       visible: true,
       order: 7,
       data: {
-        title: "DRESS CODE",
-        subtitle: "Black & Silver",
+        title: "KODEKS ODEVANJA",
+        subtitle: "Crna & Srebrna",
         description:
           "Obuci nešto u čemu se osećaš najbolje. Večeras slavimo!",
         cards: [
           {
             id: "1",
-            title: "BLACK & SILVER",
+            title: "CRNA & SREBRNA",
             description:
               "Tamne nijanse, metalik detalji, čiste linije. Dođi kao za noć koju ćeš pamtiti.",
             icon: "shirt",
@@ -218,7 +218,7 @@ export const birthday18DefaultConfig: UniversalProjectConfig = {
     },
     {
       id: "rsvp",
-      name: "RSVP",
+      name: "Potvrda prisustva",
       type: "rsvp",
       visible: true,
       order: 8,

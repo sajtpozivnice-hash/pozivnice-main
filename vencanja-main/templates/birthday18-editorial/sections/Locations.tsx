@@ -31,15 +31,15 @@ const Locations: FC<Props> = ({ section, event }) => {
     : null;
 
   const rows = [
-    { key: "DATE", value: dateLabel },
-    { key: "TIME", value: card?.time || "20:00" },
+    { key: "DATUM", value: dateLabel },
+    { key: "VREME", value: card?.time || "20:00" },
     {
-      key: "LOCATION",
+      key: "LOKACIJA",
       value: event.location?.address || card?.title || "BEOGRAD",
     },
     {
-      key: "DRESS CODE",
-      value: card?.subtitle || "YOUR BEST LOOK",
+      key: "KODEKS ODEVANJA",
+      value: card?.subtitle || "VAŠ NAJBOLJI IZGLED",
     },
   ];
 
@@ -48,7 +48,7 @@ const Locations: FC<Props> = ({ section, event }) => {
       <div className="ed-grain" aria-hidden />
       <div className="ed-shell relative z-10">
         <div className="max-w-3xl">
-          <p className="ed-label mb-3">{data.subtitle || "THE DETAILS"}</p>
+          <p className="ed-label mb-3">{data.subtitle || "DETALJI"}</p>
           <h2 className="ed-display text-4xl sm:text-5xl lg:text-6xl">
             {data.title}
           </h2>
@@ -82,12 +82,12 @@ const Locations: FC<Props> = ({ section, event }) => {
           className="ed-where"
         >
           <div className="ed-where__copy space-y-5">
-            <p className="ed-where__eyebrow">WHERE</p>
+            <p className="ed-where__eyebrow">GDE</p>
             <p className="ed-where__city">
               {event.location?.address || "BEOGRAD"}
             </p>
             <div>
-              <p className="ed-label mb-1">Venue</p>
+              <p className="ed-label mb-1">Mesto</p>
               <p className="text-xl font-extrabold uppercase tracking-tight">
                 {card?.title || event.location?.name || "Studio 18"}
               </p>
@@ -103,7 +103,7 @@ const Locations: FC<Props> = ({ section, event }) => {
                 rel="noopener noreferrer"
                 className="ed-btn ed-btn--ghost"
               >
-                Get directions
+                Uputstva
               </a>
             ) : null}
           </div>

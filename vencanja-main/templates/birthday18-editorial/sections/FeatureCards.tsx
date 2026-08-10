@@ -21,7 +21,7 @@ const FeatureCards: FC<Props> = ({ section }) => {
     <section id={id} className="ed-section ed-dress overflow-hidden">
       <div className="ed-shell relative z-10">
         <div className="mb-8 flex flex-wrap items-center gap-3">
-          <span className="ed-sticker">{data.subtitle || "STYLE NOTE"}</span>
+          <span className="ed-sticker">{data.subtitle || "STILSKA NAPOMENA"}</span>
           <h2 className="ed-display text-4xl sm:text-5xl">{data.title}</h2>
         </div>
 
@@ -41,10 +41,10 @@ const FeatureCards: FC<Props> = ({ section }) => {
           <div className="ed-dress__copy">
             <Icon className="h-5 w-5 text-[var(--ed-ink)]" />
             <p className="ed-label mt-4">
-              {data.description || "COME AS YOUR BEST SELF"}
+              {data.description || "DOĐI KAO SVOJA NAJBOLJA VERZIJA"}
             </p>
             <h3 className="ed-dress__headline">
-              {card?.title || "BLACK / RED / WHATEVER LOOKS GOOD"}
+              {card?.title || "CRNO / CRVENO / ŠTA GOD TI STOJI"}
             </h3>
             {card?.description ? (
               <p className="mt-4 max-w-md text-[var(--ed-muted)]">

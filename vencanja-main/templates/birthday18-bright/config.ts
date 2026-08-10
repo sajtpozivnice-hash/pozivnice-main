@@ -75,8 +75,8 @@ export const birthday18BrightDefaultConfig: UniversalProjectConfig = {
       order: 1,
       data: {
         title: "18",
-        subtitle: "TURNING EIGHTEEN",
-        description: "BIRTHDAY PARTY",
+        subtitle: "PUNI 18",
+        description: "ROĐENDANSKA ŽURKA",
         badge: "18",
         ctaText: "Potvrdi dolazak",
         ctaHref: "#rsvp",
@@ -110,7 +110,7 @@ export const birthday18BrightDefaultConfig: UniversalProjectConfig = {
     },
     {
       id: "locations",
-      name: "Info i lokacija",
+      name: "Informacije i lokacija",
       type: "locations",
       visible: true,
       order: 4,
@@ -148,7 +148,7 @@ export const birthday18BrightDefaultConfig: UniversalProjectConfig = {
             id: "1",
             time: "20:00",
             title: "Okupljanje",
-            description: "Welcome drink, fotke i prvi zagrljaji.",
+            description: "Dobrodošlica, fotke i prvi zagrljaji.",
           },
           {
             id: "2",
@@ -165,7 +165,7 @@ export const birthday18BrightDefaultConfig: UniversalProjectConfig = {
           {
             id: "4",
             time: "00:00",
-            title: "Party",
+            title: "Žurka",
             description: "Atmosfera do kasno — spremi energiju.",
           },
         ],
@@ -173,21 +173,21 @@ export const birthday18BrightDefaultConfig: UniversalProjectConfig = {
     },
     {
       id: "featureCards",
-      name: "Dress code",
+      name: "Kodeks odevanja",
       type: "featureCards",
       visible: true,
       order: 6,
       data: {
-        title: "DRESS CODE",
-        subtitle: "COLORFUL",
+        title: "KODEKS ODEVANJA",
+        subtitle: "ŠARENO",
         description:
           "Obuci ono u čemu se osećaš najbolje i spremi se za dobru zabavu.",
         cards: [
           {
             id: "1",
-            title: "COLORFUL",
+            title: "ŠARENO",
             description:
-              "Jarke boje, udobne patike, tvoj stil. Come as you are — samo dodaj energiju.",
+              "Jarke boje, udobne patike, tvoj stil. Dođi kakav jesi — samo dodaj energiju.",
             icon: "shirt",
             accent: "#FF5C7A",
             image: IMG.dress,
@@ -197,7 +197,7 @@ export const birthday18BrightDefaultConfig: UniversalProjectConfig = {
     },
     {
       id: "rsvp",
-      name: "RSVP",
+      name: "Potvrda prisustva",
       type: "rsvp",
       visible: true,
       order: 7,
@@ -218,7 +218,7 @@ export const birthday18BrightDefaultConfig: UniversalProjectConfig = {
       visible: true,
       order: 8,
       data: {
-        title: "LET'S PARTY!",
+        title: "IDEMO DA ŽURIMO!",
         description: "Vidimo se — spremi osmeh i dobru energiju.",
         imageUrl: IMG.final,
       },

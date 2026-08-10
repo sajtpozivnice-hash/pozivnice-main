@@ -28,7 +28,7 @@ const Schedule: FC<Props> = ({ section, theme }) => {
             className="vc-eyebrow mb-4"
             style={{ color: accent }}
           >
-            Sequence
+            Sekvenca
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}

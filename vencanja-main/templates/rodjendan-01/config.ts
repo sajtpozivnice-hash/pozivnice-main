@@ -127,7 +127,7 @@ export const rodjendan01DefaultConfig: UniversalProjectConfig = {
             id: "1",
             time: "16:00",
             title: "Dolazak i igre",
-            description: "Baloni, welcome drink i slobodne igre na otvorenom.",
+            description: "Baloni, dobrodošlica i slobodne igre na otvorenom.",
           },
           {
             id: "2",
@@ -173,7 +173,7 @@ export const rodjendan01DefaultConfig: UniversalProjectConfig = {
           },
           {
             id: "2",
-            title: "Dress code",
+            title: "Kodeks odevanja",
             description:
               "Udobna, šarena odeća! Predlažemo pastalne boje i patike za igre.",
             icon: "shirt",
@@ -183,7 +183,7 @@ export const rodjendan01DefaultConfig: UniversalProjectConfig = {
             id: "3",
             title: "Zabavne aktivnosti",
             description:
-              "Face painting, piñata, karaoke ugao i foto-booth sa rekvizitima.",
+              "Bojenje lica, piñata, karaoke ugao i foto-booth sa rekvizitima.",
             icon: "party",
             accent: "#FFB703",
             image: IMG.activities,
@@ -261,7 +261,7 @@ export const rodjendan01DefaultConfig: UniversalProjectConfig = {
     },
     {
       id: "rsvp",
-      name: "RSVP",
+      name: "Potvrda prisustva",
       type: "rsvp",
       visible: true,
       order: 9,
@@ -283,7 +283,8 @@ export const rodjendan01DefaultConfig: UniversalProjectConfig = {
       data: {
         title: "Vidimo se uskoro!",
         subtitle: "Sa ljubavlju, porodica",
-        description: "Pitanja? Javite se organizatoru preko RSVP forme.",
+        description:
+          "Pitanja? Javite se organizatoru preko forme za potvrdu prisustva.",
         imageUrl: IMG.party,
       },
     },

@@ -35,7 +35,7 @@ const Hero: FC<Props> = ({ section, event }) => {
           referrerPolicy="no-referrer"
         />
       ) : (
-        <div className="absolute inset-0 bg-[#0a0a0b]" />
+        <div className="absolute inset-0 bg-[var(--b18-ink)]" />
       )}
       <div className="b18-overlay absolute inset-0" />
       <div className="b18-glow -left-20 top-10 h-72 w-72 opacity-70" />

@@ -53,7 +53,7 @@ const FeatureCards: FC<Props> = ({ section }) => {
                 color: card?.accent || "var(--b18b-coral)",
               }}
             >
-              {card?.title || data.subtitle || "COLORFUL"}
+              {card?.title || data.subtitle || "ŠARENO"}
             </h3>
             <p className="mt-4 text-base leading-relaxed text-[var(--b18b-muted)] sm:text-lg">
               {card?.description || data.description}

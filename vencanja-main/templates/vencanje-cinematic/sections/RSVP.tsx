@@ -58,7 +58,7 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
             className="vc-eyebrow mb-5"
             style={{ color: accent }}
           >
-            Final dialogue
+            Završni dijalog
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
@@ -86,7 +86,7 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
             >
               <div>
                 <label className="vc-label" htmlFor="vc-fullName">
-                  Name
+                  Ime
                 </label>
                 <input
                   id="vc-fullName"
@@ -96,7 +96,7 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
                     setFormData({ ...formData, fullName: e.target.value })
                   }
                   className="vc-input"
-                  placeholder="Your name"
+                  placeholder="Vaše ime"
                 />
               </div>
 
@@ -118,12 +118,12 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
               </div>
 
               <div>
-                <p className="vc-label">Presence</p>
+                <p className="vc-label">Prisustvo</p>
                 <div className="mt-3 grid grid-cols-2 gap-3">
                   {(
                     [
-                      { value: "yes", label: "Yes" },
-                      { value: "no", label: "No" },
+                      { value: "yes", label: "Da" },
+                      { value: "no", label: "Ne" },
                     ] as const
                   ).map((option) => (
                     <label key={option.value} className="cursor-pointer">
@@ -151,7 +151,7 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
               {formData.attendance === "yes" ? (
                 <div>
                   <label className="vc-label" htmlFor="vc-guests">
-                    Guests
+                    Gosti
                   </label>
                   <input
                     id="vc-guests"
@@ -171,7 +171,7 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
 
               <div>
                 <label className="vc-label" htmlFor="vc-message">
-                  Note
+                  Poruka
                 </label>
                 <textarea
                   id="vc-message"
@@ -180,7 +180,7 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
                     setFormData({ ...formData, message: e.target.value })
                   }
                   className="vc-input min-h-20 resize-none"
-                  placeholder="Optional message"
+                  placeholder="Opciona poruka"
                 />
               </div>
 
@@ -189,7 +189,7 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
                 disabled={loading}
                 className="w-full cursor-pointer border border-white/30 py-4 text-[10px] uppercase tracking-[0.35em] text-white transition hover:bg-white hover:text-black disabled:opacity-50"
               >
-                {loading ? "Sending..." : data.buttonText || "Confirm"}
+                {loading ? "Slanje..." : data.buttonText || "Potvrdi"}
               </button>
             </motion.form>
           ) : (

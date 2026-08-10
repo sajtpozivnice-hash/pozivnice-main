@@ -54,7 +54,7 @@ const RSVP: FC<Props> = ({ section, event }) => {
             className="h-full w-full object-cover"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-[#050506]/88" />
+          <div className="absolute inset-0 bg-[var(--b18-bg)]/88" />
         </div>
       ) : null}
 

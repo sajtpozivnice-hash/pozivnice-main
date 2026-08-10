@@ -17,8 +17,8 @@ const Hero: FC<Props> = ({ section, event }) => {
   const ageLabel = (data.title || data.badge || "18").replace(/^VOL\.\s*/i, "").trim() || "18";
   const badge = (data.badge || "VOL. 18").trim();
   const nameLabel = (event.names || "").trim();
-  const issue = (data.subtitle || "BIRTHDAY ISSUE").trim();
-  const character = (data.description || "THE MAIN CHARACTER").trim();
+  const issue = (data.subtitle || "ROĐENDANSKO IZDANJE").trim();
+  const character = (data.description || "GLAVNI LIK").trim();
   const photo = data.backgroundImage || data.image;
 
   const dateLabel = useMemo(() => {
@@ -80,19 +80,19 @@ const Hero: FC<Props> = ({ section, event }) => {
             className="ed-hero__meta"
           >
             <div className="ed-hero__meta-item">
-              <span>Date</span>
+              <span>Datum</span>
               <strong>{dateLabel}</strong>
             </div>
             <div className="ed-hero__meta-item">
-              <span>Year</span>
+              <span>Godina</span>
               <strong>{year}</strong>
             </div>
             <div className="ed-hero__meta-item">
-              <span>Time</span>
+              <span>Vreme</span>
               <strong>20:00</strong>
             </div>
             <div className="ed-hero__meta-item">
-              <span>City</span>
+              <span>Grad</span>
               <strong>
                 {event.location?.address || event.location?.name || "BEOGRAD"}
               </strong>
@@ -120,7 +120,7 @@ const Hero: FC<Props> = ({ section, event }) => {
           className="ed-hero__photo-col"
         >
           <div className="ed-hero__badge-float">
-            <span className="ed-sticker ed-sticker--red">COVER STAR</span>
+            <span className="ed-sticker ed-sticker--red">NASLOVNA ZVEZDA</span>
           </div>
           <div className="ed-hero__photo-tape ed-hero__photo-tape--a" aria-hidden />
           <div className="ed-hero__photo-tape ed-hero__photo-tape--b" aria-hidden />
@@ -129,11 +129,11 @@ const Hero: FC<Props> = ({ section, event }) => {
               <img src={photo} alt="" referrerPolicy="no-referrer" />
             ) : (
               <div className="flex h-full w-full items-center justify-center bg-[var(--ed-paper)] text-[var(--ed-muted)]">
-                Add cover photo
+                Dodaj naslovnu fotografiju
               </div>
             )}
           </div>
-          <p className="ed-hero__float-label">The Birthday Issue</p>
+          <p className="ed-hero__float-label">Rođendansko izdanje</p>
         </motion.div>
       </div>
     </section>

@@ -28,7 +28,7 @@ const packs = [
   },
   {
     key: "vencanje3",
-    title: "Minimal elegance",
+    title: "Minimalna elegancija",
     description:
       "Čist raspored sa jakim tipografskim fokusom. Potpuno prilagodljiv, uz praćenje gostiju u vašem nalogu.",
     eventTypes: ["wedding"],
@@ -37,7 +37,7 @@ const packs = [
   },
   {
     key: "vencanje4",
-    title: "Cinematic scenes",
+    title: "Filmski kadrovi",
     description:
       "Veliki kadrovi preko celog ekrana. Prilagodite sadržaj, a goste i stolove vodite u nalogu.",
     eventTypes: ["wedding"],
@@ -46,7 +46,7 @@ const packs = [
   },
   {
     key: "vencanje-premium",
-    title: "Premium editorial",
+    title: "Premijum editorial",
     description:
       "Svečani editorial stil. Boje, fontovi i galerija ostaju promenljivi i kasnije.",
     eventTypes: ["wedding"],
@@ -55,7 +55,7 @@ const packs = [
   },
   {
     key: "vencanje-cinematic",
-    title: "Film stills",
+    title: "Filmski kadar",
     description:
       "Filmski utisak sa jakim fotografijama. Otvorite primer i javite nam se ako vam se dopada.",
     eventTypes: ["wedding"],
@@ -67,7 +67,7 @@ const packs = [
   },
   {
     key: "vencanje-background",
-    title: "Glass on background",
+    title: "Staklo na pozadini",
     description:
       "Prozirni paneli preko jedne pozadine. Menjajte sadržaj i pošaljite link gostima.",
     eventTypes: ["wedding"],
@@ -91,9 +91,9 @@ const packs = [
   },
   {
     key: "birthday18",
-    title: "18 — Night Edition",
+    title: "18 — Noćno izdanje",
     description:
-      "Tamna premium pozivnica za punoletstvo: jak tipografski hero, countdown, plan večeri i RSVP.",
+      "Tamna premium pozivnica za punoletstvo: jak tipografski hero, odbrojavanje, plan večeri i potvrda prisustva.",
     eventTypes: ["comingOfAge"],
     style: "premium",
     config: {
@@ -103,9 +103,9 @@ const packs = [
   },
   {
     key: "birthday18-bright",
-    title: "18 — Bright Edition",
+    title: "18 — Svetlo izdanje",
     description:
-      "Svetla, vesela i moderna pozivnica za 18. rođendan: kolor blokovi, gradienti, plan večeri i RSVP.",
+      "Svetla, vesela i moderna pozivnica za 18. rođendan: kolor blokovi, gradienti, plan večeri i potvrda prisustva.",
     eventTypes: ["comingOfAge"],
     style: "playful",
     config: {
@@ -115,9 +115,9 @@ const packs = [
   },
   {
     key: "birthday18-editorial",
-    title: "18 — The Main Character",
+    title: "18 — Glavni junak",
     description:
-      "Editorial / Y2K magazine pozivnica za punoletstvo: collage layout, jaka tipografija i fashion vibe.",
+      "Editorial / Y2K magazin pozivnica za punoletstvo: kolaž raspored, jaka tipografija i modni utisak.",
     eventTypes: ["comingOfAge"],
     style: "editorial",
     config: {

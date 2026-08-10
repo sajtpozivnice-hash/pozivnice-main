@@ -19,7 +19,7 @@ type ScheduleDisplayItem = {
 const fallbackSchedule: ScheduleDisplayItem[] = [
   {
     time: "4:00 PM",
-    event: "The Ceremony",
+    event: "Ceremonija",
     location: "Villa del Sol Garden",
     icon: <Calendar className="w-5 h-5" />,
   },

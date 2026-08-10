@@ -16,8 +16,8 @@ const Hero: FC<Props> = ({ section, event }) => {
   const { data, id } = section;
   const ageLabel = (data.badge || data.title || "18").trim();
   const nameLabel = (event.names || "").trim();
-  const tagline = (data.subtitle || "TURNING EIGHTEEN").trim();
-  const partyLabel = (data.description || "BIRTHDAY PARTY").trim();
+  const tagline = (data.subtitle || "PUNI 18").trim();
+  const partyLabel = (data.description || "ROĐENDANSKA ŽURKA").trim();
   const photo = data.backgroundImage || data.image;
   const venueLabel =
     event.location?.name || event.location?.address || "BEOGRAD";

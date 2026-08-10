@@ -62,7 +62,7 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
             viewport={{ once: true }}
             className="v3-eyebrow mb-4 text-v3-champagne-soft"
           >
-            RSVP
+            Potvrda
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}

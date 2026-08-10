@@ -27,7 +27,7 @@ const LoveQuote: FC<Props> = ({ section }) => {
           viewport={{ once: true }}
           className="ed-label mb-6 text-white/70"
         >
-          Closing spread
+          Završni spread
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 24 }}
@@ -56,7 +56,7 @@ const LoveQuote: FC<Props> = ({ section }) => {
           className="mt-10"
         >
           <a href="#rsvp" className="ed-btn ed-btn--lime">
-            I&apos;M IN
+            DOLAZIM
           </a>
         </motion.div>
       </div>

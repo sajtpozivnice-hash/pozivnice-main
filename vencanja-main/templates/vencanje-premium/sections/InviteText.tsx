@@ -49,7 +49,7 @@ const InviteText: FC<Props> = ({ section, theme }) => {
             style={{ background: accent }}
           />
           <p className="sr-only" style={{ color: ink }}>
-            Invitation
+            Pozivnica
           </p>
         </motion.div>
       </div>

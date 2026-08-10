@@ -33,7 +33,7 @@ const UploadImages: FC<Props> = ({ section }) => {
           ) : null}
           <div className="mt-8 flex justify-center">
             <GuestPhotoUploadControl
-              buttonText={data.buttonText || "Upload frame"}
+              buttonText={data.buttonText || "Pošalji kadar"}
               buttonClassName="ed-btn cursor-pointer"
               inputClassName="ed-input"
             />

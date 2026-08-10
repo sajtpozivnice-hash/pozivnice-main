@@ -63,7 +63,7 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
             className="v4-eyebrow mb-5"
             style={{ color: accent }}
           >
-            RSVP
+            Potvrda
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}

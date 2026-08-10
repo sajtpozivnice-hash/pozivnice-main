@@ -53,7 +53,7 @@ const FeatureCards: FC<Props> = ({ section }) => {
                       className="h-full w-full object-cover"
                       referrerPolicy="no-referrer"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#050506] via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[var(--b18-bg)] via-transparent to-transparent" />
                   </div>
                 ) : null}
                 <div className="space-y-4 p-7 sm:p-8">

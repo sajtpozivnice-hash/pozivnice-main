@@ -57,10 +57,10 @@ const Hero: FC<Props> = ({ section, event, theme }) => {
   }, [targetDate]);
 
   const countdownItems = [
-    { label: "Days", value: timeLeft.days },
-    { label: "Hours", value: timeLeft.hours },
+    { label: "Dani", value: timeLeft.days },
+    { label: "Sati", value: timeLeft.hours },
     { label: "Min", value: timeLeft.minutes },
-    { label: "Sec", value: timeLeft.seconds },
+    { label: "Sek", value: timeLeft.seconds },
   ];
 
   return (

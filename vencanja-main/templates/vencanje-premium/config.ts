@@ -36,8 +36,8 @@ const IMG = {
 export const vencanjePremiumDefaultConfig: UniversalProjectConfig = {
   template: "vencanje-premium",
   meta: {
-    title: "Mila & Luka — Premium Invitation",
-    description: "Luxury editorial wedding invitation",
+    title: "Mila & Luka — Premium pozivnica",
+    description: "Luksuzna editorial pozivnica za venčanje",
   },
   event: {
     date: "2026-09-12",
@@ -52,11 +52,11 @@ export const vencanjePremiumDefaultConfig: UniversalProjectConfig = {
     colors: {
       base: {
         primary: {
-          name: "Antique Gold",
+          name: "Antičko zlato",
           value: "#9c7a45",
         },
         secondary: {
-          name: "Ink",
+          name: "Mastilo",
           value: "#1c1917",
         },
       },
@@ -70,8 +70,8 @@ export const vencanjePremiumDefaultConfig: UniversalProjectConfig = {
       visible: true,
       order: 1,
       data: {
-        title: "Volume I — Our Wedding",
-        subtitle: "The Wedding of",
+        title: "Tom I — Naše venčanje",
+        subtitle: "Venčanje",
         backgroundImage: IMG.hero,
       },
     },
@@ -82,7 +82,7 @@ export const vencanjePremiumDefaultConfig: UniversalProjectConfig = {
       visible: true,
       order: 2,
       data: {
-        title: "Until we say I do",
+        title: "Do trenutka 'Da'",
         imageUrl: IMG.calendar,
       },
     },
@@ -105,7 +105,7 @@ export const vencanjePremiumDefaultConfig: UniversalProjectConfig = {
       visible: true,
       order: 4,
       data: {
-        title: "Save the date",
+        title: "Sačuvajte datum",
         imageUrl: IMG.calendar,
       },
     },
@@ -116,8 +116,8 @@ export const vencanjePremiumDefaultConfig: UniversalProjectConfig = {
       visible: true,
       order: 5,
       data: {
-        title: "Our story",
-        overline: "Chapter one",
+        title: "Naša priča",
+        overline: "Prvo poglavlje",
         text: "Upoznavanje je bilo tiho, gotovo slučajno — a ipak je sve nakon toga imalo smisla.\n\nGodine su prošle u putovanjima, večerama i malim trenucima koji su nas učinili nama.\n\nSada otvaramo novo poglavlje i želimo da ga pročitamo zajedno sa Vama.",
         image: IMG.story,
       },
@@ -129,33 +129,33 @@ export const vencanjePremiumDefaultConfig: UniversalProjectConfig = {
       visible: true,
       order: 6,
       data: {
-        title: "Order of the day",
-        subtitle: "A quiet ceremony. An evening to remember.",
+        title: "Redosled dana",
+        subtitle: "Tiha ceremonija. Veče za pamćenje.",
         imageUrl: IMG.schedule,
         items: [
           {
             id: "1",
             time: "15:00",
-            title: "Ceremony",
-            description: "Garden vows beneath the trees",
+            title: "Ceremonija",
+            description: "Zakletve u vrtu, ispod krošnji",
           },
           {
             id: "2",
             time: "16:30",
-            title: "Reception",
-            description: "Champagne and soft music",
+            title: "Koktel",
+            description: "Šampanjac i nežna muzika",
           },
           {
             id: "3",
             time: "18:30",
-            title: "Dinner",
-            description: "Long tables, warm light",
+            title: "Večera",
+            description: "Dugi stolovi, topla svetlost",
           },
           {
             id: "4",
             time: "21:00",
-            title: "First dance",
-            description: "And then the night begins",
+            title: "Prvi ples",
+            description: "I tada počinje noć",
           },
         ],
       },
@@ -167,8 +167,8 @@ export const vencanjePremiumDefaultConfig: UniversalProjectConfig = {
       visible: true,
       order: 7,
       data: {
-        title: "In all the world, there is no heart for me like yours.",
-        description: "Maya Angelou",
+        title: "Na celom svetu nema srca za mene kao što je tvoje.",
+        description: "Maja Anđelu",
         imageUrl: IMG.quote,
       },
     },
@@ -179,24 +179,24 @@ export const vencanjePremiumDefaultConfig: UniversalProjectConfig = {
       visible: true,
       order: 8,
       data: {
-        title: "The places",
-        subtitle: "Where our day unfolds",
+        title: "Mesta",
+        subtitle: "Gde se naš dan odvija",
         imageUrl: IMG.locationsBg,
         cards: [
           {
             id: 1,
-            title: "Ceremony",
+            title: "Ceremonija",
             time: "15:00",
             location: "Villa Aurelia Gardens",
-            text: "An open-air ceremony surrounded by olive trees and soft afternoon light.",
+            text: "Ceremonija na otvorenom, okružena maslinama i mekom poslepodnevnom svetlošću.",
             image: IMG.locationA,
           },
           {
             id: 2,
-            title: "Celebration",
+            title: "Proslava",
             time: "18:30",
             location: "Villa Aurelia Hall",
-            text: "Dinner, toasts and dancing in a candlelit hall.",
+            text: "Večera, zdravice i ples u sali osvetljenoj svećama.",
             image: IMG.locationB,
           },
         ],
@@ -209,8 +209,8 @@ export const vencanjePremiumDefaultConfig: UniversalProjectConfig = {
       visible: true,
       order: 9,
       data: {
-        title: "In frames",
-        description: "Moments collected along the way",
+        title: "U kadrovima",
+        description: "Trenuci sakupljeni usput",
         images: IMG.gallery.map((url) => ({ url })),
       },
     },
@@ -221,9 +221,9 @@ export const vencanjePremiumDefaultConfig: UniversalProjectConfig = {
       visible: true,
       order: 10,
       data: {
-        title: "Share a frame",
-        subtitle: "Guest gallery",
-        description: "If you capture a moment you love — leave it with us.",
+        title: "Podelite kadar",
+        subtitle: "Galerija gostiju",
+        description: "Ako uhvatite trenutak koji volite — ostavite ga kod nas.",
         imageUrl: IMG.upload,
       },
     },
@@ -234,9 +234,9 @@ export const vencanjePremiumDefaultConfig: UniversalProjectConfig = {
       visible: true,
       order: 11,
       data: {
-        title: "Will you be there?",
-        description: "Kindly reply by ",
-        buttonText: "Send reply",
+        title: "Hoćete li biti tu?",
+        description: "Ljubazno odgovorite do ",
+        buttonText: "Pošalji odgovor",
         imageUrl: IMG.rsvp,
       },
     },
@@ -247,7 +247,7 @@ export const vencanjePremiumDefaultConfig: UniversalProjectConfig = {
       visible: true,
       order: 12,
       data: {
-        title: "Thank you for being part of our story.",
+        title: "Hvala što ste deo naše priče.",
         imageUrl: IMG.footer,
       },
     },

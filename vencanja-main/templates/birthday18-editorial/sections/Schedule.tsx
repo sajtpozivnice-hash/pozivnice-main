@@ -27,7 +27,7 @@ const Schedule: FC<Props> = ({ section }) => {
               {data.title}
             </h2>
           </div>
-          <span className="ed-sticker ed-sticker--blue">Run of show</span>
+          <span className="ed-sticker ed-sticker--blue">Redosled programa</span>
         </div>
 
         <div className="ed-schedule__list">

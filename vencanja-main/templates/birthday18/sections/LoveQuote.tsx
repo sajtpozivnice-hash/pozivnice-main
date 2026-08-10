@@ -27,7 +27,7 @@ const LoveQuote: FC<Props> = ({ section }) => {
           referrerPolicy="no-referrer"
         />
       ) : (
-        <div className="absolute inset-0 bg-[#0a0a0b]" />
+        <div className="absolute inset-0 bg-[var(--b18-ink)]" />
       )}
       <div className="b18-overlay absolute inset-0" />
 

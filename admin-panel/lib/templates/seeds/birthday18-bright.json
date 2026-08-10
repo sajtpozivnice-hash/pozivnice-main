@@ -53,8 +53,8 @@
       "order": 1,
       "data": {
         "title": "18",
-        "subtitle": "TURNING EIGHTEEN",
-        "description": "BIRTHDAY PARTY",
+        "subtitle": "PUNI 18",
+        "description": "ROĐENDANSKA ŽURKA",
         "badge": "18",
         "ctaText": "Potvrdi dolazak",
         "ctaHref": "#rsvp",
@@ -87,7 +87,7 @@
     },
     {
       "id": "locations",
-      "name": "Info i lokacija",
+      "name": "Informacije i lokacija",
       "type": "locations",
       "visible": true,
       "order": 4,
@@ -125,7 +125,7 @@
             "id": "1",
             "time": "20:00",
             "title": "Okupljanje",
-            "description": "Welcome drink, fotke i prvi zagrljaji."
+            "description": "Dobrodošlica, fotke i prvi zagrljaji."
           },
           {
             "id": "2",
@@ -142,7 +142,7 @@
           {
             "id": "4",
             "time": "00:00",
-            "title": "Party",
+            "title": "Žurka",
             "description": "Atmosfera do kasno — spremi energiju."
           }
         ]
@@ -150,19 +150,19 @@
     },
     {
       "id": "featureCards",
-      "name": "Dress code",
+      "name": "Kodeks odevanja",
       "type": "featureCards",
       "visible": true,
       "order": 6,
       "data": {
-        "title": "DRESS CODE",
-        "subtitle": "COLORFUL",
+        "title": "KODEKS ODEVANJA",
+        "subtitle": "ŠARENO",
         "description": "Obuci ono u čemu se osećaš najbolje i spremi se za dobru zabavu.",
         "cards": [
           {
             "id": "1",
-            "title": "COLORFUL",
-            "description": "Jarke boje, udobne patike, tvoj stil. Come as you are — samo dodaj energiju.",
+            "title": "ŠARENO",
+            "description": "Jarke boje, udobne patike, tvoj stil. Dođi kakav jesi — samo dodaj energiju.",
             "icon": "shirt",
             "accent": "#FF5C7A",
             "image": "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=85"
@@ -172,7 +172,7 @@
     },
     {
       "id": "rsvp",
-      "name": "RSVP",
+      "name": "Potvrda prisustva",
       "type": "rsvp",
       "visible": true,
       "order": 7,
@@ -192,7 +192,7 @@
       "visible": true,
       "order": 8,
       "data": {
-        "title": "LET'S PARTY!",
+        "title": "IDEMO DA ŽURIMO!",
         "description": "Vidimo se — spremi osmeh i dobru energiju.",
         "imageUrl": "https://images.unsplash.com/photo-1519677100203-a0e668c92439?auto=format&fit=crop&w=2000&q=85"
       }

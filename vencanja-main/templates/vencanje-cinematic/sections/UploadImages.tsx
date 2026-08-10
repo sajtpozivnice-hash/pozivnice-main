@@ -26,14 +26,14 @@ const UploadImages: FC<Props> = ({ section, theme }) => {
           viewport={{ once: true }}
         >
           <p className="vc-eyebrow mb-5" style={{ color: accent }}>
-            {data.subtitle ?? "Your perspective"}
+            {data.subtitle ?? "Vaš ugao"}
           </p>
           <h2 className="vc-title mb-5">{data.title}</h2>
           {data.description ? (
             <p className="vc-body mb-10 text-white/55">{data.description}</p>
           ) : null}
           <GuestPhotoUploadControl
-            buttonText={data.buttonText || "Add a frame"}
+            buttonText={data.buttonText || "Dodajte kadar"}
             buttonClassName="inline-flex w-full cursor-pointer items-center justify-center gap-3 border border-white/30 px-8 py-3.5 text-[10px] uppercase tracking-[0.32em] text-white transition hover:bg-white/10 sm:w-auto"
             inputClassName="w-full border border-white/20 bg-white/10 px-4 py-3 text-sm text-white outline-none placeholder:text-white/50"
           />

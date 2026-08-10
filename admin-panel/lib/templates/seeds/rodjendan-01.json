@@ -95,7 +95,7 @@
             "id": "1",
             "time": "16:00",
             "title": "Dolazak i igre",
-            "description": "Baloni, welcome drink i slobodne igre na otvorenom."
+            "description": "Baloni, dobrodošlica i slobodne igre na otvorenom."
           },
           {
             "id": "2",
@@ -139,7 +139,7 @@
           },
           {
             "id": "2",
-            "title": "Dress code",
+            "title": "Kodeks odevanja",
             "description": "Udobna, šarena odeća! Predlažemo pastalne boje i patike za igre.",
             "icon": "shirt",
             "accent": "#3D8BFF"
@@ -147,7 +147,7 @@
           {
             "id": "3",
             "title": "Zabavne aktivnosti",
-            "description": "Face painting, piñata, karaoke ugao i foto-booth sa rekvizitima.",
+            "description": "Bojenje lica, piñata, karaoke ugao i foto-booth sa rekvizitima.",
             "icon": "party",
             "accent": "#FFB703",
             "image": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023761/photo-1527529482837-4698179dc6ce_x4mmyo.avif"
@@ -241,7 +241,7 @@
     },
     {
       "id": "rsvp",
-      "name": "RSVP",
+      "name": "Potvrda prisustva",
       "type": "rsvp",
       "visible": true,
       "order": 9,
@@ -263,7 +263,7 @@
       "data": {
         "title": "Vidimo se uskoro!",
         "subtitle": "Sa ljubavlju, porodica",
-        "description": "Pitanja? Javite se organizatoru preko RSVP forme.",
+        "description": "Pitanja? Javite se organizatoru preko forme za potvrdu prisustva.",
         "imageUrl": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023854/photo-1513151233558-d860c5398176_xvejar.avif"
       }
     }

@@ -25,7 +25,7 @@ const InviteText: FC<Props> = ({ section, theme }) => {
           viewport={{ once: true }}
         >
           <p className="vc-eyebrow mb-8" style={{ color: accent }}>
-            Monologue
+            Monolog
           </p>
           <div className="vc-rule mb-8" style={{ background: accent }} />
           <p

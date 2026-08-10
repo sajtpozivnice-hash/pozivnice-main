@@ -29,7 +29,7 @@ const OurGallery: FC<Props> = ({ section, theme }) => {
             className="vp-eyebrow mb-4"
             style={{ color: accent }}
           >
-            Gallery
+            Galerija
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 14 }}
@@ -47,7 +47,7 @@ const OurGallery: FC<Props> = ({ section, theme }) => {
 
         {images.length === 0 ? (
           <div className="border border-dashed border-vp-line px-6 py-16 text-center text-sm text-vp-muted">
-            Gallery coming soon.
+            Galerija uskoro.
           </div>
         ) : (
           <div className="columns-1 gap-4 sm:columns-2 lg:columns-3">
@@ -64,7 +64,7 @@ const OurGallery: FC<Props> = ({ section, theme }) => {
                 >
                   <PremiumMedia
                     src={image.url}
-                    alt={`Gallery ${index + 1}`}
+                    alt={`Galerija ${index + 1}`}
                     className={`w-full ${tall ? "aspect-[3/4]" : "aspect-[4/5]"}`}
                   />
                 </motion.div>

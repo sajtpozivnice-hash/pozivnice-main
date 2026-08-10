@@ -24,17 +24,17 @@ const OurStory: FC<Props> = ({ section, theme }) => {
   const slides = [
     {
       image: data.image,
-      label: data.overline ?? "Meeting",
+      label: data.overline ?? "Susret",
       text: paragraphs[0] ?? data.title,
     },
     {
       image: data.image,
-      label: "Becoming",
+      label: "Postajanje",
       text: paragraphs[1] ?? paragraphs[0] ?? "",
     },
     {
       image: data.image,
-      label: "Beginning",
+      label: "Početak",
       text: paragraphs[2] ?? paragraphs[paragraphs.length - 1] ?? "",
     },
   ].filter((slide) => slide.text);
@@ -50,7 +50,7 @@ const OurStory: FC<Props> = ({ section, theme }) => {
             className="vc-eyebrow mb-4"
             style={{ color: accent }}
           >
-            {data.overline ?? "Scene 02"}
+            {data.overline ?? "Scena 02"}
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
@@ -61,7 +61,7 @@ const OurStory: FC<Props> = ({ section, theme }) => {
             {data.title}
           </motion.h2>
           <p className="mt-4 text-[10px] uppercase tracking-[0.35em] text-white/40">
-            Swipe the reel →
+            Prevucite traku →
           </p>
         </div>
 

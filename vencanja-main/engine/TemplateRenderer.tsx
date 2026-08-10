@@ -16,11 +16,16 @@ import {
   parisienne,
 } from "@/fonts";
 import { InvitationProjectProvider } from "@/components/invitation/InvitationProjectContext";
+import { InvitationOpening } from "@/components/invitation/InvitationOpening";
 
 type Props = {
   config: UniversalProjectConfig;
   /** Present on live invitation sites — enables guest photo upload */
   projectId?: string | null;
+  /**
+   * Premium invitation reveal overlay. Defaults to true (editor + live site).
+   */
+  enableOpening?: boolean;
 };
 
 function getPageBackgroundUrl(config: UniversalProjectConfig): string {
@@ -31,7 +36,11 @@ function getPageBackgroundUrl(config: UniversalProjectConfig): string {
   return "";
 }
 
-export function TemplateRenderer({ config, projectId = null }: Props) {
+export function TemplateRenderer({
+  config,
+  projectId = null,
+  enableOpening = true,
+}: Props) {
   const renderers = getTemplateRenderers(config.template);
   const pageBackgroundUrl = getPageBackgroundUrl(config);
 
@@ -65,6 +74,12 @@ export function TemplateRenderer({ config, projectId = null }: Props) {
               config.theme.colors?.base?.primary?.value,
             ["--color-secondary" as string]:
               config.theme.colors?.base?.secondary?.value,
+            ["--color-ternary" as string]:
+              config.theme.colors?.base?.ternary?.value,
+            ["--color-background" as string]:
+              config.theme.colors?.background?.value,
+            ["--color-background-secondary" as string]:
+              config.theme.colors?.backgroundSecondary?.value,
             ...(pageBackgroundUrl
               ? {
                   backgroundColor: "#120f0e",
@@ -81,7 +96,9 @@ export function TemplateRenderer({ config, projectId = null }: Props) {
           } as React.CSSProperties
         }
       >
-        <ConfigRenderer config={config} renderers={renderers} />
+        <InvitationOpening config={config} enabled={enableOpening}>
+          <ConfigRenderer config={config} renderers={renderers} />
+        </InvitationOpening>
       </div>
     </InvitationProjectProvider>
   );

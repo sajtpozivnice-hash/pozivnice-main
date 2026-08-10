@@ -30,7 +30,7 @@ const Calendar: FC<Props> = ({ section, event, theme }) => {
           className="vc-eyebrow mb-5"
           style={{ color: accent }}
         >
-          Insert
+          Umetak
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 16 }}

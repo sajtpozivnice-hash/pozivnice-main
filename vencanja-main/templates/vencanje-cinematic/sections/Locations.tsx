@@ -27,7 +27,7 @@ const Locations: FC<Props> = ({ section, theme }) => {
           className="vc-eyebrow mb-4"
           style={{ color: accent }}
         >
-          Places
+          Mesta
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
@@ -49,7 +49,7 @@ const Locations: FC<Props> = ({ section, theme }) => {
           className="min-h-[60svh]"
         >
           <div className="vc-stage text-center">
-            <p className="vc-body">Locations coming soon.</p>
+            <p className="vc-body">Lokacije uskoro.</p>
           </div>
         </SceneFrame>
       ) : (
@@ -72,7 +72,7 @@ const Locations: FC<Props> = ({ section, theme }) => {
                   className="mb-3 text-[10px] uppercase tracking-[0.4em]"
                   style={{ color: accent }}
                 >
-                  Scene {String(index + 1).padStart(2, "0")} · {card.time}
+                  Scena {String(index + 1).padStart(2, "0")} · {card.time}
                 </p>
                 <h3
                   className="text-4xl text-white sm:text-5xl lg:text-6xl"

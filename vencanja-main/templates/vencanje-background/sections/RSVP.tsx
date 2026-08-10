@@ -54,7 +54,7 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
         <div className="mb-8 text-center">
           <GlassPanel className="inline-block px-8 py-6">
             <p className="vb-eyebrow mb-3" style={{ color: accent }}>
-              RSVP
+              Potvrda
             </p>
             <h2 className="vb-title text-3xl sm:text-4xl">{data.title}</h2>
             <p className="mt-3 text-sm text-white/55">

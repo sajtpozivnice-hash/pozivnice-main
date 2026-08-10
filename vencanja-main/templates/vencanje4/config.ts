@@ -18,8 +18,8 @@ const BG = {
 export const vencanje4DefaultConfig: UniversalProjectConfig = {
   template: "vencanje4",
   meta: {
-    title: "Nevena & Jovan — Cinematic Invitation",
-    description: "Full-screen wedding invitation",
+    title: "Nevena & Jovan — Filmska pozivnica",
+    description: "Pozivnica za venčanje preko celog ekrana",
   },
   event: {
     date: "2026-08-08",
