@@ -27,12 +27,17 @@ type Props = {
   user: User;
   client: Client;
   projects: Project[];
+  /** When false, active project is not written to localStorage (demo). */
+  persistActiveProject?: boolean;
 };
 
-const resolveActiveProjectId = (projects: Project[]): string | null => {
+const resolveActiveProjectId = (
+  projects: Project[],
+  persist: boolean,
+): string | null => {
   if (projects.length === 0) return null;
 
-  if (typeof window !== "undefined") {
+  if (persist && typeof window !== "undefined") {
     const savedId = localStorage.getItem(STORAGE_KEY);
     if (savedId && projects.some((project) => project.id === savedId)) {
       return savedId;
@@ -42,9 +47,15 @@ const resolveActiveProjectId = (projects: Project[]): string | null => {
   return projects[0]?.id ?? null;
 };
 
-export function DashboardProvider({ children, user, client, projects }: Props) {
+export function DashboardProvider({
+  children,
+  user,
+  client,
+  projects,
+  persistActiveProject = true,
+}: Props) {
   const [activeProjectId, setActiveProjectId] = useState<string | null>(() =>
-    resolveActiveProjectId(projects),
+    resolveActiveProjectId(projects, persistActiveProject),
   );
   const [projectsKey, setProjectsKey] = useState(() =>
     projects.map((project) => project.id).join("|"),
@@ -53,16 +64,18 @@ export function DashboardProvider({ children, user, client, projects }: Props) {
   const nextProjectsKey = projects.map((project) => project.id).join("|");
   if (nextProjectsKey !== projectsKey) {
     setProjectsKey(nextProjectsKey);
-    const nextId = resolveActiveProjectId(projects);
+    const nextId = resolveActiveProjectId(projects, persistActiveProject);
     setActiveProjectId(nextId);
-    if (nextId && typeof window !== "undefined") {
+    if (persistActiveProject && nextId && typeof window !== "undefined") {
       localStorage.setItem(STORAGE_KEY, nextId);
     }
   }
 
   function setActiveProject(projectId: string) {
     setActiveProjectId(projectId);
-    localStorage.setItem(STORAGE_KEY, projectId);
+    if (persistActiveProject) {
+      localStorage.setItem(STORAGE_KEY, projectId);
+    }
   }
 
   const activeProject = useMemo(() => {

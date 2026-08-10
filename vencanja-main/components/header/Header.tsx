@@ -98,21 +98,39 @@ const Header = () => {
               {link.label}
             </Link>
           ))}
-          <Link href="/login" className={styles.loginLink}>
-            Prijava
-          </Link>
+          <div className={styles.actions}>
+            <Link
+              href="/demo"
+              className={`${styles.demoLink} ${isActive("/demo") ? styles.demoActive : ""}`}
+            >
+              <span className={styles.demoLabelFull}>Pogledaj demo nalog</span>
+              <span className={styles.demoLabelShort}>Pogledaj demo</span>
+            </Link>
+            <Link href="/login" className={styles.loginLink}>
+              Prijava
+            </Link>
+          </div>
         </nav>
 
-        <button
-          type="button"
-          className={styles.menuButton}
-          aria-label={open ? "Zatvori meni" : "Otvori meni"}
-          aria-expanded={open}
-          aria-controls={menuId}
-          onClick={() => setOpen((prev) => !prev)}
-        >
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        <div className={styles.mobileBar}>
+          <Link
+            href="/demo"
+            className={`${styles.demoLinkCompact} ${isActive("/demo") ? styles.demoActive : ""}`}
+            onClick={() => setOpen(false)}
+          >
+            Pogledaj demo nalog
+          </Link>
+          <button
+            type="button"
+            className={styles.menuButton}
+            aria-label={open ? "Zatvori meni" : "Otvori meni"}
+            aria-expanded={open}
+            aria-controls={menuId}
+            onClick={() => setOpen((prev) => !prev)}
+          >
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </div>
 
       <AnimatePresence>
@@ -151,13 +169,22 @@ const Header = () => {
                   {link.label}
                 </Link>
               ))}
-              <Link
-                href="/login"
-                className={styles.mobileLogin}
-                onClick={() => setOpen(false)}
-              >
-                Prijava
-              </Link>
+              <div className={styles.mobileActions}>
+                <Link
+                  href="/demo"
+                  className={styles.mobileDemo}
+                  onClick={() => setOpen(false)}
+                >
+                  Pogledaj demo nalog
+                </Link>
+                <Link
+                  href="/login"
+                  className={styles.mobileLogin}
+                  onClick={() => setOpen(false)}
+                >
+                  Prijava
+                </Link>
+              </div>
             </motion.nav>
           </>
         ) : null}

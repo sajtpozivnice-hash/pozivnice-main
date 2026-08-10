@@ -79,18 +79,35 @@ async function selectBySubdomain(
   client: NonNullable<ReturnType<typeof createAdminClient>>,
   slug: string,
   includePublished: boolean,
-) {
-  const columns = includePublished
-    ? "id, title, subdomain, published, config_json"
-    : "id, title, subdomain, config_json";
+): Promise<{ data: ProjectRow | null; error: { message: string } | null }> {
+  // Literal select strings keep Supabase typings valid (dynamic columns break them).
+  if (includePublished) {
+    const result = await client
+      .from("projects")
+      .select("id, title, subdomain, published, config_json")
+      .eq("subdomain", slug)
+      .limit(1)
+      .maybeSingle();
 
-  // Exact match on lowercased slug; limit 1 avoids maybeSingle multi-row errors
-  return client
+    return {
+      data: (result.data as ProjectRow | null) ?? null,
+      error: result.error,
+    };
+  }
+
+  const result = await client
     .from("projects")
-    .select(columns)
+    .select("id, title, subdomain, config_json")
     .eq("subdomain", slug)
     .limit(1)
     .maybeSingle();
+
+  return {
+    data: result.data
+      ? ({ ...(result.data as Omit<ProjectRow, "published">), published: true } as ProjectRow)
+      : null,
+    error: result.error,
+  };
 }
 
 async function loadViaAdmin(slug: string): Promise<PublicSiteProject | null> {
@@ -101,9 +118,7 @@ async function loadViaAdmin(slug: string): Promise<PublicSiteProject | null> {
 
   if (error?.message?.toLowerCase().includes("published")) {
     const retry = await selectBySubdomain(admin, slug, false);
-    data = retry.data
-      ? ({ ...retry.data, published: true } as ProjectRow)
-      : null;
+    data = retry.data;
     error = retry.error;
   }
 
@@ -128,7 +143,7 @@ async function loadViaAdmin(slug: string): Promise<PublicSiteProject | null> {
     return null;
   }
 
-  return data ? mapPublishedProject(data as ProjectRow) : null;
+  return data ? mapPublishedProject(data) : null;
 }
 
 async function loadViaAnonSelect(slug: string): Promise<PublicSiteProject | null> {

@@ -1,11 +1,19 @@
 import { createClient } from "@/lib/supabase/client";
 import { CreateGuestPhotoDto, GuestPhoto } from "../types";
+import { isDemoMode } from "@/lib/demo/mode";
+import {
+  demoCreateGuestPhoto,
+  demoDeleteGuestPhoto,
+  demoGetGuestPhotos,
+} from "@/lib/demo/adapters";
 
 const supabase = createClient();
 
 export const getGuestPhotosByProjectService = async (
   projectId: string,
 ): Promise<GuestPhoto[]> => {
+  if (isDemoMode()) return demoGetGuestPhotos(projectId);
+
   const { data, error } = await supabase
     .from("guest_photos")
     .select("*")
@@ -20,6 +28,8 @@ export const createGuestPhotoService = async (
   projectId: string,
   photo: CreateGuestPhotoDto,
 ): Promise<GuestPhoto> => {
+  if (isDemoMode()) return demoCreateGuestPhoto(projectId, photo);
+
   const { data, error } = await supabase
     .from("guest_photos")
     .insert({
@@ -41,6 +51,11 @@ export const createGuestPhotoService = async (
 };
 
 export const deleteGuestPhotoService = async (id: string): Promise<void> => {
+  if (isDemoMode()) {
+    demoDeleteGuestPhoto(id);
+    return;
+  }
+
   const { error } = await supabase.from("guest_photos").delete().eq("id", id);
   if (error) throw error;
 };
