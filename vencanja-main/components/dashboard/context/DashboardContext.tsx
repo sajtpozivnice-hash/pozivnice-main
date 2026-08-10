@@ -4,8 +4,10 @@ import {
   createContext,
   useContext,
   useState,
-  ReactNode,
+  useEffect,
   useMemo,
+  startTransition,
+  type ReactNode,
 } from "react";
 import { Client, Project, User } from "../types";
 
@@ -31,22 +33,6 @@ type Props = {
   persistActiveProject?: boolean;
 };
 
-const resolveActiveProjectId = (
-  projects: Project[],
-  persist: boolean,
-): string | null => {
-  if (projects.length === 0) return null;
-
-  if (persist && typeof window !== "undefined") {
-    const savedId = localStorage.getItem(STORAGE_KEY);
-    if (savedId && projects.some((project) => project.id === savedId)) {
-      return savedId;
-    }
-  }
-
-  return projects[0]?.id ?? null;
-};
-
 export function DashboardProvider({
   children,
   user,
@@ -54,8 +40,9 @@ export function DashboardProvider({
   projects,
   persistActiveProject = true,
 }: Props) {
-  const [activeProjectId, setActiveProjectId] = useState<string | null>(() =>
-    resolveActiveProjectId(projects, persistActiveProject),
+  // SSR + first client paint always use the first project (no localStorage).
+  const [activeProjectId, setActiveProjectId] = useState<string | null>(
+    () => projects[0]?.id ?? null,
   );
   const [projectsKey, setProjectsKey] = useState(() =>
     projects.map((project) => project.id).join("|"),
@@ -64,12 +51,22 @@ export function DashboardProvider({
   const nextProjectsKey = projects.map((project) => project.id).join("|");
   if (nextProjectsKey !== projectsKey) {
     setProjectsKey(nextProjectsKey);
-    const nextId = resolveActiveProjectId(projects, persistActiveProject);
-    setActiveProjectId(nextId);
-    if (persistActiveProject && nextId && typeof window !== "undefined") {
-      localStorage.setItem(STORAGE_KEY, nextId);
-    }
+    setActiveProjectId(projects[0]?.id ?? null);
   }
+
+  useEffect(() => {
+    if (!persistActiveProject || projects.length === 0) return;
+
+    const savedId = localStorage.getItem(STORAGE_KEY);
+    if (!savedId || !projects.some((project) => project.id === savedId)) {
+      return;
+    }
+
+    // Defer so SSR HTML stays matched, then apply stored preference.
+    startTransition(() => {
+      setActiveProjectId(savedId);
+    });
+  }, [persistActiveProject, projects]);
 
   function setActiveProject(projectId: string) {
     setActiveProjectId(projectId);

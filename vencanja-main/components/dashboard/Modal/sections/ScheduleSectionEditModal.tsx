@@ -17,7 +17,7 @@ import Loader from "../../loaders/Loader";
 import { useProject } from "../../context/ProjectContext";
 import { Plus } from "lucide-react";
 import { ScheduleSection } from "@/types/sections";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { UniversalProjectConfig } from "@/types/config";
 import { RepeaterItemCard } from "./RepeaterItemCard";
@@ -36,23 +36,14 @@ const ScheduleSectionEditModal = () => {
   const { closeModal } = useDialog();
   const { config, saving, getSection, saveConfig } = useProject();
   const scheduleSection = getSection<ScheduleSection>("schedule");
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(
+    scheduleSection?.visible ?? false,
+  );
   const [form, setForm] = useState<ScheduleForm>({
-    title: "",
-    subtitle: "",
-    items: [],
+    title: scheduleSection?.data.title || "",
+    subtitle: scheduleSection?.data.subtitle || "",
+    items: scheduleSection?.data.items || [],
   });
-
-  useEffect(() => {
-    if (scheduleSection) {
-      setForm({
-        title: scheduleSection.data.title || "",
-        subtitle: scheduleSection.data.subtitle || "",
-        items: scheduleSection.data.items || [],
-      });
-      setIsVisible(scheduleSection.visible);
-    }
-  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,

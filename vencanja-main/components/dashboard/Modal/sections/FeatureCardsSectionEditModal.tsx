@@ -17,7 +17,7 @@ import Loader from "../../loaders/Loader";
 import { useProject } from "../../context/ProjectContext";
 import { Plus } from "lucide-react";
 import { FeatureCardItem, FeatureCardsSection } from "@/types/sections";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { UniversalProjectConfig } from "@/types/config";
 import { RepeaterItemCard } from "./RepeaterItemCard";
@@ -35,25 +35,13 @@ const FeatureCardsSectionEditModal = () => {
   const { closeModal } = useDialog();
   const { config, saving, getSection, saveConfig } = useProject();
   const section = getSection<FeatureCardsSection>("featureCards");
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(section?.visible ?? false);
   const [form, setForm] = useState<FeatureCardsForm>({
-    title: "",
-    subtitle: "",
-    description: "",
-    cards: [],
+    title: section?.data.title || "",
+    subtitle: section?.data.subtitle || "",
+    description: section?.data.description || "",
+    cards: section?.data.cards || [],
   });
-
-  useEffect(() => {
-    if (section) {
-      setForm({
-        title: section.data.title || "",
-        subtitle: section.data.subtitle || "",
-        description: section.data.description || "",
-        cards: section.data.cards || [],
-      });
-      setIsVisible(section.visible);
-    }
-  }, [section]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,

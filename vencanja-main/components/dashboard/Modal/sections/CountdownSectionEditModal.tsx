@@ -16,7 +16,7 @@ import { useDialog } from "../../context/ModalContext";
 import Loader from "../../loaders/Loader";
 import { useProject } from "../../context/ProjectContext";
 import { CountdownSection } from "@/types/sections";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { UniversalProjectConfig } from "@/types/config";
 import { SectionModalVisibilityBar } from "./SectionModalVisibilityBar";
 
@@ -25,20 +25,12 @@ const CountdownSectionEditModal = () => {
   const { config, saving, getSection, saveConfig } = useProject();
   const countdownSection = getSection<CountdownSection>("countdown");
   const [form, setForm] = useState({
-    title: "",
-    description: "",
+    title: countdownSection?.data.title || "",
+    description: countdownSection?.data.description || "",
   });
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    if (countdownSection) {
-      setForm({
-        title: countdownSection.data.title || "",
-        description: countdownSection.data.description || "",
-      });
-      setIsVisible(countdownSection.visible);
-    }
-  }, []);
+  const [isVisible, setIsVisible] = useState(
+    countdownSection?.visible ?? false,
+  );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm((prev) => ({

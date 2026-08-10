@@ -1,15 +1,18 @@
 "use client";
 import InvitationContactForm from "@/components/shared/InvitationContactForm/InvitationContactForm";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const TemplateForm = () => {
-  const [formData, setFormData] = useState();
-  useEffect(() => {
+  const [formData] = useState(() => {
+    if (typeof window === "undefined") return undefined;
     const saved = localStorage.getItem("contactData");
-    if (saved) {
-      setFormData(JSON.parse(saved));
+    if (!saved) return undefined;
+    try {
+      return JSON.parse(saved);
+    } catch {
+      return undefined;
     }
-  }, []);
+  });
   return <InvitationContactForm config={formData} />;
 };
 

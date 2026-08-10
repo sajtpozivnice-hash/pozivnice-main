@@ -13,7 +13,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { useDialog } from "../context/ModalContext";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CreateTableDto } from "../types";
 import { useTables } from "../context/TableContext";
 import { toast } from "sonner";
@@ -29,21 +29,20 @@ const EditTableModal = () => {
   const numberOfGuests = Number(data?.data?.number_of_guests ?? 1);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [form, setForm] = useState<CreateTableDto>({
-    name: "",
-    number_of_guests: 1,
+    name,
+    number_of_guests: numberOfGuests,
   });
+  const [sourceKey, setSourceKey] = useState(id);
+
+  if (id !== sourceKey) {
+    setSourceKey(id);
+    setForm({ name, number_of_guests: numberOfGuests });
+  }
 
   const currentGuestsCount = guests.filter(
     (guest) => guest.table_id === id,
   ).length;
   const tableGuests = guests.filter((guest) => guest.table_id === id);
-
-  useEffect(() => {
-    setForm({
-      name,
-      number_of_guests: numberOfGuests,
-    });
-  }, [name, numberOfGuests]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name: fieldName, value } = e.target;

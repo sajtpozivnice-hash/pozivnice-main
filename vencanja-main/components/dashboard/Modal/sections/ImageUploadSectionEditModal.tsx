@@ -15,7 +15,7 @@ import { useDialog } from "../../context/ModalContext";
 import Loader from "../../loaders/Loader";
 import { useProject } from "../../context/ProjectContext";
 import { UploadImagesSection } from "@/types/sections";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { UniversalProjectConfig } from "@/types/config";
 import { SectionModalVisibilityBar } from "./SectionModalVisibilityBar";
@@ -23,26 +23,17 @@ import { SectionModalVisibilityBar } from "./SectionModalVisibilityBar";
 const ImageUploadSectionEditModal = () => {
   const { closeModal } = useDialog();
   const { config, saving, getSection, saveConfig } = useProject();
-  const [isVisible, setIsVisible] = useState(false);
   const imageUploadSection = getSection<UploadImagesSection>(
     "uploadImagesSection",
   );
+  const [isVisible, setIsVisible] = useState(
+    imageUploadSection?.visible ?? false,
+  );
   const [form, setForm] = useState({
-    title: "",
-    subtitle: "",
-    description: "",
+    title: imageUploadSection?.data?.title || "",
+    subtitle: imageUploadSection?.data?.subtitle || "",
+    description: imageUploadSection?.data?.description || "",
   });
-
-  useEffect(() => {
-    if (imageUploadSection) {
-      setForm({
-        title: imageUploadSection?.data?.title || "",
-        subtitle: imageUploadSection?.data?.subtitle || "",
-        description: imageUploadSection?.data?.description || "",
-      });
-      setIsVisible(imageUploadSection.visible);
-    }
-  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setForm((prev) => ({

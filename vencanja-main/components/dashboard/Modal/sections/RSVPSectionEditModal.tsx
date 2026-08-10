@@ -15,7 +15,7 @@ import { useDialog } from "../../context/ModalContext";
 import Loader from "../../loaders/Loader";
 import { useProject } from "../../context/ProjectContext";
 import { RSVPSection } from "@/types/sections";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { UniversalProjectConfig } from "@/types/config";
 import { SectionModalVisibilityBar } from "./SectionModalVisibilityBar";
@@ -23,22 +23,12 @@ import { SectionModalVisibilityBar } from "./SectionModalVisibilityBar";
 const RSVPSectionEditModal = () => {
   const { closeModal } = useDialog();
   const { config, saving, getSection, saveConfig } = useProject();
-  const [isVisible, setIsVisible] = useState(false);
   const rsvpSection = getSection<RSVPSection>("rsvp");
+  const [isVisible, setIsVisible] = useState(rsvpSection?.visible ?? false);
   const [form, setForm] = useState({
-    title: "",
-    description: "",
+    title: rsvpSection?.data?.title || "",
+    description: rsvpSection?.data?.description || "",
   });
-
-  useEffect(() => {
-    if (rsvpSection) {
-      setForm({
-        title: rsvpSection?.data?.title || "",
-        description: rsvpSection?.data?.description || "",
-      });
-      setIsVisible(rsvpSection.visible);
-    }
-  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setForm((prev) => ({

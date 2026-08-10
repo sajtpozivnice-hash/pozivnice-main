@@ -32,7 +32,7 @@ import DeletePlannerTaskModal from "./planner/DeletePlannerTaskModal";
 import AddPlannerCategoryModal from "./planner/AddPlannerCategoryModal";
 
 const ModalContainer = () => {
-  const { type, open, closeModal } = useDialog();
+  const { type, open, closeModal, data } = useDialog();
 
   const isWide =
     type === "budget_item_details" ||
@@ -48,9 +48,9 @@ const ModalContainer = () => {
       case "add_guest_to_table":
         return <AddGuestToTableModal />;
       case "edit_table":
-        return <EditTableModal />;
+        return <EditTableModal key={data?.id ?? "edit-table"} />;
       case "edit_guest":
-        return <EditGuestModal />;
+        return <EditGuestModal key={data?.id ?? "edit-guest"} />;
       case "delete_guest":
         return <DeleteGuestModal />;
       case "delete_table":
@@ -102,7 +102,7 @@ const ModalContainer = () => {
       default:
         return <></>;
     }
-  }, [type]);
+  }, [type, data?.id]);
 
   return (
     <Sheet open={open} onOpenChange={closeModal}>

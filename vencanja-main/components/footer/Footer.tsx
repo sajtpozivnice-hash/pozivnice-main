@@ -72,7 +72,7 @@ const Footer = () => {
         </div>
       </Section>
       <div className={`${styles.footerBottom} text-center`}>
-        <p className={styles.description}>
+        <p className={styles.description} suppressHydrationWarning>
           © {new Date().getFullYear()} eVenčanje. Sva prava zadržana.
         </p>
       </div>

@@ -17,7 +17,7 @@ import Loader from "../../loaders/Loader";
 import { useProject } from "../../context/ProjectContext";
 import { Plus } from "lucide-react";
 import { CardItem, LocationsSection } from "@/types/sections";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { UniversalProjectConfig } from "@/types/config";
 import { RepeaterItemCard } from "./RepeaterItemCard";
@@ -34,23 +34,14 @@ const LocationsSectionEditModal = () => {
   const { closeModal } = useDialog();
   const { config, saving, getSection, saveConfig } = useProject();
   const locationsSection = getSection<LocationsSection>("locations");
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(
+    locationsSection?.visible ?? false,
+  );
   const [form, setForm] = useState<LocationsForm>({
-    title: "",
-    subtitle: "",
-    cards: [],
+    title: locationsSection?.data.title || "",
+    subtitle: locationsSection?.data.subtitle || "",
+    cards: locationsSection?.data.cards || [],
   });
-
-  useEffect(() => {
-    if (locationsSection) {
-      setForm({
-        title: locationsSection.data.title || "",
-        subtitle: locationsSection.data.subtitle || "",
-        cards: locationsSection.data.cards || [],
-      });
-      setIsVisible(locationsSection.visible);
-    }
-  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,

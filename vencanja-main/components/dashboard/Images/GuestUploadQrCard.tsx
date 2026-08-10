@@ -14,7 +14,11 @@ type Props = {
 
 function formatDate(value?: string | null) {
   if (!value) return null;
-  const d = new Date(value);
+  // Parse YYYY-MM-DD as local calendar date to avoid SSR/client timezone mismatch.
+  const match = /^(\d{4})-(\d{2})-(\d{2})/.exec(value);
+  const d = match
+    ? new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]))
+    : new Date(value);
   if (Number.isNaN(d.getTime())) return value;
   return d.toLocaleDateString("sr-Latn-RS", {
     day: "numeric",

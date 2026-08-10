@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useState, useSyncExternalStore } from "react";
 import { Menu, X } from "lucide-react";
 import {
   AnimatePresence,
@@ -19,33 +19,41 @@ const NAV_LINKS = [
   { label: "Kontakt", href: "/kontakt" },
 ] as const;
 
+function subscribeHash(onStoreChange: () => void) {
+  window.addEventListener("hashchange", onStoreChange);
+  return () => window.removeEventListener("hashchange", onStoreChange);
+}
+
+function getHashSnapshot() {
+  return window.location.hash;
+}
+
+function getServerHashSnapshot() {
+  return "";
+}
+
 const Header = () => {
   const pathname = usePathname();
   const menuId = useId();
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [menuPathname, setMenuPathname] = useState(pathname);
+  const hash = useSyncExternalStore(
+    subscribeHash,
+    getHashSnapshot,
+    getServerHashSnapshot,
+  );
 
   useMotionValueEvent(scrollY, "change", (value) => {
     setScrolled(value > 20);
   });
 
-  useEffect(() => {
-    setScrolled(window.scrollY > 20);
-  }, []);
-
-  const [hash, setHash] = useState("");
-
-  useEffect(() => {
-    const syncHash = () => setHash(window.location.hash);
-    syncHash();
-    window.addEventListener("hashchange", syncHash);
-    return () => window.removeEventListener("hashchange", syncHash);
-  }, [pathname]);
-
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
+  // Close mobile menu when the route changes (adjust state during render).
+  if (pathname !== menuPathname) {
+    setMenuPathname(pathname);
+    if (open) setOpen(false);
+  }
 
   useEffect(() => {
     if (!open) return;
@@ -90,10 +98,6 @@ const Header = () => {
               key={link.href}
               href={link.href}
               className={`${styles.navLink} ${isActive(link.href) ? styles.active : ""}`}
-              onClick={() => {
-                if (link.href === "/#cenovnik") setHash("#cenovnik");
-                if (link.href === "/") setHash("");
-              }}
             >
               {link.label}
             </Link>
@@ -103,8 +107,7 @@ const Header = () => {
               href="/demo"
               className={`${styles.demoLink} ${isActive("/demo") ? styles.demoActive : ""}`}
             >
-              <span className={styles.demoLabelFull}>Pogledaj demo nalog</span>
-              <span className={styles.demoLabelShort}>Pogledaj demo</span>
+              Pogledaj demo nalog
             </Link>
             <Link href="/login" className={styles.loginLink}>
               Prijava
@@ -160,11 +163,7 @@ const Header = () => {
                   key={link.href}
                   href={link.href}
                   className={`${styles.mobileLink} ${isActive(link.href) ? styles.active : ""}`}
-                  onClick={() => {
-                    setOpen(false);
-                    if (link.href === "/#cenovnik") setHash("#cenovnik");
-                    if (link.href === "/") setHash("");
-                  }}
+                  onClick={() => setOpen(false)}
                 >
                   {link.label}
                 </Link>

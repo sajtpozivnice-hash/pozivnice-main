@@ -13,6 +13,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
 import { UserLayout } from "@/app/dashboard/user/UserLayout";
 import { DemoBanner } from "@/components/demo/DemoBanner";
+import { DemoModeProvider } from "@/components/demo/DemoModeContext";
 import { createDemoSnapshot } from "@/lib/demo/seed";
 import { disableDemoMode, enableDemoMode } from "@/lib/demo/mode";
 import type { DemoSnapshot } from "@/lib/demo/types";
@@ -25,40 +26,43 @@ function DemoSession({ onReset }: { onReset: () => void }) {
   });
 
   useEffect(() => {
+    enableDemoMode(snapshot);
     return () => {
       disableDemoMode();
     };
-  }, []);
+  }, [snapshot]);
 
   return (
-    <div className="min-h-screen bg-[#f6f4f1]">
-      <DemoBanner onReset={onReset} />
-      <DashboardProvider
-        user={snapshot.user}
-        client={snapshot.client}
-        projects={snapshot.projects}
-        persistActiveProject={false}
-      >
-        <ProjectProvider>
-          <TooltipProvider>
-            <DialogProvider>
-              <GuestsProvider>
-                <TableProvider>
-                  <BudgetProvider>
-                    <PlannerProvider>
-                      <GuestPhotosProvider>
-                        <UserLayout />
-                      </GuestPhotosProvider>
-                    </PlannerProvider>
-                  </BudgetProvider>
-                </TableProvider>
-              </GuestsProvider>
-            </DialogProvider>
-          </TooltipProvider>
-        </ProjectProvider>
-        <Toaster />
-      </DashboardProvider>
-    </div>
+    <DemoModeProvider>
+      <div className="min-h-screen bg-[#f6f4f1]">
+        <DemoBanner onReset={onReset} />
+        <DashboardProvider
+          user={snapshot.user}
+          client={snapshot.client}
+          projects={snapshot.projects}
+          persistActiveProject={false}
+        >
+          <ProjectProvider>
+            <TooltipProvider>
+              <DialogProvider>
+                <GuestsProvider>
+                  <TableProvider>
+                    <BudgetProvider>
+                      <PlannerProvider>
+                        <GuestPhotosProvider>
+                          <UserLayout />
+                        </GuestPhotosProvider>
+                      </PlannerProvider>
+                    </BudgetProvider>
+                  </TableProvider>
+                </GuestsProvider>
+              </DialogProvider>
+            </TooltipProvider>
+          </ProjectProvider>
+          <Toaster />
+        </DashboardProvider>
+      </div>
+    </DemoModeProvider>
   );
 }
 

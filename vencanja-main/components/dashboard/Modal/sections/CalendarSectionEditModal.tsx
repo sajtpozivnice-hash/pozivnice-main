@@ -16,7 +16,7 @@ import { useDialog } from "../../context/ModalContext";
 import Loader from "../../loaders/Loader";
 import { useProject } from "../../context/ProjectContext";
 import { CalendarSection } from "@/types/sections";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { UniversalProjectConfig } from "@/types/config";
 import { SectionModalVisibilityBar } from "./SectionModalVisibilityBar";
 
@@ -25,18 +25,11 @@ const CalendarSectionEditModal = () => {
   const { config, saving, getSection, saveConfig } = useProject();
   const calendarSection = getSection<CalendarSection>("calendar");
   const [form, setForm] = useState({
-    title: "",
+    title: calendarSection?.data.title || "",
   });
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    if (calendarSection) {
-      setForm({
-        title: calendarSection.data.title || "",
-      });
-      setIsVisible(calendarSection.visible);
-    }
-  }, []);
+  const [isVisible, setIsVisible] = useState(
+    calendarSection?.visible ?? false,
+  );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm((prev) => ({

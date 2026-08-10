@@ -124,14 +124,6 @@
   border-color: var(--color-hot);
 }
 
-.demoLabelFull {
-  display: none;
-}
-
-.demoLabelShort {
-  display: inline;
-}
-
 .loginLink {
   color: white;
   background: var(--color-hot);
@@ -231,14 +223,6 @@
 }
 
 @media (min-width: 1180px) {
-  .demoLabelFull {
-    display: inline;
-  }
-
-  .demoLabelShort {
-    display: none;
-  }
-
   .demoLink,
   .loginLink {
     padding: 8px 16px;

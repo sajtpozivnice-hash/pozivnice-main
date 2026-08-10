@@ -15,7 +15,7 @@ import { useDialog } from "../../context/ModalContext";
 import Loader from "../../loaders/Loader";
 import { useProject } from "../../context/ProjectContext";
 import { LoveQuoteSection } from "@/types/sections";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { UniversalProjectConfig } from "@/types/config";
 import { SectionModalVisibilityBar } from "./SectionModalVisibilityBar";
@@ -23,20 +23,13 @@ import { SectionModalVisibilityBar } from "./SectionModalVisibilityBar";
 const LoveQuoteSectionEditModal = () => {
   const { closeModal } = useDialog();
   const { config, saving, getSection, saveConfig } = useProject();
-  const [isVisible, setIsVisible] = useState(false);
   const loveQuoteSection = getSection<LoveQuoteSection>("loveQuote");
+  const [isVisible, setIsVisible] = useState(
+    loveQuoteSection?.visible ?? false,
+  );
   const [form, setForm] = useState({
-    title: "",
+    title: loveQuoteSection?.data?.title || "",
   });
-
-  useEffect(() => {
-    if (loveQuoteSection) {
-      setForm({
-        title: loveQuoteSection?.data?.title || "",
-      });
-      setIsVisible(loveQuoteSection.visible);
-    }
-  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setForm((prev) => ({

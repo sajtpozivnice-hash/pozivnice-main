@@ -15,7 +15,7 @@ import { useDialog } from "../../context/ModalContext";
 import Loader from "../../loaders/Loader";
 import { useProject } from "../../context/ProjectContext";
 import { InviteTextSection } from "@/types/sections";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { UniversalProjectConfig } from "@/types/config";
 import { SectionModalVisibilityBar } from "./SectionModalVisibilityBar";
@@ -23,20 +23,13 @@ import { SectionModalVisibilityBar } from "./SectionModalVisibilityBar";
 const InviteSectionEditModal = () => {
   const { closeModal } = useDialog();
   const { config, saving, getSection, saveConfig } = useProject();
-  const [isVisible, setIsVisible] = useState(false);
   const textInviteSection = getSection<InviteTextSection>("inviteText");
+  const [isVisible, setIsVisible] = useState(
+    textInviteSection?.visible ?? false,
+  );
   const [form, setForm] = useState({
-    description: "",
+    description: textInviteSection?.data?.description || "",
   });
-
-  useEffect(() => {
-    if (textInviteSection) {
-      setForm({
-        description: textInviteSection?.data?.description || "",
-      });
-      setIsVisible(textInviteSection.visible);
-    }
-  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setForm((prev) => ({

@@ -3,11 +3,11 @@
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { isDemoMode } from "@/lib/demo/mode";
+import { useIsDemoMode } from "@/components/demo/DemoModeContext";
 
 export default function LogoutButton() {
   const router = useRouter();
-  const demo = isDemoMode();
+  const demo = useIsDemoMode();
 
   async function logout() {
     if (demo) {

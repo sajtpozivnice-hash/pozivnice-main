@@ -13,7 +13,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { toast } from "sonner";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDialog } from "../context/ModalContext";
 import { CreateGuestDto, RSVPStatus } from "../types";
 import { useGuests } from "../context/GuestContext";
@@ -27,20 +27,35 @@ const EditGuestModal = () => {
   const { data, closeModal } = useDialog();
   const { updateGuest, loading, guests } = useGuests();
   const { tables, createTable, loading: tablesLoading } = useTables();
+  const guestId = data?.id ?? "";
+  const guestData = data?.data;
   const [showTableForm, setShowTableForm] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [form, setForm] = useState<CreateGuestDto>({
-    name: "",
-    email: "",
-    rsvp_status: "pending",
-    message: "",
-    notes: "",
-    table_id: null,
+    name: guestData?.name ?? "",
+    email: guestData?.email ?? "",
+    rsvp_status: guestData?.rsvp_status ?? "pending",
+    message: guestData?.message ?? "",
+    notes: guestData?.notes ?? "",
+    table_id: guestData?.table_id ?? null,
   });
+  const [sourceKey, setSourceKey] = useState(guestId);
   const [newTable, setNewTable] = useState({
     new_table_name: "",
     new_number_of_guests: 1,
   });
+
+  if (guestId !== sourceKey) {
+    setSourceKey(guestId);
+    setForm({
+      name: guestData?.name ?? "",
+      email: guestData?.email ?? "",
+      rsvp_status: guestData?.rsvp_status ?? "pending",
+      message: guestData?.message ?? "",
+      notes: guestData?.notes ?? "",
+      table_id: guestData?.table_id ?? null,
+    });
+  }
 
   const tableOccupancy = tables.reduce(
     (acc, table) => {
@@ -62,19 +77,6 @@ const EditGuestModal = () => {
       disabled: isFull && !isCurrent,
     };
   });
-
-  useEffect(() => {
-    if (!data?.data) return;
-
-    setForm({
-      name: data.data.name ?? "",
-      email: data.data.email ?? "",
-      rsvp_status: data.data.rsvp_status ?? "pending",
-      message: data.data.message ?? "",
-      notes: data.data.notes ?? "",
-      table_id: data.data.table_id ?? null,
-    });
-  }, [data]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

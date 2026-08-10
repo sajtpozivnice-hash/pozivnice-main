@@ -15,7 +15,7 @@ import { useDialog } from "../../context/ModalContext";
 import Loader from "../../loaders/Loader";
 import { useProject } from "../../context/ProjectContext";
 import { FooterSection } from "@/types/sections";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { UniversalProjectConfig } from "@/types/config";
 import { SectionModalVisibilityBar } from "./SectionModalVisibilityBar";
@@ -23,20 +23,13 @@ import { SectionModalVisibilityBar } from "./SectionModalVisibilityBar";
 const FooterSectionModalEdit = () => {
   const { closeModal } = useDialog();
   const { config, saving, getSection, saveConfig } = useProject();
-  const [isVisible, setIsVisible] = useState(false);
   const footerSection = getSection<FooterSection>("footer");
+  const [isVisible, setIsVisible] = useState(
+    footerSection?.visible ?? false,
+  );
   const [form, setForm] = useState({
-    title: "",
+    title: footerSection?.data?.title || "",
   });
-
-  useEffect(() => {
-    if (footerSection) {
-      setForm({
-        title: footerSection?.data?.title || "",
-      });
-      setIsVisible(footerSection.visible);
-    }
-  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setForm((prev) => ({
