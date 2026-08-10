@@ -1,0 +1,203 @@
+"use client";
+
+import { FormEvent, FC, useState } from "react";
+import { motion } from "framer-motion";
+import { Send } from "lucide-react";
+import { RSVPSection } from "@/types/sections";
+import { EventConfig, ThemeConfig } from "@/types/config";
+import { formatDate } from "@/helpers/formatDate";
+
+type Props = {
+  section: RSVPSection;
+  event: EventConfig;
+  theme: ThemeConfig;
+};
+
+type Attendance = "yes" | "no" | "maybe";
+
+type FormState = {
+  fullName: string;
+  email: string;
+  attendance: Attendance;
+  guests: number;
+  message: string;
+};
+
+const RSVP: FC<Props> = ({ section, event }) => {
+  const { data, id } = section;
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState<FormState>({
+    fullName: "",
+    email: "",
+    attendance: "yes",
+    guests: 1,
+    message: "",
+  });
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setSubmitted(true);
+    }, 1000);
+  };
+
+  return (
+    <section id={id} className="b18b-section scroll-mt-8 overflow-hidden">
+      <div className="b18b-blob b18b-blob--coral b18b-float absolute -left-12 top-8 h-44 w-44" />
+      <div className="b18b-shell relative z-10 max-w-2xl">
+        <div className="mb-10 text-center">
+          <h2 className="b18b-heading">{data.title}</h2>
+          <p className="mt-4 text-[var(--b18b-muted)]">
+            {data.description}
+            {formatDate(event.rsvpDate, "DD_MMM_YYYY")}
+          </p>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="b18b-rsvp-panel"
+        >
+          {submitted ? (
+            <div className="py-10 text-center">
+              <p
+                className="text-4xl font-extrabold uppercase"
+                style={{
+                  fontFamily: "var(--font-primary)",
+                  background:
+                    "linear-gradient(135deg, var(--b18b-coral), var(--b18b-lilac))",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  color: "transparent",
+                }}
+              >
+                HVALA!
+              </p>
+              <p className="mt-3 text-[var(--b18b-muted)]">
+                Tvoja potvrda je zabeležena. Vidimo se na proslavi!
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="mb-1.5 block text-[11px] font-bold tracking-[0.16em] text-[var(--b18b-muted)] uppercase">
+                  Ime i prezime
+                </label>
+                <input
+                  required
+                  className="b18b-input"
+                  value={formData.fullName}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      fullName: e.target.value,
+                    }))
+                  }
+                />
+              </div>
+              <div>
+                <label className="mb-1.5 block text-[11px] font-bold tracking-[0.16em] text-[var(--b18b-muted)] uppercase">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  required
+                  className="b18b-input"
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      email: e.target.value,
+                    }))
+                  }
+                />
+              </div>
+              <div>
+                <label className="mb-2 block text-[11px] font-bold tracking-[0.16em] text-[var(--b18b-muted)] uppercase">
+                  Dolaziš?
+                </label>
+                <div className="b18b-attend">
+                  {(
+                    [
+                      ["yes", "Da"],
+                      ["no", "Ne"],
+                      ["maybe", "Možda"],
+                    ] as const
+                  ).map(([value, label]) => (
+                    <button
+                      key={value}
+                      type="button"
+                      onClick={() =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          attendance: value,
+                        }))
+                      }
+                      className={
+                        formData.attendance === value ? "is-active" : ""
+                      }
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <label className="mb-1.5 block text-[11px] font-bold tracking-[0.16em] text-[var(--b18b-muted)] uppercase">
+                  Broj osoba
+                </label>
+                <input
+                  type="number"
+                  min={1}
+                  max={20}
+                  className="b18b-input"
+                  value={formData.guests}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      guests: Number(e.target.value) || 1,
+                    }))
+                  }
+                />
+              </div>
+              <div>
+                <label className="mb-1.5 block text-[11px] font-bold tracking-[0.16em] text-[var(--b18b-muted)] uppercase">
+                  {data.messageLabel || "Poruka za slavljenika"}
+                </label>
+                <textarea
+                  rows={4}
+                  className="b18b-input resize-none"
+                  placeholder={
+                    data.messagePlaceholder ||
+                    "Napiši kratku poruku ili čestitku…"
+                  }
+                  value={formData.message}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      message: e.target.value,
+                    }))
+                  }
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={loading}
+                className="b18b-btn w-full"
+              >
+                {loading ? "Šaljem…" : data.buttonText || "Pošalji potvrdu"}
+                <Send className="h-3.5 w-3.5" />
+              </button>
+            </form>
+          )}
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+export default RSVP;

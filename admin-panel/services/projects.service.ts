@@ -24,6 +24,7 @@ import type {
   UpdateProjectInput,
   UniversalProjectConfig,
 } from "@/types/project";
+import { normalizeEventType } from "@/types/project";
 
 function asConfig(value: unknown): UniversalProjectConfig | null {
   if (!value || typeof value !== "object") return null;
@@ -45,7 +46,7 @@ function toListItem(row: ProjectWithClient): ProjectListItem {
     client_name: row.clients?.name || row.client_name || "—",
     client_email: row.clients?.email || null,
     template: config?.template || "—",
-    event_type: (config?.eventType as EventType) || "unknown",
+    event_type: normalizeEventType(config?.eventType, config?.template),
     event_date: config?.event?.date || null,
   };
 }

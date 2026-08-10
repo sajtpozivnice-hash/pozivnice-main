@@ -43,6 +43,9 @@ export const GuestPhotosProvider = ({ children }: { children: ReactNode }) => {
     try {
       const next = await getGuestPhotosByProjectService(projectId);
       setPhotos(next);
+    } catch (error) {
+      console.error(error);
+      setPhotos([]);
     } finally {
       setLoading(false);
     }

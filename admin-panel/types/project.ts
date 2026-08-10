@@ -1,4 +1,11 @@
-export type EventType = "wedding" | "birthday" | "baptism";
+export type EventType =
+  | "wedding"
+  | "comingOfAge"
+  | "kidsBirthday"
+  | "baptism";
+
+/** Legacy values that may still exist in stored config_json. */
+export type LegacyEventType = EventType | "birthday";
 
 export type TemplateKey =
   | "vencanje"
@@ -7,7 +14,10 @@ export type TemplateKey =
   | "vencanje-premium"
   | "vencanje-cinematic"
   | "vencanje-background"
-  | "rodjendan-01";
+  | "rodjendan-01"
+  | "birthday18"
+  | "birthday18-bright"
+  | "birthday18-editorial";
 
 export type UniversalProjectConfig = {
   template: TemplateKey;
@@ -140,6 +150,46 @@ export type TemplateCatalogItem = {
 
 export const EVENT_TYPE_LABELS: Record<EventType, string> = {
   wedding: "Venčanje",
-  birthday: "Rođendan",
+  comingOfAge: "Punoletstvo",
+  kidsBirthday: "Dečiji rođendan",
   baptism: "Krštenje",
 };
+
+const EVENT_TYPES: EventType[] = [
+  "wedding",
+  "comingOfAge",
+  "kidsBirthday",
+  "baptism",
+];
+
+const inferEventTypeFromTemplate = (template?: string): EventType | null => {
+  if (!template) return null;
+  if (template.startsWith("vencanje")) return "wedding";
+  if (template.startsWith("birthday") || template.includes("punoletstvo")) {
+    return "comingOfAge";
+  }
+  if (template.startsWith("rodjendan") || template.includes("kids")) {
+    return "kidsBirthday";
+  }
+  if (template.startsWith("krstenje") || template.startsWith("baptism")) {
+    return "baptism";
+  }
+  return null;
+};
+
+/** Normalize stored/legacy eventType for admin list/forms. */
+export function normalizeEventType(
+  value?: string | null,
+  template?: string | null,
+): EventType | "unknown" {
+  if (!value) {
+    return inferEventTypeFromTemplate(template ?? undefined) ?? "unknown";
+  }
+  if (value === "birthday") {
+    return inferEventTypeFromTemplate(template ?? undefined) ?? "kidsBirthday";
+  }
+  if ((EVENT_TYPES as string[]).includes(value)) {
+    return value as EventType;
+  }
+  return inferEventTypeFromTemplate(template ?? undefined) ?? "unknown";
+}

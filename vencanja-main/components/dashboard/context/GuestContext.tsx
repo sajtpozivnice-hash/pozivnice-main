@@ -48,14 +48,14 @@ export const GuestsProvider = ({ children }: { children: ReactNode }) => {
       setGuests(data);
     } catch (error) {
       console.error(error);
-      throw error;
+      setGuests([]);
     } finally {
       setLoading(false);
     }
   }, [activeProject?.id]);
 
   useEffect(() => {
-    void refresh().catch(() => undefined);
+    void refresh();
   }, [refresh]);
 
   const createGuest = async (guest: CreateGuestDto) => {

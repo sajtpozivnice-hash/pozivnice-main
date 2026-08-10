@@ -6,7 +6,8 @@ export type TemplateStyle =
   | "modern"
   | "premium"
   | "cinematic"
-  | "playful";
+  | "playful"
+  | "editorial";
 
 export type TemplateCatalogMeta = {
   title: string;
@@ -42,11 +43,13 @@ export const TEMPLATE_STYLE_LABELS: Record<TemplateStyle, string> = {
   premium: "Premium",
   cinematic: "Filmski",
   playful: "Razigran",
+  editorial: "Editorial",
 };
 
 export const EVENT_TYPE_LABELS: Record<EventType, string> = {
   wedding: "Venčanja",
-  birthday: "Rođendani",
+  comingOfAge: "Punoletstva",
+  kidsBirthday: "Dečiji rođendani",
   baptism: "Krštenja",
 };
 
@@ -54,8 +57,10 @@ export const eventTypeToTag = (eventType: EventType): Tag => {
   switch (eventType) {
     case "wedding":
       return Tag.WEDDING;
-    case "birthday":
-      return Tag.BIRTHDAY;
+    case "comingOfAge":
+      return Tag.COMING_OF_AGE;
+    case "kidsBirthday":
+      return Tag.KIDS_BIRTHDAY;
     case "baptism":
       return Tag.BAPTISM;
   }

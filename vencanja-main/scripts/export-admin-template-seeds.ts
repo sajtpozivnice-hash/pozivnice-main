@@ -12,6 +12,9 @@ import { vencanjePremiumDefaultConfig } from "../templates/vencanje-premium/conf
 import { vencanjeCinematicDefaultConfig } from "../templates/vencanje-cinematic/config";
 import { vencanjeBackgroundDefaultConfig } from "../templates/vencanje-background/config";
 import { rodjendan01DefaultConfig } from "../templates/rodjendan-01/config";
+import { birthday18DefaultConfig } from "../templates/birthday18/config";
+import { birthday18BrightDefaultConfig } from "../templates/birthday18-bright/config";
+import { birthday18EditorialDefaultConfig } from "../templates/birthday18-editorial/config";
 
 const packs = [
   {
@@ -76,12 +79,51 @@ const packs = [
   },
   {
     key: "rodjendan-01",
-    title: "Rođendanska žurka",
+    title: "Dečiji rođendan",
     description:
-      "Živahan dizajn za rođendan. Menjate sadržaj i pratite goste i pripreme u nalogu.",
-    eventTypes: ["birthday"],
+      "Živahan dizajn za dečiji rođendan. Menjate sadržaj i pratite goste i pripreme u nalogu.",
+    eventTypes: ["kidsBirthday"],
     style: "playful",
-    config: rodjendan01DefaultConfig,
+    config: {
+      ...rodjendan01DefaultConfig,
+      eventType: "kidsBirthday" as const,
+    },
+  },
+  {
+    key: "birthday18",
+    title: "18 — Night Edition",
+    description:
+      "Tamna premium pozivnica za punoletstvo: jak tipografski hero, countdown, plan večeri i RSVP.",
+    eventTypes: ["comingOfAge"],
+    style: "premium",
+    config: {
+      ...birthday18DefaultConfig,
+      eventType: "comingOfAge" as const,
+    },
+  },
+  {
+    key: "birthday18-bright",
+    title: "18 — Bright Edition",
+    description:
+      "Svetla, vesela i moderna pozivnica za 18. rođendan: kolor blokovi, gradienti, plan večeri i RSVP.",
+    eventTypes: ["comingOfAge"],
+    style: "playful",
+    config: {
+      ...birthday18BrightDefaultConfig,
+      eventType: "comingOfAge" as const,
+    },
+  },
+  {
+    key: "birthday18-editorial",
+    title: "18 — The Main Character",
+    description:
+      "Editorial / Y2K magazine pozivnica za punoletstvo: collage layout, jaka tipografija i fashion vibe.",
+    eventTypes: ["comingOfAge"],
+    style: "editorial",
+    config: {
+      ...birthday18EditorialDefaultConfig,
+      eventType: "comingOfAge" as const,
+    },
   },
 ];
 

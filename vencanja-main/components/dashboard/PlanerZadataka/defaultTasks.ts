@@ -46,6 +46,22 @@ const BIRTHDAY_PLANNER_CATEGORIES: string[] = [
   "Ostalo",
 ];
 
+const COMING_OF_AGE_PLANNER_CATEGORIES: string[] = [
+  "Administracija",
+  "Lokacija",
+  "Hrana",
+  "Piće",
+  "Torta",
+  "Dekoracija",
+  "Muzika",
+  "Fotograf",
+  "Gosti",
+  "Pozivnice",
+  "Odeća",
+  "Zabava",
+  "Ostalo",
+];
+
 const BAPTISM_PLANNER_CATEGORIES: string[] = [
   "Administracija",
   "Crkva",
@@ -200,6 +216,65 @@ const BIRTHDAY_PLANNER_TASKS: DefaultPlannerTaskSeed[] = [
   },
 ];
 
+const COMING_OF_AGE_PLANNER_TASKS: DefaultPlannerTaskSeed[] = [
+  {
+    title: "Rezervisati lokaciju",
+    category: "Lokacija",
+    description: "Dogovoriti klub / restoran i kapacitet.",
+    priority: "high",
+    sort_order: 1,
+  },
+  {
+    title: "Napraviti listu gostiju",
+    category: "Gosti",
+    description: "Sastaviti listu pozvanih.",
+    priority: "high",
+    sort_order: 2,
+  },
+  {
+    title: "Poslati pozivnice",
+    category: "Pozivnice",
+    description: "Pripremiti i poslati digitalne pozivnice.",
+    priority: "medium",
+    sort_order: 3,
+  },
+  {
+    title: "Dogovoriti DJ / muziku",
+    category: "Muzika",
+    description: "Potvrditi playlistu i termin nastupa.",
+    priority: "high",
+    sort_order: 4,
+  },
+  {
+    title: "Dogovoriti tortu",
+    category: "Torta",
+    description: "Izabrati ukus, dizajn i broj porcija.",
+    priority: "high",
+    sort_order: 5,
+  },
+  {
+    title: "Dogovoriti hranu i piće",
+    category: "Hrana",
+    description: "Potvrditi meni, bar i količine.",
+    priority: "high",
+    sort_order: 6,
+  },
+  {
+    title: "Pripremiti outfit",
+    category: "Odeća",
+    description: "Kupiti ili pripremiti odeću za noć proslave.",
+    priority: "medium",
+    sort_order: 7,
+  },
+  {
+    title: "Rezervisati fotografisanje",
+    category: "Fotograf",
+    description: "Dogovoriti snimanje večeri.",
+    priority: "medium",
+    sort_order: 8,
+  },
+];
+
 const BAPTISM_PLANNER_TASKS: DefaultPlannerTaskSeed[] = [
   {
     title: "Zakazati termin u crkvi",
@@ -254,14 +329,16 @@ const BAPTISM_PLANNER_TASKS: DefaultPlannerTaskSeed[] = [
 
 export const PLANNER_CATEGORIES_BY_EVENT: Record<EventType, string[]> = {
   wedding: WEDDING_PLANNER_CATEGORIES,
-  birthday: BIRTHDAY_PLANNER_CATEGORIES,
+  comingOfAge: COMING_OF_AGE_PLANNER_CATEGORIES,
+  kidsBirthday: BIRTHDAY_PLANNER_CATEGORIES,
   baptism: BAPTISM_PLANNER_CATEGORIES,
 };
 
 export const PLANNER_TASKS_BY_EVENT: Record<EventType, DefaultPlannerTaskSeed[]> =
   {
     wedding: WEDDING_PLANNER_TASKS,
-    birthday: BIRTHDAY_PLANNER_TASKS,
+    comingOfAge: COMING_OF_AGE_PLANNER_TASKS,
+    kidsBirthday: BIRTHDAY_PLANNER_TASKS,
     baptism: BAPTISM_PLANNER_TASKS,
   };
 

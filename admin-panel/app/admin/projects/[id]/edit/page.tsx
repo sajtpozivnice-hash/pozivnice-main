@@ -18,6 +18,7 @@ import type {
   TemplateKey,
   UniversalProjectConfig,
 } from "@/types/project";
+import { normalizeEventType } from "@/types/project";
 
 export default function EditProjectPage() {
   const params = useParams<{ id: string }>();
@@ -58,7 +59,10 @@ export default function EditProjectPage() {
     return {
       client_id: project.client_id,
       title: project.title,
-      eventType: (config?.eventType || "wedding") as EventType,
+      eventType: (() => {
+        const n = normalizeEventType(config?.eventType, config?.template);
+        return (n === "unknown" ? "wedding" : n) as EventType;
+      })(),
       template: (config?.template || "") as TemplateKey | "",
       subdomain: project.subdomain || "",
       eventDate: config?.event?.date || "",

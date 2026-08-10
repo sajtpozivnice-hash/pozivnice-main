@@ -17,6 +17,7 @@ import { getEditorUrl, getInvitationUrl } from "@/lib/urls";
 import { adminFetch } from "@/lib/adminFetch";
 import {
   EVENT_TYPE_LABELS,
+  normalizeEventType,
   type EventType,
   type ProjectWithClient,
   type UniversalProjectConfig,
@@ -89,7 +90,10 @@ export default function ProjectDetailPage() {
   }
 
   const config = project.config_json as UniversalProjectConfig;
-  const eventType = (config?.eventType || "wedding") as EventType;
+  const normalized = normalizeEventType(config?.eventType, config?.template);
+  const eventType = (
+    normalized === "unknown" ? "wedding" : normalized
+  ) as EventType;
   const inviteUrl = getInvitationUrl(project.subdomain);
   const editorUrl = getEditorUrl(config?.template || "vencanje");
   const clientName = project.clients?.name || project.client_name || "—";

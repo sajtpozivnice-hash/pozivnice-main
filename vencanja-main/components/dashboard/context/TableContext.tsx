@@ -45,14 +45,14 @@ export const TableProvider = ({ children }: { children: ReactNode }) => {
       setTables(data);
     } catch (error) {
       console.error(error);
-      throw error;
+      setTables([]);
     } finally {
       setLoading(false);
     }
   }, [activeProject?.id]);
 
   useEffect(() => {
-    void refresh().catch(() => undefined);
+    void refresh();
   }, [refresh]);
 
   const createTable = async (table: CreateTableDto) => {

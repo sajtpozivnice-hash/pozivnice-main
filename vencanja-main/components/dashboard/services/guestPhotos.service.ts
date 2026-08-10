@@ -12,7 +12,7 @@ const supabase = createClient();
 export const getGuestPhotosByProjectService = async (
   projectId: string,
 ): Promise<GuestPhoto[]> => {
-  if (isDemoMode()) return demoGetGuestPhotos(projectId);
+  if (isDemoMode(projectId)) return demoGetGuestPhotos(projectId);
 
   const { data, error } = await supabase
     .from("guest_photos")
@@ -28,7 +28,7 @@ export const createGuestPhotoService = async (
   projectId: string,
   photo: CreateGuestPhotoDto,
 ): Promise<GuestPhoto> => {
-  if (isDemoMode()) return demoCreateGuestPhoto(projectId, photo);
+  if (isDemoMode(projectId)) return demoCreateGuestPhoto(projectId, photo);
 
   const { data, error } = await supabase
     .from("guest_photos")
@@ -51,7 +51,7 @@ export const createGuestPhotoService = async (
 };
 
 export const deleteGuestPhotoService = async (id: string): Promise<void> => {
-  if (isDemoMode()) {
+  if (isDemoMode(id)) {
     demoDeleteGuestPhoto(id);
     return;
   }

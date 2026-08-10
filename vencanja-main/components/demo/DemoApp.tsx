@@ -15,7 +15,11 @@ import { UserLayout } from "@/app/dashboard/user/UserLayout";
 import { DemoBanner } from "@/components/demo/DemoBanner";
 import { DemoModeProvider } from "@/components/demo/DemoModeContext";
 import { createDemoSnapshot } from "@/lib/demo/seed";
-import { disableDemoMode, enableDemoMode } from "@/lib/demo/mode";
+import {
+  disableDemoMode,
+  enableDemoMode,
+  isDemoMode,
+} from "@/lib/demo/mode";
 import type { DemoSnapshot } from "@/lib/demo/types";
 
 function DemoSession({ onReset }: { onReset: () => void }) {
@@ -24,6 +28,12 @@ function DemoSession({ onReset }: { onReset: () => void }) {
     enableDemoMode(seed);
     return seed;
   });
+
+  // Strict Mode unmount disables demo before children remount/refresh.
+  // Re-enable synchronously during render so service calls stay in-memory.
+  if (!isDemoMode()) {
+    enableDemoMode(snapshot);
+  }
 
   useEffect(() => {
     enableDemoMode(snapshot);

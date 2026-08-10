@@ -37,7 +37,7 @@ const ITEM_SELECT = `
 export const getBudgetCategoriesByProjectService = async (
   projectId: string,
 ): Promise<BudgetCategory[]> => {
-  if (isDemoMode()) return demoGetBudgetCategories(projectId);
+  if (isDemoMode(projectId)) return demoGetBudgetCategories(projectId);
 
   const { data, error } = await supabase
     .from("budget_categories")
@@ -53,7 +53,7 @@ export const createBudgetCategoriesBulkService = async (
   projectId: string,
   categories: CreateBudgetCategoryDto[],
 ): Promise<BudgetCategory[]> => {
-  if (isDemoMode()) return demoCreateBudgetCategoriesBulk(projectId, categories);
+  if (isDemoMode(projectId)) return demoCreateBudgetCategoriesBulk(projectId, categories);
 
   const payload = categories.map((category, index) => ({
     project_id: projectId,
@@ -77,7 +77,7 @@ export const createBudgetCategoryService = async (
   projectId: string,
   category: CreateBudgetCategoryDto,
 ): Promise<BudgetCategory> => {
-  if (isDemoMode()) return demoCreateBudgetCategory(projectId, category);
+  if (isDemoMode(projectId)) return demoCreateBudgetCategory(projectId, category);
 
   const { data, error } = await supabase
     .from("budget_categories")
@@ -98,7 +98,7 @@ export const createBudgetCategoryService = async (
 export const getBudgetItemsByProjectService = async (
   projectId: string,
 ): Promise<BudgetItem[]> => {
-  if (isDemoMode()) return demoGetBudgetItems(projectId);
+  if (isDemoMode(projectId)) return demoGetBudgetItems(projectId);
 
   const { data, error } = await supabase
     .from("budget_items")
@@ -114,7 +114,7 @@ export const createBudgetItemService = async (
   projectId: string,
   item: CreateBudgetItemDto,
 ): Promise<BudgetItem> => {
-  if (isDemoMode()) return demoCreateBudgetItem(projectId, item);
+  if (isDemoMode(projectId)) return demoCreateBudgetItem(projectId, item);
 
   const { data, error } = await supabase
     .from("budget_items")
@@ -143,7 +143,7 @@ export const updateBudgetItemService = async (
   id: string,
   updates: UpdateBudgetItemDto,
 ): Promise<BudgetItem> => {
-  if (isDemoMode()) return demoUpdateBudgetItem(id, updates);
+  if (isDemoMode(id)) return demoUpdateBudgetItem(id, updates);
 
   const payload: Record<string, string | number | null> = {};
 
@@ -179,7 +179,7 @@ export const updateBudgetItemService = async (
 };
 
 export const deleteBudgetItemService = async (id: string): Promise<void> => {
-  if (isDemoMode()) {
+  if (isDemoMode(id)) {
     demoDeleteBudgetItem(id);
     return;
   }
@@ -192,7 +192,7 @@ export const createBudgetPaymentService = async (
   budgetItemId: string,
   payment: CreateBudgetPaymentDto,
 ): Promise<BudgetPayment> => {
-  if (isDemoMode()) return demoCreateBudgetPayment(budgetItemId, payment);
+  if (isDemoMode(budgetItemId)) return demoCreateBudgetPayment(budgetItemId, payment);
 
   const { data, error } = await supabase
     .from("budget_payments")
@@ -211,7 +211,7 @@ export const createBudgetPaymentService = async (
 };
 
 export const deleteBudgetPaymentService = async (id: string): Promise<void> => {
-  if (isDemoMode()) {
+  if (isDemoMode(id)) {
     demoDeleteBudgetPayment(id);
     return;
   }
@@ -224,7 +224,7 @@ export const createBudgetAttachmentService = async (
   budgetItemId: string,
   attachment: CreateBudgetAttachmentDto,
 ): Promise<BudgetAttachment> => {
-  if (isDemoMode()) return demoCreateBudgetAttachment(budgetItemId, attachment);
+  if (isDemoMode(budgetItemId)) return demoCreateBudgetAttachment(budgetItemId, attachment);
 
   const { data, error } = await supabase
     .from("budget_attachments")
@@ -244,7 +244,7 @@ export const createBudgetAttachmentService = async (
 export const deleteBudgetAttachmentService = async (
   id: string,
 ): Promise<void> => {
-  if (isDemoMode()) {
+  if (isDemoMode(id)) {
     demoDeleteBudgetAttachment(id);
     return;
   }

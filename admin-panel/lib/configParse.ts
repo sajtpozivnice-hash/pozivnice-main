@@ -3,8 +3,14 @@ import type {
   TemplateKey,
   UniversalProjectConfig,
 } from "@/types/project";
+import { normalizeEventType } from "@/types/project";
 
-const EVENT_TYPES: EventType[] = ["wedding", "birthday", "baptism"];
+const EVENT_TYPES: EventType[] = [
+  "wedding",
+  "comingOfAge",
+  "kidsBirthday",
+  "baptism",
+];
 
 export function parseConfigJson(
   raw: string,
@@ -49,7 +55,16 @@ export function validateConfigObject(
     return { ok: false, error: "Config mora imati polje sections (niz)" };
   }
 
-  return { ok: true, config: value as UniversalProjectConfig };
+  const config = value as UniversalProjectConfig;
+  const normalized = normalizeEventType(config.eventType, config.template);
+  if (normalized !== "unknown" && config.eventType !== normalized) {
+    return {
+      ok: true,
+      config: { ...config, eventType: normalized },
+    };
+  }
+
+  return { ok: true, config };
 }
 
 export function extractConfigHints(config: UniversalProjectConfig): {
@@ -58,10 +73,13 @@ export function extractConfigHints(config: UniversalProjectConfig): {
   title: string;
   eventDate: string;
 } {
+  const normalized = normalizeEventType(config.eventType, config.template);
   const eventType =
-    config.eventType && EVENT_TYPES.includes(config.eventType)
-      ? config.eventType
-      : "wedding";
+    normalized !== "unknown"
+      ? normalized
+      : config.eventType && EVENT_TYPES.includes(config.eventType)
+        ? config.eventType
+        : "wedding";
 
   return {
     template: (config.template || "") as TemplateKey | "",

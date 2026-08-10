@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+@layer components {
+  [data-template="birthday18"] {
+    @apply relative overflow-x-hidden text-white antialiased;
+    background: #050506;
+    font-family: var(--font-secondary);
+    color: #f2f2f4;
+  }
+
+  [data-template="birthday18"] ::selection {
+    background: color-mix(in srgb, var(--color-primary, #e8e8ea) 35%, transparent);
+    color: #fff;
+  }
+
+  .b18-shell {
+    @apply relative mx-auto w-full max-w-6xl px-5 sm:px-8 lg:px-10;
+  }
+
+  .b18-section {
+    @apply relative py-20 sm:py-24 lg:py-28;
+  }
+
+  .b18-eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-[0.28em] text-white/45;
+  }
+
+  .b18-heading {
+    @apply text-4xl leading-[0.95] tracking-tight uppercase sm:text-5xl lg:text-6xl;
+    font-family: var(--font-primary);
+    font-weight: 700;
+  }
+
+  .b18-metal {
+    background: linear-gradient(
+      120deg,
+      #9a9aa3 0%,
+      #f5f5f7 42%,
+      #8a8a93 58%,
+      #d8d8de 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .b18-panel {
+    @apply rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-md;
+    box-shadow: 0 30px 80px -40px rgba(0, 0, 0, 0.8);
+  }
+
+  .b18-btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 text-xs font-bold uppercase tracking-[0.18em] transition;
+    background: linear-gradient(135deg, #f4f4f6 0%, #c8c8d0 100%);
+    color: #0a0a0b;
+    box-shadow: 0 16px 40px -18px rgba(232, 232, 234, 0.55);
+  }
+
+  .b18-btn:hover {
+    transform: translateY(-1px) scale(1.02);
+  }
+
+  .b18-btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/5 px-7 py-3 text-xs font-bold uppercase tracking-[0.18em] text-white/90 backdrop-blur transition hover:border-white/50 hover:bg-white/10;
+  }
+
+  .b18-input {
+    @apply w-full rounded-2xl border border-white/12 bg-black/40 px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-white/30 focus:border-white/40 focus:ring-4 focus:ring-white/10;
+  }
+
+  .b18-overlay {
+    background:
+      linear-gradient(180deg, rgba(5, 5, 6, 0.35) 0%, rgba(5, 5, 6, 0.72) 55%, rgba(5, 5, 6, 0.94) 100%),
+      radial-gradient(ellipse at 50% 20%, rgba(232, 232, 234, 0.12), transparent 55%);
+  }
+
+  .b18-glow {
+    @apply pointer-events-none absolute rounded-full blur-3xl;
+    background: radial-gradient(circle, rgba(232, 232, 234, 0.16), transparent 70%);
+  }
+
+  .b18-masonry {
+    columns: 1;
+    column-gap: 0.85rem;
+  }
+
+  @media (min-width: 640px) {
+    .b18-masonry {
+      columns: 2;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .b18-masonry {
+      columns: 3;
+    }
+  }
+
+  .b18-masonry-item {
+    @apply mb-3.5 break-inside-avoid overflow-hidden rounded-2xl;
+  }
+
+  .b18-masonry-item:nth-child(3n + 1) img {
+    min-height: 280px;
+  }
+
+  .b18-masonry-item:nth-child(3n + 2) img {
+    min-height: 200px;
+  }
+
+  .b18-masonry-item:nth-child(3n) img {
+    min-height: 340px;
+  }
+
+  @media (max-width: 639px) {
+    .b18-masonry-item img {
+      min-height: 220px !important;
+    }
+  }
+}

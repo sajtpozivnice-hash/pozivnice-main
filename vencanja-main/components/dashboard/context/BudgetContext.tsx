@@ -102,14 +102,15 @@ export const BudgetProvider = ({ children }: { children: ReactNode }) => {
       setItems(nextItems);
     } catch (error) {
       console.error(error);
-      throw error;
+      setCategories([]);
+      setItems([]);
     } finally {
       setLoading(false);
     }
   }, [activeProject?.id, activeProject?.config_json]);
 
   useEffect(() => {
-    void refresh().catch(() => undefined);
+    void refresh();
   }, [refresh]);
 
   const createCategory = async (category: CreateBudgetCategoryDto) => {

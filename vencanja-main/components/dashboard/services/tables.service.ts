@@ -13,7 +13,7 @@ const supabase = createClient();
 export const getTablesByProjectService = async (
   projectId: string,
 ): Promise<Table[]> => {
-  if (isDemoMode()) return demoGetTables(projectId);
+  if (isDemoMode(projectId)) return demoGetTables(projectId);
 
   const { data, error } = await supabase
     .from("tables")
@@ -34,7 +34,7 @@ export const createTableService = async (
   projectId: string,
   table: CreateTableDto,
 ): Promise<Table> => {
-  if (isDemoMode()) return demoCreateTable(projectId, table);
+  if (isDemoMode(projectId)) return demoCreateTable(projectId, table);
 
   const { data, error } = await supabase
     .from("tables")
@@ -56,7 +56,7 @@ export const updateTableService = async (
   id: string,
   updates: Partial<CreateTableDto>,
 ): Promise<Table> => {
-  if (isDemoMode()) return demoUpdateTable(id, updates);
+  if (isDemoMode(id)) return demoUpdateTable(id, updates);
 
   const { data, error } = await supabase
     .from("tables")
@@ -73,7 +73,7 @@ export const updateTableService = async (
 };
 
 export const deleteTableService = async (id: string): Promise<void> => {
-  if (isDemoMode()) {
+  if (isDemoMode(id)) {
     demoDeleteTable(id);
     return;
   }

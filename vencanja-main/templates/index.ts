@@ -12,6 +12,12 @@ import { vencanjeBackgroundDefaultConfig } from "./vencanje-background/config";
 import { vencanjeBackgroundRenderers } from "./vencanje-background/renderers";
 import { rodjendan01DefaultConfig } from "./rodjendan-01/config";
 import { rodjendan01Renderers } from "./rodjendan-01/renderers";
+import { birthday18DefaultConfig } from "./birthday18/config";
+import { birthday18Renderers } from "./birthday18/renderers";
+import { birthday18BrightDefaultConfig } from "./birthday18-bright/config";
+import { birthday18BrightRenderers } from "./birthday18-bright/renderers";
+import { birthday18EditorialDefaultConfig } from "./birthday18-editorial/config";
+import { birthday18EditorialRenderers } from "./birthday18-editorial/renderers";
 import { EventType, TemplateKey, UniversalProjectConfig } from "@/types/config";
 import { TemplateCatalogMeta } from "@/types/catalog";
 import { SectionRendererMap } from "@/types/sections";
@@ -111,13 +117,64 @@ export const templates: Record<TemplateKey, TemplatePack> = {
   },
   "rodjendan-01": {
     renderers: rodjendan01Renderers,
-    defaultConfig: rodjendan01DefaultConfig,
-    eventTypes: ["birthday"],
+    defaultConfig: {
+      ...rodjendan01DefaultConfig,
+      eventType: "kidsBirthday",
+    },
+    eventTypes: ["kidsBirthday"],
     catalog: {
-      title: "Rođendanska žurka",
+      title: "Dečiji rođendan",
       description:
-        "Živahan dizajn za rođendan. Menjate sadržaj i pratite goste i pripreme u nalogu.",
+        "Živahan dizajn za dečiji rođendan. Menjate sadržaj i pratite goste i pripreme u nalogu.",
       style: "playful",
+      price: 40,
+      featured: true,
+    },
+  },
+  birthday18: {
+    renderers: birthday18Renderers,
+    defaultConfig: {
+      ...birthday18DefaultConfig,
+      eventType: "comingOfAge",
+    },
+    eventTypes: ["comingOfAge"],
+    catalog: {
+      title: "18 — Night Edition",
+      description:
+        "Tamna premium pozivnica za punoletstvo: jak tipografski hero, countdown, plan večeri i RSVP.",
+      style: "premium",
+      price: 40,
+      featured: true,
+    },
+  },
+  "birthday18-bright": {
+    renderers: birthday18BrightRenderers,
+    defaultConfig: {
+      ...birthday18BrightDefaultConfig,
+      eventType: "comingOfAge",
+    },
+    eventTypes: ["comingOfAge"],
+    catalog: {
+      title: "18 — Bright Edition",
+      description:
+        "Svetla, vesela i moderna pozivnica za 18. rođendan: kolor blokovi, gradienti, plan večeri i RSVP.",
+      style: "playful",
+      price: 40,
+      featured: true,
+    },
+  },
+  "birthday18-editorial": {
+    renderers: birthday18EditorialRenderers,
+    defaultConfig: {
+      ...birthday18EditorialDefaultConfig,
+      eventType: "comingOfAge",
+    },
+    eventTypes: ["comingOfAge"],
+    catalog: {
+      title: "18 — The Main Character",
+      description:
+        "Editorial / Y2K magazine pozivnica za punoletstvo: collage layout, jaka tipografija i fashion vibe.",
+      style: "editorial",
       price: 40,
       featured: true,
     },

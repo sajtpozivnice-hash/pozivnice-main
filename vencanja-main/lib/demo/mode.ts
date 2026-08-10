@@ -9,8 +9,19 @@ let enabled = false;
 let snapshot: DemoSnapshot | null = null;
 let working: DemoSnapshot | null = null;
 
-export function isDemoMode(): boolean {
-  return enabled && working !== null;
+export function isDemoProjectId(projectId?: string | null): boolean {
+  return typeof projectId === "string" && projectId.startsWith("demo-");
+}
+
+/**
+ * Demo backend is active when the demo session is enabled,
+ * or when a demo-* id is used while the in-memory store still exists
+ * (covers React Strict Mode remount races after cleanup sets enabled=false).
+ */
+export function isDemoMode(projectId?: string | null): boolean {
+  if (!working) return false;
+  if (enabled) return true;
+  return isDemoProjectId(projectId);
 }
 
 export function enableDemoMode(initial: DemoSnapshot): void {
@@ -19,10 +30,13 @@ export function enableDemoMode(initial: DemoSnapshot): void {
   working = structuredClone(initial);
 }
 
+/**
+ * Soft-disable: keep the in-memory store so in-flight / remounted
+ * provider refreshes with demo-* ids do not hit Supabase.
+ * The next enableDemoMode() replaces the store.
+ */
 export function disableDemoMode(): void {
   enabled = false;
-  snapshot = null;
-  working = null;
 }
 
 export function resetDemoMode(): DemoSnapshot {
@@ -30,6 +44,7 @@ export function resetDemoMode(): DemoSnapshot {
     throw new Error("Demo mode is not initialized");
   }
   working = structuredClone(snapshot);
+  enabled = true;
   return structuredClone(working);
 }
 

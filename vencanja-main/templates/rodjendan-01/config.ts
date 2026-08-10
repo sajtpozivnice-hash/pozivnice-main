@@ -30,7 +30,7 @@ const IMG = {
 
 export const rodjendan01DefaultConfig: UniversalProjectConfig = {
   template: "rodjendan-01",
-  eventType: "birthday",
+  eventType: "kidsBirthday",
   meta: {
     title: "Mila — 7. rođendan",
     description: "Moderna pozivnica za rođendansku proslavu",

@@ -37,19 +37,28 @@ export const packages: PackageBoxProps[] = [
   },
   {
     id: "2",
-    title: "Krštenja",
+    title: "Punoletstva",
     price: "40€",
     description:
-      "Isto iskustvo — prilagođeno krštenju, sa gostima, stolovima i planiranjem.",
+      "Premium pozivnica za 18. i noć proslave — gosti, budžet i planer u nalogu.",
     list: SHARED_PACKAGE_FEATURES,
     link: "/pozivnice",
   },
   {
     id: "3",
-    title: "Rođendani",
+    title: "Dečiji rođendani",
     price: "40€",
     description:
       "Živahna pozivnica i mesto gde pratite goste, troškove i pripreme.",
+    list: SHARED_PACKAGE_FEATURES,
+    link: "/pozivnice",
+  },
+  {
+    id: "4",
+    title: "Krštenja",
+    price: "40€",
+    description:
+      "Isto iskustvo — prilagođeno krštenju, sa gostima, stolovima i planiranjem.",
     list: SHARED_PACKAGE_FEATURES,
     link: "/pozivnice",
   },

@@ -9,7 +9,10 @@ export type TemplateKey =
   | "vencanje-premium"
   | "vencanje-cinematic"
   | "vencanje-background"
-  | "rodjendan-01";
+  | "rodjendan-01"
+  | "birthday18"
+  | "birthday18-bright"
+  | "birthday18-editorial";
 
 export type MetaConfig = {
   title: string;
@@ -71,7 +74,14 @@ export type FieldConfig = {
 };
 
 /** Optional — missing value is treated as "wedding" for backwards compatibility. */
-export type EventType = "wedding" | "birthday" | "baptism";
+export type EventType =
+  | "wedding"
+  | "comingOfAge"
+  | "kidsBirthday"
+  | "baptism";
+
+/** Legacy values that may still exist in stored config_json. */
+export type LegacyEventType = EventType | "birthday";
 
 export type UniversalProjectConfig = {
   template: TemplateKey;

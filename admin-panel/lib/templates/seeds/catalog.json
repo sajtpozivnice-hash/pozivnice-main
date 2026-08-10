@@ -55,11 +55,38 @@
   },
   {
     "key": "rodjendan-01",
-    "title": "Rođendanska žurka",
-    "description": "Živahan dizajn za rođendan. Menjate sadržaj i pratite goste i pripreme u nalogu.",
+    "title": "Dečiji rođendan",
+    "description": "Živahan dizajn za dečiji rođendan. Menjate sadržaj i pratite goste i pripreme u nalogu.",
     "eventTypes": [
-      "birthday"
+      "kidsBirthday"
     ],
     "style": "playful"
+  },
+  {
+    "key": "birthday18",
+    "title": "18 — Night Edition",
+    "description": "Tamna premium pozivnica za punoletstvo: jak tipografski hero, countdown, plan večeri i RSVP.",
+    "eventTypes": [
+      "comingOfAge"
+    ],
+    "style": "premium"
+  },
+  {
+    "key": "birthday18-bright",
+    "title": "18 — Bright Edition",
+    "description": "Svetla, vesela i moderna pozivnica za 18. rođendan: kolor blokovi, gradienti, plan večeri i RSVP.",
+    "eventTypes": [
+      "comingOfAge"
+    ],
+    "style": "playful"
+  },
+  {
+    "key": "birthday18-editorial",
+    "title": "18 — The Main Character",
+    "description": "Editorial / Y2K magazine pozivnica za punoletstvo: collage layout, jaka tipografija i fashion vibe.",
+    "eventTypes": [
+      "comingOfAge"
+    ],
+    "style": "editorial"
   }
 ]

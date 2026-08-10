@@ -14,7 +14,8 @@ type SwitchToggleProps = {
 const OPTIONS: { label: string; value: EventType | "" }[] = [
   { label: "Svi šabloni", value: "" },
   { label: EVENT_TYPE_LABELS.wedding, value: "wedding" },
-  { label: EVENT_TYPE_LABELS.birthday, value: "birthday" },
+  { label: EVENT_TYPE_LABELS.comingOfAge, value: "comingOfAge" },
+  { label: EVENT_TYPE_LABELS.kidsBirthday, value: "kidsBirthday" },
   { label: EVENT_TYPE_LABELS.baptism, value: "baptism" },
 ];
 

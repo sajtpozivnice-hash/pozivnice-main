@@ -13,7 +13,7 @@ const supabase = createClient();
 export const getGuestsByProjectService = async (
   projectId: string,
 ): Promise<Guest[]> => {
-  if (isDemoMode()) return demoGetGuests(projectId);
+  if (isDemoMode(projectId)) return demoGetGuests(projectId);
 
   const { data, error } = await supabase
     .from("guests")
@@ -42,7 +42,7 @@ export const createGuestService = async (
   projectId: string,
   guest: CreateGuestDto,
 ): Promise<Guest> => {
-  if (isDemoMode()) return demoCreateGuest(projectId, guest);
+  if (isDemoMode(projectId)) return demoCreateGuest(projectId, guest);
 
   const { data, error } = await supabase
     .from("guests")
@@ -72,7 +72,7 @@ export const updateGuestService = async (
   id: string,
   updates: Partial<CreateGuestDto>,
 ): Promise<Guest> => {
-  if (isDemoMode()) return demoUpdateGuest(id, updates);
+  if (isDemoMode(id)) return demoUpdateGuest(id, updates);
 
   const { data, error } = await supabase
     .from("guests")
@@ -99,7 +99,7 @@ export const updateGuestService = async (
 };
 
 export const deleteGuestService = async (id: string): Promise<void> => {
-  if (isDemoMode()) {
+  if (isDemoMode(id)) {
     demoDeleteGuest(id);
     return;
   }

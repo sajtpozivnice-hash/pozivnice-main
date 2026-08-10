@@ -100,14 +100,15 @@ export const PlannerProvider = ({ children }: { children: ReactNode }) => {
       setTasks(nextTasks);
     } catch (error) {
       console.error(error);
-      throw error;
+      setCategories([]);
+      setTasks([]);
     } finally {
       setLoading(false);
     }
   }, [activeProject?.id, activeProject?.config_json]);
 
   useEffect(() => {
-    void refresh().catch(() => undefined);
+    void refresh();
   }, [refresh]);
 
   const createCategory = async (category: CreatePlannerCategoryDto) => {

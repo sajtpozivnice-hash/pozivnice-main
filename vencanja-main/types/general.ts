@@ -37,6 +37,7 @@ export type WhyUsCardProps = {
 
 export enum Tag {
   WEDDING = "Venčanje",
-  BIRTHDAY = "Rođendan",
+  COMING_OF_AGE = "Punoletstvo",
+  KIDS_BIRTHDAY = "Dečiji rođendan",
   BAPTISM = "Krštenje",
 };

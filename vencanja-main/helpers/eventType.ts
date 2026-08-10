@@ -1,4 +1,4 @@
-import { EventType, UniversalProjectConfig } from "@/types/config";
+import { EventType, LegacyEventType, UniversalProjectConfig } from "@/types/config";
 
 export type { EventType };
 
@@ -29,9 +29,23 @@ const COPY: Record<EventType, EventCopy> = {
     countdownHint: "Uredite tekst iznad brojača do dana venčanja.",
     locationPlaceholder: "npr. Crkveno venčanje",
   },
-  birthday: {
+  comingOfAge: {
     productLabel: "Dashboard",
-    fallbackTitle: "Vaš rođendan",
+    fallbackTitle: "Vaše punoletstvo",
+    overviewLabel: "Pregled punoletstva",
+    budgetBlurb: "Pratite kompletan budžet proslave, uplate i dokumenta.",
+    budgetEmpty:
+      "Dodajte prvi trošak da biste počeli da pratite budžet proslave.",
+    plannerBlurb: "Organizujte sve obaveze do noći punoletstva na jednom mestu.",
+    plannerEmptyHint:
+      "Organizujte obaveze do noći punoletstva i pratite napredak.",
+    plannerTaskHint: "Dodajte obavezu za pripremu proslave.",
+    countdownHint: "Uredite tekst iznad brojača do noći proslave.",
+    locationPlaceholder: "npr. Club / restoran",
+  },
+  kidsBirthday: {
+    productLabel: "Dashboard",
+    fallbackTitle: "Dečiji rođendan",
     overviewLabel: "Pregled rođendana",
     budgetBlurb: "Pratite kompletan budžet proslave, uplate i dokumenta.",
     budgetEmpty:
@@ -40,7 +54,7 @@ const COPY: Record<EventType, EventCopy> = {
     plannerEmptyHint: "Organizujte obaveze do dana proslave i pratite napredak.",
     plannerTaskHint: "Dodajte obavezu za pripremu proslave.",
     countdownHint: "Uredite tekst iznad brojača do dana proslave.",
-    locationPlaceholder: "npr. Restoran / kućna proslava",
+    locationPlaceholder: "npr. Playroom / bašta",
   },
   baptism: {
     productLabel: "Dashboard",
@@ -57,31 +71,59 @@ const COPY: Record<EventType, EventCopy> = {
   },
 };
 
+const EVENT_TYPES: EventType[] = [
+  "wedding",
+  "comingOfAge",
+  "kidsBirthday",
+  "baptism",
+];
+
+const inferFromTemplate = (template?: string): EventType | null => {
+  if (typeof template !== "string") return null;
+  if (template.startsWith("vencanje")) return "wedding";
+  if (template.startsWith("birthday") || template.includes("punoletstvo")) {
+    return "comingOfAge";
+  }
+  if (template.startsWith("rodjendan") || template.includes("kids")) {
+    return "kidsBirthday";
+  }
+  if (template.startsWith("krstenje") || template.startsWith("baptism")) {
+    return "baptism";
+  }
+  return null;
+};
+
+/**
+ * Normalize stored/legacy eventType values.
+ * Legacy `"birthday"` without a template hint maps to kidsBirthday.
+ */
+export const normalizeEventType = (
+  value?: string | null,
+  template?: string | null,
+): EventType | null => {
+  if (!value) return null;
+  if (value === "birthday") {
+    return inferFromTemplate(template ?? undefined) ?? "kidsBirthday";
+  }
+  if ((EVENT_TYPES as string[]).includes(value)) {
+    return value as EventType;
+  }
+  return null;
+};
+
 export const resolveEventType = (
   config?: Pick<UniversalProjectConfig, "eventType" | "template"> | null,
 ): EventType => {
-  if (config?.eventType) return config.eventType;
-
-  const template = config?.template;
-  if (typeof template === "string") {
-    if (template.startsWith("vencanje")) return "wedding";
-    if (
-      template.startsWith("rodjendan") ||
-      template.startsWith("birthday")
-    ) {
-      return "birthday";
-    }
-    if (
-      template.startsWith("krstenje") ||
-      template.startsWith("baptism")
-    ) {
-      return "baptism";
-    }
-  }
-
-  return "wedding";
+  const normalized = normalizeEventType(
+    config?.eventType as LegacyEventType | undefined,
+    config?.template,
+  );
+  if (normalized) return normalized;
+  return inferFromTemplate(config?.template) ?? "wedding";
 };
 
 export const getEventCopy = (
   config?: Pick<UniversalProjectConfig, "eventType" | "template"> | null,
 ): EventCopy => COPY[resolveEventType(config)];
+
+export const ALL_EVENT_TYPES = EVENT_TYPES;

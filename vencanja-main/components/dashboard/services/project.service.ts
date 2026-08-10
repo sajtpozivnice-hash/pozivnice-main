@@ -12,7 +12,7 @@ import {
 const supabase = createClient();
 
 export const getProject = async (projectId: string): Promise<Project> => {
-  if (isDemoMode()) return demoGetProject(projectId);
+  if (isDemoMode(projectId)) return demoGetProject(projectId);
 
   const { data, error } = await supabase
     .from("projects")
@@ -26,7 +26,7 @@ export const getProject = async (projectId: string): Promise<Project> => {
 };
 
 export const getProjects = async (clientId: string): Promise<Project[]> => {
-  if (isDemoMode()) return demoGetProjects(clientId);
+  if (isDemoMode(clientId)) return demoGetProjects(clientId);
 
   const { data, error } = await supabase
     .from("projects")
@@ -43,7 +43,7 @@ export const updateProject = async (
   projectId: string,
   updates: Partial<Project>,
 ): Promise<Project> => {
-  if (isDemoMode()) return demoUpdateProject(projectId, updates);
+  if (isDemoMode(projectId)) return demoUpdateProject(projectId, updates);
 
   const { data, error } = await supabase
     .from("projects")
@@ -64,7 +64,7 @@ export const updateConfig = async (
   projectId: string,
   config: UniversalProjectConfig,
 ): Promise<Project> => {
-  if (isDemoMode()) return demoUpdateConfig(projectId, config);
+  if (isDemoMode(projectId)) return demoUpdateConfig(projectId, config);
 
   return updateProject(projectId, {
     config_json: config,

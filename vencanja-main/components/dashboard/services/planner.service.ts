@@ -23,7 +23,7 @@ const supabase = createClient();
 export const getPlannerCategoriesByProjectService = async (
   projectId: string,
 ): Promise<PlannerCategory[]> => {
-  if (isDemoMode()) return demoGetPlannerCategories(projectId);
+  if (isDemoMode(projectId)) return demoGetPlannerCategories(projectId);
 
   const { data, error } = await supabase
     .from("planner_categories")
@@ -39,7 +39,7 @@ export const createPlannerCategoriesBulkService = async (
   projectId: string,
   categories: CreatePlannerCategoryDto[],
 ): Promise<PlannerCategory[]> => {
-  if (isDemoMode()) {
+  if (isDemoMode(projectId)) {
     return demoCreatePlannerCategoriesBulk(projectId, categories);
   }
 
@@ -63,7 +63,7 @@ export const createPlannerCategoryService = async (
   projectId: string,
   category: CreatePlannerCategoryDto,
 ): Promise<PlannerCategory> => {
-  if (isDemoMode()) return demoCreatePlannerCategory(projectId, category);
+  if (isDemoMode(projectId)) return demoCreatePlannerCategory(projectId, category);
 
   const { data, error } = await supabase
     .from("planner_categories")
@@ -82,7 +82,7 @@ export const createPlannerCategoryService = async (
 export const getPlannerTasksByProjectService = async (
   projectId: string,
 ): Promise<PlannerTask[]> => {
-  if (isDemoMode()) return demoGetPlannerTasks(projectId);
+  if (isDemoMode(projectId)) return demoGetPlannerTasks(projectId);
 
   const { data, error } = await supabase
     .from("planner_tasks")
@@ -99,7 +99,7 @@ export const createPlannerTasksBulkService = async (
   projectId: string,
   tasks: CreatePlannerTaskDto[],
 ): Promise<PlannerTask[]> => {
-  if (isDemoMode()) return demoCreatePlannerTasksBulk(projectId, tasks);
+  if (isDemoMode(projectId)) return demoCreatePlannerTasksBulk(projectId, tasks);
 
   const payload = tasks.map((task, index) => ({
     project_id: projectId,
@@ -127,7 +127,7 @@ export const createPlannerTaskService = async (
   projectId: string,
   task: CreatePlannerTaskDto,
 ): Promise<PlannerTask> => {
-  if (isDemoMode()) return demoCreatePlannerTask(projectId, task);
+  if (isDemoMode(projectId)) return demoCreatePlannerTask(projectId, task);
 
   const { data, error } = await supabase
     .from("planner_tasks")
@@ -153,7 +153,7 @@ export const updatePlannerTaskService = async (
   id: string,
   updates: UpdatePlannerTaskDto,
 ): Promise<PlannerTask> => {
-  if (isDemoMode()) return demoUpdatePlannerTask(id, updates);
+  if (isDemoMode(id)) return demoUpdatePlannerTask(id, updates);
 
   const payload: Record<string, string | number | boolean | null> = {};
 
@@ -189,7 +189,7 @@ export const updatePlannerTaskService = async (
 };
 
 export const deletePlannerTaskService = async (id: string): Promise<void> => {
-  if (isDemoMode()) {
+  if (isDemoMode(id)) {
     demoDeletePlannerTask(id);
     return;
   }

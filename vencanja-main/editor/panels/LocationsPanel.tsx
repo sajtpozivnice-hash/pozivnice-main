@@ -9,6 +9,7 @@ export const locationsSchema = createSectionSchema<LocationsData>({
   fields: [
     { key: "title", label: "Naslov", type: "text" },
     { key: "subtitle", label: "Podnaslov", type: "text" },
+    { key: "description", label: "Opis", type: "textarea" },
     { key: "imageUrl", label: "Pozadinska slika", type: "image" },
     {
       key: "cards",
