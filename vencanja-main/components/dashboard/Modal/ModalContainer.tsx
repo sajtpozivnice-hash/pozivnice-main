@@ -6,6 +6,7 @@ import AddGuestToTableModal from "./AddGuestToTableModal";
 import EditTableModal from "./EditTableModal";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import EditGuestModal from "./EditGuestModal";
+import ResolvePartyNamesModal from "./ResolvePartyNamesModal";
 import DeleteGuestModal from "./DeleteGuestModal";
 import DeleteTableModal from "./DeleteTableModal";
 import HeroSectionEditModal from "./sections/HeroSectionEditModal";
@@ -37,7 +38,8 @@ const ModalContainer = () => {
   const isWide =
     type === "budget_item_details" ||
     type === "add_budget_item" ||
-    type === "edit_budget_item";
+    type === "edit_budget_item" ||
+    type === "resolve_party_names";
 
   const modalContentHandler = useCallback(() => {
     switch (type) {
@@ -51,6 +53,10 @@ const ModalContainer = () => {
         return <EditTableModal key={data?.id ?? "edit-table"} />;
       case "edit_guest":
         return <EditGuestModal key={data?.id ?? "edit-guest"} />;
+      case "resolve_party_names":
+        return (
+          <ResolvePartyNamesModal key={data?.id ?? "resolve-party-names"} />
+        );
       case "delete_guest":
         return <DeleteGuestModal />;
       case "delete_table":

@@ -12,7 +12,8 @@ export type TemplateKey =
   | "rodjendan-01"
   | "birthday18"
   | "birthday18-bright"
-  | "birthday18-editorial";
+  | "birthday18-editorial"
+  | "birthday18-night";
 
 export type MetaConfig = {
   title: string;
@@ -26,6 +27,8 @@ export type EventConfig = {
   rsvpDate: string;
   names: string;
   timezone?: string;
+  /** Age under this value is suggested as child (owner can override per guest). */
+  childAgeLimit?: number;
   location?: {
     name?: string;
     address?: string;

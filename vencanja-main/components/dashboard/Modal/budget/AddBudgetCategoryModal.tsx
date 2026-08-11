@@ -14,6 +14,7 @@ import { toast } from "sonner";
 import { useDialog } from "../../context/ModalContext";
 import { useBudget } from "../../context/BudgetContext";
 import Loader from "../../loaders/Loader";
+import ColorField from "@/components/shared/ColorField";
 
 const AddBudgetCategoryModal = () => {
   const { closeModal } = useDialog();
@@ -69,12 +70,7 @@ const AddBudgetCategoryModal = () => {
           </Field>
           <Field>
             <FieldLabel>Boja</FieldLabel>
-            <Input
-              type="color"
-              value={color}
-              onChange={(e) => setColor(e.target.value)}
-              className="h-10 w-full cursor-pointer p-1"
-            />
+            <ColorField value={color} onChange={setColor} size="md" />
           </Field>
         </FieldGroup>
 

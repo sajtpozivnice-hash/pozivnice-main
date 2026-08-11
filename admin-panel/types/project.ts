@@ -17,7 +17,8 @@ export type TemplateKey =
   | "rodjendan-01"
   | "birthday18"
   | "birthday18-bright"
-  | "birthday18-editorial";
+  | "birthday18-editorial"
+  | "birthday18-night";
 
 export type UniversalProjectConfig = {
   template: TemplateKey;

@@ -13,8 +13,8 @@ export const heroSchema = createSectionSchema<HeroData>({
     { key: "badge", label: "Bedž (npr. godine)", type: "text" },
     { key: "ctaText", label: "Tekst CTA dugmeta", type: "text" },
     { key: "ctaHref", label: "CTA link (npr. #rsvp)", type: "text" },
-    { key: "backgroundImage", label: "Pozadinska Slika", type: "image" },
-    { key: "image", label: "Slika", type: "image" },
+    { key: "backgroundImage", label: "Naslovna slika", type: "image" },
+    { key: "image", label: "Dodatna slika", type: "image" },
   ],
 });
 

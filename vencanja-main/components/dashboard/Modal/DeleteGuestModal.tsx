@@ -37,7 +37,8 @@ const DeleteGuestModal = () => {
           <span className="font-semibold text-foreground">
             {data?.data?.name ?? ""}
           </span>
-          ? Ova akcija se ne može poništiti.
+          ? Ako je ovo osoba koja je potvrdila dolazak za više osoba, biće
+          obrisane i osobe koje dolaze sa njom. Ova akcija se ne može poništiti.
         </SheetDescription>
       </SheetHeader>
 

@@ -58,8 +58,7 @@
         "badge": "VOL. 18",
         "ctaText": "DOLAZIM",
         "ctaHref": "#rsvp",
-        "backgroundImage": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1400&q=85",
-        "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1400&q=85"
+        "backgroundImage": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1400&q=85"
       }
     },
     {
@@ -83,7 +82,6 @@
         "title": "O VEČERI",
         "subtitle": "DETALJI",
         "description": "Sve što treba da znaš pre nego što kreneš.",
-        "imageUrl": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1400&q=85",
         "cards": [
           {
             "id": 1,
@@ -91,9 +89,7 @@
             "subtitle": "VAŠ NAJBOLJI IZGLED",
             "location": "Knez Mihailova 18, Beograd",
             "time": "20:00",
-            "text": "Ulaz od 20:00. Parking u blizini.",
-            "image": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1400&q=85",
-            "icon": "map-pin"
+            "image": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1400&q=85"
           }
         ]
       }
@@ -118,7 +114,6 @@
       "data": {
         "title": "VEČE",
         "subtitle": "REDOSLED PROGRAMA",
-        "imageUrl": "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1200&q=85",
         "items": [
           {
             "id": "1",
@@ -180,8 +175,7 @@
         "description": "Potvrdi dolazak i budi deo ove noći. Javi nam najkasnije do ",
         "buttonText": "DOLAZIM",
         "messageLabel": "Poruka za slavljenika",
-        "messagePlaceholder": "Ostavi poruku…",
-        "imageUrl": "https://images.unsplash.com/photo-1524504388940-b1c17226555e?auto=format&fit=crop&w=1600&q=85"
+        "messagePlaceholder": "Ostavi poruku…"
       }
     },
     {
@@ -192,8 +186,7 @@
       "order": 8,
       "data": {
         "title": "VIDIMO SE\nS DRUGE STRANE\n18.",
-        "description": "Hajde da 18. bude nezaboravan.",
-        "imageUrl": "https://images.unsplash.com/photo-1524504388940-b1c17226555e?auto=format&fit=crop&w=1600&q=85"
+        "description": "Hajde da 18. bude nezaboravan."
       }
     },
     {
@@ -206,8 +199,7 @@
         "title": "LISTA KADROVA",
         "subtitle": "KADROVI GOSTIJU",
         "description": "Uhvati kadar sa noći i pošalji ga u privatnu galeriju slavljenika.",
-        "buttonText": "Pošalji kadar",
-        "imageUrl": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1400&q=85"
+        "buttonText": "Pošalji kadar"
       }
     },
     {

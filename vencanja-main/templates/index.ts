@@ -18,6 +18,8 @@ import { birthday18BrightDefaultConfig } from "./birthday18-bright/config";
 import { birthday18BrightRenderers } from "./birthday18-bright/renderers";
 import { birthday18EditorialDefaultConfig } from "./birthday18-editorial/config";
 import { birthday18EditorialRenderers } from "./birthday18-editorial/renderers";
+import { birthday18NightDefaultConfig } from "./birthday18-night/config";
+import { birthday18NightRenderers } from "./birthday18-night/renderers";
 import { EventType, TemplateKey, UniversalProjectConfig } from "@/types/config";
 import { TemplateCatalogMeta } from "@/types/catalog";
 import { SectionRendererMap } from "@/types/sections";
@@ -175,6 +177,22 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       description:
         "Editorial / Y2K magazin pozivnica za punoletstvo: kolaž raspored, jaka tipografija i modni utisak.",
       style: "editorial",
+      price: 40,
+      featured: true,
+    },
+  },
+  "birthday18-night": {
+    renderers: birthday18NightRenderers,
+    defaultConfig: {
+      ...birthday18NightDefaultConfig,
+      eventType: "comingOfAge",
+    },
+    eventTypes: ["comingOfAge"],
+    catalog: {
+      title: "18 — Noć počinje",
+      description:
+        "Tamna cinematic nightlife pozivnica za 18. rođendan: jak tipografski hero, editorial detalji i premium potvrda prisustva.",
+      style: "premium",
       price: 40,
       featured: true,
     },

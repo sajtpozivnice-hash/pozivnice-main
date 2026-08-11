@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import {
   Field,
-  FieldDescription,
   FieldGroup,
   FieldLabel,
 } from "@/components/ui/field";
@@ -23,6 +22,8 @@ import { UniversalProjectConfig } from "@/types/config";
 import { RepeaterItemCard } from "./RepeaterItemCard";
 import { SectionModalVisibilityBar } from "./SectionModalVisibilityBar";
 import EditorImage from "@/editor/components/EditorImage";
+import ColorField from "@/components/shared/ColorField";
+import IconPicker from "@/components/shared/IconPicker";
 
 type FeatureCardsForm = {
   title: string;
@@ -209,22 +210,19 @@ const FeatureCardsSectionEditModal = () => {
               </Field>
               <Field>
                 <FieldLabel>Ikonica</FieldLabel>
-                <FieldDescription>
-                  gift, shirt, baby, info, party, music, camera, sparkles
-                </FieldDescription>
-                <Input
+                <IconPicker
                   value={card.icon ?? ""}
-                  onChange={(e) =>
-                    handleCardChange(card.id, "icon", e.target.value)
+                  onChange={(value) =>
+                    handleCardChange(card.id, "icon", value)
                   }
                 />
               </Field>
               <Field>
-                <FieldLabel>Boja (hex)</FieldLabel>
-                <Input
-                  value={card.accent ?? ""}
-                  onChange={(e) =>
-                    handleCardChange(card.id, "accent", e.target.value)
+                <FieldLabel>Boja</FieldLabel>
+                <ColorField
+                  value={card.accent ?? "#FF5C8A"}
+                  onChange={(value) =>
+                    handleCardChange(card.id, "accent", value)
                   }
                 />
               </Field>

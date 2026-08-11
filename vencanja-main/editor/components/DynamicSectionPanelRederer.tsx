@@ -2,6 +2,8 @@ import EditorInput from "./EditorInput";
 import EditorImage from "./EditorImage";
 import { FieldSchema } from "@/types/sections";
 import { Plus, TrashIcon } from "lucide-react";
+import ColorField from "@/components/shared/ColorField";
+import IconPicker from "@/components/shared/IconPicker";
 
 type Props<T extends Record<string, unknown>> = {
   data: T;
@@ -26,6 +28,62 @@ function getRepeaterItemKeys(
   }
 
   return itemSchema.map((field) => String(field.key));
+}
+
+function renderScalarField({
+  key,
+  label,
+  type,
+  value,
+  onChange,
+}: {
+  key: string;
+  label: string;
+  type: "text" | "textarea" | "image" | "color" | "icon";
+  value: unknown;
+  onChange: (next: string) => void;
+}) {
+  const stringValue = typeof value === "string" ? value : "";
+
+  if (type === "image") {
+    return (
+      <EditorImage key={key} label={label} value={stringValue} onChange={onChange} />
+    );
+  }
+
+  if (type === "color") {
+    return (
+      <ColorField
+        key={key}
+        label={label}
+        value={stringValue}
+        onChange={onChange}
+        size="md"
+      />
+    );
+  }
+
+  if (type === "icon") {
+    return (
+      <IconPicker
+        key={key}
+        label={label}
+        value={stringValue}
+        onChange={onChange}
+      />
+    );
+  }
+
+  return (
+    <EditorInput
+      key={key}
+      label={label}
+      type={type === "textarea" ? "textarea" : "text"}
+      rows={4}
+      value={stringValue}
+      onChange={onChange}
+    />
+  );
 }
 
 const DynamicSectionRenderer = <T extends Record<string, unknown>>({
@@ -76,63 +134,33 @@ const DynamicSectionRenderer = <T extends Record<string, unknown>>({
                         allowedItemKeys.includes(String(subField.key)),
                       )
                       .map((subField) => {
-                        const value = item[String(subField.key)];
-
-                        if (subField.type === "image") {
-                          return (
-                            <EditorImage
-                              key={String(subField.key)}
-                              label={subField.label}
-                              value={typeof value === "string" ? value : ""}
-                              onChange={(newValue) => {
-                                const updatedItems = items.map((current, i) =>
-                                  i === index
-                                    ? {
-                                        ...current,
-                                        [String(subField.key)]: newValue,
-                                      }
-                                    : current,
-                                );
-
-                                onChange({
-                                  ...data,
-                                  [field.key]: updatedItems,
-                                });
-                              }}
-                            />
-                          );
-                        }
-
                         if (subField.type === "repeater") {
                           return null;
                         }
 
-                        return (
-                          <EditorInput
-                            key={String(subField.key)}
-                            label={subField.label}
-                            type={
-                              subField.type === "textarea" ? "textarea" : "text"
-                            }
-                            rows={4}
-                            value={typeof value === "string" ? value : ""}
-                            onChange={(newValue) => {
-                              const updatedItems = items.map((current, i) =>
-                                i === index
-                                  ? {
-                                      ...current,
-                                      [String(subField.key)]: newValue,
-                                    }
-                                  : current,
-                              );
+                        const value = item[String(subField.key)];
 
-                              onChange({
-                                ...data,
-                                [field.key]: updatedItems,
-                              });
-                            }}
-                          />
-                        );
+                        return renderScalarField({
+                          key: String(subField.key),
+                          label: subField.label,
+                          type: subField.type,
+                          value,
+                          onChange: (newValue) => {
+                            const updatedItems = items.map((current, i) =>
+                              i === index
+                                ? {
+                                    ...current,
+                                    [String(subField.key)]: newValue,
+                                  }
+                                : current,
+                            );
+
+                            onChange({
+                              ...data,
+                              [field.key]: updatedItems,
+                            });
+                          },
+                        });
                       })}
                   </div>
                 ))}
@@ -145,7 +173,13 @@ const DynamicSectionRenderer = <T extends Record<string, unknown>>({
                     };
 
                     allowedItemKeys.forEach((key) => {
-                      newItem[key] = "";
+                      if (key === "icon") {
+                        newItem[key] = "sparkles";
+                      } else if (key === "accent") {
+                        newItem[key] = "#FF5C8A";
+                      } else {
+                        newItem[key] = "";
+                      }
                     });
 
                     // Preserve numeric id pattern if existing cards use numbers
@@ -175,20 +209,18 @@ const DynamicSectionRenderer = <T extends Record<string, unknown>>({
             );
           }
           const value = data[field.key];
-          if (field.type === "image") {
-            return (
-              <EditorImage
-                key={String(field.key)}
-                label={field.label}
-                value={typeof value === "string" ? value : ""}
-                onChange={(newValue) =>
-                  onChange({
-                    ...data,
-                    [field.key]: newValue,
-                  })
-                }
-              />
-            );
+          if (field.type === "image" || field.type === "color" || field.type === "icon") {
+            return renderScalarField({
+              key: String(field.key),
+              label: field.label,
+              type: field.type,
+              value,
+              onChange: (newValue) =>
+                onChange({
+                  ...data,
+                  [field.key]: newValue,
+                }),
+            });
           }
 
           return (

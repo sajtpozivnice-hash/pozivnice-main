@@ -31,6 +31,7 @@ import { cn } from "@/lib/utils";
 import { DASHBOARD_ACCENTS } from "../theme";
 import SectionLoader from "../loaders/SectionLoader";
 import { getEventCopy } from "@/helpers/eventType";
+import { computeGuestStats } from "@/components/dashboard/utils/guestParty";
 
 type DashboardHomeProps = {
   onNavigate: (tab: string) => void;
@@ -51,10 +52,11 @@ const DashboardHome = ({ onNavigate }: DashboardHomeProps) => {
     (plannerLoading && tasks.length === 0);
 
   const stats = useMemo(() => {
-    const accepted = guests.filter((g) => g.rsvp_status === "accepted").length;
-    const pending = guests.filter((g) => g.rsvp_status === "pending").length;
+    const guestStats = computeGuestStats(guests);
     const capacity = tables.reduce((sum, t) => sum + t.number_of_guests, 0);
-    const seated = guests.filter((g) => Boolean(g.table_id)).length;
+    const seated = guests.filter(
+      (g) => Boolean(g.table_id) && !g.name_pending,
+    ).length;
     const seatFill = capacity > 0 ? Math.round((seated / capacity) * 100) : 0;
     const planned = items.reduce(
       (sum, item) => sum + Number(item.planned_amount),
@@ -70,9 +72,11 @@ const DashboardHome = ({ onNavigate }: DashboardHomeProps) => {
     const currency = items[0]?.currency ?? "EUR";
 
     return {
-      guests: guests.length,
-      accepted,
-      pending,
+      guests: guestStats.total,
+      accepted: guestStats.accepted,
+      pending: guestStats.pending,
+      adults: guestStats.adults,
+      children: guestStats.children,
       seatFill,
       seated,
       capacity,
@@ -128,7 +132,7 @@ const DashboardHome = ({ onNavigate }: DashboardHomeProps) => {
           {
             label: "Gosti",
             value: String(stats.guests),
-            hint: `${stats.accepted} dolazi · ${stats.pending} čeka`,
+            hint: `${stats.accepted} dolazi · ${stats.adults} odrasli · ${stats.children} dece`,
             icon: Users,
             tone: "sky",
             progress:

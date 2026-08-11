@@ -108,9 +108,9 @@ const Locations: FC<Props> = ({ section, event }) => {
             ) : null}
           </div>
           <div className="ed-where__media">
-            {card?.image || data.imageUrl ? (
+            {card?.image ? (
               <img
-                src={card?.image || data.imageUrl}
+                src={card.image}
                 alt=""
                 referrerPolicy="no-referrer"
               />

@@ -5,6 +5,7 @@ import { EventConfig, ThemeConfig } from "@/types/config";
 import { RSVPSection } from "@/types/sections";
 import { AnimatePresence, motion } from "framer-motion";
 import { Send } from "lucide-react";
+import { usePublicRsvpSubmit } from "@/components/invitation/usePublicRsvpSubmit";
 import { FormEvent, useState } from "react";
 import FormMessage, { Attendance } from "../components/FormConfirmMessage";
 
@@ -18,8 +19,8 @@ const RSVP: React.FC<Props> = ({ section, event, theme }) => {
   const { data, id } = section;
   const { rsvpDate } = event;
   const { colors } = theme;
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const { loading, submitted, error, handleSubmit: submitRsvp, setSubmitted } =
+    usePublicRsvpSubmit();
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -29,13 +30,13 @@ const RSVP: React.FC<Props> = ({ section, event, theme }) => {
   });
 
   const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    // Simulate API call
-    setTimeout(() => {
-      setLoading(false);
-      setSubmitted(true);
-    }, 1500);
+    void submitRsvp(e, {
+      fullName: formData.fullName,
+      email: formData.email,
+      attendance: formData.attendance === Attendance.NO ? "no" : "yes",
+      guests: formData.guests,
+      message: formData.message,
+    });
   };
 
   return (
@@ -197,6 +198,10 @@ const RSVP: React.FC<Props> = ({ section, event, theme }) => {
                   placeholder="Vaša Poruka"
                 />
               </div>
+
+              {error ? (
+                <p className="text-sm text-red-400">{error}</p>
+              ) : null}
 
               <button
                 disabled={loading}

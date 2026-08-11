@@ -58,8 +58,7 @@
         "badge": "18",
         "ctaText": "Potvrdi dolazak",
         "ctaHref": "#rsvp",
-        "backgroundImage": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=1400&q=85",
-        "image": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=1400&q=85"
+        "backgroundImage": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=1400&q=85"
       }
     },
     {
@@ -69,8 +68,7 @@
       "visible": true,
       "order": 2,
       "data": {
-        "description": "18 SE SLAVI SAMO JEDNOM\n\nVreme je za dobru muziku, još bolje društvo i noć koju ćemo dugo pamtiti.",
-        "imageUrl": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=85"
+        "description": "18 SE SLAVI SAMO JEDNOM\n\nVreme je za dobru muziku, još bolje društvo i noć koju ćemo dugo pamtiti."
       }
     },
     {
@@ -81,8 +79,7 @@
       "order": 3,
       "data": {
         "title": "JOŠ MALO…",
-        "description": "Odbrojavanje do proslave",
-        "imageUrl": "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=1600&q=85"
+        "description": "Odbrojavanje do proslave"
       }
     },
     {
@@ -93,19 +90,15 @@
       "order": 4,
       "data": {
         "title": "KADA & GDE",
-        "subtitle": "Sve informacije",
         "description": "Sve što treba da znaš pre nego što kreneš.",
-        "imageUrl": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1600&q=85",
         "cards": [
           {
             "id": 1,
             "title": "BEOGRAD",
-            "subtitle": "Sky Garden",
             "location": "Bulevar Zorana Đinđića 64, Beograd",
             "time": "20:00",
             "text": "Ulaz od 20:00. Parking u blizini. Ulaz sa glavne strane zgrade.",
-            "image": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1600&q=85",
-            "icon": "map-pin"
+            "image": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1600&q=85"
           }
         ]
       }
@@ -119,7 +112,6 @@
       "data": {
         "title": "ŠTA NAS ČEKA?",
         "subtitle": "Plan večeri",
-        "imageUrl": "https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?auto=format&fit=crop&w=1600&q=85",
         "items": [
           {
             "id": "1",
@@ -181,8 +173,7 @@
         "description": "Javi nam da li dolaziš da zajedno proslavimo mojih 18. Potvrdi najkasnije do ",
         "buttonText": "Pošalji potvrdu",
         "messageLabel": "Poruka za slavljenika",
-        "messagePlaceholder": "Napiši kratku poruku ili čestitku…",
-        "imageUrl": "https://images.unsplash.com/photo-1519677100203-a0e668c92439?auto=format&fit=crop&w=2000&q=85"
+        "messagePlaceholder": "Napiši kratku poruku ili čestitku…"
       }
     },
     {
@@ -193,8 +184,7 @@
       "order": 8,
       "data": {
         "title": "IDEMO DA ŽURIMO!",
-        "description": "Vidimo se — spremi osmeh i dobru energiju.",
-        "imageUrl": "https://images.unsplash.com/photo-1519677100203-a0e668c92439?auto=format&fit=crop&w=2000&q=85"
+        "description": "Vidimo se — spremi osmeh i dobru energiju."
       }
     },
     {
@@ -207,8 +197,7 @@
         "title": "UHVATI TRENUTAK",
         "subtitle": "Podeli uspomene",
         "description": "Snimi kadar sa plesa, sa tortom ili sa ekipom — i pošalji u privatnu galeriju.",
-        "buttonText": "Pošalji fotografiju",
-        "imageUrl": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1600&q=85"
+        "buttonText": "Pošalji fotografiju"
       }
     },
     {

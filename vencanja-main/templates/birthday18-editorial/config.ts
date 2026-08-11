@@ -12,10 +12,6 @@ const IMG = {
     "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1200&q=85",
   dress:
     "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=85",
-  final:
-    "https://images.unsplash.com/photo-1524504388940-b1c17226555e?auto=format&fit=crop&w=1600&q=85",
-  upload:
-    "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1400&q=85",
 };
 
 export const birthday18EditorialDefaultConfig: UniversalProjectConfig = {
@@ -79,7 +75,6 @@ export const birthday18EditorialDefaultConfig: UniversalProjectConfig = {
         ctaText: "DOLAZIM",
         ctaHref: "#rsvp",
         backgroundImage: IMG.hero,
-        image: IMG.hero,
       },
     },
     {
@@ -104,7 +99,6 @@ export const birthday18EditorialDefaultConfig: UniversalProjectConfig = {
         title: "O VEČERI",
         subtitle: "DETALJI",
         description: "Sve što treba da znaš pre nego što kreneš.",
-        imageUrl: IMG.night,
         cards: [
           {
             id: 1,
@@ -112,9 +106,7 @@ export const birthday18EditorialDefaultConfig: UniversalProjectConfig = {
             subtitle: "VAŠ NAJBOLJI IZGLED",
             location: "Knez Mihailova 18, Beograd",
             time: "20:00",
-            text: "Ulaz od 20:00. Parking u blizini.",
             image: IMG.night,
-            icon: "map-pin",
           },
         ],
       },
@@ -139,7 +131,6 @@ export const birthday18EditorialDefaultConfig: UniversalProjectConfig = {
       data: {
         title: "VEČE",
         subtitle: "REDOSLED PROGRAMA",
-        imageUrl: IMG.schedule,
         items: [
           {
             id: "1",
@@ -204,7 +195,6 @@ export const birthday18EditorialDefaultConfig: UniversalProjectConfig = {
         buttonText: "DOLAZIM",
         messageLabel: "Poruka za slavljenika",
         messagePlaceholder: "Ostavi poruku…",
-        imageUrl: IMG.final,
       },
     },
     {
@@ -216,7 +206,6 @@ export const birthday18EditorialDefaultConfig: UniversalProjectConfig = {
       data: {
         title: "VIDIMO SE\nS DRUGE STRANE\n18.",
         description: "Hajde da 18. bude nezaboravan.",
-        imageUrl: IMG.final,
       },
     },
     {
@@ -231,7 +220,6 @@ export const birthday18EditorialDefaultConfig: UniversalProjectConfig = {
         description:
           "Uhvati kadar sa noći i pošalji ga u privatnu galeriju slavljenika.",
         buttonText: "Pošalji kadar",
-        imageUrl: IMG.upload,
       },
     },
     {

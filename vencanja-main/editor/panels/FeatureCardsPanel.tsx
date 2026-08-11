@@ -19,8 +19,8 @@ export const featureCardsSchema = createSectionSchema<FeatureCardsData>({
       itemSchema: [
         { key: "title", label: "Naslov", type: "text" },
         { key: "description", label: "Opis", type: "textarea" },
-        { key: "icon", label: "Ikonica (gift, shirt, baby, info, party…)", type: "text" },
-        { key: "accent", label: "Boja (hex)", type: "text" },
+        { key: "icon", label: "Ikonica", type: "icon" },
+        { key: "accent", label: "Boja", type: "color" },
         { key: "image", label: "Slika", type: "image" },
       ],
     },

@@ -1,5 +1,6 @@
 "use client";
 
+import { usePublicRsvpSubmit } from "@/components/invitation/usePublicRsvpSubmit";
 import { FormEvent, FC, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Send } from "lucide-react";
@@ -29,8 +30,8 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
   const { data, id } = section;
   const accent = theme.colors?.base?.primary?.value ?? "#c9a86a";
 
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const { loading, submitted, error, handleSubmit: submitRsvp, setSubmitted } =
+    usePublicRsvpSubmit();
   const [formData, setFormData] = useState<FormState>({
     fullName: "",
     email: "",
@@ -40,12 +41,13 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
   });
 
   const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setSubmitted(true);
-    }, 1200);
+    void submitRsvp(e, {
+      fullName: formData.fullName,
+      email: formData.email,
+      attendance: formData.attendance,
+      guests: formData.guests,
+      message: formData.message,
+    });
   };
 
   return (
@@ -188,6 +190,10 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
                   placeholder="Vaša poruka mladencima"
                 />
               </div>
+
+              {error ? (
+                <p className="text-sm text-red-400">{error}</p>
+              ) : null}
 
               <button
                 type="submit"

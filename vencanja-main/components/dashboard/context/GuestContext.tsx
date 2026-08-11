@@ -10,11 +10,12 @@ import {
 } from "react";
 
 import { useDashboard } from "./DashboardContext";
-import { CreateGuestDto, Guest } from "../types";
+import { CreateGuestDto, Guest, ResolvePartyPersonInput } from "../types";
 import {
   createGuestService,
   deleteGuestService,
   getGuestsByProjectService,
+  resolvePartyNamesService,
   updateGuestService,
 } from "../services/guests.service";
 
@@ -25,6 +26,10 @@ type GuestsContextType = {
   createGuest: (guest: CreateGuestDto) => Promise<void>;
   updateGuest: (id: string, updates: Partial<CreateGuestDto>) => Promise<void>;
   deleteGuest: (id: string) => Promise<void>;
+  resolvePartyNames: (
+    contactId: string,
+    people: ResolvePartyPersonInput[],
+  ) => Promise<void>;
 };
 
 const GuestsContext = createContext<GuestsContextType | undefined>(undefined);
@@ -63,8 +68,14 @@ export const GuestsProvider = ({ children }: { children: ReactNode }) => {
 
     setLoading(true);
     try {
-      const created = await createGuestService(activeProject.id, guest);
-      setGuests((prev) => [created, ...prev]);
+      await createGuestService(activeProject.id, {
+        party_size: 1,
+        is_child: false,
+        name_pending: false,
+        parent_guest_id: null,
+        ...guest,
+      });
+      await refresh();
     } catch (error) {
       console.error(error);
       throw error;
@@ -79,10 +90,10 @@ export const GuestsProvider = ({ children }: { children: ReactNode }) => {
   ) => {
     setLoading(true);
     try {
-      const updated = await updateGuestService(id, updates);
-      setGuests((prev) =>
-        prev.map((guest) => (guest.id === id ? updated : guest)),
-      );
+      await updateGuestService(id, updates, {
+        projectId: activeProject?.id,
+      });
+      await refresh();
     } catch (error) {
       console.error(error);
       throw error;
@@ -94,8 +105,26 @@ export const GuestsProvider = ({ children }: { children: ReactNode }) => {
   const deleteGuest = async (id: string) => {
     setLoading(true);
     try {
-      await deleteGuestService(id);
-      setGuests((prev) => prev.filter((guest) => guest.id !== id));
+      await deleteGuestService(id, { projectId: activeProject?.id });
+      await refresh();
+    } catch (error) {
+      console.error(error);
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const resolvePartyNames = async (
+    contactId: string,
+    people: ResolvePartyPersonInput[],
+  ) => {
+    if (!activeProject?.id) return;
+
+    setLoading(true);
+    try {
+      await resolvePartyNamesService(activeProject.id, contactId, people);
+      await refresh();
     } catch (error) {
       console.error(error);
       throw error;
@@ -113,6 +142,7 @@ export const GuestsProvider = ({ children }: { children: ReactNode }) => {
         createGuest,
         updateGuest,
         deleteGuest,
+        resolvePartyNames,
       }}
     >
       {children}

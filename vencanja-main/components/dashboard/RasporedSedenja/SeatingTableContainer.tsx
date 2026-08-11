@@ -9,8 +9,10 @@ import SectionLoader from "../loaders/SectionLoader";
 import SelectInput, { SelectOption } from "../SelectInput";
 import { Guest, Table } from "../types";
 import {
-  Armchair,
+  Baby,
   Plus,
+  UserCheck,
+  UserRound,
   UserRoundX,
   Users,
   LayoutGrid,
@@ -21,6 +23,7 @@ import SummaryStats from "../shared/SummaryStats";
 import FilterEmptyState from "../shared/FilterEmptyState";
 import { compareNameSr, matchesSearchQuery } from "../utils/search";
 import { Progress } from "@/components/ui/progress";
+import { computeGuestStats, displayGuestName } from "../utils/guestParty";
 
 type TableSortKey =
   | "name-asc"
@@ -105,6 +108,8 @@ const SeatingTableContainer = () => {
   const [sortKey, setSortKey] = useState<TableSortKey>("name-asc");
   const [searchQuery, setSearchQuery] = useState("");
 
+  const guestStats = useMemo(() => computeGuestStats(guests), [guests]);
+
   const addTableHandler = () => {
     openModal("add_table");
   };
@@ -114,6 +119,8 @@ const SeatingTableContainer = () => {
       guests.filter(
         (guest) =>
           guest.rsvp_status === "accepted" &&
+          !guest.name_pending &&
+          Boolean(guest.name.trim()) &&
           !guest.table_id &&
           !guest.tables?.id,
       ),
@@ -125,7 +132,9 @@ const SeatingTableContainer = () => {
       (sum, table) => sum + table.number_of_guests,
       0,
     );
-    const occupied = guests.filter((guest) => Boolean(guest.table_id)).length;
+    const occupied = guests.filter(
+      (guest) => Boolean(guest.table_id) && !guest.name_pending,
+    ).length;
     const free = Math.max(capacity - occupied, 0);
     const fill = capacity > 0 ? Math.round((occupied / capacity) * 100) : 0;
     return {
@@ -152,7 +161,7 @@ const SeatingTableContainer = () => {
       if (!searchQuery.trim()) return true;
       const tableGuests = getGuestsForTable(guests, table.id);
       return matchesSearchQuery(
-        [table.name, ...tableGuests.map((guest) => guest.name)],
+        [table.name, ...tableGuests.map((guest) => displayGuestName(guest))],
         searchQuery,
       );
     });
@@ -199,25 +208,38 @@ const SeatingTableContainer = () => {
       </div>
 
       <SummaryStats
+        className="sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-6"
         items={[
           {
-            label: "Stolovi",
-            value: String(summary.tables),
-            icon: LayoutGrid,
+            label: "Ukupno gostiju",
+            value: String(guestStats.total),
+            icon: Users,
+            tone: "sky",
+          },
+          {
+            label: "Odrasli",
+            value: String(guestStats.adults),
+            icon: UserRound,
             tone: "violet",
           },
           {
-            label: "Zauzeto",
-            value: `${summary.occupied}/${summary.capacity}`,
-            icon: Users,
-            tone: "sky",
-            progress: summary.fill,
+            label: "Deca",
+            value: String(guestStats.children),
+            icon: Baby,
+            tone: "orange",
           },
           {
-            label: "Slobodno",
-            value: String(summary.free),
-            icon: Armchair,
+            label: "Potvrđeni",
+            value: String(guestStats.accepted),
+            icon: UserCheck,
             tone: "emerald",
+          },
+          {
+            label: "Zauzeto / kapacitet",
+            value: `${summary.occupied}/${summary.capacity}`,
+            icon: LayoutGrid,
+            tone: "violet",
+            progress: summary.fill,
           },
           {
             label: "Neraspoređeni",
@@ -248,7 +270,7 @@ const SeatingTableContainer = () => {
           <p className="mt-1 text-xs text-muted-foreground">
             {unassignedGuests
               .slice(0, 6)
-              .map((guest) => guest.name)
+              .map((guest) => displayGuestName(guest))
               .join(", ")}
             {unassignedGuests.length > 6
               ? ` i još ${unassignedGuests.length - 6}`

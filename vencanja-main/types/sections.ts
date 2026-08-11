@@ -9,13 +9,13 @@ export type BaseSectionConfig<T, Type extends string> = {
   name: string;
 };
 
-export type FieldType = "text" | "textarea" | "image" | "repeater";
+export type FieldType = "text" | "textarea" | "image" | "color" | "icon" | "repeater";
 
 export type FieldSchema<T> =
   | {
       key: keyof T;
       label: string;
-      type: "text" | "textarea" | "image";
+      type: "text" | "textarea" | "image" | "color" | "icon";
     }
   | {
       key: keyof T;

@@ -4,20 +4,10 @@ import { UniversalProjectConfig } from "@/types/config";
 const IMG = {
   hero:
     "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=1400&q=85",
-  intro:
-    "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=85",
-  countdown:
-    "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=1600&q=85",
   venue:
     "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1600&q=85",
-  schedule:
-    "https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?auto=format&fit=crop&w=1600&q=85",
   dress:
     "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=85",
-  final:
-    "https://images.unsplash.com/photo-1519677100203-a0e668c92439?auto=format&fit=crop&w=2000&q=85",
-  upload:
-    "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1600&q=85",
 };
 
 export const birthday18BrightDefaultConfig: UniversalProjectConfig = {
@@ -81,7 +71,6 @@ export const birthday18BrightDefaultConfig: UniversalProjectConfig = {
         ctaText: "Potvrdi dolazak",
         ctaHref: "#rsvp",
         backgroundImage: IMG.hero,
-        image: IMG.hero,
       },
     },
     {
@@ -93,7 +82,6 @@ export const birthday18BrightDefaultConfig: UniversalProjectConfig = {
       data: {
         description:
           "18 SE SLAVI SAMO JEDNOM\n\nVreme je za dobru muziku, još bolje društvo i noć koju ćemo dugo pamtiti.",
-        imageUrl: IMG.intro,
       },
     },
     {
@@ -105,7 +93,6 @@ export const birthday18BrightDefaultConfig: UniversalProjectConfig = {
       data: {
         title: "JOŠ MALO…",
         description: "Odbrojavanje do proslave",
-        imageUrl: IMG.countdown,
       },
     },
     {
@@ -116,19 +103,15 @@ export const birthday18BrightDefaultConfig: UniversalProjectConfig = {
       order: 4,
       data: {
         title: "KADA & GDE",
-        subtitle: "Sve informacije",
         description: "Sve što treba da znaš pre nego što kreneš.",
-        imageUrl: IMG.venue,
         cards: [
           {
             id: 1,
             title: "BEOGRAD",
-            subtitle: "Sky Garden",
             location: "Bulevar Zorana Đinđića 64, Beograd",
             time: "20:00",
             text: "Ulaz od 20:00. Parking u blizini. Ulaz sa glavne strane zgrade.",
             image: IMG.venue,
-            icon: "map-pin",
           },
         ],
       },
@@ -142,7 +125,6 @@ export const birthday18BrightDefaultConfig: UniversalProjectConfig = {
       data: {
         title: "ŠTA NAS ČEKA?",
         subtitle: "Plan večeri",
-        imageUrl: IMG.schedule,
         items: [
           {
             id: "1",
@@ -208,7 +190,6 @@ export const birthday18BrightDefaultConfig: UniversalProjectConfig = {
         buttonText: "Pošalji potvrdu",
         messageLabel: "Poruka za slavljenika",
         messagePlaceholder: "Napiši kratku poruku ili čestitku…",
-        imageUrl: IMG.final,
       },
     },
     {
@@ -220,7 +201,6 @@ export const birthday18BrightDefaultConfig: UniversalProjectConfig = {
       data: {
         title: "IDEMO DA ŽURIMO!",
         description: "Vidimo se — spremi osmeh i dobru energiju.",
-        imageUrl: IMG.final,
       },
     },
     {
@@ -235,7 +215,6 @@ export const birthday18BrightDefaultConfig: UniversalProjectConfig = {
         description:
           "Snimi kadar sa plesa, sa tortom ili sa ekipom — i pošalji u privatnu galeriju.",
         buttonText: "Pošalji fotografiju",
-        imageUrl: IMG.upload,
       },
     },
     {

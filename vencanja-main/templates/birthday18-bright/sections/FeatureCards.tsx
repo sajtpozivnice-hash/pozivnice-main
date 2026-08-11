@@ -12,10 +12,14 @@ type Props = {
   theme: ThemeConfig;
 };
 
-const FeatureCards: FC<Props> = ({ section }) => {
+const FeatureCards: FC<Props> = ({ section, theme }) => {
   const { data, id } = section;
   const card = data.cards?.[0];
   const Icon = resolveFeatureIcon(card?.icon);
+  const accent =
+    card?.accent ||
+    theme.colors?.base?.primary?.value ||
+    "var(--b18b-coral)";
 
   return (
     <section id={id} className="b18b-section b18b-dress overflow-hidden">
@@ -39,18 +43,26 @@ const FeatureCards: FC<Props> = ({ section }) => {
                 referrerPolicy="no-referrer"
               />
             ) : (
-              <div className="absolute inset-0 bg-gradient-to-br from-[var(--b18b-coral)] to-[var(--b18b-lilac)] opacity-80" />
+              <div
+                className="absolute inset-0 opacity-80"
+                style={{
+                  background: `linear-gradient(to bottom right, ${accent}, var(--b18b-lilac))`,
+                }}
+              />
             )}
           </div>
           <div className="b18b-dress-copy">
-            <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-full bg-[var(--b18b-blush)] text-[var(--b18b-coral)]">
+            <div
+              className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-full bg-[var(--b18b-blush)]"
+              style={{ color: accent }}
+            >
               <Icon className="h-5 w-5" />
             </div>
             <h3
               className="text-3xl font-extrabold tracking-wide uppercase sm:text-4xl"
               style={{
                 fontFamily: "var(--font-primary)",
-                color: card?.accent || "var(--b18b-coral)",
+                color: accent,
               }}
             >
               {card?.title || data.subtitle || "ŠARENO"}

@@ -1,5 +1,6 @@
 "use client";
 
+import { usePublicRsvpSubmit } from "@/components/invitation/usePublicRsvpSubmit";
 import { FormEvent, FC, useState } from "react";
 import { motion } from "framer-motion";
 import { Send } from "lucide-react";
@@ -27,8 +28,8 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
   const { data, id, name } = section;
   const accent = theme.colors?.base?.primary?.value ?? "#FF5C8A";
 
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const { loading, submitted, error, handleSubmit: submitRsvp } =
+    usePublicRsvpSubmit();
   const [formData, setFormData] = useState<FormState>({
     fullName: "",
     email: "",
@@ -38,12 +39,13 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
   });
 
   const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setSubmitted(true);
-    }, 1000);
+    void submitRsvp(e, {
+      fullName: formData.fullName,
+      email: formData.email,
+      attendance: formData.attendance,
+      guests: formData.guests,
+      message: formData.message,
+    });
   };
 
   return (
@@ -178,6 +180,9 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
                     }
                   />
                 </div>
+                {error ? (
+                  <p className="text-sm text-red-600">{error}</p>
+                ) : null}
                 <button type="submit" className="bday-btn w-full sm:w-auto" disabled={loading}>
                   <Send className="h-4 w-4" />
                   {loading ? "Slanje…" : data.buttonText ?? "Pošalji"}

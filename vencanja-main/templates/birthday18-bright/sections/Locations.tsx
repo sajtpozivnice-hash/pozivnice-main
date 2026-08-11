@@ -143,9 +143,9 @@ const Locations: FC<Props> = ({ section, event }) => {
             </div>
 
             <div className="b18b-location-media">
-              {card?.image || data.imageUrl ? (
+              {card?.image ? (
                 <img
-                  src={card?.image || data.imageUrl}
+                  src={card.image}
                   alt=""
                   referrerPolicy="no-referrer"
                 />

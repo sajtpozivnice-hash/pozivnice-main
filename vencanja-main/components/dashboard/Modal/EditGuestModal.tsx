@@ -17,20 +17,27 @@ import { useState } from "react";
 import { useDialog } from "../context/ModalContext";
 import { CreateGuestDto, RSVPStatus } from "../types";
 import { useGuests } from "../context/GuestContext";
+import { useDashboard } from "../context/DashboardContext";
 import { useTables } from "../context/TableContext";
 import SelectInput, { SelectOption } from "../SelectInput";
 import Loader from "../loaders/Loader";
 import { guestStatusOptions } from "../guestOptions";
 import { MinusCircle, PlusCircle } from "lucide-react";
+import { isRsvpContact, suggestIsChild } from "../utils/guestParty";
 
 const EditGuestModal = () => {
-  const { data, closeModal } = useDialog();
+  const { data, closeModal, openModal } = useDialog();
   const { updateGuest, loading, guests } = useGuests();
   const { tables, createTable, loading: tablesLoading } = useTables();
+  const { activeProject } = useDashboard();
   const guestId = data?.id ?? "";
-  const guestData = data?.data;
+  const guestData = data?.data as CreateGuestDto | undefined;
+  const existingGuest = guests.find((g) => g.id === guestId);
   const [showTableForm, setShowTableForm] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const childAgeLimit =
+    activeProject?.config_json?.event?.childAgeLimit ?? null;
+
   const [form, setForm] = useState<CreateGuestDto>({
     name: guestData?.name ?? "",
     email: guestData?.email ?? "",
@@ -38,7 +45,15 @@ const EditGuestModal = () => {
     message: guestData?.message ?? "",
     notes: guestData?.notes ?? "",
     table_id: guestData?.table_id ?? null,
+    is_child: guestData?.is_child ?? false,
+    age: guestData?.age ?? null,
+    party_size: guestData?.party_size ?? 1,
+    parent_guest_id: guestData?.parent_guest_id ?? null,
+    name_pending: guestData?.name_pending ?? false,
   });
+  const [ageText, setAgeText] = useState(
+    guestData?.age != null ? String(guestData.age) : "",
+  );
   const [sourceKey, setSourceKey] = useState(guestId);
   const [newTable, setNewTable] = useState({
     new_table_name: "",
@@ -54,13 +69,21 @@ const EditGuestModal = () => {
       message: guestData?.message ?? "",
       notes: guestData?.notes ?? "",
       table_id: guestData?.table_id ?? null,
+      is_child: guestData?.is_child ?? false,
+      age: guestData?.age ?? null,
+      party_size: guestData?.party_size ?? 1,
+      parent_guest_id: guestData?.parent_guest_id ?? null,
+      name_pending: guestData?.name_pending ?? false,
     });
+    setAgeText(guestData?.age != null ? String(guestData.age) : "");
   }
+
+  const isContact = existingGuest ? isRsvpContact(existingGuest) : !form.parent_guest_id;
 
   const tableOccupancy = tables.reduce(
     (acc, table) => {
       acc[table.id] = guests.filter(
-        (guest) => guest.table_id === table.id,
+        (guest) => guest.table_id === table.id && !guest.name_pending,
       ).length;
       return acc;
     },
@@ -87,6 +110,20 @@ const EditGuestModal = () => {
     setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
+  const handleAgeChange = (value: string) => {
+    setAgeText(value);
+    const ageNum = value.trim() === "" ? null : Number.parseInt(value, 10);
+    const suggested =
+      ageNum != null && !Number.isNaN(ageNum)
+        ? suggestIsChild(ageNum, childAgeLimit)
+        : null;
+    setForm((prev) => ({
+      ...prev,
+      age: ageNum != null && !Number.isNaN(ageNum) ? ageNum : null,
+      ...(suggested != null ? { is_child: suggested } : {}),
+    }));
+  };
+
   const handleTableChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setNewTable((prev) => ({
@@ -110,6 +147,13 @@ const EditGuestModal = () => {
       nextErrors.rsvp_status = "Izaberite status dolaska.";
     }
 
+    if (
+      form.age != null &&
+      (Number.isNaN(form.age) || form.age < 0 || form.age > 120)
+    ) {
+      nextErrors.age = "Godine moraju biti od 0 do 120.";
+    }
+
     setErrors(nextErrors);
     return Object.keys(nextErrors).length === 0;
   };
@@ -123,15 +167,25 @@ const EditGuestModal = () => {
     }
 
     const nextTableId =
-      form.rsvp_status === "accepted" ? form.table_id || null : null;
+      form.rsvp_status === "accepted" && !form.name_pending
+        ? form.table_id || null
+        : null;
     const isChangingTable = nextTableId !== (data?.data?.table_id ?? null);
+
+    if (form.name_pending && nextTableId) {
+      toast.error("Prvo unesite ime gosta pre rasporeda sedenja.", {
+        position: "top-center",
+      });
+      return;
+    }
 
     if (isChangingTable && nextTableId) {
       const selectedTable = tables.find((table) => table.id === nextTableId);
 
       if (selectedTable) {
         const guestsAtTable = guests.filter(
-          (guest) => guest.table_id === selectedTable.id,
+          (guest) =>
+            guest.table_id === selectedTable.id && guest.id !== guestId,
         ).length;
 
         if (guestsAtTable >= selectedTable.number_of_guests) {
@@ -143,10 +197,15 @@ const EditGuestModal = () => {
 
     try {
       await updateGuest(data?.id || "", {
-        ...form,
         name: form.name.trim(),
         email: form.email?.trim() || null,
+        rsvp_status: form.rsvp_status,
+        notes: form.notes?.trim() || null,
+        message: isContact ? form.message?.trim() || null : null,
         table_id: nextTableId,
+        is_child: form.is_child ?? false,
+        age: form.age ?? null,
+        name_pending: false,
       });
       toast.success("Gost je uspešno izmenjen.", { position: "top-center" });
       closeModal();
@@ -190,9 +249,28 @@ const EditGuestModal = () => {
       <SheetHeader className="space-y-2">
         <SheetTitle>Izmeni podatke o gostu</SheetTitle>
         <SheetDescription>
-          Ažurirajte status, napomene i raspored sedenja za ovog gosta.
+          Ažurirajte ime, godine, kategoriju, status, napomene i sto.
         </SheetDescription>
       </SheetHeader>
+
+      {isContact && (form.party_size || 1) > 1 ? (
+        <div className="rounded-xl border border-amber-200 bg-amber-50/70 px-3 py-2 text-sm">
+          <p>
+            Ovo je osoba koja je potvrdila dolazak · {form.party_size} osobe
+            ukupno.
+          </p>
+          <Button
+            type="button"
+            variant="link"
+            className="h-auto cursor-pointer px-0"
+            onClick={() => {
+              openModal("resolve_party_names", { id: guestId });
+            }}
+          >
+            Unesi / izmeni imena svih osoba
+          </Button>
+        </div>
+      ) : null}
 
       <form onSubmit={submitHandler} className="space-y-6">
         <FieldGroup className="rounded-xl border bg-muted/20 p-4">
@@ -210,20 +288,56 @@ const EditGuestModal = () => {
             ) : null}
           </Field>
 
-          <Field>
-            <FieldLabel htmlFor="email">Email adresa</FieldLabel>
-            <Input
-              id="email"
-              name="email"
-              type="email"
-              placeholder="npr. marko@email.com"
-              value={form.email ?? ""}
-              onChange={handleChange}
-            />
-            {errors.email ? (
-              <p className="text-sm text-destructive">{errors.email}</p>
-            ) : null}
-          </Field>
+          <div className="grid grid-cols-1 gap-3 min-[420px]:grid-cols-2">
+            <Field>
+              <FieldLabel htmlFor="age">Godine</FieldLabel>
+              <Input
+                id="age"
+                type="number"
+                min={0}
+                max={120}
+                placeholder="npr. 7"
+                value={ageText}
+                onChange={(e) => handleAgeChange(e.target.value)}
+              />
+              {errors.age ? (
+                <p className="text-sm text-destructive">{errors.age}</p>
+              ) : null}
+            </Field>
+            <Field>
+              <FieldLabel>Kategorija</FieldLabel>
+              <SelectInput
+                items={[
+                  { label: "Odrasla osoba", value: "adult" },
+                  { label: "Dete", value: "child" },
+                ]}
+                value={form.is_child ? "child" : "adult"}
+                onChange={(value) =>
+                  setForm((prev) => ({
+                    ...prev,
+                    is_child: value === "child",
+                  }))
+                }
+              />
+            </Field>
+          </div>
+
+          {isContact ? (
+            <Field>
+              <FieldLabel htmlFor="email">Email adresa</FieldLabel>
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="npr. marko@email.com"
+                value={form.email ?? ""}
+                onChange={handleChange}
+              />
+              {errors.email ? (
+                <p className="text-sm text-destructive">{errors.email}</p>
+              ) : null}
+            </Field>
+          ) : null}
 
           <Field>
             <FieldLabel htmlFor="status">Status dolaska</FieldLabel>
@@ -315,11 +429,18 @@ const EditGuestModal = () => {
               <>
                 <FieldLabel htmlFor="table">Sto</FieldLabel>
                 <FieldDescription>
-                  Dostupno samo za goste sa statusom „Dolazi“.
+                  Dostupno samo za goste sa statusom „Dolazi“ i unetim imenom.
+                  Svaka osoba zauzima jedno mesto.
                 </FieldDescription>
                 <SelectInput
-                  disabled={form.rsvp_status !== "accepted"}
-                  disabledTooltip='Gost mora imati status "Dolazi" da bi mogao biti raspoređen za sto.'
+                  disabled={
+                    form.rsvp_status !== "accepted" || Boolean(form.name_pending)
+                  }
+                  disabledTooltip={
+                    form.name_pending
+                      ? "Prvo unesite ime gosta."
+                      : 'Gost mora imati status "Dolazi" da bi mogao biti raspoređen za sto.'
+                  }
                   items={tablesForSelect}
                   value={form.table_id ?? ""}
                   onChange={(value) =>
@@ -335,25 +456,33 @@ const EditGuestModal = () => {
 
           <Field>
             <FieldLabel htmlFor="notes">Napomene</FieldLabel>
+            <FieldDescription>
+              Uključuje i napomene za decu ako je potrebno.
+            </FieldDescription>
             <Input
               id="notes"
               name="notes"
-              placeholder="npr. posti, alergija..."
+              placeholder="npr. posti, alergija, deca sede sa roditeljima..."
               value={form.notes ?? ""}
               onChange={handleChange}
             />
           </Field>
 
-          <Field>
-            <FieldLabel htmlFor="message">Poruka</FieldLabel>
-            <Input
-              id="message"
-              name="message"
-              placeholder="Poruka gosta"
-              value={form.message ?? ""}
-              onChange={handleChange}
-            />
-          </Field>
+          {isContact ? (
+            <Field>
+              <FieldLabel htmlFor="message">Poruka (RSVP)</FieldLabel>
+              <FieldDescription>
+                Poruka ostaje vezana za osobu koja je popunila formu.
+              </FieldDescription>
+              <Input
+                id="message"
+                name="message"
+                placeholder="Poruka gosta"
+                value={form.message ?? ""}
+                onChange={handleChange}
+              />
+            </Field>
+          ) : null}
         </FieldGroup>
 
         <SheetFooter>

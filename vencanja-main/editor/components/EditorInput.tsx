@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { useEditor } from "../EditorProvider";
 import { cn } from "../panels/helpers";
+import ColorField from "@/components/shared/ColorField";
 
 type EditorInputProps = {
   label: string;
@@ -26,6 +26,19 @@ const EditorInput: FC<EditorInputProps> = ({
   ) => {
     onChange(e.target.value);
   };
+
+  if (type === "color") {
+    return (
+      <ColorField
+        label={label}
+        value={value}
+        onChange={onChange}
+        size="lg"
+        className={className}
+      />
+    );
+  }
+
   return (
     <div className="space-y-2">
       <div>

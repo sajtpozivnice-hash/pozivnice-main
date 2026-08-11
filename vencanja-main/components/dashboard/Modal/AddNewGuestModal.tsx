@@ -14,6 +14,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { useGuests } from "../context/GuestContext";
+import { useDashboard } from "../context/DashboardContext";
 import { useState } from "react";
 import { CreateGuestDto, RSVPStatus } from "../types";
 import { useDialog } from "../context/ModalContext";
@@ -21,12 +22,16 @@ import Loader from "../loaders/Loader";
 import SelectInput, { SelectOption } from "../SelectInput";
 import { useTables } from "../context/TableContext";
 import { guestStatusOptions } from "../guestOptions";
+import { suggestIsChild } from "../utils/guestParty";
 
 const AddNewGuestModal = () => {
   const { closeModal } = useDialog();
   const { createGuest, loading } = useGuests();
   const { tables } = useTables();
+  const { activeProject } = useDashboard();
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const childAgeLimit =
+    activeProject?.config_json?.event?.childAgeLimit ?? null;
 
   const [form, setForm] = useState<CreateGuestDto>({
     name: "",
@@ -35,7 +40,13 @@ const AddNewGuestModal = () => {
     rsvp_status: "pending",
     message: "",
     table_id: null,
+    is_child: false,
+    age: null,
+    party_size: 1,
+    name_pending: false,
+    parent_guest_id: null,
   });
+  const [ageText, setAgeText] = useState("");
 
   const tablesForSelect: SelectOption[] = tables.map((table) => ({
     label: table.name,
@@ -51,6 +62,20 @@ const AddNewGuestModal = () => {
     setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
+  const handleAgeChange = (value: string) => {
+    setAgeText(value);
+    const ageNum = value.trim() === "" ? null : Number.parseInt(value, 10);
+    const suggested =
+      ageNum != null && !Number.isNaN(ageNum)
+        ? suggestIsChild(ageNum, childAgeLimit)
+        : null;
+    setForm((prev) => ({
+      ...prev,
+      age: ageNum != null && !Number.isNaN(ageNum) ? ageNum : null,
+      ...(suggested != null ? { is_child: suggested } : {}),
+    }));
+  };
+
   const validate = () => {
     const nextErrors: Record<string, string> = {};
 
@@ -64,6 +89,13 @@ const AddNewGuestModal = () => {
 
     if (!form.rsvp_status) {
       nextErrors.rsvp_status = "Izaberite status dolaska.";
+    }
+
+    if (
+      form.age != null &&
+      (Number.isNaN(form.age) || form.age < 0 || form.age > 120)
+    ) {
+      nextErrors.age = "Godine moraju biti od 0 do 120.";
     }
 
     setErrors(nextErrors);
@@ -83,8 +115,13 @@ const AddNewGuestModal = () => {
         ...form,
         name: form.name.trim(),
         email: form.email?.trim() || null,
+        message: form.message?.trim() || null,
+        notes: form.notes?.trim() || null,
         table_id:
           form.rsvp_status === "accepted" ? form.table_id || null : null,
+        party_size: 1,
+        name_pending: false,
+        parent_guest_id: null,
       });
       toast.success("Gost je uspešno dodat.", { position: "top-center" });
       closeModal();
@@ -100,7 +137,7 @@ const AddNewGuestModal = () => {
       <SheetHeader className="space-y-2">
         <SheetTitle>Dodaj novog gosta</SheetTitle>
         <SheetDescription>
-          Unesite osnovne podatke, status dolaska i po želji dodelite sto.
+          Unesite podatke o osobi, status dolaska, da li je dete i po želji sto.
         </SheetDescription>
       </SheetHeader>
 
@@ -120,6 +157,41 @@ const AddNewGuestModal = () => {
               <p className="text-sm text-destructive">{errors.name}</p>
             ) : null}
           </Field>
+
+          <div className="grid grid-cols-1 gap-3 min-[420px]:grid-cols-2">
+            <Field>
+              <FieldLabel htmlFor="age">Godine</FieldLabel>
+              <FieldDescription>Opciono.</FieldDescription>
+              <Input
+                id="age"
+                type="number"
+                min={0}
+                max={120}
+                placeholder="npr. 7"
+                value={ageText}
+                onChange={(e) => handleAgeChange(e.target.value)}
+              />
+              {errors.age ? (
+                <p className="text-sm text-destructive">{errors.age}</p>
+              ) : null}
+            </Field>
+            <Field>
+              <FieldLabel>Kategorija</FieldLabel>
+              <SelectInput
+                items={[
+                  { label: "Odrasla osoba", value: "adult" },
+                  { label: "Dete", value: "child" },
+                ]}
+                value={form.is_child ? "child" : "adult"}
+                onChange={(value) =>
+                  setForm((prev) => ({
+                    ...prev,
+                    is_child: value === "child",
+                  }))
+                }
+              />
+            </Field>
+          </div>
 
           <Field>
             <FieldLabel htmlFor="email">Email adresa</FieldLabel>
@@ -177,21 +249,29 @@ const AddNewGuestModal = () => {
 
           <Field>
             <FieldLabel htmlFor="notes">Napomene</FieldLabel>
+            <FieldDescription>
+              Može uključivati napomenu za decu (npr. „Deca sede sa
+              roditeljima.“).
+            </FieldDescription>
             <Input
               id="notes"
               name="notes"
-              placeholder="npr. posti, alergija..."
+              placeholder="npr. posti, alergija, deca za stolom 5..."
               value={form.notes ?? ""}
               onChange={handleChange}
             />
           </Field>
 
           <Field>
-            <FieldLabel htmlFor="message">Poruka</FieldLabel>
+            <FieldLabel htmlFor="message">Poruka (RSVP)</FieldLabel>
+            <FieldDescription>
+              Poruka osobe koja je potvrdila dolazak — opciono pri ručnom
+              unosu.
+            </FieldDescription>
             <Input
               id="message"
               name="message"
-              placeholder="Poruka gosta"
+              placeholder="Poruka uz RSVP"
               value={form.message ?? ""}
               onChange={handleChange}
             />

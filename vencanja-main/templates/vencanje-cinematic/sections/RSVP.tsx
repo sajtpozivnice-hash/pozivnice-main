@@ -1,5 +1,6 @@
 "use client";
 
+import { usePublicRsvpSubmit } from "@/components/invitation/usePublicRsvpSubmit";
 import { FormEvent, FC, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { RSVPSection } from "@/types/sections";
@@ -28,8 +29,8 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
   const { data, id } = section;
   const accent = theme.colors?.base?.primary?.value ?? "#d4a574";
 
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const { loading, submitted, error, handleSubmit: submitRsvp, setSubmitted } =
+    usePublicRsvpSubmit();
   const [formData, setFormData] = useState<FormState>({
     fullName: "",
     email: "",
@@ -39,12 +40,13 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
   });
 
   const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setSubmitted(true);
-    }, 1200);
+    void submitRsvp(e, {
+      fullName: formData.fullName,
+      email: formData.email,
+      attendance: formData.attendance,
+      guests: formData.guests,
+      message: formData.message,
+    });
   };
 
   return (
@@ -183,6 +185,10 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
                   placeholder="Opciona poruka"
                 />
               </div>
+
+              {error ? (
+                <p className="text-sm text-red-400">{error}</p>
+              ) : null}
 
               <button
                 type="submit"

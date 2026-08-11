@@ -6,6 +6,7 @@ export type ModalType =
   | "add_guest_to_table"
   | "edit_table"
   | "edit_guest"
+  | "resolve_party_names"
   | "delete_guest"
   | "delete_table"
   | "hero_edit"

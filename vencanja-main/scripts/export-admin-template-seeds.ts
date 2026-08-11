@@ -15,6 +15,7 @@ import { rodjendan01DefaultConfig } from "../templates/rodjendan-01/config";
 import { birthday18DefaultConfig } from "../templates/birthday18/config";
 import { birthday18BrightDefaultConfig } from "../templates/birthday18-bright/config";
 import { birthday18EditorialDefaultConfig } from "../templates/birthday18-editorial/config";
+import { birthday18NightDefaultConfig } from "../templates/birthday18-night/config";
 
 const packs = [
   {
@@ -122,6 +123,18 @@ const packs = [
     style: "editorial",
     config: {
       ...birthday18EditorialDefaultConfig,
+      eventType: "comingOfAge" as const,
+    },
+  },
+  {
+    key: "birthday18-night",
+    title: "18 — Noć počinje",
+    description:
+      "Tamna cinematic nightlife pozivnica za 18. rođendan: jak tipografski hero, editorial detalji i premium potvrda prisustva.",
+    eventTypes: ["comingOfAge"],
+    style: "premium",
+    config: {
+      ...birthday18NightDefaultConfig,
       eventType: "comingOfAge" as const,
     },
   },

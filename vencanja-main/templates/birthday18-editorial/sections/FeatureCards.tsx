@@ -12,10 +12,14 @@ type Props = {
   theme: ThemeConfig;
 };
 
-const FeatureCards: FC<Props> = ({ section }) => {
+const FeatureCards: FC<Props> = ({ section, theme }) => {
   const { data, id } = section;
   const card = data.cards?.[0];
   const Icon = resolveFeatureIcon(card?.icon);
+  const accent =
+    card?.accent ||
+    theme.colors?.base?.primary?.value ||
+    "var(--ed-cherry)";
 
   return (
     <section id={id} className="ed-section ed-dress overflow-hidden">
@@ -30,6 +34,7 @@ const FeatureCards: FC<Props> = ({ section }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="ed-dress__panel"
+          style={{ boxShadow: `10px 10px 0 ${accent}` }}
         >
           <div className="ed-dress__media">
             {card?.image ? (
@@ -39,11 +44,11 @@ const FeatureCards: FC<Props> = ({ section }) => {
             )}
           </div>
           <div className="ed-dress__copy">
-            <Icon className="h-5 w-5 text-[var(--ed-ink)]" />
+            <Icon className="h-5 w-5" style={{ color: accent }} />
             <p className="ed-label mt-4">
               {data.description || "DOĐI KAO SVOJA NAJBOLJA VERZIJA"}
             </p>
-            <h3 className="ed-dress__headline">
+            <h3 className="ed-dress__headline" style={{ color: accent }}>
               {card?.title || "CRNO / CRVENO / ŠTA GOD TI STOJI"}
             </h3>
             {card?.description ? (

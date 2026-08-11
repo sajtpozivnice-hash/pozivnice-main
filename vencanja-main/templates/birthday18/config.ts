@@ -132,12 +132,10 @@ export const birthday18DefaultConfig: UniversalProjectConfig = {
           {
             id: 1,
             title: "Club Belvedere",
-            subtitle: "Glavna lokacija",
             location: "Bulevar kralja Aleksandra 28, Beograd",
             time: "20:00",
             text: "Ulaz od 20:00. Parking u blizini, rezervisan prostor za goste.",
             image: IMG.venue,
-            icon: "map-pin",
           },
         ],
       },

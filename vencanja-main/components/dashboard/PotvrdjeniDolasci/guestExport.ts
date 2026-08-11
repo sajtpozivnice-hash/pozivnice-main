@@ -14,6 +14,8 @@ export const downloadGuestsCsv = (
 ): void => {
   const header = [
     "Ime",
+    "Kategorija",
+    "Godine",
     "Status",
     "Email",
     "Sto",
@@ -23,11 +25,13 @@ export const downloadGuestsCsv = (
   ];
 
   const rows = guests.map((guest) => [
-    guest.name,
+    guest.name_pending || !guest.name.trim() ? "Ime nije uneto" : guest.name,
+    guest.is_child ? "Dete" : "Odrasla osoba",
+    guest.age != null ? String(guest.age) : "",
     guestStatusLabel(guest.rsvp_status),
     guest.email ?? "",
     guest.tables?.name ?? "",
-    guest.message ?? "",
+    guest.parent_guest_id ? "" : (guest.message ?? ""),
     guest.notes ?? "",
     new Date(guest.updated_at || guest.created_at).toLocaleDateString("sr-RS"),
   ]);

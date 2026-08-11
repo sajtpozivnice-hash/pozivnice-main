@@ -59,6 +59,16 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(home);
   }
 
+  // API / Next internals must never be rewritten to the invitation page.
+  // Otherwise POST /api/rsvp on *.localhost returns 200 HTML and RSVP is lost.
+  if (
+    pathname.startsWith("/api/") ||
+    pathname.startsWith("/_next/") ||
+    pathname.startsWith("/auth/")
+  ) {
+    return updateSession(request);
+  }
+
   // Tenant host → internal /sites/[subdomain] (browser URL stays on subdomain)
   if (subdomain) {
     const response = rewriteToSite(request, subdomain, pathname);

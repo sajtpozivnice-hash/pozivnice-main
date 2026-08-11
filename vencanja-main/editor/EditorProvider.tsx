@@ -13,6 +13,7 @@ import {
   Dispatch,
   SetStateAction,
 } from "react";
+import { pruneUnusedEditorFields } from "@/helpers/pruneUnusedEditorFields";
 
 type EditorContextType = {
   config: UniversalProjectConfig;
@@ -34,7 +35,9 @@ export function EditorProvider({
   initialConfig: UniversalProjectConfig;
   children: ReactNode;
 }) {
-  const [config, setConfig] = useState(initialConfig);
+  const [config, setConfig] = useState(() =>
+    pruneUnusedEditorFields(initialConfig),
+  );
   const [activePanel, setActivePanel] = useState<string | null>(null);
   const updateSection = (id: string, changes: any) => {
     setConfig((prev: any) => ({
@@ -67,7 +70,14 @@ export function EditorProvider({
         colors: {
           ...prev.theme.colors,
           ...(changes.colors || {}),
+          base: {
+            ...prev.theme.colors?.base,
+            ...(changes.colors?.base || {}),
+          },
         },
+        ...(changes.backgroundImage !== undefined
+          ? { backgroundImage: changes.backgroundImage }
+          : {}),
       },
     }));
   };

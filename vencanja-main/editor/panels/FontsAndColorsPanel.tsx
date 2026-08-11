@@ -130,14 +130,7 @@ const FontsAndColorsPanel = () => {
                         },
                       })
                     }
-                    className="w-16 h-16 p-0 border-0 bg-transparent cursor-pointer"
                   />
-                  <span className="text-[10px] font-mono opacity-40 uppercase">
-                    {color.name}
-                  </span>
-                  <span className="text-[10px] font-mono opacity-40 uppercase">
-                    {color.value}
-                  </span>
                 </div>
               );
             })}
@@ -158,14 +151,7 @@ const FontsAndColorsPanel = () => {
                       },
                     })
                   }
-                  className="w-16 h-16 p-0 border-0 bg-transparent cursor-pointer"
                 />
-                <span className="text-[10px] font-mono opacity-40 uppercase">
-                  {pageBackground.name || "Pozadina"}
-                </span>
-                <span className="text-[10px] font-mono opacity-40 uppercase">
-                  {pageBackground.value}
-                </span>
               </div>
             ) : null}
 
@@ -185,14 +171,7 @@ const FontsAndColorsPanel = () => {
                       },
                     })
                   }
-                  className="w-16 h-16 p-0 border-0 bg-transparent cursor-pointer"
                 />
-                <span className="text-[10px] font-mono opacity-40 uppercase">
-                  {pageBackgroundSecondary.name || "Sek. pozadina"}
-                </span>
-                <span className="text-[10px] font-mono opacity-40 uppercase">
-                  {pageBackgroundSecondary.value}
-                </span>
               </div>
             ) : null}
           </div>

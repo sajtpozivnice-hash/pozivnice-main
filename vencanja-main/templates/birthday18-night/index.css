@@ -1,0 +1,645 @@
+/* birthday18-night — dark cinematic nightlife invitation */
+
+[data-template="birthday18-night"] {
+  --bn-bg: var(--color-background, #0b0d10);
+  --bn-surface: var(--color-background-secondary, #161b22);
+  --bn-accent: var(--color-primary, #3df0e0);
+  --bn-text: var(--color-secondary, #f2f5f8);
+  --bn-muted: color-mix(
+    in srgb,
+    var(--color-ternary, #a8b2bf) 88%,
+    var(--color-secondary, #f2f5f8)
+  );
+  --bn-line: color-mix(in srgb, var(--bn-text) 22%, transparent);
+  --bn-glow: color-mix(in srgb, var(--bn-accent) 40%, transparent);
+  color: var(--bn-text);
+  background: var(--bn-bg);
+  font-family: var(--font-secondary, system-ui, sans-serif);
+}
+
+[data-template="birthday18-night"] .bn-shell {
+  width: min(1120px, calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+[data-template="birthday18-night"] .bn-section {
+  position: relative;
+  padding: clamp(4.5rem, 12vw, 8rem) 0;
+}
+
+[data-template="birthday18-night"] .bn-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--bn-text) 72%, var(--bn-muted));
+}
+
+[data-template="birthday18-night"] .bn-display {
+  font-family: var(--font-primary), sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  text-transform: uppercase;
+  color: var(--bn-text);
+}
+
+[data-template="birthday18-night"] .bn-mono {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  letter-spacing: 0.04em;
+}
+
+[data-template="birthday18-night"] .bn-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.85rem 1.6rem;
+  border: 1px solid var(--bn-accent);
+  background: var(--bn-accent);
+  color: #061014;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition:
+    background 220ms ease,
+    color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+[data-template="birthday18-night"] .bn-btn:hover {
+  box-shadow: 0 0 28px var(--bn-glow);
+}
+
+[data-template="birthday18-night"] .bn-btn--ghost {
+  background: transparent;
+  color: var(--bn-text);
+  border-color: var(--bn-line);
+}
+
+[data-template="birthday18-night"] .bn-btn--ghost:hover {
+  border-color: var(--bn-accent);
+  color: var(--bn-accent);
+  box-shadow: none;
+}
+
+[data-template="birthday18-night"] .bn-input {
+  width: 100%;
+  border: 1px solid var(--bn-line);
+  background: color-mix(in srgb, var(--bn-surface) 80%, transparent);
+  color: var(--bn-text);
+  padding: 0.9rem 1rem;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 180ms ease;
+}
+
+[data-template="birthday18-night"] .bn-input:focus {
+  border-color: var(--bn-accent);
+}
+
+[data-template="birthday18-night"] .bn-grain {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* —— HERO —— */
+[data-template="birthday18-night"] .bn-hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  overflow: hidden;
+  background: var(--bn-bg);
+}
+
+@media (min-width: 900px) {
+  [data-template="birthday18-night"] .bn-hero {
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+}
+
+[data-template="birthday18-night"] .bn-hero__media {
+  position: relative;
+  min-height: 42vh;
+  overflow: hidden;
+  clip-path: inset(0 0 100% 0);
+  animation: bn-media-reveal 1.35s cubic-bezier(0.22, 1, 0.36, 1) 0.25s forwards;
+}
+
+@media (min-width: 900px) {
+  [data-template="birthday18-night"] .bn-hero__media {
+    min-height: 100%;
+    order: 2;
+  }
+}
+
+[data-template="birthday18-night"] .bn-hero__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.08);
+  transform: scale(1.06);
+}
+
+[data-template="birthday18-night"] .bn-hero__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--bn-bg) 25%, transparent) 0%,
+      color-mix(in srgb, var(--bn-bg) 82%, transparent) 100%
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--bn-bg) 78%, transparent) 0%,
+      color-mix(in srgb, var(--bn-bg) 35%, transparent) 45%,
+      transparent 70%
+    );
+}
+
+[data-template="birthday18-night"] .bn-hero__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(1.5rem, 5vw, 3.5rem);
+  padding-bottom: clamp(2rem, 6vw, 4rem);
+  color: var(--bn-text);
+  text-shadow: 0 1px 18px color-mix(in srgb, var(--bn-bg) 55%, transparent);
+}
+
+[data-template="birthday18-night"] .bn-hero__age {
+  font-family: var(--font-primary), sans-serif;
+  font-size: clamp(7.5rem, 28vw, 16rem);
+  font-weight: 900;
+  line-height: 0.78;
+  letter-spacing: -0.07em;
+  color: var(--bn-text);
+  opacity: 0;
+  transform: translateY(28px);
+  animation: bn-rise 900ms cubic-bezier(0.22, 1, 0.36, 1) 0.05s forwards;
+}
+
+[data-template="birthday18-night"] .bn-hero__name {
+  margin-top: 0.35rem;
+  font-family: var(--font-primary), sans-serif;
+  font-size: clamp(2.4rem, 8vw, 4.8rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bn-accent);
+  text-shadow: 0 0 24px var(--bn-glow);
+  opacity: 0;
+  transform: translateY(18px);
+  animation: bn-rise 850ms cubic-bezier(0.22, 1, 0.36, 1) 0.28s forwards;
+}
+
+[data-template="birthday18-night"] .bn-hero__tagline {
+  margin-top: 1rem;
+  max-width: 14ch;
+  font-family: var(--font-primary), sans-serif;
+  font-size: clamp(1.35rem, 3.8vw, 2.1rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: pre-line;
+  color: var(--bn-text);
+  opacity: 0;
+  transform: translateY(14px);
+  animation: bn-rise 850ms cubic-bezier(0.22, 1, 0.36, 1) 0.45s forwards;
+}
+
+[data-template="birthday18-night"] .bn-hero__meta {
+  margin-top: 1.75rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  max-width: 28rem;
+  opacity: 0;
+  animation: bn-rise 800ms cubic-bezier(0.22, 1, 0.36, 1) 0.65s forwards;
+}
+
+[data-template="birthday18-night"] .bn-hero__meta-item {
+  border-top: 1px solid var(--bn-line);
+  padding-top: 0.65rem;
+}
+
+[data-template="birthday18-night"] .bn-hero__meta-val {
+  margin-top: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bn-text);
+}
+
+[data-template="birthday18-night"] .bn-hero__badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-bottom: 1.25rem;
+  opacity: 0;
+  animation: bn-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) 0.55s forwards;
+}
+
+[data-template="birthday18-night"] .bn-chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid color-mix(in srgb, var(--bn-text) 28%, transparent);
+  background: color-mix(in srgb, var(--bn-bg) 55%, transparent);
+  padding: 0.35rem 0.65rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--bn-text);
+}
+
+[data-template="birthday18-night"] .bn-chip--accent {
+  border-color: color-mix(in srgb, var(--bn-accent) 70%, transparent);
+  color: var(--bn-accent);
+}
+
+/* —— INTRO —— */
+[data-template="birthday18-night"] .bn-intro {
+  background:
+    radial-gradient(
+      60% 50% at 10% 20%,
+      var(--bn-glow),
+      transparent 70%
+    ),
+    var(--bn-bg);
+}
+
+[data-template="birthday18-night"] .bn-intro__title {
+  font-family: var(--font-primary), sans-serif;
+  font-size: clamp(3.2rem, 12vw, 8.5rem);
+  font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  white-space: pre-line;
+}
+
+/* —— DETAILS —— */
+[data-template="birthday18-night"] .bn-details__grid {
+  margin-top: 2.5rem;
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--bn-line);
+}
+
+[data-template="birthday18-night"] .bn-details__row {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 1.35rem 0;
+  border-bottom: 1px solid var(--bn-line);
+}
+
+@media (min-width: 700px) {
+  [data-template="birthday18-night"] .bn-details__row {
+    grid-template-columns: 10rem 1fr;
+  }
+}
+
+[data-template="birthday18-night"] .bn-details__val {
+  font-family: var(--font-primary), sans-serif;
+  font-size: clamp(1.5rem, 4.5vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+/* —— WHERE —— */
+[data-template="birthday18-night"] .bn-where {
+  margin-top: 4rem;
+  display: grid;
+  gap: 1.5rem;
+  background: var(--bn-surface);
+  border: 1px solid var(--bn-line);
+  overflow: hidden;
+}
+
+@media (min-width: 860px) {
+  [data-template="birthday18-night"] .bn-where {
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+}
+
+[data-template="birthday18-night"] .bn-where__copy {
+  padding: clamp(1.4rem, 4vw, 2.4rem);
+}
+
+[data-template="birthday18-night"] .bn-where__city {
+  font-family: var(--font-primary), sans-serif;
+  font-size: clamp(2.4rem, 7vw, 4.2rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: var(--bn-accent);
+}
+
+[data-template="birthday18-night"] .bn-where__media {
+  position: relative;
+  min-height: 240px;
+  background: #08090b;
+}
+
+[data-template="birthday18-night"] .bn-where__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.85) contrast(1.05);
+  opacity: 0.88;
+}
+
+/* —— COUNTDOWN —— */
+[data-template="birthday18-night"] .bn-count {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.35rem 0.55rem;
+  margin-top: 2rem;
+}
+
+[data-template="birthday18-night"] .bn-count__cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 4.2rem;
+}
+
+[data-template="birthday18-night"] .bn-count__num {
+  font-family: var(--font-primary), sans-serif;
+  font-size: clamp(2.6rem, 9vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--bn-text);
+  text-shadow: 0 0 32px var(--bn-glow);
+}
+
+[data-template="birthday18-night"] .bn-count__sep {
+  font-family: var(--font-primary), sans-serif;
+  font-size: clamp(2rem, 7vw, 3.5rem);
+  font-weight: 700;
+  color: var(--bn-accent);
+  opacity: 0.75;
+  align-self: center;
+  margin-bottom: 1.1rem;
+}
+
+[data-template="birthday18-night"] .bn-count__label {
+  margin-top: 0.55rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--bn-text) 68%, var(--bn-muted));
+}
+
+/* —— SCHEDULE —— */
+[data-template="birthday18-night"] .bn-schedule__list {
+  margin-top: 2.5rem;
+  position: relative;
+  padding-left: 1.35rem;
+}
+
+[data-template="birthday18-night"] .bn-schedule__list::before {
+  content: "";
+  position: absolute;
+  left: 0.2rem;
+  top: 0.35rem;
+  bottom: 0.35rem;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    var(--bn-accent),
+    color-mix(in srgb, var(--bn-accent) 15%, transparent)
+  );
+}
+
+[data-template="birthday18-night"] .bn-schedule__item {
+  position: relative;
+  display: grid;
+  gap: 0.35rem 1.5rem;
+  padding: 1.35rem 0 1.35rem 0.85rem;
+  border-bottom: 1px solid var(--bn-line);
+}
+
+@media (min-width: 700px) {
+  [data-template="birthday18-night"] .bn-schedule__item {
+    grid-template-columns: 5.5rem 1fr;
+    align-items: baseline;
+  }
+}
+
+[data-template="birthday18-night"] .bn-schedule__item::before {
+  content: "";
+  position: absolute;
+  left: -1.22rem;
+  top: 1.65rem;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--bn-accent);
+  box-shadow: 0 0 12px var(--bn-glow);
+}
+
+[data-template="birthday18-night"] .bn-schedule__time {
+  font-family: var(--font-primary), sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--bn-accent);
+}
+
+[data-template="birthday18-night"] .bn-schedule__title {
+  font-family: var(--font-primary), sans-serif;
+  font-size: clamp(1.35rem, 3.5vw, 1.9rem);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* —— DRESS —— */
+[data-template="birthday18-night"] .bn-dress {
+  display: grid;
+  gap: 0;
+  border: 1px solid var(--bn-line);
+  background: var(--bn-surface);
+  overflow: hidden;
+}
+
+@media (min-width: 860px) {
+  [data-template="birthday18-night"] .bn-dress {
+    grid-template-columns: 0.9fr 1.1fr;
+  }
+}
+
+[data-template="birthday18-night"] .bn-dress__media {
+  position: relative;
+  min-height: 260px;
+  background: #08090b;
+}
+
+[data-template="birthday18-night"] .bn-dress__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.1);
+  opacity: 0.9;
+}
+
+[data-template="birthday18-night"] .bn-dress__copy {
+  padding: clamp(1.5rem, 4vw, 2.6rem);
+}
+
+[data-template="birthday18-night"] .bn-dress__headline {
+  margin-top: 0.85rem;
+  font-family: var(--font-primary), sans-serif;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+/* —— RSVP —— */
+[data-template="birthday18-night"] .bn-rsvp__panel {
+  margin-top: 2rem;
+  border: 1px solid var(--bn-line);
+  background: color-mix(in srgb, var(--bn-surface) 88%, transparent);
+  padding: clamp(1.25rem, 4vw, 2rem);
+}
+
+[data-template="birthday18-night"] .bn-attend {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+
+[data-template="birthday18-night"] .bn-attend__btn {
+  min-height: 46px;
+  border: 1px solid var(--bn-line);
+  background: transparent;
+  color: var(--bn-muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    border-color 180ms ease,
+    color 180ms ease,
+    background 180ms ease;
+}
+
+[data-template="birthday18-night"] .bn-attend__btn.is-on {
+  border-color: var(--bn-accent);
+  color: #061014;
+  background: var(--bn-accent);
+}
+
+/* —— FINAL —— */
+[data-template="birthday18-night"] .bn-final {
+  position: relative;
+  padding: clamp(5rem, 14vw, 9rem) 0;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      55% 60% at 80% 30%,
+      var(--bn-glow),
+      transparent 70%
+    ),
+    linear-gradient(
+      160deg,
+      var(--bn-surface) 0%,
+      var(--bn-bg) 55%,
+      #07080a 100%
+    );
+}
+
+[data-template="birthday18-night"] .bn-final__age {
+  position: absolute;
+  right: -4vw;
+  top: 8%;
+  font-family: var(--font-primary), sans-serif;
+  font-size: clamp(10rem, 34vw, 22rem);
+  font-weight: 900;
+  line-height: 0.75;
+  letter-spacing: -0.08em;
+  color: color-mix(in srgb, var(--bn-text) 6%, transparent);
+  pointer-events: none;
+  user-select: none;
+}
+
+[data-template="birthday18-night"] .bn-final__title {
+  font-family: var(--font-primary), sans-serif;
+  font-size: clamp(3.2rem, 11vw, 7.5rem);
+  font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  white-space: pre-line;
+}
+
+/* —— UPLOAD / FOOTER —— */
+[data-template="birthday18-night"] .bn-upload {
+  border: 1px solid var(--bn-line);
+  background: var(--bn-surface);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  text-align: center;
+}
+
+[data-template="birthday18-night"] .bn-footer {
+  border-top: 1px solid var(--bn-line);
+  padding: 2.5rem 0 3.5rem;
+  text-align: center;
+}
+
+@keyframes bn-rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bn-media-reveal {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-template="birthday18-night"] .bn-hero__age,
+  [data-template="birthday18-night"] .bn-hero__name,
+  [data-template="birthday18-night"] .bn-hero__tagline,
+  [data-template="birthday18-night"] .bn-hero__meta,
+  [data-template="birthday18-night"] .bn-hero__badge-row,
+  [data-template="birthday18-night"] .bn-hero__media {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+}

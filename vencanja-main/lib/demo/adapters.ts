@@ -17,10 +17,13 @@ import type {
   PlannerCategory,
   PlannerTask,
   Project,
+  PublicRsvpPayload,
+  ResolvePartyPersonInput,
   Table,
   UpdateBudgetItemDto,
   UpdatePlannerTaskDto,
 } from "@/components/dashboard/types";
+import { mapAttendanceToRsvpStatus } from "@/components/dashboard/utils/guestParty";
 import type { UniversalProjectConfig } from "@/types/config";
 import { getDemoStore } from "./mode";
 
@@ -124,6 +127,11 @@ export function demoCreateGuest(
     message: guest.message ?? null,
     notes: guest.notes ?? null,
     table_id: guest.table_id ?? null,
+    party_size: guest.party_size ?? 1,
+    is_child: guest.is_child ?? false,
+    age: guest.age ?? null,
+    parent_guest_id: guest.parent_guest_id ?? null,
+    name_pending: guest.name_pending ?? false,
     created_at: now(),
     updated_at: now(),
   };
@@ -146,12 +154,135 @@ export function demoUpdateGuest(
     updated_at: now(),
   };
   store.guests[index] = next;
+
+  if (!next.parent_guest_id && updates.rsvp_status != null && updates.rsvp_status !== "") {
+    store.guests = store.guests.map((guest) =>
+      guest.parent_guest_id === next.id
+        ? { ...guest, rsvp_status: updates.rsvp_status!, updated_at: now() }
+        : guest,
+    );
+  }
+
   return structuredClone(withGuestTable(next));
 }
 
 export function demoDeleteGuest(id: string): void {
   const store = getDemoStore();
-  store.guests = store.guests.filter((g) => g.id !== id);
+  const target = store.guests.find((g) => g.id === id);
+  store.guests = store.guests.filter(
+    (g) => g.id !== id && g.parent_guest_id !== id,
+  );
+
+  if (target?.parent_guest_id) {
+    const siblings = store.guests.filter(
+      (g) => g.parent_guest_id === target.parent_guest_id,
+    );
+    store.guests = store.guests.map((g) =>
+      g.id === target.parent_guest_id
+        ? { ...g, party_size: 1 + siblings.length, updated_at: now() }
+        : g,
+    );
+  }
+}
+
+export function demoSubmitPublicRsvp(
+  payload: PublicRsvpPayload,
+): { contactId: string } {
+  const partySize = Math.min(
+    Math.max(Math.floor(payload.guestsCount) || 1, 1),
+    50,
+  );
+  const status = mapAttendanceToRsvpStatus(payload.attendance);
+  const contact = demoCreateGuest(payload.projectId, {
+    name: payload.fullName.trim(),
+    email: payload.email?.trim() || null,
+    message: payload.message?.trim() || null,
+    rsvp_status: status,
+    party_size: partySize,
+    is_child: false,
+    name_pending: false,
+    parent_guest_id: null,
+  });
+
+  for (let i = 0; i < partySize - 1; i += 1) {
+    demoCreateGuest(payload.projectId, {
+      name: "",
+      message: null,
+      email: null,
+      rsvp_status: status,
+      party_size: 1,
+      is_child: false,
+      name_pending: true,
+      parent_guest_id: contact.id,
+    });
+  }
+
+  return { contactId: contact.id };
+}
+
+export function demoResolvePartyNames(
+  projectId: string,
+  contactId: string,
+  people: ResolvePartyPersonInput[],
+): Guest[] {
+  const store = getDemoStore();
+  const contact = store.guests.find(
+    (g) => g.id === contactId && g.project_id === projectId,
+  );
+  if (!contact || contact.parent_guest_id) {
+    throw new Error("RSVP prijava nije pronađena.");
+  }
+
+  const companions = store.guests
+    .filter((g) => g.parent_guest_id === contactId)
+    .sort((a, b) => a.created_at.localeCompare(b.created_at));
+
+  const [primary, ...rest] = people;
+  const updatedContact = demoUpdateGuest(contactId, {
+    name: primary.name.trim(),
+    is_child: primary.is_child,
+    age: primary.age ?? null,
+    name_pending: false,
+    party_size: people.length,
+  });
+
+  const result: Guest[] = [updatedContact];
+
+  for (let i = 0; i < rest.length; i += 1) {
+    const person = rest[i];
+    const existing = companions[i];
+    if (existing) {
+      result.push(
+        demoUpdateGuest(existing.id, {
+          name: person.name.trim(),
+          is_child: person.is_child,
+          age: person.age ?? null,
+          name_pending: false,
+          party_size: 1,
+          message: null,
+        }),
+      );
+    } else {
+      result.push(
+        demoCreateGuest(projectId, {
+          name: person.name.trim(),
+          is_child: person.is_child,
+          age: person.age ?? null,
+          name_pending: false,
+          party_size: 1,
+          message: null,
+          rsvp_status: contact.rsvp_status,
+          parent_guest_id: contactId,
+        }),
+      );
+    }
+  }
+
+  if (companions.length > rest.length) {
+    companions.slice(rest.length).forEach((g) => demoDeleteGuest(g.id));
+  }
+
+  return result;
 }
 
 /* ─── Tables ──────────────────────────────────────────────── */

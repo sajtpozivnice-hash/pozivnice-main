@@ -58,8 +58,16 @@ const FeatureCards: FC<Props> = ({ section }) => {
                 ) : null}
                 <div className="space-y-4 p-7 sm:p-8">
                   <div className="flex items-center gap-3">
-                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5">
-                      <Icon className="h-4 w-4 text-white/80" />
+                    <span
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5"
+                      style={{
+                        color: card.accent || undefined,
+                        borderColor: card.accent
+                          ? `${card.accent}55`
+                          : undefined,
+                      }}
+                    >
+                      <Icon className="h-4 w-4" />
                     </span>
                     <h3
                       className="text-2xl font-bold tracking-wide uppercase"

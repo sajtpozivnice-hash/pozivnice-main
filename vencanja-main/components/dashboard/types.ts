@@ -7,9 +7,18 @@ export type Guest = {
   name: string;
   email?: string | null;
   rsvp_status: RSVPStatus;
+  /** RSVP message from the person who submitted the form (contact only). */
   message?: string | null;
   notes?: string | null;
   table_id?: string | null;
+  /** Total people in this RSVP party (meaningful on contact / parent row). */
+  party_size: number;
+  is_child: boolean;
+  age?: number | null;
+  /** Links companion people to the RSVP contact guest. */
+  parent_guest_id?: string | null;
+  /** True until the host enters a real name for this person. */
+  name_pending: boolean;
   created_at: string;
   updated_at: string;
   tables?: {
@@ -25,6 +34,27 @@ export type CreateGuestDto = {
   message?: string | null;
   notes?: string | null;
   table_id?: string | null;
+  party_size?: number;
+  is_child?: boolean;
+  age?: number | null;
+  parent_guest_id?: string | null;
+  name_pending?: boolean;
+};
+
+export type PublicRsvpPayload = {
+  projectId: string;
+  fullName: string;
+  email?: string;
+  guestsCount: number;
+  message?: string;
+  attendance: "yes" | "no" | "maybe";
+};
+
+export type ResolvePartyPersonInput = {
+  id?: string;
+  name: string;
+  is_child: boolean;
+  age?: number | null;
 };
 
 export type Table = {

@@ -52,8 +52,21 @@ const formatGuestWithTable = (
 
 const getGuestsForTable = (guests: Guest[], tableId: string) =>
   guests
-    .filter((guest) => guest.table_id === tableId)
+    .filter(
+      (guest) =>
+        guest.table_id === tableId &&
+        !guest.name_pending &&
+        Boolean(guest.name.trim()),
+    )
     .sort((a, b) => compareName(a.name, b.name));
+
+const formatGuestLabel = (guest: Guest) => {
+  const name =
+    guest.name_pending || !guest.name.trim()
+      ? "Ime nije uneto"
+      : guest.name;
+  return guest.is_child ? `${name} — DETE` : name;
+};
 
 const buildDocument = (title: string, bodyHtml: string, meta: ExportMeta) => {
   const projectTitle = meta.projectTitle?.trim() || "Raspored sedenja";
@@ -186,7 +199,7 @@ const buildByTablesHtml = (tables: Table[], guests: Guest[]) => {
       const guestList =
         tableGuests.length > 0
           ? `<ul class="guest-list">${tableGuests
-              .map((guest) => `<li>${escapeHtml(guest.name)}</li>`)
+              .map((guest) => `<li>${escapeHtml(formatGuestLabel(guest))}</li>`)
               .join("")}</ul>`
           : `<p class="empty">Nema raspoređenih gostiju</p>`;
 
@@ -199,7 +212,9 @@ const buildByTablesHtml = (tables: Table[], guests: Guest[]) => {
 };
 
 const buildGuestsAlphaHtml = (tables: Table[], guests: Guest[]) => {
-  const sorted = [...guests].sort((a, b) => compareName(a.name, b.name));
+  const sorted = [...guests]
+    .filter((guest) => !guest.name_pending && guest.name.trim())
+    .sort((a, b) => compareName(a.name, b.name));
 
   if (sorted.length === 0) {
     return `<p class="empty">Nema gostiju.</p>`;
@@ -208,7 +223,7 @@ const buildGuestsAlphaHtml = (tables: Table[], guests: Guest[]) => {
   return `<ul class="guest-list">${sorted
     .map((guest) => {
       const line = formatGuestWithTable(
-        guest.name,
+        formatGuestLabel(guest),
         getTableName(tables, guest.table_id),
       );
       return `<li>${escapeHtml(line)}</li>`;
@@ -218,7 +233,10 @@ const buildGuestsAlphaHtml = (tables: Table[], guests: Guest[]) => {
 
 const buildUnassignedHtml = (guests: Guest[]) => {
   const unassigned = guests
-    .filter((guest) => !guest.table_id)
+    .filter(
+      (guest) =>
+        !guest.table_id && !guest.name_pending && Boolean(guest.name.trim()),
+    )
     .sort((a, b) => compareName(a.name, b.name));
 
   if (unassigned.length === 0) {
@@ -226,7 +244,7 @@ const buildUnassignedHtml = (guests: Guest[]) => {
   }
 
   return `<ul class="guest-list">${unassigned
-    .map((guest) => `<li>${escapeHtml(guest.name)}</li>`)
+    .map((guest) => `<li>${escapeHtml(formatGuestLabel(guest))}</li>`)
     .join("")}</ul>`;
 };
 
@@ -453,23 +471,30 @@ export const downloadSeatingExportCsv = (
         continue;
       }
       for (const guest of tableGuests) {
-        rows.push([table.name, guest.name]);
+        rows.push([table.name, formatGuestLabel(guest)]);
       }
     }
   } else if (type === "guests-alpha") {
     headers = ["Gost"];
     rows = [...guests]
+      .filter((guest) => !guest.name_pending && guest.name.trim())
       .sort((a, b) => compareName(a.name, b.name))
       .map((guest) => [
-        formatGuestWithTable(guest.name, getTableName(tables, guest.table_id)),
+        formatGuestWithTable(
+          formatGuestLabel(guest),
+          getTableName(tables, guest.table_id),
+        ),
       ]);
   } else if (type === "unassigned") {
     headers = ["Ime i prezime", "Status", "Napomena"];
     rows = guests
-      .filter((guest) => !guest.table_id)
+      .filter(
+        (guest) =>
+          !guest.table_id && !guest.name_pending && Boolean(guest.name.trim()),
+      )
       .sort((a, b) => compareName(a.name, b.name))
       .map((guest) => [
-        guest.name,
+        formatGuestLabel(guest),
         guestStatusLabel(guest.rsvp_status),
         guest.notes ?? "",
       ]);
@@ -493,13 +518,18 @@ export const downloadSeatingExportCsv = (
       rows.push(["Sto", table.name]);
       const tableGuests = getGuestsForTable(guests, table.id);
       for (const guest of tableGuests) {
-        rows.push(["Gost", guest.name]);
+        rows.push(["Gost", formatGuestLabel(guest)]);
       }
     }
-    for (const guest of [...guests].sort((a, b) => compareName(a.name, b.name))) {
+    for (const guest of [...guests]
+      .filter((g) => !g.name_pending && g.name.trim())
+      .sort((a, b) => compareName(a.name, b.name))) {
       rows.push([
         "Abecedno",
-        formatGuestWithTable(guest.name, getTableName(tables, guest.table_id)),
+        formatGuestWithTable(
+          formatGuestLabel(guest),
+          getTableName(tables, guest.table_id),
+        ),
       ]);
     }
   }

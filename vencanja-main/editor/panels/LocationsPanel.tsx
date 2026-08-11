@@ -17,10 +17,11 @@ export const locationsSchema = createSectionSchema<LocationsData>({
       type: "repeater",
       itemSchema: [
         { key: "title", label: "Naslov", type: "text" },
+        { key: "subtitle", label: "Podnaslov", type: "text" },
         { key: "time", label: "Vreme", type: "text" },
         { key: "location", label: "Lokacija", type: "textarea" },
         { key: "text", label: "Opis", type: "textarea" },
-        { key: "image", label: "Slika kartice", type: "image" },
+        { key: "image", label: "Slika lokacije", type: "image" },
       ],
     },
   ],

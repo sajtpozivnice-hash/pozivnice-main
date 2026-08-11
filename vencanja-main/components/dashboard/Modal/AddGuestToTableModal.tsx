@@ -18,6 +18,8 @@ import { useState } from "react";
 import { toast } from "sonner";
 import ProgressBar from "../ProgressBar";
 import Loader from "../loaders/Loader";
+import { displayGuestName } from "../utils/guestParty";
+import { GuestNameWithChildBadge } from "../shared/ChildBadge";
 
 const AddGuestToTableModal = () => {
   const { closeModal, data } = useDialog();
@@ -28,16 +30,25 @@ const AddGuestToTableModal = () => {
   const name = data?.data?.name ?? "sto";
   const numberOfGuests = Number(data?.data?.number_of_guests ?? 0);
 
-  const tableGuests = guests.filter((guest) => guest.table_id === id);
+  const tableGuests = guests.filter(
+    (guest) => guest.table_id === id && !guest.name_pending,
+  );
   const availableSeats = Math.max(numberOfGuests - tableGuests.length, 0);
 
   const guestsForSelect = guests
     .filter((guest) => guest.table_id == null)
     .filter((guest) => guest.rsvp_status === "accepted")
+    .filter((guest) => !guest.name_pending && guest.name.trim())
     .map((guest) => ({
       value: guest.id,
-      label: guest.name,
+      label: guest.is_child
+        ? `${displayGuestName(guest)} · DETE`
+        : displayGuestName(guest),
     }));
+
+  const unresolvedCount = guests.filter(
+    (guest) => guest.name_pending || !guest.name.trim(),
+  ).length;
 
   const addGuests = async () => {
     if (!id) return;
@@ -78,11 +89,19 @@ const AddGuestToTableModal = () => {
       <SheetHeader className="space-y-2">
         <SheetTitle>Dodaj goste za {name}</SheetTitle>
         <SheetDescription>
-          Izaberite goste koji su potvrdili dolazak i još nisu raspoređeni.
+          Izaberite konkretne osobe koje su potvrdile dolazak i još nisu
+          raspoređene. Svaka osoba zauzima jedno mesto.
         </SheetDescription>
       </SheetHeader>
 
       <div className="space-y-4">
+        {unresolvedCount > 0 ? (
+          <div className="rounded-xl border border-amber-300/70 bg-amber-50 px-3 py-2 text-sm text-amber-900">
+            Potrebno je uneti imena preostalih gostiju ({unresolvedCount}) pre
+            nego što ih možete rasporediti za sto.
+          </div>
+        ) : null}
+
         <div className="rounded-xl border bg-muted/20 p-4">
           <ProgressBar occupied={tableGuests.length} capacity={numberOfGuests} />
         </div>
@@ -95,7 +114,7 @@ const AddGuestToTableModal = () => {
             </FieldDescription>
             {guestsForSelect.length === 0 ? (
               <div className="rounded-xl border border-dashed bg-background px-3 py-4 text-center text-sm text-muted-foreground">
-                Nema slobodnih gostiju sa statusom „Dolazi“.
+                Nema slobodnih gostiju sa statusom „Dolazi“ i unetim imenom.
               </div>
             ) : (
               <GuestMultiSelect
@@ -120,7 +139,7 @@ const AddGuestToTableModal = () => {
                     key={guest.id}
                     className="rounded-lg border bg-background px-3 py-2 text-sm"
                   >
-                    {guest.name}
+                    <GuestNameWithChildBadge guest={guest} />
                   </div>
                 ))}
               </div>
