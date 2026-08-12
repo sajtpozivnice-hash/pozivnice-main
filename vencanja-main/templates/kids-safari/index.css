@@ -1,0 +1,408 @@
+@import "tailwindcss";
+
+/* kids-safari — "Expedition map" system: vertical journey, left-rail waypoints,
+   earthy khaki/ochre/teal palette. No blobs, no confetti, no side hero grid. */
+
+@theme {
+  --color-ksaf-ink: #24321f;
+  --color-ksaf-ochre: #c1801f;
+  --color-ksaf-rust: #a4552c;
+  --color-ksaf-teal: #2f6e5e;
+  --color-ksaf-khaki: #e7e0c4;
+  --color-ksaf-khaki-deep: #ddd3ab;
+  --color-ksaf-line: #24321f;
+}
+
+@layer components {
+  [data-template="kids-safari"] {
+    @apply relative overflow-x-hidden text-ksaf-ink;
+    background:
+      linear-gradient(rgba(36, 50, 31, 0.05) 1px, transparent 1px) 0 0 / 100% 26px,
+      linear-gradient(90deg, rgba(36, 50, 31, 0.05) 1px, transparent 1px) 0 0 / 26px 100%,
+      linear-gradient(180deg, #ece5c9 0%, #e7e0c4 45%, #ded6b3 100%);
+    font-family: var(--font-secondary);
+  }
+
+  .ksaf-shell {
+    @apply relative mx-auto w-full max-w-6xl px-6 sm:px-10 lg:px-14;
+  }
+
+  .ksaf-section {
+    @apply relative py-16 sm:py-20 lg:py-24;
+  }
+
+  .ksaf-eyebrow {
+    @apply inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.3em];
+    color: var(--color-ksaf-teal);
+    font-family: var(--font-secondary);
+  }
+
+  .ksaf-eyebrow::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background: var(--color-ksaf-ochre);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  .ksaf-heading {
+    @apply text-4xl leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl;
+    font-family: var(--font-primary);
+  }
+
+  .ksaf-card {
+    @apply rounded-xl border border-ksaf-ink/12 bg-[#fbf8ee]/90 shadow-[0_16px_38px_-26px_rgba(36,50,31,0.5)];
+  }
+
+  .ksaf-card-strong {
+    @apply relative rounded-xl border-2 border-ksaf-ink/15 bg-[#fbf8ee] shadow-[0_20px_46px_-26px_rgba(36,50,31,0.55)];
+  }
+
+  .ksaf-input {
+    @apply w-full rounded-md border-2 border-ksaf-ink/20 bg-[#fbf8ee] px-4 py-3 text-sm text-ksaf-ink outline-none transition placeholder:text-ksaf-ink/35 focus:border-[color:var(--color-primary,#c1801f)];
+    font-family: var(--font-secondary);
+  }
+
+  .ksaf-btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-7 py-3.5 text-sm font-bold uppercase tracking-[0.08em] text-white transition hover:-translate-y-0.5 active:translate-y-0;
+    background: var(--color-primary, #c1801f);
+    box-shadow: 0 14px 28px -14px color-mix(in srgb, var(--color-primary, #c1801f) 65%, transparent);
+  }
+
+  /* ---- expedition-only decorative helpers ---- */
+
+  .ksaf-waypoint {
+    @apply relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 text-xs font-bold sm:h-10 sm:w-10;
+    border-color: var(--color-ksaf-ochre);
+    background: #fbf8ee;
+    color: var(--color-ksaf-teal);
+    font-family: var(--font-secondary);
+  }
+
+  .ksaf-rail {
+    @apply relative pl-10 sm:pl-14;
+  }
+
+  .ksaf-rail::before {
+    content: "";
+    position: absolute;
+    left: 0.95rem;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    border-left: 2px dashed color-mix(in srgb, var(--color-ksaf-ink) 30%, transparent);
+  }
+
+  @media (min-width: 640px) {
+    .ksaf-rail::before {
+      left: 1.2rem;
+    }
+  }
+
+  .ksaf-rail-item {
+    @apply relative flex gap-4 sm:gap-6;
+  }
+
+  .ksaf-rail-item .ksaf-waypoint {
+    position: absolute;
+    left: -2.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .ksaf-rail-item .ksaf-waypoint {
+      left: -3.5rem;
+    }
+  }
+
+  .ksaf-stamp {
+    @apply inline-flex flex-col items-center gap-1 rounded-sm border-2 px-5 py-3 text-center;
+    border-color: var(--color-ksaf-rust);
+    color: var(--color-ksaf-rust);
+    outline: 1px dashed color-mix(in srgb, var(--color-ksaf-rust) 65%, transparent);
+    outline-offset: 4px;
+    transform: rotate(-2deg);
+  }
+
+  .ksaf-coordinates {
+    @apply text-[11px] font-semibold uppercase tracking-[0.24em] text-ksaf-ink/45;
+    font-family: var(--font-secondary);
+  }
+
+  /* Countdown — map spread: a compass reads the day count, waypoints zig-zag toward it */
+  .ksaf-map {
+    @apply flex flex-col items-center gap-10 lg:flex-row lg:items-center lg:gap-12;
+  }
+
+  .ksaf-compass {
+    @apply relative flex h-40 w-40 shrink-0 items-center justify-center rounded-full border-[3px] border-dashed;
+    background: #fbf8ee;
+    border-color: color-mix(in srgb, var(--color-ksaf-ink) 30%, transparent);
+  }
+
+  .ksaf-compass-tick {
+    @apply absolute text-[10px] font-bold text-ksaf-ink/40;
+  }
+
+  .ksaf-compass-tick--n {
+    @apply top-2 left-1/2 -translate-x-1/2;
+  }
+
+  .ksaf-compass-tick--s {
+    @apply bottom-2 left-1/2 -translate-x-1/2;
+  }
+
+  .ksaf-compass-tick--e {
+    @apply top-1/2 right-2 -translate-y-1/2;
+  }
+
+  .ksaf-compass-tick--w {
+    @apply top-1/2 left-2 -translate-y-1/2;
+  }
+
+  .ksaf-compass-needle {
+    @apply absolute top-1/2 left-1/2 h-16 w-[3px] origin-bottom -translate-x-1/2 -translate-y-full rounded-full;
+    background: linear-gradient(
+      180deg,
+      var(--trail-color, var(--color-ksaf-rust)),
+      transparent
+    );
+  }
+
+  .ksaf-compass-plate {
+    @apply relative z-10 flex h-24 w-24 flex-col items-center justify-center rounded-full border-2 text-center;
+    background: #fffdf6;
+    border-color: var(--color-ksaf-ochre);
+  }
+
+  .ksaf-compass-days {
+    font-family: var(--font-primary);
+    @apply text-3xl leading-none text-ksaf-ink;
+  }
+
+  .ksaf-compass-label {
+    @apply mt-1 text-[9px] font-bold uppercase tracking-[0.2em] text-ksaf-ink/55;
+  }
+
+  .ksaf-waypoints {
+    @apply relative flex flex-1 items-start justify-between gap-3;
+  }
+
+  .ksaf-waypoints::before {
+    content: "";
+    position: absolute;
+    left: 1.1rem;
+    right: 1.1rem;
+    top: 1.1rem;
+    height: 0;
+    border-top: 2px dashed color-mix(in srgb, var(--color-ksaf-ink) 28%, transparent);
+    z-index: 0;
+  }
+
+  .ksaf-waypoint {
+    @apply relative z-10 flex flex-1 flex-col items-center gap-2 text-center;
+    transform: translateY(var(--offset, 0));
+  }
+
+  .ksaf-waypoint-pin {
+    @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 text-xs font-bold sm:h-10 sm:w-10;
+    background: #fbf8ee;
+    border-color: var(--trail-color, var(--color-ksaf-ochre));
+    color: var(--trail-color, var(--color-ksaf-ochre));
+  }
+
+  .ksaf-waypoint-value {
+    font-family: var(--font-primary);
+    font-size: clamp(1.5rem, 4.5vw, 2.1rem);
+    color: var(--color-ksaf-ink);
+    line-height: 1;
+  }
+
+  .ksaf-waypoint-label {
+    @apply text-[10px] font-bold uppercase tracking-[0.2em];
+    color: var(--color-ksaf-ink);
+    opacity: 0.55;
+  }
+
+  /* FeatureCards — field journal horizontal scroll */
+  .ksaf-journal {
+    @apply -mx-6 flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 pb-4 sm:mx-0 sm:px-0;
+  }
+
+  .ksaf-journal-card {
+    @apply relative shrink-0 snap-start border-2 p-3 pb-4;
+    width: min(72vw, 15.5rem);
+    background: #fbf8ee;
+    border-color: var(--color-ksaf-ink);
+    box-shadow: 0 16px 32px -20px rgba(36, 50, 31, 0.55);
+    transform: rotate(var(--tilt, 0deg));
+  }
+
+  .ksaf-journal-photo {
+    @apply relative mb-3 aspect-square overflow-hidden;
+    border: 1px solid color-mix(in srgb, var(--color-ksaf-ink) 25%, transparent);
+  }
+
+  .ksaf-journal-photo img {
+    @apply h-full w-full object-cover;
+    filter: sepia(0.12) saturate(1.05);
+  }
+
+  .ksaf-journal-photo--empty {
+    @apply flex items-center justify-center;
+    background: var(--color-ksaf-khaki);
+  }
+
+  .ksaf-journal-icon {
+    @apply mb-2 inline-flex h-9 w-9 items-center justify-center rounded-full border-2;
+    border-color: var(--color-ksaf-ochre);
+    color: var(--color-ksaf-teal);
+  }
+
+  /* Locations — passport stamp card (no side-by-side split) */
+  .ksaf-passport {
+    @apply mx-auto max-w-2xl text-center;
+  }
+
+  .ksaf-passport-photo {
+    @apply relative mx-auto mb-6 h-40 w-40 overflow-hidden rounded-full border-4 sm:h-48 sm:w-48;
+    border-color: var(--color-ksaf-khaki-deep);
+    outline: 2px dashed color-mix(in srgb, var(--color-ksaf-ochre) 65%, transparent);
+    outline-offset: 6px;
+  }
+
+  .ksaf-passport-photo img {
+    @apply h-full w-full object-cover;
+    filter: sepia(0.1);
+  }
+
+  .ksaf-passport-photo--empty {
+    @apply flex items-center justify-center;
+    background: var(--color-ksaf-khaki);
+  }
+
+  .ksaf-passport-grid {
+    @apply mt-8 grid gap-4 border-t-2 border-dashed pt-6 text-left sm:grid-cols-2;
+    border-color: color-mix(in srgb, var(--color-ksaf-ink) 25%, transparent);
+  }
+
+  .ksaf-passport-grid dt {
+    @apply text-[11px] font-bold uppercase tracking-[0.24em];
+    color: var(--color-ksaf-teal);
+  }
+
+  .ksaf-passport-grid dd {
+    @apply mt-1 text-lg;
+    font-family: var(--font-primary);
+    color: var(--color-ksaf-ink);
+  }
+
+  .ksaf-passport-postmark {
+    @apply absolute -right-2 -top-2 inline-flex h-14 w-14 rotate-[12deg] items-center justify-center rounded-full border-2 text-[9px] font-bold uppercase tracking-[0.1em] sm:h-16 sm:w-16;
+    border-color: var(--color-ksaf-rust);
+    color: var(--color-ksaf-rust);
+    background: color-mix(in srgb, var(--color-ksaf-rust) 8%, #fbf8ee);
+    outline: 1px dashed color-mix(in srgb, var(--color-ksaf-rust) 55%, transparent);
+    outline-offset: 3px;
+  }
+
+  /* UploadImages — bound journal spread: a column of numbered stubs beside one big mounted specimen photo */
+  .ksaf-journal-spread {
+    @apply mx-auto flex max-w-md items-stretch gap-5 sm:max-w-lg;
+  }
+
+  .ksaf-journal-stubs {
+    @apply flex flex-col justify-between gap-3 border-r-2 border-dashed pr-4;
+    border-color: color-mix(in srgb, var(--color-ksaf-ink) 30%, transparent);
+  }
+
+  .ksaf-journal-stub {
+    @apply flex items-center gap-2;
+  }
+
+  .ksaf-journal-stub-num {
+    @apply text-[10px] font-bold text-ksaf-ink/40;
+    font-family: var(--font-primary);
+  }
+
+  .ksaf-journal-stub-photo {
+    @apply flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border-2 sm:h-12 sm:w-12;
+    border-color: var(--color-ksaf-ink);
+    background: #fbf8ee;
+  }
+
+  .ksaf-journal-specimen {
+    @apply relative flex flex-1 flex-col items-center justify-center gap-3 border-2 px-6 py-8;
+    border-color: var(--color-ksaf-ink);
+    background: #fbf8ee;
+  }
+
+  .ksaf-journal-specimen::before,
+  .ksaf-journal-specimen::after {
+    content: "";
+    @apply absolute h-4 w-4 border-t-2 border-l-2;
+    border-color: var(--color-ksaf-rust);
+  }
+
+  .ksaf-journal-specimen::before {
+    @apply top-1.5 left-1.5;
+  }
+
+  .ksaf-journal-specimen::after {
+    @apply bottom-1.5 right-1.5 rotate-180;
+  }
+
+  .ksaf-journal-specimen-label {
+    @apply text-[10px] font-bold uppercase tracking-[0.24em] text-ksaf-ink/50;
+  }
+
+  .ksaf-journal-specimen-photo {
+    @apply flex h-20 w-20 items-center justify-center overflow-hidden rounded-full border-2 sm:h-24 sm:w-24;
+    border-color: var(--color-ksaf-rust);
+  }
+
+  .ksaf-journal-specimen-photo img {
+    @apply h-full w-full object-cover;
+    filter: sepia(0.12) saturate(1.05);
+  }
+
+  /* Footer — expedition boarding-pass stub */
+  .ksaf-boarding {
+    @apply relative flex flex-col overflow-hidden border-2 sm:flex-row;
+    border-color: var(--color-ksaf-ink);
+    background: #fbf8ee;
+    box-shadow: 0 20px 46px -26px rgba(36, 50, 31, 0.55);
+  }
+
+  .ksaf-boarding-main {
+    @apply relative flex-1 overflow-hidden p-6 sm:p-9;
+  }
+
+  .ksaf-boarding-stub {
+    @apply flex flex-col items-center justify-center gap-2 border-t-2 border-dashed p-6 text-center sm:w-48 sm:border-l-2 sm:border-t-0;
+    border-color: var(--color-ksaf-ink);
+    background: var(--color-ksaf-khaki);
+  }
+
+  /* RSVP — expedition permit document with side rail */
+  .ksaf-permit {
+    @apply grid overflow-hidden lg:grid-cols-[0.8fr_1.2fr];
+  }
+
+  .ksaf-permit-rail {
+    @apply relative border-b-2 border-dashed p-6 sm:p-9 lg:border-b-0 lg:border-r-2;
+    border-color: color-mix(in srgb, var(--color-ksaf-ink) 25%, transparent);
+    background: var(--color-ksaf-khaki);
+  }
+
+  .ksaf-permit-stampmark {
+    @apply mt-8 inline-flex flex-col gap-1 border-2 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em];
+    border-color: var(--color-ksaf-rust);
+    color: var(--color-ksaf-rust);
+    transform: rotate(-2deg);
+  }
+
+  .ksaf-permit-form {
+    @apply p-6 sm:p-9;
+  }
+}

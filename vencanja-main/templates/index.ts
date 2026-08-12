@@ -20,6 +20,32 @@ import { birthday18EditorialDefaultConfig } from "./birthday18-editorial/config"
 import { birthday18EditorialRenderers } from "./birthday18-editorial/renderers";
 import { birthday18NightDefaultConfig } from "./birthday18-night/config";
 import { birthday18NightRenderers } from "./birthday18-night/renderers";
+import { birthday18GoldDefaultConfig } from "./birthday18-gold/config";
+import { birthday18GoldRenderers } from "./birthday18-gold/renderers";
+import { birthday18InkDefaultConfig } from "./birthday18-ink/config";
+import { birthday18InkRenderers } from "./birthday18-ink/renderers";
+import { birthday18CoastDefaultConfig } from "./birthday18-coast/config";
+import { birthday18CoastRenderers } from "./birthday18-coast/renderers";
+import { birthday18AtelierDefaultConfig } from "./birthday18-atelier/config";
+import { birthday18AtelierRenderers } from "./birthday18-atelier/renderers";
+import { kidsPastelDefaultConfig } from "./kids-pastel/config";
+import { kidsPastelRenderers } from "./kids-pastel/renderers";
+import { kidsSafariDefaultConfig } from "./kids-safari/config";
+import { kidsSafariRenderers } from "./kids-safari/renderers";
+import { kidsSpaceDefaultConfig } from "./kids-space/config";
+import { kidsSpaceRenderers } from "./kids-space/renderers";
+import { kidsCandyDefaultConfig } from "./kids-candy/config";
+import { kidsCandyRenderers } from "./kids-candy/renderers";
+import { krstenjeClassicDefaultConfig } from "./krstenje-classic/config";
+import { krstenjeClassicRenderers } from "./krstenje-classic/renderers";
+import { krstenjeSoftDefaultConfig } from "./krstenje-soft/config";
+import { krstenjeSoftRenderers } from "./krstenje-soft/renderers";
+import { krstenjeGardenDefaultConfig } from "./krstenje-garden/config";
+import { krstenjeGardenRenderers } from "./krstenje-garden/renderers";
+import { krstenjeModernDefaultConfig } from "./krstenje-modern/config";
+import { krstenjeModernRenderers } from "./krstenje-modern/renderers";
+import { krstenjeCandleDefaultConfig } from "./krstenje-candle/config";
+import { krstenjeCandleRenderers } from "./krstenje-candle/renderers";
 import { EventType, TemplateKey, UniversalProjectConfig } from "@/types/config";
 import { TemplateCatalogMeta } from "@/types/catalog";
 import { SectionRendererMap } from "@/types/sections";
@@ -125,7 +151,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
     },
     eventTypes: ["kidsBirthday"],
     catalog: {
-      title: "Dečiji rođendan",
+      title: "1. rođendan — klasik",
       description:
         "Živahan dizajn za dečiji rođendan. Menjate sadržaj i pratite goste i pripreme u nalogu.",
       style: "playful",
@@ -192,6 +218,214 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       title: "18 — Noć počinje",
       description:
         "Tamna cinematic nightlife pozivnica za 18. rođendan: jak tipografski hero, editorial detalji i premium potvrda prisustva.",
+      style: "premium",
+      price: 40,
+      featured: true,
+    },
+  },
+  "birthday18-gold": {
+    renderers: birthday18GoldRenderers,
+    defaultConfig: {
+      ...birthday18GoldDefaultConfig,
+      eventType: "comingOfAge",
+    },
+    eventTypes: ["comingOfAge"],
+    catalog: {
+      title: "18 — Zlatno izdanje",
+      description:
+        "Elegantna champagne/gold pozivnica za punoletstvo: topli tonovi, svečani utisak i jasna potvrda prisustva.",
+      style: "premium",
+      price: 40,
+      featured: true,
+    },
+  },
+  "birthday18-ink": {
+    renderers: birthday18InkRenderers,
+    defaultConfig: {
+      ...birthday18InkDefaultConfig,
+      eventType: "comingOfAge",
+    },
+    eventTypes: ["comingOfAge"],
+    catalog: {
+      title: "18 — Novinsko izdanje",
+      description:
+        "Monohromatska broadsheet pozivnica za punoletstvo: masthead ime, novinske kolone i horizontalne linije.",
+      style: "editorial",
+      price: 40,
+      featured: true,
+    },
+  },
+  "birthday18-coast": {
+    renderers: birthday18CoastRenderers,
+    defaultConfig: {
+      ...birthday18CoastDefaultConfig,
+      eventType: "comingOfAge",
+    },
+    eventTypes: ["comingOfAge"],
+    catalog: {
+      title: "18 — Obalsko izdanje",
+      description:
+        "Vazdušasta dnevna pozivnica za punoletstvo: horizontalni pojasevi, ime kao vodeni žig i raspored kao plima.",
+      style: "modern",
+      price: 40,
+      featured: true,
+    },
+  },
+  "birthday18-atelier": {
+    renderers: birthday18AtelierRenderers,
+    defaultConfig: {
+      ...birthday18AtelierDefaultConfig,
+      eventType: "comingOfAge",
+    },
+    eventTypes: ["comingOfAge"],
+    catalog: {
+      title: "18 — Atelje izdanje",
+      description:
+        "Minimalna fashion lookbook pozivnica za punoletstvo: visoka portretna traka i editorial tipografija.",
+      style: "premium",
+      price: 40,
+      featured: true,
+    },
+  },
+  "kids-pastel": {
+    renderers: kidsPastelRenderers,
+    defaultConfig: {
+      ...kidsPastelDefaultConfig,
+      eventType: "kidsBirthday",
+    },
+    eventTypes: ["kidsBirthday"],
+    catalog: {
+      title: "1. rođendan — pastel",
+      description:
+        "Nežni pastelni tonovi za prvi dečiji rođendan — mek, vedar i topao utisak.",
+      style: "playful",
+      price: 40,
+      featured: true,
+    },
+  },
+  "kids-safari": {
+    renderers: kidsSafariRenderers,
+    defaultConfig: {
+      ...kidsSafariDefaultConfig,
+      eventType: "kidsBirthday",
+    },
+    eventTypes: ["kidsBirthday"],
+    catalog: {
+      title: "1. rođendan — safari",
+      description:
+        "Topli safari tonovi i avanturistički osećaj za prvi dečiji rođendan.",
+      style: "playful",
+      price: 40,
+      featured: true,
+    },
+  },
+  "kids-space": {
+    renderers: kidsSpaceRenderers,
+    defaultConfig: {
+      ...kidsSpaceDefaultConfig,
+      eventType: "kidsBirthday",
+    },
+    eventTypes: ["kidsBirthday"],
+    catalog: {
+      title: "1. rođendan — svemir",
+      description:
+        "Tamna svemirska pozivnica za prvi rođendan malih istraživača.",
+      style: "playful",
+      price: 40,
+      featured: true,
+    },
+  },
+  "kids-candy": {
+    renderers: kidsCandyRenderers,
+    defaultConfig: {
+      ...kidsCandyDefaultConfig,
+      eventType: "kidsBirthday",
+    },
+    eventTypes: ["kidsBirthday"],
+    catalog: {
+      title: "1. rođendan — candy",
+      description:
+        "Šarena candy estetika za veseli prvi dečiji rođendan pun boja.",
+      style: "playful",
+      price: 40,
+      featured: true,
+    },
+  },
+  "krstenje-classic": {
+    renderers: krstenjeClassicRenderers,
+    defaultConfig: {
+      ...krstenjeClassicDefaultConfig,
+      eventType: "baptism",
+    },
+    eventTypes: ["baptism", "kidsBirthday"],
+    catalog: {
+      title: "Klasično krštenje",
+      description:
+        "Svečana klasična pozivnica za krštenje — lako se prilagodi i za dečiji rođendan.",
+      style: "classic",
+      price: 40,
+      featured: true,
+    },
+  },
+  "krstenje-soft": {
+    renderers: krstenjeSoftRenderers,
+    defaultConfig: {
+      ...krstenjeSoftDefaultConfig,
+      eventType: "baptism",
+    },
+    eventTypes: ["baptism", "kidsBirthday"],
+    catalog: {
+      title: "Nežno krštenje",
+      description:
+        "Meki blush tonovi za krštenje ili nežni dečiji rođendan.",
+      style: "classic",
+      price: 40,
+      featured: true,
+    },
+  },
+  "krstenje-garden": {
+    renderers: krstenjeGardenRenderers,
+    defaultConfig: {
+      ...krstenjeGardenDefaultConfig,
+      eventType: "baptism",
+    },
+    eventTypes: ["baptism", "kidsBirthday"],
+    catalog: {
+      title: "Krštenje u bašti",
+      description:
+        "Zeleni tonovi za krštenje ili porodični rođendan na otvorenom.",
+      style: "modern",
+      price: 40,
+      featured: true,
+    },
+  },
+  "krstenje-modern": {
+    renderers: krstenjeModernRenderers,
+    defaultConfig: {
+      ...krstenjeModernDefaultConfig,
+      eventType: "baptism",
+    },
+    eventTypes: ["baptism", "kidsBirthday"],
+    catalog: {
+      title: "Moderno krštenje",
+      description:
+        "Čista moderna pozivnica za krštenje — jednako dobra i za dečiji rođendan.",
+      style: "modern",
+      price: 40,
+      featured: true,
+    },
+  },
+  "krstenje-candle": {
+    renderers: krstenjeCandleRenderers,
+    defaultConfig: {
+      ...krstenjeCandleDefaultConfig,
+      eventType: "baptism",
+    },
+    eventTypes: ["baptism", "kidsBirthday"],
+    catalog: {
+      title: "Svečano krštenje",
+      description:
+        "Topla candlelight atmosfera za krštenje ili svečani dečiji rođendan.",
       style: "premium",
       price: 40,
       featured: true,

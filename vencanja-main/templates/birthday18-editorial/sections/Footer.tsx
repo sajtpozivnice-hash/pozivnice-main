@@ -23,16 +23,23 @@ const Footer: FC<Props> = ({ section, event }) => {
 
   return (
     <footer id={id} className="ed-footer">
-      <div className="ed-shell">
-        <p className="ed-display text-2xl tracking-[0.12em] sm:text-3xl">
-          {data.title || "ROĐENDANSKO IZDANJE"}
-        </p>
-        <p className="ed-label mt-3">{subtitle}</p>
-        {data.description ? (
-          <p className="mx-auto mt-4 max-w-md text-sm text-[var(--ed-muted)]">
-            {data.description}
+      <div className="ed-shell ed-colophon">
+        <div className="ed-colophon__col">
+          <p className="ed-colophon__label">Izdanje</p>
+          <p className="ed-colophon__value">
+            {data.title || "ROĐENDANSKO IZDANJE"}
           </p>
-        ) : null}
+        </div>
+        <div className="ed-colophon__col">
+          <p className="ed-colophon__label">Godište</p>
+          <p className="ed-colophon__value">{subtitle}</p>
+        </div>
+        <div className="ed-colophon__col">
+          <p className="ed-colophon__label">Napomena</p>
+          <p className="ed-colophon__value ed-colophon__value--small">
+            {data.description || "Štampano povodom punoletstva."}
+          </p>
+        </div>
       </div>
     </footer>
   );

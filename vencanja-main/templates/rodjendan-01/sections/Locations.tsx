@@ -2,7 +2,7 @@
 
 import { FC } from "react";
 import { motion } from "framer-motion";
-import { MapPin } from "lucide-react";
+import { Clock, MapPin } from "lucide-react";
 import { LocationsSection } from "@/types/sections";
 import { EventConfig, ThemeConfig } from "@/types/config";
 
@@ -33,16 +33,11 @@ const Locations: FC<Props> = ({ section, theme }) => {
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bday-card-strong grid overflow-hidden lg:grid-cols-2"
+          className="bday-map mx-auto max-w-3xl"
         >
-          <div className="relative min-h-[260px] sm:min-h-[320px]">
+          <div className="bday-map-media">
             {image ? (
-              <img
-                src={image}
-                alt=""
-                className="absolute inset-0 h-full w-full object-cover"
-                referrerPolicy="no-referrer"
-              />
+              <img src={image} alt="" referrerPolicy="no-referrer" />
             ) : (
               <div
                 className="absolute inset-0"
@@ -51,33 +46,41 @@ const Locations: FC<Props> = ({ section, theme }) => {
                 }}
               />
             )}
+            <span className="bday-map-pin" style={{ background: accent }}>
+              <MapPin className="h-5 w-5 text-white" />
+            </span>
           </div>
 
-          <div className="flex flex-col justify-center p-6 sm:p-10">
+          <div className="bday-map-body">
             {card?.title ? (
               <h3
-                className="text-3xl sm:text-4xl"
+                className="text-2xl sm:text-3xl"
                 style={{ fontFamily: "var(--font-primary)" }}
               >
                 {card.title}
               </h3>
             ) : null}
             {card?.subtitle ? (
-              <p className="mt-2 text-sm font-semibold uppercase tracking-[0.2em] text-black/45">
+              <p className="mt-1 text-sm font-semibold uppercase tracking-[0.2em] text-black/45">
                 {card.subtitle}
               </p>
             ) : null}
-            {card?.location ? (
-              <p className="mt-5 flex items-start gap-2 text-base text-black/70">
-                <MapPin className="mt-0.5 h-5 w-5 shrink-0" style={{ color: accent }} />
-                {card.location}
-              </p>
-            ) : null}
-            {card?.time ? (
-              <p className="mt-3 text-sm font-semibold" style={{ color: accent }}>
-                {card.time}
-              </p>
-            ) : null}
+
+            <div className="bday-chip-row">
+              {card?.time ? (
+                <span className="bday-chip">
+                  <Clock className="h-3.5 w-3.5" style={{ color: accent }} />
+                  {card.time}
+                </span>
+              ) : null}
+              {card?.location ? (
+                <span className="bday-chip">
+                  <MapPin className="h-3.5 w-3.5" style={{ color: accent }} />
+                  {card.location}
+                </span>
+              ) : null}
+            </div>
+
             {card?.text || data.description ? (
               <p className="mt-5 text-sm leading-relaxed text-black/55">
                 {card?.text || data.description}

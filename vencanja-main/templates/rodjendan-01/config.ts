@@ -32,7 +32,7 @@ export const rodjendan01DefaultConfig: UniversalProjectConfig = {
   template: "rodjendan-01",
   eventType: "kidsBirthday",
   meta: {
-    title: "Mila — 7. rođendan",
+    title: "Mila — 1. rođendan",
     description: "Moderna pozivnica za rođendansku proslavu",
   },
   event: {
@@ -78,11 +78,11 @@ export const rodjendan01DefaultConfig: UniversalProjectConfig = {
       visible: true,
       order: 1,
       data: {
-        title: "Rođendanska žurka!",
-        subtitle: "Pozivamo te na",
+        title: "Prvi rođendan!",
+        subtitle: "Pozivamo vas na",
         description:
-          "Igre, torta, muzika i puno smeha. Dođi da zajedno napravimo nezaboravan dan.",
-        badge: "7 godina",
+          "Mali koraci, velika radost. Dođite da zajedno proslavimo Milinu prvu godinu.",
+        badge: "1 godina",
         ctaText: "Potvrdi dolazak",
         ctaHref: "#rsvp",
         image: IMG.portrait,
@@ -96,7 +96,7 @@ export const rodjendan01DefaultConfig: UniversalProjectConfig = {
       order: 2,
       data: {
         description:
-          "Dragi prijatelji, sa velikom radošću vas pozivamo da proslavite Milin 7. rođendan. Spremate se za popodne puno igara, balona i slatkih iznenađenja!",
+          "Dragi prijatelji i porodico, sa velikom ljubavlju vas pozivamo na Milin 1. rođendan — topao popodnevni skup uz tortu, pesmu i osmehe.",
         imageUrl: IMG.balloons,
       },
     },
@@ -125,27 +125,27 @@ export const rodjendan01DefaultConfig: UniversalProjectConfig = {
         items: [
           {
             id: "1",
-            time: "16:00",
-            title: "Dolazak i igre",
-            description: "Baloni, dobrodošlica i slobodne igre na otvorenom.",
+            time: "11:00",
+            title: "Dolazak i druženje",
+            description: "Mirna atmosfera za bebe i roditelje.",
           },
           {
             id: "2",
-            time: "17:00",
-            title: "Kreativna radionica",
-            description: "Pravimo maske, narukvice i male suvenire.",
+            time: "11:30",
+            title: "Igre na mekanoj podlozi",
+            description: "Blage senzorne igre i baloni.",
           },
           {
             id: "3",
-            time: "18:00",
+            time: "12:00",
             title: "Torta i pevanje",
-            description: "Zajedničko duvanje svećica i slatki trenuci.",
+            description: "Prva svećica i zajedničke fotografije.",
           },
           {
             id: "4",
-            time: "19:00",
-            title: "Ples i veselje",
-            description: "Omiljene pesme, ples i fotografisanje.",
+            time: "12:30",
+            title: "Slatki sto i oproštaj",
+            description: "Voće, kolačići i polako rastajanje.",
           },
         ],
       },

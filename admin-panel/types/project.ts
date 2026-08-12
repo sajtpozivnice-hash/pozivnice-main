@@ -15,10 +15,23 @@ export type TemplateKey =
   | "vencanje-cinematic"
   | "vencanje-background"
   | "rodjendan-01"
+  | "kids-pastel"
+  | "kids-safari"
+  | "kids-space"
+  | "kids-candy"
   | "birthday18"
   | "birthday18-bright"
   | "birthday18-editorial"
-  | "birthday18-night";
+  | "birthday18-night"
+  | "birthday18-gold"
+  | "birthday18-ink"
+  | "birthday18-coast"
+  | "birthday18-atelier"
+  | "krstenje-classic"
+  | "krstenje-soft"
+  | "krstenje-garden"
+  | "krstenje-modern"
+  | "krstenje-candle";
 
 export type UniversalProjectConfig = {
   template: TemplateKey;

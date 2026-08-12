@@ -96,4 +96,136 @@
   .bday-pop {
     animation: bday-pop 0.7s ease both;
   }
+
+  /* Locations — map-first card with time/location chips */
+  .bday-map {
+    @apply overflow-hidden rounded-[1.75rem] border border-white/50 bg-white shadow-[0_24px_60px_-30px_rgba(31,36,48,0.55)];
+  }
+
+  .bday-map-media {
+    @apply relative aspect-[16/9] w-full overflow-hidden;
+    background:
+      linear-gradient(rgba(31, 36, 48, 0.06) 1px, transparent 1px) 0 0 / 100% 22px,
+      linear-gradient(90deg, rgba(31, 36, 48, 0.06) 1px, transparent 1px) 0 0 / 22px 100%,
+      #eef6ff;
+  }
+
+  .bday-map-media img {
+    @apply h-full w-full object-cover;
+  }
+
+  .bday-map-pin {
+    @apply absolute left-1/2 top-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-4 border-white;
+    box-shadow: 0 10px 24px -8px rgba(31, 36, 48, 0.55);
+  }
+
+  .bday-map-pin::after {
+    content: "";
+    position: absolute;
+    bottom: -13px;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform: translateX(-50%);
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 9px solid white;
+  }
+
+  .bday-map-body {
+    @apply p-6 text-center sm:p-10;
+  }
+
+  .bday-chip-row {
+    @apply mt-5 flex flex-wrap items-center justify-center gap-2.5;
+  }
+
+  .bday-chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-black/8 bg-black/[0.03] px-4 py-2 text-xs font-semibold text-bday-ink/75;
+  }
+
+  /* UploadImages — classic two-column album spread */
+  .bday-album {
+    @apply grid overflow-hidden lg:grid-cols-[1fr_1.15fr];
+  }
+
+  .bday-album-cover {
+    @apply relative isolate flex min-h-[220px] items-end justify-end overflow-hidden p-6 sm:min-h-[320px];
+  }
+
+  .bday-album-corner {
+    @apply pointer-events-none absolute h-7 w-7 border-white/70;
+  }
+
+  .bday-album-corner--tl {
+    @apply left-3 top-3 border-l-2 border-t-2;
+  }
+
+  .bday-album-corner--tr {
+    @apply right-3 top-3 border-r-2 border-t-2;
+  }
+
+  .bday-album-corner--bl {
+    @apply bottom-3 left-3 border-b-2 border-l-2;
+  }
+
+  .bday-album-corner--br {
+    @apply bottom-3 right-3 border-b-2 border-r-2;
+  }
+
+  .bday-album-icon {
+    @apply relative z-10 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/90 text-bday-ink shadow-lg;
+  }
+
+  .bday-album-body {
+    @apply flex flex-col justify-center p-6 text-left sm:p-10;
+  }
+
+  /* Footer — centered wax stamp closing */
+  .bday-stamp-seal {
+    @apply relative flex h-16 w-16 items-center justify-center rounded-full border-2 text-white;
+    border-color: color-mix(in srgb, var(--color-primary, #ff5c8a) 60%, white);
+    background: linear-gradient(135deg, var(--color-primary, #ff5c8a), var(--color-secondary, #3d8bff));
+    box-shadow: 0 14px 30px -14px color-mix(in srgb, var(--color-primary, #ff5c8a) 65%, transparent);
+  }
+
+  .bday-stamp-seal::before {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border-radius: inherit;
+    border: 1px dashed rgba(255, 255, 255, 0.6);
+  }
+
+  .bday-stamp-line {
+    @apply mx-auto inline-flex items-center gap-2 rounded-full border border-dashed px-5 py-2 text-xs font-semibold uppercase tracking-[0.28em];
+    border-color: color-mix(in srgb, var(--color-primary, #ff5c8a) 45%, transparent);
+    color: var(--color-primary, #ff5c8a);
+  }
+
+  /* RSVP — soft two-panel card (intro + form) */
+  .bday-rsvp-panel {
+    @apply grid overflow-hidden lg:grid-cols-[0.9fr_1.1fr];
+  }
+
+  .bday-rsvp-intro {
+    @apply relative overflow-hidden p-6 sm:p-10;
+    background: color-mix(in srgb, var(--color-primary, #ff5c8a) 6%, white);
+  }
+
+  .bday-rsvp-blob {
+    @apply pointer-events-none absolute rounded-full opacity-20 blur-2xl;
+  }
+
+  .bday-rsvp-blob--a {
+    @apply -left-10 -top-10 h-40 w-40;
+  }
+
+  .bday-rsvp-blob--b {
+    @apply -bottom-14 -right-10 h-48 w-48;
+  }
+
+  .bday-rsvp-form {
+    @apply p-6 sm:p-10;
+  }
 }

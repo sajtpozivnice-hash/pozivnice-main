@@ -20,49 +20,47 @@ const UploadImages: FC<Props> = ({ section, theme }) => {
 
   return (
     <section id={id} className="bday-section">
-      <div className="bday-shell max-w-4xl">
+      <div className="bday-shell max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bday-card-strong relative overflow-hidden px-6 py-12 text-center sm:px-10 sm:py-16"
+          className="bday-card-strong bday-album"
         >
-          {data.imageUrl ? (
-            <img
-              src={data.imageUrl}
-              alt=""
-              className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.1]"
-              referrerPolicy="no-referrer"
-            />
-          ) : null}
-
           <div
-            className="pointer-events-none absolute -left-10 top-0 h-40 w-40 rounded-full opacity-30 blur-2xl"
-            style={{ background: accent }}
-          />
-          <div
-            className="pointer-events-none absolute -right-8 bottom-0 h-44 w-44 rounded-full opacity-25 blur-2xl"
-            style={{ background: secondary }}
-          />
-
-          <div className="relative z-10">
-            <p className="bday-eyebrow mb-5">{data.subtitle || name}</p>
-
-            <div
-              className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-3xl text-white shadow-lg"
-              style={{
-                background: `linear-gradient(135deg, ${accent}, ${secondary})`,
-              }}
-            >
-              <Camera className="h-7 w-7" />
+            className="bday-album-cover"
+            style={{
+              background: data.imageUrl
+                ? undefined
+                : `linear-gradient(135deg, ${accent}, ${secondary})`,
+            }}
+          >
+            {data.imageUrl ? (
+              <img
+                src={data.imageUrl}
+                alt=""
+                className="absolute inset-0 h-full w-full object-cover"
+                referrerPolicy="no-referrer"
+              />
+            ) : null}
+            <span className="bday-album-corner bday-album-corner--tl" />
+            <span className="bday-album-corner bday-album-corner--tr" />
+            <span className="bday-album-corner bday-album-corner--bl" />
+            <span className="bday-album-corner bday-album-corner--br" />
+            <div className="bday-album-icon">
+              <Camera className="h-6 w-6" />
             </div>
+          </div>
+
+          <div className="bday-album-body">
+            <p className="bday-eyebrow mb-5 w-fit">{data.subtitle || name}</p>
 
             {data.title ? (
-              <h2 className="bday-heading text-3xl sm:text-5xl">{data.title}</h2>
+              <h2 className="bday-heading text-3xl sm:text-4xl">{data.title}</h2>
             ) : null}
 
             {data.description ? (
-              <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-black/55 sm:text-base">
+              <p className="mt-4 max-w-md text-sm leading-relaxed text-black/55 sm:text-base">
                 {data.description}
               </p>
             ) : null}

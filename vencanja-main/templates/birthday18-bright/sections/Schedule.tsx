@@ -26,20 +26,20 @@ const Schedule: FC<Props> = ({ section }) => {
           <h2 className="b18b-heading">{data.title}</h2>
         </div>
 
-        <div className="b18b-schedule-grid">
+        {/* Horizontal ticket carousel with a circular time badge clipped over the corner — not a vertical spine or grid */}
+        <div className="b18b-schedule-row">
           {items.map((item, index) => (
             <motion.article
               key={item.id}
-              initial={{ opacity: 0, y: 22 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: 22 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.07 }}
               className="b18b-schedule-card"
             >
-              <div className="b18b-schedule-accent" aria-hidden />
-              <p className="b18b-schedule-time">{item.time}</p>
+              <span className="b18b-schedule-badge">{item.time}</span>
               <h3
-                className="mt-3 text-xl font-extrabold tracking-wide uppercase sm:text-2xl"
+                className="mt-6 text-xl font-extrabold tracking-wide uppercase sm:text-2xl"
                 style={{ fontFamily: "var(--font-primary)" }}
               >
                 {item.title}

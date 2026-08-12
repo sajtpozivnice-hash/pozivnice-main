@@ -11,39 +11,43 @@ type Props = {
   theme: ThemeConfig;
 };
 
+/** Full-screen kinetic typography: each word of the title flies in on its own line, no giant "18" grain overlay. */
 const LoveQuote: FC<Props> = ({ section }) => {
   const { data, id } = section;
+  const words = (data.title || "").split(" ").filter(Boolean);
 
   return (
-    <section id={id} className="bn-final">
-      <div className="bn-grain" aria-hidden />
-      <div className="bn-final__age" aria-hidden>
-        18
-      </div>
+    <section id={id} className="bn-kinetic">
       <div className="bn-shell relative z-10">
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bn-label mb-6"
+          className="bn-label mb-8 text-center"
         >
           Poslednji poziv
         </motion.p>
-        <motion.h2
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="bn-final__title"
-        >
-          {data.title}
-        </motion.h2>
+        <h2 className="bn-kinetic__title">
+          {words.map((word, index) => (
+            <motion.span
+              key={`${word}-${index}`}
+              initial={{ opacity: 0, y: "0.6em", rotate: -2 }}
+              whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.12, duration: 0.6, ease: "easeOut" }}
+              className="bn-kinetic__word"
+            >
+              {word}
+            </motion.span>
+          ))}
+        </h2>
         {data.description ? (
           <motion.p
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.08 }}
-            className="mt-6 text-sm font-bold tracking-[0.28em] uppercase text-[color:var(--bn-accent)]"
+            transition={{ delay: words.length * 0.12 + 0.1 }}
+            className="bn-kinetic__desc"
           >
             {data.description}
           </motion.p>
@@ -52,8 +56,8 @@ const LoveQuote: FC<Props> = ({ section }) => {
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.14 }}
-          className="mt-10"
+          transition={{ delay: words.length * 0.12 + 0.2 }}
+          className="mt-10 flex justify-center"
         >
           <a href="#rsvp" className="bn-btn">
             Potvrdi dolazak

@@ -1,0 +1,341 @@
+@import "tailwindcss";
+
+@theme {
+  --color-kg-ink: #223226;
+  --color-kg-ink-soft: #3a4c3e;
+  --color-kg-ivory: #f7f8f2;
+  --color-kg-sand: #eaf0e2;
+  --color-kg-champagne: #5b7d52;
+  --color-kg-champagne-soft: #9db98e;
+  --color-kg-muted: #5f6b5f;
+}
+
+@layer components {
+  .kg-section {
+    @apply relative overflow-hidden bg-kg-ivory px-5 py-20 sm:px-8 md:px-12 lg:px-20 lg:py-28;
+  }
+
+  .kg-container {
+    @apply relative z-10 mx-auto w-full max-w-6xl;
+  }
+
+  .kg-container-narrow {
+    @apply relative z-10 mx-auto w-full max-w-3xl;
+  }
+
+  .kg-eyebrow {
+    @apply inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.35em];
+    color: var(--color-primary, var(--color-kg-champagne));
+    font-family: var(--font-secondary);
+  }
+
+  .kg-heading {
+    @apply text-4xl leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl;
+    font-family: var(--font-primary);
+    color: var(--color-secondary, var(--color-kg-ink));
+  }
+
+  .kg-subheading {
+    @apply mt-4 text-base leading-relaxed sm:text-lg;
+    font-family: var(--font-secondary);
+    color: var(--color-kg-muted);
+  }
+
+  /* Organic asymmetric card — one soft corner, one square corner */
+  .kg-card {
+    @apply rounded-tl-[2.5rem] rounded-br-[2.5rem] border border-kg-champagne/15 bg-white/80 shadow-[0_20px_60px_-35px_rgba(34,50,38,0.3)];
+  }
+
+  .kg-divider {
+    @apply mx-auto h-px w-16;
+    background: var(--color-primary, var(--color-kg-champagne));
+  }
+
+  .kg-input {
+    @apply w-full rounded-tl-xl rounded-br-xl border border-kg-champagne/20 bg-white px-4 py-3 text-sm outline-none transition focus:border-[color:var(--color-primary,#5b7d52)];
+    font-family: var(--font-secondary);
+    color: var(--color-kg-ink);
+  }
+
+  .kg-label {
+    @apply mb-2 block text-[11px] font-medium uppercase tracking-[0.22em];
+    color: var(--color-kg-muted);
+    font-family: var(--font-secondary);
+  }
+
+  /* InviteText — a torn scrap of paper pinned with washi tape, not a plain rounded card */
+  .kg-note {
+    @apply relative bg-white/85 shadow-[0_20px_55px_-35px_rgba(34,50,38,0.35)];
+    clip-path: polygon(
+      0% 3%, 6% 0%, 13% 2.5%, 19% 0.5%, 26% 3%, 33% 0.5%, 40% 2.5%, 47% 0%,
+      54% 3%, 61% 0.5%, 68% 2.5%, 75% 0%, 82% 3%, 89% 0.5%, 95% 2.5%, 100% 0%,
+      100% 97%, 94% 100%, 87% 97.5%, 81% 99.5%, 74% 97%, 67% 99.5%, 60% 97.5%,
+      53% 100%, 46% 97%, 39% 99.5%, 32% 97.5%, 25% 100%, 18% 97%, 11% 99.5%,
+      5% 97.5%, 0% 100%
+    );
+  }
+
+  .kg-note-tape {
+    @apply absolute -top-4 left-1/2 h-8 w-24 -translate-x-1/2 -rotate-3;
+    background: color-mix(in srgb, var(--color-kg-champagne-soft) 55%, transparent);
+    box-shadow: 0 6px 12px -6px rgba(34, 50, 38, 0.3);
+  }
+
+  /* Countdown — horizontal string of beads, value inside each bead */
+  .kg-bead-row {
+    @apply relative flex items-start justify-center gap-6 sm:gap-10;
+  }
+
+  .kg-bead-row::before {
+    content: "";
+    @apply pointer-events-none absolute top-8 right-8 left-8 hidden h-[3px] rounded-full sm:block sm:top-9;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--color-kg-champagne-soft) 0px,
+      var(--color-kg-champagne-soft) 8px,
+      transparent 8px,
+      transparent 15px
+    );
+  }
+
+  .kg-bead {
+    @apply relative z-10 flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-full border-2 bg-kg-ivory text-center shadow-[0_15px_35px_-20px_rgba(34,50,38,0.4)] sm:h-20 sm:w-20;
+    border-color: var(--bead-color);
+  }
+
+  .kg-bead__num {
+    @apply text-lg font-semibold sm:text-xl;
+    font-family: var(--font-primary);
+    color: var(--bead-color);
+  }
+
+  .kg-bead-label {
+    @apply mt-3 text-[10px] uppercase tracking-[0.24em];
+    color: var(--color-kg-muted);
+  }
+
+  /* Calendar — circular date dial with tick marks around the rim */
+  .kg-dial {
+    @apply relative mx-auto flex h-60 w-60 items-center justify-center rounded-full border-2 border-kg-champagne/25 bg-white;
+  }
+
+  .kg-dial-tick {
+    @apply absolute top-1.5 left-1/2 h-3 w-[2px] -translate-x-1/2 rounded-full bg-kg-champagne-soft;
+  }
+
+  .kg-dial-center {
+    @apply flex flex-col items-center;
+  }
+
+  .kg-dial-day {
+    @apply text-6xl sm:text-7xl;
+    font-family: var(--font-primary);
+    color: var(--color-secondary, var(--color-kg-ink));
+  }
+
+  .kg-dial-month {
+    @apply mt-1 text-xs uppercase tracking-[0.3em];
+    color: var(--color-primary, var(--color-kg-champagne));
+  }
+
+  .kg-dial-caption {
+    @apply mt-6 text-sm text-kg-muted;
+  }
+
+  /* Our Story — overlapping polaroid photo stack beside short caption paragraphs */
+  .kg-polaroid-stack {
+    @apply relative mx-auto flex h-64 w-56 items-center justify-center sm:h-72 sm:w-64;
+  }
+
+  .kg-polaroid {
+    @apply absolute border-[10px] border-white bg-white shadow-[0_25px_60px_-30px_rgba(34,50,38,0.45)];
+  }
+
+  .kg-polaroid--back {
+    @apply h-48 w-40 -translate-x-6 -translate-y-3 rotate-[-8deg] sm:h-56 sm:w-48;
+  }
+
+  .kg-polaroid--front {
+    @apply h-52 w-44 translate-x-5 translate-y-4 rotate-[7deg] sm:h-60 sm:w-52;
+  }
+
+  .kg-polaroid img {
+    @apply h-full w-full object-cover;
+  }
+
+  .kg-story-notes {
+    @apply flex flex-col gap-4;
+  }
+
+  .kg-story-note {
+    @apply flex items-start gap-3;
+  }
+
+  /* Locations — split botanical route (dashed vine + leaf nodes) beside a nature map panel */
+  .kg-map-path {
+    @apply relative flex flex-col gap-10 border-l-2 border-dashed border-kg-champagne-soft py-2 pl-9;
+  }
+
+  .kg-map-stop {
+    @apply relative;
+  }
+
+  .kg-map-node {
+    @apply absolute -left-[45px] top-0 flex h-8 w-8 items-center justify-center rounded-full text-white;
+    background: var(--color-kg-champagne);
+  }
+
+  .kg-map-panel {
+    @apply relative min-h-[280px] overflow-hidden rounded-tl-[3rem] rounded-br-[3rem] border border-kg-champagne/20 bg-kg-champagne/10 lg:min-h-full;
+  }
+
+  .kg-map-panel img {
+    @apply h-full w-full object-cover;
+  }
+
+  .kg-map-panel-fallback {
+    @apply flex h-full min-h-[280px] flex-col items-center justify-center text-kg-champagne;
+    background: repeating-linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-kg-champagne) 10%, transparent) 0px,
+      color-mix(in srgb, var(--color-kg-champagne) 10%, transparent) 2px,
+      transparent 2px,
+      transparent 18px
+    );
+  }
+
+  /* Upload images — vine trellis lattice holding hanging photo slots */
+  .kg-trellis {
+    @apply relative mx-auto mb-10 flex max-w-lg flex-wrap items-end justify-center gap-6 pb-8;
+    background-image: repeating-linear-gradient(
+        60deg,
+        color-mix(in srgb, var(--color-kg-champagne) 22%, transparent) 0,
+        color-mix(in srgb, var(--color-kg-champagne) 22%, transparent) 1.5px,
+        transparent 1.5px,
+        transparent 34px
+      ),
+      repeating-linear-gradient(
+        -60deg,
+        color-mix(in srgb, var(--color-kg-champagne) 22%, transparent) 0,
+        color-mix(in srgb, var(--color-kg-champagne) 22%, transparent) 1.5px,
+        transparent 1.5px,
+        transparent 34px
+      );
+  }
+
+  .kg-trellis-slot {
+    @apply flex h-14 w-14 items-center justify-center rounded-tl-lg rounded-br-lg border-2 border-kg-champagne/40 bg-kg-ivory text-kg-champagne shadow-[0_10px_25px_-15px_rgba(34,50,38,0.4)] sm:h-16 sm:w-16;
+  }
+
+  .kg-trellis-slot:nth-child(even) {
+    @apply mb-4;
+  }
+
+  .kg-trellis-post {
+    @apply border-t border-dashed border-kg-champagne-soft pt-6;
+  }
+
+  /* Love quote — botanical margin note, vine rail on the left with an offset quote */
+  .kg-quote-aside {
+    @apply relative ml-6 border-l-2 border-dashed border-kg-champagne-soft py-2 pl-10 sm:ml-16;
+  }
+
+  .kg-quote-rail {
+    @apply absolute -left-[19px] top-0 flex h-9 w-9 items-center justify-center rounded-full text-white;
+    background: var(--color-kg-champagne);
+  }
+
+  /* Footer — vine divider with a centered leaf ornament */
+  .kg-vine-divider {
+    @apply relative mx-auto flex h-9 w-9 items-center justify-center rounded-full text-white;
+    background: var(--color-kg-champagne);
+  }
+
+  .kg-vine-divider::before,
+  .kg-vine-divider::after {
+    content: "";
+    @apply absolute top-1/2 h-px w-20 -translate-y-1/2 bg-kg-champagne-soft sm:w-32;
+  }
+
+  .kg-vine-divider::before {
+    right: 100%;
+  }
+
+  .kg-vine-divider::after {
+    left: 100%;
+  }
+
+  /* RSVP — kraft clipboard with a clip bar and underlined form lines */
+  .kg-clipboard {
+    @apply relative border border-kg-champagne/20 bg-kg-sand shadow-[0_20px_60px_-35px_rgba(34,50,38,0.3)];
+  }
+
+  .kg-clipboard-clip {
+    @apply absolute -top-3 left-1/2 h-6 w-24 -translate-x-1/2 rounded-md border border-kg-champagne/30 bg-kg-ivory shadow-sm;
+  }
+
+  .kg-clipboard-field {
+    @apply border-b border-kg-champagne/15 pb-5 mb-5;
+  }
+
+  .kg-clipboard-input {
+    @apply w-full border-0 border-b border-dashed border-kg-champagne/40 bg-transparent px-0 py-2 text-sm outline-none transition focus:border-solid focus:border-[color:var(--color-primary,#5b7d52)];
+    font-family: var(--font-secondary);
+    color: var(--color-kg-ink);
+  }
+
+  .kg-clipboard-checkbox {
+    @apply flex h-6 w-6 shrink-0 items-center justify-center rounded-sm border-2 border-kg-champagne/40 text-transparent transition peer-checked:border-kg-champagne peer-checked:bg-kg-champagne peer-checked:text-white;
+  }
+
+  /* Attendance answered as two big pressable tiles, not a slim checkbox row */
+  .kg-attendance-tiles {
+    @apply grid grid-cols-2 gap-4;
+  }
+
+  .kg-attendance-tile-wrap {
+    @apply block cursor-pointer;
+  }
+
+  .kg-attendance-tile {
+    @apply flex h-28 flex-col items-center justify-center gap-2 rounded-tl-2xl rounded-br-2xl border-2 border-dashed border-kg-champagne/35 bg-white text-kg-champagne/50 shadow-[0_10px_25px_-18px_rgba(34,50,38,0.35)] transition peer-checked:border-solid peer-checked:border-kg-champagne peer-checked:bg-kg-champagne peer-checked:text-white sm:h-32;
+  }
+
+  .kg-attendance-tile-label {
+    @apply text-xs font-medium uppercase tracking-[0.18em];
+  }
+
+  /* Schedule — winding garden path of numbered leaf-badge steps on a thick vine trail */
+  .kg-steps {
+    @apply relative flex flex-col gap-6 pl-4;
+  }
+
+  .kg-steps::before {
+    content: "";
+    @apply absolute top-4 bottom-4 left-[27px] w-[3px] rounded-full;
+    background: repeating-linear-gradient(
+      180deg,
+      var(--color-kg-champagne-soft) 0px,
+      var(--color-kg-champagne-soft) 10px,
+      transparent 10px,
+      transparent 18px
+    );
+  }
+
+  .kg-step {
+    @apply relative flex items-start gap-5;
+  }
+
+  .kg-step-badge {
+    @apply relative z-10 flex h-14 w-14 shrink-0 flex-col items-center justify-center gap-0.5 rounded-full border-2 bg-kg-ivory text-kg-champagne;
+    border-color: var(--color-kg-champagne);
+  }
+
+  .kg-step-badge em {
+    @apply text-[10px] font-bold not-italic tracking-[0.1em];
+  }
+
+  .kg-step-card {
+    @apply mt-1 flex-1 px-5 py-4 sm:px-6;
+  }
+}

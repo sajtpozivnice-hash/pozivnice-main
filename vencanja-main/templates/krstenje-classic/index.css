@@ -1,0 +1,297 @@
+@import "tailwindcss";
+
+@theme {
+  --color-kc-ink: #2a2319;
+  --color-kc-ink-soft: #4a4033;
+  --color-kc-ivory: #fbf7ee;
+  --color-kc-sand: #f2ecdd;
+  --color-kc-champagne: #9c7a3f;
+  --color-kc-champagne-soft: #c7ab77;
+  --color-kc-muted: #7d7362;
+}
+
+@layer components {
+  .kc-section {
+    @apply relative overflow-hidden bg-kc-ivory px-5 py-20 sm:px-8 md:px-12 lg:px-20 lg:py-28;
+  }
+
+  .kc-container {
+    @apply relative z-10 mx-auto w-full max-w-6xl;
+  }
+
+  .kc-container-narrow {
+    @apply relative z-10 mx-auto w-full max-w-2xl;
+  }
+
+  .kc-eyebrow {
+    @apply text-[11px] font-medium uppercase tracking-[0.4em];
+    color: var(--color-primary, var(--color-kc-champagne));
+    font-family: var(--font-secondary);
+  }
+
+  .kc-heading {
+    @apply text-4xl leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl;
+    font-family: var(--font-primary);
+    color: var(--color-secondary, var(--color-kc-ink));
+  }
+
+  .kc-subheading {
+    @apply mt-4 text-base leading-relaxed sm:text-lg;
+    font-family: var(--font-secondary);
+    color: var(--color-kc-muted);
+  }
+
+  /* Letterpress plate: sharp-edged bordered panel, no shadow, no radius — printed card feel */
+  .kc-plate {
+    @apply relative border border-kc-ink/15 bg-white/60;
+  }
+
+  .kc-plate::before {
+    content: "";
+    @apply pointer-events-none absolute inset-[10px] border border-kc-champagne/30;
+  }
+
+  .kc-card {
+    @apply border border-black/8 bg-white/70;
+  }
+
+  .kc-divider {
+    @apply mx-auto h-px w-16;
+    background: var(--color-primary, var(--color-kc-champagne));
+  }
+
+  /* Small ornament: rule — dot — rule, used to separate ceremony typography */
+  .kc-ornament {
+    @apply mx-auto flex items-center justify-center gap-3;
+  }
+
+  .kc-ornament::before,
+  .kc-ornament::after {
+    content: "";
+    @apply h-px w-10 sm:w-16;
+    background: var(--color-primary, var(--color-kc-champagne));
+    opacity: 0.55;
+  }
+
+  .kc-ornament-dot {
+    @apply h-1.5 w-1.5 rotate-45;
+    background: var(--color-primary, var(--color-kc-champagne));
+  }
+
+  /* Corner marks for the hero frame */
+  .kc-corner {
+    @apply absolute h-6 w-6 border-kc-champagne/50;
+  }
+
+  .kc-input {
+    @apply w-full border border-kc-ink/15 bg-white px-4 py-3 text-sm outline-none transition focus:border-[color:var(--color-primary,#9c7a3f)];
+    font-family: var(--font-secondary);
+    color: var(--color-kc-ink);
+  }
+
+  .kc-label {
+    @apply mb-2 block text-[11px] font-medium uppercase tracking-[0.22em];
+    color: var(--color-kc-muted);
+    font-family: var(--font-secondary);
+  }
+
+  /* Countdown — letterpress ledger columns */
+  .kc-ledger {
+    @apply grid grid-cols-2 sm:grid-cols-4;
+  }
+
+  .kc-ledger__cell {
+    @apply border-kc-ink/12 px-4 py-9 text-center sm:px-6;
+  }
+
+  .kc-ledger__num {
+    @apply text-4xl sm:text-5xl;
+    font-family: var(--font-primary);
+    color: var(--color-primary, var(--color-kc-champagne));
+  }
+
+  .kc-ledger__label {
+    @apply mt-3 text-[11px] uppercase tracking-[0.28em] text-kc-muted;
+  }
+
+  /* Locations — stack of offset formal address cards, like printed index cards */
+  .kc-address-stack {
+    @apply mx-auto flex max-w-xl flex-col gap-10;
+  }
+
+  .kc-address-card {
+    @apply relative border border-kc-ink/15 bg-white/70 px-7 py-8 sm:px-10 sm:py-9;
+    transform: rotate(var(--kc-tilt, 0deg));
+  }
+
+  .kc-address-card::before {
+    content: "";
+    @apply pointer-events-none absolute inset-[8px] border border-kc-champagne/25;
+  }
+
+  .kc-address-index {
+    @apply absolute -top-3 left-8 bg-kc-sand px-3 text-[10px] uppercase tracking-[0.32em] text-kc-champagne;
+    font-family: var(--font-secondary);
+  }
+
+  .kc-address-rule {
+    @apply my-3 h-px w-10;
+    background: var(--color-primary, var(--color-kc-champagne));
+    opacity: 0.5;
+  }
+
+  /* Upload images — framed album cover with embossed corner marks */
+  .kc-album-frame {
+    @apply relative border border-kc-ink/15 bg-white/70;
+  }
+
+  .kc-album-frame::before {
+    content: "";
+    @apply pointer-events-none absolute inset-3 border border-kc-champagne/25 sm:inset-5;
+  }
+
+  .kc-album-plate {
+    @apply border border-kc-ink/10 bg-white/60 px-6 py-6;
+  }
+
+  /* Footer — small crest/seal frame above the closing signature */
+  .kc-seal-frame {
+    @apply h-20 w-20 overflow-hidden rounded-full border-4 border-double;
+    border-color: var(--color-primary, var(--color-kc-champagne));
+  }
+
+  .kc-seal-frame img {
+    @apply h-full w-full object-cover;
+  }
+
+  /* Schedule — plain formal order-of-service list, numbered, aligned columns, no path/markers */
+  .kc-order-list {
+    @apply divide-y divide-kc-ink/10 border-y border-kc-ink/10;
+  }
+
+  .kc-order-row {
+    @apply grid gap-1.5 py-6 sm:grid-cols-[2.5rem_6.5rem_1fr_1.3fr] sm:items-baseline sm:gap-6;
+  }
+
+  .kc-order-num {
+    @apply text-sm text-kc-champagne;
+    font-family: var(--font-primary);
+  }
+
+  .kc-order-time {
+    @apply text-xs uppercase tracking-[0.28em] text-kc-champagne sm:text-sm;
+  }
+
+  .kc-order-title {
+    @apply text-xl sm:text-2xl;
+    font-family: var(--font-primary);
+  }
+
+  .kc-order-desc {
+    @apply text-sm text-kc-muted sm:text-right;
+  }
+
+  /* Calendar — framed single-day plaque, no month grid */
+  .kc-plaque {
+    @apply relative mx-auto flex max-w-xs flex-col items-center border border-kc-ink/20 bg-white/70 px-10 py-14 sm:px-14 sm:py-16;
+  }
+
+  .kc-plaque::before {
+    content: "";
+    @apply pointer-events-none absolute inset-[10px] border border-kc-champagne/30;
+  }
+
+  .kc-plaque-weekday {
+    @apply text-[11px] uppercase tracking-[0.35em] text-kc-champagne;
+    font-family: var(--font-secondary);
+  }
+
+  .kc-plaque-day {
+    @apply my-3 text-7xl leading-none sm:text-8xl;
+    font-family: var(--font-primary);
+  }
+
+  .kc-plaque-month {
+    @apply text-sm uppercase tracking-[0.3em] text-kc-muted;
+  }
+
+  /* RSVP — two-panel formal spread: static seal/intro on the left, bordered field plate on the right */
+  .kc-rsvp-grid {
+    @apply grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-0;
+  }
+
+  .kc-rsvp-intro {
+    @apply relative flex flex-col items-center text-center lg:items-start lg:justify-center lg:border-r lg:border-kc-ink/12 lg:pr-12 lg:text-left;
+  }
+
+  .kc-rsvp-seal {
+    @apply mt-8 hidden lg:block;
+  }
+
+  .kc-rsvp-seal-ring {
+    @apply flex h-20 w-20 items-center justify-center rounded-full border-2 border-double;
+    border-color: var(--color-primary, var(--color-kc-champagne));
+  }
+
+  .kc-rsvp-seal-inner {
+    @apply block h-2 w-2 rotate-45;
+    background: var(--color-primary, var(--color-kc-champagne));
+  }
+
+  .kc-rsvp-panel {
+    @apply relative border border-kc-ink/15 bg-white/60 px-6 py-10 sm:px-10 lg:pl-12;
+  }
+
+  .kc-rsvp-panel::before {
+    content: "";
+    @apply pointer-events-none absolute inset-[10px] border border-kc-champagne/30;
+  }
+
+  .kc-rsvp-duo {
+    @apply grid grid-cols-1 gap-5 sm:grid-cols-2;
+  }
+
+  /* Attendance as a single-row segmented switch, not a two-cell grid */
+  .kc-segmented {
+    @apply flex overflow-hidden border border-kc-ink/15;
+  }
+
+  .kc-segmented-option-wrap {
+    @apply flex-1 cursor-pointer;
+  }
+
+  .kc-segmented-option-wrap:first-child .kc-segmented-option {
+    @apply border-r border-kc-ink/15;
+  }
+
+  .kc-segmented-option {
+    @apply block px-4 py-3 text-center text-sm uppercase tracking-[0.12em] text-kc-ink-soft transition peer-checked:bg-kc-ink peer-checked:text-kc-ivory;
+  }
+
+  /* Our Story — full-bleed backdrop photo with centered text over a dark scrim */
+  .kc-story-bleed {
+    @apply relative overflow-hidden;
+  }
+
+  .kc-story-media {
+    @apply absolute inset-0;
+  }
+
+  .kc-story-media img {
+    @apply h-full w-full object-cover;
+  }
+
+  .kc-story-scrim {
+    @apply absolute inset-0;
+    background: linear-gradient(
+      180deg,
+      rgba(20, 17, 12, 0.78),
+      rgba(20, 17, 12, 0.55) 45%,
+      rgba(20, 17, 12, 0.82)
+    );
+  }
+
+  .kc-story-content {
+    @apply relative z-10 mx-auto flex max-w-2xl flex-col items-center px-5 py-28 text-center sm:px-10 sm:py-36;
+  }
+}

@@ -19,28 +19,22 @@ const Footer: FC<Props> = ({ section, event }) => {
 
   const subtitle =
     data.subtitle || `${(event.names || "").toUpperCase()} · ${year}`;
+  const marqueeText = `${data.title || "18. ROĐENDAN"} · ${subtitle} · `;
 
   return (
     <footer id={id} className="b18b-footer">
-      <div className="b18b-shell">
-        <p
-          className="text-2xl font-extrabold tracking-[0.18em] uppercase sm:text-3xl"
-          style={{
-            fontFamily: "var(--font-primary)",
-            background:
-              "linear-gradient(135deg, var(--b18b-coral), var(--b18b-lilac))",
-            WebkitBackgroundClip: "text",
-            backgroundClip: "text",
-            color: "transparent",
-          }}
-        >
-          {data.title || "18. ROĐENDAN"}
-        </p>
-        <p className="mt-3 text-sm font-semibold tracking-[0.16em] text-[var(--b18b-muted)] uppercase">
-          {subtitle}
-        </p>
+      <div className="b18b-marquee" aria-hidden="true">
+        <div className="b18b-marquee__track">
+          {Array.from({ length: 6 }).map((_, index) => (
+            <span key={index} className="b18b-marquee__item">
+              {marqueeText}
+            </span>
+          ))}
+        </div>
+      </div>
+      <div className="b18b-shell mt-6 text-center">
         {data.description ? (
-          <p className="mx-auto mt-4 max-w-md text-sm text-[var(--b18b-muted)]">
+          <p className="mx-auto max-w-md text-sm text-[var(--b18b-muted)]">
             {data.description}
           </p>
         ) : null}

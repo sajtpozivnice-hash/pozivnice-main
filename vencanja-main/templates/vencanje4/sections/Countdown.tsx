@@ -90,31 +90,29 @@ const Countdown: FC<Props> = ({ section, event, theme }) => {
           <div className="v4-line mb-12" />
         )}
 
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="v4-board"
+        >
           {items.map((item, index) => (
             <motion.div
               key={item.label}
-              initial={{ opacity: 0, y: 22 }}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.08 }}
-              className="v4-glass-strong px-3 py-8"
+              transition={{ delay: index * 0.07 }}
+              className="v4-board-row"
             >
-              <p
-                className="text-4xl text-white sm:text-5xl"
-                style={{
-                  fontFamily: "var(--font-primary)",
-                  color: accent,
-                }}
-              >
+              <span className="v4-board-label">{item.label}</span>
+              <span className="v4-board-leader" />
+              <span className="v4-board-value" style={{ color: accent }}>
                 {String(item.value).padStart(2, "0")}
-              </p>
-              <p className="mt-3 text-[10px] uppercase tracking-[0.3em] text-white/50">
-                {item.label}
-              </p>
+              </span>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </SceneShell>
   );

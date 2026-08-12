@@ -12,29 +12,27 @@ type Props = {
   theme: ThemeConfig;
 };
 
-const InviteText: FC<Props> = ({ section, theme }) => {
+const InviteText: FC<Props> = ({ section, event, theme }) => {
   const { data, id } = section;
   const accent = theme.colors?.base?.primary?.value ?? "#d4a574";
 
   return (
-    <SceneFrame id={id} backgroundImage={data.imageUrl}>
-      <div className="vc-stage-narrow text-center">
+    <SceneFrame id={id} backgroundImage={data.imageUrl} overlay="heavy">
+      <span className="vc-letterbox vc-letterbox--top" aria-hidden="true" />
+      <span className="vc-letterbox vc-letterbox--bottom" aria-hidden="true" />
+
+      <div className="vc-caption-wrap">
         <motion.div
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          className="vc-caption-strip"
         >
-          <p className="vc-eyebrow mb-8" style={{ color: accent }}>
-            Monolog
-          </p>
-          <div className="vc-rule mb-8" style={{ background: accent }} />
-          <p
-            className="text-2xl leading-relaxed text-white sm:text-3xl sm:leading-relaxed"
-            style={{ fontFamily: "var(--font-primary)" }}
-          >
-            {data.description}
-          </p>
-          <div className="vc-rule mt-8" style={{ background: accent }} />
+          <span className="vc-caption-badge" style={{ borderColor: accent, color: accent }}>
+            CC
+          </span>
+          <p className="vc-caption-text">{data.description}</p>
+          <span className="vc-caption-code">{event.names}</span>
         </motion.div>
       </div>
     </SceneFrame>

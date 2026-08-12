@@ -3,7 +3,7 @@
 import { usePublicRsvpSubmit } from "@/components/invitation/usePublicRsvpSubmit";
 import { FormEvent, FC, useState } from "react";
 import { motion } from "framer-motion";
-import { Send } from "lucide-react";
+import { Send, Heart } from "lucide-react";
 import { RSVPSection } from "@/types/sections";
 import { EventConfig, ThemeConfig } from "@/types/config";
 import { formatDate } from "@/helpers/formatDate";
@@ -27,6 +27,7 @@ type FormState = {
 const RSVP: FC<Props> = ({ section, event, theme }) => {
   const { data, id, name } = section;
   const accent = theme.colors?.base?.primary?.value ?? "#FF5C8A";
+  const secondary = theme.colors?.base?.secondary?.value ?? "#3D8BFF";
 
   const { loading, submitted, error, handleSubmit: submitRsvp } =
     usePublicRsvpSubmit();
@@ -50,34 +51,36 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
 
   return (
     <section id={id} className="bday-section scroll-mt-8">
-      <div className="bday-shell max-w-3xl">
-        <div className="mb-10 text-center">
-          <p className="bday-eyebrow mb-4">{name}</p>
-          <h2 className="bday-heading">{data.title}</h2>
-          <p className="mt-3 text-black/55">
-            {data.description}
-            {formatDate(event.rsvpDate, "DD_MMM_YYYY")}
-          </p>
-        </div>
-
+      <div className="bday-shell max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bday-card-strong relative overflow-hidden p-6 sm:p-8"
+          className="bday-card-strong bday-rsvp-panel"
         >
-          {data.imageUrl ? (
-            <img
-              src={data.imageUrl}
-              alt=""
-              className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.08]"
-              referrerPolicy="no-referrer"
-            />
-          ) : null}
+          <div className="bday-rsvp-intro">
+            <div className="bday-rsvp-blob bday-rsvp-blob--a" style={{ background: accent }} />
+            <div className="bday-rsvp-blob bday-rsvp-blob--b" style={{ background: secondary }} />
 
-          <div className="relative z-10">
+            <div className="relative z-10">
+              <div
+                className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl text-white shadow-lg"
+                style={{ background: `linear-gradient(135deg, ${accent}, ${secondary})` }}
+              >
+                <Heart className="h-6 w-6" />
+              </div>
+              <p className="bday-eyebrow mb-4 w-fit">{name}</p>
+              <h2 className="bday-heading text-3xl sm:text-4xl">{data.title}</h2>
+              <p className="mt-3 text-sm text-black/55 sm:text-base">
+                {data.description}
+                {formatDate(event.rsvpDate, "DD_MMM_YYYY")}
+              </p>
+            </div>
+          </div>
+
+          <div className="bday-rsvp-form">
             {submitted ? (
-              <div className="py-10 text-center">
+              <div className="flex h-full flex-col items-center justify-center py-10 text-center">
                 <p
                   className="text-3xl"
                   style={{ fontFamily: "var(--font-primary)", color: accent }}

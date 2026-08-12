@@ -11,6 +11,7 @@ type Props = {
   theme: ThemeConfig;
 };
 
+/** Asymmetric pull-quote: left-anchored column with a rule and oversized mark, not a centered hero stack. */
 const LoveQuote: FC<Props> = ({ section }) => {
   const { data, id } = section;
 
@@ -29,39 +30,50 @@ const LoveQuote: FC<Props> = ({ section }) => {
       ) : (
         <div className="absolute inset-0 bg-[var(--b18-ink)]" />
       )}
-      <div className="b18-overlay absolute inset-0" />
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(100deg, var(--b18-bg) 0%, color-mix(in srgb, var(--b18-bg) 75%, transparent) 42%, transparent 78%)",
+        }}
+      />
 
-      <div className="b18-shell relative z-10 text-center">
-        <motion.h2
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="b18-heading b18-metal text-5xl sm:text-6xl lg:text-7xl"
-        >
-          {data.title}
-        </motion.h2>
-        {data.description ? (
-          <motion.p
+      <div className="b18-shell relative z-10">
+        <div className="b18-pullquote">
+          <span className="b18-pullquote__mark" aria-hidden>
+            “
+          </span>
+          <motion.h2
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="b18-heading b18-metal text-4xl sm:text-5xl lg:text-6xl"
+          >
+            {data.title}
+          </motion.h2>
+          {data.description ? (
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="mt-6 max-w-md text-lg text-white/65"
+            >
+              {data.description}
+            </motion.p>
+          ) : null}
+          <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="mx-auto mt-6 max-w-xl text-lg text-white/65"
+            transition={{ delay: 0.2 }}
+            className="mt-9"
           >
-            {data.description}
-          </motion.p>
-        ) : null}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="mt-10"
-        >
-          <a href="#rsvp" className="b18-btn">
-            Potvrdi dolazak
-          </a>
-        </motion.div>
+            <a href="#rsvp" className="b18-btn">
+              Potvrdi dolazak
+            </a>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

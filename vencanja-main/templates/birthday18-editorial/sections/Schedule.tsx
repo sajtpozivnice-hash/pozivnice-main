@@ -11,6 +11,7 @@ type Props = {
   theme: ThemeConfig;
 };
 
+/** Magazine day-plan two-up: schedule laid out as paired spread cards, not a single dotted-line list. */
 const Schedule: FC<Props> = ({ section }) => {
   const { data, id } = section;
   const items = [...(data.items || [])].sort((a, b) =>
@@ -30,7 +31,7 @@ const Schedule: FC<Props> = ({ section }) => {
           <span className="ed-sticker ed-sticker--blue">Redosled programa</span>
         </div>
 
-        <div className="ed-schedule__list">
+        <div className="ed-dayplan">
           {items.map((item, index) => (
             <motion.article
               key={item.id}
@@ -38,15 +39,16 @@ const Schedule: FC<Props> = ({ section }) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
-              className="ed-schedule__item"
+              className="ed-dayplan__card"
             >
-              <p className="ed-schedule__time">{item.time}</p>
-              <div>
-                <h3 className="ed-schedule__title">{item.title}</h3>
-                {item.description ? (
-                  <p className="ed-schedule__desc">{item.description}</p>
-                ) : null}
-              </div>
+              <span className="ed-dayplan__index">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <p className="ed-dayplan__time">{item.time}</p>
+              <h3 className="ed-dayplan__title">{item.title}</h3>
+              {item.description ? (
+                <p className="ed-dayplan__desc">{item.description}</p>
+              ) : null}
             </motion.article>
           ))}
         </div>

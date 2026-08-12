@@ -49,65 +49,42 @@ const Schedule: FC<Props> = ({ section, theme }) => {
           ) : null}
         </div>
 
-        <div className="relative">
-          <div
-            className="absolute top-2 bottom-2 left-[11px] w-px sm:left-1/2 sm:-translate-x-1/2"
-            style={{ background: "rgba(255,255,255,0.22)" }}
-          />
+        <p className="mb-4 text-center text-[11px] uppercase tracking-[0.3em] text-white/40 sm:hidden">
+          Prevucite za više →
+        </p>
 
-          <div className="space-y-8">
-            {items.map((item, index) => {
-              const isLeft = index % 2 === 0;
-
-              return (
-                <motion.div
-                  key={item.id}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.07 }}
-                  className="relative grid gap-4 sm:grid-cols-2 sm:gap-12"
-                >
-                  <div
-                    className="absolute top-5 left-0 h-6 w-6 rounded-full border sm:left-1/2 sm:-translate-x-1/2"
-                    style={{
-                      borderColor: accent,
-                      background: "rgba(12,11,10,0.85)",
-                      boxShadow: `0 0 0 4px rgba(12,11,10,0.4)`,
-                    }}
-                  />
-
-                  <div
-                    className={`pl-12 sm:pl-0 ${
-                      isLeft
-                        ? "sm:pr-14 sm:text-right"
-                        : "sm:col-start-2 sm:pl-14"
-                    }`}
-                  >
-                    <div className="v4-glass px-5 py-5 sm:px-6 sm:py-6">
-                      <p
-                        className="text-[11px] uppercase tracking-[0.32em]"
-                        style={{ color: accent }}
-                      >
-                        {item.time}
-                      </p>
-                      <h3
-                        className="mt-2 text-2xl text-white sm:text-3xl"
-                        style={{ fontFamily: "var(--font-primary)" }}
-                      >
-                        {item.title}
-                      </h3>
-                      {item.description ? (
-                        <p className="mt-2 text-sm text-white/60">
-                          {item.description}
-                        </p>
-                      ) : null}
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
+        <div className="v4-reel">
+          {items.map((item, index) => (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.07 }}
+              className="v4-glass v4-reel-card"
+            >
+              <span className="v4-label mb-4 inline-block" style={{ color: accent }}>
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <p
+                className="text-[11px] uppercase tracking-[0.32em]"
+                style={{ color: accent }}
+              >
+                {item.time}
+              </p>
+              <h3
+                className="mt-2 text-2xl text-white sm:text-3xl"
+                style={{ fontFamily: "var(--font-primary)" }}
+              >
+                {item.title}
+              </h3>
+              {item.description ? (
+                <p className="mt-2 text-sm text-white/60">
+                  {item.description}
+                </p>
+              ) : null}
+            </motion.div>
+          ))}
         </div>
       </div>
     </SceneShell>

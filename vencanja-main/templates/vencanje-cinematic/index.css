@@ -89,4 +89,189 @@
   .vc-reel-card {
     @apply relative w-[82vw] shrink-0 snap-center overflow-hidden sm:w-[58vw] lg:w-[42vw];
   }
+
+  /* Countdown — cinematic slate: one hero number + filmstrip stats */
+  .vc-slate {
+    @apply relative mx-auto flex flex-col items-center border-y py-10 sm:py-14;
+    border-color: var(--color-vc-line);
+  }
+
+  .vc-slate-hero {
+    @apply text-[5.5rem] leading-none tracking-tight sm:text-[8rem] lg:text-[10rem];
+    font-family: var(--font-primary);
+    color: var(--color-vc-ember);
+  }
+
+  .vc-slate-hero-label {
+    @apply mt-2 text-xs uppercase tracking-[0.5em] text-white/50;
+  }
+
+  .vc-slate-strip {
+    @apply mt-10 flex items-stretch;
+  }
+
+  .vc-slate-cell {
+    @apply flex-1 border-l px-6 text-center first:border-l-0 sm:px-10;
+    border-color: var(--color-vc-line);
+  }
+
+  .vc-slate-cell-value {
+    @apply text-2xl sm:text-3xl;
+    font-family: var(--font-primary);
+    color: white;
+  }
+
+  .vc-slate-cell-label {
+    @apply mt-2 text-[10px] uppercase tracking-[0.32em] text-white/45;
+  }
+
+  /* InviteText — overlay subtitle caption strip with letterbox bars */
+  .vc-letterbox {
+    @apply pointer-events-none absolute inset-x-0 z-20 bg-black;
+    height: clamp(1.2rem, 4vw, 2.75rem);
+  }
+
+  .vc-letterbox--top {
+    top: 0;
+  }
+
+  .vc-letterbox--bottom {
+    bottom: 0;
+  }
+
+  .vc-caption-wrap {
+    @apply relative z-10 flex min-h-[100svh] w-full items-end justify-center px-5 pb-16 sm:pb-24;
+  }
+
+  .vc-caption-strip {
+    @apply relative mx-auto flex w-full max-w-2xl flex-col items-center gap-3 border border-white/15 bg-black/55 px-6 py-6 text-center backdrop-blur-md sm:px-10 sm:py-8;
+  }
+
+  .vc-caption-badge {
+    @apply inline-flex items-center justify-center rounded-sm border px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.2em];
+  }
+
+  .vc-caption-text {
+    font-family: var(--font-primary);
+    @apply text-xl leading-relaxed text-white sm:text-2xl sm:leading-relaxed;
+  }
+
+  .vc-caption-code {
+    @apply font-mono text-[11px] uppercase tracking-[0.35em] text-white/40;
+  }
+
+  /* LoveQuote — film still frame with sprocket edge and caption plate */
+  .vc-still {
+    @apply relative mx-auto max-w-2xl border border-white/25 bg-black/45 px-8 py-12 text-center backdrop-blur-sm sm:px-14 sm:py-16;
+  }
+
+  .vc-still-corner {
+    @apply pointer-events-none absolute h-5 w-5 border-white/60;
+  }
+
+  .vc-still-corner--tl {
+    @apply left-3 top-3 border-l-2 border-t-2;
+  }
+
+  .vc-still-corner--tr {
+    @apply right-3 top-3 border-r-2 border-t-2;
+  }
+
+  .vc-still-corner--bl {
+    @apply bottom-3 left-3 border-b-2 border-l-2;
+  }
+
+  .vc-still-corner--br {
+    @apply bottom-3 right-3 border-b-2 border-r-2;
+  }
+
+  .vc-still-sprockets {
+    @apply absolute inset-y-6 left-0 flex w-6 flex-col items-center justify-between;
+  }
+
+  .vc-still-sprockets span {
+    @apply h-2.5 w-2.5 rounded-sm border border-white/40;
+  }
+
+  .vc-still-quote {
+    font-family: var(--font-primary);
+    @apply text-2xl leading-snug text-white sm:text-4xl sm:leading-snug;
+  }
+
+  .vc-still-caption {
+    @apply mx-auto mt-10 flex max-w-sm items-center justify-center gap-3 border-t border-white/15 pt-6;
+  }
+
+  .vc-still-caption-label {
+    @apply shrink-0 text-[10px] font-bold uppercase tracking-[0.3em];
+  }
+
+  .vc-still-caption-text {
+    @apply text-left text-sm text-white/60;
+  }
+
+  /* Footer — closing credits roll */
+  .vc-credits {
+    @apply mx-auto flex w-full max-w-md flex-col divide-y divide-white/10 border-y border-white/10;
+  }
+
+  .vc-credits-row {
+    @apply flex flex-col items-center gap-1.5 py-6;
+  }
+
+  .vc-credits-role {
+    @apply text-[10px] font-bold uppercase tracking-[0.4em] text-white/45;
+  }
+
+  .vc-credits-name {
+    font-family: var(--font-primary);
+    @apply text-2xl text-white sm:text-3xl;
+  }
+
+  .vc-credits-name--body {
+    @apply text-base font-normal text-white/70 sm:text-lg;
+    font-family: var(--font-secondary);
+  }
+
+  .vc-endcard {
+    @apply mt-14 text-xs font-bold uppercase tracking-[0.6em] text-white/50;
+  }
+
+  /* Calendar — production slate (clapperboard date card) */
+  .vc-slateboard {
+    @apply relative overflow-hidden border border-white/15 bg-black/55 backdrop-blur-md;
+  }
+
+  .vc-slateboard-clap {
+    @apply h-7 w-full;
+    background: repeating-linear-gradient(
+      -45deg,
+      #f4f1ec 0px,
+      #f4f1ec 18px,
+      #0a0a0a 18px,
+      #0a0a0a 36px
+    );
+    border-bottom: 3px solid var(--color-vc-void, #070707);
+  }
+
+  .vc-slateboard-fields {
+    @apply grid grid-cols-1 divide-y divide-white/10 border-b border-white/10 sm:grid-cols-3 sm:divide-x sm:divide-y-0;
+  }
+
+  .vc-slateboard-field {
+    @apply flex flex-col gap-1 px-5 py-4 text-left;
+  }
+
+  .vc-slateboard-field span {
+    @apply text-[10px] font-bold uppercase tracking-[0.3em] text-white/40;
+  }
+
+  .vc-slateboard-field strong {
+    font-family: var(--font-primary);
+    @apply text-lg font-normal text-white;
+  }
+
+  .vc-slateboard-grid {
+    @apply px-5 py-6 sm:px-8;
+  }
 }

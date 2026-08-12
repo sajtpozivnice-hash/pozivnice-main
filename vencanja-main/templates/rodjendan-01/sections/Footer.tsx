@@ -2,6 +2,7 @@
 
 import { FC } from "react";
 import { motion } from "framer-motion";
+import { PartyPopper } from "lucide-react";
 import { FooterSection } from "@/types/sections";
 import { EventConfig, ThemeConfig } from "@/types/config";
 
@@ -14,25 +15,25 @@ type Props = {
 const Footer: FC<Props> = ({ section, event, theme }) => {
   const { data, id } = section;
   const accent = theme.colors?.base?.primary?.value ?? "#FF5C8A";
-  const secondary = theme.colors?.base?.secondary?.value ?? "#3D8BFF";
 
   return (
     <section id={id} className="bday-section pb-10 pt-6">
-      <div className="bday-shell">
+      <div className="bday-shell max-w-2xl text-center">
+        <div className="bday-stamp-seal mx-auto mb-6">
+          <PartyPopper className="h-6 w-6" />
+        </div>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="relative overflow-hidden rounded-[2rem] px-6 py-14 text-center text-white sm:px-10"
-          style={{
-            background: `linear-gradient(135deg, ${accent}, ${secondary})`,
-          }}
+          className="bday-card-strong relative overflow-hidden px-6 py-12 sm:px-10"
         >
           {data.imageUrl ? (
             <img
               src={data.imageUrl}
               alt=""
-              className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-20 mix-blend-overlay"
+              className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.08]"
               referrerPolicy="no-referrer"
             />
           ) : null}
@@ -45,16 +46,23 @@ const Footer: FC<Props> = ({ section, event, theme }) => {
               {data.title}
             </h2>
             {data.subtitle ? (
-              <p className="mt-3 text-lg text-white/85">{data.subtitle}</p>
+              <p className="mt-3 text-lg text-black/60">{data.subtitle}</p>
             ) : null}
             {data.description ? (
-              <p className="mx-auto mt-4 max-w-md text-sm text-white/75">
+              <p className="mx-auto mt-4 max-w-md text-sm text-black/50">
                 {data.description}
               </p>
             ) : null}
-            <p className="mt-8 text-xs uppercase tracking-[0.28em] text-white/60">
-              {event.names}
-            </p>
+
+            <div
+              className="bday-stamp-line mt-8"
+              style={{
+                borderColor: `color-mix(in srgb, ${accent} 45%, transparent)`,
+                color: accent,
+              }}
+            >
+              <span>{event.names}</span>
+            </div>
           </div>
         </motion.div>
       </div>

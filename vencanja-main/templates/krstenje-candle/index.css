@@ -1,0 +1,416 @@
+@import "tailwindcss";
+
+@theme {
+  --color-kd-ink: #f3e8d4;
+  --color-kd-ink-soft: #d9c7a8;
+  --color-kd-ivory: #17120d;
+  --color-kd-sand: #221a12;
+  --color-kd-champagne: #d1a15c;
+  --color-kd-champagne-soft: #e6c48a;
+  --color-kd-muted: #a89679;
+}
+
+@layer components {
+  .kd-section {
+    @apply relative overflow-hidden bg-kd-ivory px-5 py-20 sm:px-8 md:px-12 lg:px-20 lg:py-28;
+  }
+
+  .kd-container {
+    @apply relative z-10 mx-auto w-full max-w-6xl;
+  }
+
+  .kd-container-narrow {
+    @apply relative z-10 mx-auto w-full max-w-2xl;
+  }
+
+  .kd-eyebrow {
+    @apply text-[11px] font-medium uppercase tracking-[0.4em];
+    color: var(--color-primary, var(--color-kd-champagne));
+    font-family: var(--font-secondary);
+  }
+
+  .kd-script {
+    font-family: var(--font-dancingscript);
+    @apply text-2xl sm:text-3xl;
+    color: var(--color-primary, var(--color-kd-champagne));
+  }
+
+  .kd-heading {
+    @apply text-4xl leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl;
+    font-family: var(--font-primary);
+    color: var(--color-secondary, var(--color-kd-ink));
+  }
+
+  .kd-subheading {
+    @apply mt-4 text-base leading-relaxed sm:text-lg;
+    font-family: var(--font-secondary);
+    color: var(--color-kd-muted);
+  }
+
+  /* Glass-glow panel — small centered content block, not a full-bleed hero */
+  .kd-glow-panel {
+    @apply relative rounded-3xl border border-kd-champagne/20 bg-white/[0.03] backdrop-blur-sm;
+    box-shadow: 0 0 0 1px rgba(209, 161, 92, 0.05), 0 30px 80px -30px rgba(0, 0, 0, 0.8), 0 0 60px -20px rgba(209, 161, 92, 0.25);
+  }
+
+  .kd-card {
+    @apply rounded-2xl border border-kd-champagne/15 bg-white/[0.03] backdrop-blur-sm;
+  }
+
+  .kd-divider {
+    @apply mx-auto h-px w-16;
+    background: var(--color-primary, var(--color-kd-champagne));
+    opacity: 0.6;
+  }
+
+  .kd-glow {
+    @apply pointer-events-none absolute rounded-full blur-3xl;
+    background: radial-gradient(circle, rgba(209, 161, 92, 0.35), transparent 70%);
+  }
+
+  .kd-input {
+    @apply w-full rounded-xl border border-kd-champagne/20 bg-white/5 px-4 py-3 text-sm text-kd-ink outline-none transition placeholder:text-kd-muted/60 focus:border-[color:var(--color-primary,#d1a15c)];
+    font-family: var(--font-secondary);
+  }
+
+  .kd-label {
+    @apply mb-2 block text-[11px] font-medium uppercase tracking-[0.22em] text-kd-muted;
+    font-family: var(--font-secondary);
+  }
+
+  /* InviteText — liturgy reading block, a cross breaks the horizontal rule instead of an icon-in-card */
+  .kd-cross-rule {
+    @apply relative mx-auto flex h-6 w-full max-w-xs items-center justify-center;
+  }
+
+  .kd-cross-rule::before,
+  .kd-cross-rule::after {
+    content: "";
+    @apply h-px flex-1;
+    background: linear-gradient(90deg, transparent, var(--color-kd-champagne));
+  }
+
+  .kd-cross-rule::after {
+    background: linear-gradient(90deg, var(--color-kd-champagne), transparent);
+  }
+
+  .kd-cross-rule--end::before,
+  .kd-cross-rule--end::after {
+    opacity: 0.6;
+  }
+
+  .kd-cross-rule__cross {
+    @apply relative mx-4 block h-4 w-4 shrink-0;
+  }
+
+  .kd-cross-rule__cross::before,
+  .kd-cross-rule__cross::after {
+    content: "";
+    @apply absolute bg-kd-champagne;
+  }
+
+  .kd-cross-rule__cross::before {
+    @apply top-0 bottom-0 left-1/2 w-px -translate-x-1/2;
+  }
+
+  .kd-cross-rule__cross::after {
+    @apply top-[3px] right-0 left-0 h-px;
+  }
+
+  .kd-liturgy-kicker {
+    @apply mt-6 text-center text-[11px] uppercase tracking-[0.4em] text-kd-champagne;
+    font-family: var(--font-secondary);
+  }
+
+  .kd-liturgy-text {
+    @apply mx-auto mt-6 max-w-2xl text-center text-xl leading-relaxed italic sm:text-2xl sm:leading-relaxed;
+    font-family: var(--font-primary);
+    color: var(--color-kd-ink);
+  }
+
+  /* Countdown — one tall pillar candle burning down the day count, small votives keep H:M:S */
+  .kd-vigil {
+    @apply mx-auto flex max-w-sm flex-col items-center gap-8;
+  }
+
+  .kd-vigil-pillar {
+    @apply flex flex-col items-center;
+  }
+
+  .kd-vigil-pillar__flame {
+    @apply relative block h-10 w-6 rounded-[50%_50%_50%_50%/60%_60%_40%_40%];
+    background: radial-gradient(circle at 50% 30%, #fff6da, var(--flame-color) 75%);
+    box-shadow:
+      0 0 24px 6px color-mix(in srgb, var(--flame-color) 60%, transparent),
+      0 0 55px 18px color-mix(in srgb, var(--flame-color) 30%, transparent);
+    animation: kd-flame-flicker 2.6s ease-in-out infinite;
+  }
+
+  @keyframes kd-flame-flicker {
+    0%, 100% { transform: scaleY(1) rotate(-1deg); }
+    50% { transform: scaleY(1.08) rotate(1.5deg); }
+  }
+
+  .kd-vigil-pillar__wax {
+    @apply -mt-1 flex flex-col items-center rounded-b-3xl rounded-t-md border border-kd-champagne/20 bg-white/[0.03] px-10 pt-6 pb-8 backdrop-blur-sm sm:px-14;
+  }
+
+  .kd-vigil-pillar__num {
+    @apply text-7xl font-black leading-none sm:text-8xl;
+    font-family: var(--font-primary);
+    color: var(--flame-color);
+  }
+
+  .kd-vigil-pillar__label {
+    @apply mt-3 text-[11px] uppercase tracking-[0.28em] text-kd-muted;
+  }
+
+  .kd-vigil-votives {
+    @apply flex items-end gap-5;
+  }
+
+  .kd-vigil-votive {
+    @apply flex flex-col items-center gap-2;
+  }
+
+  .kd-vigil-votive__flame {
+    @apply relative block h-4 w-3 rounded-[50%_50%_50%_50%/60%_60%_40%_40%];
+    background: radial-gradient(circle at 50% 30%, #fff6da, var(--flame-color) 75%);
+    box-shadow: 0 0 12px 2px color-mix(in srgb, var(--flame-color) 55%, transparent);
+  }
+
+  .kd-vigil-votive__num {
+    @apply text-xl font-bold sm:text-2xl;
+    font-family: var(--font-primary);
+    color: var(--flame-color);
+  }
+
+  .kd-vigil-votive__label {
+    @apply text-[9px] uppercase tracking-[0.22em] text-kd-muted;
+  }
+
+  /* Calendar — vertical ribbon of the event week, one flame lit on the event day */
+  .kd-ribbon {
+    @apply mx-auto flex max-w-xs flex-col gap-2;
+  }
+
+  .kd-ribbon-row {
+    @apply flex items-center gap-4 rounded-xl border border-kd-champagne/10 bg-white/[0.02] px-5 py-3 text-kd-muted transition;
+  }
+
+  .kd-ribbon-row--lit {
+    @apply border-kd-champagne/40 bg-white/[0.05];
+  }
+
+  .kd-ribbon-flame {
+    @apply flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-kd-champagne/20 text-kd-champagne/30;
+  }
+
+  .kd-ribbon-row--lit .kd-ribbon-flame {
+    @apply border-kd-champagne text-kd-champagne;
+    box-shadow: 0 0 16px -4px rgba(209, 161, 92, 0.6);
+  }
+
+  .kd-ribbon-day {
+    @apply text-lg;
+    font-family: var(--font-primary);
+  }
+
+  .kd-ribbon-weekday {
+    @apply ml-auto text-[10px] uppercase tracking-[0.25em];
+  }
+
+  /* Our Story — single column with a glowing vertical ornament rail */
+  .kd-story-rail {
+    @apply relative flex w-8 shrink-0 flex-col items-center pt-2 sm:w-10;
+  }
+
+  .kd-story-rail::before {
+    content: "";
+    @apply absolute top-9 bottom-0 left-1/2 w-px -translate-x-1/2;
+    background: linear-gradient(180deg, var(--color-kd-champagne), transparent);
+  }
+
+  .kd-story-rail-flame {
+    @apply flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-kd-champagne/40 text-kd-champagne;
+    box-shadow: 0 0 18px -4px rgba(209, 161, 92, 0.55);
+  }
+
+  .kd-story-thumb {
+    @apply mb-6 h-16 w-16 overflow-hidden rounded-full border border-kd-champagne/30;
+  }
+
+  .kd-story-thumb img {
+    @apply h-full w-full object-cover;
+  }
+
+  /* Schedule — horizontal scrolling rail of time cards, no vertical spine */
+  .kd-time-rail {
+    @apply flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4;
+    scrollbar-width: thin;
+  }
+
+  .kd-time-card {
+    @apply relative flex w-64 shrink-0 snap-start flex-col gap-3 rounded-2xl border border-kd-champagne/15 bg-white/[0.03] px-6 py-6 backdrop-blur-sm sm:w-72;
+  }
+
+  .kd-time-card::before {
+    content: "";
+    @apply absolute inset-x-6 top-0 h-[2px] rounded-full;
+    background: linear-gradient(90deg, var(--color-kd-champagne), transparent);
+  }
+
+  .kd-time-card__time {
+    @apply text-xs uppercase tracking-[0.28em] text-kd-champagne;
+  }
+
+  .kd-time-card__title {
+    @apply text-xl sm:text-2xl;
+    font-family: var(--font-primary);
+  }
+
+  .kd-time-card__desc {
+    @apply text-sm text-kd-muted;
+  }
+
+  .kd-time-rail-hint {
+    @apply mt-4 text-center text-[10px] uppercase tracking-[0.3em] text-kd-muted/60;
+  }
+
+  /* Locations — vertical rack of glowing venue panels, like votives along an aisle */
+  .kd-venue-list {
+    @apply flex flex-col gap-5;
+  }
+
+  .kd-venue-row {
+    @apply relative flex gap-5 overflow-hidden rounded-2xl border border-kd-champagne/15 bg-white/[0.02] px-6 py-6 sm:px-8;
+  }
+
+  .kd-venue-row::before {
+    content: "";
+    @apply absolute inset-y-3 left-0 w-[3px] rounded-full;
+    background: linear-gradient(
+      180deg,
+      var(--color-kd-champagne),
+      transparent
+    );
+  }
+
+  .kd-venue-flame {
+    @apply flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-kd-champagne/30 text-kd-champagne;
+    box-shadow: 0 0 22px -6px rgba(209, 161, 92, 0.55);
+  }
+
+  /* Upload images — one glowing spotlight frame with dim thumbnails gathered below */
+  .kd-focal-stage {
+    @apply mx-auto mt-10 flex max-w-xs flex-col items-center gap-5;
+  }
+
+  .kd-focal-frame {
+    @apply flex h-40 w-40 items-center justify-center overflow-hidden rounded-2xl border border-kd-champagne/30 bg-white/[0.04] sm:h-48 sm:w-48;
+    box-shadow:
+      0 0 0 1px rgba(209, 161, 92, 0.08),
+      0 30px 70px -30px rgba(0, 0, 0, 0.85),
+      0 0 70px -15px rgba(209, 161, 92, 0.35);
+  }
+
+  .kd-focal-frame img {
+    @apply h-full w-full object-cover;
+  }
+
+  .kd-focal-thumbs {
+    @apply flex gap-3;
+  }
+
+  .kd-focal-thumb {
+    @apply h-9 w-9 rounded-lg border border-kd-champagne/15 bg-white/[0.03];
+  }
+
+  /* Footer — row of votive flames above the closing message */
+  .kd-vigil-row {
+    @apply flex items-center justify-center gap-4 text-kd-champagne;
+  }
+
+  /* RSVP — open chapel register book: left page of vigil rules, right page of numbered signing lines */
+  .kd-book {
+    @apply relative mx-auto grid max-w-4xl grid-cols-1 gap-0 overflow-hidden rounded-2xl border border-kd-champagne/15 bg-white/[0.03] backdrop-blur-sm lg:grid-cols-2;
+  }
+
+  .kd-book::before {
+    content: "";
+    @apply pointer-events-none absolute top-0 bottom-0 left-1/2 hidden w-10 -translate-x-1/2 lg:block;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(0, 0, 0, 0.35) 50%,
+      transparent
+    );
+  }
+
+  .kd-book-page {
+    @apply relative px-6 py-10 sm:px-10;
+  }
+
+  .kd-book-page--left {
+    @apply border-b border-kd-champagne/15 lg:border-r lg:border-b-0;
+  }
+
+  .kd-book-page--right {
+    @apply flex list-none flex-col gap-5 p-0 px-6 py-10 sm:px-10;
+  }
+
+  .kd-book-rules {
+    @apply mt-8 flex list-none flex-col gap-3 border-t border-dashed border-kd-champagne/20 pt-6 text-sm text-kd-muted;
+    counter-reset: kd-rule;
+  }
+
+  .kd-book-rules li {
+    @apply relative pl-7;
+    counter-increment: kd-rule;
+  }
+
+  .kd-book-rules li::before {
+    content: counter(kd-rule, decimal-leading-zero);
+    @apply absolute top-0 left-0 text-[11px] text-kd-champagne;
+    font-family: var(--font-primary);
+  }
+
+  .kd-signing-lines {
+    @apply m-0;
+  }
+
+  .kd-signing-line {
+    @apply flex items-start gap-4 border-b border-dashed border-kd-champagne/15 pb-5;
+  }
+
+  .kd-signing-line--tight {
+    @apply items-center;
+  }
+
+  .kd-signing-line--last {
+    @apply border-none pb-0;
+  }
+
+  .kd-signing-num {
+    @apply mt-1 shrink-0 text-xs text-kd-champagne/50;
+    font-family: var(--font-primary);
+  }
+
+  .kd-signing-field {
+    @apply flex-1;
+  }
+
+  .kd-register-input {
+    @apply w-full border-0 border-b border-kd-champagne/25 bg-transparent px-1 py-2 text-sm text-kd-ink outline-none transition placeholder:text-kd-muted/60 focus:border-[color:var(--color-primary,#d1a15c)];
+    font-family: var(--font-secondary);
+  }
+
+  .kd-register-flame {
+    @apply flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-kd-champagne/25 text-kd-champagne/40 transition peer-checked:border-kd-champagne peer-checked:bg-kd-champagne/15 peer-checked:text-kd-champagne;
+  }
+
+  .kd-register-flame--lit {
+    @apply mx-auto flex h-10 w-10 border-kd-champagne bg-kd-champagne/15 text-kd-champagne;
+    box-shadow: 0 0 20px -4px rgba(209, 161, 92, 0.6);
+  }
+}

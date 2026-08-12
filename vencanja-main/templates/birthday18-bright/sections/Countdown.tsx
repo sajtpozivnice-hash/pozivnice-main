@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useEffect, useState } from "react";
+import { CSSProperties, FC, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { CountdownSection } from "@/types/sections";
 import { EventConfig, ThemeConfig } from "@/types/config";
@@ -50,10 +50,30 @@ const Countdown: FC<Props> = ({ section, event }) => {
   }, [targetDate]);
 
   const items = [
-    { label: "DANA", value: timeLeft.days },
-    { label: "SATI", value: timeLeft.hours },
-    { label: "MINUTA", value: timeLeft.minutes },
-    { label: "SEKUNDI", value: timeLeft.seconds },
+    {
+      label: "DANA",
+      value: timeLeft.days,
+      pct: Math.min(100, (timeLeft.days / 30) * 100),
+      color: "var(--b18b-coral)",
+    },
+    {
+      label: "SATI",
+      value: timeLeft.hours,
+      pct: (timeLeft.hours / 24) * 100,
+      color: "var(--b18b-blue)",
+    },
+    {
+      label: "MINUTA",
+      value: timeLeft.minutes,
+      pct: (timeLeft.minutes / 60) * 100,
+      color: "var(--b18b-lilac)",
+    },
+    {
+      label: "SEKUNDI",
+      value: timeLeft.seconds,
+      pct: (timeLeft.seconds / 60) * 100,
+      color: "#10b981",
+    },
   ];
 
   return (
@@ -67,20 +87,28 @@ const Countdown: FC<Props> = ({ section, event }) => {
           <h2 className="b18b-heading">{data.title || "JOŠ MALO…"}</h2>
         </div>
 
-        <div className="b18b-count-grid">
+        <div className="b18b-dial-row">
           {items.map((item, index) => (
             <motion.div
               key={item.label}
-              initial={{ opacity: 0, y: 20, scale: 0.96 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.07 }}
-              className="b18b-count-card"
+              transition={{ delay: index * 0.08, type: "spring", stiffness: 160, damping: 14 }}
+              className="b18b-dial"
+              style={
+                {
+                  "--dial-color": item.color,
+                  "--dial-pct": `${item.pct}%`,
+                } as CSSProperties
+              }
             >
-              <p className="b18b-count-value">
-                {String(item.value).padStart(2, "0")}
-              </p>
-              <p className="b18b-count-label">{item.label}</p>
+              <div className="b18b-dial-face">
+                <p className="b18b-dial-num">
+                  {String(item.value).padStart(2, "0")}
+                </p>
+                <p className="b18b-dial-label">{item.label}</p>
+              </div>
             </motion.div>
           ))}
         </div>

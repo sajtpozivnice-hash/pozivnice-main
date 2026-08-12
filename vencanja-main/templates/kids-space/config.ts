@@ -1,0 +1,292 @@
+import { UniversalProjectConfig } from "@/types/config";
+
+/** Royalty-free Unsplash placeholders — only in config, never hardcoded in components */
+const IMG = {
+  hero:
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023489/photo-1530103862676-de8c9debad1d_rxuitz.avif",
+  portrait:
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023223/pexels-matheus-rodrigues-672111387-18212443_mr0hd2.jpg",
+  balloons:
+    "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=85",
+  cake:
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023931/pexels-junielly-oliveira-2736244-4960960_migtwt.jpg",
+  party:
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023854/photo-1513151233558-d860c5398176_xvejar.avif",
+  venue:
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023813/photo-1464366400600-7168b8af9bc3_dmpg2x.avif",
+  gifts:
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023699/photo-1549465220-1a8b9238cd48_avxoqq.avif",
+  activities:
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023761/photo-1527529482837-4698179dc6ce_x4mmyo.avif",
+  gallery: [
+    "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=900&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023699/photo-1549465220-1a8b9238cd48_avxoqq.avif",
+    "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=900&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023813/photo-1464366400600-7168b8af9bc3_dmpg2x.avif",
+    "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=85",
+  ],
+};
+
+export const kidsSpaceDefaultConfig: UniversalProjectConfig = {
+  template: "kids-space",
+  eventType: "kidsBirthday",
+  meta: {
+    title: "Mateja — svemirska misija",
+    description: "Tamna orbitalna pozivnica za prvi dečiji rođendan"
+  },
+  event: {
+    date: "2026-09-20",
+    rsvpDate: "2026-09-10",
+    names: "Mateja",
+  },
+  theme: {
+    fonts: {
+      primary: "robotoCondensed",
+      secondary: "inter",
+    },
+    colors: {
+      base: {
+        primary: {
+          name: "Aurora Cyan",
+          value: "#5EEAD4",
+        },
+        secondary: {
+          name: "Nebula Magenta",
+          value: "#F472B6",
+        },
+        ternary: {
+          name: "Star Amber",
+          value: "#FBBF24",
+        },
+      },
+      background: {
+        name: "Deep Space",
+        value: "#0B0E1A",
+      },
+      backgroundSecondary: {
+        name: "Void",
+        value: "#05060D",
+      },
+    },
+  },
+  sections: [
+    {
+      id: "hero",
+      name: "Naslovna",
+      type: "hero",
+      visible: true,
+      order: 1,
+      data: {
+        title: "Misija: prva orbita",
+        subtitle: "Poziv za posadu",
+        description:
+          "Prva orbita oko Sunca. Spremi se za misiju, zvezde i tortu u nultoj gravitaciji.",
+        badge: "1 godina",
+        ctaText: "Potvrdi dolazak",
+        ctaHref: "#rsvp",
+        image: IMG.portrait,
+      },
+    },
+    {
+      id: "inviteText",
+      name: "Pozivnica",
+      type: "inviteText",
+      visible: true,
+      order: 2,
+      data: {
+        description:
+          "Pozivamo posadu na Matejin 1. rođendan — svemirska žurka sa misijama, kodovima i zvezdanoj torti.",
+        imageUrl: IMG.balloons,
+      },
+    },
+    {
+      id: "countdown",
+      name: "Odbrojavanje",
+      type: "countdown",
+      visible: true,
+      order: 3,
+      data: {
+        title: "Još samo malo…",
+        description: "Odbrojavanje do velikog dana",
+        imageUrl: IMG.party,
+      },
+    },
+    {
+      id: "schedule",
+      name: "Program",
+      type: "schedule",
+      visible: true,
+      order: 4,
+      data: {
+        title: "Program dana",
+        subtitle: "Šta nas čeka",
+        imageUrl: IMG.cake,
+        items: [
+          {
+            id: "1",
+            time: "18:00",
+            title: "Ulazak u bazu",
+            description: "Bedževi i brifing misije.",
+          },
+          {
+            id: "2",
+            time: "18:25",
+            title: "Kodovi i zadaci",
+            description: "Timovi rešavaju svemirske zagonetke.",
+          },
+          {
+            id: "3",
+            time: "19:10",
+            title: "Lansiranje torte",
+            description: "Jedna svećica.",
+          },
+          {
+            id: "4",
+            time: "19:40",
+            title: "Disco u orbiti",
+            description: "Ples i foto-kabina.",
+          },
+        ],
+      },
+    },
+    {
+      id: "featureCards",
+      name: "Korisne informacije",
+      type: "featureCards",
+      visible: true,
+      order: 5,
+      data: {
+        title: "Sve što treba da znaš",
+        subtitle: "Za goste i roditelje",
+        description:
+          "Kratke napomene da proslava protekne opušteno za sve.",
+        cards: [
+          {
+            id: "1",
+            title: "Pokloni",
+            description:
+              "Ako želite da donesete poklon, Mila voli kreativne setove, knjige i male avanture.",
+            icon: "gift",
+            accent: "#FF5C8A",
+            image: IMG.gifts,
+          },
+          {
+            id: "2",
+            title: "Kodeks odevanja",
+            description:
+              "Udobna, šarena odeća! Predlažemo pastalne boje i patike za igre.",
+            icon: "shirt",
+            accent: "#3D8BFF",
+          },
+          {
+            id: "3",
+            title: "Zabavne aktivnosti",
+            description:
+              "Bojenje lica, piñata, karaoke ugao i foto-booth sa rekvizitima.",
+            icon: "party",
+            accent: "#FFB703",
+            image: IMG.activities,
+          },
+          {
+            id: "4",
+            title: "Info za roditelje",
+            description:
+              "Proslava traje do 20:00. Roditelji su dobrodošli da ostanu ili se vrate po decu.",
+            icon: "baby",
+            accent: "#2EC4B6",
+          },
+          {
+            id: "5",
+            title: "Napomena za goste",
+            description:
+              "Molimo vas da potvrdite dolazak do 10. septembra zbog organizacije hrane i torti.",
+            icon: "info",
+            accent: "#9B5DE5",
+          },
+        ],
+      },
+    },
+    {
+      id: "locations",
+      name: "Lokacija",
+      type: "locations",
+      visible: true,
+      order: 6,
+      data: {
+        title: "Gde se družimo",
+        subtitle: "Lokacija proslave",
+        description: "Lako dostupno, parking u blizini.",
+        imageUrl: IMG.venue,
+        cards: [
+          {
+            id: 1,
+            title: "Party Garden Studio",
+            subtitle: "Bašta & playroom",
+            location: "Bulevar umetnosti 12, Beograd",
+            time: "Od 16:00",
+            text: "Prostrana bašta sa igralištem i zatvorenim prostorom za loše vreme.",
+            image: IMG.venue,
+            icon: "map-pin",
+          },
+        ],
+      },
+    },
+    {
+      id: "ourGallery",
+      name: "Galerija",
+      type: "ourGallery",
+      visible: true,
+      order: 7,
+      data: {
+        title: "Trenuci za pamćenje",
+        description: "Mali uvid u atmosferu koju volimo",
+        images: IMG.gallery.map((url) => ({ url })),
+      },
+    },
+    {
+      id: "uploadImagesSection",
+      name: "Dodavanje slika",
+      type: "uploadImagesSection",
+      visible: true,
+      order: 8,
+      data: {
+        title: "Podeli uspomene sa žurke",
+        subtitle: "Gostujuće fotografije",
+        description:
+          "Uslikaj trenutak, smeh ili tortu — i dodaj u zajedničku galeriju proslave.",
+        buttonText: "Dodaj fotografije",
+        imageUrl: IMG.party,
+      },
+    },
+    {
+      id: "rsvp",
+      name: "Potvrda prisustva",
+      type: "rsvp",
+      visible: true,
+      order: 9,
+      data: {
+        title: "Hoćeš li doći?",
+        description: "Potvrdi dolazak najkasnije do ",
+        buttonText: "Pošalji potvrdu",
+        messageLabel: "Poruka za slavljenika",
+        messagePlaceholder: "Napiši kratku čestitku ili poruku…",
+        imageUrl: IMG.balloons,
+      },
+    },
+    {
+      id: "footer",
+      name: "Podnožje",
+      type: "footer",
+      visible: true,
+      order: 10,
+      data: {
+        title: "Vidimo se uskoro!",
+        subtitle: "Sa ljubavlju, porodica",
+        description:
+          "Pitanja? Javite se organizatoru preko forme za potvrdu prisustva.",
+        imageUrl: IMG.party,
+      },
+    },
+  ],
+};

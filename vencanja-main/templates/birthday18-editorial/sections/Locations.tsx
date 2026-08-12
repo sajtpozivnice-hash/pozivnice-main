@@ -79,9 +79,15 @@ const Locations: FC<Props> = ({ section, event }) => {
           initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="ed-where"
+          className="ed-postcard-wrap"
         >
-          <div className="ed-where__copy space-y-5">
+          {card?.image ? (
+            <div className="ed-postcard">
+              <img src={card.image} alt="" referrerPolicy="no-referrer" />
+              <span className="ed-postcard__stamp">GDE</span>
+            </div>
+          ) : null}
+          <div className="ed-postcard-copy space-y-4">
             <p className="ed-where__eyebrow">GDE</p>
             <p className="ed-where__city">
               {event.location?.address || "BEOGRAD"}
@@ -105,15 +111,6 @@ const Locations: FC<Props> = ({ section, event }) => {
               >
                 Uputstva
               </a>
-            ) : null}
-          </div>
-          <div className="ed-where__media">
-            {card?.image ? (
-              <img
-                src={card.image}
-                alt=""
-                referrerPolicy="no-referrer"
-              />
             ) : null}
           </div>
         </motion.div>

@@ -162,4 +162,54 @@
       min-height: 220px !important;
     }
   }
+
+  /* Footer — dual-line lockup: tight title/subtitle pair beside a note, not a centered stack */
+  .b18-footer__row {
+    @apply flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end;
+  }
+
+  .b18-footer__lockup {
+    @apply border-l-2 pl-4;
+    border-color: color-mix(in srgb, var(--b18-fg) 25%, transparent);
+  }
+
+  .b18-footer__sub {
+    @apply mt-1 text-[11px] font-semibold tracking-[0.16em] uppercase;
+    color: color-mix(in srgb, var(--b18-fg) 45%, transparent);
+  }
+
+  .b18-footer__note {
+    @apply max-w-xs text-sm sm:text-right;
+    color: color-mix(in srgb, var(--b18-fg) 35%, transparent);
+  }
+
+  /* Countdown — inline digital ticker with colon separators, not a 4-cell panel grid */
+  .b18-ticker {
+    @apply flex flex-wrap items-start justify-center gap-x-1 gap-y-6 sm:gap-x-2;
+  }
+
+  .b18-ticker__group {
+    @apply flex items-start;
+  }
+
+  .b18-ticker__unit {
+    @apply text-center px-3 sm:px-5;
+  }
+
+  .b18-ticker__sep {
+    @apply text-4xl font-bold text-white/20 sm:text-5xl lg:text-6xl;
+    font-family: var(--font-primary);
+  }
+
+  /* LoveQuote — asymmetric pull-quote column, not a centered hero stack */
+  .b18-pullquote {
+    @apply relative max-w-xl border-l-2 pl-6 sm:pl-8;
+    border-color: color-mix(in srgb, var(--b18-fg) 30%, transparent);
+  }
+
+  .b18-pullquote__mark {
+    @apply mb-2 block text-6xl leading-none sm:text-7xl;
+    font-family: var(--font-primary);
+    color: color-mix(in srgb, var(--b18-fg) 30%, transparent);
+  }
 }

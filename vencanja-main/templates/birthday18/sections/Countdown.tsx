@@ -74,28 +74,33 @@ const Countdown: FC<Props> = ({ section, event }) => {
           <h2 className="b18-heading">{data.title || "DO POČETKA"}</h2>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-5">
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="b18-ticker"
+        >
           {items.map((item, index) => (
-            <motion.div
-              key={item.label}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.08 }}
-              className="b18-panel px-4 py-8 text-center sm:py-10"
-            >
-              <p
-                className="b18-metal text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl"
-                style={{ fontFamily: "var(--font-primary)" }}
-              >
-                {String(item.value).padStart(2, "0")}
-              </p>
-              <p className="mt-3 text-[10px] font-semibold tracking-[0.28em] text-white/45 uppercase">
-                {item.label}
-              </p>
-            </motion.div>
+            <div key={item.label} className="b18-ticker__group">
+              <div className="b18-ticker__unit">
+                <p
+                  className="b18-metal text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl"
+                  style={{ fontFamily: "var(--font-primary)" }}
+                >
+                  {String(item.value).padStart(2, "0")}
+                </p>
+                <p className="mt-2 text-[10px] font-semibold tracking-[0.28em] text-white/45 uppercase">
+                  {item.label}
+                </p>
+              </div>
+              {index < items.length - 1 ? (
+                <span className="b18-ticker__sep" aria-hidden>
+                  :
+                </span>
+              ) : null}
+            </div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

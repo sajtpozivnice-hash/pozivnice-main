@@ -24,7 +24,10 @@ const resolveCatalogImage = (config: UniversalProjectConfig): string => {
 export function getCatalogTemplates(): CatalogCard[] {
   return (Object.keys(templates) as TemplateKey[]).map((key) => {
     const pack = templates[key];
-    const eventType: EventType = pack.eventTypes[0] ?? "wedding";
+    const eventTypes = pack.eventTypes.length
+      ? pack.eventTypes
+      : (["wedding"] as EventType[]);
+    const eventType: EventType = eventTypes[0] ?? "wedding";
     const meta = pack.catalog;
 
     return {
@@ -32,6 +35,7 @@ export function getCatalogTemplates(): CatalogCard[] {
       title: meta.title,
       description: meta.description,
       eventType,
+      eventTypes,
       tag: eventTypeToTag(eventType),
       style: meta.style,
       price: meta.price,
@@ -58,7 +62,10 @@ export function filterCatalogTemplates(
   const query = filters.search.trim().toLowerCase();
 
   return items.filter((item) => {
-    if (filters.eventType && item.eventType !== filters.eventType) {
+    if (
+      filters.eventType &&
+      !(item.eventTypes ?? [item.eventType]).includes(filters.eventType)
+    ) {
       return false;
     }
     if (filters.style && item.style !== filters.style) {

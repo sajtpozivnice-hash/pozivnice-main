@@ -52,11 +52,10 @@ const Countdown: FC<Props> = ({ section, event }) => {
     return () => clearInterval(timer);
   }, [targetDate]);
 
-  const items = [
-    { label: "DANI", value: timeLeft.days },
-    { label: "SATI", value: timeLeft.hours },
-    { label: "MINUTI", value: timeLeft.minutes },
-    { label: "SEKUNDE", value: timeLeft.seconds },
+  const hms = [
+    { label: "H", value: timeLeft.hours },
+    { label: "M", value: timeLeft.minutes },
+    { label: "S", value: timeLeft.seconds },
   ];
 
   return (
@@ -68,21 +67,27 @@ const Countdown: FC<Props> = ({ section, event }) => {
           {data.title || "DO IZLASKA IZDANJA"}
         </h2>
 
-        <div className="ed-count__rows">
-          {items.map((item, index) => (
-            <motion.div
-              key={item.label}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.06 }}
-              className="ed-count__row"
-            >
-              <p className="ed-count__num">
-                {String(item.value).padStart(2, "0")}
-              </p>
-              <p className="ed-count__unit">{item.label}</p>
-            </motion.div>
+        {/* Magazine T-minus — one oversized DAYS headline, tiny HH:MM:SS strip beneath */}
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="ed-tminus"
+        >
+          <span className="ed-tminus__prefix">T&minus;</span>
+          <span className="ed-tminus__days">{timeLeft.days}</span>
+          <span className="ed-tminus__unit">DANA</span>
+        </motion.div>
+
+        <div className="ed-tminus__strip">
+          {hms.map((item, index) => (
+            <span className="ed-tminus__chip" key={item.label}>
+              <b>{String(item.value).padStart(2, "0")}</b>
+              {item.label}
+              {index < hms.length - 1 ? (
+                <i className="ed-tminus__colon">:</i>
+              ) : null}
+            </span>
           ))}
         </div>
       </div>

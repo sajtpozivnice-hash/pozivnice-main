@@ -49,21 +49,28 @@ const RSVP: FC<Props> = ({ section, event }) => {
   return (
     <section id={id} className="b18b-section scroll-mt-8 overflow-hidden">
       <div className="b18b-blob b18b-blob--coral b18b-float absolute -left-12 top-8 h-44 w-44" />
-      <div className="b18b-shell relative z-10 max-w-2xl">
-        <div className="mb-10 text-center">
-          <h2 className="b18b-heading">{data.title}</h2>
-          <p className="mt-4 text-[var(--b18b-muted)]">
-            {data.description}
-            {formatDate(event.rsvpDate, "DD_MMM_YYYY")}
-          </p>
-        </div>
+      <div className="b18b-shell relative z-10">
+        <div className="b18b-rsvp-split">
+          <motion.div
+            initial={{ opacity: 0, x: -16 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="b18b-rsvp-aside"
+          >
+            <span className="b18b-rsvp-aside__mark">RSVP</span>
+            <h2 className="b18b-heading">{data.title}</h2>
+            <p className="b18b-copy">
+              {data.description}
+              {formatDate(event.rsvpDate, "DD_MMM_YYYY")}
+            </p>
+          </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="b18b-rsvp-panel"
-        >
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="b18b-rsvp-form-card"
+          >
           {submitted ? (
             <div className="py-10 text-center">
               <p
@@ -199,7 +206,8 @@ const RSVP: FC<Props> = ({ section, event }) => {
               </button>
             </form>
           )}
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

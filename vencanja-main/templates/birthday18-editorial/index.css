@@ -463,6 +463,53 @@
   filter: contrast(1.08);
 }
 
+/* —— LOCATION POSTCARD (replaces split media panel) —— */
+.ed-postcard-wrap {
+  margin-top: 3.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem 2.5rem;
+}
+
+.ed-postcard {
+  position: relative;
+  width: min(100%, 300px);
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border: 2px solid var(--ed-ink);
+  background: var(--ed-paper);
+  transform: rotate(-3deg);
+  box-shadow: 10px 12px 0 var(--ed-cobalt);
+  flex-shrink: 0;
+}
+
+.ed-postcard img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.08) saturate(1.05);
+}
+
+.ed-postcard__stamp {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  padding: 0.3rem 0.55rem;
+  border: 1.5px dashed rgba(255, 255, 255, 0.85);
+  color: white;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background: rgba(10, 10, 10, 0.35);
+}
+
+.ed-postcard-copy {
+  flex: 1 1 260px;
+  min-width: 220px;
+}
+
 /* —— COUNTDOWN —— */
 .ed-count {
   background: var(--ed-cherry);
@@ -470,78 +517,126 @@
   overflow: hidden;
 }
 
-.ed-count__rows {
+/* Magazine T-minus — a single oversized DAYS headline, no equal-size row grid */
+.ed-tminus {
   margin-top: 1.5rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  flex-wrap: wrap;
   border-top: 1px solid rgba(255, 255, 255, 0.28);
+  padding-top: 1.25rem;
 }
 
-.ed-count__row {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: end;
-  gap: 1rem;
-  padding: 0.85rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
-}
-
-.ed-count__num {
+.ed-tminus__prefix {
   font-family: var(--font-primary);
-  font-size: clamp(4.5rem, 16vw, 9rem);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
   font-weight: 900;
-  line-height: 0.8;
+  opacity: 0.55;
+}
+
+.ed-tminus__days {
+  font-family: var(--font-primary);
+  font-size: clamp(6rem, 22vw, 13rem);
+  font-weight: 900;
+  line-height: 0.78;
   letter-spacing: -0.06em;
 }
 
-.ed-count__unit {
-  padding-bottom: 0.55rem;
-  font-size: 0.85rem;
+.ed-tminus__unit {
+  font-size: 0.9rem;
   font-weight: 800;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
-  opacity: 0.85;
+  opacity: 0.8;
+  padding-bottom: 0.75rem;
+}
+
+.ed-tminus__strip {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  font-family: var(--font-primary);
+}
+
+.ed-tminus__chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.ed-tminus__chip b {
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.ed-tminus__colon {
+  margin-left: 0.4rem;
+  font-style: normal;
+  opacity: 0.4;
 }
 
 /* —— SCHEDULE —— */
-.ed-schedule__list {
+/* Schedule — magazine day-plan two-up: paired spread cards, not a single dotted-line list */
+.ed-dayplan {
   margin-top: 2rem;
-  border-top: 2px solid var(--ed-ink);
-}
-
-.ed-schedule__item {
   display: grid;
-  gap: 0.35rem;
-  padding: 1.35rem 0;
-  border-bottom: 1px solid var(--ed-line);
+  gap: 1.5rem;
 }
 
-@media (min-width: 760px) {
-  .ed-schedule__item {
-    grid-template-columns: 140px 1fr;
-    gap: 2rem;
-    align-items: baseline;
+@media (min-width: 640px) {
+  .ed-dayplan {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.75rem 2rem;
   }
 }
 
-.ed-schedule__time {
+.ed-dayplan__card {
+  position: relative;
+  border-top: 2px solid var(--ed-ink);
+  padding-top: 1.1rem;
+}
+
+.ed-dayplan__index {
+  position: absolute;
+  top: 1.1rem;
+  right: 0;
+  font-family: var(--font-secondary);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--ed-muted);
+}
+
+.ed-dayplan__time {
   font-family: var(--font-primary);
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
   font-weight: 900;
   letter-spacing: -0.04em;
   color: var(--ed-cobalt);
 }
 
-.ed-schedule__title {
+.ed-dayplan__title {
+  margin-top: 0.35rem;
   font-family: var(--font-primary);
-  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-size: clamp(1.3rem, 3vw, 1.7rem);
   font-weight: 900;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   text-transform: uppercase;
 }
 
-.ed-schedule__desc {
+.ed-dayplan__desc {
   margin-top: 0.35rem;
   color: var(--ed-muted);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 /* —— DRESS —— */
@@ -601,6 +696,45 @@
   background: white;
   padding: clamp(1.25rem, 4vw, 2rem);
   box-shadow: 8px 8px 0 var(--ed-cherry);
+}
+
+/* RSVP — editorial ledger form (label | field rows) */
+.ed-rsvp__rows {
+  margin-top: 2.5rem;
+  border-top: 2px solid var(--ed-ink);
+}
+
+.ed-rsvp__row {
+  display: grid;
+  gap: 0.6rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--ed-line);
+}
+
+@media (min-width: 720px) {
+  .ed-rsvp__row {
+    grid-template-columns: 180px 1fr;
+    align-items: center;
+    gap: 2rem;
+  }
+}
+
+.ed-rsvp__row .ed-input {
+  border: none;
+  border-bottom: 1.5px solid var(--ed-ink);
+  padding: 0.5rem 0;
+  background: transparent;
+}
+
+.ed-rsvp__row .ed-input:focus {
+  outline: none;
+  border-bottom-color: var(--ed-cherry);
+}
+
+.ed-rsvp__submit-row {
+  padding-top: 1.75rem;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .ed-attend {
@@ -664,20 +798,130 @@
   white-space: pre-line;
 }
 
+/* LoveQuote CTA — corner tab like a magazine "next page" marker, not a centered button */
+.ed-final__tab {
+  position: absolute;
+  right: 0;
+  bottom: 2.5rem;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.75rem 0.9rem 1.5rem;
+  background: var(--ed-lime);
+  color: var(--ed-ink);
+  font-family: var(--font-secondary);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-top-left-radius: 999px;
+  border-bottom-left-radius: 999px;
+}
+
+.ed-final__tab::after {
+  content: "→";
+}
+
+@media (max-width: 640px) {
+  .ed-final__tab {
+    right: 0;
+    bottom: 1.5rem;
+    padding: 0.75rem 1.25rem 0.75rem 1rem;
+  }
+}
+
 /* —— UPLOAD / FOOTER —— */
-.ed-upload {
-  border: 2px solid var(--ed-ink);
-  background: white;
-  padding: clamp(1.5rem, 4vw, 2.8rem);
+/* Upload — full-bleed dashed dropzone: edge-to-edge frame, not a boxed shadow-card panel */
+.ed-dropzone {
+  width: 100%;
+  padding: clamp(2.5rem, 8vw, 5rem) 1.5rem;
   text-align: center;
-  box-shadow: 6px 6px 0 var(--ed-lime);
+  border-top: 3px dashed var(--ed-ink);
+  border-bottom: 3px dashed var(--ed-ink);
+  background: color-mix(in srgb, var(--ed-lime) 8%, transparent);
+}
+
+.ed-dropzone__icon {
+  margin-inline: auto;
+  height: 2.5rem;
+  width: 2.5rem;
+  color: var(--ed-cherry);
+}
+
+.ed-dropzone__hint {
+  margin-top: 1rem;
+  font-family: var(--font-secondary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ed-muted);
 }
 
 .ed-footer {
-  padding: 2.5rem 0 3rem;
+  padding: 2rem 0 2.5rem;
   border-top: 2px solid var(--ed-ink);
-  text-align: center;
   background: var(--ed-paper);
+}
+
+/* Footer — colophon: 3 dense print columns, not a centered display stack */
+.ed-colophon {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.ed-colophon__col {
+  border-left: 1px solid var(--ed-line);
+  padding-left: 1rem;
+}
+
+.ed-colophon__col:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+
+.ed-colophon__label {
+  font-family: var(--font-secondary);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ed-cherry);
+  margin-bottom: 0.35rem;
+}
+
+.ed-colophon__value {
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  line-height: 1.3;
+  color: var(--ed-ink);
+}
+
+.ed-colophon__value--small {
+  font-family: var(--font-secondary);
+  font-size: 0.8rem;
+  color: var(--ed-muted);
+}
+
+@media (max-width: 640px) {
+  .ed-colophon {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .ed-colophon__col {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid var(--ed-line);
+    padding-top: 0.75rem;
+  }
+
+  .ed-colophon__col:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
 }
 
 @media (max-width: 640px) {

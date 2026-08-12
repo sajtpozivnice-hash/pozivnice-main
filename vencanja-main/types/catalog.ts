@@ -21,7 +21,10 @@ export type CatalogCard = {
   id: string;
   title: string;
   description: string;
+  /** Primary category for tag / display. */
   eventType: EventType;
+  /** All categories this template can appear under (e.g. baptism + kidsBirthday). */
+  eventTypes: EventType[];
   tag: Tag;
   style: TemplateStyle;
   price: number;

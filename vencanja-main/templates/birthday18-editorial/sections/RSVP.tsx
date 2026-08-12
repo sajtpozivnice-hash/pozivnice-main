@@ -64,10 +64,9 @@ const RSVP: FC<Props> = ({ section, event }) => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="ed-rsvp__panel"
         >
           {submitted ? (
-            <div className="py-10 text-center">
+            <div className="ed-rsvp__rows py-10 text-center">
               <p className="ed-display text-4xl text-[var(--ed-cherry)]">
                 NA LISTI SI
               </p>
@@ -76,9 +75,9 @@ const RSVP: FC<Props> = ({ section, event }) => {
               </p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label className="ed-label mb-1.5 block">Ime i prezime</label>
+            <form onSubmit={handleSubmit} className="ed-rsvp__rows">
+              <div className="ed-rsvp__row">
+                <label className="ed-label">Ime i prezime</label>
                 <input
                   required
                   className="ed-input"
@@ -91,8 +90,8 @@ const RSVP: FC<Props> = ({ section, event }) => {
                   }
                 />
               </div>
-              <div>
-                <label className="ed-label mb-1.5 block">Email</label>
+              <div className="ed-rsvp__row">
+                <label className="ed-label">Email</label>
                 <input
                   type="email"
                   required
@@ -106,8 +105,8 @@ const RSVP: FC<Props> = ({ section, event }) => {
                   }
                 />
               </div>
-              <div>
-                <label className="ed-label mb-2 block">Dolaziš?</label>
+              <div className="ed-rsvp__row">
+                <label className="ed-label">Dolaziš?</label>
                 <div className="ed-attend">
                   {(
                     [
@@ -134,8 +133,8 @@ const RSVP: FC<Props> = ({ section, event }) => {
                   ))}
                 </div>
               </div>
-              <div>
-                <label className="ed-label mb-1.5 block">Broj osoba</label>
+              <div className="ed-rsvp__row">
+                <label className="ed-label">Broj osoba</label>
                 <input
                   type="number"
                   min={1}
@@ -150,12 +149,12 @@ const RSVP: FC<Props> = ({ section, event }) => {
                   }
                 />
               </div>
-              <div>
-                <label className="ed-label mb-1.5 block">
+              <div className="ed-rsvp__row">
+                <label className="ed-label">
                   {data.messageLabel || "Poruka za slavljenika"}
                 </label>
                 <textarea
-                  rows={4}
+                  rows={3}
                   className="ed-input resize-none"
                   placeholder={
                     data.messagePlaceholder || "Ostavi poruku…"
@@ -170,16 +169,14 @@ const RSVP: FC<Props> = ({ section, event }) => {
                 />
               </div>
               {error ? (
-                <p className="text-sm text-red-600">{error}</p>
+                <p className="pt-3 text-sm text-red-600">{error}</p>
               ) : null}
-              <button
-                type="submit"
-                disabled={loading}
-                className="ed-btn w-full"
-              >
-                {loading ? "Slanje…" : data.buttonText || "DOLAZIM"}
-                <Send className="h-3.5 w-3.5" />
-              </button>
+              <div className="ed-rsvp__submit-row">
+                <button type="submit" disabled={loading} className="ed-btn">
+                  {loading ? "Slanje…" : data.buttonText || "DOLAZIM"}
+                  <Send className="h-3.5 w-3.5" />
+                </button>
+              </div>
             </form>
           )}
         </motion.div>

@@ -22,22 +22,22 @@ const Footer: FC<Props> = ({ section, event }) => {
     `${(event.names || "").toUpperCase()} · ${year}`;
 
   return (
-    <footer id={id} className="relative border-t border-white/10 py-14">
-      <div className="b18-shell text-center">
-        <p
-          className="b18-metal text-2xl font-bold tracking-[0.2em] uppercase sm:text-3xl"
-          style={{ fontFamily: "var(--font-primary)" }}
-        >
-          {data.title || "18. ROĐENDAN"}
-        </p>
-        <p className="mt-3 text-sm tracking-[0.18em] text-white/45 uppercase">
-          {subtitle}
-        </p>
-        {data.description ? (
-          <p className="mx-auto mt-4 max-w-md text-sm text-white/35">
-            {data.description}
-          </p>
-        ) : null}
+    <footer id={id} className="relative border-t border-white/10 py-12">
+      <div className="b18-shell">
+        <div className="b18-footer__row">
+          <div className="b18-footer__lockup">
+            <p
+              className="b18-metal text-xl font-bold tracking-tight uppercase sm:text-2xl"
+              style={{ fontFamily: "var(--font-primary)" }}
+            >
+              {data.title || "18. ROĐENDAN"}
+            </p>
+            <p className="b18-footer__sub">{subtitle}</p>
+          </div>
+          {data.description ? (
+            <p className="b18-footer__note">{data.description}</p>
+          ) : null}
+        </div>
       </div>
     </footer>
   );

@@ -416,51 +416,96 @@
 }
 
 /* —— SCHEDULE —— */
-[data-template="birthday18-night"] .bn-schedule__list {
-  margin-top: 2.5rem;
+/* Schedule — neon vertical spine: glowing center timeline, items alternating left/right */
+[data-template="birthday18-night"] .bn-spine {
   position: relative;
-  padding-left: 1.35rem;
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-[data-template="birthday18-night"] .bn-schedule__list::before {
-  content: "";
+[data-template="birthday18-night"] .bn-spine__line {
   position: absolute;
-  left: 0.2rem;
-  top: 0.35rem;
-  bottom: 0.35rem;
-  width: 1px;
+  left: 0.9rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
   background: linear-gradient(
     180deg,
-    var(--bn-accent),
-    color-mix(in srgb, var(--bn-accent) 15%, transparent)
+    transparent,
+    var(--bn-accent) 10%,
+    var(--bn-accent) 90%,
+    transparent
   );
+  box-shadow: 0 0 16px var(--bn-glow);
+  animation: bn-spine-pulse 2.6s ease-in-out infinite;
 }
 
-[data-template="birthday18-night"] .bn-schedule__item {
-  position: relative;
-  display: grid;
-  gap: 0.35rem 1.5rem;
-  padding: 1.35rem 0 1.35rem 0.85rem;
-  border-bottom: 1px solid var(--bn-line);
-}
-
-@media (min-width: 700px) {
-  [data-template="birthday18-night"] .bn-schedule__item {
-    grid-template-columns: 5.5rem 1fr;
-    align-items: baseline;
+@media (min-width: 760px) {
+  [data-template="birthday18-night"] .bn-spine__line {
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 
-[data-template="birthday18-night"] .bn-schedule__item::before {
-  content: "";
+[data-template="birthday18-night"] .bn-spine__item {
+  position: relative;
+  padding-left: 2.25rem;
+}
+
+@media (min-width: 760px) {
+  [data-template="birthday18-night"] .bn-spine__item {
+    width: calc(50% - 2rem);
+    padding-left: 2rem;
+  }
+
+  [data-template="birthday18-night"] .bn-spine__item--left {
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 2rem;
+    text-align: right;
+  }
+
+  [data-template="birthday18-night"] .bn-spine__item--right {
+    margin-left: auto;
+  }
+
+  [data-template="birthday18-night"] .bn-spine__item--left .bn-spine__dot {
+    left: auto;
+    right: -2.5rem;
+  }
+
+  [data-template="birthday18-night"] .bn-spine__item--right .bn-spine__dot {
+    left: -2.5rem;
+  }
+}
+
+[data-template="birthday18-night"] .bn-spine__dot {
   position: absolute;
-  left: -1.22rem;
-  top: 1.65rem;
-  width: 7px;
-  height: 7px;
+  left: 0.5rem;
+  top: 0.4rem;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   background: var(--bn-accent);
-  box-shadow: 0 0 12px var(--bn-glow);
+  box-shadow: 0 0 14px var(--bn-glow);
+}
+
+@keyframes bn-spine-pulse {
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-template="birthday18-night"] .bn-spine__line {
+    animation: none;
+  }
 }
 
 [data-template="birthday18-night"] .bn-schedule__time {
@@ -560,61 +605,176 @@
   background: var(--bn-accent);
 }
 
-/* —— FINAL —— */
-[data-template="birthday18-night"] .bn-final {
-  position: relative;
-  padding: clamp(5rem, 14vw, 9rem) 0;
-  overflow: hidden;
-  background:
-    radial-gradient(
-      55% 60% at 80% 30%,
-      var(--bn-glow),
-      transparent 70%
-    ),
-    linear-gradient(
-      160deg,
-      var(--bn-surface) 0%,
-      var(--bn-bg) 55%,
-      #07080a 100%
-    );
+/* RSVP — ticket layout */
+[data-template="birthday18-night"] .bn-rsvp__ticket {
+  margin-top: 2rem;
+  display: grid;
+  border: 1px solid var(--bn-line);
+  background: color-mix(in srgb, var(--bn-surface) 88%, transparent);
 }
 
-[data-template="birthday18-night"] .bn-final__age {
-  position: absolute;
-  right: -4vw;
-  top: 8%;
+@media (min-width: 760px) {
+  [data-template="birthday18-night"] .bn-rsvp__ticket {
+    grid-template-columns: 1fr 15rem;
+  }
+}
+
+[data-template="birthday18-night"] .bn-rsvp__main {
+  padding: clamp(1.4rem, 4vw, 2.2rem);
+}
+
+[data-template="birthday18-night"] .bn-rsvp__grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 560px) {
+  [data-template="birthday18-night"] .bn-rsvp__grid-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+[data-template="birthday18-night"] .bn-rsvp__stub {
+  position: relative;
+  padding: clamp(1.4rem, 4vw, 1.8rem);
+  border-top: 1px dashed var(--bn-line);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  text-align: center;
+}
+
+@media (min-width: 760px) {
+  [data-template="birthday18-night"] .bn-rsvp__stub {
+    border-top: none;
+    border-left: 1px dashed var(--bn-line);
+  }
+}
+
+[data-template="birthday18-night"] .bn-rsvp__stub-title {
   font-family: var(--font-primary), sans-serif;
-  font-size: clamp(10rem, 34vw, 22rem);
+  font-size: 1.6rem;
   font-weight: 900;
-  line-height: 0.75;
-  letter-spacing: -0.08em;
-  color: color-mix(in srgb, var(--bn-text) 6%, transparent);
+  letter-spacing: 0.02em;
+  color: var(--bn-accent);
+}
+
+[data-template="birthday18-night"] .bn-rsvp__stub .bn-btn {
+  width: 100%;
+}
+
+/* —— LOVEQUOTE — full-screen kinetic typography, NOT a giant "18" grain twin of editorial —— */
+[data-template="birthday18-night"] .bn-kinetic {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: clamp(4rem, 12vw, 7rem) 0;
+  overflow: hidden;
+  background: radial-gradient(
+      70% 60% at 50% 0%,
+      var(--bn-glow),
+      transparent 65%
+    ),
+    var(--bn-bg);
+}
+
+[data-template="birthday18-night"] .bn-kinetic__title {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35em 0.5em;
+  font-family: var(--font-primary), sans-serif;
+  font-size: clamp(2.6rem, 9vw, 6.5rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+[data-template="birthday18-night"] .bn-kinetic__word {
+  display: inline-block;
+  background: linear-gradient(
+    100deg,
+    var(--bn-text) 0%,
+    var(--bn-accent) 50%,
+    var(--bn-text) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+[data-template="birthday18-night"] .bn-kinetic__desc {
+  max-width: 34rem;
+  margin: 1.75rem auto 0;
+  text-align: center;
+  font-size: 1.05rem;
+  color: var(--bn-muted);
+}
+
+/* —— UPLOAD / FOOTER —— */
+/* Upload — neon strip: horizontal glow bar with copy + action side by side, not a centered box */
+[data-template="birthday18-night"] .bn-strip {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+  text-align: center;
+  padding: clamp(1.75rem, 4vw, 2.5rem);
+  border-top: 1px solid var(--bn-accent);
+  border-bottom: 1px solid var(--bn-accent);
+  box-shadow: 0 0 32px var(--bn-glow) inset;
+}
+
+@media (min-width: 760px) {
+  [data-template="birthday18-night"] .bn-strip {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+[data-template="birthday18-night"] .bn-strip__action {
+  flex-shrink: 0;
+}
+
+[data-template="birthday18-night"] .bn-footer {
+  position: relative;
+  border-top: 1px solid var(--bn-line);
+  padding: 4.5rem 0 3rem;
+  text-align: center;
+  overflow: hidden;
+  min-height: 40vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+[data-template="birthday18-night"] .bn-footer__year {
+  position: absolute;
+  left: 50%;
+  bottom: -0.18em;
+  transform: translateX(-50%);
+  font-family: var(--font-primary), sans-serif;
+  font-weight: 900;
+  font-size: clamp(6rem, 26vw, 20rem);
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--bn-text) 18%, transparent);
+  white-space: nowrap;
   pointer-events: none;
   user-select: none;
 }
 
-[data-template="birthday18-night"] .bn-final__title {
-  font-family: var(--font-primary), sans-serif;
-  font-size: clamp(3.2rem, 11vw, 7.5rem);
-  font-weight: 900;
-  line-height: 0.88;
-  letter-spacing: -0.05em;
-  text-transform: uppercase;
-  white-space: pre-line;
-}
-
-/* —— UPLOAD / FOOTER —— */
-[data-template="birthday18-night"] .bn-upload {
-  border: 1px solid var(--bn-line);
-  background: var(--bn-surface);
-  padding: clamp(1.5rem, 4vw, 2.5rem);
-  text-align: center;
-}
-
-[data-template="birthday18-night"] .bn-footer {
-  border-top: 1px solid var(--bn-line);
-  padding: 2.5rem 0 3.5rem;
-  text-align: center;
+[data-template="birthday18-night"] .bn-footer__content {
+  position: relative;
+  z-index: 1;
 }
 
 @keyframes bn-rise {

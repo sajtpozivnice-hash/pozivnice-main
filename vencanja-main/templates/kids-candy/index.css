@@ -1,0 +1,453 @@
+@import "tailwindcss";
+
+/* kids-candy — "Diagonal magazine" system: asymmetric skewed composition,
+   bold candy colors, no floating badges on photos. No blobs, no confetti. */
+
+@theme {
+  --color-kcan-ink: #16121a;
+  --color-kcan-pink: #ff3e7f;
+  --color-kcan-lime: #c6ff4d;
+  --color-kcan-turquoise: #2ee6c8;
+  --color-kcan-yellow: #ffd400;
+  --color-kcan-paper: #fffaf2;
+  --color-kcan-paper-deep: #fff1de;
+}
+
+@layer components {
+  [data-template="kids-candy"] {
+    @apply relative overflow-x-hidden text-kcan-ink;
+    background:
+      repeating-linear-gradient(
+        -35deg,
+        rgba(255, 62, 127, 0.05) 0px,
+        rgba(255, 62, 127, 0.05) 2px,
+        transparent 2px,
+        transparent 34px
+      ),
+      linear-gradient(180deg, #fffaf2 0%, #fff6e8 55%, #fff1de 100%);
+    font-family: var(--font-secondary);
+  }
+
+  .kcan-shell {
+    @apply relative mx-auto w-full max-w-6xl px-6 sm:px-10 lg:px-14;
+  }
+
+  .kcan-section {
+    @apply relative py-16 sm:py-20 lg:py-24;
+  }
+
+  .kcan-kicker,
+  .kcan-eyebrow {
+    @apply inline-flex -skew-x-6 items-center gap-2 px-4 py-1.5 text-[11px] font-black uppercase tracking-[0.2em] text-white;
+    background: var(--color-primary, #ff3e7f);
+  }
+
+  .kcan-heading {
+    @apply text-5xl font-black uppercase leading-[0.92] tracking-tight sm:text-6xl lg:text-7xl;
+    font-family: var(--font-primary);
+  }
+
+  .kcan-card {
+    @apply rounded-none border-[3px] border-kcan-ink bg-white shadow-[8px_8px_0_0_rgba(22,18,26,0.9)];
+  }
+
+  .kcan-card-strong {
+    @apply relative rounded-none border-[3px] border-kcan-ink bg-white shadow-[10px_10px_0_0_rgba(22,18,26,0.92)];
+  }
+
+  .kcan-input {
+    @apply w-full rounded-none border-b-[3px] border-kcan-ink bg-transparent px-1 py-3 text-sm font-semibold text-kcan-ink outline-none transition placeholder:text-kcan-ink/35 focus:border-[color:var(--color-primary,#ff3e7f)];
+  }
+
+  .kcan-btn {
+    @apply inline-flex -skew-x-6 items-center justify-center gap-2 border-[3px] border-kcan-ink px-7 py-3.5 text-sm font-black uppercase tracking-[0.06em] text-kcan-ink transition hover:-translate-y-0.5 active:translate-y-0;
+    background: var(--color-primary, #ffd400);
+    box-shadow: 6px 6px 0 0 rgba(22, 18, 26, 0.9);
+  }
+
+  .kcan-btn > * {
+    @apply skew-x-6;
+  }
+
+  /* ---- diagonal-magazine-only decorative helpers ---- */
+
+  .kcan-mast {
+    @apply relative w-full -skew-y-1 px-6 py-6 text-center sm:py-9;
+    background: var(--color-primary, #ff3e7f);
+  }
+
+  .kcan-mast-inner {
+    @apply skew-y-1;
+  }
+
+  .kcan-tape {
+    @apply absolute h-8 w-20 border-[3px] border-kcan-ink bg-kcan-yellow;
+  }
+
+  .kcan-number-tag {
+    @apply flex h-11 w-11 shrink-0 -rotate-6 items-center justify-center border-[3px] border-kcan-ink text-sm font-black;
+    background: var(--color-kcan-lime);
+  }
+
+  .kcan-stripe {
+    @apply text-[11px] font-black uppercase tracking-[0.24em] text-kcan-ink/45;
+  }
+
+  /* Countdown — skewed comic ticket strip */
+  .kcan-ticket {
+    @apply grid -skew-x-3 grid-cols-2 border-[3px] border-kcan-ink bg-white sm:grid-cols-4;
+    box-shadow: 10px 10px 0 0 rgba(22, 18, 26, 0.92);
+  }
+
+  .kcan-ticket-cell {
+    @apply skew-x-3 px-4 py-6 text-center;
+    border-right: 3px solid var(--color-kcan-ink);
+    border-bottom: 3px solid var(--color-kcan-ink);
+  }
+
+  .kcan-ticket-cell:nth-child(2n) {
+    border-right: none;
+  }
+
+  @media (min-width: 640px) {
+    .kcan-ticket-cell {
+      border-bottom: none;
+    }
+    .kcan-ticket-cell:nth-child(2n) {
+      border-right: 3px solid var(--color-kcan-ink);
+    }
+    .kcan-ticket-cell:last-child {
+      border-right: none;
+    }
+  }
+
+  .kcan-ticket-num {
+    font-family: var(--font-primary);
+    font-weight: 900;
+    font-size: clamp(2rem, 6vw, 3rem);
+    color: var(--tick-color, var(--color-kcan-pink));
+  }
+
+  .kcan-ticket-label {
+    @apply mt-1 text-[10px] font-black uppercase tracking-[0.2em] text-kcan-ink/50;
+  }
+
+  /* Countdown — perforated admission ticket with barcode stub */
+  .kcan-admit {
+    @apply relative flex flex-col overflow-hidden border-[3px] border-kcan-ink bg-white sm:flex-row;
+    box-shadow: 10px 10px 0 0 rgba(22, 18, 26, 0.92);
+  }
+
+  .kcan-admit-main {
+    @apply flex flex-1 flex-col items-center justify-center gap-1.5 px-6 py-9 text-center;
+  }
+
+  .kcan-admit-eyebrow {
+    @apply -skew-x-6 inline-flex items-center border-[3px] border-kcan-ink px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-kcan-ink;
+    background: var(--color-kcan-lime);
+  }
+
+  .kcan-admit-hero {
+    font-family: var(--font-primary);
+    font-weight: 900;
+    font-size: clamp(3.5rem, 11vw, 5.5rem);
+    line-height: 1;
+  }
+
+  .kcan-admit-hero-label {
+    @apply mt-1 text-xs font-black uppercase tracking-[0.28em] text-kcan-ink/55;
+  }
+
+  .kcan-admit-tear {
+    @apply relative border-t-[3px] border-dashed border-kcan-ink sm:border-l-[3px] sm:border-t-0;
+  }
+
+  .kcan-admit-tear::before,
+  .kcan-admit-tear::after {
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    border-radius: 999px;
+    background: var(--color-kcan-paper, #fffaf2);
+    border: 3px solid var(--color-kcan-ink);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .kcan-admit-tear::before {
+    top: -13px;
+  }
+
+  .kcan-admit-tear::after {
+    bottom: -13px;
+  }
+
+  @media (min-width: 640px) {
+    .kcan-admit-tear::before,
+    .kcan-admit-tear::after {
+      left: -13px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .kcan-admit-tear::after {
+      left: auto;
+      right: -13px;
+    }
+  }
+
+  .kcan-admit-stub {
+    @apply flex shrink-0 flex-col items-center gap-4 px-6 py-7 text-center;
+    background: var(--color-kcan-yellow);
+  }
+
+  @media (min-width: 640px) {
+    .kcan-admit-stub {
+      width: 13rem;
+    }
+  }
+
+  .kcan-admit-stub-title {
+    @apply -skew-x-6 border-[3px] border-kcan-ink bg-white px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-kcan-ink;
+  }
+
+  .kcan-admit-stub-row {
+    @apply flex items-stretch justify-center gap-4 sm:flex-col sm:gap-2.5;
+  }
+
+  .kcan-admit-stub-cell {
+    @apply flex flex-col items-center gap-0.5;
+  }
+
+  .kcan-admit-stub-num {
+    font-family: var(--font-primary);
+    font-weight: 900;
+    font-size: 1.35rem;
+  }
+
+  .kcan-admit-stub-lbl {
+    @apply text-[9px] font-black uppercase tracking-[0.16em] text-kcan-ink/60;
+  }
+
+  .kcan-admit-barcode {
+    @apply flex h-9 w-full items-stretch justify-center gap-[2px];
+  }
+
+  .kcan-admit-barcode span {
+    @apply block h-full bg-kcan-ink;
+  }
+
+  /* FeatureCards — sticker collage (scattered, flex-wrap) */
+  .kcan-collage {
+    @apply flex flex-wrap justify-center gap-6 sm:gap-7;
+  }
+
+  .kcan-collage-card {
+    @apply relative rounded-none border-[3px] border-kcan-ink bg-white p-4;
+    width: clamp(11rem, 40vw, 14rem);
+    box-shadow: 7px 7px 0 0 rgba(22, 18, 26, 0.9);
+    transform: rotate(var(--tilt, 0deg));
+  }
+
+  .kcan-collage-photo {
+    @apply relative mb-3 aspect-square overflow-hidden border-[3px] border-kcan-ink;
+  }
+
+  .kcan-collage-photo img {
+    @apply h-full w-full object-cover;
+  }
+
+  .kcan-collage-photo--empty {
+    @apply flex items-center justify-center;
+    background: var(--color-kcan-paper-deep);
+  }
+
+  .kcan-collage-icon {
+    @apply mb-2 inline-flex h-9 w-9 -rotate-6 items-center justify-center border-[3px] border-kcan-ink;
+  }
+
+  /* Schedule — torn concert-poster strip (horizontal scroll bill-board) */
+  .kcan-bill-strip {
+    @apply -mx-6 flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 pb-4 sm:mx-0 sm:px-0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .kcan-bill-strip::-webkit-scrollbar {
+    display: none;
+  }
+
+  .kcan-bill {
+    @apply relative shrink-0 snap-start overflow-hidden border-[3px] border-kcan-ink bg-white px-5 pb-7 pt-8;
+    width: min(74vw, 17rem);
+    box-shadow: 8px 8px 0 0 rgba(22, 18, 26, 0.9);
+    clip-path: polygon(0 0, 100% 0, 100% 94%, 92% 100%, 8% 100%, 0 94%);
+  }
+
+  .kcan-bill-tape {
+    @apply absolute top-0 h-6 w-14 border-[3px] border-kcan-ink;
+    background: var(--color-kcan-yellow);
+  }
+
+  .kcan-bill-tape--l {
+    left: 0.5rem;
+    transform: rotate(-6deg) translateY(-50%);
+  }
+
+  .kcan-bill-tape--r {
+    right: 0.5rem;
+    transform: rotate(6deg) translateY(-50%);
+  }
+
+  .kcan-bill-number {
+    @apply pointer-events-none absolute -right-2 -top-3 text-[5rem] font-black leading-none opacity-[0.08];
+    font-family: var(--font-primary);
+    color: var(--color-kcan-ink);
+  }
+
+  .kcan-bill-time {
+    @apply relative -skew-x-6 inline-flex items-center px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-white;
+    background: var(--bill-color, var(--color-kcan-pink));
+  }
+
+  .kcan-bill-title {
+    @apply relative mt-4 text-2xl font-extrabold leading-tight;
+    font-family: var(--font-primary);
+  }
+
+  .kcan-bill-desc {
+    @apply relative mt-2 text-sm leading-relaxed text-kcan-ink/60;
+  }
+
+  /* Locations — torn ticket stub (no side-by-side split) */
+  .kcan-stub {
+    @apply mx-auto flex max-w-2xl flex-col items-center gap-6 sm:flex-row sm:items-stretch;
+  }
+
+  .kcan-stub-photo {
+    @apply relative aspect-square w-full -rotate-2 overflow-hidden border-[3px] border-kcan-ink sm:w-56 sm:shrink-0;
+    box-shadow: 8px 8px 0 0 rgba(22, 18, 26, 0.9);
+  }
+
+  .kcan-stub-photo img {
+    @apply h-full w-full object-cover;
+  }
+
+  .kcan-stub-photo--empty {
+    @apply flex items-center justify-center;
+    background: var(--color-kcan-paper-deep);
+  }
+
+  .kcan-stub-info {
+    @apply relative flex-1 border-[3px] border-dashed border-kcan-ink p-5 sm:p-6;
+  }
+
+  .kcan-stub-stat {
+    @apply flex items-center justify-between border-b-2 border-dashed border-kcan-ink/25 py-2.5 text-left last:border-b-0;
+  }
+
+  .kcan-stub-stat dt {
+    @apply text-[11px] font-black uppercase tracking-[0.2em] text-kcan-ink/50;
+  }
+
+  .kcan-stub-stat dd {
+    @apply text-right text-sm font-bold text-kcan-ink;
+  }
+
+  /* UploadImages — diagonal magazine scrapbook */
+  .kcan-scrap {
+    @apply flex flex-wrap justify-center gap-8 pb-2 pt-8;
+  }
+
+  .kcan-scrap-card {
+    @apply relative;
+    transform: rotate(var(--tilt, 0deg));
+  }
+
+  .kcan-scrap-card--lead .kcan-scrap-photo {
+    @apply h-24 w-24 sm:h-28 sm:w-28;
+  }
+
+  .kcan-scrap-photo {
+    @apply flex h-20 w-20 items-center justify-center overflow-hidden border-[3px] border-kcan-ink bg-white sm:h-24 sm:w-24;
+    box-shadow: 6px 6px 0 0 rgba(22, 18, 26, 0.9);
+  }
+
+  .kcan-scrap-photo img {
+    @apply h-full w-full object-cover;
+  }
+
+  /* Footer — candy receipt with barcode closing */
+  .kcan-receipt {
+    @apply relative mx-auto max-w-md overflow-hidden border-[3px] border-kcan-ink bg-white px-6 py-10 text-center;
+    box-shadow: 10px 10px 0 0 rgba(22, 18, 26, 0.92);
+  }
+
+  .kcan-receipt-thumb {
+    @apply mx-auto mb-5 h-14 w-14 overflow-hidden border-[3px] border-kcan-ink;
+  }
+
+  .kcan-receipt-thumb img {
+    @apply h-full w-full object-cover;
+  }
+
+  .kcan-receipt-barcode {
+    @apply mx-auto mt-8 flex h-10 items-stretch justify-center gap-[3px] border-t-[3px] border-dashed border-kcan-ink/25 pt-6;
+  }
+
+  .kcan-receipt-barcode span {
+    @apply block h-full bg-kcan-ink;
+  }
+
+  .kcan-receipt-code {
+    @apply mt-3 text-xs font-black uppercase tracking-[0.4em] text-kcan-ink/60;
+  }
+
+  /* RSVP — loud poster with side art panel */
+  .kcan-poster {
+    @apply grid overflow-hidden lg:grid-cols-[0.8fr_1.2fr];
+  }
+
+  .kcan-poster-art {
+    @apply relative flex flex-col items-start justify-center gap-4 overflow-hidden border-b-[3px] border-kcan-ink p-6 sm:p-9 lg:border-b-0 lg:border-r-[3px];
+    background: var(--color-kcan-lime);
+  }
+
+  .kcan-poster-scribble {
+    @apply -rotate-3 text-5xl font-black uppercase leading-none text-white sm:text-6xl;
+    font-family: var(--font-primary);
+    -webkit-text-stroke: 2px var(--color-kcan-ink);
+  }
+
+  .kcan-poster-form {
+    @apply p-6 sm:p-9;
+  }
+
+  /* FeatureCards — staggered sticker-sheet masonry (numbered corner tags) */
+  .kcan-sheet {
+    @apply columns-1 gap-6 sm:columns-2 lg:columns-3;
+  }
+
+  .kcan-sheet-card {
+    @apply relative mb-6 inline-block w-full break-inside-avoid border-[3px] border-kcan-ink bg-white p-5;
+    box-shadow: 7px 7px 0 0 rgba(22, 18, 26, 0.9);
+    transform: rotate(var(--tilt, 0deg));
+  }
+
+  .kcan-sheet-tag {
+    @apply absolute -right-3 -top-3 z-10;
+  }
+
+  .kcan-sheet-photo {
+    @apply float-right ml-3 mb-2 h-16 w-16 -rotate-3 overflow-hidden border-[3px] border-kcan-ink;
+  }
+
+  .kcan-sheet-photo img {
+    @apply h-full w-full object-cover;
+  }
+
+  .kcan-sheet-dot {
+    @apply mb-3 inline-flex h-10 w-10 items-center justify-center rounded-full;
+  }
+}

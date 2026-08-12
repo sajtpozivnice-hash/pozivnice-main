@@ -11,6 +11,7 @@ type Props = {
   theme: ThemeConfig;
 };
 
+/** Magazine spread with the CTA as a corner tab, not a centered button under the copy. */
 const LoveQuote: FC<Props> = ({ section }) => {
   const { data, id } = section;
 
@@ -20,7 +21,7 @@ const LoveQuote: FC<Props> = ({ section }) => {
       <div className="ed-final__age" aria-hidden>
         18
       </div>
-      <div className="ed-shell relative z-10 text-center">
+      <div className="ed-shell relative z-10 text-left">
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -33,7 +34,7 @@ const LoveQuote: FC<Props> = ({ section }) => {
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="ed-final__title"
+          className="ed-final__title max-w-2xl"
         >
           {data.title}
         </motion.h2>
@@ -43,23 +44,22 @@ const LoveQuote: FC<Props> = ({ section }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="mx-auto mt-6 max-w-lg text-lg text-white/80"
+            className="mt-6 max-w-lg text-lg text-white/80"
           >
             {data.description}
           </motion.p>
         ) : null}
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.18 }}
-          className="mt-10"
-        >
-          <a href="#rsvp" className="ed-btn ed-btn--lime">
-            DOLAZIM
-          </a>
-        </motion.div>
       </div>
+      <motion.a
+        href="#rsvp"
+        initial={{ opacity: 0, x: 20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.2 }}
+        className="ed-final__tab"
+      >
+        DOLAZIM
+      </motion.a>
     </section>
   );
 };

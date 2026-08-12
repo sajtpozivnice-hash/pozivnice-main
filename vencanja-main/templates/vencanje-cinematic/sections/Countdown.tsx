@@ -52,8 +52,7 @@ const Countdown: FC<Props> = ({ section, event, theme }) => {
     return () => clearInterval(timer);
   }, [targetDate]);
 
-  const items = [
-    { label: "Dani", value: timeLeft.days },
+  const rest = [
     { label: "Sati", value: timeLeft.hours },
     { label: "Min", value: timeLeft.minutes },
     { label: "Sek", value: timeLeft.seconds },
@@ -80,28 +79,33 @@ const Countdown: FC<Props> = ({ section, event, theme }) => {
           {data.title}
         </motion.h2>
 
-        <div className="grid grid-cols-2 gap-px bg-white/15 sm:grid-cols-4">
-          {items.map((item, index) => (
-            <motion.div
-              key={item.label}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.07 }}
-              className="bg-vc-void/80 px-3 py-8 backdrop-blur-sm"
-            >
-              <p
-                className="text-4xl sm:text-5xl"
-                style={{ fontFamily: "var(--font-primary)", color: accent }}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.94 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="vc-slate"
+        >
+          <p className="vc-slate-hero">{String(timeLeft.days).padStart(2, "0")}</p>
+          <p className="vc-slate-hero-label">dana do venčanja</p>
+
+          <div className="vc-slate-strip w-full">
+            {rest.map((item, index) => (
+              <motion.div
+                key={item.label}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.08 }}
+                className="vc-slate-cell"
               >
-                {String(item.value).padStart(2, "0")}
-              </p>
-              <p className="mt-3 text-[10px] uppercase tracking-[0.3em] text-white/45">
-                {item.label}
-              </p>
-            </motion.div>
-          ))}
-        </div>
+                <p className="vc-slate-cell-value">
+                  {String(item.value).padStart(2, "0")}
+                </p>
+                <p className="vc-slate-cell-label">{item.label}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </SceneFrame>
   );

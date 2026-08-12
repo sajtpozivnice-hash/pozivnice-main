@@ -18,29 +18,35 @@ const LoveQuote: FC<Props> = ({ section, theme }) => {
 
   return (
     <SceneFrame id={id} backgroundImage={data.imageUrl}>
-      <div className="vc-stage-narrow text-center">
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="vc-eyebrow mb-10"
-          style={{ color: accent }}
-        >
-          {data.description ?? "Međunaslov"}
-        </motion.p>
-        <motion.blockquote
-          initial={{ opacity: 0, y: 24 }}
+      <div className="vc-stage-narrow">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-2xl leading-snug text-white sm:text-4xl sm:leading-snug"
-          style={{ fontFamily: "var(--font-primary)" }}
+          className="vc-still"
         >
-          {data.title}
-        </motion.blockquote>
-        <div
-          className="mx-auto mt-10 h-px w-16"
-          style={{ background: accent }}
-        />
+          <span className="vc-still-corner vc-still-corner--tl" aria-hidden="true" />
+          <span className="vc-still-corner vc-still-corner--tr" aria-hidden="true" />
+          <span className="vc-still-corner vc-still-corner--bl" aria-hidden="true" />
+          <span className="vc-still-corner vc-still-corner--br" aria-hidden="true" />
+
+          <div className="vc-still-sprockets" aria-hidden="true">
+            {Array.from({ length: 6 }).map((_, index) => (
+              <span key={index} />
+            ))}
+          </div>
+
+          <blockquote className="vc-still-quote">{data.title}</blockquote>
+
+          <div className="vc-still-caption">
+            <span className="vc-still-caption-label" style={{ color: accent }}>
+              Kadar
+            </span>
+            <p className="vc-still-caption-text">
+              {data.description ?? "Iz zajedničke priče"}
+            </p>
+          </div>
+        </motion.div>
       </div>
     </SceneFrame>
   );
