@@ -21,10 +21,13 @@ export const uploadFileToCloudinary = async (file: File): Promise<string> => {
         const res = await fetch("/api/upload-image", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
+          credentials: "same-origin",
           body: JSON.stringify({
             image: reader.result,
             fileName: file.name,
             resourceType: file.type.startsWith("image/") ? "image" : "auto",
+            purpose: "budget",
+            folder: "budget",
           }),
         });
 

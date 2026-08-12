@@ -40,7 +40,8 @@ const GuestPhotoUploadControl = ({
     try {
       const uploaded = await uploadImageToCloudinaryDetailed(file, {
         fileName: file.name,
-        folder: `guest-photos/${projectId}`,
+        purpose: "guest-photo",
+        projectId,
       });
 
       await createGuestPhotoService(projectId, {

@@ -34,6 +34,8 @@ const ContactPageForm: FC<InviteContactFormProps> = ({ config = null }) => {
     phoneNumber: "",
     type: "",
     message: "",
+    /** Honeypot — must stay empty */
+    website: "",
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -91,6 +93,7 @@ const ContactPageForm: FC<InviteContactFormProps> = ({ config = null }) => {
       
     `,
       config,
+      website: formData.website,
     };
 
     try {
@@ -99,6 +102,7 @@ const ContactPageForm: FC<InviteContactFormProps> = ({ config = null }) => {
         method: "POST",
         body: JSON.stringify(payload),
         headers: { "Content-Type": "application/json" },
+        credentials: "same-origin",
       });
 
       if (!res.ok) throw new Error("Slanje nije uspelo");
@@ -110,6 +114,7 @@ const ContactPageForm: FC<InviteContactFormProps> = ({ config = null }) => {
         phoneNumber: "",
         type: "",
         message: "",
+        website: "",
       });
       setType("");
       setErrors({});
@@ -138,6 +143,30 @@ const ContactPageForm: FC<InviteContactFormProps> = ({ config = null }) => {
           handleSend();
         }}
       >
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            left: "-10000px",
+            top: "auto",
+            width: 1,
+            height: 1,
+            overflow: "hidden",
+          }}
+        >
+          <label htmlFor="contact-website">Website</label>
+          <input
+            id="contact-website"
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            value={formData.website}
+            onChange={(e) =>
+              setFormData((prev) => ({ ...prev, website: e.target.value }))
+            }
+          />
+        </div>
         <div className={styles.innerContainer}>
           <div className={styles.inputWrapper}>
             <FormLabel text={"Ime"} required />

@@ -9,9 +9,13 @@ export type CloudinaryUploadResult = {
   format?: string;
 };
 
+export type UploadImagePurpose = "editor" | "budget" | "guest-photo";
+
 type UploadImageOptions = {
   fileName?: string;
   folder?: string;
+  purpose?: UploadImagePurpose;
+  projectId?: string;
 };
 
 const readFileAsDataUrl = (file: File): Promise<string> =>
@@ -46,6 +50,7 @@ export const uploadImageToCloudinaryDetailed = async (
 ): Promise<CloudinaryUploadResult> => {
   if (isDemoMode()) return demoUploadImage(file, options);
 
+  const purpose = options.purpose ?? "editor";
   const reader = new FileReader();
 
   return new Promise<CloudinaryUploadResult>((resolve, reject) => {
@@ -54,11 +59,14 @@ export const uploadImageToCloudinaryDetailed = async (
         const res = await fetch("/api/upload-image", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
+          credentials: "same-origin",
           body: JSON.stringify({
             image: reader.result,
             fileName: options.fileName ?? file.name,
             resourceType: "image",
             folder: options.folder,
+            purpose,
+            projectId: options.projectId,
           }),
         });
 
@@ -94,6 +102,8 @@ export const uploadImageToCloudinaryDetailed = async (
 };
 
 export const uploadImageToCloudinary = async (file: File): Promise<string> => {
-  const result = await uploadImageToCloudinaryDetailed(file);
+  const result = await uploadImageToCloudinaryDetailed(file, {
+    purpose: "editor",
+  });
   return result.secure_url;
 };

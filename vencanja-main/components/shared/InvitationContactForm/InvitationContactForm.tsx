@@ -26,6 +26,8 @@ const InvitationContactForm: FC<InviteContactFormProps> = ({ config }) => {
     email: "",
     phoneNumber: "",
     message: "",
+    /** Honeypot — must stay empty */
+    website: "",
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -77,6 +79,7 @@ const InvitationContactForm: FC<InviteContactFormProps> = ({ config }) => {
       Poruka: ${formData.message}
     `,
       config,
+      website: formData.website,
     };
 
     try {
@@ -93,6 +96,7 @@ const InvitationContactForm: FC<InviteContactFormProps> = ({ config }) => {
           email: "",
           phoneNumber: "",
           message: "",
+          website: "",
         });
         setErrors({});
         return;
@@ -102,6 +106,7 @@ const InvitationContactForm: FC<InviteContactFormProps> = ({ config }) => {
         method: "POST",
         body: JSON.stringify(payload),
         headers: { "Content-Type": "application/json" },
+        credentials: "same-origin",
       });
 
       if (!res.ok) throw new Error("Slanje nije uspelo");
@@ -111,6 +116,7 @@ const InvitationContactForm: FC<InviteContactFormProps> = ({ config }) => {
         email: "",
         phoneNumber: "",
         message: "",
+        website: "",
       });
       setErrors({});
     } catch (err: unknown) {
@@ -132,6 +138,30 @@ const InvitationContactForm: FC<InviteContactFormProps> = ({ config }) => {
           handleSend();
         }}
       >
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            left: "-10000px",
+            top: "auto",
+            width: 1,
+            height: 1,
+            overflow: "hidden",
+          }}
+        >
+          <label htmlFor="invite-website">Website</label>
+          <input
+            id="invite-website"
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            value={formData.website}
+            onChange={(e) =>
+              setFormData((prev) => ({ ...prev, website: e.target.value }))
+            }
+          />
+        </div>
         <div>
           <Heading className="text-center">Aktivirajte svoju pozivnicu</Heading>
           <p className="text-center margin-bottom30">
