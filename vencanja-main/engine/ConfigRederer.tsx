@@ -16,14 +16,24 @@ const ConfigRenderer: FC<Props> = ({ config, renderers }) => {
         .filter((s) => s.visible)
         .sort((a, b) => a.order - b.order)
         .map((section) => {
-          const Renderer = renderers[section.type] as React.ComponentType<any>;
+          const Renderer = renderers[section.type] as React.ComponentType<{
+            section: (typeof config.sections)[number];
+            event: UniversalProjectConfig["event"];
+            theme: UniversalProjectConfig["theme"];
+          }>;
 
           if (!Renderer) return null;
 
+          // Guarantee stable DOM id for anchors (CTA #rsvp, scroll, etc.)
+          const safeSection =
+            section.id?.trim()
+              ? section
+              : { ...section, id: section.type };
+
           return (
             <Renderer
-              key={section.id}
-              section={section}
+              key={safeSection.id}
+              section={safeSection}
               event={config.event}
               theme={config.theme}
             />

@@ -8,8 +8,8 @@ import GeneralInfoPanel from "./panels/GeneralInfoPanel";
 import FontsAndColorsPanel from "./panels/FontsAndColorsPanel";
 import InvitationContactForm from "@/components/shared/InvitationContactForm/InvitationContactForm";
 
-const Sidebar: FC<{ viewMode: "edit" | "preview" }> = ({ viewMode }) => {
-  const { config } = useEditor();
+const Sidebar: FC = () => {
+  const { config, viewMode } = useEditor();
 
   const visibleSections = config.sections
     .filter((section) => section.visible)
@@ -17,25 +17,41 @@ const Sidebar: FC<{ viewMode: "edit" | "preview" }> = ({ viewMode }) => {
 
   return (
     <aside
+      data-editor-sidebar
       className={`
-        w-[480px] shrink-0 h-full border-r overflow-y-auto p-6 bg-white
-        ${viewMode === "preview" ? "hidden lg:block" : "block"}
+        flex h-full min-h-0 flex-col overflow-hidden border-black/5 bg-white
+        ${
+          viewMode === "edit"
+            ? "fixed inset-0 z-20 w-full pt-[3.25rem] lg:static lg:z-auto lg:w-[min(420px,38vw)] lg:max-w-[480px] lg:shrink-0 lg:border-l lg:pt-0"
+            : "hidden lg:flex lg:w-[min(420px,38vw)] lg:max-w-[480px] lg:shrink-0 lg:border-l"
+        }
       `}
     >
-      <h2 className="text-lg font-bold ">Podešavanja izgleda</h2>
-      <p className="text-md opacity-60 mb-4">
-        Prilagodite sadržaj i izgled stranice – menjajte tekst, slike, boje i
-        fontove, kao i vidljivost sekcija.
-      </p>
-      <StructurePanel />
-      <GeneralInfoPanel />
-      <FontsAndColorsPanel />
-      {visibleSections.map((section) => {
-        const PanelComponent = panelRegistry[section.type];
-        if (!PanelComponent) return null;
-        return <PanelComponent key={section.id} />;
-      })}
-      <InvitationContactForm config={config} />
+      <div className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto overscroll-contain px-4 py-4 sm:px-5 lg:px-6 lg:py-6">
+        <div className="mb-4 lg:mb-5">
+          <h2 className="text-base font-bold tracking-tight lg:text-lg">
+            Podešavanja izgleda
+          </h2>
+          <p className="mt-1 text-sm leading-snug text-black/55 lg:text-[15px]">
+            Menjajte tekst, slike, boje i vidljivost sekcija.
+          </p>
+        </div>
+
+        <div className="min-w-0">
+          <StructurePanel />
+          <GeneralInfoPanel />
+          <FontsAndColorsPanel />
+          {visibleSections.map((section) => {
+            const PanelComponent = panelRegistry[section.type];
+            if (!PanelComponent) return null;
+            return <PanelComponent key={section.id} />;
+          })}
+        </div>
+
+        <div className="mt-6 min-w-0 overflow-hidden border-t border-black/5 pt-5 [&_*]:max-w-full">
+          <InvitationContactForm config={config} />
+        </div>
+      </div>
     </aside>
   );
 };

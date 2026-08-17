@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
-import { ImageIcon, Upload, X } from "lucide-react";
+import { ImageIcon, Loader2, Upload, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -28,10 +28,11 @@ const ImagePreviewInput = ({
   const inputId = useId();
   const objectUrlRef = useRef<string | null>(null);
   const [localObjectUrl, setLocalObjectUrl] = useState<string | null>(null);
+  const [imageLoading, setImageLoading] = useState(false);
 
   const configPreview = preview?.trim() ? preview.trim() : "";
-  // Config URL is controlled; local blob only while a new file is uploading
   const displaySrc = localObjectUrl ?? configPreview;
+  const busy = loading || imageLoading;
 
   const clearLocalObjectUrl = () => {
     if (objectUrlRef.current) {
@@ -42,8 +43,12 @@ const ImagePreviewInput = ({
   };
 
   useEffect(() => {
-    // Parent config value changed (initial open or Cloudinary URL saved)
     clearLocalObjectUrl();
+    if (preview?.trim()) {
+      setImageLoading(true);
+    } else {
+      setImageLoading(false);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps -- sync only when preview prop changes
   }, [preview]);
 
@@ -68,6 +73,7 @@ const ImagePreviewInput = ({
     const url = URL.createObjectURL(file);
     objectUrlRef.current = url;
     setLocalObjectUrl(url);
+    setImageLoading(true);
 
     onChange?.(file);
     e.target.value = "";
@@ -75,6 +81,7 @@ const ImagePreviewInput = ({
 
   const removeImage = () => {
     clearLocalObjectUrl();
+    setImageLoading(false);
     onChange?.(null);
   };
 
@@ -85,22 +92,37 @@ const ImagePreviewInput = ({
       <Card className="overflow-hidden">
         <CardContent className="space-y-2 p-2">
           {displaySrc ? (
-            <div className="relative aspect-square overflow-hidden rounded-lg">
+            <div className="relative aspect-square overflow-hidden rounded-lg bg-muted/40">
               <img
+                key={displaySrc}
                 src={displaySrc}
                 alt="Preview"
-                className={`h-full w-full object-cover ${
-                  loading ? "opacity-60" : ""
+                className={`h-full w-full object-cover transition-opacity ${
+                  busy ? "opacity-40" : "opacity-100"
                 }`}
                 referrerPolicy="no-referrer"
+                onLoad={() => setImageLoading(false)}
+                onError={() => setImageLoading(false)}
+                ref={(img) => {
+                  if (img?.complete) setImageLoading(false);
+                }}
               />
 
-              {allowRemove && !loading ? (
+              {busy ? (
+                <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 bg-black/25 backdrop-blur-[1px]">
+                  <Loader2 className="h-8 w-8 animate-spin text-white" />
+                  <span className="text-xs font-medium text-white">
+                    {loading ? "Upload u toku…" : "Učitavanje…"}
+                  </span>
+                </div>
+              ) : null}
+
+              {allowRemove && !busy ? (
                 <Button
                   type="button"
                   size="icon"
                   variant="destructive"
-                  className="absolute right-1 top-1 h-7 w-7 cursor-pointer"
+                  className="absolute right-1 top-1 z-20 h-7 w-7 cursor-pointer"
                   onClick={removeImage}
                 >
                   <X size={14} />
@@ -108,24 +130,39 @@ const ImagePreviewInput = ({
               ) : null}
             </div>
           ) : (
-            <div className="flex aspect-square flex-col items-center justify-center rounded-lg border border-dashed text-muted-foreground">
-              <ImageIcon size={28} />
-              <p className="mt-1 text-xs">Nema izabrane slike</p>
+            <div className="relative flex aspect-square flex-col items-center justify-center rounded-lg border border-dashed text-muted-foreground">
+              {loading ? (
+                <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 bg-background/80">
+                  <Loader2 className="h-8 w-8 animate-spin" />
+                  <span className="text-xs font-medium">Upload u toku…</span>
+                </div>
+              ) : (
+                <>
+                  <ImageIcon size={28} />
+                  <p className="mt-1 text-xs">Nema izabrane slike</p>
+                </>
+              )}
             </div>
           )}
 
           <Label
             htmlFor={inputId}
             className={`flex h-9 cursor-pointer items-center justify-center gap-2 rounded-md border text-sm hover:bg-muted ${
-              loading ? "pointer-events-none opacity-60" : ""
+              busy ? "pointer-events-none opacity-60" : ""
             }`}
           >
-            <Upload size={14} />
+            {busy ? (
+              <Loader2 size={14} className="animate-spin" />
+            ) : (
+              <Upload size={14} />
+            )}
             {loading
-              ? "Upload u toku..."
-              : displaySrc
-                ? "Zameni sliku"
-                : "Izaberi sliku"}
+              ? "Upload u toku…"
+              : imageLoading
+                ? "Učitavanje…"
+                : displaySrc
+                  ? "Zameni sliku"
+                  : "Izaberi sliku"}
           </Label>
 
           <Input
@@ -133,7 +170,7 @@ const ImagePreviewInput = ({
             type="file"
             accept="image/*"
             className="hidden"
-            disabled={loading}
+            disabled={busy}
             onChange={handleFileChange}
           />
         </CardContent>

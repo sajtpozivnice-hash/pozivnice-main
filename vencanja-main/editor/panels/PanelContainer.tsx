@@ -1,9 +1,13 @@
 "use client";
 
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useRef } from "react";
 import { cn } from "./helpers";
 import { useEditor } from "../EditorProvider";
+import {
+  EDITOR_META_PANEL_IDS,
+  scrollEditorCanvasToSection,
+} from "../scrollToSection";
 
 type PanelContainerProps = {
   id: string;
@@ -12,58 +16,100 @@ type PanelContainerProps = {
   children: ReactNode;
 };
 
+function isDesktopEditor() {
+  return (
+    typeof window !== "undefined" &&
+    window.matchMedia("(min-width: 1024px)").matches
+  );
+}
+
+function scrollSidebarToPanel(panel: HTMLElement) {
+  const sidebar = panel.closest("[data-editor-sidebar]") as HTMLElement | null;
+  const scroller =
+    (sidebar?.querySelector(".overflow-y-auto") as HTMLElement | null) ??
+    sidebar;
+  if (!panel || !scroller) return;
+
+  const panelTop =
+    panel.getBoundingClientRect().top -
+    scroller.getBoundingClientRect().top +
+    scroller.scrollTop;
+
+  scroller.scrollTo({
+    top: Math.max(0, panelTop - 8),
+    behavior: "smooth",
+  });
+}
+
 const PanelContainer: FC<PanelContainerProps> = ({
   id,
   title,
   icon: Icon,
   children,
 }) => {
-  const { activePanel, setActivePanel } = useEditor();
+  const { activePanel, setActivePanel, setPreviewFocusId } = useEditor();
+  const panelRef = useRef<HTMLDivElement>(null);
+  const isOpen = activePanel === id;
+
+  const handleToggle = () => {
+    const willOpen = !isOpen;
+    setActivePanel(willOpen ? id : null);
+
+    if (!willOpen) return;
+
+    if (!EDITOR_META_PANEL_IDS.has(id)) {
+      setPreviewFocusId(id);
+    }
+
+    requestAnimationFrame(() => {
+      const panel = panelRef.current;
+      if (panel) scrollSidebarToPanel(panel);
+
+      window.setTimeout(() => {
+        if (isDesktopEditor()) {
+          scrollEditorCanvasToSection(id);
+        }
+      }, 40);
+    });
+  };
+
   return (
-    <div className="border-b border-black/5 last:border-0 ">
+    <div
+      ref={panelRef}
+      data-panel-id={id}
+      className="border-b border-black/5 last:border-0"
+    >
       <button
-        onClick={() => {
-          setActivePanel(activePanel === id ? null : id);
-          if (activePanel !== id) {
-            const element = document.getElementById(id);
-            element?.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            });
-          }
-        }}
+        type="button"
+        onClick={handleToggle}
         className={cn(
-          "cursor-pointer w-full flex items-center justify-between py-5 text-left transition-all px-3",
-          activePanel === id ? "bg-black/[0.02]" : "hover:bg-black/[0.01]",
+          "flex w-full cursor-pointer items-center justify-between px-2 py-3.5 text-left transition-all sm:px-3 sm:py-5",
+          isOpen ? "bg-black/[0.02]" : "hover:bg-black/[0.01]",
         )}
       >
-        {/* <p className="text-[10px] uppercase tracking-[0.2em] font-bold opacity-30 mb-4">
-          Manage Page Flow
-        </p> */}
-        <div className="flex items-center gap-3">
+        <div className="flex min-w-0 items-center gap-2.5 sm:gap-3">
           <div
             className={cn(
-              "w-8 h-8 rounded-lg flex items-center justify-center transition-colors",
-              activePanel === id
-                ? "bg-black text-white"
-                : "bg-black/5 text-black/40",
+              "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors",
+              isOpen ? "bg-black text-white" : "bg-black/5 text-black/40",
             )}
           >
-            <Icon size={24} />
+            <Icon size={20} className="sm:hidden" />
+            <Icon size={24} className="hidden sm:block" />
           </div>
 
-          <span className="text-xs font-bold uppercase tracking-[0.2em]">
+          <span className="truncate text-[11px] font-bold uppercase tracking-[0.14em] sm:text-xs sm:tracking-[0.2em]">
             {title}
           </span>
         </div>
-        {activePanel === id ? (
-          <ChevronUp size={14} className="opacity-40" />
+        {isOpen ? (
+          <ChevronUp size={14} className="shrink-0 opacity-40" />
         ) : (
-          <ChevronDown size={14} className="opacity-40" />
+          <ChevronDown size={14} className="shrink-0 opacity-40" />
         )}
       </button>
-      {activePanel === id && (
-        <div className="px-6 pb-8 space-y-8 animate-in fade-in slide-in-from-top-2 duration-300">
+      {isOpen && (
+        <div className="space-y-5 px-2 pb-6 sm:space-y-8 sm:px-6 sm:pb-8 animate-in fade-in slide-in-from-top-2 duration-300">
           {children}
         </div>
       )}

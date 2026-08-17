@@ -3,6 +3,7 @@
 import { FC, useState } from "react";
 import ImagePreviewInput from "@/components/dashboard/ImagePreviewInput";
 import { uploadImageToCloudinary } from "@/helpers/uploadImageToCloudinary";
+import { toast } from "sonner";
 
 type EditorImageProps = {
   label: string;
@@ -33,6 +34,11 @@ const EditorImage: FC<EditorImageProps> = ({
       onChange(url);
     } catch (err) {
       console.error("Upload failed", err);
+      toast.error(
+        err instanceof Error
+          ? err.message
+          : "Upload slike nije uspeo. Pokušajte ponovo.",
+      );
     } finally {
       setLoading(false);
     }
