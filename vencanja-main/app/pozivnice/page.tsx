@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import Header from "@/components/header/Header";
 import PozivniceHeader from "./PozivniceHeader";
 import PozivniceContent from "./PozivniceContent";
@@ -11,7 +12,9 @@ const Pozivnice = () => {
     <div>
       <Header />
       <PozivniceHeader />
-      <PozivniceContent />
+      <Suspense fallback={null}>
+        <PozivniceContent />
+      </Suspense>
       <Cta
         title="Vaš dan počinje jednom pozivnicom."
         description="Izaberite dizajn iznad, prilagodite ga sebi i imajte sve što vam treba za organizaciju — na jednom mestu."

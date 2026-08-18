@@ -5,6 +5,17 @@ export const EDITOR_META_PANEL_IDS = new Set([
   "structure",
 ]);
 
+let suppressScrollSyncUntil = 0;
+
+/** Pause canvas→sidebar highlight while we programmatically scroll the preview. */
+export function suppressCanvasScrollSync(ms = 900) {
+  suppressScrollSyncUntil = Date.now() + ms;
+}
+
+export function isCanvasScrollSyncSuppressed() {
+  return Date.now() < suppressScrollSyncUntil;
+}
+
 export function scrollEditorCanvasToSection(sectionId: string) {
   if (!sectionId || EDITOR_META_PANEL_IDS.has(sectionId)) return false;
 
@@ -17,6 +28,8 @@ export function scrollEditorCanvasToSection(sectionId: string) {
       : sectionId;
   const target = canvas.querySelector<HTMLElement>(`#${safeId}`);
   if (!target) return false;
+
+  suppressCanvasScrollSync();
 
   const top =
     target.getBoundingClientRect().top -

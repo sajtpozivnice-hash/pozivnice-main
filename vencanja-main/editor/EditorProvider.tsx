@@ -27,6 +27,9 @@ type EditorContextType = {
   /** Last content section opened in sidebar — used to restore preview scroll on mobile. */
   previewFocusId: string | null;
   setPreviewFocusId: Dispatch<SetStateAction<string | null>>;
+  /** Desktop: section currently in view in the preview canvas (sidebar highlight only). */
+  scrollHighlightId: string | null;
+  setScrollHighlightId: Dispatch<SetStateAction<string | null>>;
   viewMode: "preview" | "edit";
   setViewMode: Dispatch<SetStateAction<"preview" | "edit">>;
 };
@@ -45,6 +48,9 @@ export function EditorProvider({
   );
   const [activePanel, setActivePanel] = useState<string | null>(null);
   const [previewFocusId, setPreviewFocusId] = useState<string | null>(null);
+  const [scrollHighlightId, setScrollHighlightId] = useState<string | null>(
+    null,
+  );
   const [viewMode, setViewMode] = useState<"preview" | "edit">("preview");
   const updateSection = (id: string, changes: any) => {
     setConfig((prev: any) => ({
@@ -134,6 +140,8 @@ export function EditorProvider({
         setActivePanel,
         previewFocusId,
         setPreviewFocusId,
+        scrollHighlightId,
+        setScrollHighlightId,
         viewMode,
         setViewMode,
         updateTheme,

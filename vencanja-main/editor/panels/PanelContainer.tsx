@@ -1,7 +1,7 @@
 "use client";
 
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { FC, ReactNode, useRef } from "react";
+import { FC, ReactNode, useEffect, useRef } from "react";
 import { cn } from "./helpers";
 import { useEditor } from "../EditorProvider";
 import {
@@ -47,9 +47,24 @@ const PanelContainer: FC<PanelContainerProps> = ({
   icon: Icon,
   children,
 }) => {
-  const { activePanel, setActivePanel, setPreviewFocusId } = useEditor();
+  const {
+    activePanel,
+    setActivePanel,
+    setPreviewFocusId,
+    scrollHighlightId,
+    setScrollHighlightId,
+  } = useEditor();
   const panelRef = useRef<HTMLDivElement>(null);
   const isOpen = activePanel === id;
+  const isScrollHighlight = !isOpen && scrollHighlightId === id;
+
+  // Keep highlighted (closed) panel visible in the sidebar while scrolling preview.
+  // Skip while a panel is open so editing fields aren't scrolled away.
+  useEffect(() => {
+    if (!isScrollHighlight || !panelRef.current || !isDesktopEditor()) return;
+    if (activePanel !== null) return;
+    panelRef.current.scrollIntoView({ block: "nearest", behavior: "smooth" });
+  }, [isScrollHighlight, scrollHighlightId, activePanel]);
 
   const handleToggle = () => {
     const willOpen = !isOpen;
@@ -59,6 +74,7 @@ const PanelContainer: FC<PanelContainerProps> = ({
 
     if (!EDITOR_META_PANEL_IDS.has(id)) {
       setPreviewFocusId(id);
+      setScrollHighlightId(id);
     }
 
     requestAnimationFrame(() => {
@@ -84,21 +100,34 @@ const PanelContainer: FC<PanelContainerProps> = ({
         onClick={handleToggle}
         className={cn(
           "flex w-full cursor-pointer items-center justify-between px-2 py-3.5 text-left transition-all sm:px-3 sm:py-5",
-          isOpen ? "bg-black/[0.02]" : "hover:bg-black/[0.01]",
+          isOpen
+            ? "bg-black/[0.02]"
+            : isScrollHighlight
+              ? "bg-[var(--color-hot,#e8a0a8)]/15 ring-1 ring-inset ring-[var(--color-hot,#e8a0a8)]/35"
+              : "hover:bg-black/[0.01]",
         )}
       >
         <div className="flex min-w-0 items-center gap-2.5 sm:gap-3">
           <div
             className={cn(
               "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors",
-              isOpen ? "bg-black text-white" : "bg-black/5 text-black/40",
+              isOpen
+                ? "bg-black text-white"
+                : isScrollHighlight
+                  ? "bg-[var(--color-hot,#e8a0a8)] text-white"
+                  : "bg-black/5 text-black/40",
             )}
           >
             <Icon size={20} className="sm:hidden" />
             <Icon size={24} className="hidden sm:block" />
           </div>
 
-          <span className="truncate text-[11px] font-bold uppercase tracking-[0.14em] sm:text-xs sm:tracking-[0.2em]">
+          <span
+            className={cn(
+              "truncate text-[11px] font-bold uppercase tracking-[0.14em] sm:text-xs sm:tracking-[0.2em]",
+              isScrollHighlight && !isOpen && "text-black/80",
+            )}
+          >
             {title}
           </span>
         </div>

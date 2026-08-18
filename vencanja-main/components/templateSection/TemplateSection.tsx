@@ -30,7 +30,6 @@ const pickByCategory = () => {
     return {
       ...category,
       imageLink: match?.imageLink ?? "",
-      projectLink: match?.projectLink ?? "/pozivnice",
     };
   });
 };
@@ -77,7 +76,10 @@ const TemplateSection = () => {
                 ease: [0.25, 0.46, 0.45, 0.94],
               }}
             >
-              <Link href={item.projectLink} className={styles.preview}>
+              <Link
+                href={`/pozivnice?eventType=${item.eventType}`}
+                className={styles.preview}
+              >
                 <div className={styles.imageWrap}>
                   <img
                     src={item.imageLink}

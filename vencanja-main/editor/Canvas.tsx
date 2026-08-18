@@ -1,11 +1,22 @@
 "use client";
 
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { useEditor } from "./EditorProvider";
 import { TemplateRenderer } from "@/engine/TemplateRenderer";
+import { useCanvasScrollHighlight } from "./useCanvasScrollHighlight";
 
 const Canvas: FC = () => {
-  const { config } = useEditor();
+  const { config, setScrollHighlightId } = useEditor();
+
+  const sectionIds = useMemo(
+    () =>
+      config.sections
+        .filter((section) => section.visible)
+        .map((section) => section.id),
+    [config.sections],
+  );
+
+  useCanvasScrollHighlight(sectionIds, setScrollHighlightId);
 
   return (
     // transform creates a containing block so the opening overlay
