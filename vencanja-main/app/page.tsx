@@ -8,6 +8,7 @@ import Header from "@/components/header/Header";
 import Hero from "@/components/hero/Hero";
 import InstructionsForTemplates from "@/components/InstructionsForTemplates/InstructionsForTemplates";
 import Packages from "@/components/packages/Packages";
+import EditorFreedom from "@/components/editorFreedom/EditorFreedom";
 import TemplateSection from "@/components/templateSection/TemplateSection";
 import VisualProof from "@/components/visualProof/VisualProof";
 import WhyUs from "@/components/whyUs/WhyUs";
@@ -20,6 +21,7 @@ export default function Home() {
       <Hero />
       <VisualProof />
       <TemplateSection />
+      <EditorFreedom />
       <Workflow />
       <BackofficeShowcase />
       <InstructionsForTemplates />
