@@ -19,7 +19,7 @@ const Hero = () => {
         <Heading className={styles.mainTitle}>
           <span className={styles.brand}>Vaša pozivnica. Vaš sajt.</span>
           <span className={styles.mainTitleSpan}>
-            Vaša svadba.
+            Vaš događaj.
             <br />
             Sve na jednom mestu.
           </span>
