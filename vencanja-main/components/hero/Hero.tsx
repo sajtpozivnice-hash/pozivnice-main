@@ -17,16 +17,15 @@ const Hero = () => {
       <div className={styles.heroContent}>
         <HeroBadge text="Digitalne pozivnice sa privatnim nalogom." />
         <Heading className={styles.mainTitle}>
-          <span className={styles.brand}>Više od digitalne pozivnice</span>
+          <span className={styles.brand}>Vaša pozivnica. Vaš sajt.</span>
           <span className={styles.mainTitleSpan}>
-            Lepša pozivnica.
+            Vaša svadba.
             <br />
-            Lakša organizacija.
+            Sve na jednom mestu.
           </span>
         </Heading>
         <Paragraph center={false} variant="subtitle">
-        Napravite prelepu digitalnu pozivnicu i organizujte ceo događaj na jednom mestu. Nakon aktivacije dobijate privatni nalog iz kog možete uređivati pozivnicu, pratiti potvrde dolaska, organizovati raspored sedenja, voditi troškove i planirati sve do dana događaja.
-        </Paragraph>
+        Kreirajte prelepu online pozivnicu, prilagodite je potpuno po svojoj meri i upravijajte gostima, RSVP-om, budžetom, rasporedom sedenja i fotografijama — sve iz jednog mesta.</Paragraph>
         <motion.div
           className={styles.heroButtons}
           initial={{ opacity: 0, y: 40 }}
