@@ -1,4 +1,3 @@
-import BackofficeShowcase from "@/components/backoffice/BackofficeShowcase";
 import Controls from "@/components/controls/Controls";
 import Cta from "@/components/cta/Cta";
 import Faq from "@/components/faq/Faq";
@@ -8,7 +7,11 @@ import Header from "@/components/header/Header";
 import Hero from "@/components/hero/Hero";
 import InstructionsForTemplates from "@/components/InstructionsForTemplates/InstructionsForTemplates";
 import Packages from "@/components/packages/Packages";
+import BackofficePanel from "@/components/backoffice/BackofficePanel";
 import EditorFreedom from "@/components/editorFreedom/EditorFreedom";
+import EventOs from "@/components/eventOs/EventOs";
+import PersonalizedDomain from "@/components/personalizedDomain/PersonalizedDomain";
+import AlwaysFresh from "@/components/alwaysFresh/AlwaysFresh";
 import TemplateSection from "@/components/templateSection/TemplateSection";
 import VisualProof from "@/components/visualProof/VisualProof";
 import WhyUs from "@/components/whyUs/WhyUs";
@@ -22,8 +25,11 @@ export default function Home() {
       <VisualProof />
       <TemplateSection />
       <EditorFreedom />
+      <EventOs />
+      <BackofficePanel />
+      <PersonalizedDomain />
+      <AlwaysFresh />
       <Workflow />
-      <BackofficeShowcase />
       <InstructionsForTemplates />
       <WhyUs />
       <Controls />

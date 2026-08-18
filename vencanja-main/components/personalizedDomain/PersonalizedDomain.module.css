@@ -1,0 +1,275 @@
+.wrapper {
+  background:
+    radial-gradient(
+      700px 340px at 12% 20%,
+      color-mix(in srgb, var(--color-primary) 45%, transparent),
+      transparent 70%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-muted) 50%, white) 0%,
+      #fff 100%
+    );
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(24px, 4vw, 48px);
+  align-items: center;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 480px;
+  margin-left: auto;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-hot);
+}
+
+.title {
+  margin: 0;
+  color: var(--color-text);
+  font-size: clamp(26px, 3.4vw, 38px);
+  line-height: 1.15;
+}
+
+.lead,
+.share {
+  margin: 0;
+}
+
+.domainExample {
+  margin: 2px 0;
+}
+
+.domainHost {
+  display: inline-block;
+  font-family: var(--font-playfair);
+  font-size: clamp(18px, 2.2vw, 22px);
+  font-weight: 700;
+  color: #111;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--color-primary) 50%, white);
+  border: 1px solid color-mix(in srgb, var(--color-hot) 18%, transparent);
+  word-break: break-all;
+}
+
+.assurance {
+  margin: 2px 0 0;
+  font-family: var(--font-playfair);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #111;
+}
+
+.actions {
+  margin-top: 4px;
+}
+
+.actions :global(button) {
+  margin-top: 0;
+  width: auto !important;
+  max-width: 260px;
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.browser {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent);
+  box-shadow: var(--shadow-deep);
+  overflow: hidden;
+}
+
+.chrome {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 12px;
+  background: #1c1917;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #57534e;
+}
+
+.dot:nth-child(1) {
+  background: #f87171;
+}
+.dot:nth-child(2) {
+  background: #fbbf24;
+}
+.dot:nth-child(3) {
+  background: #4ade80;
+}
+
+.urlBar {
+  margin-left: 8px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #292524;
+  min-width: 0;
+}
+
+.lock {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  border: 1.5px solid #a8a29e;
+  border-radius: 2px;
+  position: relative;
+}
+
+.lock::before {
+  content: "";
+  position: absolute;
+  left: 1.5px;
+  top: -5px;
+  width: 4px;
+  height: 5px;
+  border: 1.5px solid #a8a29e;
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+}
+
+.url {
+  font-size: 12px;
+  font-weight: 600;
+  color: #e7e5e4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.screen {
+  padding: 28px 22px 24px;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-primary) 35%, white) 0%,
+      #fff 55%
+    );
+  text-align: center;
+}
+
+.screenEyebrow {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-hot);
+}
+
+.screenNames {
+  margin: 8px 0 0;
+  font-family: var(--font-playfair);
+  font-size: clamp(28px, 3.5vw, 36px);
+  font-weight: 700;
+  color: #111;
+  line-height: 1.1;
+}
+
+.screenMeta {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: color-mix(in srgb, var(--color-text) 65%, white);
+}
+
+.qr {
+  margin: 20px auto 0;
+  width: 88px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-text) 55%, white);
+}
+
+.qrInner {
+  width: 72px;
+  height: 72px;
+  border-radius: 6px;
+  border: 2px solid #14110f;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      #14110f 0 4px,
+      transparent 4px 8px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      #14110f 0 4px,
+      transparent 4px 8px
+    );
+  background-color: #fff;
+  background-blend-mode: multiply;
+  opacity: 0.85;
+}
+
+.channels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.channel {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
+  background: #fff;
+  color: color-mix(in srgb, var(--color-text) 75%, white);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .copy {
+    max-width: none;
+    margin-left: 0;
+    order: 2;
+  }
+
+  .stage {
+    order: 1;
+  }
+
+  .actions :global(button) {
+    width: 100% !important;
+    max-width: none;
+  }
+}

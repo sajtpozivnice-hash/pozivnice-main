@@ -1,0 +1,325 @@
+.wrapper {
+  background: linear-gradient(
+    180deg,
+    #fff 0%,
+    color-mix(in srgb, var(--color-muted) 55%, white) 100%
+  );
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr);
+  gap: clamp(24px, 4vw, 48px);
+  align-items: center;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 480px;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-hot);
+}
+
+.title {
+  margin: 0;
+  color: var(--color-text);
+  font-size: clamp(26px, 3.4vw, 38px);
+  line-height: 1.15;
+}
+
+.lead {
+  margin: 0;
+}
+
+.glance {
+  margin: 6px 0 0;
+  font-family: var(--font-playfair);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #111;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.list li {
+  position: relative;
+  padding-left: 16px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: color-mix(in srgb, var(--color-text) 72%, white);
+}
+
+.list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-hot);
+}
+
+.assurance {
+  margin: 4px 0 0;
+  font-family: var(--font-playfair);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #111;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.actions :global(button) {
+  margin-top: 0;
+  width: auto !important;
+  max-width: 240px;
+  font-size: 15px;
+  padding: 0.65rem 1rem;
+}
+
+.stage {
+  min-width: 0;
+}
+
+.dashboard {
+  background: #fff;
+  border: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent);
+  border-radius: 12px;
+  box-shadow: var(--shadow-deep);
+  overflow: hidden;
+}
+
+.dashTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent);
+  background: color-mix(in srgb, var(--color-muted) 40%, white);
+}
+
+.dashBrand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-playfair);
+  font-size: 14px;
+  font-weight: 700;
+  color: #111;
+}
+
+.dashDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-hot);
+}
+
+.dashNav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  color: color-mix(in srgb, var(--color-text) 45%, white);
+}
+
+.navActive {
+  color: #111;
+}
+
+.dashGrid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: 10px;
+  padding: 12px;
+}
+
+.tile {
+  background: color-mix(in srgb, var(--color-muted) 55%, white);
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 96px;
+}
+
+.tileWide {
+  grid-column: 1 / -1;
+  background: color-mix(in srgb, var(--color-primary) 45%, white);
+}
+
+.tileDark {
+  background: #171412;
+  color: #fffaf7;
+}
+
+.tileDark .tileLabel,
+.tileDark .tileMeta {
+  color: rgba(255, 250, 247, 0.62);
+}
+
+.tileDark .tileStat {
+  color: #fffaf7;
+}
+
+.tilePhotos {
+  grid-column: span 2;
+}
+
+.tileLabel {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-hot);
+}
+
+.tileStat {
+  margin: 2px 0 0;
+  font-family: var(--font-playfair);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1;
+  color: #111;
+}
+
+.tileStat span {
+  font-size: 0.55em;
+  font-weight: 600;
+  color: color-mix(in srgb, #111 40%, white);
+}
+
+.tileMeta {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 600;
+  color: color-mix(in srgb, var(--color-text) 55%, white);
+}
+
+.bar {
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  overflow: hidden;
+  margin: 4px 0 2px;
+}
+
+.barFill {
+  width: 70%;
+  height: 100%;
+  background: var(--color-hot);
+  border-radius: inherit;
+}
+
+.miniTables {
+  display: grid;
+  grid-template-columns: repeat(3, 12px);
+  gap: 6px;
+  margin: 6px 0 2px;
+}
+
+.miniTables span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 250, 247, 0.55);
+}
+
+.photoRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin: 6px 0 2px;
+}
+
+.photoRow span {
+  aspect-ratio: 1;
+  border-radius: 4px;
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-primary) 80%, white),
+      color-mix(in srgb, var(--color-hot) 35%, #ddd)
+    );
+}
+
+.photoRow span:nth-child(2) {
+  opacity: 0.85;
+}
+.photoRow span:nth-child(3) {
+  opacity: 0.7;
+}
+.photoRow span:nth-child(4) {
+  opacity: 0.55;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .copy {
+    max-width: none;
+    order: 2;
+  }
+
+  .stage {
+    order: 1;
+  }
+
+  .dashNav {
+    display: none;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .actions :global(button) {
+    width: 100% !important;
+    max-width: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .dashGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .tilePhotos {
+    grid-column: span 2;
+  }
+
+  .tileWide {
+    grid-column: 1 / -1;
+  }
+}
