@@ -41,7 +41,7 @@ const Hero: FC<Props> = ({ section, event }) => {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="vn-hero-frame"
         >
-          <p className="vn-eyebrow mb-8">{data.subtitle ?? "Venčanje"}</p>
+          <p className="vn-hero-eyebrow mb-8">{data.subtitle ?? "Venčanje"}</p>
 
           <div className="vn-monogram" aria-hidden="true">
             <span>{monoA}</span>
@@ -51,14 +51,14 @@ const Hero: FC<Props> = ({ section, event }) => {
 
           <h1 className="vn-hero-names mt-8">{names}</h1>
 
-          <div className="mx-auto mt-8 h-px w-16 bg-[var(--color-vn-champagne)]" />
+          <div className="mx-auto mt-8 h-px w-20 bg-[var(--color-vn-champagne)] sm:w-24" />
 
-          <p className="vn-caption mt-6">
+          <p className="vn-hero-date mt-7">
             {formatDate(date, "DAY_D_MMMM_YYYY")}
           </p>
 
           {data.title ? (
-            <p className="vn-body mx-auto mt-5 max-w-sm">{data.title}</p>
+            <p className="vn-hero-lede mx-auto mt-6 max-w-md">{data.title}</p>
           ) : null}
         </motion.div>
       </div>

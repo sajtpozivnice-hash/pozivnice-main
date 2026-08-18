@@ -7,6 +7,7 @@ import {
   useMemo,
   useRef,
   useState,
+  type CSSProperties,
   type KeyboardEvent,
   type ReactNode,
 } from "react";
@@ -87,6 +88,78 @@ function eyebrowForEvent(eventType: EventType): string {
   }
 }
 
+function parseHexColor(value?: string): [number, number, number] | null {
+  if (!value) return null;
+  const hex = value.trim().replace(/^#/, "");
+  if (!/^[0-9a-fA-F]{3}$|^[0-9a-fA-F]{6}$/.test(hex)) return null;
+  const full =
+    hex.length === 3
+      ? hex
+          .split("")
+          .map((c) => c + c)
+          .join("")
+      : hex;
+  const n = Number.parseInt(full, 16);
+  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+}
+
+/** Relative luminance 0–1 (sRGB). */
+function relativeLuminance(hex?: string): number {
+  const rgb = parseHexColor(hex);
+  if (!rgb) return 0.5;
+  const channel = (c: number) => {
+    const s = c / 255;
+    return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4;
+  };
+  const [r, g, b] = rgb.map(channel);
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+
+function contrastRatio(a?: string, b?: string): number {
+  const l1 = relativeLuminance(a);
+  const l2 = relativeLuminance(b);
+  const lighter = Math.max(l1, l2);
+  const darker = Math.min(l1, l2);
+  return (lighter + 0.05) / (darker + 0.05);
+}
+
+/**
+ * Opening envelope must stay readable on every template.
+ * Theme `secondary` is often light (navy ivory) — never use it as ink on a light paper.
+ */
+function resolveOpeningPalette(config: UniversalProjectConfig) {
+  const normalize = (value: string) => value.trim().toLowerCase();
+  const primary = normalize(
+    config.theme.colors?.base?.primary?.value || "#C4A574",
+  );
+  const secondary = normalize(
+    config.theme.colors?.base?.secondary?.value || "#1A1816",
+  );
+  const background = normalize(
+    config.theme.colors?.background?.value || "#F7F3EE",
+  );
+
+  const FALLBACK_PAPER = "#f4f0ea";
+  const FALLBACK_INK = "#1a1816";
+
+  const paperCandidates = [background, secondary, FALLBACK_PAPER];
+  const paper =
+    paperCandidates.find((c) => relativeLuminance(c) >= 0.72) ?? FALLBACK_PAPER;
+
+  const inkCandidates = [secondary, background, FALLBACK_INK];
+  let ink =
+    inkCandidates.find((c) => contrastRatio(c, paper) >= 4.5) ?? FALLBACK_INK;
+
+  if (contrastRatio(ink, paper) < 4.5) {
+    ink = FALLBACK_INK;
+  }
+
+  const accent =
+    contrastRatio(primary, paper) >= 2.2 ? primary : FALLBACK_INK;
+
+  return { paper, ink, accent };
+}
+
 export function InvitationOpening({
   config,
   enabled = true,
@@ -98,7 +171,15 @@ export function InvitationOpening({
   const unlockTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const isBlocking = phase === "closed" || phase === "opening";
-  const inertProps = isBlocking ? ({ inert: true } as const) : {};
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
+
+  // `inert` can serialize differently during SSR vs client — apply after hydrate.
+  const inertProps =
+    isBlocking && hydrated ? ({ inert: true } as const) : {};
 
   const eventType = resolveEventType(config);
   const tone = toneForEvent(eventType);
@@ -109,6 +190,11 @@ export function InvitationOpening({
   );
   const ageMark =
     eventType === "comingOfAge" ? resolveAgeMark(config) || "18" : null;
+  const palette = useMemo(() => resolveOpeningPalette(config), [
+    config.theme.colors?.base?.primary?.value,
+    config.theme.colors?.base?.secondary?.value,
+    config.theme.colors?.background?.value,
+  ]);
 
   useEffect(() => {
     if (!enabled) {
@@ -223,6 +309,7 @@ export function InvitationOpening({
           phase === "opening" ? styles.contentReveal : ""
         } ${phase === "closed" ? styles.contentHidden : ""}`}
         aria-hidden={isBlocking || undefined}
+        suppressHydrationWarning
         {...inertProps}
       >
         {children}
@@ -238,6 +325,14 @@ export function InvitationOpening({
           role="dialog"
           aria-modal="true"
           aria-labelledby={titleId}
+          suppressHydrationWarning
+          style={
+            {
+              ["--io-paper" as string]: palette.paper,
+              ["--io-ink" as string]: palette.ink,
+              ["--io-accent" as string]: palette.accent,
+            } as CSSProperties
+          }
         >
           <div className={styles.atmosphere} aria-hidden />
           <div className={`${styles.panel} ${styles.panelLeft}`} aria-hidden />

@@ -1,34 +1,15 @@
 import { UniversalProjectConfig } from "@/types/config";
 
 const IMG = {
-  hero: "https://images.unsplash.com/photo-1515934751635-c81c6bc9efc1?auto=format&fit=crop&w=2000&q=85",
   story:
-    "https://images.unsplash.com/photo-1504198453319-8ceacb77e65d?auto=format&fit=crop&w=1600&q=85",
-  invite:
-    "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1400&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787087450/jaakko-perala-norway-elopement-photographer-71BLG9XJtHk-unsplash_etp1c6.jpg",
   calendar:
-    "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1400&q=85",
-  schedule:
-    "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1400&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023434/wedding/wyteshot-ZEbsmqrjNeI-unsplash.jpg",
   quote:
-    "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1400&q=85",
-  locationA:
-    "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1000&q=85",
-  locationB:
-    "https://images.unsplash.com/photo-1492684223066-81342ee5ff7c?auto=format&fit=crop&w=1000&q=85",
-  upload:
-    "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1400&q=85",
-  rsvp: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1400&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1772187509/wedding/qvui0cbpivfwkyiyfpy6.jpg",
+  rsvp: "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787087360/jordan-arnold-Ul07QK2AR-0-unsplash_ank1xa.jpg",
   footer:
-    "https://images.unsplash.com/photo-1504198453319-8ceacb77e65d?auto=format&fit=crop&w=1600&q=85",
-  gallery: [
-    "https://images.unsplash.com/photo-1515934751635-c81c6bc9efc1?auto=format&fit=crop&w=1000&q=85",
-    "https://images.unsplash.com/photo-1504198453319-8ceacb77e65d?auto=format&fit=crop&w=1000&q=85",
-    "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1000&q=85",
-    "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1000&q=85",
-    "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1000&q=85",
-    "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1000&q=85",
-  ],
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787067139/alvin-mahmudov-NSVJAAXOYHs-unsplash_szart3.jpg",
 };
 
 export const vencanjeNavyDefaultConfig = {
@@ -58,6 +39,10 @@ export const vencanjeNavyDefaultConfig = {
           value: "#F6F1E8",
         },
       },
+      background: {
+        name: "Navy",
+        value: "#0B1C2C",
+      },
     },
   },
   sections: [
@@ -70,7 +55,6 @@ export const vencanjeNavyDefaultConfig = {
       data: {
         title: "Crno-bela večer",
         subtitle: "Venčanje",
-        backgroundImage: IMG.hero,
       },
     },
     {
@@ -93,7 +77,6 @@ export const vencanjeNavyDefaultConfig = {
       data: {
         description:
           "Sa velikim poštovanjem molimo za čast Vašeg prisustva na svečanosti našeg venčanja — u krugu porodice i najbližih prijatelja.",
-        imageUrl: IMG.invite,
       },
     },
     {
@@ -129,7 +112,6 @@ export const vencanjeNavyDefaultConfig = {
       data: {
         title: "Program večeri",
         subtitle: "Crno-beli dress code. Formalna atmosfera.",
-        imageUrl: IMG.schedule,
         items: [
           {
             id: "1",
@@ -186,7 +168,6 @@ export const vencanjeNavyDefaultConfig = {
             time: "17:00",
             location: "Hotel Metropol Palace — Svečana sala",
             text: "Ulaz sa Bulevara kralja Aleksandra. Goste dočekujemo od 16:30.",
-            image: IMG.locationA,
           },
           {
             id: 2,
@@ -194,21 +175,8 @@ export const vencanjeNavyDefaultConfig = {
             time: "20:00",
             location: "Hotel Metropol Palace — Ballroom",
             text: "Večera, zdravice i ples. Dress code: black-tie / večernja toaleta.",
-            image: IMG.locationB,
           },
         ],
-      },
-    },
-    {
-      id: "ourGallery",
-      name: "Galerija",
-      type: "ourGallery",
-      visible: true,
-      order: 9,
-      data: {
-        title: "U kadrovima",
-        description: "Trenuci pre večeri",
-        images: IMG.gallery.map((url) => ({ url })),
       },
     },
     {
@@ -216,13 +184,12 @@ export const vencanjeNavyDefaultConfig = {
       name: "Dodavanje Slika",
       type: "uploadImagesSection",
       visible: true,
-      order: 10,
+      order: 9,
       data: {
         title: "Podelite kadar",
         subtitle: "Galerija gostiju",
         description:
           "Ako uhvatite trenutak sa naše večeri — ostavite ga u našoj galeriji.",
-        imageUrl: IMG.upload,
         buttonText: "Dodajte fotografiju",
       },
     },
@@ -231,7 +198,7 @@ export const vencanjeNavyDefaultConfig = {
       name: "Potvrda Prisutnosti",
       type: "rsvp",
       visible: true,
-      order: 11,
+      order: 10,
       data: {
         title: "Potvrdite prisustvo",
         description: "Ljubazno odgovorite do ",
@@ -244,7 +211,7 @@ export const vencanjeNavyDefaultConfig = {
       name: "Završna poruka",
       type: "footer",
       visible: true,
-      order: 12,
+      order: 11,
       data: {
         title: "Sa poštovanjem",
         imageUrl: IMG.footer,

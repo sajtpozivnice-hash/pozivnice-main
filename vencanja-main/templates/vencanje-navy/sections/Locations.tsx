@@ -4,7 +4,6 @@ import { FC } from "react";
 import { motion } from "framer-motion";
 import { LocationsSection } from "@/types/sections";
 import { EventConfig, ThemeConfig } from "@/types/config";
-import { Media } from "../components/Media";
 
 type Props = {
   section: LocationsSection;
@@ -37,28 +36,20 @@ const Locations: FC<Props> = ({ section }) => {
               transition={{ duration: 0.65, delay: index * 0.08 }}
               className="vn-addr-card"
             >
-              <div>
-                <div className="flex flex-wrap items-baseline justify-between gap-3">
-                  <p className="vn-eyebrow">{card.title}</p>
-                  {card.time ? (
-                    <p className="vn-caption">{card.time}</p>
-                  ) : null}
-                </div>
-                {card.location ? (
-                  <h3 className="vn-display-sm mt-4">{card.location}</h3>
-                ) : null}
-                {card.text ? (
-                  <p className="vn-body mt-4 max-w-lg">{card.text}</p>
+              <div className="flex items-baseline justify-between gap-6">
+                <p className="vn-eyebrow min-w-0">{card.title}</p>
+                {card.time ? (
+                  <p className="vn-addr-time ml-auto shrink-0 text-right">
+                    {card.time}
+                  </p>
                 ) : null}
               </div>
-
-              <div className="vn-addr-thumb">
-                <Media
-                  src={card.image}
-                  alt={card.location ?? card.title ?? ""}
-                  className="h-full w-full"
-                />
-              </div>
+              {card.location ? (
+                <h3 className="vn-display-sm mt-4">{card.location}</h3>
+              ) : null}
+              {card.text ? (
+                <p className="vn-body mt-4 max-w-lg">{card.text}</p>
+              ) : null}
             </motion.article>
           ))}
         </div>

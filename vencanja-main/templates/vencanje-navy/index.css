@@ -1,4 +1,4 @@
-/* vencanje-navy — formal black-tie: deep navy + champagne brass */
+/* vencanje-navy — formal black-tie; colors from theme tokens */
 @import "tailwindcss";
 
 @theme {
@@ -13,6 +13,24 @@
 }
 
 [data-template="vencanje-navy"] {
+  /* Theme bridge: editor primary / secondary / background */
+  --color-vn-champagne: var(--color-primary, #d4af7a);
+  --color-vn-ivory: var(--color-secondary, #f6f1e8);
+  --color-vn-navy: var(--color-background, #0b1c2c);
+  --color-vn-navy-deep: color-mix(in srgb, var(--color-vn-navy) 78%, black);
+  --color-vn-navy-lift: color-mix(in srgb, var(--color-vn-navy) 86%, white);
+  --color-vn-champagne-soft: color-mix(
+    in srgb,
+    var(--color-vn-champagne) 35%,
+    transparent
+  );
+  --color-vn-ivory-muted: color-mix(
+    in srgb,
+    var(--color-vn-ivory) 62%,
+    transparent
+  );
+  --color-vn-line: color-mix(in srgb, var(--color-vn-champagne) 45%, transparent);
+
   background-color: var(--color-vn-navy);
   color: var(--color-vn-ivory);
   overflow-x: hidden;
@@ -92,13 +110,13 @@
   .vn-fallback {
     background: linear-gradient(
       145deg,
-      #12283a 0%,
-      #0b1c2c 55%,
-      #1a3044 100%
+      color-mix(in srgb, var(--color-vn-navy) 70%, white) 0%,
+      var(--color-vn-navy) 55%,
+      color-mix(in srgb, var(--color-vn-navy) 88%, white) 100%
     );
   }
 
-  /* —— Hero: navy field + monogram + double-line frame + bottom photo band —— */
+  /* —— Hero —— */
   .vn-hero {
     @apply relative flex min-h-[100svh] w-full flex-col;
     background: var(--color-vn-navy);
@@ -111,7 +129,8 @@
   .vn-hero-frame {
     @apply relative mx-auto w-full max-w-3xl px-8 py-14 text-center sm:px-14 sm:py-20;
     border: 1px solid var(--color-vn-champagne-soft);
-    box-shadow: inset 0 0 0 6px var(--color-vn-navy),
+    box-shadow:
+      inset 0 0 0 6px var(--color-vn-navy),
       inset 0 0 0 7px var(--color-vn-champagne-soft);
   }
 
@@ -132,8 +151,32 @@
   .vn-hero-names {
     color: var(--color-vn-ivory);
     font-family: var(--font-primary);
-    font-size: clamp(1.65rem, 4vw, 2.75rem);
+    font-size: clamp(2rem, 5vw, 3.35rem);
     letter-spacing: 0.02em;
+    line-height: 1.15;
+  }
+
+  .vn-hero-eyebrow {
+    @apply uppercase tracking-[0.38em];
+    color: var(--color-vn-champagne);
+    font-family: var(--font-secondary);
+    font-size: clamp(0.75rem, 1.4vw, 0.9rem);
+    font-weight: 600;
+  }
+
+  .vn-hero-date {
+    color: var(--color-vn-ivory);
+    font-family: var(--font-secondary);
+    font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+    letter-spacing: 0.08em;
+    line-height: 1.4;
+  }
+
+  .vn-hero-lede {
+    color: color-mix(in srgb, var(--color-vn-ivory) 88%, transparent);
+    font-family: var(--font-secondary);
+    font-size: clamp(1.05rem, 2vw, 1.2rem);
+    line-height: 1.7;
   }
 
   .vn-hero-band {
@@ -145,7 +188,7 @@
     @apply h-full w-full object-cover object-center;
   }
 
-  /* —— Countdown: roman-numeral feel —— */
+  /* —— Countdown —— */
   .vn-count-row {
     @apply grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4;
   }
@@ -171,7 +214,7 @@
     font-family: var(--font-secondary);
   }
 
-  /* —— Invite: champagne corner brackets —— */
+  /* —— Invite —— */
   .vn-invite-frame {
     @apply relative mx-auto max-w-2xl px-10 py-14 text-center sm:px-16 sm:py-20;
   }
@@ -226,7 +269,8 @@
     background: var(--color-vn-ivory);
     color: var(--color-vn-navy);
     border: 1px solid var(--color-vn-champagne);
-    box-shadow: 0 0 0 6px var(--color-vn-navy),
+    box-shadow:
+      0 0 0 6px var(--color-vn-navy),
       0 0 0 7px var(--color-vn-champagne-soft);
   }
 
@@ -261,23 +305,8 @@
 
   .vn-cal-head {
     @apply text-center text-[9px] uppercase tracking-[0.2em];
-    color: rgba(11, 28, 44, 0.45);
+    color: color-mix(in srgb, var(--color-vn-navy) 45%, transparent);
     font-family: var(--font-secondary);
-  }
-
-  /* —— OurStory chapters —— */
-  .vn-chapter-text {
-    @apply px-5 py-16 sm:px-10 sm:py-24 lg:px-16;
-    background: var(--color-vn-navy-deep);
-  }
-
-  .vn-chapter-photo {
-    @apply relative w-full overflow-hidden;
-    height: clamp(14rem, 42vw, 28rem);
-  }
-
-  .vn-chapter-photo img {
-    @apply h-full w-full object-cover;
   }
 
   /* —— Schedule program —— */
@@ -320,18 +349,20 @@
     font-style: italic;
   }
 
-  /* —— Locations program cards —— */
+  /* —— Locations —— */
   .vn-addr-card {
-    @apply grid grid-cols-1 gap-6 border p-6 sm:grid-cols-[1fr_5.5rem] sm:gap-8 sm:p-8;
+    @apply border p-6 sm:p-8;
     border-color: var(--color-vn-champagne-soft);
     background: var(--color-vn-navy-deep);
   }
 
-  .vn-addr-thumb {
-    @apply h-20 w-full overflow-hidden sm:h-auto sm:aspect-square;
+  .vn-addr-time {
+    @apply text-base tracking-[0.12em] tabular-nums sm:text-lg;
+    color: var(--color-vn-champagne);
+    font-family: var(--font-secondary);
   }
 
-  /* —— Gallery editorial —— */
+  /* —— Gallery —— */
   .vn-gallery {
     display: grid;
     grid-template-columns: 1fr;
@@ -373,7 +404,7 @@
   }
 
   .vn-input::placeholder {
-    color: rgba(246, 241, 232, 0.35);
+    color: color-mix(in srgb, var(--color-vn-ivory) 35%, transparent);
   }
 
   .vn-choice {
