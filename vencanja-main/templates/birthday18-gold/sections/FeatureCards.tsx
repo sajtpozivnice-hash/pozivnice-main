@@ -47,6 +47,16 @@ const FeatureCards: FC<Props> = ({ section, theme }) => {
           </div>
           <div className="gala-ticket__perf" aria-hidden />
           <div className="gala-ticket__body">
+            {card?.image ? (
+              <div className="mb-5 overflow-hidden border border-[var(--gala-gold)]/35">
+                <img
+                  src={card.image}
+                  alt=""
+                  className="aspect-[16/9] w-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            ) : null}
             <h3
               className="gala-display text-2xl sm:text-3xl"
               style={{ color: accent }}

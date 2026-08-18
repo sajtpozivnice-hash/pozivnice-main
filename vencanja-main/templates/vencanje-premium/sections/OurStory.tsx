@@ -50,12 +50,12 @@ const OurStory: FC<Props> = ({ section, theme }) => {
           </div>
         </div>
 
-        <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-14">
+        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
           <motion.div
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-7 lg:pt-10"
+            className="lg:col-span-7"
           >
             <PremiumMedia
               src={data.image}
@@ -69,7 +69,7 @@ const OurStory: FC<Props> = ({ section, theme }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="lg:col-span-5 lg:-mt-6"
+            className="lg:col-span-5"
           >
             <div className="vp-rule-left mb-8" style={{ background: accent }} />
             <div className="space-y-6">

@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@theme {
+  --color-vs-linen: #faf7f1;
+  --color-vs-oat: #efe7da;
+  --color-vs-oat-deep: #e5dacb;
+  --color-vs-sage: #6b7f6a;
+  --color-vs-sage-tint: #e9eee4;
+  --color-vs-sage-soft: #d8e0d1;
+  --color-vs-terracotta: #c0764f;
+  --color-vs-ink: #2c2a26;
+  --color-vs-ink-soft: #4b463e;
+  --color-vs-muted: #837c70;
+  --color-vs-line: rgba(44, 42, 38, 0.12);
+}
+
+@layer components {
+  .vs-section {
+    @apply relative w-full overflow-hidden px-5 py-20 sm:px-8 sm:py-28 lg:px-14 lg:py-36;
+  }
+
+  .vs-section-tight {
+    @apply relative w-full overflow-hidden px-5 py-14 sm:px-8 sm:py-20 lg:px-14 lg:py-24;
+  }
+
+  .vs-container {
+    @apply relative z-10 mx-auto w-full max-w-6xl;
+  }
+
+  .vs-container-narrow {
+    @apply relative z-10 mx-auto w-full max-w-2xl;
+  }
+
+  .vs-eyebrow {
+    @apply text-[10px] font-medium uppercase tracking-[0.46em] text-vs-muted;
+    font-family: var(--font-secondary);
+  }
+
+  .vs-display {
+    @apply text-[2.15rem] leading-[1.08] tracking-[-0.01em] text-vs-ink sm:text-5xl lg:text-[3.35rem];
+    font-family: var(--font-primary);
+  }
+
+  .vs-body {
+    @apply text-[15px] leading-[1.85] text-vs-ink-soft sm:text-lg;
+    font-family: var(--font-secondary);
+  }
+
+  .vs-rule {
+    @apply h-px w-14 bg-vs-line;
+  }
+
+  .vs-media {
+    @apply relative overflow-hidden bg-vs-oat-deep;
+  }
+
+  .vs-media img {
+    @apply h-full w-full object-cover;
+  }
+
+  .vs-fallback {
+    background: linear-gradient(150deg, #f3ede3 0%, #e2e7db 52%, #d3ddcc 100%);
+  }
+
+  .vs-input {
+    @apply w-full border-0 border-b border-vs-ink/15 bg-transparent px-0 py-3 text-[15px] text-vs-ink outline-none transition placeholder:text-vs-muted/60 focus:border-vs-sage;
+    font-family: var(--font-secondary);
+  }
+
+  .vs-label {
+    @apply mb-1 block text-[10px] uppercase tracking-[0.3em] text-vs-muted;
+    font-family: var(--font-secondary);
+  }
+}

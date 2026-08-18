@@ -1,0 +1,205 @@
+/* vencanje-linen — champagne + warm linen quiet luxury stationery */
+@import "tailwindcss";
+
+@theme {
+  --color-vl-linen: #f3eee6;
+  --color-vl-linen-deep: #ebe4d8;
+  --color-vl-paper: #faf7f1;
+  --color-vl-champagne: #c4a574;
+  --color-vl-champagne-soft: #d4bc94;
+  --color-vl-ink: #2a2420;
+  --color-vl-ink-soft: #4a413a;
+  --color-vl-muted: #7a6f64;
+  --color-vl-line: rgba(42, 36, 32, 0.12);
+  --color-vl-rule: rgba(196, 165, 116, 0.55);
+}
+
+[data-template="vencanje-linen"] {
+  background-color: var(--color-vl-linen);
+  color: var(--color-vl-ink);
+  overflow-x: hidden;
+}
+
+@layer components {
+  .vl-section {
+    @apply relative w-full overflow-hidden px-5 py-20 sm:px-8 sm:py-28 lg:px-12 lg:py-32;
+  }
+
+  .vl-section-tight {
+    @apply relative w-full overflow-hidden px-5 py-14 sm:px-8 sm:py-20 lg:px-12 lg:py-24;
+  }
+
+  .vl-container {
+    @apply relative z-10 mx-auto w-full max-w-4xl;
+  }
+
+  .vl-container-wide {
+    @apply relative z-10 mx-auto w-full max-w-5xl;
+  }
+
+  .vl-eyebrow {
+    @apply text-[10px] font-medium uppercase tracking-[0.4em] text-vl-muted;
+    font-family: var(--font-secondary);
+  }
+
+  .vl-display {
+    @apply text-[2.15rem] leading-[1.12] tracking-[-0.02em] text-vl-ink sm:text-5xl lg:text-[3.35rem];
+    font-family: var(--font-primary);
+  }
+
+  .vl-display-sm {
+    @apply text-[1.75rem] leading-[1.15] tracking-[-0.015em] text-vl-ink sm:text-4xl;
+    font-family: var(--font-primary);
+  }
+
+  .vl-body {
+    @apply text-[16px] leading-[1.9] text-vl-ink-soft sm:text-lg;
+    font-family: var(--font-secondary);
+  }
+
+  .vl-caption {
+    @apply text-[11px] uppercase tracking-[0.28em] text-vl-muted;
+    font-family: var(--font-secondary);
+  }
+
+  .vl-media {
+    @apply relative overflow-hidden bg-vl-linen-deep;
+  }
+
+  .vl-media img {
+    @apply h-full w-full object-cover;
+  }
+
+  .vl-fallback {
+    background: linear-gradient(
+      145deg,
+      #faf7f1 0%,
+      #f3eee6 45%,
+      #ebe4d8 100%
+    );
+  }
+
+  /* Soft cream linen with paper-noise via layered gradients */
+  .vl-linen-ground {
+    background-color: var(--color-vl-linen);
+    background-image:
+      radial-gradient(
+        ellipse at 18% 12%,
+        rgba(196, 165, 116, 0.07) 0%,
+        transparent 52%
+      ),
+      radial-gradient(
+        ellipse at 82% 88%,
+        rgba(42, 36, 32, 0.035) 0%,
+        transparent 48%
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(42, 36, 32, 0.012) 2px,
+        rgba(42, 36, 32, 0.012) 3px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 3px,
+        rgba(196, 165, 116, 0.018) 3px,
+        rgba(196, 165, 116, 0.018) 4px
+      );
+  }
+
+  .vl-invite-card {
+    @apply relative mx-auto w-full max-w-lg border border-vl-line bg-vl-paper px-8 py-12 text-center shadow-[0_24px_60px_-32px_rgba(42,36,32,0.35)] sm:px-12 sm:py-14;
+  }
+
+  .vl-monogram {
+    @apply mx-auto flex h-16 w-16 items-center justify-center rounded-full border text-[13px] uppercase tracking-[0.2em] sm:h-[4.5rem] sm:w-[4.5rem] sm:text-sm;
+    font-family: var(--font-primary);
+    border-color: var(--color-vl-champagne);
+    color: var(--color-vl-ink);
+  }
+
+  .vl-amp-ornament {
+    @apply relative mx-auto my-8 flex max-w-xs items-center justify-center gap-4;
+  }
+
+  .vl-amp-ornament::before,
+  .vl-amp-ornament::after {
+    content: "";
+    @apply h-px flex-1;
+    background: var(--color-vl-rule);
+  }
+
+  .vl-amp-ornament span {
+    @apply text-2xl leading-none text-vl-champagne;
+    font-family: var(--font-primary);
+  }
+
+  .vl-rule {
+    @apply h-px w-full;
+    background: var(--color-vl-line);
+  }
+
+  .vl-rule-champagne {
+    @apply h-px w-full;
+    background: var(--color-vl-rule);
+  }
+
+  .vl-count-row {
+    @apply flex flex-wrap items-stretch justify-center;
+  }
+
+  .vl-count-cell {
+    @apply flex flex-col items-center px-5 py-2 sm:px-8;
+  }
+
+  .vl-count-divider {
+    @apply w-px self-stretch;
+    background: var(--color-vl-rule);
+    min-height: 3.5rem;
+  }
+
+  .vl-count-value {
+    @apply text-3xl tabular-nums tracking-tight text-vl-ink sm:text-4xl lg:text-5xl;
+    font-family: var(--font-primary);
+  }
+
+  .vl-count-label {
+    @apply mt-2 text-[10px] uppercase tracking-[0.32em] text-vl-muted;
+    font-family: var(--font-secondary);
+  }
+
+  .vl-std-card {
+    @apply mx-auto w-full max-w-sm border border-vl-line bg-vl-paper px-8 py-10 text-center shadow-[0_18px_48px_-28px_rgba(42,36,32,0.28)];
+  }
+
+  .vl-input {
+    @apply w-full border-0 border-b border-vl-line bg-transparent px-0 py-3 text-[15px] text-vl-ink outline-none transition placeholder:text-vl-muted/50 focus:border-vl-champagne;
+    font-family: var(--font-secondary);
+    border-radius: 0;
+  }
+
+  .vl-label {
+    @apply mb-1.5 block text-[10px] uppercase tracking-[0.28em] text-vl-muted;
+    font-family: var(--font-secondary);
+  }
+
+  .vl-btn {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2 border border-vl-champagne bg-transparent px-10 py-3.5 text-[10px] font-medium uppercase tracking-[0.32em] text-vl-ink transition hover:bg-vl-champagne hover:text-vl-paper disabled:cursor-default disabled:opacity-50;
+    font-family: var(--font-secondary);
+  }
+
+  .vl-btn-solid {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2 bg-vl-champagne px-10 py-3.5 text-[10px] font-medium uppercase tracking-[0.32em] text-vl-paper transition hover:opacity-90 disabled:cursor-default disabled:opacity-50;
+    font-family: var(--font-secondary);
+  }
+
+  .vl-thumb {
+    @apply h-14 w-14 shrink-0 overflow-hidden sm:h-16 sm:w-16;
+  }
+
+  .vl-gallery-plate {
+    @apply aspect-[21/9] w-full overflow-hidden;
+  }
+}

@@ -3,7 +3,7 @@ import { UniversalProjectConfig } from "@/types/config";
 /** Royalty-free Unsplash images — only in config, never in components */
 const IMG = {
   sharedBackground:
-    "https://images.unsplash.com/photo-1511285560929-80b4566047ec?auto=format&fit=crop&w=2400&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787067139/alvin-mahmudov-NSVJAAXOYHs-unsplash_szart3.jpg",
   story:
     "https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=1400&q=85",
   locationA:
@@ -12,14 +12,7 @@ const IMG = {
     "https://images.unsplash.com/photo-1519225421980-715cb0215a07?auto=format&fit=crop&w=1200&q=85",
   footerAccent:
     "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=1400&q=85",
-  gallery: [
-    "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=85",
-    "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=85",
-    "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1000&q=85",
-    "https://images.unsplash.com/photo-1606800052052-a08af7148863?auto=format&fit=crop&w=1000&q=85",
-    "https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1000&q=85",
-    "https://images.unsplash.com/photo-1515934751635-c81c6bc9efc1?auto=format&fit=crop&w=1000&q=85",
-  ],
+ 
 };
 
 export const vencanjeBackgroundDefaultConfig: UniversalProjectConfig = {
@@ -181,18 +174,7 @@ export const vencanjeBackgroundDefaultConfig: UniversalProjectConfig = {
         ],
       },
     },
-    {
-      id: "ourGallery",
-      name: "Galerija",
-      type: "ourGallery",
-      visible: true,
-      order: 9,
-      data: {
-        title: "Trenuci",
-        description: "Fragmenti koje čuvamo",
-        images: IMG.gallery.map((url) => ({ url })),
-      },
-    },
+   
     {
       id: "uploadImagesSection",
       name: "Dodavanje Slika",

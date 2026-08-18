@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import {
   EDITOR_META_PANEL_IDS,
   isCanvasScrollSyncSuppressed,
@@ -21,13 +21,17 @@ export function useCanvasScrollHighlight(
   sectionIds: string[],
   setScrollHighlightId: (id: string | null) => void,
 ) {
+  const sectionKey = useMemo(() => sectionIds.join("|"), [sectionIds]);
+
   useEffect(() => {
     if (!isDesktopEditor()) return;
 
     const canvas = document.querySelector<HTMLElement>("[data-editor-canvas]");
     if (!canvas) return;
 
-    const ids = sectionIds.filter((id) => id && !EDITOR_META_PANEL_IDS.has(id));
+    const ids = sectionKey
+      .split("|")
+      .filter((id) => id && !EDITOR_META_PANEL_IDS.has(id));
     if (ids.length === 0) return;
 
     const ratios = new Map<string, number>();
@@ -94,5 +98,5 @@ export function useCanvasScrollHighlight(
       observer.disconnect();
       mq.removeEventListener("change", onMq);
     };
-  }, [sectionIds.join("|"), setScrollHighlightId]);
+  }, [sectionKey, setScrollHighlightId]);
 }

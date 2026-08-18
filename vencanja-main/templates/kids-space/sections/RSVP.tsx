@@ -59,6 +59,17 @@ const RSVP: FC<Props> = ({ section, event }) => {
           </p>
         </div>
 
+        {data.imageUrl ? (
+          <div className="mb-6 overflow-hidden rounded-xl border border-white/10">
+            <img
+              src={data.imageUrl}
+              alt=""
+              className="aspect-[21/9] w-full object-cover opacity-90"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+        ) : null}
+
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}

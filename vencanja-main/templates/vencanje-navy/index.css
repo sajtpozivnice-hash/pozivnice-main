@@ -1,0 +1,420 @@
+/* vencanje-navy — formal black-tie: deep navy + champagne brass */
+@import "tailwindcss";
+
+@theme {
+  --color-vn-navy: #0b1c2c;
+  --color-vn-navy-deep: #07131e;
+  --color-vn-navy-lift: #12283a;
+  --color-vn-champagne: #d4af7a;
+  --color-vn-champagne-soft: rgba(212, 175, 122, 0.35);
+  --color-vn-ivory: #f6f1e8;
+  --color-vn-ivory-muted: rgba(246, 241, 232, 0.62);
+  --color-vn-line: rgba(212, 175, 122, 0.45);
+}
+
+[data-template="vencanje-navy"] {
+  background-color: var(--color-vn-navy);
+  color: var(--color-vn-ivory);
+  overflow-x: hidden;
+}
+
+@layer components {
+  .vn-section {
+    @apply relative w-full px-5 py-20 sm:px-8 sm:py-28 lg:px-12 lg:py-32;
+    background: var(--color-vn-navy);
+  }
+
+  .vn-section-tight {
+    @apply relative w-full px-5 py-14 sm:px-8 sm:py-20 lg:px-12;
+    background: var(--color-vn-navy);
+  }
+
+  .vn-shell {
+    @apply relative mx-auto w-full max-w-5xl;
+  }
+
+  .vn-shell-wide {
+    @apply relative mx-auto w-full max-w-6xl;
+  }
+
+  .vn-eyebrow {
+    @apply text-[10px] uppercase tracking-[0.42em];
+    color: var(--color-vn-champagne);
+    font-family: var(--font-secondary);
+  }
+
+  .vn-display {
+    color: var(--color-vn-ivory);
+    font-family: var(--font-primary);
+    font-size: clamp(2.1rem, 5.5vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  .vn-display-sm {
+    color: var(--color-vn-ivory);
+    font-family: var(--font-primary);
+    font-size: clamp(1.45rem, 3.2vw, 2.25rem);
+    line-height: 1.15;
+  }
+
+  .vn-body {
+    color: var(--color-vn-ivory-muted);
+    font-family: var(--font-secondary);
+    font-size: clamp(0.95rem, 1.05vw, 1.05rem);
+    line-height: 1.85;
+  }
+
+  .vn-caption {
+    @apply text-[10px] uppercase tracking-[0.28em];
+    color: var(--color-vn-ivory-muted);
+    font-family: var(--font-secondary);
+  }
+
+  .vn-serif {
+    font-family: var(--font-primary);
+  }
+
+  .vn-hairline {
+    @apply h-px w-full;
+    background: var(--color-vn-line);
+  }
+
+  .vn-media {
+    @apply relative overflow-hidden;
+    background: var(--color-vn-navy-lift);
+  }
+
+  .vn-media img {
+    @apply h-full w-full object-cover;
+  }
+
+  .vn-fallback {
+    background: linear-gradient(
+      145deg,
+      #12283a 0%,
+      #0b1c2c 55%,
+      #1a3044 100%
+    );
+  }
+
+  /* —— Hero: navy field + monogram + double-line frame + bottom photo band —— */
+  .vn-hero {
+    @apply relative flex min-h-[100svh] w-full flex-col;
+    background: var(--color-vn-navy);
+  }
+
+  .vn-hero-main {
+    @apply relative flex flex-1 flex-col items-center justify-center px-5 py-16 sm:px-8;
+  }
+
+  .vn-hero-frame {
+    @apply relative mx-auto w-full max-w-3xl px-8 py-14 text-center sm:px-14 sm:py-20;
+    border: 1px solid var(--color-vn-champagne-soft);
+    box-shadow: inset 0 0 0 6px var(--color-vn-navy),
+      inset 0 0 0 7px var(--color-vn-champagne-soft);
+  }
+
+  .vn-monogram {
+    color: var(--color-vn-champagne);
+    font-family: var(--font-primary);
+    font-size: clamp(5.5rem, 18vw, 11rem);
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    font-weight: 400;
+  }
+
+  .vn-monogram-amp {
+    @apply mx-1 inline-block align-middle text-[0.35em] opacity-70;
+    color: var(--color-vn-ivory);
+  }
+
+  .vn-hero-names {
+    color: var(--color-vn-ivory);
+    font-family: var(--font-primary);
+    font-size: clamp(1.65rem, 4vw, 2.75rem);
+    letter-spacing: 0.02em;
+  }
+
+  .vn-hero-band {
+    @apply relative w-full shrink-0 overflow-hidden;
+    height: clamp(4.5rem, 12vw, 7.5rem);
+  }
+
+  .vn-hero-band img {
+    @apply h-full w-full object-cover object-center;
+  }
+
+  /* —— Countdown: roman-numeral feel —— */
+  .vn-count-row {
+    @apply grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4;
+  }
+
+  .vn-count-box {
+    @apply flex flex-col items-center justify-center px-3 py-6 sm:py-8;
+    border: 1px solid var(--color-vn-champagne-soft);
+    background: var(--color-vn-navy-deep);
+  }
+
+  .vn-count-digit {
+    color: var(--color-vn-ivory);
+    font-family: var(--font-primary);
+    font-size: clamp(2.4rem, 7vw, 4.25rem);
+    line-height: 1;
+    letter-spacing: 0.04em;
+    font-variant-numeric: lining-nums;
+  }
+
+  .vn-count-label {
+    @apply mt-3 text-[9px] uppercase tracking-[0.35em];
+    color: var(--color-vn-champagne);
+    font-family: var(--font-secondary);
+  }
+
+  /* —— Invite: champagne corner brackets —— */
+  .vn-invite-frame {
+    @apply relative mx-auto max-w-2xl px-10 py-14 text-center sm:px-16 sm:py-20;
+  }
+
+  .vn-invite-br {
+    @apply pointer-events-none absolute inset-0;
+  }
+
+  .vn-invite-br span {
+    position: absolute;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-color: var(--color-vn-champagne);
+    border-style: solid;
+  }
+
+  .vn-invite-br .tl {
+    top: 0;
+    left: 0;
+    border-width: 1px 0 0 1px;
+  }
+
+  .vn-invite-br .tr {
+    top: 0;
+    right: 0;
+    border-width: 1px 1px 0 0;
+  }
+
+  .vn-invite-br .bl {
+    bottom: 0;
+    left: 0;
+    border-width: 0 0 1px 1px;
+  }
+
+  .vn-invite-br .br {
+    bottom: 0;
+    right: 0;
+    border-width: 0 1px 1px 0;
+  }
+
+  .vn-invite-lede {
+    color: var(--color-vn-champagne);
+    font-family: var(--font-primary);
+    font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* —— Calendar plaque —— */
+  .vn-plaque {
+    @apply mx-auto w-full max-w-md px-6 py-8 sm:px-8 sm:py-10;
+    background: var(--color-vn-ivory);
+    color: var(--color-vn-navy);
+    border: 1px solid var(--color-vn-champagne);
+    box-shadow: 0 0 0 6px var(--color-vn-navy),
+      0 0 0 7px var(--color-vn-champagne-soft);
+  }
+
+  .vn-plaque .vn-eyebrow {
+    color: var(--color-vn-champagne);
+  }
+
+  .vn-plaque-title {
+    color: var(--color-vn-navy);
+    font-family: var(--font-primary);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+  }
+
+  .vn-cal-grid {
+    @apply mt-5 grid grid-cols-7 gap-px;
+  }
+
+  .vn-cal-cell {
+    @apply flex aspect-square items-center justify-center text-center text-xs sm:text-sm;
+    font-family: var(--font-secondary);
+    color: var(--color-vn-navy);
+  }
+
+  .vn-cal-cell.is-muted {
+    opacity: 0.28;
+  }
+
+  .vn-cal-cell.is-event {
+    background: var(--color-vn-navy);
+    color: var(--color-vn-ivory);
+  }
+
+  .vn-cal-head {
+    @apply text-center text-[9px] uppercase tracking-[0.2em];
+    color: rgba(11, 28, 44, 0.45);
+    font-family: var(--font-secondary);
+  }
+
+  /* —— OurStory chapters —— */
+  .vn-chapter-text {
+    @apply px-5 py-16 sm:px-10 sm:py-24 lg:px-16;
+    background: var(--color-vn-navy-deep);
+  }
+
+  .vn-chapter-photo {
+    @apply relative w-full overflow-hidden;
+    height: clamp(14rem, 42vw, 28rem);
+  }
+
+  .vn-chapter-photo img {
+    @apply h-full w-full object-cover;
+  }
+
+  /* —— Schedule program —— */
+  .vn-program {
+    @apply mx-auto max-w-2xl;
+  }
+
+  .vn-program-row {
+    @apply grid grid-cols-[3rem_1fr] gap-x-5 gap-y-1 border-b py-7 sm:grid-cols-[4rem_6rem_1fr] sm:gap-x-8;
+    border-color: var(--color-vn-champagne-soft);
+  }
+
+  .vn-program-num {
+    color: var(--color-vn-champagne);
+    font-family: var(--font-primary);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    line-height: 1;
+  }
+
+  .vn-program-time {
+    @apply self-start pt-1 text-sm tracking-wide;
+    color: var(--color-vn-ivory-muted);
+    font-family: var(--font-secondary);
+  }
+
+  /* —— Love quote —— */
+  .vn-quote-mark {
+    color: var(--color-vn-champagne);
+    font-family: var(--font-primary);
+    font-size: clamp(4rem, 12vw, 7rem);
+    line-height: 0.6;
+    opacity: 0.9;
+  }
+
+  .vn-quote-text {
+    color: var(--color-vn-ivory);
+    font-family: var(--font-primary);
+    font-size: clamp(1.35rem, 3.2vw, 2.15rem);
+    line-height: 1.45;
+    font-style: italic;
+  }
+
+  /* —— Locations program cards —— */
+  .vn-addr-card {
+    @apply grid grid-cols-1 gap-6 border p-6 sm:grid-cols-[1fr_5.5rem] sm:gap-8 sm:p-8;
+    border-color: var(--color-vn-champagne-soft);
+    background: var(--color-vn-navy-deep);
+  }
+
+  .vn-addr-thumb {
+    @apply h-20 w-full overflow-hidden sm:h-auto sm:aspect-square;
+  }
+
+  /* —— Gallery editorial —— */
+  .vn-gallery {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  @media (min-width: 640px) {
+    .vn-gallery {
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+      background: var(--color-vn-champagne);
+    }
+
+    .vn-gallery > * {
+      background: var(--color-vn-navy);
+    }
+  }
+
+  .vn-gallery-cell {
+    @apply relative aspect-[4/5] overflow-hidden;
+  }
+
+  /* —— Forms —— */
+  .vn-label {
+    @apply mb-2 block text-[10px] uppercase tracking-[0.28em];
+    color: var(--color-vn-champagne);
+    font-family: var(--font-secondary);
+  }
+
+  .vn-input {
+    @apply w-full border-0 border-b bg-transparent px-0 py-3 outline-none transition;
+    border-color: var(--color-vn-champagne-soft);
+    color: var(--color-vn-ivory);
+    font-family: var(--font-secondary);
+  }
+
+  .vn-input:focus {
+    border-color: var(--color-vn-champagne);
+  }
+
+  .vn-input::placeholder {
+    color: rgba(246, 241, 232, 0.35);
+  }
+
+  .vn-choice {
+    @apply border px-4 py-3 text-center text-sm transition;
+    border-color: var(--color-vn-champagne-soft);
+    color: var(--color-vn-ivory-muted);
+    font-family: var(--font-secondary);
+  }
+
+  .peer:checked + .vn-choice {
+    border-color: var(--color-vn-champagne);
+    color: var(--color-vn-navy);
+    background: var(--color-vn-champagne);
+  }
+
+  .vn-btn {
+    @apply inline-flex cursor-pointer items-center justify-center px-8 py-3.5 text-[11px] uppercase tracking-[0.32em] transition disabled:cursor-wait disabled:opacity-60;
+    background: var(--color-vn-champagne);
+    color: var(--color-vn-navy);
+    font-family: var(--font-secondary);
+  }
+
+  .vn-btn:hover:not(:disabled) {
+    filter: brightness(1.08);
+  }
+
+  .vn-btn-ghost {
+    @apply inline-flex cursor-pointer items-center justify-center border px-8 py-3.5 text-[11px] uppercase tracking-[0.32em] transition;
+    border-color: var(--color-vn-champagne);
+    color: var(--color-vn-champagne);
+    font-family: var(--font-secondary);
+    background: transparent;
+  }
+
+  /* —— Footer crest —— */
+  .vn-crest {
+    @apply mx-auto flex h-24 w-24 items-center justify-center rounded-full border;
+    border-color: var(--color-vn-champagne);
+    color: var(--color-vn-champagne);
+    font-family: var(--font-primary);
+    font-size: 1.75rem;
+    letter-spacing: 0.06em;
+  }
+}

@@ -57,6 +57,16 @@ const RSVP: FC<Props> = ({ section, event }) => {
           className="ksaf-card-strong ksaf-permit"
         >
           <div className="ksaf-permit-rail">
+            {data.imageUrl ? (
+              <div className="mb-5 overflow-hidden rounded-lg border-2 border-ksaf-ink/15">
+                <img
+                  src={data.imageUrl}
+                  alt=""
+                  className="aspect-[16/10] w-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            ) : null}
             <span className="ksaf-waypoint ksaf-permit-stamp">
               <Compass className="h-4 w-4" />
             </span>

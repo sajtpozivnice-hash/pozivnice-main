@@ -9,6 +9,18 @@ import {
 import { EventType, TemplateKey, UniversalProjectConfig } from "@/types/config";
 import { templates } from "./index";
 
+/** Newest premium wedding packs — shown first on /pozivnice. */
+const CATALOG_PRIORITY: TemplateKey[] = [
+  "vencanje-linen",
+  "vencanje-atelier",
+  "vencanje-navy",
+  "vencanje-opal",
+  "vencanje-sage",
+  "vencanje-ink",
+  "vencanje-dusk",
+  "vencanje-terra",
+];
+
 const resolveCatalogImage = (config: UniversalProjectConfig): string => {
   const hero = config.sections.find((section) => section.type === "hero");
   if (hero?.type === "hero") {
@@ -22,7 +34,7 @@ const resolveCatalogImage = (config: UniversalProjectConfig): string => {
 };
 
 export function getCatalogTemplates(): CatalogCard[] {
-  return (Object.keys(templates) as TemplateKey[]).map((key) => {
+  const cards = (Object.keys(templates) as TemplateKey[]).map((key) => {
     const pack = templates[key];
     const eventTypes = pack.eventTypes.length
       ? pack.eventTypes
@@ -43,6 +55,15 @@ export function getCatalogTemplates(): CatalogCard[] {
       projectLink: `/editor/${key}`,
       featured: Boolean(meta.featured),
     };
+  });
+
+  return cards.sort((a, b) => {
+    const ai = CATALOG_PRIORITY.indexOf(a.id as TemplateKey);
+    const bi = CATALOG_PRIORITY.indexOf(b.id as TemplateKey);
+    const ap = ai === -1 ? Number.MAX_SAFE_INTEGER : ai;
+    const bp = bi === -1 ? Number.MAX_SAFE_INTEGER : bi;
+    if (ap !== bp) return ap - bp;
+    return 0;
   });
 }
 

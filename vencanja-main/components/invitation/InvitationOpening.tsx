@@ -36,20 +36,17 @@ function splitDisplayNames(names: string): string[] {
     .map((part) => part.trim())
     .filter(Boolean);
   if (parts.length >= 2) return parts.slice(0, 2);
-  return [names.trim()];
+  return [names.trim()].filter(Boolean);
 }
 
-function initialsFromNames(names?: string): string {
-  if (!names?.trim()) return "";
-  const parts = splitDisplayNames(names);
-  if (parts.length >= 2) {
-    return parts.map((part) => part[0]?.toUpperCase() ?? "").join("");
-  }
-  const words = names.trim().split(/\s+/).filter(Boolean);
-  if (words.length >= 2) {
-    return `${words[0][0] ?? ""}${words[1][0] ?? ""}`.toUpperCase();
-  }
-  return names.trim().slice(0, 2).toUpperCase();
+/** Prefer event.names; strip catalog suffixes like "Una — moderno krštenje". */
+function resolveOpeningNames(config: UniversalProjectConfig): string {
+  const fromEvent = config.event?.names?.trim();
+  if (fromEvent) return fromEvent;
+
+  const fromMeta = config.meta?.title?.trim();
+  if (!fromMeta) return "";
+  return fromMeta.split(/\s+[—–-]\s+/)[0]?.trim() || fromMeta;
 }
 
 function resolveAgeMark(config: UniversalProjectConfig): string | null {
@@ -105,9 +102,11 @@ export function InvitationOpening({
 
   const eventType = resolveEventType(config);
   const tone = toneForEvent(eventType);
-  const names = config.event?.names?.trim() || config.meta?.title?.trim() || "";
-  const nameParts = useMemo(() => splitDisplayNames(names || "Pozivnica"), [names]);
-  const monogram = initialsFromNames(names);
+  const names = resolveOpeningNames(config);
+  const nameParts = useMemo(
+    () => splitDisplayNames(names || "Pozivnica"),
+    [names],
+  );
   const ageMark =
     eventType === "comingOfAge" ? resolveAgeMark(config) || "18" : null;
 
@@ -258,10 +257,6 @@ export function InvitationOpening({
             {ageMark ? (
               <span className={styles.ageMark} aria-hidden>
                 {ageMark}
-              </span>
-            ) : monogram && nameParts.length < 2 ? (
-              <span className={styles.monogram} aria-hidden>
-                {monogram}
               </span>
             ) : null}
 

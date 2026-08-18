@@ -89,7 +89,7 @@ const Hero: FC<Props> = ({ section, event, theme }) => {
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.05, delay: 0.1 }}
-          className="max-w-5xl text-5xl leading-[0.92] sm:text-7xl lg:text-8xl"
+          className="max-w-5xl text-5xl leading-[0.92] sm:text-7xl lg:text-8xl text-white"
           style={{ fontFamily: "var(--font-primary)" }}
         >
           {names}
@@ -104,10 +104,10 @@ const Hero: FC<Props> = ({ section, event, theme }) => {
         />
 
         <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.55 }}
-          className="text-xs uppercase tracking-[0.4em] text-white/80 sm:text-sm"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.55, duration: 0.7 }}
+          className="text-base font-medium uppercase tracking-[0.22em] text-white sm:text-lg md:text-xl"
           style={{ fontFamily: "var(--font-secondary)" }}
         >
           {formatDate(date, "DAY_D_MMMM_YYYY")}

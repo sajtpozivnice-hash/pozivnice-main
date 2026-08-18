@@ -73,6 +73,17 @@ const RSVP: FC<Props> = ({ section, event }) => {
               <Send className="h-5 w-5" />
             </span>
 
+            {data.imageUrl ? (
+              <div className="mx-auto mb-6 h-24 w-24 overflow-hidden rounded-full border-4 border-kpas-paper shadow-[0_12px_24px_-16px_rgba(74,63,82,0.4)]">
+                <img
+                  src={data.imageUrl}
+                  alt=""
+                  className="h-full w-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            ) : null}
+
             {submitted ? (
               <div className="py-10 text-center">
                 <p

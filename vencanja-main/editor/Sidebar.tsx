@@ -10,9 +10,7 @@ import FontsAndColorsPanel from "./panels/FontsAndColorsPanel";
 const Sidebar: FC = () => {
   const { config, viewMode } = useEditor();
 
-  const visibleSections = config.sections
-    .filter((section) => section.visible)
-    .sort((a, b) => a.order - b.order);
+  const sections = [...config.sections].sort((a, b) => a.order - b.order);
 
   return (
     <aside
@@ -41,7 +39,7 @@ const Sidebar: FC = () => {
           <StructurePanel />
           <GeneralInfoPanel />
           <FontsAndColorsPanel />
-          {visibleSections.map((section) => {
+          {sections.map((section) => {
             const PanelComponent = panelRegistry[section.type];
             if (!PanelComponent) return null;
             return <PanelComponent key={section.id} />;

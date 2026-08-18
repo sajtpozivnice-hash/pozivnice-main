@@ -1,9 +1,9 @@
 import { UniversalProjectConfig } from "@/types/config";
 
 const IMG = {
-  hero: "https://images.unsplash.com/photo-1519225421980-715cb0215a07?auto=format&fit=crop&q=80&w=2000",
+  hero: "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787067285/olivia-bauso-30UOqDM5QW0-unsplash_flsbrf.jpg",
   story:
-    "https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&q=80&w=1600",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787067244/sandy-millar-YeJWDWeIZho-unsplash_mueywh.jpg",
   invite:
     "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&q=80&w=1600",
   calendar:

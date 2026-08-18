@@ -1,0 +1,85 @@
+/* vencanje-terra — Mediterranean terracotta + sand + olive */
+@import "tailwindcss";
+
+@theme {
+  --color-vt-sand: #ede4d7;
+  --color-vt-cream: #f7f1e8;
+  --color-vt-terracotta: #c45c26;
+  --color-vt-olive: #5c6b4a;
+  --color-vt-olive-soft: #d8dfd0;
+  --color-vt-ink: #3d3429;
+  --color-vt-ink-soft: #5a4f42;
+  --color-vt-muted: #8a7f70;
+  --color-vt-line: rgba(61, 52, 41, 0.14);
+}
+
+[data-template="vencanje-terra"] {
+  background-color: var(--color-vt-sand);
+  color: var(--color-vt-ink-soft);
+  overflow-x: hidden;
+}
+
+@layer components {
+  .vt-section {
+    @apply relative w-full overflow-hidden px-5 py-20 sm:px-8 sm:py-28 lg:px-12 lg:py-32;
+  }
+
+  .vt-container {
+    @apply relative z-10 mx-auto w-full max-w-5xl;
+  }
+
+  .vt-eyebrow {
+    @apply text-[10px] font-medium uppercase tracking-[0.42em] text-vt-muted;
+    font-family: var(--font-secondary);
+  }
+
+  .vt-display {
+    @apply text-[2.1rem] leading-[1.1] tracking-[-0.015em] text-vt-ink sm:text-5xl lg:text-[3.2rem];
+    font-family: var(--font-primary);
+  }
+
+  .vt-body {
+    @apply text-[15px] leading-[1.85] text-vt-ink-soft sm:text-lg;
+    font-family: var(--font-secondary);
+  }
+
+  .vt-media {
+    @apply relative overflow-hidden bg-vt-sand;
+  }
+
+  .vt-media img {
+    @apply h-full w-full object-cover;
+  }
+
+  .vt-fallback {
+    background: linear-gradient(145deg, #f7f1e8 0%, #ede4d7 45%, #d8dfd0 100%);
+  }
+
+  .vt-input {
+    @apply w-full rounded-2xl border border-vt-line bg-vt-cream px-4 py-3.5 text-[15px] text-vt-ink outline-none transition placeholder:text-vt-muted/55 focus:border-vt-terracotta;
+    font-family: var(--font-secondary);
+  }
+
+  .vt-label {
+    @apply mb-2 block text-[10px] uppercase tracking-[0.28em] text-vt-muted;
+    font-family: var(--font-secondary);
+  }
+
+  .vt-arch {
+    border-radius: 9999px 9999px 2.5rem 2.5rem;
+  }
+
+  .vt-soft {
+    @apply rounded-[2rem] sm:rounded-[2.5rem];
+  }
+
+  .vt-pill {
+    @apply rounded-full bg-vt-cream px-5 py-4;
+  }
+
+  .vt-btn {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full px-8 py-4 text-[10px] font-medium uppercase tracking-[0.32em] text-vt-cream transition hover:opacity-90 disabled:cursor-default disabled:opacity-50;
+    font-family: var(--font-secondary);
+    background: var(--color-vt-terracotta);
+  }
+}

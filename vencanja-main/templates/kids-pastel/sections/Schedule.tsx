@@ -18,11 +18,23 @@ const Schedule: FC<Props> = ({ section }) => {
   return (
     <section id={id} className="kpas-section">
       <div className="kpas-shell max-w-3xl">
-        <div className="mb-10 text-center sm:mb-14">
-          <p className="kpas-eyebrow mb-4">{name}</p>
-          <h2 className="kpas-heading">{data.title}</h2>
-          {data.subtitle ? (
-            <p className="mt-3 text-kpas-ink/55">{data.subtitle}</p>
+        <div className="mb-10 flex flex-col gap-4 sm:mb-14 sm:flex-row sm:items-end sm:justify-between">
+          <div className="text-center sm:text-left">
+            <p className="kpas-eyebrow mb-4">{name}</p>
+            <h2 className="kpas-heading">{data.title}</h2>
+            {data.subtitle ? (
+              <p className="mt-3 text-kpas-ink/55">{data.subtitle}</p>
+            ) : null}
+          </div>
+          {data.imageUrl ? (
+            <div className="mx-auto hidden overflow-hidden rounded-2xl border-4 border-kpas-paper shadow-[0_16px_32px_-20px_rgba(74,63,82,0.35)] sm:mx-0 sm:block sm:w-40 lg:w-52">
+              <img
+                src={data.imageUrl}
+                alt=""
+                className="aspect-square w-full object-cover"
+                referrerPolicy="no-referrer"
+              />
+            </div>
           ) : null}
         </div>
 

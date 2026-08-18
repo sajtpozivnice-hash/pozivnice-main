@@ -86,25 +86,35 @@ const Countdown: FC<Props> = ({ section, event, theme }) => {
           ) : null}
         </div>
 
-        <div className="kspc-orbit-path">
-          {items.map((item, index) => (
-            <motion.div
-              key={item.label}
-              initial={{ opacity: 0, scale: 0.7 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, type: "spring", stiffness: 150 }}
-              className="kspc-orbit-node"
-              style={{ "--planet-color": item.color } as CSSProperties}
-            >
-              <span className="kspc-orbit-node__dot">
-                <span className="kspc-orbit-node__num">
-                  {String(item.value).padStart(2, "0")}
+        <div className="relative overflow-hidden rounded-2xl">
+          {data.imageUrl ? (
+            <img
+              src={data.imageUrl}
+              alt=""
+              className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.14]"
+              referrerPolicy="no-referrer"
+            />
+          ) : null}
+          <div className="kspc-orbit-path relative z-10">
+            {items.map((item, index) => (
+              <motion.div
+                key={item.label}
+                initial={{ opacity: 0, scale: 0.7 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1, type: "spring", stiffness: 150 }}
+                className="kspc-orbit-node"
+                style={{ "--planet-color": item.color } as CSSProperties}
+              >
+                <span className="kspc-orbit-node__dot">
+                  <span className="kspc-orbit-node__num">
+                    {String(item.value).padStart(2, "0")}
+                  </span>
                 </span>
-              </span>
-              <span className="kspc-orbit-node__label">{item.label}</span>
-            </motion.div>
-          ))}
+                <span className="kspc-orbit-node__label">{item.label}</span>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

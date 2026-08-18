@@ -10,6 +10,22 @@ import { vencanjeCinematicDefaultConfig } from "./vencanje-cinematic/config";
 import { vencanjeCinematicRenderers } from "./vencanje-cinematic/renderers";
 import { vencanjeBackgroundDefaultConfig } from "./vencanje-background/config";
 import { vencanjeBackgroundRenderers } from "./vencanje-background/renderers";
+import { vencanjeSageDefaultConfig } from "./vencanje-sage/config";
+import { vencanjeSageRenderers } from "./vencanje-sage/renderers";
+import { vencanjeInkDefaultConfig } from "./vencanje-ink/config";
+import { vencanjeInkRenderers } from "./vencanje-ink/renderers";
+import { vencanjeDuskDefaultConfig } from "./vencanje-dusk/config";
+import { vencanjeDuskRenderers } from "./vencanje-dusk/renderers";
+import { vencanjeTerraDefaultConfig } from "./vencanje-terra/config";
+import { vencanjeTerraRenderers } from "./vencanje-terra/renderers";
+import { vencanjeLinenDefaultConfig } from "./vencanje-linen/config";
+import { vencanjeLinenRenderers } from "./vencanje-linen/renderers";
+import { vencanjeNavyDefaultConfig } from "./vencanje-navy/config";
+import { vencanjeNavyRenderers } from "./vencanje-navy/renderers";
+import { vencanjeOpalDefaultConfig } from "./vencanje-opal/config";
+import { vencanjeOpalRenderers } from "./vencanje-opal/renderers";
+import { vencanjeAtelierDefaultConfig } from "./vencanje-atelier/config";
+import { vencanjeAtelierRenderers } from "./vencanje-atelier/renderers";
 import { rodjendan01DefaultConfig } from "./rodjendan-01/config";
 import { rodjendan01Renderers } from "./rodjendan-01/renderers";
 import { birthday18DefaultConfig } from "./birthday18/config";
@@ -141,6 +157,134 @@ export const templates: Record<TemplateKey, TemplatePack> = {
         "Prozirni paneli preko jedne pozadine. Menjajte sadržaj i pošaljite link gostima.",
       style: "modern",
       price: 3999,
+    },
+  },
+  "vencanje-sage": {
+    renderers: vencanjeSageRenderers,
+    defaultConfig: {
+      ...vencanjeSageDefaultConfig,
+      eventType: "wedding",
+    },
+    eventTypes: ["wedding"],
+    catalog: {
+      title: "Tiha kadulja",
+      description:
+        "Quiet luxury 2026 — sage, oat i terracotta. Asimetričan raspored i puno belog prostora.",
+      style: "editorial",
+      price: 3999,
+      featured: true,
+    },
+  },
+  "vencanje-ink": {
+    renderers: vencanjeInkRenderers,
+    defaultConfig: {
+      ...vencanjeInkDefaultConfig,
+      eventType: "wedding",
+    },
+    eventTypes: ["wedding"],
+    catalog: {
+      title: "Editorial mastilo",
+      description:
+        "Tipografski fokus kao u magazinu. Krema i crno, veliki naslovi, tanak hairline ritam.",
+      style: "editorial",
+      price: 3999,
+      featured: true,
+    },
+  },
+  "vencanje-dusk": {
+    renderers: vencanjeDuskRenderers,
+    defaultConfig: {
+      ...vencanjeDuskDefaultConfig,
+      eventType: "wedding",
+    },
+    eventTypes: ["wedding"],
+    catalog: {
+      title: "Večernji bakar",
+      description:
+        "Tamni cinematic pejzaž sa bakarnim akcentom. Filmski kadar za večernja venčanja.",
+      style: "cinematic",
+      price: 3999,
+      featured: true,
+    },
+  },
+  "vencanje-terra": {
+    renderers: vencanjeTerraRenderers,
+    defaultConfig: {
+      ...vencanjeTerraDefaultConfig,
+      eventType: "wedding",
+    },
+    eventTypes: ["wedding"],
+    catalog: {
+      title: "Mediteranska terakota",
+      description:
+        "Topla zemljana paleta — terakota, pesak i maslina. Lučni kadar i organski raspored.",
+      style: "modern",
+      price: 3999,
+      featured: true,
+    },
+  },
+  "vencanje-linen": {
+    renderers: vencanjeLinenRenderers,
+    defaultConfig: {
+      ...vencanjeLinenDefaultConfig,
+      eventType: "wedding",
+    },
+    eventTypes: ["wedding"],
+    catalog: {
+      title: "Šampanjac lan",
+      description:
+        "Quiet luxury stationery — krem lan, šampanjac i monogram. Izgleda kao skup papir, digitalno.",
+      style: "premium",
+      price: 3999,
+      featured: true,
+    },
+  },
+  "vencanje-navy": {
+    renderers: vencanjeNavyRenderers,
+    defaultConfig: {
+      ...vencanjeNavyDefaultConfig,
+      eventType: "wedding",
+    },
+    eventTypes: ["wedding"],
+    catalog: {
+      title: "Formalni navy",
+      description:
+        "Navy i mesing za black-tie večeri. Monogram, ceremonijalni ton, jak kontrast.",
+      style: "premium",
+      price: 3999,
+      featured: true,
+    },
+  },
+  "vencanje-opal": {
+    renderers: vencanjeOpalRenderers,
+    defaultConfig: {
+      ...vencanjeOpalDefaultConfig,
+      eventType: "wedding",
+    },
+    eventTypes: ["wedding"],
+    catalog: {
+      title: "Biserasti vellum",
+      description:
+        "Pearl i blush slojevi kao vellum. Mekani frosted paneli — premium mixed-materials osećaj.",
+      style: "editorial",
+      price: 3999,
+      featured: true,
+    },
+  },
+  "vencanje-atelier": {
+    renderers: vencanjeAtelierRenderers,
+    defaultConfig: {
+      ...vencanjeAtelierDefaultConfig,
+      eventType: "wedding",
+    },
+    eventTypes: ["wedding"],
+    catalog: {
+      title: "Atelje tišina",
+      description:
+        "The Row quiet luxury — kamen, topli crni, ogromni belina. Najskuplji utisak kroz redukciju.",
+      style: "editorial",
+      price: 3999,
+      featured: true,
     },
   },
   "rodjendan-01": {

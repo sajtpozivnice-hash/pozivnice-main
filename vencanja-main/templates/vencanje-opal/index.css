@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@theme {
+  --color-vo-pearl: #f7f4f0;
+  --color-vo-pearl-deep: #efe9e3;
+  --color-vo-blush: #e8d5d0;
+  --color-vo-blush-deep: #c9a9a0;
+  --color-vo-charcoal: #3a3532;
+  --color-vo-charcoal-soft: #5a524d;
+  --color-vo-muted: #8a817a;
+  --color-vo-line: rgba(58, 53, 50, 0.12);
+  --color-vo-vellum: rgba(247, 244, 240, 0.72);
+  --color-vo-vellum-strong: rgba(247, 244, 240, 0.88);
+}
+
+@layer components {
+  .vo-section {
+    @apply relative w-full overflow-hidden px-5 py-20 sm:px-8 sm:py-28 lg:px-14 lg:py-32;
+  }
+
+  .vo-section-tight {
+    @apply relative w-full overflow-hidden px-5 py-14 sm:px-8 sm:py-20 lg:px-14 lg:py-24;
+  }
+
+  .vo-container {
+    @apply relative z-10 mx-auto w-full max-w-6xl;
+  }
+
+  .vo-container-narrow {
+    @apply relative z-10 mx-auto w-full max-w-2xl;
+  }
+
+  .vo-eyebrow {
+    @apply text-[10px] font-medium uppercase tracking-[0.42em] text-vo-muted;
+    font-family: var(--font-secondary);
+  }
+
+  .vo-display {
+    @apply text-[2.2rem] leading-[1.08] tracking-[-0.01em] text-vo-charcoal sm:text-5xl lg:text-[3.4rem];
+    font-family: var(--font-primary);
+  }
+
+  .vo-body {
+    @apply text-[15px] leading-[1.85] text-vo-charcoal-soft sm:text-lg;
+    font-family: var(--font-secondary);
+  }
+
+  .vo-vellum {
+    @apply border border-white/50 bg-vo-vellum shadow-[0_18px_50px_-20px_rgba(58,53,50,0.28)] backdrop-blur-xl;
+  }
+
+  .vo-vellum-strong {
+    @apply border border-white/60 bg-vo-vellum-strong shadow-[0_14px_40px_-18px_rgba(58,53,50,0.22)] backdrop-blur-2xl;
+  }
+
+  .vo-media {
+    @apply relative overflow-hidden bg-vo-pearl-deep;
+  }
+
+  .vo-media img {
+    @apply h-full w-full object-cover;
+  }
+
+  .vo-fallback {
+    background: linear-gradient(145deg, #f7f4f0 0%, #e8d5d0 48%, #efe9e3 100%);
+  }
+
+  .vo-input {
+    @apply w-full border-0 border-b border-vo-charcoal/15 bg-transparent px-0 py-3 text-[15px] text-vo-charcoal outline-none transition placeholder:text-vo-muted/70 focus:border-vo-blush-deep;
+    font-family: var(--font-secondary);
+  }
+
+  .vo-label {
+    @apply mb-1 block text-[10px] uppercase tracking-[0.3em] text-vo-muted;
+    font-family: var(--font-secondary);
+  }
+
+  .vo-chip {
+    @apply rounded-2xl border border-white/55 bg-vo-vellum px-4 py-5 text-center shadow-[0_10px_28px_-16px_rgba(58,53,50,0.25)] backdrop-blur-xl sm:px-6 sm:py-6;
+  }
+}

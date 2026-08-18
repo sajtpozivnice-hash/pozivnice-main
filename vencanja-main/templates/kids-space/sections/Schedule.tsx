@@ -18,11 +18,23 @@ const Schedule: FC<Props> = ({ section }) => {
   return (
     <section id={id} className="kspc-section">
       <div className="kspc-shell">
-        <div className="mb-12 text-center">
-          <p className="kspc-eyebrow mx-auto justify-center">{name}</p>
-          <h2 className="kspc-heading mt-4">{data.title}</h2>
-          {data.subtitle ? (
-            <p className="mt-3 text-white/55">{data.subtitle}</p>
+        <div className="mb-12 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div className="text-center sm:text-left">
+            <p className="kspc-eyebrow mx-auto justify-center sm:mx-0 sm:justify-start">{name}</p>
+            <h2 className="kspc-heading mt-4">{data.title}</h2>
+            {data.subtitle ? (
+              <p className="mt-3 text-white/55">{data.subtitle}</p>
+            ) : null}
+          </div>
+          {data.imageUrl ? (
+            <div className="mx-auto hidden overflow-hidden rounded-xl border border-white/15 sm:mx-0 sm:block sm:w-40 lg:w-52">
+              <img
+                src={data.imageUrl}
+                alt=""
+                className="aspect-square w-full object-cover"
+                referrerPolicy="no-referrer"
+              />
+            </div>
           ) : null}
         </div>
 

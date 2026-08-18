@@ -1,0 +1,279 @@
+/* vencanje-ink — "Mastilo" — editorial, typography-first: black ink on cream paper */
+@import "tailwindcss";
+
+@theme {
+  --color-vi-paper: #f5f1ea;
+  --color-vi-paper-deep: #ebe4d8;
+  --color-vi-ink: #111111;
+  --color-vi-ink-soft: #1a1a1a;
+  --color-vi-body: #33302c;
+  --color-vi-muted: #6d6862;
+  --color-vi-line: rgba(17, 17, 17, 0.16);
+}
+
+[data-template="vencanje-ink"] {
+  background-color: var(--color-vi-paper);
+  color: var(--color-vi-ink-soft);
+  overflow-x: hidden;
+}
+
+@layer components {
+  /* Layout */
+  .vi-section {
+    @apply relative w-full px-5 py-20 sm:px-8 sm:py-28 lg:px-14 lg:py-32;
+  }
+
+  .vi-section-tight {
+    @apply relative w-full px-5 py-14 sm:px-8 sm:py-20 lg:px-14;
+  }
+
+  .vi-shell {
+    @apply relative mx-auto w-full max-w-6xl;
+  }
+
+  .vi-shell-narrow {
+    @apply relative mx-auto w-full max-w-3xl;
+  }
+
+  .vi-grid {
+    @apply grid grid-cols-1 gap-x-10 gap-y-12 lg:grid-cols-12;
+  }
+
+  /* Type scale */
+  .vi-eyebrow {
+    @apply text-[10px] font-medium uppercase tracking-[0.5em] text-vi-muted;
+    font-family: var(--font-secondary);
+  }
+
+  .vi-display {
+    @apply text-vi-ink;
+    font-family: var(--font-primary);
+    font-size: clamp(2.35rem, 6.5vw, 4.75rem);
+    line-height: 0.94;
+    letter-spacing: -0.035em;
+  }
+
+  .vi-display-sm {
+    @apply text-vi-ink;
+    font-family: var(--font-primary);
+    font-size: clamp(1.65rem, 4vw, 2.75rem);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+  }
+
+  .vi-body {
+    @apply text-vi-body;
+    font-family: var(--font-secondary);
+    font-size: clamp(0.95rem, 1.1vw, 1.03rem);
+    line-height: 1.85;
+  }
+
+  .vi-caption {
+    @apply text-[10px] uppercase tracking-[0.32em] text-vi-muted;
+    font-family: var(--font-secondary);
+  }
+
+  .vi-num {
+    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.04em;
+  }
+
+  /* Rules — hairlines carry the whole layout */
+  .vi-rule {
+    @apply h-px w-full bg-vi-line;
+  }
+
+  .vi-rule-ink {
+    @apply h-px w-full bg-vi-ink;
+  }
+
+  .vi-accent {
+    @apply h-px w-14;
+    background: var(--color-vi-ink);
+  }
+
+  /* Media — always secondary to type */
+  .vi-media {
+    @apply relative overflow-hidden bg-vi-paper-deep;
+  }
+
+  .vi-media img {
+    @apply h-full w-full object-cover;
+    filter: grayscale(1) contrast(1.05);
+  }
+
+  .vi-fallback {
+    background: linear-gradient(150deg, #ebe4d8 0%, #ddd4c4 55%, #cec5b2 100%);
+  }
+
+  .vi-plate-portrait {
+    aspect-ratio: 3 / 4;
+  }
+
+  .vi-plate-square {
+    aspect-ratio: 1 / 1;
+  }
+
+  .vi-plate-strip {
+    aspect-ratio: 21 / 9;
+  }
+
+  .vi-plate-column {
+    aspect-ratio: 2 / 5;
+  }
+
+  /* Hero */
+  .vi-hero {
+    @apply relative flex min-h-[100svh] w-full flex-col justify-between px-5 pb-12 pt-16 sm:px-8 sm:pt-20 lg:px-14;
+  }
+
+  .vi-hero-name {
+    @apply block text-vi-ink;
+    font-family: var(--font-primary);
+    font-size: clamp(2.9rem, 14.5vw, 10.5rem);
+    line-height: 0.84;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+  }
+
+  .vi-hero-amp {
+    @apply block text-vi-muted;
+    font-family: var(--font-primary);
+    font-style: italic;
+    font-size: clamp(1.4rem, 4vw, 2.6rem);
+    line-height: 1;
+  }
+
+  /* Countdown — hairline table with oversized digits */
+  .vi-count {
+    @apply grid grid-cols-4 border-y border-vi-line;
+  }
+
+  .vi-count-cell {
+    @apply flex flex-col items-center gap-3 border-l border-vi-line px-1 py-8 first:border-l-0 sm:py-12;
+  }
+
+  .vi-count-value {
+    @apply text-vi-ink;
+    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    font-variant-numeric: tabular-nums;
+    font-size: clamp(1.75rem, 7vw, 4.25rem);
+    line-height: 1;
+    letter-spacing: -0.06em;
+  }
+
+  .vi-count-label {
+    @apply text-[9px] uppercase tracking-[0.3em] text-vi-muted;
+    font-family: var(--font-secondary);
+  }
+
+  /* InviteText — newspaper columns with a column rule */
+  .vi-newspaper {
+    @apply text-vi-body;
+    font-family: var(--font-secondary);
+    font-size: clamp(0.95rem, 1.1vw, 1.03rem);
+    line-height: 1.9;
+    white-space: pre-line;
+  }
+
+  @media (min-width: 768px) {
+    .vi-newspaper {
+      columns: 2;
+      column-gap: 3rem;
+      column-rule: 1px solid var(--color-vi-line);
+    }
+  }
+
+  .vi-dropcap::first-letter {
+    float: left;
+    font-family: var(--font-primary);
+    font-size: 4.2rem;
+    line-height: 0.78;
+    padding: 0.06em 0.1em 0 0;
+    color: var(--color-vi-ink);
+  }
+
+  /* Calendar — the month is the graphic */
+  .vi-month {
+    @apply block text-vi-ink;
+    font-family: var(--font-primary);
+    font-size: clamp(2.6rem, 11vw, 7.5rem);
+    line-height: 0.86;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+  }
+
+  .vi-cal-grid {
+    @apply grid grid-cols-7 border-t border-l border-vi-line;
+  }
+
+  .vi-cal-cell {
+    @apply flex h-10 items-center justify-center border-b border-r border-vi-line text-[11px] sm:h-12 sm:text-xs;
+    font-family: var(--font-secondary);
+  }
+
+  /* Schedule — numbered editorial list */
+  .vi-row {
+    @apply grid grid-cols-[2.5rem_1fr] items-baseline gap-x-4 gap-y-2 border-t border-vi-line py-7 sm:grid-cols-[3.5rem_6rem_1fr] sm:py-9;
+  }
+
+  .vi-row-index {
+    @apply text-[11px] text-vi-muted;
+    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    letter-spacing: 0.06em;
+  }
+
+  /* LoveQuote */
+  .vi-quote-mark {
+    @apply block text-vi-ink;
+    font-family: var(--font-primary);
+    font-size: clamp(4.5rem, 16vw, 11rem);
+    line-height: 0.55;
+  }
+
+  .vi-quote-text {
+    @apply text-vi-ink;
+    font-family: var(--font-primary);
+    font-style: italic;
+    font-size: clamp(1.55rem, 4.6vw, 3.2rem);
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+  }
+
+  /* Gallery — horizontal strip of equal squares */
+  .vi-strip {
+    @apply flex snap-x snap-mandatory gap-3 overflow-x-auto pb-3;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .vi-strip::-webkit-scrollbar {
+    display: none;
+  }
+
+  .vi-strip-item {
+    @apply aspect-square w-[68vw] shrink-0 snap-start sm:w-[40vw] lg:w-[23vw];
+  }
+
+  /* Forms */
+  .vi-label {
+    @apply mb-2 block text-[10px] uppercase tracking-[0.3em] text-vi-muted;
+    font-family: var(--font-secondary);
+  }
+
+  .vi-input {
+    @apply w-full border-0 border-b border-vi-line bg-transparent px-0 py-3 text-sm text-vi-ink outline-none transition placeholder:text-vi-muted/60 focus:border-vi-ink;
+    font-family: var(--font-secondary);
+  }
+
+  .vi-choice {
+    @apply border border-vi-line py-3.5 text-center text-[10px] uppercase tracking-[0.3em] text-vi-muted transition peer-checked:border-vi-ink peer-checked:bg-vi-ink peer-checked:text-vi-paper;
+    font-family: var(--font-secondary);
+  }
+
+  .vi-btn {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2 border border-vi-ink px-8 py-4 text-[10px] uppercase tracking-[0.4em] text-vi-ink transition hover:bg-vi-ink hover:text-vi-paper disabled:cursor-default disabled:opacity-45;
+    font-family: var(--font-secondary);
+  }
+}

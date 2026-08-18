@@ -59,6 +59,14 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
           className="bday-card-strong bday-rsvp-panel"
         >
           <div className="bday-rsvp-intro">
+            {data.imageUrl ? (
+              <img
+                src={data.imageUrl}
+                alt=""
+                className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.18]"
+                referrerPolicy="no-referrer"
+              />
+            ) : null}
             <div className="bday-rsvp-blob bday-rsvp-blob--a" style={{ background: accent }} />
             <div className="bday-rsvp-blob bday-rsvp-blob--b" style={{ background: secondary }} />
 

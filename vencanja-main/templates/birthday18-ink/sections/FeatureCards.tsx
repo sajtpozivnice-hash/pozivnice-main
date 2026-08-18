@@ -30,6 +30,16 @@ const FeatureCards: FC<Props> = ({ section, theme }) => {
           className="b18i-rail"
           style={{ borderColor: accent }}
         >
+          {card?.image ? (
+            <div className="mb-5 overflow-hidden border border-[var(--ink-ink)]/15">
+              <img
+                src={card.image}
+                alt=""
+                className="aspect-[21/9] w-full object-cover grayscale-[20%]"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+          ) : null}
           <span className="b18i-rail__mark" style={{ color: accent }} aria-hidden>
             “
           </span>

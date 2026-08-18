@@ -84,6 +84,16 @@ const Countdown: FC<Props> = ({ section, event, theme }) => {
           {data.description ? (
             <p className="mt-3 text-black/55">{data.description}</p>
           ) : null}
+          {data.imageUrl ? (
+            <div className="mx-auto mt-8 h-28 w-28 overflow-hidden rounded-full border-4 border-kpas-paper shadow-[0_16px_32px_-20px_rgba(74,63,82,0.4)] sm:h-36 sm:w-36">
+              <img
+                src={data.imageUrl}
+                alt=""
+                className="h-full w-full object-cover"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+          ) : null}
         </div>
 
         <div className="kpas-seal-row">

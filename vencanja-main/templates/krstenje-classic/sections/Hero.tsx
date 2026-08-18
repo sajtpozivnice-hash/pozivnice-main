@@ -21,7 +21,21 @@ const Hero: FC<Props> = ({ section, event }) => {
       id={id}
       className="relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden bg-kc-ivory px-6 py-24 sm:px-10"
     >
-      {/* Paper grain, no photography — type leads the first viewport */}
+      {/* Soft ambient photo wash — type still leads the first viewport */}
+      {data.backgroundImage ? (
+        <div className="pointer-events-none absolute inset-0">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={data.backgroundImage}
+            alt=""
+            className="h-full w-full scale-110 object-cover opacity-[0.14] blur-2xl"
+            referrerPolicy="no-referrer"
+          />
+          <div className="absolute inset-0 bg-kc-ivory/75" />
+        </div>
+      ) : null}
+
+      {/* Paper grain */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.05]"
         style={{

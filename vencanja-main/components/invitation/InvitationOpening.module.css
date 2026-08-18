@@ -215,6 +215,7 @@
 
 .displayLine {
   display: block;
+  max-width: 100%;
   font-family: var(--font-primary, inherit);
   font-size: clamp(2.2rem, 9vw, 4.4rem);
   font-weight: 600;
@@ -222,6 +223,9 @@
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--color-secondary, #1a1a1a);
+  word-break: normal;
+  overflow-wrap: anywhere;
+  white-space: normal;
   animation: io-line 800ms cubic-bezier(0.22, 1, 0.36, 1) both;
   animation-delay: var(--io-delay, 0ms);
 }
@@ -381,7 +385,11 @@
 
 .overlay[data-tone="soft"] .displayLine {
   font-weight: 500;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
+}
+
+.overlay[data-tone="soft"] .display {
+  gap: 0.35rem;
 }
 
 .overlay[data-tone="soft"] .panel {

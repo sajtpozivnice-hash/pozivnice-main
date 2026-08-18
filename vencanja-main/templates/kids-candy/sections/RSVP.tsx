@@ -57,16 +57,24 @@ const RSVP: FC<Props> = ({ section, event }) => {
           className="kcan-card-strong kcan-poster"
         >
           <div className="kcan-poster-art">
+            {data.imageUrl ? (
+              <img
+                src={data.imageUrl}
+                alt=""
+                className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-40"
+                referrerPolicy="no-referrer"
+              />
+            ) : null}
             <span
-              className="kcan-tape"
+              className="kcan-tape relative z-10"
               style={{ top: "-14px", left: "18%", transform: "rotate(-5deg)" }}
             />
             <span
-              className="kcan-tape"
+              className="kcan-tape relative z-10"
               style={{ top: "-14px", right: "12%", transform: "rotate(6deg)" }}
             />
-            <p className="kcan-kicker w-fit">{name}</p>
-            <p className="kcan-poster-scribble">RSVP</p>
+            <p className="kcan-kicker relative z-10 w-fit">{name}</p>
+            <p className="kcan-poster-scribble relative z-10">RSVP</p>
           </div>
 
           <div className="kcan-poster-form">

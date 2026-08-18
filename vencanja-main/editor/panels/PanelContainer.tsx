@@ -61,10 +61,15 @@ const PanelContainer: FC<PanelContainerProps> = ({
   // Keep highlighted (closed) panel visible in the sidebar while scrolling preview.
   // Skip while a panel is open so editing fields aren't scrolled away.
   useEffect(() => {
-    if (!isScrollHighlight || !panelRef.current || !isDesktopEditor()) return;
-    if (activePanel !== null) return;
+    const shouldFollow =
+      isDesktopEditor() &&
+      activePanel === null &&
+      scrollHighlightId === id &&
+      !isOpen;
+
+    if (!shouldFollow || !panelRef.current) return;
     panelRef.current.scrollIntoView({ block: "nearest", behavior: "smooth" });
-  }, [isScrollHighlight, scrollHighlightId, activePanel]);
+  }, [activePanel, scrollHighlightId, id, isOpen]);
 
   const handleToggle = () => {
     const willOpen = !isOpen;

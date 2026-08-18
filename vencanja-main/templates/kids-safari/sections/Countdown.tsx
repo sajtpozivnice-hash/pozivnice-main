@@ -86,8 +86,16 @@ const Countdown: FC<Props> = ({ section, event, theme }) => {
           ) : null}
         </div>
 
-        <div className="ksaf-card-strong px-4 py-10 sm:px-10">
-          <div className="ksaf-map">
+        <div className="ksaf-card-strong relative overflow-hidden px-4 py-10 sm:px-10">
+          {data.imageUrl ? (
+            <img
+              src={data.imageUrl}
+              alt=""
+              className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.12]"
+              referrerPolicy="no-referrer"
+            />
+          ) : null}
+          <div className="ksaf-map relative z-10">
             {/* Compass reads the day count as a heading, not another grid cell */}
             <motion.div
               initial={{ opacity: 0, scale: 0.85 }}

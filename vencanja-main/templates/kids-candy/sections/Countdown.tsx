@@ -91,9 +91,18 @@ const Countdown: FC<Props> = ({ section, event, theme }) => {
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="kcan-admit"
+          className="kcan-admit relative overflow-hidden"
         >
-          <div className="kcan-admit-main">
+          {data.imageUrl ? (
+            <img
+              src={data.imageUrl}
+              alt=""
+              className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.12]"
+              referrerPolicy="no-referrer"
+            />
+          ) : null}
+
+          <div className="kcan-admit-main relative z-10">
             <span className="kcan-admit-eyebrow">Do rođendana</span>
             <p className="kcan-admit-hero" style={{ color: accent }}>
               {String(timeLeft.days).padStart(2, "0")}
@@ -101,9 +110,9 @@ const Countdown: FC<Props> = ({ section, event, theme }) => {
             <p className="kcan-admit-hero-label">Dana</p>
           </div>
 
-          <div className="kcan-admit-tear" aria-hidden="true" />
+          <div className="kcan-admit-tear relative z-10" aria-hidden="true" />
 
-          <div className="kcan-admit-stub">
+          <div className="kcan-admit-stub relative z-10">
             <p className="kcan-admit-stub-title">Ulaznica</p>
             <div className="kcan-admit-stub-row">
               {stubStats.map((item) => (
