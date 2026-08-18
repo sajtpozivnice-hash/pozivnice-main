@@ -15,6 +15,10 @@
   padding: 12px 0;
 }
 
+.footerLogo {
+  margin-bottom: 14px;
+}
+
 .footerMainTitle {
   color: var(--color-hot);
   margin-bottom: 14px;

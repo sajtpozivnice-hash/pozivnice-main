@@ -10,6 +10,7 @@ import {
   useMotionValueEvent,
   useScroll,
 } from "framer-motion";
+import Logo from "@/components/brand/Logo";
 import styles from "./Header.module.css";
 
 const NAV_LINKS = [
@@ -88,9 +89,7 @@ const Header = () => {
     >
       <div className={styles.glass} aria-hidden />
       <div className={styles.inner}>
-        <Link href="/" className={styles.brand} onClick={() => setOpen(false)}>
-          Vaš događaj
-        </Link>
+        <Logo className={styles.brand} size="md" />
 
         <nav className={styles.desktopNav} aria-label="Glavna navigacija">
           {NAV_LINKS.map((link) => (

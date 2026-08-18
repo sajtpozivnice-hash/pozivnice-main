@@ -49,12 +49,6 @@
 }
 
 .brand {
-  font-family: var(--font-playfair);
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--color-hot);
-  text-decoration: none;
-  letter-spacing: -0.02em;
   flex-shrink: 0;
 }
 
@@ -299,10 +293,6 @@
 
   .scrolled {
     height: 56px;
-  }
-
-  .brand {
-    font-size: 20px;
   }
 
   .inner {

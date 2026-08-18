@@ -1,0 +1,73 @@
+.link {
+  display: inline-flex;
+  text-decoration: none;
+  color: inherit;
+  flex-shrink: 0;
+}
+
+.root {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.markOnly {
+  gap: 0;
+}
+
+.mark {
+  display: block;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+}
+
+.wordmark {
+  font-family: var(--font-playfair);
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-hot);
+  white-space: nowrap;
+}
+
+.sm .mark {
+  width: 28px;
+  height: 28px;
+}
+
+.sm .wordmark {
+  font-size: 18px;
+}
+
+.md .mark {
+  width: 34px;
+  height: 34px;
+}
+
+.md .wordmark {
+  font-size: 22px;
+}
+
+.lg .mark {
+  width: 42px;
+  height: 42px;
+}
+
+.lg .wordmark {
+  font-size: 26px;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

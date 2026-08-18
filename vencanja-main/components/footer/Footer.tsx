@@ -3,6 +3,7 @@
 import Section from "../layout/Section";
 import Heading, { HeadingVariant } from "../shared/typography/Heading";
 import Paragraph from "../shared/typography/Paragraph";
+import Logo from "@/components/brand/Logo";
 import styles from "./Footer.module.css";
 import Link from "next/link";
 
@@ -12,12 +13,7 @@ const Footer = () => {
       <Section>
         <div className={styles.container}>
           <div className={styles.item}>
-            <Heading
-              variant={HeadingVariant.H2}
-              className={styles.footerMainTitle}
-            >
-              Vaš događaj
-            </Heading>
+            <Logo className={styles.footerLogo} size="lg" />
             <Paragraph center={false} color="var(--color-primary)">
               Digitalne pozivnice i privatni nalog za goste, stolove, budžet i
               planiranje događaja.

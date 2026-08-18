@@ -14,6 +14,10 @@ export const metadata: Metadata = {
   },
   description:
     "Digitalna pozivnica i privatni nalog: menjate tekstove i slike, pratite ko dolazi, pravite raspored sedenja, vodite budžet i primáte fotografije od gostiju. Kontaktirajte nas za izradu.",
+  icons: {
+    icon: [{ url: "/brand/logo-mark.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/brand/logo-mark.svg", type: "image/svg+xml" }],
+  },
 };
 
 export default function RootLayout({

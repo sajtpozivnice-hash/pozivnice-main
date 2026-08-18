@@ -5,9 +5,8 @@ import { useRouter } from "next/navigation";
 import Button from "@/components/button/Button";
 import Paragraph from "@/components/shared/typography/Paragraph";
 import FormLabel from "@/components/shared/FormLabel/FormLabel";
-import Heading, {
-  HeadingVariant,
-} from "@/components/shared/typography/Heading";
+import Heading from "@/components/shared/typography/Heading";
+import Logo from "@/components/brand/Logo";
 import { createClient } from "@/lib/supabase/client";
 import styles from "../../components/ContactPageForm/ContactPageForm.module.css";
 
@@ -41,13 +40,11 @@ export default function DashboardLoginPage() {
 
   return (
     <div>
-      <div className="min-h-dvh flex flex-col items-center justify-center gap-2">
+      <div className="min-h-dvh flex flex-col items-center justify-center gap-4 px-4">
+        <Logo size="lg" />
         <Heading>Prijavite se</Heading>
-        <Heading variant={HeadingVariant.H3}>
-          Vaša Elektronska Pozivnica
-        </Heading>
-        <form onSubmit={handleLogin}>
-          {error && <div>{error}</div>}
+        <form onSubmit={handleLogin} className="w-full max-w-sm">
+          {error && <div className="mb-3 text-sm text-red-600">{error}</div>}
           <div className="flex flex-col gap-6">
             <div className={styles.inputWrapper}>
               <FormLabel text={"Email adresa"} required />
