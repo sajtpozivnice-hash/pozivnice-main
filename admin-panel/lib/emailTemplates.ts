@@ -147,7 +147,7 @@ export const EMAIL_TEMPLATES: Record<EmailTemplateId, EmailTemplateDef> = {
       subdomain: "",
       invitation_url: "",
       login_url: `${CLIENT_APP_URL}/login`,
-      note: "U nalogu možete menjati tekstove, pratiti goste i pripreme.",
+      note: "",
     },
     buildSubject: (d) =>
       `Vaša pozivnica je online – ${d.project_title || d.subdomain || "Vaš događaj"}`,
@@ -155,20 +155,35 @@ export const EMAIL_TEMPLATES: Record<EmailTemplateId, EmailTemplateDef> = {
       [
         `Zdravo ${d.name || ""},`,
         "",
-        `Pozivnica „${d.project_title}” je aktivna.`,
+        `Odlične vesti — pozivnica „${d.project_title}” je aktivna i spremna za deljenje!`,
         "",
-        `Adresa pozivnice:`,
+        "Link pozivnice (podelite ga gostima):",
         d.invitation_url || getInvitationUrl(d.subdomain || ""),
         "",
-        d.subdomain ? `Subdomain: ${d.subdomain}` : null,
+        "Backoffice — prijava:",
+        d.login_url || null,
         "",
-        d.login_url
-          ? `Backoffice (prijava): ${d.login_url}`
-          : null,
+        "Podaci za prijavu:",
+        `• Korisničko ime: ${d.email || "(vaš email)"}`,
+        "• Lozinka: ona koju ste nedavno postavili preko linka iz mejla",
+        "",
+        "Odatle možete sve da menjate i pratite:",
+        "• tekstove, imena, datume i fotografije na pozivnici",
+        "• listu gostiju i potvrde dolaska (RSVP)",
+        "• raspored sedenja",
+        "• budžet i finansije",
+        "• planer zadataka i pripreme",
+        "• galeriju fotografija gostiju",
+        "",
+        "Saveti za početak:",
+        "1. Prijavite se u backoffice i proverite da li su imena, datumi i tekstovi tačni.",
+        "2. Podelite link pozivnice gostima (poruka, Viber, WhatsApp).",
+        "3. Pratite potvrde dolaska i dopunite listu gostiju po potrebi.",
+        "4. Sve izmene koje sačuvate odmah su vidljive na linku pozivnice.",
         "",
         d.note || null,
         "",
-        "Ako treba izmena ili pomoć — odgovorite na ovaj mejl.",
+        "Ako treba izmena, pitanje ili pomoć — odgovorite na ovaj mejl ili nam se javite na Viber / WhatsApp: 066 570 2562.",
         "",
         "Srdačan pozdrav,",
         "Vaš događaj",
@@ -177,31 +192,51 @@ export const EMAIL_TEMPLATES: Record<EmailTemplateId, EmailTemplateDef> = {
         .join("\n"),
     buildHtml: (d) => {
       const url = d.invitation_url || getInvitationUrl(d.subdomain || "");
+      const login = d.login_url || "";
       return `
       <div style="font-family:Arial,sans-serif;line-height:1.55;color:#111;max-width:560px">
         <p>Zdravo <strong>${escapeHtml(d.name)}</strong>,</p>
-        <p>Pozivnica <strong>„${escapeHtml(d.project_title)}”</strong> je aktivna.</p>
+        <p>Odlične vesti — pozivnica <strong>„${escapeHtml(d.project_title)}”</strong> je aktivna i spremna za deljenje!</p>
         <p style="margin:20px 0">
           <a href="${escapeAttr(url)}" style="display:inline-block;padding:12px 18px;background:#0f766e;color:#fff;text-decoration:none;border-radius:8px">
             Otvori pozivnicu
           </a>
         </p>
-        <p style="font-size:13px;color:#555">
-          Link:<br/>
+        <p style="font-size:14px;color:#333">
+          <strong>Link pozivnice</strong> (podelite ga gostima):<br/>
           <a href="${escapeAttr(url)}">${escapeHtml(url)}</a>
         </p>
         ${
-          d.subdomain
-            ? `<p style="font-size:13px;color:#555">Subdomain: <code>${escapeHtml(d.subdomain)}</code></p>`
+          login
+            ? `<p style="font-size:14px;color:#333;margin-top:20px">
+          <strong>Backoffice — prijava:</strong><br/>
+          <a href="${escapeAttr(login)}">${escapeHtml(login)}</a>
+        </p>
+        <p><strong>Podaci za prijavu:</strong></p>
+        <ul style="padding-left:18px;margin:8px 0 16px;color:#333">
+          <li>Korisničko ime: <strong>${escapeHtml(d.email || "")}</strong></li>
+          <li>Lozinka: ona koju ste nedavno postavili preko linka iz mejla</li>
+        </ul>
+        <p>Odatle možete <strong>sve da menjate i pratite</strong>:</p>
+        <ul style="padding-left:18px;margin:8px 0 16px;color:#333">
+          <li>tekstove, imena, datume i fotografije na pozivnici</li>
+          <li>listu gostiju i potvrde dolaska (RSVP)</li>
+          <li>raspored sedenja</li>
+          <li>budžet i finansije</li>
+          <li>planer zadataka i pripreme</li>
+          <li>galeriju fotografija gostiju</li>
+        </ul>`
             : ""
         }
-        ${
-          d.login_url
-            ? `<p style="font-size:13px;color:#555">Backoffice: <a href="${escapeAttr(d.login_url)}">${escapeHtml(d.login_url)}</a></p>`
-            : ""
-        }
+        <p><strong>Saveti za početak:</strong></p>
+        <ol style="padding-left:18px;margin:8px 0 16px;color:#333">
+          <li>Prijavite se u backoffice i proverite da li su imena, datumi i tekstovi tačni.</li>
+          <li>Podelite link pozivnice gostima (poruka, Viber, WhatsApp).</li>
+          <li>Pratite potvrde dolaska i dopunite listu gostiju po potrebi.</li>
+          <li>Sve izmene koje sačuvate odmah su vidljive na linku pozivnice.</li>
+        </ol>
         ${d.note ? `<p>${escapeHtml(d.note)}</p>` : ""}
-        <p>Ako treba izmena ili pomoć — odgovorite na ovaj mejl.</p>
+        <p>Ako treba izmena, pitanje ili pomoć — odgovorite na ovaj mejl ili nam se javite na <strong>Viber / WhatsApp: 066 570 2562</strong>.</p>
         <p>Srdačan pozdrav,<br/><strong>Vaš događaj</strong></p>
       </div>
     `;
