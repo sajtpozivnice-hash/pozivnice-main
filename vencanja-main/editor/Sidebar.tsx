@@ -6,7 +6,6 @@ import { panelRegistry } from "./panelRegistry";
 import StructurePanel from "./panels/StructurePanel";
 import GeneralInfoPanel from "./panels/GeneralInfoPanel";
 import FontsAndColorsPanel from "./panels/FontsAndColorsPanel";
-import InvitationContactForm from "@/components/shared/InvitationContactForm/InvitationContactForm";
 
 const Sidebar: FC = () => {
   const { config, viewMode } = useEditor();
@@ -27,13 +26,14 @@ const Sidebar: FC = () => {
         }
       `}
     >
-      <div className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto overscroll-contain px-4 py-4 sm:px-5 lg:px-6 lg:py-6">
+      <div className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto overscroll-contain px-4 py-4 pb-28 sm:px-5 lg:px-6 lg:py-6 lg:pb-28">
         <div className="mb-4 lg:mb-5">
           <h2 className="text-base font-bold tracking-tight lg:text-lg">
             Podešavanja izgleda
           </h2>
           <p className="mt-1 text-sm leading-snug text-black/55 lg:text-[15px]">
-            Menjajte tekst, slike, boje i vidljivost sekcija.
+            Menjajte tekst, slike, boje i vidljivost sekcija. Kad završite,
+            naručite pozivnicu dugmetom ispod.
           </p>
         </div>
 
@@ -46,10 +46,6 @@ const Sidebar: FC = () => {
             if (!PanelComponent) return null;
             return <PanelComponent key={section.id} />;
           })}
-        </div>
-
-        <div className="mt-6 min-w-0 overflow-hidden border-t border-black/5 pt-5 [&_*]:max-w-full">
-          <InvitationContactForm config={config} />
         </div>
       </div>
     </aside>

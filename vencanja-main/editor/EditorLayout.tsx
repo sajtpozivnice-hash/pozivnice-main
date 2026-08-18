@@ -3,6 +3,7 @@
 import { Eye, Settings2 } from "lucide-react";
 import Canvas from "./Canvas";
 import Sidebar from "./Sidebar";
+import OrderCta from "./OrderCta";
 import { useEffect, useRef } from "react";
 import { useEditor } from "./EditorProvider";
 import { scrollEditorCanvasToSection } from "./scrollToSection";
@@ -79,8 +80,8 @@ const EditorLayout = () => {
           min-w-0
           ${
             viewMode === "preview"
-              ? "flex h-full w-full flex-1 pt-[3.25rem] lg:pt-0"
-              : "hidden lg:flex lg:h-full lg:flex-1 lg:pt-0"
+              ? "flex h-full w-full flex-1 pt-[3.25rem] pb-28 lg:pt-0 lg:pb-24"
+              : "hidden lg:flex lg:h-full lg:flex-1 lg:pt-0 lg:pb-24"
           }
         `}
       >
@@ -88,6 +89,7 @@ const EditorLayout = () => {
       </main>
 
       <Sidebar />
+      <OrderCta />
     </div>
   );
 };

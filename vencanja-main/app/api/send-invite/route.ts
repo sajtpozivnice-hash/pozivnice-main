@@ -105,7 +105,7 @@ export async function POST(req: Request) {
       replyTo: extractReplyTo(formText) ?? undefined,
       subject:
         attachments != null
-          ? "Nova web pozivnica – upit sa primerom"
+          ? "Nova porudžbina pozivnice – Vaš događaj"
           : "Novi kontakt upit – Vaš događaj",
       text: bodyText,
       attachments,

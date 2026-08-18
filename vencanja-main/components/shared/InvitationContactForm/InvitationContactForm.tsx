@@ -10,6 +10,8 @@ import { isDemoMode } from "@/lib/demo/mode";
 
 interface InviteContactFormProps {
   config: unknown;
+  /** Hide outer title block when shown inside order sheet */
+  compact?: boolean;
 }
 
 const requiredFieldNames: Record<string, string> = {
@@ -18,7 +20,10 @@ const requiredFieldNames: Record<string, string> = {
   phoneNumber: "Broj telefona",
 };
 
-const InvitationContactForm: FC<InviteContactFormProps> = ({ config }) => {
+const InvitationContactForm: FC<InviteContactFormProps> = ({
+  config,
+  compact = false,
+}) => {
   const { addToast } = useToast();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -88,7 +93,7 @@ const InvitationContactForm: FC<InviteContactFormProps> = ({ config }) => {
       if (isDemoMode()) {
         await new Promise((resolve) => setTimeout(resolve, 400));
         addToast(
-          "Demo režim — zahtev nije poslat. U pravom nalogu ovde šaljete upit.",
+          "Demo režim — porudžbina nije poslata. U pravom nalogu ovde naručujete pozivnicu.",
           "success",
         );
         setFormData({
@@ -110,7 +115,7 @@ const InvitationContactForm: FC<InviteContactFormProps> = ({ config }) => {
       });
 
       if (!res.ok) throw new Error("Slanje nije uspelo");
-      addToast("Poruka je poslata. Javićemo vam se uskoro.", "success");
+      addToast("Porudžbina je poslata. Javićemo vam se uskoro.", "success");
       setFormData({
         name: "",
         email: "",
@@ -162,13 +167,17 @@ const InvitationContactForm: FC<InviteContactFormProps> = ({ config }) => {
             }
           />
         </div>
-        <div>
-          <Heading className="text-center">Aktivirajte svoju pozivnicu</Heading>
-          <p className="text-center margin-bottom30">
-          Popunite osnovne podatke i pošaljite zahtev za aktivaciju. Nakon prijema podataka šaljemo vam instrukcije za uplatu, a nakon evidentirane uplate vaša digitalna pozivnica postaje spremna za korišćenje.
-Dobijate svoj link pozivnice i privatni nalog iz kog možete menjati sadržaj, pratiti goste i organizovati sve detalje događaja.
-          </p>
-        </div>
+        {!compact ? (
+          <div>
+            <Heading className="text-center">Naručite svoju pozivnicu</Heading>
+            <p className="text-center margin-bottom30">
+              Izabrali ste dizajn — ostaje još korak. Pošaljite podatke ispod i
+              javićemo vam se sa detaljima porudžbine. Nakon uplate dobijate
+              personalizovani link, potpuno prilagodljivu pozivnicu i privatni
+              nalog za goste, RSVP, budžet, planer i sve ostalo.
+            </p>
+          </div>
+        ) : null}
         <div className={styles.innerContainer}>
           <div className={styles.inputWrapper}>
             <FormLabel text={"Ime i Prezime"} required />
@@ -227,7 +236,7 @@ Dobijate svoj link pozivnice i privatni nalog iz kog možete menjati sadržaj, p
             value={formData.message}
             className={styles.textAreaInput}
             name="message"
-            placeholder="Dodajte dodatne informacije koje želite da znamo"
+            placeholder="Npr. datum događaja, želje oko dizajna…"
             required={false}
             rows={7}
             onChange={(e) => {
@@ -238,7 +247,7 @@ Dobijate svoj link pozivnice i privatni nalog iz kog možete menjati sadržaj, p
         </div>
 
         <Button type="submit" icon={AnimatedMail} loading={loading}>
-        Pošaljite zahtev za aktivaciju
+          Naruči pozivnicu
         </Button>
       </form>
     </div>

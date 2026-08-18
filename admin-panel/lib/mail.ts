@@ -25,7 +25,7 @@ export async function sendEmail(params: {
   const transporter = getTransporter();
 
   await transporter.sendMail({
-    from: `"Pozivnice" <${from}>`,
+    from: `"Vaš događaj" <${from}>`,
     to: params.to,
     subject: params.subject,
     text: params.text,
@@ -41,19 +41,20 @@ export async function sendClientInviteEmail(params: {
   const text = [
     `Zdravo${params.name ? ` ${params.name}` : ""},`,
     "",
-    "Kreiran vam je nalog za backoffice pozivnice u kom mozete da menjate sadrzaj pozivnice, pratite potvrde dolaska, pratite finansije, organizujete događaj i drugo.",
+    "Kreiran vam je nalog za Vaš događaj backoffice u kom možete da menjate sadržaj pozivnice, pratite potvrde dolaska, pratite finansije, organizujete događaj i drugo.",
     "Kliknite na link ispod da postavite lozinku i uđete u nalog:",
     "",
     params.actionLink,
     "",
     "Prijava: koristite ovaj email i lozinku koju postavite.",
     "",
-    "Pozivnice",
+    "Srdačan pozdrav,",
+    "Vaš događaj",
   ].join("\n");
 
   const html = `
     <p>Zdravo${params.name ? ` <strong>${params.name}</strong>` : ""},</p>
-    <p>Kreiran vam je nalog za backoffice pozivnice.</p>
+    <p>Kreiran vam je nalog za <strong>Vaš događaj</strong> backoffice.</p>
     <p>
       <a href="${params.actionLink}" style="display:inline-block;padding:12px 18px;background:#0f766e;color:#fff;text-decoration:none;border-radius:8px;">
         Postavi lozinku
@@ -64,11 +65,12 @@ export async function sendClientInviteEmail(params: {
       <a href="${params.actionLink}">${params.actionLink}</a>
     </p>
     <p>Prijava: koristite ovaj email i lozinku koju postavite.</p>
+    <p>Srdačan pozdrav,<br/><strong>Vaš događaj</strong></p>
   `;
 
   await sendEmail({
     to: params.to,
-    subject: "Postavite lozinku – nalog za pozivnice",
+    subject: "Postavite lozinku – Vaš događaj",
     text,
     html,
   });

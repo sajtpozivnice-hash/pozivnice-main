@@ -41,7 +41,8 @@ const ContactContent = () => {
               Već ste odabrali pozivnicu?
               </Heading>
               <Paragraph center={false}>
-              Ako ste pronašli pozivnicu koja vam se dopada i imate pitanje pre slanja zahteva za aktivaciju, slobodno nam pišite. Tu smo da pomognemo.
+                Ako ste pronašli pozivnicu koja vam se dopada i imate pitanje pre
+                porudžbine, slobodno nam pišite. Tu smo da pomognemo.
               </Paragraph>
             </div>
 
@@ -116,7 +117,9 @@ const ContactContent = () => {
             <div>
               <Heading variant={HeadingVariant.H3}>Šta sve možete da očekujete?</Heading>
               <Paragraph center={false}>
-              Naša platforma omogućava mnogo više od same digitalne pozivnice. Nakon aktivacije dobijate pristup privatnom nalogu iz kog možete uređivati sadržaj pozivnice, pratiti potvrde dolaska gostiju, organizovati raspored sedenja, voditi pregled troškova, planirati obaveze i pregledati fotografije koje vam gosti pošalju.
+                Više od same digitalne pozivnice. Nakon porudžbine dobijate
+                privatni nalog iz kog uređujete sadržaj, pratite RSVP, raspored
+                sedenja, budžet, planer i fotografije gostiju.
               </Paragraph>
               <Button
                 onClick={() => router.push("/pozivnice")}

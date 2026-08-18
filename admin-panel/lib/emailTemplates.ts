@@ -31,13 +31,13 @@ function paymentDefaults(): Record<string, string> {
   return {
     name: "",
     email: "",
-    amount: "40",
-    currency: "EUR",
+    amount: "3999",
+    currency: "RSD",
     service: "Digitalna pozivnica + nalog za organizaciju",
-    recipient: process.env.PAYMENT_RECIPIENT || "Pozivnice",
+    recipient: process.env.PAYMENT_RECIPIENT || "Vaš događaj",
     iban: process.env.PAYMENT_IBAN || "",
     reference: "",
-    note: "Nakon uplate, aktiviramo nalog i šaljemo pristup.",
+    note: "Nakon uplate aktiviramo nalog i šaljemo vam pristup pozivnici i backoffice-u.",
   };
 }
 
@@ -64,35 +64,40 @@ export const EMAIL_TEMPLATES: Record<EmailTemplateId, EmailTemplateDef> = {
     ],
     defaultValues: paymentDefaults(),
     buildSubject: (d) =>
-      `Uputstvo za uplatu – ${d.service || "Pozivnice"}`,
+      `Uputstvo za uplatu – ${d.service || "Vaš događaj"}`,
     buildText: (d) =>
       [
         `Zdravo ${d.name || ""},`,
         "",
-        "Hvala na poverenju. Ispod su podaci za uplatu:",
+        "Hvala na poverenju!",
+        "",
+        "Primili smo vašu porudžbinu i drago nam je što ćete događaj organizovati uz Vaš događaj.",
+        "Ispod su podaci za uplatu. Čim uplatite i pošaljete nam potvrdu, aktiviramo nalog i šaljemo vam pristup.",
         "",
         `Usluga: ${d.service}`,
-        `Iznos: ${d.amount} ${d.currency || "EUR"}`,
+        `Iznos: ${d.amount} ${d.currency || "RSD"}`,
         `Primalac: ${d.recipient}`,
         `Račun / IBAN: ${d.iban}`,
         d.reference ? `Poziv na broj / referenca: ${d.reference}` : null,
         "",
         d.note || null,
         "",
-        "Kad uplatite, javite nam se kratkom potvrdom (slika ili PDF izvoda).",
+        "Kad uplatite, javite nam se kratkom potvrdom (slika ili PDF izvoda) — odgovorom na ovaj mejl, ili na Viber / WhatsApp: 066 570 2562.",
         "",
         "Srdačan pozdrav,",
-        "Pozivnice",
+        "Vaš događaj",
       ]
         .filter((line) => line !== null)
         .join("\n"),
     buildHtml: (d) => `
       <div style="font-family:Arial,sans-serif;line-height:1.55;color:#111;max-width:560px">
         <p>Zdravo <strong>${escapeHtml(d.name)}</strong>,</p>
-        <p>Hvala na poverenju. Ispod su podaci za uplatu:</p>
+        <p><strong>Hvala na poverenju!</strong></p>
+        <p>Primili smo vašu porudžbinu i drago nam je što ćete događaj organizovati uz <strong>Vaš događaj</strong>.</p>
+        <p>Ispod su podaci za uplatu. Čim uplatite i pošaljete nam potvrdu, aktiviramo nalog i šaljemo vam pristup.</p>
         <table style="border-collapse:collapse;width:100%;margin:16px 0">
           <tr><td style="padding:8px 0;color:#666">Usluga</td><td style="padding:8px 0"><strong>${escapeHtml(d.service)}</strong></td></tr>
-          <tr><td style="padding:8px 0;color:#666">Iznos</td><td style="padding:8px 0"><strong>${escapeHtml(d.amount)} ${escapeHtml(d.currency || "EUR")}</strong></td></tr>
+          <tr><td style="padding:8px 0;color:#666">Iznos</td><td style="padding:8px 0"><strong>${escapeHtml(d.amount)} ${escapeHtml(d.currency || "RSD")}</strong></td></tr>
           <tr><td style="padding:8px 0;color:#666">Primalac</td><td style="padding:8px 0">${escapeHtml(d.recipient)}</td></tr>
           <tr><td style="padding:8px 0;color:#666">Račun / IBAN</td><td style="padding:8px 0;font-family:monospace">${escapeHtml(d.iban)}</td></tr>
           ${
@@ -102,8 +107,8 @@ export const EMAIL_TEMPLATES: Record<EmailTemplateId, EmailTemplateDef> = {
           }
         </table>
         ${d.note ? `<p>${escapeHtml(d.note)}</p>` : ""}
-        <p>Kad uplatite, javite nam se kratkom potvrdom (slika ili PDF izvoda).</p>
-        <p>Srdačan pozdrav,<br/>Pozivnice</p>
+        <p>Kad uplatite, javite nam se kratkom potvrdom (slika ili PDF izvoda) — odgovorom na ovaj mejl, ili na <strong>Viber / WhatsApp: 066 570 2562</strong>.</p>
+        <p>Srdačan pozdrav,<br/><strong>Vaš događaj</strong></p>
       </div>
     `,
   },
@@ -145,7 +150,7 @@ export const EMAIL_TEMPLATES: Record<EmailTemplateId, EmailTemplateDef> = {
       note: "U nalogu možete menjati tekstove, pratiti goste i pripreme.",
     },
     buildSubject: (d) =>
-      `Vaša pozivnica je online – ${d.project_title || d.subdomain || "Pozivnice"}`,
+      `Vaša pozivnica je online – ${d.project_title || d.subdomain || "Vaš događaj"}`,
     buildText: (d) =>
       [
         `Zdravo ${d.name || ""},`,
@@ -166,7 +171,7 @@ export const EMAIL_TEMPLATES: Record<EmailTemplateId, EmailTemplateDef> = {
         "Ako treba izmena ili pomoć — odgovorite na ovaj mejl.",
         "",
         "Srdačan pozdrav,",
-        "Pozivnice",
+        "Vaš događaj",
       ]
         .filter((line) => line !== null)
         .join("\n"),
@@ -197,7 +202,7 @@ export const EMAIL_TEMPLATES: Record<EmailTemplateId, EmailTemplateDef> = {
         }
         ${d.note ? `<p>${escapeHtml(d.note)}</p>` : ""}
         <p>Ako treba izmena ili pomoć — odgovorite na ovaj mejl.</p>
-        <p>Srdačan pozdrav,<br/>Pozivnice</p>
+        <p>Srdačan pozdrav,<br/><strong>Vaš događaj</strong></p>
       </div>
     `;
     },
