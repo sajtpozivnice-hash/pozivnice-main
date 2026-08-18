@@ -2,8 +2,8 @@
  * Host / subdomain helpers for invitation sites.
  * Works for:
  * - ana-marko.localhost:3000
- * - ana-marko.pozivnice.com
- * - apex: localhost:3000 / pozivnice.com / www.pozivnice.com
+ * - ana-marko.vasdogadjaj.com
+ * - apex: localhost:3000 / vasdogadjaj.com / www.vasdogadjaj.com
  */
 
 const RESERVED_SUBDOMAINS = new Set([

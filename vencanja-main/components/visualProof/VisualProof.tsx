@@ -67,7 +67,7 @@ const VisualProof = () => {
                 <span className={styles.dot} />
                 <span className={styles.dot} />
                 <span className={styles.dot} />
-                <span className={styles.url}>anaimarko.vasdogadjaj.rs</span>
+                <span className={styles.url}>anaimarko.vasdogadjaj.com</span>
               </div>
               <div className={styles.laptopScreen}>
                 <img
