@@ -59,7 +59,7 @@ export default function AdminLayout({
   return (
     <>
       <Header />
-      <main>{children}</main>
+      <main className="min-w-0 overflow-x-hidden">{children}</main>
     </>
   );
 }

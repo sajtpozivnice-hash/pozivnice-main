@@ -244,25 +244,25 @@ export default function AdminEmailsPage() {
   if (loading) return <Spinner />;
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+    <div className="mx-auto w-full max-w-6xl px-3 py-5 sm:px-6 sm:py-8">
       <PageHeader
         title="Email template-i"
         description="Popunite podatke, pregledajte i pošaljite klijentu — uplata ili obaveštenje o subdomainu."
       />
 
       {error ? (
-        <div className="mb-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+        <div className="mb-4 break-words rounded-xl border border-red-200 bg-red-50 px-3 py-3 text-sm text-red-700 sm:px-4">
           {error}
         </div>
       ) : null}
       {notice ? (
-        <div className="mb-4 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
+        <div className="mb-4 break-words rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-3 text-sm text-emerald-800 sm:px-4">
           {notice}
         </div>
       ) : null}
 
-      <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
-        <div className="space-y-4 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
+      <div className="grid min-w-0 gap-4 lg:grid-cols-2 lg:gap-6">
+        <div className="min-w-0 space-y-4 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5">
           <SelectField
             label="Template"
             value={templateId}
@@ -275,7 +275,7 @@ export default function AdminEmailsPage() {
             }))}
           />
           {activeTemplate ? (
-            <p className="text-sm text-[var(--muted)]">
+            <p className="text-sm leading-relaxed text-[var(--muted)]">
               {activeTemplate.description}
             </p>
           ) : null}
@@ -306,7 +306,7 @@ export default function AdminEmailsPage() {
             ]}
           />
 
-          <div className="grid gap-3 sm:grid-cols-2">
+          <div className="grid min-w-0 gap-3 sm:grid-cols-2">
             {activeTemplate?.fields.map((field) =>
               field.multiline ? (
                 <TextAreaField
@@ -333,54 +333,69 @@ export default function AdminEmailsPage() {
             )}
           </div>
 
-          <div className="flex flex-wrap gap-2 pt-2">
+          <div className="flex flex-col gap-2 pt-2 sm:flex-row sm:flex-wrap">
             <Button
               type="button"
               variant="secondary"
+              className="w-full sm:w-auto"
               onClick={runPreview}
               disabled={previewing}
             >
               {previewing ? "Preview…" : "Pregled"}
             </Button>
-            <Button type="button" variant="outline" onClick={copyText}>
+            <Button
+              type="button"
+              variant="outline"
+              className="w-full sm:w-auto"
+              onClick={copyText}
+            >
               Kopiraj tekst
             </Button>
-            <Button type="button" onClick={send} disabled={sending}>
+            <Button
+              type="button"
+              className="w-full sm:w-auto"
+              onClick={send}
+              disabled={sending}
+            >
               {sending ? "Šaljem…" : "Pošalji email"}
             </Button>
           </div>
         </div>
 
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
+        <div className="min-w-0 overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5">
           <h2 className="text-sm font-semibold">Pregled</h2>
           {!preview ? (
             <p className="mt-3 text-sm text-[var(--muted)]">
               Kliknite „Pregled” da vidite subject i sadržaj pre slanja.
             </p>
           ) : (
-            <div className="mt-4 space-y-4">
-              <div>
+            <div className="mt-4 min-w-0 space-y-4">
+              <div className="min-w-0">
                 <div className="text-xs uppercase tracking-wide text-[var(--muted)]">
                   Subject
                 </div>
-                <div className="mt-1 text-sm font-medium">{preview.subject}</div>
+                <div className="mt-1 break-words text-sm font-medium">
+                  {preview.subject}
+                </div>
               </div>
-              <div>
+              <div className="min-w-0">
                 <div className="text-xs uppercase tracking-wide text-[var(--muted)]">
                   Tekst
                 </div>
-                <pre className="mt-1 whitespace-pre-wrap rounded-xl bg-[var(--surface-2)] p-3 text-xs leading-relaxed text-[var(--foreground)]">
+                <pre className="mt-1 max-h-[40vh] overflow-auto whitespace-pre-wrap break-words rounded-xl bg-[var(--surface-2)] p-3 text-xs leading-relaxed text-[var(--foreground)] sm:max-h-none">
                   {preview.text}
                 </pre>
               </div>
-              <div>
+              <div className="min-w-0">
                 <div className="mb-1 text-xs uppercase tracking-wide text-[var(--muted)]">
                   HTML preview
                 </div>
-                <div
-                  className="rounded-xl border border-[var(--border)] bg-white p-4 text-sm text-black"
-                  dangerouslySetInnerHTML={{ __html: preview.html }}
-                />
+                <div className="max-h-[50vh] overflow-auto rounded-xl border border-[var(--border)] bg-white p-3 sm:max-h-none sm:p-4">
+                  <div
+                    className="max-w-full break-words text-sm text-black [&_a]:break-all [&_table]:block [&_table]:w-full [&_table]:overflow-x-auto"
+                    dangerouslySetInnerHTML={{ __html: preview.html }}
+                  />
+                </div>
               </div>
             </div>
           )}

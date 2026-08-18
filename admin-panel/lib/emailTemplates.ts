@@ -37,7 +37,7 @@ function paymentDefaults(): Record<string, string> {
     recipient: process.env.PAYMENT_RECIPIENT || "Vaš događaj",
     iban: process.env.PAYMENT_IBAN || "",
     reference: "",
-    note: "Nakon uplate aktiviramo nalog i šaljemo vam pristup pozivnici i backoffice-u.",
+    note: "",
   };
 }
 
@@ -72,7 +72,7 @@ export const EMAIL_TEMPLATES: Record<EmailTemplateId, EmailTemplateDef> = {
         "Hvala na poverenju!",
         "",
         "Primili smo vašu porudžbinu i drago nam je što ćete događaj organizovati uz Vaš događaj.",
-        "Ispod su podaci za uplatu. Čim uplatite i pošaljete nam potvrdu, aktiviramo nalog i šaljemo vam pristup.",
+        "Ispod su podaci za uplatu:",
         "",
         `Usluga: ${d.service}`,
         `Iznos: ${d.amount} ${d.currency || "RSD"}`,
@@ -82,7 +82,8 @@ export const EMAIL_TEMPLATES: Record<EmailTemplateId, EmailTemplateDef> = {
         "",
         d.note || null,
         "",
-        "Kad uplatite, javite nam se kratkom potvrdom (slika ili PDF izvoda) — odgovorom na ovaj mejl, ili na Viber / WhatsApp: 066 570 2562.",
+        "Kad uplatite, pošaljite nam kratku potvrdu (slika ili PDF izvoda) — odgovorom na ovaj mejl, ili na Viber / WhatsApp: 066 570 2562.",
+        "Čim stigne potvrda, u roku od oko 10 minuta šaljemo pristup pozivnici i backoffice-u.",
         "",
         "Srdačan pozdrav,",
         "Vaš događaj",
@@ -94,7 +95,7 @@ export const EMAIL_TEMPLATES: Record<EmailTemplateId, EmailTemplateDef> = {
         <p>Zdravo <strong>${escapeHtml(d.name)}</strong>,</p>
         <p><strong>Hvala na poverenju!</strong></p>
         <p>Primili smo vašu porudžbinu i drago nam je što ćete događaj organizovati uz <strong>Vaš događaj</strong>.</p>
-        <p>Ispod su podaci za uplatu. Čim uplatite i pošaljete nam potvrdu, aktiviramo nalog i šaljemo vam pristup.</p>
+        <p>Ispod su podaci za uplatu:</p>
         <table style="border-collapse:collapse;width:100%;margin:16px 0">
           <tr><td style="padding:8px 0;color:#666">Usluga</td><td style="padding:8px 0"><strong>${escapeHtml(d.service)}</strong></td></tr>
           <tr><td style="padding:8px 0;color:#666">Iznos</td><td style="padding:8px 0"><strong>${escapeHtml(d.amount)} ${escapeHtml(d.currency || "RSD")}</strong></td></tr>
@@ -107,7 +108,8 @@ export const EMAIL_TEMPLATES: Record<EmailTemplateId, EmailTemplateDef> = {
           }
         </table>
         ${d.note ? `<p>${escapeHtml(d.note)}</p>` : ""}
-        <p>Kad uplatite, javite nam se kratkom potvrdom (slika ili PDF izvoda) — odgovorom na ovaj mejl, ili na <strong>Viber / WhatsApp: 066 570 2562</strong>.</p>
+        <p>Kad uplatite, pošaljite nam kratku potvrdu (slika ili PDF izvoda) — odgovorom na ovaj mejl, ili na <strong>Viber / WhatsApp: 066 570 2562</strong>.</p>
+        <p>Čim stigne potvrda, <strong>u roku od oko 10 minuta</strong> šaljemo pristup pozivnici i backoffice-u.</p>
         <p>Srdačan pozdrav,<br/><strong>Vaš događaj</strong></p>
       </div>
     `,

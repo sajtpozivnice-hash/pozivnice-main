@@ -24,7 +24,7 @@ export function Field({
   className = "",
 }: FieldProps) {
   return (
-    <label className={`flex flex-col gap-1.5 ${className}`}>
+    <label className={`flex min-w-0 flex-col gap-1.5 ${className}`}>
       {label ? (
         <span className="text-sm font-medium text-[var(--foreground)]">
           {label}
@@ -38,7 +38,7 @@ export function Field({
         placeholder={placeholder}
         required={required}
         disabled={disabled}
-        className="rounded-lg border border-[var(--border)] bg-[var(--surface)] px-3 py-2.5 text-sm text-[var(--foreground)] outline-none transition placeholder:text-[var(--muted)] focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent-soft)] disabled:opacity-60"
+        className="w-full min-w-0 rounded-lg border border-[var(--border)] bg-[var(--surface)] px-3 py-2.5 text-sm text-[var(--foreground)] outline-none transition placeholder:text-[var(--muted)] focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent-soft)] disabled:opacity-60"
       />
       {hint ? <span className="text-xs text-[var(--muted)]">{hint}</span> : null}
     </label>
@@ -71,7 +71,7 @@ export function TextAreaField({
   mono,
 }: TextAreaProps) {
   return (
-    <label className={`flex flex-col gap-1.5 ${className}`}>
+    <label className={`flex min-w-0 flex-col gap-1.5 ${className}`}>
       {label ? (
         <span className="text-sm font-medium text-[var(--foreground)]">
           {label}
@@ -86,7 +86,7 @@ export function TextAreaField({
         disabled={disabled}
         rows={rows}
         spellCheck={false}
-        className={`rounded-lg border border-[var(--border)] bg-[var(--surface)] px-3 py-2.5 text-sm text-[var(--foreground)] outline-none transition placeholder:text-[var(--muted)] focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent-soft)] disabled:opacity-60 ${
+        className={`w-full min-w-0 rounded-lg border border-[var(--border)] bg-[var(--surface)] px-3 py-2.5 text-sm text-[var(--foreground)] outline-none transition placeholder:text-[var(--muted)] focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent-soft)] disabled:opacity-60 ${
           mono ? "font-mono text-xs leading-relaxed" : ""
         }`}
       />
@@ -115,7 +115,7 @@ export function SelectField({
   className = "",
 }: SelectProps) {
   return (
-    <label className={`flex flex-col gap-1.5 ${className}`}>
+    <label className={`flex min-w-0 flex-col gap-1.5 ${className}`}>
       {label ? (
         <span className="text-sm font-medium text-[var(--foreground)]">
           {label}
@@ -127,7 +127,7 @@ export function SelectField({
         onChange={(e) => onChange(e.target.value)}
         required={required}
         disabled={disabled}
-        className="rounded-lg border border-[var(--border)] bg-[var(--surface)] px-3 py-2.5 text-sm text-[var(--foreground)] outline-none transition focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent-soft)] disabled:opacity-60"
+        className="w-full min-w-0 max-w-full rounded-lg border border-[var(--border)] bg-[var(--surface)] px-3 py-2.5 text-sm text-[var(--foreground)] outline-none transition focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent-soft)] disabled:opacity-60"
       >
         {options.map((opt) => (
           <option key={opt.value} value={opt.value}>
