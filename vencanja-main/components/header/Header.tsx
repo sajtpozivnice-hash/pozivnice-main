@@ -89,7 +89,7 @@ const Header = () => {
       <div className={styles.glass} aria-hidden />
       <div className={styles.inner}>
         <Link href="/" className={styles.brand} onClick={() => setOpen(false)}>
-          eVenčanje
+          Vaš događaj
         </Link>
 
         <nav className={styles.desktopNav} aria-label="Glavna navigacija">

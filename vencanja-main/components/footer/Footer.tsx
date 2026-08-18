@@ -16,7 +16,7 @@ const Footer = () => {
               variant={HeadingVariant.H2}
               className={styles.footerMainTitle}
             >
-              eVenčanje
+              Vaš događaj
             </Heading>
             <Paragraph center={false} color="var(--color-primary)">
               Digitalne pozivnice i privatni nalog za goste, stolove, budžet i
@@ -73,7 +73,7 @@ const Footer = () => {
       </Section>
       <div className={`${styles.footerBottom} text-center`}>
         <p className={styles.description} suppressHydrationWarning>
-          © {new Date().getFullYear()} eVenčanje. Sva prava zadržana.
+          © {new Date().getFullYear()} Vaš događaj. Sva prava zadržana.
         </p>
       </div>
     </div>

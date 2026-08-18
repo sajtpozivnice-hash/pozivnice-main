@@ -77,7 +77,7 @@ const PozivniceFilters = ({
           <option value="">Sve cene</option>
           {priceOptions.map((price) => (
             <option key={price} value={price}>
-              {price}€
+              {price.toLocaleString("sr-RS")} RSD
             </option>
           ))}
         </select>

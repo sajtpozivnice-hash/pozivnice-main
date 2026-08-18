@@ -9,8 +9,8 @@ const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   title: {
-    default: "eVenčanje — digitalne pozivnice i organizacija događaja",
-    template: "%s | eVenčanje",
+    default: "Vaš događaj — digitalne pozivnice i organizacija događaja",
+    template: "%s | Vaš događaj",
   },
   description:
     "Digitalna pozivnica i privatni nalog: menjate tekstove i slike, pratite ko dolazi, pravite raspored sedenja, vodite budžet i primáte fotografije od gostiju. Kontaktirajte nas za izradu.",

@@ -106,7 +106,7 @@ export async function POST(req: Request) {
       subject:
         attachments != null
           ? "Nova web pozivnica – upit sa primerom"
-          : "Novi kontakt upit – eVenčanje",
+          : "Novi kontakt upit – Vaš događaj",
       text: bodyText,
       attachments,
     });

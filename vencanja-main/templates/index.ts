@@ -67,7 +67,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       description:
         "Klasičan venčani dizajn. Menjate tekstove, slike i sadržaj; uz pozivnicu dobijate i nalog za organizaciju.",
       style: "classic",
-      price: 40,
+      price: 3999,
       featured: true,
     },
   },
@@ -80,7 +80,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       description:
         "Čist raspored sa jakim tipografskim fokusom. Potpuno prilagodljiv, uz praćenje gostiju u vašem nalogu.",
       style: "modern",
-      price: 40,
+      price: 3999,
       featured: true,
     },
   },
@@ -93,7 +93,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       description:
         "Veliki kadrovi preko celog ekrana. Prilagodite sadržaj, a goste i stolove vodite u nalogu.",
       style: "cinematic",
-      price: 40,
+      price: 3999,
       featured: true,
     },
   },
@@ -109,7 +109,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       description:
         "Svečani editorial stil. Boje, fontovi i galerija ostaju promenljivi i kasnije.",
       style: "premium",
-      price: 40,
+      price: 3999,
       featured: true,
     },
   },
@@ -125,7 +125,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       description:
         "Filmski utisak sa jakim fotografijama. Otvorite primer i javite nam se ako vam se dopada.",
       style: "cinematic",
-      price: 40,
+      price: 3999,
     },
   },
   "vencanje-background": {
@@ -140,7 +140,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       description:
         "Prozirni paneli preko jedne pozadine. Menjajte sadržaj i pošaljite link gostima.",
       style: "modern",
-      price: 40,
+      price: 3999,
     },
   },
   "rodjendan-01": {
@@ -155,7 +155,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       description:
         "Živahan dizajn za dečiji rođendan. Menjate sadržaj i pratite goste i pripreme u nalogu.",
       style: "playful",
-      price: 40,
+      price: 3999,
       featured: true,
     },
   },
@@ -171,7 +171,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       description:
         "Tamna premium pozivnica za punoletstvo: jak tipografski hero, odbrojavanje, plan večeri i potvrda prisustva.",
       style: "premium",
-      price: 40,
+      price: 3999,
       featured: true,
     },
   },
@@ -187,7 +187,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       description:
         "Svetla, vesela i moderna pozivnica za 18. rođendan: kolor blokovi, gradienti, plan večeri i potvrda prisustva.",
       style: "playful",
-      price: 40,
+      price: 3999,
       featured: true,
     },
   },
@@ -203,7 +203,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       description:
         "Editorial / Y2K magazin pozivnica za punoletstvo: kolaž raspored, jaka tipografija i modni utisak.",
       style: "editorial",
-      price: 40,
+      price: 3999,
       featured: true,
     },
   },
@@ -219,7 +219,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       description:
         "Tamna cinematic nightlife pozivnica za 18. rođendan: jak tipografski hero, editorial detalji i premium potvrda prisustva.",
       style: "premium",
-      price: 40,
+      price: 3999,
       featured: true,
     },
   },
@@ -235,7 +235,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       description:
         "Elegantna champagne/gold pozivnica za punoletstvo: topli tonovi, svečani utisak i jasna potvrda prisustva.",
       style: "premium",
-      price: 40,
+      price: 3999,
       featured: true,
     },
   },
@@ -251,7 +251,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       description:
         "Monohromatska broadsheet pozivnica za punoletstvo: masthead ime, novinske kolone i horizontalne linije.",
       style: "editorial",
-      price: 40,
+      price: 3999,
       featured: true,
     },
   },
@@ -267,7 +267,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       description:
         "Vazdušasta dnevna pozivnica za punoletstvo: horizontalni pojasevi, ime kao vodeni žig i raspored kao plima.",
       style: "modern",
-      price: 40,
+      price: 3999,
       featured: true,
     },
   },
@@ -283,7 +283,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       description:
         "Minimalna fashion lookbook pozivnica za punoletstvo: visoka portretna traka i editorial tipografija.",
       style: "premium",
-      price: 40,
+      price: 3999,
       featured: true,
     },
   },
@@ -299,7 +299,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       description:
         "Nežni pastelni tonovi za prvi dečiji rođendan — mek, vedar i topao utisak.",
       style: "playful",
-      price: 40,
+      price: 3999,
       featured: true,
     },
   },
@@ -315,7 +315,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       description:
         "Topli safari tonovi i avanturistički osećaj za prvi dečiji rođendan.",
       style: "playful",
-      price: 40,
+      price: 3999,
       featured: true,
     },
   },
@@ -331,7 +331,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       description:
         "Tamna svemirska pozivnica za prvi rođendan malih istraživača.",
       style: "playful",
-      price: 40,
+      price: 3999,
       featured: true,
     },
   },
@@ -347,7 +347,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       description:
         "Šarena candy estetika za veseli prvi dečiji rođendan pun boja.",
       style: "playful",
-      price: 40,
+      price: 3999,
       featured: true,
     },
   },
@@ -363,7 +363,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       description:
         "Svečana klasična pozivnica za krštenje — lako se prilagodi i za dečiji rođendan.",
       style: "classic",
-      price: 40,
+      price: 3999,
       featured: true,
     },
   },
@@ -379,7 +379,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       description:
         "Meki blush tonovi za krštenje ili nežni dečiji rođendan.",
       style: "classic",
-      price: 40,
+      price: 3999,
       featured: true,
     },
   },
@@ -395,7 +395,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       description:
         "Zeleni tonovi za krštenje ili porodični rođendan na otvorenom.",
       style: "modern",
-      price: 40,
+      price: 3999,
       featured: true,
     },
   },
@@ -411,7 +411,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       description:
         "Čista moderna pozivnica za krštenje — jednako dobra i za dečiji rođendan.",
       style: "modern",
-      price: 40,
+      price: 3999,
       featured: true,
     },
   },
@@ -427,7 +427,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       description:
         "Topla candlelight atmosfera za krštenje ili svečani dečiji rođendan.",
       style: "premium",
-      price: 40,
+      price: 3999,
       featured: true,
     },
   },

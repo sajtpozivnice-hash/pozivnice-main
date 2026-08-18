@@ -29,7 +29,7 @@ export const packages: PackageBoxProps[] = [
   {
     id: "1",
     title: "Venčanja",
-    price: "40€",
+    price: "3.999 RSD",
     description:
       "Pozivnica i privatni prostor u kojem organizujete celo venčanje.",
     list: SHARED_PACKAGE_FEATURES,
@@ -38,7 +38,7 @@ export const packages: PackageBoxProps[] = [
   {
     id: "2",
     title: "Punoletstva",
-    price: "40€",
+    price: "3.999 RSD",
     description:
       "Premium pozivnica za 18. i noć proslave — gosti, budžet i planer u nalogu.",
     list: SHARED_PACKAGE_FEATURES,
@@ -47,7 +47,7 @@ export const packages: PackageBoxProps[] = [
   {
     id: "3",
     title: "Dečiji rođendani",
-    price: "40€",
+    price: "3.999 RSD",
     description:
       "Živahna pozivnica i mesto gde pratite goste, troškove i pripreme.",
     list: SHARED_PACKAGE_FEATURES,
@@ -56,7 +56,7 @@ export const packages: PackageBoxProps[] = [
   {
     id: "4",
     title: "Krštenja",
-    price: "40€",
+    price: "3.999 RSD",
     description:
       "Isto iskustvo — prilagođeno krštenju, sa gostima, stolovima i planiranjem.",
     list: SHARED_PACKAGE_FEATURES,
@@ -244,55 +244,5 @@ export const workflowSteps: WorkflowStep[] = [
     title: "Aktivacija i deljenje",
     description:
       "Nakon što evidentiramo uplatu, vaša pozivnica se aktivira i šaljemo vam pristup privatnom nalogu. Odmah dobijate jedinstveni link koji možete podeliti sa gostima, a u svom nalogu možete u svakom trenutku menjati sadržaj pozivnice, pratiti potvrde dolaska, organizovati raspored sedenja, voditi troškove i koristiti sve ostale funkcije koje platforma nudi.",
-  },
-];
-
-export const faqQuestions = [
-  {
-    id: 1,
-    title: "Šta dobijam uz pozivnicu?",
-    description:
-      "Digitalnu pozivnicu na vašem linku i privatni nalog u kojem menjate sadržaj, pratite ko dolazi, pravite raspored sedenja, vodite budžet, listu obaveza i primáte fotografije od gostiju.",
-  },
-  {
-    id: 2,
-    title: "Mogu li da menjam pozivnicu kasnije?",
-    description:
-      "Da. U svom nalogu menjate tekstove, slike, boje i fontove, kao i koje delove pozivnice gost vidi.",
-  },
-  {
-    id: 3,
-    title: "Kako gosti potvrđuju dolazak?",
-    description:
-      "Na pozivnici postoji jednostavna forma. Potvrde dolaska pratite u svom nalogu.",
-  },
-  {
-    id: 4,
-    title: "Da li mogu da napravim raspored sedenja?",
-    description:
-      "Da. Kreirate stolove, dodeljujete goste i spremite raspored za štampu.",
-  },
-  {
-    id: 5,
-    title: "Šta je sa budžetom i listom obaveza?",
-    description:
-      "U nalogu beležite troškove i uplate, kao i šta još treba uraditi do dana događaja — sve vezano za istu proslavu.",
-  },
-  {
-    id: 6,
-    title: "Da li su fotografije koje gosti pošalju javne?",
-    description:
-      "Ne. Te fotografije su privatne i dostupne samo vama u nalogu, u delu za slike.",
-  },
-  {
-    id: 7,
-    title: "Kako naručujem pozivnicu?",
-    description:
-"Izaberite pozivnicu koja vam se dopada, unesite potrebne podatke i pošaljite zahtev. Nakon potvrde uplate dobijate aktivnu pozivnicu i pristup svom nalogu."  },
-  {
-    id: 8,
-    title: "Kako delimo pozivnicu gostima?",
-    description:
-      "Kada pozivnica bude online, šaljete link gostima — emailom, Viberom, WhatsApp-om ili kako vama odgovara.",
   },
 ];

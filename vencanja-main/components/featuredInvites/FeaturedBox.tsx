@@ -56,7 +56,9 @@ const FeaturedBox: FC<FeaturedBoxProps> = ({
         <div className={styles.meta}>
           <ProjectBadge tag={tag} />
           <span className={styles.chip}>{TEMPLATE_STYLE_LABELS[style]}</span>
-          <span className={styles.chip}>{price}€</span>
+          <span className={styles.chip}>
+            {price.toLocaleString("sr-RS")} RSD
+          </span>
         </div>
         <Heading className={styles.header}>{title}</Heading>
         <Paragraph variant="subtitle" center={false}>

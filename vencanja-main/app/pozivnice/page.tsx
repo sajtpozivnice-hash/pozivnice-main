@@ -13,12 +13,11 @@ const Pozivnice = () => {
       <PozivniceHeader />
       <PozivniceContent />
       <Cta
-        title="Spremni da napravite svoju digitalnu pozivnicu?"
-        description="Izaberite dizajn, unesite podatke, podesite sve kako Vam odgovara i pošaljite zahtev. Nakon evidentirane uplate dobijate aktivnu pozivnicu koju možete odmah deliti sa gostima i uređivati kad god poželite."
-        primaryLabel="Kontaktirajte nas"
+        title="Vaš dan počinje jednom pozivnicom."
+        description="Izaberite dizajn iznad, prilagodite ga sebi i imajte sve što vam treba za organizaciju — na jednom mestu."
+        primaryLabel="Kreiraj svoju pozivnicu"
         primaryHref="/kontakt"
-        secondaryLabel="Pogledaj cenovnik"
-        secondaryHref="/#cenovnik"
+        meta="Bez mesečne pretplate • 3.999 RSD • Neograničeno trajanje"
       />
       <Footer />
     </div>

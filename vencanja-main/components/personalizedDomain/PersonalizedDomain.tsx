@@ -13,7 +13,7 @@ const configuredRoot = process.env.NEXT_PUBLIC_ROOT_DOMAIN?.trim().toLowerCase()
 const ROOT_DOMAIN =
   configuredRoot && !configuredRoot.includes("localhost")
     ? configuredRoot.replace(/^www\./, "")
-    : "nasadan.rs";
+    : "vasdogadjaj.rs";
 
 const EXAMPLE_HOST = `anaimarko.${ROOT_DOMAIN}`;
 

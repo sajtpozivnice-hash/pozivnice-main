@@ -13,12 +13,11 @@ const Kontakt = () => {
       <ContactHero />
       <ContactContent />
       <Cta
-        title="Još razgledate pozivnice?"
-        description="Pregledajte našu kolekciju digitalnih pozivnica za venčanja, rođendane i krštenja. Isprobajte editor, pronađite dizajn koji vam najviše odgovara."
-        primaryLabel="Pogledajte pozivnice"
+        title="Vaš dan počinje jednom pozivnicom."
+        description="Pregledajte dizajne, prilagodite pozivnicu i imajte sve što vam treba za organizaciju na jednom mestu."
+        primaryLabel="Kreiraj svoju pozivnicu"
         primaryHref="/pozivnice"
-        secondaryLabel="Cenovnik"
-        secondaryHref="/#cenovnik"
+        meta="Bez mesečne pretplate • 3.999 RSD • Neograničeno trajanje"
       />
       <Footer />
     </div>

@@ -22,7 +22,7 @@ const WhyUs = () => {
   return (
     <Section>
       <div className={styles.titleContainer}>
-        <Heading className={styles.heading}>Zašto eVenčanje</Heading>
+        <Heading className={styles.heading}>Zašto Vaš događaj</Heading>
         <Paragraph variant="subtitle">
           Jer uz pozivnicu dobijate prostor koji vam olakšava organizaciju do
           samog dana događaja.
