@@ -1,6 +1,6 @@
 "use client";
 
-import { CSSProperties, useId, useState } from "react";
+import { CSSProperties, useState } from "react";
 import { Loader2, Upload } from "lucide-react";
 import { useInvitationProject } from "@/components/invitation/InvitationProjectContext";
 import { uploadImageToCloudinaryDetailed } from "@/helpers/uploadImageToCloudinary";
@@ -12,6 +12,8 @@ type GuestPhotoUploadControlProps = {
   buttonStyle?: CSSProperties;
   inputClassName?: string;
   stackClassName?: string;
+  /** Stable id — avoid useId() (SSR/client mismatch in editor tree). */
+  inputId?: string;
 };
 
 const GuestPhotoUploadControl = ({
@@ -20,8 +22,8 @@ const GuestPhotoUploadControl = ({
   buttonStyle,
   inputClassName,
   stackClassName,
+  inputId = "guest-photo-file-input",
 }: GuestPhotoUploadControlProps) => {
-  const inputId = useId();
   const { projectId } = useInvitationProject();
   const [guestName, setGuestName] = useState("");
   const [uploading, setUploading] = useState(false);
@@ -69,7 +71,11 @@ const GuestPhotoUploadControl = ({
   };
 
   return (
-    <div className={stackClassName ?? "mx-auto flex w-full max-w-sm flex-col gap-3"}>
+    <div
+      className={
+        stackClassName ?? "mx-auto flex w-full max-w-sm flex-col gap-3"
+      }
+    >
       <input
         type="text"
         value={guestName}

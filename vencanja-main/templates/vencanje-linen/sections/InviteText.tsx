@@ -42,7 +42,7 @@ const InviteText: FC<Props> = ({ section, theme }) => {
           ) : null}
 
           <p
-            className="vl-body text-xl leading-[2] sm:text-2xl"
+            className="vl-body text-[1.35rem] leading-[1.95] sm:text-[1.55rem] sm:leading-[2]"
             style={{ color: ink }}
           >
             {data.description}

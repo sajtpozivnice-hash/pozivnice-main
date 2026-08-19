@@ -1,4 +1,4 @@
-/* vencanje-linen — champagne + warm linen quiet luxury stationery */
+/* vencanje-linen — champagne + warm linen; colors from theme tokens */
 @import "tailwindcss";
 
 @theme {
@@ -15,6 +15,38 @@
 }
 
 [data-template="vencanje-linen"] {
+  /* Theme bridge: editor primary / secondary / background */
+  --color-vl-champagne: var(--color-primary, #c4a574);
+  --color-vl-ink: var(--color-secondary, #2a2420);
+  --color-vl-linen: var(--color-background, #f3eee6);
+  --color-vl-linen-deep: color-mix(
+    in srgb,
+    var(--color-vl-linen) 88%,
+    var(--color-vl-ink)
+  );
+  --color-vl-paper: color-mix(in srgb, var(--color-vl-linen) 55%, white);
+  --color-vl-champagne-soft: color-mix(
+    in srgb,
+    var(--color-vl-champagne) 55%,
+    white
+  );
+  --color-vl-ink-soft: color-mix(
+    in srgb,
+    var(--color-vl-ink) 72%,
+    var(--color-vl-linen)
+  );
+  --color-vl-muted: color-mix(
+    in srgb,
+    var(--color-vl-ink) 42%,
+    var(--color-vl-linen)
+  );
+  --color-vl-line: color-mix(in srgb, var(--color-vl-ink) 12%, transparent);
+  --color-vl-rule: color-mix(
+    in srgb,
+    var(--color-vl-champagne) 55%,
+    transparent
+  );
+
   background-color: var(--color-vl-linen);
   color: var(--color-vl-ink);
   overflow-x: hidden;
@@ -38,7 +70,7 @@
   }
 
   .vl-eyebrow {
-    @apply text-[10px] font-medium uppercase tracking-[0.4em] text-vl-muted;
+    @apply text-[11px] font-medium uppercase tracking-[0.36em] text-vl-muted sm:text-xs;
     font-family: var(--font-secondary);
   }
 
@@ -53,12 +85,12 @@
   }
 
   .vl-body {
-    @apply text-[16px] leading-[1.9] text-vl-ink-soft sm:text-lg;
+    @apply text-[1.125rem] leading-[1.85] text-vl-ink-soft sm:text-[1.25rem] sm:leading-[1.8];
     font-family: var(--font-secondary);
   }
 
   .vl-caption {
-    @apply text-[11px] uppercase tracking-[0.28em] text-vl-muted;
+    @apply text-[12px] uppercase tracking-[0.26em] text-vl-muted sm:text-[13px];
     font-family: var(--font-secondary);
   }
 
@@ -73,9 +105,9 @@
   .vl-fallback {
     background: linear-gradient(
       145deg,
-      #faf7f1 0%,
-      #f3eee6 45%,
-      #ebe4d8 100%
+      var(--color-vl-paper) 0%,
+      var(--color-vl-linen) 45%,
+      var(--color-vl-linen-deep) 100%
     );
   }
 
@@ -85,27 +117,27 @@
     background-image:
       radial-gradient(
         ellipse at 18% 12%,
-        rgba(196, 165, 116, 0.07) 0%,
+        color-mix(in srgb, var(--color-vl-champagne) 10%, transparent) 0%,
         transparent 52%
       ),
       radial-gradient(
         ellipse at 82% 88%,
-        rgba(42, 36, 32, 0.035) 0%,
+        color-mix(in srgb, var(--color-vl-ink) 4%, transparent) 0%,
         transparent 48%
       ),
       repeating-linear-gradient(
         0deg,
         transparent,
         transparent 2px,
-        rgba(42, 36, 32, 0.012) 2px,
-        rgba(42, 36, 32, 0.012) 3px
+        color-mix(in srgb, var(--color-vl-ink) 1.2%, transparent) 2px,
+        color-mix(in srgb, var(--color-vl-ink) 1.2%, transparent) 3px
       ),
       repeating-linear-gradient(
         90deg,
         transparent,
         transparent 3px,
-        rgba(196, 165, 116, 0.018) 3px,
-        rgba(196, 165, 116, 0.018) 4px
+        color-mix(in srgb, var(--color-vl-champagne) 2%, transparent) 3px,
+        color-mix(in srgb, var(--color-vl-champagne) 2%, transparent) 4px
       );
   }
 
@@ -166,7 +198,7 @@
   }
 
   .vl-count-label {
-    @apply mt-2 text-[10px] uppercase tracking-[0.32em] text-vl-muted;
+    @apply mt-2 text-[11px] uppercase tracking-[0.3em] text-vl-muted;
     font-family: var(--font-secondary);
   }
 
@@ -175,23 +207,23 @@
   }
 
   .vl-input {
-    @apply w-full border-0 border-b border-vl-line bg-transparent px-0 py-3 text-[15px] text-vl-ink outline-none transition placeholder:text-vl-muted/50 focus:border-vl-champagne;
+    @apply w-full border-0 border-b border-vl-line bg-transparent px-0 py-3 text-base text-vl-ink outline-none transition placeholder:text-vl-muted/50 focus:border-vl-champagne sm:text-[1.05rem];
     font-family: var(--font-secondary);
     border-radius: 0;
   }
 
   .vl-label {
-    @apply mb-1.5 block text-[10px] uppercase tracking-[0.28em] text-vl-muted;
+    @apply mb-1.5 block text-[11px] uppercase tracking-[0.28em] text-vl-muted;
     font-family: var(--font-secondary);
   }
 
   .vl-btn {
-    @apply inline-flex cursor-pointer items-center justify-center gap-2 border border-vl-champagne bg-transparent px-10 py-3.5 text-[10px] font-medium uppercase tracking-[0.32em] text-vl-ink transition hover:bg-vl-champagne hover:text-vl-paper disabled:cursor-default disabled:opacity-50;
+    @apply inline-flex cursor-pointer items-center justify-center gap-2 border border-vl-champagne bg-transparent px-10 py-3.5 text-[11px] font-medium uppercase tracking-[0.32em] text-vl-ink transition hover:bg-vl-champagne hover:text-vl-paper disabled:cursor-default disabled:opacity-50;
     font-family: var(--font-secondary);
   }
 
   .vl-btn-solid {
-    @apply inline-flex cursor-pointer items-center justify-center gap-2 bg-vl-champagne px-10 py-3.5 text-[10px] font-medium uppercase tracking-[0.32em] text-vl-paper transition hover:opacity-90 disabled:cursor-default disabled:opacity-50;
+    @apply inline-flex cursor-pointer items-center justify-center gap-2 bg-vl-champagne px-10 py-3.5 text-[11px] font-medium uppercase tracking-[0.32em] text-vl-paper transition hover:opacity-90 disabled:cursor-default disabled:opacity-50;
     font-family: var(--font-secondary);
   }
 

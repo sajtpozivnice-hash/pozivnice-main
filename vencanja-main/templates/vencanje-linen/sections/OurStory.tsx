@@ -39,7 +39,7 @@ const OurStory: FC<Props> = ({ section, theme }) => {
 
           {data.subtitle ? (
             <p
-              className="mt-4 text-lg italic text-vl-muted"
+              className="vl-body mt-4 italic text-vl-muted"
               style={{ fontFamily: "var(--font-primary)" }}
             >
               {data.subtitle}
@@ -48,7 +48,10 @@ const OurStory: FC<Props> = ({ section, theme }) => {
 
           <div className="vl-rule-champagne mx-auto mt-8 w-16 sm:mx-0" />
 
-          <div className="vl-body mt-8 space-y-5 whitespace-pre-line" style={{ color: ink }}>
+          <div
+            className="vl-body mt-8 space-y-6 whitespace-pre-line"
+            style={{ color: ink }}
+          >
             {data.text}
           </div>
         </motion.div>

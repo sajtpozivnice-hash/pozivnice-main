@@ -62,9 +62,9 @@ const Schedule: FC<Props> = ({ section, theme }) => {
               transition={{ duration: 0.55, delay: index * 0.06 }}
               className="border-t border-vl-line py-7 first:border-t-0 first:pt-0"
             >
-              <div className="grid grid-cols-[5.5rem_1fr] gap-5 sm:grid-cols-[6.5rem_1fr] sm:gap-8">
+              <div className="grid grid-cols-[6.5rem_1fr] gap-5 sm:grid-cols-[7.5rem_1fr] sm:gap-8">
                 <span
-                  className="pt-1 text-sm tracking-[0.12em] tabular-nums sm:text-base"
+                  className="pt-0.5 text-lg tracking-[0.1em] tabular-nums sm:text-xl"
                   style={{
                     fontFamily: "var(--font-secondary)",
                     color: accent,
@@ -74,13 +74,13 @@ const Schedule: FC<Props> = ({ section, theme }) => {
                 </span>
                 <div>
                   <h3
-                    className="text-xl sm:text-2xl"
+                    className="text-2xl sm:text-3xl"
                     style={{ fontFamily: "var(--font-primary)", color: ink }}
                   >
                     {item.title}
                   </h3>
                   {item.description ? (
-                    <p className="vl-body mt-2 text-[15px] text-vl-muted">
+                    <p className="vl-body mt-2.5 text-vl-muted">
                       {item.description}
                     </p>
                   ) : null}

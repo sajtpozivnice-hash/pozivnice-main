@@ -58,24 +58,24 @@ const Locations: FC<Props> = ({ section, theme }) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.35 }}
               transition={{ duration: 0.7, delay: index * 0.08 }}
-              className="flex gap-5 border-t border-vl-line pt-10 sm:gap-7"
+              className="flex gap-5 border-t border-vl-line pt-10 sm:gap-8"
             >
               <LinenMedia
                 src={card.image}
                 alt={card.title}
-                className="vl-thumb"
+                className="h-20 w-20 shrink-0 overflow-hidden sm:h-24 sm:w-24"
               />
               <div className="min-w-0 flex-1">
-                <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                <div className="flex flex-wrap items-baseline justify-between gap-x-5 gap-y-2">
                   <h3
-                    className="text-xl sm:text-2xl"
+                    className="text-2xl sm:text-3xl"
                     style={{ fontFamily: "var(--font-primary)", color: ink }}
                   >
                     {card.title}
                   </h3>
                   {card.time ? (
                     <span
-                      className="text-sm tabular-nums"
+                      className="text-lg tracking-[0.1em] tabular-nums sm:text-xl"
                       style={{
                         fontFamily: "var(--font-secondary)",
                         color: accent,
@@ -86,14 +86,15 @@ const Locations: FC<Props> = ({ section, theme }) => {
                   ) : null}
                 </div>
                 {card.location ? (
-                  <p className="vl-caption mt-3 normal-case tracking-[0.12em]">
+                  <p
+                    className="mt-3 text-base tracking-[0.06em] text-vl-ink-soft sm:text-lg"
+                    style={{ fontFamily: "var(--font-secondary)" }}
+                  >
                     {card.location}
                   </p>
                 ) : null}
                 {card.text ? (
-                  <p className="vl-body mt-3 text-[15px] text-vl-muted">
-                    {card.text}
-                  </p>
+                  <p className="vl-body mt-3 text-vl-muted">{card.text}</p>
                 ) : null}
               </div>
             </motion.div>

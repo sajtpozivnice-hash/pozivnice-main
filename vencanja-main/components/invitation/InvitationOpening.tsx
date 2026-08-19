@@ -3,7 +3,6 @@
 import {
   useCallback,
   useEffect,
-  useId,
   useMemo,
   useRef,
   useState,
@@ -14,6 +13,8 @@ import {
 import { UniversalProjectConfig } from "@/types/config";
 import { resolveEventType, type EventType } from "@/helpers/eventType";
 import styles from "./InvitationOpening.module.css";
+
+const OPENING_TITLE_ID = "invitation-opening-title";
 
 type Props = {
   config: UniversalProjectConfig;
@@ -165,7 +166,6 @@ export function InvitationOpening({
   enabled = true,
   children,
 }: Props) {
-  const titleId = useId();
   const rootRef = useRef<HTMLDivElement | null>(null);
   const [phase, setPhase] = useState<Phase>(enabled ? "closed" : "done");
   const unlockTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -324,7 +324,7 @@ export function InvitationOpening({
           data-phase={phase}
           role="dialog"
           aria-modal="true"
-          aria-labelledby={titleId}
+          aria-labelledby={OPENING_TITLE_ID}
           suppressHydrationWarning
           style={
             {
@@ -355,7 +355,7 @@ export function InvitationOpening({
               </span>
             ) : null}
 
-            <span id={titleId} className={styles.display}>
+            <span id={OPENING_TITLE_ID} className={styles.display}>
               {nameParts.length >= 2 ? (
                 <>
                   <span

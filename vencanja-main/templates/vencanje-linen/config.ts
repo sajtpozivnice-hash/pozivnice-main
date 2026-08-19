@@ -4,8 +4,6 @@ const IMG = {
   hero: "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787087127/photo-1522673607200-164d1b6ce486_esxvqd.avif",
   story:
     "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787067285/olivia-bauso-30UOqDM5QW0-unsplash_flsbrf.jpg",
-  invite:
-    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787087165/shardayyy-photography-fJzmPe-a0eU-unsplash_ehe3fj.jpg",
   calendar:
     "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787087227/felipe-bustillo-7NO4GHOb9k0-unsplash_dn40e7.jpg",
   schedule:
@@ -16,8 +14,6 @@ const IMG = {
     "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787087360/jordan-arnold-Ul07QK2AR-0-unsplash_ank1xa.jpg",
   locationB:
     "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787087387/katrien-sterckx-fn0xXL9szcU-unsplash_uzfljg.jpg",
-  upload:
-    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787087409/photo-1523438885200-e635ba2c371e_pgullm.avif",
   rsvp: "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787087450/jaakko-perala-norway-elopement-photographer-71BLG9XJtHk-unsplash_etp1c6.jpg",
   footer:
     "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787087486/photo-1529636798458-92182e662485_qsfzlr.avif",
@@ -26,10 +22,8 @@ const IMG = {
 const GALLERY = [
   IMG.hero,
   IMG.story,
-  IMG.invite,
   IMG.calendar,
   IMG.schedule,
-  IMG.quote,
 ];
 
 export const vencanjeLinenDefaultConfig: UniversalProjectConfig = {
@@ -40,8 +34,8 @@ export const vencanjeLinenDefaultConfig: UniversalProjectConfig = {
       "Quiet luxury pozivnica u tonovima šampanjca i toplog platna",
   },
   event: {
-    date: "2026-08-22",
-    rsvpDate: "2026-07-22",
+    date: "2027-08-22",
+    rsvpDate: "2027-07-22",
     names: "Sofija & Aleksa",
   },
   theme: {
@@ -100,7 +94,6 @@ export const vencanjeLinenDefaultConfig: UniversalProjectConfig = {
       data: {
         description:
           "Sa velikom radošću pozivamo Vas da budete uz nas onog dana kada dve priče postanu jedna — u toplini, zahvalnosti i tišini koja znači više od reči.",
-        imageUrl: IMG.invite,
       },
     },
     {
@@ -138,12 +131,11 @@ export const vencanjeLinenDefaultConfig: UniversalProjectConfig = {
       data: {
         title: "Redosled dana",
         subtitle: "Od ceremonije do plesa — bez žurbe.",
-        imageUrl: IMG.schedule,
         items: [
           {
             id: "1",
-            time: "15:00",
-            title: "Ceremonija",
+            time: "16:00",
+            title: "Ceremonija Vencanja",
             description: "Zakletve u vrtu, ispod meke poslepodnevne svetlosti",
           },
           {
@@ -154,15 +146,15 @@ export const vencanjeLinenDefaultConfig: UniversalProjectConfig = {
           },
           {
             id: "3",
-            time: "18:30",
-            title: "Večera",
-            description: "Dugi stolovi, topla svetlost i zdravice",
+            time: "17:00",
+            title: "Prvi Ples",
+            description: "I tada počinje nasa prica",
           },
           {
             id: "4",
-            time: "21:00",
-            title: "Prvi ples",
-            description: "I tada počinje noć",
+            time: "17:30",
+            title: "Vecera",
+            description: "Dugi stolovi, topla svetlost i zdravice",
           },
         ],
       },
@@ -189,23 +181,22 @@ export const vencanjeLinenDefaultConfig: UniversalProjectConfig = {
       data: {
         title: "Mesta",
         subtitle: "Gde se naš dan odvija",
-        imageUrl: IMG.invite,
         cards: [
           {
             id: 1,
-            title: "Ceremonija",
-            time: "15:00",
+            title: "Ceremonija Vencanja",
+            time: "16:00",
             location: "Vrt vile Linen, Fruška gora",
             text: "Otvorena ceremonija među zelenilom. Preporučujemo udobnije cipele.",
-            image: IMG.locationA,
+            image: IMG.locationB,
           },
           {
             id: 2,
             title: "Proslava",
-            time: "18:30",
+            time: "17:00",
             location: "Sala vile Linen",
             text: "Večera i ples u sali sa dugim stolovima i svećama. Parking u okviru imanja.",
-            image: IMG.locationB,
+            image: IMG.locationA,
           },
         ],
       },
@@ -234,7 +225,6 @@ export const vencanjeLinenDefaultConfig: UniversalProjectConfig = {
         description:
           "Ako uhvatite trenutak koji volite — ostavite ga kod nas.",
         buttonText: "Dodajte fotografiju",
-        imageUrl: IMG.upload,
       },
     },
     {

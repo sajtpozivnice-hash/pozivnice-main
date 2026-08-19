@@ -37,13 +37,7 @@ const UploadImages: FC<Props> = ({ section, theme }) => {
             <p className="vl-body mt-5 text-vl-muted">{data.description}</p>
           ) : null}
 
-          <div className="mx-auto mt-10 max-w-xs">
-            <LinenMedia
-              src={data.imageUrl}
-              alt={data.title ?? "Fotografije gostiju"}
-              className="aspect-[4/3] w-full"
-            />
-          </div>
+          
 
           <div className="mx-auto mt-10 max-w-sm">
             <GuestPhotoUploadControl

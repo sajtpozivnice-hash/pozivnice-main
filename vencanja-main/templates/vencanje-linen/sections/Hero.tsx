@@ -74,7 +74,7 @@ const Hero: FC<Props> = ({ section, event, theme }) => {
         />
 
         <p
-          className="mt-6 text-sm uppercase tracking-[0.32em] text-vl-ink-soft"
+          className="mt-6 text-base uppercase tracking-[0.22em] text-vl-ink-soft sm:text-lg"
           style={{ fontFamily: "var(--font-secondary)" }}
         >
           {formatDate(date, "DAY_D_MMMM_YYYY")}
@@ -82,7 +82,7 @@ const Hero: FC<Props> = ({ section, event, theme }) => {
 
         {data.title ? (
           <p
-            className="mt-6 text-base italic text-vl-muted sm:text-lg"
+            className="mt-6 text-lg italic text-vl-muted sm:text-xl"
             style={{ fontFamily: "var(--font-primary)" }}
           >
             {data.title}
