@@ -21,7 +21,7 @@ const FormConfirmMessage: FC<Props> = ({ attendance, onClick, accent }) => {
       <h3 className="vo-display text-3xl sm:text-4xl">
         {isYes ? "Radujemo se Vašem dolasku." : "Hvala što ste nam javili."}
       </h3>
-      <p className="vo-body mx-auto mt-5 max-w-md text-vo-muted">
+      <p className="vo-body mx-auto mt-5 max-w-md">
         {isYes
           ? "Vaš odgovor je stigao do nas. Vidimo se uskoro."
           : "Nedostajaćete nam tog dana — hvala na lepim rečima."}

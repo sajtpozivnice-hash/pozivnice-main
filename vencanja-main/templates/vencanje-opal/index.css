@@ -1,3 +1,4 @@
+/* vencanje-opal — pearl vellum; colors from theme tokens */
 @import "tailwindcss";
 
 @theme {
@@ -11,6 +12,52 @@
   --color-vo-line: rgba(58, 53, 50, 0.12);
   --color-vo-vellum: rgba(247, 244, 240, 0.72);
   --color-vo-vellum-strong: rgba(247, 244, 240, 0.88);
+}
+
+[data-template="vencanje-opal"] {
+  /* Theme bridge: editor primary / secondary / background */
+  --color-vo-blush-deep: var(--color-primary, #c9a9a0);
+  --color-vo-charcoal: var(--color-secondary, #3a3532);
+  --color-vo-pearl: var(--color-background, #f7f4f0);
+  --color-vo-pearl-deep: color-mix(
+    in srgb,
+    var(--color-vo-pearl) 88%,
+    var(--color-vo-charcoal)
+  );
+  --color-vo-blush: color-mix(
+    in srgb,
+    var(--color-vo-blush-deep) 42%,
+    var(--color-vo-pearl)
+  );
+  --color-vo-charcoal-soft: color-mix(
+    in srgb,
+    var(--color-vo-charcoal) 78%,
+    var(--color-vo-pearl)
+  );
+  --color-vo-muted: color-mix(
+    in srgb,
+    var(--color-vo-charcoal) 48%,
+    var(--color-vo-pearl)
+  );
+  --color-vo-line: color-mix(
+    in srgb,
+    var(--color-vo-charcoal) 12%,
+    transparent
+  );
+  --color-vo-vellum: color-mix(
+    in srgb,
+    var(--color-vo-pearl) 72%,
+    transparent
+  );
+  --color-vo-vellum-strong: color-mix(
+    in srgb,
+    var(--color-vo-pearl) 88%,
+    transparent
+  );
+
+  background-color: var(--color-vo-pearl);
+  color: var(--color-vo-charcoal);
+  overflow-x: hidden;
 }
 
 @layer components {
@@ -31,7 +78,7 @@
   }
 
   .vo-eyebrow {
-    @apply text-[10px] font-medium uppercase tracking-[0.42em] text-vo-muted;
+    @apply text-[11px] font-medium uppercase tracking-[0.42em] text-vo-muted sm:text-xs;
     font-family: var(--font-secondary);
   }
 
@@ -41,7 +88,7 @@
   }
 
   .vo-body {
-    @apply text-[15px] leading-[1.85] text-vo-charcoal-soft sm:text-lg;
+    @apply text-[1.125rem] leading-[1.85] text-vo-charcoal-soft sm:text-[1.25rem] sm:leading-[1.8];
     font-family: var(--font-secondary);
   }
 
@@ -62,16 +109,21 @@
   }
 
   .vo-fallback {
-    background: linear-gradient(145deg, #f7f4f0 0%, #e8d5d0 48%, #efe9e3 100%);
+    background: linear-gradient(
+      145deg,
+      var(--color-vo-pearl) 0%,
+      var(--color-vo-blush) 48%,
+      var(--color-vo-pearl-deep) 100%
+    );
   }
 
   .vo-input {
-    @apply w-full border-0 border-b border-vo-charcoal/15 bg-transparent px-0 py-3 text-[15px] text-vo-charcoal outline-none transition placeholder:text-vo-muted/70 focus:border-vo-blush-deep;
+    @apply w-full border-0 border-b border-vo-charcoal/15 bg-transparent px-0 py-3 text-base text-vo-charcoal outline-none transition placeholder:text-vo-muted/70 focus:border-vo-blush-deep sm:text-lg;
     font-family: var(--font-secondary);
   }
 
   .vo-label {
-    @apply mb-1 block text-[10px] uppercase tracking-[0.3em] text-vo-muted;
+    @apply mb-1 block text-[11px] uppercase tracking-[0.3em] text-vo-muted;
     font-family: var(--font-secondary);
   }
 

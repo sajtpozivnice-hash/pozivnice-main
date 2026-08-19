@@ -1,36 +1,23 @@
 import { UniversalProjectConfig } from "@/types/config";
 
 const IMG = {
-  hero: "https://images.unsplash.com/photo-1537633552985-cf699e1542d0?auto=format&fit=crop&w=2000&q=85",
+  hero: "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787146485/hisu-lee-FTW8ADj5igs-unsplash_vwsxdb.jpg",
   story:
-    "https://images.unsplash.com/photo-1721635513009-4bd5d277c437?auto=format&fit=crop&w=1600&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787146696/photo-1721635513009-4bd5d277c437_zhohbj.avif",
   invite:
-    "https://images.unsplash.com/photo-1510076857177-7470076d4098?auto=format&fit=crop&w=1400&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787146655/photo-1510076857177-7470076d4098_srlt0i.avif",
   calendar:
-    "https://images.unsplash.com/photo-1460978812857-470ed1c77af0?auto=format&fit=crop&w=1400&q=85",
-  schedule:
-    "https://images.unsplash.com/photo-1606216794074-7417dc8b62a0?auto=format&fit=crop&w=1400&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787067244/sandy-millar-YeJWDWeIZho-unsplash_mueywh.jpg",
   quote:
-    "https://images.unsplash.com/photo-1502635385003-ee052e304ee8?auto=format&fit=crop&w=1400&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787146967/megs-harrison-QS3V8Nd3z40-unsplash_fqmnsv.jpg",
   locationA:
-    "https://images.unsplash.com/photo-1494951334922-3a4b05f9d350?auto=format&fit=crop&w=1000&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787067103/leonardo-miranda-riHGdvluDk8-unsplash_ig1ghq.jpg",
   locationB:
-    "https://images.unsplash.com/photo-1545232979-8bf68ee9b1af?auto=format&fit=crop&w=1000&q=85",
-  upload:
-    "https://images.unsplash.com/photo-1510076857177-7470076d4098?auto=format&fit=crop&w=1400&q=85",
-  rsvp: "https://images.unsplash.com/photo-1460978812857-470ed1c77af0?auto=format&fit=crop&w=1400&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787147669/photo-1545232979-8bf68ee9b1af_qmzfuc.avif",
+  rsvp: "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787146485/hisu-lee-FTW8ADj5igs-unsplash_vwsxdb.jpg",
   footer:
-    "https://images.unsplash.com/photo-1721635513009-4bd5d277c437?auto=format&fit=crop&w=1600&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787146696/photo-1721635513009-4bd5d277c437_zhohbj.avif",
 };
-
-const GALLERY = [
-  IMG.hero,
-  IMG.story,
-  IMG.invite,
-  IMG.calendar,
-  IMG.schedule,
-  IMG.quote,
-];
 
 export const vencanjeOpalDefaultConfig: UniversalProjectConfig = {
   template: "vencanje-opal",
@@ -40,8 +27,8 @@ export const vencanjeOpalDefaultConfig: UniversalProjectConfig = {
       "Luksuzna pozivnica za venčanje — biserni tonovi i translucentni slojevi",
   },
   event: {
-    date: "2026-07-11",
-    rsvpDate: "2026-06-11",
+    date: "2027-07-11",
+    rsvpDate: "2027-06-11",
     names: "Elena & David",
   },
   theme: {
@@ -59,6 +46,10 @@ export const vencanjeOpalDefaultConfig: UniversalProjectConfig = {
           name: "Ugalj",
           value: "#3A3532",
         },
+      },
+      background: {
+        name: "Biser",
+        value: "#F7F4F0",
       },
     },
   },
@@ -131,7 +122,6 @@ export const vencanjeOpalDefaultConfig: UniversalProjectConfig = {
       data: {
         title: "Tok dana",
         subtitle: "Lagano, lepo, naše",
-        imageUrl: IMG.schedule,
         items: [
           {
             id: "1",
@@ -201,18 +191,7 @@ export const vencanjeOpalDefaultConfig: UniversalProjectConfig = {
         ],
       },
     },
-    {
-      id: "ourGallery",
-      name: "Galerija",
-      type: "ourGallery",
-      visible: true,
-      order: 9,
-      data: {
-        title: "Trenuci",
-        description: "Mali kadrovi naše priče",
-        images: GALLERY.map((url) => ({ url })),
-      },
-    },
+
     {
       id: "uploadImagesSection",
       name: "Dodavanje Slika",
@@ -223,7 +202,6 @@ export const vencanjeOpalDefaultConfig: UniversalProjectConfig = {
         title: "Podelite kadar",
         subtitle: "Galerija gostiju",
         description: "Ako uhvatite trenutak koji volite — ostavite ga kod nas.",
-        imageUrl: IMG.upload,
       },
     },
     {

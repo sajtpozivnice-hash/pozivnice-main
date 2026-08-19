@@ -84,7 +84,7 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
           >
             {data.title}
           </motion.h2>
-          <p className="vo-body mt-5 text-vo-muted">
+          <p className="vo-body mt-5">
             {data.description}
             {formatDate(event.rsvpDate, "D_MMMM_YYYY")}
           </p>

@@ -41,7 +41,7 @@ const OurGallery: FC<Props> = ({ section, theme }) => {
             {data.title}
           </motion.h2>
           {data.description ? (
-            <p className="vo-body mt-4 text-vo-muted">{data.description}</p>
+            <p className="vo-body mt-4">{data.description}</p>
           ) : null}
         </div>
 

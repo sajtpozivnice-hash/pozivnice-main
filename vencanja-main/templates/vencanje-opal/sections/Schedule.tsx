@@ -49,7 +49,7 @@ const Schedule: FC<Props> = ({ section, theme }) => {
               {data.title}
             </motion.h2>
             {data.subtitle ? (
-              <p className="vo-body mt-4 text-vo-muted">{data.subtitle}</p>
+              <p className="vo-body mt-4">{data.subtitle}</p>
             ) : null}
           </div>
 
@@ -102,7 +102,7 @@ const Schedule: FC<Props> = ({ section, theme }) => {
                   {item.title}
                 </h3>
                 {item.description ? (
-                  <p className="mt-1 text-sm text-vo-muted sm:text-base">
+                  <p className="vo-body mt-1">
                     {item.description}
                   </p>
                 ) : null}

@@ -41,11 +41,11 @@ const Locations: FC<Props> = ({ section, theme }) => {
             {data.title}
           </motion.h2>
           {data.subtitle ? (
-            <p className="vo-body mt-4 text-vo-muted">{data.subtitle}</p>
+            <p className="vo-body mt-4">{data.subtitle}</p>
           ) : null}
         </div>
 
-        <div className="relative mx-auto max-w-2xl">
+        <div className="grid gap-5 sm:gap-6 md:grid-cols-2">
           {cards.map((card, index) => (
             <motion.article
               key={card.id}
@@ -53,14 +53,7 @@ const Locations: FC<Props> = ({ section, theme }) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className={`vo-vellum-strong relative rounded-[1.75rem] p-6 sm:p-8 ${
-                index > 0 ? "-mt-6 sm:-mt-8" : ""
-              }`}
-              style={{
-                zIndex: cards.length - index,
-                marginLeft: index % 2 === 1 ? "1.25rem" : 0,
-                marginRight: index % 2 === 0 && index > 0 ? "1.25rem" : 0,
-              }}
+              className="vo-vellum-strong flex h-full flex-col rounded-[1.75rem] p-6 sm:p-8"
             >
               {card.image ? (
                 <OpalMedia
@@ -82,14 +75,12 @@ const Locations: FC<Props> = ({ section, theme }) => {
                 {card.title}
               </h3>
               {card.location ? (
-                <p className="mt-2 text-sm font-medium text-vo-charcoal-soft">
+                <p className="vo-body mt-2 font-medium">
                   {card.location}
                 </p>
               ) : null}
               {card.text ? (
-                <p className="mt-4 text-sm leading-relaxed text-vo-muted">
-                  {card.text}
-                </p>
+                <p className="vo-body mt-4">{card.text}</p>
               ) : null}
             </motion.article>
           ))}

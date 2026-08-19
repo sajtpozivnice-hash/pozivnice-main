@@ -1,16 +1,15 @@
 import { UniversalProjectConfig } from "@/types/config";
 
-
-export const vencanjeNavyDefaultConfig = {
-  template: "vencanje-navy",
+export const vencanjeDecoDefaultConfig = {
+  template: "vencanje-deco",
   meta: {
-    title: "Teodora & Mihajlo — Formalna pozivnica",
-    description: "Navy i champagne black-tie pozivnica za večernje venčanje",
+    title: "Sofija & Nikola — Art Deco pozivnica",
+    description: "Geometrijska elegancija, zlatni akcenti i tipografija — bez fotografija",
   },
   event: {
-    date: "2027-10-17",
-    rsvpDate: "2027-09-17",
-    names: "Teodora & Mihajlo",
+    date: "2027-09-18",
+    rsvpDate: "2027-08-18",
+    names: "Sofija & Nikola",
   },
   theme: {
     fonts: {
@@ -20,17 +19,17 @@ export const vencanjeNavyDefaultConfig = {
     colors: {
       base: {
         primary: {
-          name: "Champagne brass",
-          value: "#D4AF7A",
+          name: "Antik zlato",
+          value: "#A8893A",
         },
         secondary: {
-          name: "Ivory",
-          value: "#F6F1E8",
+          name: "Crno mastilo",
+          value: "#161412",
         },
       },
       background: {
-        name: "Navy",
-        value: "#0B1C2C",
+        name: "Slonovača",
+        value: "#F6F1E8",
       },
     },
   },
@@ -42,7 +41,7 @@ export const vencanjeNavyDefaultConfig = {
       visible: true,
       order: 1,
       data: {
-        title: "Crno-bela večer",
+        title: "Svečano vas pozivamo",
         subtitle: "Venčanje",
       },
     },
@@ -53,7 +52,8 @@ export const vencanjeNavyDefaultConfig = {
       visible: true,
       order: 2,
       data: {
-        title: "Do svečanog trenutka",
+        title: "Do velikog dana",
+        description: "Svaki trenutak bliže proslavi.",
       },
     },
     {
@@ -64,7 +64,7 @@ export const vencanjeNavyDefaultConfig = {
       order: 3,
       data: {
         description:
-          "Sa velikim poštovanjem molimo za čast Vašeg prisustva na svečanosti našeg venčanja — u krugu porodice i najbližih prijatelja.",
+          "Sa velikim zadovoljstvom molimo za čast Vašeg prisustva na svečanosti našeg venčanja. Dođite u svojoj najlepšoj večernjoj eleganciji.",
       },
     },
     {
@@ -75,6 +75,7 @@ export const vencanjeNavyDefaultConfig = {
       order: 4,
       data: {
         title: "Sačuvajte datum",
+        description: "Subota u septembru — zabeležite u kalendaru.",
       },
     },
     {
@@ -85,8 +86,8 @@ export const vencanjeNavyDefaultConfig = {
       order: 5,
       data: {
         title: "Naša priča",
-        overline: "Poglavlja",
-        text: "Upoznavanje je bilo tiho — večera, razgovor koji nije hteo da se završi, i osećaj da smo već negde bili zajedno.\n\nGodine su prošle u putovanjima, zdravicama i malim ritualima koji su nas učinili nama.\n\nSada otvaramo večernje poglavlje i želimo da ga podelimo sa Vama — formalno, ali od srca.",
+        overline: "Poglavlje",
+        text: "Upoznavanje je bilo tiho — kao prvi takt orkestra pre nego što sala planira.\n\nGodine su se slagale: večere, putovanja, obećanja izgovorena šapatom.\n\nOvaj dan je vrhunac — zlatna linija koja spaja sve što smo bili sa onim što ćemo biti.",
       },
     },
     {
@@ -97,31 +98,31 @@ export const vencanjeNavyDefaultConfig = {
       order: 6,
       data: {
         title: "Program večeri",
-        subtitle: "Crno-beli dress code. Formalna atmosfera.",
+        subtitle: "Redosled svečanosti",
         items: [
           {
             id: "1",
-            time: "17:00",
-            title: "Ceremonija",
-            description: "Svečani trenutak kada izgovaramo svoje sudbonosno „da“.",
+            time: "16:00",
+            title: "Dolazak gostiju",
+            description: "Aperitiv i kratki pozdravi",
           },
           {
             id: "2",
-            time: "17:30",
-            title: "Prvi Ples",
-            description: "Naš prvi ples kao supružnika i početak zajedničke proslave.",
+            time: "16:30",
+            title: "Ceremonija",
+            description: "Zakletve pod zlatnim svetlom",
           },
           {
             id: "3",
-            time: "20:00",
+            time: "18:30",
             title: "Večera",
-            description: "Uživanje u svečanoj večeri, dobroj hrani i dragim ljudima.",
+            description: "Svečana trpeza i zdravice",
           },
           {
             id: "4",
-            time: "22:00",
-            title: "Torta",
-            description: "Slatki trenutak koji ćemo zajedno zasladiti i proslaviti.",
+            time: "21:30",
+            title: "Ples",
+            description: "Do kasnih sati",
           },
         ],
       },
@@ -133,8 +134,8 @@ export const vencanjeNavyDefaultConfig = {
       visible: true,
       order: 7,
       data: {
-        title: "Gde god si ti — tamo je i moj mir.",
-        description: "—",
+        title: "Gde god si ti, tu je i moj dom.",
+        description: "Sofija & Nikola",
       },
     },
     {
@@ -144,22 +145,22 @@ export const vencanjeNavyDefaultConfig = {
       visible: true,
       order: 8,
       data: {
-        title: "Adrese",
-        subtitle: "Program lokacija",
+        title: "Gde se nalazimo",
+        subtitle: "Dve adrese",
         cards: [
           {
             id: 1,
             title: "Ceremonija",
-            time: "17:00",
-            location: "Hotel Metropol Palace — Svečana sala",
-            text: "Ulaz sa Bulevara kralja Aleksandra. Goste dočekujemo od 16:30.",
+            time: "16:30",
+            location: "Hotel Metropol — Kristalna sala",
+            text: "Molimo Vas da stignete petnaest minuta ranije.",
           },
           {
             id: 2,
             title: "Proslava",
-            time: "17:30",
-            location: "Hotel Metropol Palace — Ballroom",
-            text: "Večera, zdravice i ples. Dress code: black-tie / večernja toaleta.",
+            time: "18:30",
+            location: "Restoran Deco, Terazije 8",
+            text: "Večera, ples i večernja elegancija.",
           },
         ],
       },
@@ -171,11 +172,10 @@ export const vencanjeNavyDefaultConfig = {
       visible: true,
       order: 9,
       data: {
-        title: "Podelite kadar",
-        subtitle: "Galerija gostiju",
-        description:
-          "Ako uhvatite trenutak sa naše večeri — ostavite ga u našoj galeriji.",
-        buttonText: "Dodajte fotografiju",
+        title: "Vaši trenuci",
+        subtitle: "Fotografije gostiju",
+        description: "Podelite kadar sa nama — čuvamo uspomene zajedno.",
+        buttonText: "Pošalji fotografiju",
       },
     },
     {
@@ -185,9 +185,9 @@ export const vencanjeNavyDefaultConfig = {
       visible: true,
       order: 10,
       data: {
-        title: "Potvrdite prisustvo",
-        description: "Ljubazno odgovorite do ",
-        buttonText: "Pošalji odgovor",
+        title: "Potvrdite dolazak",
+        description: "Molimo odgovorite do ",
+        buttonText: "Pošalji",
       },
     },
     {
@@ -197,7 +197,8 @@ export const vencanjeNavyDefaultConfig = {
       visible: true,
       order: 11,
       data: {
-        title: "Sa poštovanjem",
+        title: "Sa ljubavlju",
+        subtitle: "Sofija & Nikola",
       },
     },
   ],

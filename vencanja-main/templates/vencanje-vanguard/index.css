@@ -1,0 +1,261 @@
+/* vencanje-vanguard — wood-type letterpress folio (no photography) */
+@import "tailwindcss";
+
+@theme {
+  --color-vg-paper: #f3efe6;
+  --color-vg-paper-deep: #e8e2d6;
+  --color-vg-ink: #121212;
+  --color-vg-ink-soft: #2c2c2c;
+  --color-vg-muted: #6a655c;
+  --color-vg-blood: #8b2e2e;
+  --color-vg-line: rgba(18, 18, 18, 0.14);
+}
+
+[data-template="vencanje-vanguard"] {
+  --color-vg-blood: var(--color-primary, #8b2e2e);
+  --color-vg-ink: var(--color-secondary, #121212);
+  --color-vg-paper: var(--color-background, #f3efe6);
+  --color-vg-paper-deep: color-mix(
+    in srgb,
+    var(--color-vg-paper) 88%,
+    var(--color-vg-ink)
+  );
+  --color-vg-ink-soft: color-mix(
+    in srgb,
+    var(--color-vg-ink) 78%,
+    var(--color-vg-paper)
+  );
+  --color-vg-muted: color-mix(
+    in srgb,
+    var(--color-vg-ink) 40%,
+    var(--color-vg-paper)
+  );
+  --color-vg-line: color-mix(in srgb, var(--color-vg-ink) 14%, transparent);
+
+  background-color: var(--color-vg-paper);
+  color: var(--color-vg-ink);
+  overflow-x: hidden;
+}
+
+@layer components {
+  .vg-section {
+    @apply relative w-full px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24;
+  }
+
+  .vg-section-tight {
+    @apply relative w-full px-5 py-12 sm:px-8 sm:py-14 lg:px-12 lg:py-16;
+  }
+
+  .vg-shell {
+    @apply relative mx-auto w-full max-w-5xl;
+  }
+
+  .vg-shell-narrow {
+    @apply relative mx-auto w-full max-w-2xl;
+  }
+
+  .vg-kicker {
+    @apply text-[11px] font-semibold uppercase tracking-[0.38em];
+    color: var(--color-vg-blood);
+    font-family: var(--font-secondary);
+  }
+
+  .vg-display {
+    color: var(--color-vg-ink);
+    font-family: var(--font-primary);
+    font-size: clamp(2.4rem, 7vw, 5rem);
+    font-weight: 700;
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+  }
+
+  .vg-display-sm {
+    color: var(--color-vg-ink);
+    font-family: var(--font-primary);
+    font-size: clamp(1.55rem, 3.5vw, 2.4rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  .vg-body {
+    color: var(--color-vg-ink-soft);
+    font-family: var(--font-secondary);
+    font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+    font-weight: 400;
+    line-height: 1.75;
+  }
+
+  .vg-meta {
+    @apply text-[12px] uppercase tracking-[0.28em];
+    color: var(--color-vg-muted);
+    font-family: var(--font-secondary);
+  }
+
+  .vg-bar {
+    @apply h-[3px] w-full;
+    background: var(--color-vg-ink);
+  }
+
+  .vg-bar-accent {
+    @apply h-[3px] w-16;
+    background: var(--color-vg-blood);
+  }
+
+  /* Hero — stacked wood-type names, left flush */
+  .vg-hero {
+    @apply relative flex min-h-[100svh] w-full flex-col justify-end px-5 pb-14 pt-24 sm:px-8 sm:pb-16 lg:px-12 lg:pb-20;
+    background: var(--color-vg-paper);
+  }
+
+  .vg-hero-name {
+    color: var(--color-vg-ink);
+    font-family: var(--font-primary);
+    font-size: clamp(3.4rem, 14vw, 9.5rem);
+    font-weight: 700;
+    line-height: 0.86;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+  }
+
+  .vg-hero-and {
+    @apply my-2 block text-[0.22em] tracking-[0.2em];
+    color: var(--color-vg-blood);
+    font-family: var(--font-secondary);
+    font-weight: 600;
+  }
+
+  /* Countdown — horizontal letterpress strip */
+  .vg-count {
+    @apply grid grid-cols-4 border;
+    border-color: var(--color-vg-ink);
+  }
+
+  .vg-count-cell {
+    @apply flex flex-col items-center justify-center border-r px-2 py-6 last:border-r-0 sm:py-8;
+    border-color: var(--color-vg-ink);
+  }
+
+  .vg-count-num {
+    color: var(--color-vg-ink);
+    font-family: var(--font-primary);
+    font-size: clamp(1.75rem, 5vw, 3.25rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .vg-count-label {
+    @apply mt-2 text-[9px] uppercase tracking-[0.28em];
+    color: var(--color-vg-muted);
+    font-family: var(--font-secondary);
+  }
+
+  /* Calendar — giant day number */
+  .vg-day {
+    color: var(--color-vg-ink);
+    font-family: var(--font-primary);
+    font-size: clamp(5.5rem, 18vw, 12rem);
+    font-weight: 700;
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+  }
+
+  /* Schedule — bold index + time */
+  .vg-row {
+    @apply grid grid-cols-[2.5rem_5.5rem_1fr] items-baseline gap-x-4 border-t py-6 sm:grid-cols-[3rem_6.5rem_1fr] sm:gap-x-6 sm:py-7;
+    border-color: var(--color-vg-line);
+  }
+
+  .vg-row-idx {
+    color: var(--color-vg-blood);
+    font-family: var(--font-primary);
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-weight: 700;
+  }
+
+  .vg-row-time {
+    @apply text-lg tabular-nums tracking-[0.06em] sm:text-xl;
+    color: var(--color-vg-ink);
+    font-family: var(--font-secondary);
+    font-weight: 600;
+  }
+
+  .vg-row-title {
+    color: var(--color-vg-ink);
+    font-family: var(--font-primary);
+    font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+  }
+
+  /* Locations — numbered folio entries */
+  .vg-loc {
+    @apply border-t py-8 sm:py-10;
+    border-color: var(--color-vg-ink);
+  }
+
+  .vg-loc-title {
+    color: var(--color-vg-ink);
+    font-family: var(--font-primary);
+    font-size: clamp(1.5rem, 3vw, 2.15rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+  }
+
+  .vg-loc-time {
+    @apply text-lg tabular-nums tracking-[0.08em] sm:text-xl;
+    color: var(--color-vg-blood);
+    font-family: var(--font-secondary);
+    font-weight: 600;
+  }
+
+  /* Forms */
+  .vg-label {
+    @apply mb-2 block text-[11px] uppercase tracking-[0.3em];
+    color: var(--color-vg-muted);
+    font-family: var(--font-secondary);
+  }
+
+  .vg-input {
+    @apply w-full border-0 border-b bg-transparent px-0 py-3 text-base outline-none transition;
+    border-color: var(--color-vg-line);
+    color: var(--color-vg-ink);
+    font-family: var(--font-secondary);
+  }
+
+  .vg-input:focus {
+    border-color: var(--color-vg-ink);
+  }
+
+  .vg-choice {
+    @apply border px-4 py-3.5 text-center text-[11px] uppercase tracking-[0.28em] transition;
+    border-color: var(--color-vg-ink);
+    color: var(--color-vg-ink);
+    font-family: var(--font-secondary);
+  }
+
+  .peer:checked + .vg-choice {
+    background: var(--color-vg-ink);
+    color: var(--color-vg-paper);
+  }
+
+  .vg-btn {
+    @apply inline-flex cursor-pointer items-center justify-center px-8 py-3.5 text-[11px] font-semibold uppercase tracking-[0.3em] transition disabled:cursor-wait disabled:opacity-55;
+    background: var(--color-vg-ink);
+    color: var(--color-vg-paper);
+    font-family: var(--font-secondary);
+  }
+
+  .vg-btn-ghost {
+    @apply inline-flex cursor-pointer items-center justify-center border px-8 py-3.5 text-[11px] font-semibold uppercase tracking-[0.3em] transition;
+    border-color: var(--color-vg-ink);
+    color: var(--color-vg-ink);
+    font-family: var(--font-secondary);
+    background: transparent;
+  }
+}

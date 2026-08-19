@@ -22,6 +22,12 @@ import { vencanjeLinenDefaultConfig } from "./vencanje-linen/config";
 import { vencanjeLinenRenderers } from "./vencanje-linen/renderers";
 import { vencanjeNavyDefaultConfig } from "./vencanje-navy/config";
 import { vencanjeNavyRenderers } from "./vencanje-navy/renderers";
+import { vencanjeVanguardDefaultConfig } from "./vencanje-vanguard/config";
+import { vencanjeVanguardRenderers } from "./vencanje-vanguard/renderers";
+import { vencanjeDecoDefaultConfig } from "./vencanje-deco/config";
+import { vencanjeDecoRenderers } from "./vencanje-deco/renderers";
+import { vencanjeBohoDefaultConfig } from "./vencanje-boho/config";
+import { vencanjeBohoRenderers } from "./vencanje-boho/renderers";
 import { vencanjeOpalDefaultConfig } from "./vencanje-opal/config";
 import { vencanjeOpalRenderers } from "./vencanje-opal/renderers";
 import { vencanjeAtelierDefaultConfig } from "./vencanje-atelier/config";
@@ -52,6 +58,8 @@ import { kidsSpaceDefaultConfig } from "./kids-space/config";
 import { kidsSpaceRenderers } from "./kids-space/renderers";
 import { kidsCandyDefaultConfig } from "./kids-candy/config";
 import { kidsCandyRenderers } from "./kids-candy/renderers";
+import { kidsCartoonDefaultConfig } from "./kids-cartoon/config";
+import { kidsCartoonRenderers } from "./kids-cartoon/renderers";
 import { krstenjeClassicDefaultConfig } from "./krstenje-classic/config";
 import { krstenjeClassicRenderers } from "./krstenje-classic/renderers";
 import { krstenjeSoftDefaultConfig } from "./krstenje-soft/config";
@@ -255,6 +263,60 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       featured: true,
       imageLink:
         "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1772187509/wedding/qvui0cbpivfwkyiyfpy6.jpg",
+    },
+  },
+  "vencanje-vanguard": {
+    renderers: vencanjeVanguardRenderers,
+    defaultConfig: {
+      ...vencanjeVanguardDefaultConfig,
+      eventType: "wedding",
+    },
+    eventTypes: ["wedding"],
+    catalog: {
+      title: "Letterpress vanguard",
+      description:
+        "Wood-type tipografija na papiru — velika imena, oxblood akcent, bez fotografija.",
+      style: "premium",
+      price: 3999,
+      featured: true,
+      imageLink:
+        "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1200&q=80",
+    },
+  },
+  "vencanje-deco": {
+    renderers: vencanjeDecoRenderers,
+    defaultConfig: {
+      ...vencanjeDecoDefaultConfig,
+      eventType: "wedding",
+    },
+    eventTypes: ["wedding"],
+    catalog: {
+      title: "Art Deco zlato",
+      description:
+        "Geometrijska elegancija Jazz Age-a — italic serif, zlatni okviri, bez fotografija.",
+      style: "premium",
+      price: 3999,
+      featured: true,
+      imageLink:
+        "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=80",
+    },
+  },
+  "vencanje-boho": {
+    renderers: vencanjeBohoRenderers,
+    defaultConfig: {
+      ...vencanjeBohoDefaultConfig,
+      eventType: "wedding",
+    },
+    eventTypes: ["wedding"],
+    catalog: {
+      title: "Boho terracotta",
+      description:
+        "Pesak, terracotta i sage — script tipografija, lukovi i talasi, bez fotografija.",
+      style: "premium",
+      price: 3999,
+      featured: true,
+      imageLink:
+        "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1200&q=80",
     },
   },
   "vencanje-opal": {
@@ -495,6 +557,24 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       style: "playful",
       price: 3999,
       featured: true,
+    },
+  },
+  "kids-cartoon": {
+    renderers: kidsCartoonRenderers,
+    defaultConfig: {
+      ...kidsCartoonDefaultConfig,
+      eventType: "kidsBirthday",
+    },
+    eventTypes: ["kidsBirthday"],
+    catalog: {
+      title: "1. rođendan — cartoon",
+      description:
+        "Comic strip stil — speech bubble, oblačići i šarene epizode za prvi rođendan.",
+      style: "playful",
+      price: 3999,
+      featured: true,
+      imageLink:
+        "https://images.unsplash.com/photo-1519689373023-dd07cfcfed98?auto=format&fit=crop&w=1200&q=80",
     },
   },
   "krstenje-classic": {

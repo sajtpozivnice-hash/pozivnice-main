@@ -70,7 +70,7 @@ const Footer: FC<Props> = ({ section, event, theme }) => {
 
         {data.subtitle ? (
           <p
-            className={`vo-body mt-5 ${hasImage ? "text-vo-pearl/75" : "text-vo-muted"}`}
+            className={`vo-body mt-5 ${hasImage ? "text-vo-pearl/85" : ""}`}
           >
             {data.subtitle}
           </p>
