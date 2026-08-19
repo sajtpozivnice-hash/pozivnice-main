@@ -12,6 +12,29 @@ type Props = {
   theme: ThemeConfig;
 };
 
+const QuoteContent: FC<{
+  title?: string;
+  description?: string;
+}> = ({ title, description }) => (
+  <>
+    <span className="vn-invite-br" aria-hidden="true">
+      <span className="tl" />
+      <span className="tr" />
+      <span className="bl" />
+      <span className="br" />
+    </span>
+
+    <span className="vn-quote-mark" aria-hidden="true">
+      “
+    </span>
+    <blockquote className="vn-quote-text mt-4 px-2">{title}</blockquote>
+    <span className="vn-quote-mark mt-2 inline-block" aria-hidden="true">
+      ”
+    </span>
+    {description ? <p className="vn-caption mt-8">{description}</p> : null}
+  </>
+);
+
 const LoveQuote: FC<Props> = ({ section }) => {
   const { data, id } = section;
   const hasImage = Boolean(data.imageUrl?.trim());
@@ -35,20 +58,9 @@ const LoveQuote: FC<Props> = ({ section }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.9 }}
-          className="relative z-10 mx-auto w-full max-w-3xl border border-[var(--color-vn-champagne-soft)] bg-[var(--color-vn-navy-deep)]/88 px-6 py-14 text-center backdrop-blur-sm sm:px-12 sm:py-16"
+          className="vn-invite-frame relative z-10 mx-auto w-full max-w-3xl text-center"
         >
-          <span className="vn-quote-mark" aria-hidden="true">
-            “
-          </span>
-          <blockquote className="vn-quote-text mt-4 px-2">
-            {data.title}
-          </blockquote>
-          <span className="vn-quote-mark mt-2 inline-block" aria-hidden="true">
-            ”
-          </span>
-          {data.description ? (
-            <p className="vn-caption mt-8">{data.description}</p>
-          ) : null}
+          <QuoteContent title={data.title} description={data.description} />
         </motion.figure>
       </section>
     );
@@ -56,26 +68,16 @@ const LoveQuote: FC<Props> = ({ section }) => {
 
   return (
     <section id={id} className="vn-section">
-      <div className="vn-shell max-w-3xl text-center">
-        <motion.div
+      <div className="vn-shell">
+        <motion.figure
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.9 }}
+          className="vn-invite-frame text-center"
         >
-          <span className="vn-quote-mark" aria-hidden="true">
-            “
-          </span>
-          <blockquote className="vn-quote-text mt-4 px-2">
-            {data.title}
-          </blockquote>
-          <span className="vn-quote-mark mt-2 inline-block" aria-hidden="true">
-            ”
-          </span>
-          {data.description ? (
-            <p className="vn-caption mt-8">{data.description}</p>
-          ) : null}
-        </motion.div>
+          <QuoteContent title={data.title} description={data.description} />
+        </motion.figure>
       </div>
     </section>
   );

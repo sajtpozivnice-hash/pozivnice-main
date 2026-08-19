@@ -253,6 +253,8 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       style: "premium",
       price: 3999,
       featured: true,
+      imageLink:
+        "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1772187509/wedding/qvui0cbpivfwkyiyfpy6.jpg",
     },
   },
   "vencanje-opal": {

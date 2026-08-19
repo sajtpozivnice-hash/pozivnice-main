@@ -1,15 +1,7 @@
 import { UniversalProjectConfig } from "@/types/config";
 
 const IMG = {
-  story:
-    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787087450/jaakko-perala-norway-elopement-photographer-71BLG9XJtHk-unsplash_etp1c6.jpg",
-  calendar:
-    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023434/wedding/wyteshot-ZEbsmqrjNeI-unsplash.jpg",
-  quote:
-    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1772187509/wedding/qvui0cbpivfwkyiyfpy6.jpg",
-  rsvp: "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787087360/jordan-arnold-Ul07QK2AR-0-unsplash_ank1xa.jpg",
-  footer:
-    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787067139/alvin-mahmudov-NSVJAAXOYHs-unsplash_szart3.jpg",
+  hero: "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787087127/photo-1522673607200-164d1b6ce486_esxvqd.avif",
 };
 
 export const vencanjeNavyDefaultConfig = {
@@ -19,8 +11,8 @@ export const vencanjeNavyDefaultConfig = {
     description: "Navy i champagne black-tie pozivnica za večernje venčanje",
   },
   event: {
-    date: "2026-10-17",
-    rsvpDate: "2026-09-17",
+    date: "2027-10-17",
+    rsvpDate: "2027-09-17",
     names: "Teodora & Mihajlo",
   },
   theme: {
@@ -65,7 +57,6 @@ export const vencanjeNavyDefaultConfig = {
       order: 2,
       data: {
         title: "Do svečanog trenutka",
-        imageUrl: IMG.calendar,
       },
     },
     {
@@ -87,7 +78,6 @@ export const vencanjeNavyDefaultConfig = {
       order: 4,
       data: {
         title: "Sačuvajte datum",
-        imageUrl: IMG.calendar,
       },
     },
     {
@@ -100,7 +90,6 @@ export const vencanjeNavyDefaultConfig = {
         title: "Naša priča",
         overline: "Poglavlja",
         text: "Upoznavanje je bilo tiho — večera, razgovor koji nije hteo da se završi, i osećaj da smo već negde bili zajedno.\n\nGodine su prošle u putovanjima, zdravicama i malim ritualima koji su nas učinili nama.\n\nSada otvaramo večernje poglavlje i želimo da ga podelimo sa Vama — formalno, ali od srca.",
-        image: IMG.story,
       },
     },
     {
@@ -117,25 +106,25 @@ export const vencanjeNavyDefaultConfig = {
             id: "1",
             time: "17:00",
             title: "Ceremonija",
-            description: "Zakletve u svečanoj sali, uz sveće i gudače",
+            description: "Svečani trenutak kada izgovaramo svoje sudbonosno „da“.",
           },
           {
             id: "2",
-            time: "18:30",
-            title: "Koktel",
-            description: "Champagne i lagani razgovori u foajeu",
+            time: "17:30",
+            title: "Prvi Ples",
+            description: "Naš prvi ples kao supružnika i početak zajedničke proslave.",
           },
           {
             id: "3",
             time: "20:00",
             title: "Večera",
-            description: "Svečana večera i zdravice",
+            description: "Uživanje u svečanoj večeri, dobroj hrani i dragim ljudima.",
           },
           {
             id: "4",
-            time: "22:30",
-            title: "Prvi ples",
-            description: "I tada počinje noć",
+            time: "22:00",
+            title: "Torta",
+            description: "Slatki trenutak koji ćemo zajedno zasladiti i proslaviti.",
           },
         ],
       },
@@ -149,7 +138,6 @@ export const vencanjeNavyDefaultConfig = {
       data: {
         title: "Gde god si ti — tamo je i moj mir.",
         description: "—",
-        imageUrl: IMG.quote,
       },
     },
     {
@@ -172,7 +160,7 @@ export const vencanjeNavyDefaultConfig = {
           {
             id: 2,
             title: "Proslava",
-            time: "20:00",
+            time: "17:30",
             location: "Hotel Metropol Palace — Ballroom",
             text: "Večera, zdravice i ples. Dress code: black-tie / večernja toaleta.",
           },
@@ -203,7 +191,6 @@ export const vencanjeNavyDefaultConfig = {
         title: "Potvrdite prisustvo",
         description: "Ljubazno odgovorite do ",
         buttonText: "Pošalji odgovor",
-        imageUrl: IMG.rsvp,
       },
     },
     {
@@ -214,7 +201,6 @@ export const vencanjeNavyDefaultConfig = {
       order: 11,
       data: {
         title: "Sa poštovanjem",
-        imageUrl: IMG.footer,
       },
     },
   ],

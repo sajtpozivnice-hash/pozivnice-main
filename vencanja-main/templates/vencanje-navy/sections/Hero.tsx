@@ -63,23 +63,7 @@ const Hero: FC<Props> = ({ section, event }) => {
         </motion.div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.1, delay: 0.35 }}
-        className="vn-hero-band"
-      >
-        {bandSrc?.trim() ? (
-          <img
-            src={bandSrc}
-            alt=""
-            referrerPolicy="no-referrer"
-            loading="eager"
-          />
-        ) : (
-          <div className="vn-fallback h-full w-full" />
-        )}
-      </motion.div>
+    
     </section>
   );
 };

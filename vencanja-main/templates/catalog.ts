@@ -21,13 +21,25 @@ const CATALOG_PRIORITY: TemplateKey[] = [
   "vencanje-terra",
 ];
 
-const resolveCatalogImage = (config: UniversalProjectConfig): string => {
+const resolveCatalogImage = (
+  config: UniversalProjectConfig,
+  catalogImageLink?: string,
+): string => {
+  const fromCatalog = catalogImageLink?.trim();
+  if (fromCatalog) return fromCatalog;
+
   const hero = config.sections.find((section) => section.type === "hero");
   if (hero?.type === "hero") {
     const background = hero.data.backgroundImage?.trim();
     if (background) return background;
     const image = hero.data.image?.trim();
     if (image) return image;
+  }
+
+  const quote = config.sections.find((section) => section.type === "loveQuote");
+  if (quote?.type === "loveQuote") {
+    const quoteImage = quote.data.imageUrl?.trim();
+    if (quoteImage) return quoteImage;
   }
 
   return config.theme.backgroundImage?.trim() || "";
@@ -51,7 +63,7 @@ export function getCatalogTemplates(): CatalogCard[] {
       tag: eventTypeToTag(eventType),
       style: meta.style,
       price: meta.price,
-      imageLink: resolveCatalogImage(pack.defaultConfig),
+      imageLink: resolveCatalogImage(pack.defaultConfig, meta.imageLink),
       projectLink: `/editor/${key}`,
       featured: Boolean(meta.featured),
     };

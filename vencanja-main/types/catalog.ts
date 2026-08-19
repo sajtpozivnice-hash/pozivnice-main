@@ -15,6 +15,8 @@ export type TemplateCatalogMeta = {
   style: TemplateStyle;
   price: number;
   featured?: boolean;
+  /** Optional catalog card cover (when hero has no image). */
+  imageLink?: string;
 };
 
 export type CatalogCard = {
