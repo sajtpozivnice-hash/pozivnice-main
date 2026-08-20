@@ -4,7 +4,6 @@ import { FC } from "react";
 import { motion } from "framer-motion";
 import { InviteTextSection } from "@/types/sections";
 import { EventConfig, ThemeConfig } from "@/types/config";
-import { SageMedia } from "../components/Media";
 
 type Props = {
   section: InviteTextSection;
@@ -23,22 +22,6 @@ const InviteText: FC<Props> = ({ section, event, theme }) => {
   return (
     <section id={id} className="vs-section bg-vs-linen">
       <div className="vs-container-narrow text-center">
-        {data.imageUrl ? (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.94 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="mx-auto mb-12 w-fit"
-          >
-            <SageMedia
-              src={data.imageUrl}
-              alt={event.names}
-              className="h-24 w-24 rounded-full sm:h-28 sm:w-28"
-            />
-          </motion.div>
-        ) : null}
-
         <motion.p
           initial={{ opacity: 0, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -59,12 +42,12 @@ const InviteText: FC<Props> = ({ section, event, theme }) => {
               transition={{ delay: index * 0.08, duration: 0.6 }}
               className={
                 index === 0
-                  ? "text-xl leading-[1.75] text-vs-ink first-letter:float-left first-letter:mr-3 first-letter:text-6xl first-letter:leading-[0.85] first-letter:font-normal sm:text-2xl sm:leading-[1.7] sm:first-letter:text-7xl"
+                  ? "text-2xl leading-[1.75] text-vs-ink sm:text-3xl sm:leading-[1.7]"
                   : "vs-body text-vs-muted"
               }
               style={
                 index === 0
-                  ? { fontFamily: "var(--font-primary)", textAlign: "left" }
+                  ? { fontFamily: "var(--font-primary)" }
                   : undefined
               }
             >
@@ -82,7 +65,7 @@ const InviteText: FC<Props> = ({ section, event, theme }) => {
           style={{ background: accent }}
         />
 
-        <p className="mt-8 text-[10px] uppercase tracking-[0.4em] text-vs-muted">
+        <p className="mt-8 text-[13px] uppercase tracking-[0.36em] text-vs-muted sm:text-sm">
           {event.names}
         </p>
       </div>

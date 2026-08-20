@@ -32,17 +32,17 @@
   }
 
   .vs-eyebrow {
-    @apply text-[10px] font-medium uppercase tracking-[0.46em] text-vs-muted;
+    @apply text-[12px] font-medium uppercase tracking-[0.36em] text-vs-muted sm:text-[13px];
     font-family: var(--font-secondary);
   }
 
   .vs-display {
-    @apply text-[2.15rem] leading-[1.08] tracking-[-0.01em] text-vs-ink sm:text-5xl lg:text-[3.35rem];
+    @apply text-[2.4rem] leading-[1.08] tracking-[-0.01em] text-vs-ink sm:text-5xl lg:text-[3.6rem];
     font-family: var(--font-primary);
   }
 
   .vs-body {
-    @apply text-[15px] leading-[1.85] text-vs-ink-soft sm:text-lg;
+    @apply text-[1.2rem] leading-[1.85] text-vs-ink-soft sm:text-[1.35rem] sm:leading-[1.8];
     font-family: var(--font-secondary);
   }
 
@@ -63,12 +63,12 @@
   }
 
   .vs-input {
-    @apply w-full border-0 border-b border-vs-ink/15 bg-transparent px-0 py-3 text-[15px] text-vs-ink outline-none transition placeholder:text-vs-muted/60 focus:border-vs-sage;
+    @apply w-full border-0 border-b border-vs-ink/15 bg-transparent px-0 py-3.5 text-base text-vs-ink outline-none transition placeholder:text-vs-muted/60 focus:border-vs-sage sm:text-lg;
     font-family: var(--font-secondary);
   }
 
   .vs-label {
-    @apply mb-1 block text-[10px] uppercase tracking-[0.3em] text-vs-muted;
+    @apply mb-2 block text-[12px] uppercase tracking-[0.28em] text-vs-muted sm:text-[13px];
     font-family: var(--font-secondary);
   }
 }

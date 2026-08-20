@@ -1,39 +1,5 @@
 import { UniversalProjectConfig } from "@/types/config";
 
-const IMG = {
-  hero: "https://images.unsplash.com/photo-1537633552985-cf699e1542d0?auto=format&fit=crop&w=2000&q=85",
-  story:
-    "https://images.unsplash.com/photo-1721635513009-4bd5d277c437?auto=format&fit=crop&w=1600&q=85",
-  invite:
-    "https://images.unsplash.com/photo-1510076857177-7470076d4098?auto=format&fit=crop&w=1600&q=85",
-  calendar:
-    "https://images.unsplash.com/photo-1460978812857-470ed1c77af0?auto=format&fit=crop&w=1600&q=85",
-  schedule:
-    "https://images.unsplash.com/photo-1502635385003-ee052e304ee8?auto=format&fit=crop&w=1600&q=85",
-  quote:
-    "https://images.unsplash.com/photo-1606216794074-7417dc8b62a0?auto=format&fit=crop&w=1600&q=85",
-  locationA:
-    "https://images.unsplash.com/photo-1494951334922-3a4b05f9d350?auto=format&fit=crop&w=1200&q=85",
-  locationB:
-    "https://images.unsplash.com/photo-1545232979-8bf68ee9b1af?auto=format&fit=crop&w=1200&q=85",
-  locationsBg:
-    "https://images.unsplash.com/photo-1510076857177-7470076d4098?auto=format&fit=crop&w=1600&q=85",
-  upload:
-    "https://images.unsplash.com/photo-1502635385003-ee052e304ee8?auto=format&fit=crop&w=1600&q=85",
-  rsvp: "https://images.unsplash.com/photo-1460978812857-470ed1c77af0?auto=format&fit=crop&w=1600&q=85",
-  footer:
-    "https://images.unsplash.com/photo-1721635513009-4bd5d277c437?auto=format&fit=crop&w=2000&q=85",
-};
-
-const GALLERY = [
-  IMG.hero,
-  IMG.story,
-  IMG.invite,
-  IMG.calendar,
-  IMG.schedule,
-  IMG.quote,
-];
-
 export const vencanjeSageDefaultConfig: UniversalProjectConfig = {
   template: "vencanje-sage",
   meta: {
@@ -61,6 +27,10 @@ export const vencanjeSageDefaultConfig: UniversalProjectConfig = {
           value: "#2C2A26",
         },
       },
+      background: {
+        name: "Zob",
+        value: "#F4F0E8",
+      },
     },
   },
   sections: [
@@ -73,7 +43,6 @@ export const vencanjeSageDefaultConfig: UniversalProjectConfig = {
       data: {
         title: "Jedan dan koji čuvamo za one koje volimo.",
         subtitle: "Venčanje",
-        backgroundImage: IMG.hero,
       },
     },
     {
@@ -85,7 +54,6 @@ export const vencanjeSageDefaultConfig: UniversalProjectConfig = {
       data: {
         title: "Još malo pa zajedno",
         description: "Vreme do prvog zajedničkog „da“.",
-        imageUrl: IMG.calendar,
       },
     },
     {
@@ -97,7 +65,6 @@ export const vencanjeSageDefaultConfig: UniversalProjectConfig = {
       data: {
         description:
           "Sa radošću Vas pozivamo da budete uz nas onog dana kada dve priče postanu jedna.\nBez žurbe, uz tople boje jeseni, dobru hranu i ljude koji nam znače.\nVaše prisustvo je jedini poklon koji želimo.",
-        imageUrl: IMG.invite,
       },
     },
     {
@@ -110,7 +77,6 @@ export const vencanjeSageDefaultConfig: UniversalProjectConfig = {
         title: "Zabeležite u kalendar",
         description:
           "Prva subota oktobra, kada svetlost postane mekša, a dani topliji od letnjih.",
-        imageUrl: IMG.calendar,
       },
     },
     {
@@ -124,7 +90,6 @@ export const vencanjeSageDefaultConfig: UniversalProjectConfig = {
         overline: "Kako je počelo",
         subtitle: "Sedam godina, tri grada i jedan isti odgovor.",
         text: "Upoznali smo se na kraju leta, na proslavi na koje niko od nas nije planirao da ode.\n\nOd tada su se nizali stanovi, putovanja bez plana i obična jutra koja su nam bila najlepša.\n\nSada želimo da najvažniji dan podelimo sa ljudima koji su bili deo svake od tih godina.",
-        image: IMG.story,
       },
     },
     {
@@ -136,7 +101,6 @@ export const vencanjeSageDefaultConfig: UniversalProjectConfig = {
       data: {
         title: "Kako teče dan",
         subtitle: "Bez žurbe — od popodnevne ceremonije do kasne večeri.",
-        imageUrl: IMG.schedule,
         items: [
           {
             id: "1",
@@ -147,27 +111,22 @@ export const vencanjeSageDefaultConfig: UniversalProjectConfig = {
           {
             id: "2",
             time: "16:30",
-            title: "Ceremonija",
+            title: "Vencanje",
             description: "Zavet pod starim maslinama, uz tihu muziku.",
           },
           {
             id: "3",
-            time: "18:00",
-            title: "Koktel i fotografije",
-            description: "Zalazak sunca je najbolji fotograf.",
+            time: "17:00",
+            title: "Prvi Ples",
+            description: "Ples sa nama.",
           },
           {
             id: "4",
-            time: "19:30",
-            title: "Večera",
-            description: "Dugi stolovi, domaća jela i zdravice.",
-          },
-          {
-            id: "5",
             time: "22:00",
-            title: "Prvi ples",
-            description: "A onda muzika do jutra.",
+            title: "Torta",
+            description: "Sladak završetak dana.",
           },
+        
         ],
       },
     },
@@ -181,7 +140,6 @@ export const vencanjeSageDefaultConfig: UniversalProjectConfig = {
         title:
           "Ljubav nije u tome da gledamo jedno u drugo, već da zajedno gledamo u istom pravcu.",
         description: "Antoan de Sent Egziperi",
-        imageUrl: IMG.quote,
       },
     },
     {
@@ -194,37 +152,22 @@ export const vencanjeSageDefaultConfig: UniversalProjectConfig = {
         title: "Gde se vidimo",
         subtitle:
           "Sve na jednom mestu — ceremonija u bašti, proslava u kamenoj sali.",
-        imageUrl: IMG.locationsBg,
         cards: [
           {
             id: 1,
-            title: "Ceremonija",
+            title: "Vencanje",
             time: "16:30",
             location: "Vrt imanja Kadulja, Sremski Karlovci",
             text: "Otvoreni vrt sa maslinama i lavandom. Preporučujemo ravnije cipele — staza je posuta šljunkom.",
-            image: IMG.locationA,
           },
           {
             id: 2,
             title: "Proslava",
-            time: "19:30",
+            time: "17:00",
             location: "Kamena sala imanja, isto dvorište",
             text: "Večera i ples u sali sa dugim stolovima i svećama. Parking je u okviru imanja.",
-            image: IMG.locationB,
           },
         ],
-      },
-    },
-    {
-      id: "ourGallery",
-      name: "Galerija",
-      type: "ourGallery",
-      visible: true,
-      order: 9,
-      data: {
-        title: "Naši kadrovi",
-        description: "Nekoliko trenutaka koje smo usput sačuvali.",
-        images: GALLERY.map((url) => ({ url })),
       },
     },
     {
@@ -239,7 +182,6 @@ export const vencanjeSageDefaultConfig: UniversalProjectConfig = {
         description:
           "Ako tog dana uslikate nešto lepo, ostavite nam fotografiju ovde — sve stiže pravo kod nas.",
         buttonText: "Dodajte fotografiju",
-        imageUrl: IMG.upload,
       },
     },
     {
@@ -254,7 +196,6 @@ export const vencanjeSageDefaultConfig: UniversalProjectConfig = {
         buttonText: "Pošalji odgovor",
         messageLabel: "Poruka za nas",
         messagePlaceholder: "Alergije, pratnja ili lepa želja",
-        imageUrl: IMG.rsvp,
       },
     },
     {
@@ -266,7 +207,6 @@ export const vencanjeSageDefaultConfig: UniversalProjectConfig = {
       data: {
         title: "Hvala što ste deo naše priče.",
         subtitle: "Vidimo se u oktobru.",
-        imageUrl: IMG.footer,
       },
     },
   ],

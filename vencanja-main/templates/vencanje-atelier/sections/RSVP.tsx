@@ -65,7 +65,7 @@ const RSVP: FC<Props> = ({ section, event }) => {
       <div
         className={
           hasImage
-            ? "va-shell grid items-start gap-10 lg:grid-cols-12 lg:gap-12"
+            ? "va-shell grid items-center gap-10 lg:grid-cols-12 lg:gap-12"
             : "va-shell max-w-xl"
         }
       >

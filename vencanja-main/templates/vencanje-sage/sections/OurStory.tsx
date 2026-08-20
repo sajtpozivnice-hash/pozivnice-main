@@ -4,7 +4,6 @@ import { FC } from "react";
 import { motion } from "framer-motion";
 import { OurStorySection } from "@/types/sections";
 import { EventConfig, ThemeConfig } from "@/types/config";
-import { SageMedia } from "../components/Media";
 
 type Props = {
   section: OurStorySection;
@@ -23,13 +22,12 @@ const OurStory: FC<Props> = ({ section, theme }) => {
 
   return (
     <section id={id} className="vs-section bg-vs-linen">
-      <div className="vs-container grid items-center gap-14 lg:grid-cols-12 lg:gap-20">
+      <div className="vs-container-narrow text-center">
         <motion.div
           initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="lg:col-span-6"
         >
           {data.overline ? (
             <p className="vs-eyebrow mb-6" style={{ color: accent }}>
@@ -42,12 +40,15 @@ const OurStory: FC<Props> = ({ section, theme }) => {
           </h2>
 
           {data.subtitle ? (
-            <p className="mt-5 text-lg italic text-vs-muted" style={{ fontFamily: "var(--font-primary)" }}>
+            <p
+              className="mx-auto mt-5 max-w-md text-xl italic text-vs-muted sm:text-2xl"
+              style={{ fontFamily: "var(--font-primary)" }}
+            >
               {data.subtitle}
             </p>
           ) : null}
 
-          <div className="mt-9 space-y-5 border-l border-vs-line pl-7">
+          <div className="mx-auto mt-10 max-w-lg space-y-5 border-t border-vs-line pt-8 text-left sm:text-center">
             {paragraphs.map((paragraph, index) => (
               <motion.p
                 key={paragraph.slice(0, 24)}
@@ -61,20 +62,6 @@ const OurStory: FC<Props> = ({ section, theme }) => {
               </motion.p>
             ))}
           </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 26 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.75, delay: 0.1 }}
-          className="lg:col-span-6"
-        >
-          <SageMedia
-            src={data.image}
-            alt={data.title}
-            className="aspect-[4/5] w-full lg:translate-y-6"
-          />
         </motion.div>
       </div>
     </section>

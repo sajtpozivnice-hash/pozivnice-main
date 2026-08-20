@@ -19,7 +19,7 @@ const OurGallery: FC<Props> = ({ section }) => {
   return (
     <section id={id} className="va-section bg-va-paper">
       <div className="va-shell">
-        <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+        <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
           <div>
             <p className="va-eyebrow">Galerija</p>
             <h2 className="va-display mt-4">{data.title}</h2>

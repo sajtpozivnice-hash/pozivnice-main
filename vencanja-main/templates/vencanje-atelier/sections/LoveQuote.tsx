@@ -44,7 +44,7 @@ const LoveQuote: FC<Props> = ({ section }) => {
             {data.title}
           </p>
           {data.description ? (
-            <footer className="mt-8 text-[10px] uppercase tracking-[0.34em] text-white/70">
+            <footer className="mt-8 text-[13px] uppercase tracking-[0.3em] text-white/75 sm:text-sm">
               {data.description}
             </footer>
           ) : null}

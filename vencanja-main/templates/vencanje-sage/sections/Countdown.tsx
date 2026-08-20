@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { CountdownSection } from "@/types/sections";
 import { EventConfig, ThemeConfig } from "@/types/config";
 import { formatDate } from "@/helpers/formatDate";
-import { SageMedia } from "../components/Media";
 
 type Props = {
   section: CountdownSection;
@@ -64,57 +63,50 @@ const Countdown: FC<Props> = ({ section, event, theme }) => {
 
   return (
     <section id={id} className="vs-section-tight bg-vs-oat">
-      <div className="vs-container flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
-        <div className="max-w-sm">
-          {data.imageUrl ? (
-            <SageMedia
-              src={data.imageUrl}
-              alt={data.title ?? "Odbrojavanje"}
-              className="mb-6 h-16 w-16 rounded-full"
-            />
-          ) : null}
-          <motion.p
-            initial={{ opacity: 0, y: 8 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="vs-eyebrow mb-4"
-            style={{ color: accent }}
-          >
-            {formatDate(event.date, "D_MMMM_YYYY")}
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl leading-tight sm:text-4xl"
-            style={{ fontFamily: "var(--font-primary)", color: ink }}
-          >
-            {data.title}
-          </motion.h2>
-          {data.description ? (
-            <p className="vs-body mt-4 text-vs-muted">{data.description}</p>
-          ) : null}
-        </div>
+      <div className="vs-container-narrow text-center">
+        <motion.p
+          initial={{ opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="vs-eyebrow mb-4"
+          style={{ color: accent }}
+        >
+          {formatDate(event.date, "D_MMMM_YYYY")}
+        </motion.p>
+        <motion.h2
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-4xl leading-tight sm:text-5xl"
+          style={{ fontFamily: "var(--font-primary)", color: ink }}
+        >
+          {data.title}
+        </motion.h2>
+        {data.description ? (
+          <p className="vs-body mx-auto mt-4 max-w-md text-vs-muted">
+            {data.description}
+          </p>
+        ) : null}
 
-        <div className="flex flex-wrap gap-3 sm:gap-4">
+        <div className="mt-10 flex flex-wrap justify-center gap-3 sm:gap-4">
           {pills.map((pill, index) => (
             <motion.div
               key={pill.label}
-              initial={{ opacity: 0, y: 14 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.07, duration: 0.5 }}
-              className="flex min-w-24 flex-1 items-baseline justify-center gap-2 rounded-full bg-vs-sage-tint px-5 py-4 sm:min-w-28 sm:px-7"
+              transition={{ delay: index * 0.05 }}
+              className="min-w-[4.5rem] border border-vs-line bg-vs-linen px-4 py-5 sm:min-w-[5.5rem]"
             >
-              <span
-                className="text-3xl leading-none sm:text-4xl"
-                style={{ fontFamily: "var(--font-primary)", color: accent }}
+              <p
+                className="text-3xl tabular-nums sm:text-4xl"
+                style={{ fontFamily: "var(--font-primary)", color: ink }}
               >
                 {String(pill.value).padStart(2, "0")}
-              </span>
-              <span className="text-[10px] uppercase tracking-[0.24em] text-vs-muted">
+              </p>
+              <p className="mt-2 text-[12px] uppercase tracking-[0.24em] text-vs-muted sm:text-[13px]">
                 {pill.label}
-              </span>
+              </p>
             </motion.div>
           ))}
         </div>

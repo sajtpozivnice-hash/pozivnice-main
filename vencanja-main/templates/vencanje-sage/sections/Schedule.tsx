@@ -4,7 +4,6 @@ import { FC } from "react";
 import { motion } from "framer-motion";
 import { ScheduleSection } from "@/types/sections";
 import { EventConfig, ThemeConfig } from "@/types/config";
-import { SageMedia } from "../components/Media";
 
 type Props = {
   section: ScheduleSection;
@@ -20,8 +19,8 @@ const Schedule: FC<Props> = ({ section, theme }) => {
 
   return (
     <section id={id} className="vs-section bg-vs-oat">
-      <div className="vs-container grid gap-14 lg:grid-cols-12 lg:gap-20">
-        <div className="lg:col-span-5">
+      <div className="vs-container-narrow">
+        <div className="mb-12 text-center">
           <motion.p
             initial={{ opacity: 0, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -41,69 +40,46 @@ const Schedule: FC<Props> = ({ section, theme }) => {
             {data.title}
           </motion.h2>
           {data.subtitle ? (
-            <p className="vs-body mt-5 max-w-sm text-vs-muted">
+            <p className="vs-body mx-auto mt-5 max-w-md text-vs-muted">
               {data.subtitle}
             </p>
           ) : null}
+        </div>
 
-          {data.imageUrl ? (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
+        <ol className="relative mx-auto max-w-xl border-l border-vs-line pl-8 sm:pl-10">
+          {items.map((item, index) => (
+            <motion.li
+              key={item.id}
+              initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="mt-10 hidden lg:block"
+              transition={{ delay: index * 0.08, duration: 0.55 }}
+              className="relative pb-12 last:pb-0"
             >
-              <SageMedia
-                src={data.imageUrl}
-                alt={data.title}
-                className="aspect-[5/6] w-full"
+              <span
+                className="absolute left-[-2.3rem] top-2 h-2.5 w-2.5 rounded-full sm:left-[-2.8rem]"
+                style={{ background: accent }}
               />
-            </motion.div>
-          ) : null}
-        </div>
-
-        <div className="lg:col-span-7">
-          <ol className="relative border-l border-vs-line pl-8 sm:pl-10">
-            {items.map((item, index) => (
-              <motion.li
-                key={item.id}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.08, duration: 0.55 }}
-                className="relative pb-12 last:pb-0"
+              <p
+                className="text-base uppercase tracking-[0.28em] sm:text-lg"
+                style={{ color: accent }}
               >
-                <span
-                  className="absolute left-[-2.3rem] top-2 h-2.5 w-2.5 rounded-full sm:left-[-2.8rem]"
-                  style={{ background: accent }}
-                />
-                <span
-                  className="absolute left-[-2.8rem] top-[2px] hidden h-6 w-6 rounded-full opacity-30 sm:left-[-3.3rem] sm:block"
-                  style={{ border: `1px solid ${accent}` }}
-                />
-
-                <p
-                  className="text-sm uppercase tracking-[0.3em]"
-                  style={{ color: accent }}
-                >
-                  {item.time}
+                {item.time}
+              </p>
+              <h3
+                className="mt-3 text-3xl sm:text-4xl"
+                style={{ fontFamily: "var(--font-primary)", color: ink }}
+              >
+                {item.title}
+              </h3>
+              {item.description ? (
+                <p className="vs-body mt-3 max-w-md text-vs-muted">
+                  {item.description}
                 </p>
-                <h3
-                  className="mt-3 text-2xl sm:text-3xl"
-                  style={{ fontFamily: "var(--font-primary)", color: ink }}
-                >
-                  {item.title}
-                </h3>
-                {item.description ? (
-                  <p className="vs-body mt-3 max-w-md text-vs-muted">
-                    {item.description}
-                  </p>
-                ) : null}
-              </motion.li>
-            ))}
-          </ol>
-        </div>
+              ) : null}
+            </motion.li>
+          ))}
+        </ol>
       </div>
     </section>
   );

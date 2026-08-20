@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { FooterSection } from "@/types/sections";
 import { EventConfig, ThemeConfig } from "@/types/config";
 import { formatDate } from "@/helpers/formatDate";
-import { SageMedia } from "../components/Media";
 
 type Props = {
   section: FooterSection;
@@ -20,17 +19,6 @@ const Footer: FC<Props> = ({ section, event, theme }) => {
 
   return (
     <section id={id} className="vs-section-tight bg-vs-sage-tint">
-      {data.imageUrl ? (
-        <>
-          <SageMedia
-            src={data.imageUrl}
-            alt=""
-            className="absolute inset-0 h-full w-full opacity-25"
-          />
-          <div className="absolute inset-0 bg-vs-sage-tint/70" />
-        </>
-      ) : null}
-
       <motion.div
         initial={{ opacity: 0, y: 18 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -43,7 +31,7 @@ const Footer: FC<Props> = ({ section, event, theme }) => {
         </p>
 
         <h2
-          className="mt-8 text-2xl leading-snug sm:text-3xl"
+          className="mt-8 text-3xl leading-snug sm:text-4xl"
           style={{ fontFamily: "var(--font-primary)", color: ink }}
         >
           {data.title}
@@ -62,7 +50,7 @@ const Footer: FC<Props> = ({ section, event, theme }) => {
           style={{ background: accent }}
         />
 
-        <p className="mt-8 text-[10px] uppercase tracking-[0.4em] text-vs-muted">
+        <p className="mt-8 text-[13px] uppercase tracking-[0.36em] text-vs-muted sm:text-sm">
           {formatDate(event.date, "DD.MM.YYYY")}
         </p>
       </motion.div>

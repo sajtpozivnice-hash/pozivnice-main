@@ -21,7 +21,7 @@ const OurStory: FC<Props> = ({ section }) => {
 
   return (
     <section id={id} className="va-section">
-      <div className="va-shell grid items-start gap-10 lg:grid-cols-12 lg:gap-14">
+      <div className="va-shell grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}

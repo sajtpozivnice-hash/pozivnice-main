@@ -10,7 +10,6 @@ import { usePublicRsvpSubmit } from "@/components/invitation/usePublicRsvpSubmit
 import FormConfirmMessage, {
   Attendance,
 } from "../components/FormConfirmMessage";
-import { SageMedia } from "../components/Media";
 
 type Props = {
   section: RSVPSection;
@@ -64,8 +63,8 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
 
   return (
     <section id={id} className="vs-section bg-vs-linen">
-      <div className="vs-container grid gap-14 lg:grid-cols-12 lg:gap-20">
-        <div className="lg:col-span-5">
+      <div className="vs-container-narrow">
+        <div className="mb-10 text-center">
           <motion.p
             initial={{ opacity: 0, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -84,167 +83,146 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
           >
             {data.title}
           </motion.h2>
-          <p className="vs-body mt-5 text-vs-muted">
+          <p className="vs-body mx-auto mt-5 max-w-md text-vs-muted">
             {data.description}
             {formatDate(event.rsvpDate, "D_MMMM_YYYY")}
           </p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="mt-12 hidden lg:block"
-          >
-            <SageMedia
-              src={data.imageUrl}
-              alt={data.title}
-              className="aspect-[4/5] w-full"
-            />
-          </motion.div>
         </div>
 
-        <div className="lg:col-span-7">
-          <AnimatePresence mode="wait">
-            {!submitted ? (
-              <motion.form
-                key="form"
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                onSubmit={handleSubmit}
-                className="space-y-8"
-              >
-                <div>
-                  <label className="vs-label" htmlFor="vs-fullName">
-                    Ime i prezime
-                  </label>
-                  <input
-                    id="vs-fullName"
-                    required
-                    value={formData.fullName}
-                    onChange={(e) =>
-                      setFormData({ ...formData, fullName: e.target.value })
-                    }
-                    className="vs-input"
-                    placeholder="Vaše ime i prezime"
-                  />
-                </div>
-
-                <div>
-                  <label className="vs-label" htmlFor="vs-email">
-                    Email
-                  </label>
-                  <input
-                    id="vs-email"
-                    required
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
-                    className="vs-input"
-                    placeholder="vas@email.com"
-                  />
-                </div>
-
-                <div>
-                  <p className="vs-label">Da li ćete nam se pridružiti?</p>
-                  <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                    {ATTENDANCE_OPTIONS.map((option) => (
-                      <label key={option.value} className="cursor-pointer">
-                        <input
-                          type="radio"
-                          name="vs-attendance"
-                          value={option.value}
-                          checked={formData.attendance === option.value}
-                          onChange={() =>
-                            setFormData({
-                              ...formData,
-                              attendance: option.value,
-                            })
-                          }
-                          className="peer sr-only"
-                        />
-                        <span className="block border border-vs-line px-5 py-4 text-center text-sm text-vs-ink-soft transition hover:border-vs-ink/35 peer-checked:border-vs-sage peer-checked:bg-vs-sage-tint peer-checked:text-vs-ink">
-                          {option.label}
-                        </span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-
-                {formData.attendance === "yes" ? (
-                  <div>
-                    <label className="vs-label" htmlFor="vs-guests">
-                      Broj gostiju
-                    </label>
-                    <input
-                      id="vs-guests"
-                      type="number"
-                      min={1}
-                      value={formData.guests}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          guests: Number(e.target.value),
-                        })
-                      }
-                      className="vs-input"
-                    />
-                  </div>
-                ) : null}
-
-                <div>
-                  <label className="vs-label" htmlFor="vs-message">
-                    {data.messageLabel ?? "Poruka"}
-                  </label>
-                  <textarea
-                    id="vs-message"
-                    value={formData.message}
-                    onChange={(e) =>
-                      setFormData({ ...formData, message: e.target.value })
-                    }
-                    className="vs-input min-h-24 resize-none"
-                    placeholder={
-                      data.messagePlaceholder ?? "Poruka za mladence"
-                    }
-                  />
-                </div>
-
-                {error ? <p className="text-sm text-red-600">{error}</p> : null}
-
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="inline-flex w-full cursor-pointer items-center justify-center gap-3 px-9 py-4 text-[10px] font-medium uppercase tracking-[0.32em] text-vs-linen transition hover:opacity-90 disabled:opacity-50 sm:w-auto"
-                  style={{ background: ink }}
-                >
-                  {loading ? (
-                    <span className="h-4 w-4 animate-spin rounded-full border-2 border-vs-linen border-t-transparent" />
-                  ) : (
-                    <>
-                      <Send className="h-3.5 w-3.5" />
-                      {data.buttonText || "Pošalji odgovor"}
-                    </>
-                  )}
-                </button>
-              </motion.form>
-            ) : (
-              <motion.div
-                key="confirm"
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-              >
-                <FormConfirmMessage
-                  attendance={formData.attendance}
-                  accent={accent}
-                  onClick={() => setSubmitted(false)}
+        <AnimatePresence mode="wait">
+          {!submitted ? (
+            <motion.form
+              key="form"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              onSubmit={handleSubmit}
+              className="space-y-8"
+            >
+              <div>
+                <label className="vs-label" htmlFor="vs-fullName">
+                  Ime i prezime
+                </label>
+                <input
+                  id="vs-fullName"
+                  required
+                  value={formData.fullName}
+                  onChange={(e) =>
+                    setFormData({ ...formData, fullName: e.target.value })
+                  }
+                  className="vs-input"
+                  placeholder="Vaše ime"
                 />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+              </div>
+
+              <div>
+                <label className="vs-label" htmlFor="vs-email">
+                  Email
+                </label>
+                <input
+                  id="vs-email"
+                  required
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
+                  className="vs-input"
+                  placeholder="ime@email.com"
+                />
+              </div>
+
+              <div>
+                <p className="vs-label">Prisustvo</p>
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  {ATTENDANCE_OPTIONS.map((option) => (
+                    <label key={option.value} className="cursor-pointer">
+                      <input
+                        type="radio"
+                        name="vs-attendance"
+                        value={option.value}
+                        checked={formData.attendance === option.value}
+                        onChange={() =>
+                          setFormData({
+                            ...formData,
+                            attendance: option.value,
+                          })
+                        }
+                        className="peer sr-only"
+                      />
+                      <span className="block border border-vs-line px-4 py-3.5 text-center text-base text-vs-ink-soft transition peer-checked:border-vs-ink peer-checked:bg-vs-ink peer-checked:text-vs-linen">
+                        {option.label}
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              {formData.attendance === "yes" ? (
+                <div className="max-w-[10rem]">
+                  <label className="vs-label" htmlFor="vs-guests">
+                    Broj gostiju
+                  </label>
+                  <input
+                    id="vs-guests"
+                    type="number"
+                    min={1}
+                    value={formData.guests}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        guests: Number(e.target.value),
+                      })
+                    }
+                    className="vs-input"
+                  />
+                </div>
+              ) : null}
+
+              <div>
+                <label className="vs-label" htmlFor="vs-message">
+                  {data.messageLabel ?? "Poruka"}
+                </label>
+                <textarea
+                  id="vs-message"
+                  value={formData.message}
+                  onChange={(e) =>
+                    setFormData({ ...formData, message: e.target.value })
+                  }
+                  className="vs-input min-h-24 resize-none"
+                  placeholder={
+                    data.messagePlaceholder ?? "Alergije, pratnja ili lepa želja"
+                  }
+                />
+              </div>
+
+              {error ? (
+                <p className="vs-body text-red-700">{error}</p>
+              ) : null}
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="inline-flex w-full cursor-pointer items-center justify-center gap-2 border border-vs-ink bg-vs-ink px-8 py-4 text-[12px] font-medium uppercase tracking-[0.26em] text-vs-linen transition hover:opacity-90 disabled:opacity-50 sm:w-auto sm:text-[13px]"
+              >
+                {loading ? "Slanje…" : data.buttonText || "Pošalji odgovor"}
+                <Send className="h-3.5 w-3.5" />
+              </button>
+            </motion.form>
+          ) : (
+            <motion.div
+              key="confirm"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
+              <FormConfirmMessage
+                attendance={formData.attendance}
+                accent={accent}
+                onClick={() => setSubmitted(false)}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );

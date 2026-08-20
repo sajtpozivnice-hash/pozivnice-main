@@ -37,7 +37,7 @@ const Footer: FC<Props> = ({ section, event }) => {
             viewport={{ once: true, amount: 0.45 }}
             transition={{ duration: 0.75 }}
           >
-            <p className="text-[10px] uppercase tracking-[0.36em] text-white/70">
+            <p className="text-[13px] uppercase tracking-[0.3em] text-white/75 sm:text-sm">
               {data.title || "Vidimo se"}
             </p>
             <p
@@ -46,11 +46,11 @@ const Footer: FC<Props> = ({ section, event }) => {
             >
               {data.subtitle || event.names}
             </p>
-            <p className="mt-5 text-[11px] uppercase tracking-[0.3em] text-white/65">
+            <p className="mt-5 text-[13px] uppercase tracking-[0.28em] text-white/70 sm:text-sm">
               {formatDate(event.date, "DD.MM.YYYY")}
             </p>
             {data.description ? (
-              <p className="mx-auto mt-6 max-w-md text-sm leading-relaxed text-white/75">
+              <p className="mx-auto mt-6 max-w-md text-base leading-relaxed text-white/80 sm:text-lg">
                 {data.description}
               </p>
             ) : null}

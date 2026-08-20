@@ -58,7 +58,7 @@ const Countdown: FC<Props> = ({ section, event }) => {
   return (
     <section id={id} className="va-section-tight bg-va-paper">
       <div className="va-shell">
-        <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+        <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
           <div>
             <p className="va-eyebrow mb-3">Odbrojavanje</p>
             <h2 className="va-display">{data.title}</h2>

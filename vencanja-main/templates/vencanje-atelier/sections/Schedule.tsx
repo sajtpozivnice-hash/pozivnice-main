@@ -22,7 +22,7 @@ const Schedule: FC<Props> = ({ section }) => {
       <div
         className={
           hasImage
-            ? "va-shell grid gap-10 lg:grid-cols-12 lg:gap-12"
+            ? "va-shell grid items-center gap-10 lg:grid-cols-12 lg:gap-12"
             : "va-shell max-w-3xl"
         }
       >
@@ -58,7 +58,7 @@ const Schedule: FC<Props> = ({ section }) => {
               <div>
                 <h3 className="va-row-title">{item.title}</h3>
                 {item.description ? (
-                  <p className="va-body mt-1.5 text-[0.95rem] text-va-muted">
+                  <p className="va-body mt-1.5 text-va-muted">
                     {item.description}
                   </p>
                 ) : null}

@@ -1,7 +1,7 @@
 import { UniversalProjectConfig } from "@/types/config";
 
 const IMG = {
-  hero: "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787087127/photo-1522673607200-164d1b6ce486_esxvqd.avif",
+  hero: "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787150836/beatriz-perez-moya-M2T1j-6Fn8w-unsplash_rc0b1t.jpg",
   story:
     "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787067285/olivia-bauso-30UOqDM5QW0-unsplash_flsbrf.jpg",
   invite:
@@ -23,15 +23,6 @@ const IMG = {
     "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787087486/photo-1529636798458-92182e662485_qsfzlr.avif",
 };
 
-const GALLERY = [
-  IMG.hero,
-  IMG.story,
-  IMG.invite,
-  IMG.calendar,
-  IMG.schedule,
-  IMG.quote,
-];
-
 export const vencanjeAtelierDefaultConfig = {
   template: "vencanje-atelier",
   meta: {
@@ -39,8 +30,8 @@ export const vencanjeAtelierDefaultConfig = {
     description: "Editorial pozivnica — kamen, mastilo, tihi ritam",
   },
   event: {
-    date: "2026-09-05",
-    rsvpDate: "2026-08-05",
+    date: "2027-09-05",
+    rsvpDate: "2027-08-05",
     names: "Nina & Filip",
   },
   theme: {
@@ -203,18 +194,6 @@ export const vencanjeAtelierDefaultConfig = {
             image: IMG.locationB,
           },
         ],
-      },
-    },
-    {
-      id: "ourGallery",
-      name: "Galerija",
-      type: "ourGallery",
-      visible: true,
-      order: 9,
-      data: {
-        title: "Trenuci",
-        description: "Šest kadrova",
-        images: GALLERY.map((url) => ({ url })),
       },
     },
     {

@@ -50,9 +50,7 @@ const InviteText: FC<Props> = ({ section }) => {
         >
           <p className="va-eyebrow mb-5">Poziv</p>
           <div className="va-rule-thin mb-8 ml-0" />
-          <p className="va-body text-lg leading-[1.85] sm:text-xl">
-            {data.description}
-          </p>
+          <p className="va-body">{data.description}</p>
         </motion.div>
       </div>
     </section>

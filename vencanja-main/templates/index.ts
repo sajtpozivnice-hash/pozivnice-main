@@ -177,10 +177,12 @@ export const templates: Record<TemplateKey, TemplatePack> = {
     catalog: {
       title: "Tiha kadulja",
       description:
-        "Quiet luxury 2026 — sage, oat i terracotta. Asimetričan raspored i puno belog prostora.",
+        "Quiet luxury tipografija — sage i oat, bez fotografija. Asimetrija zamenjena tihim, centriranim ritmom.",
       style: "editorial",
       price: 3999,
       featured: true,
+      imageLink:
+        "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787226228/ulyana-tim-AbnCRgL2DNs-unsplash_yhvslu.jpg",
     },
   },
   "vencanje-ink": {

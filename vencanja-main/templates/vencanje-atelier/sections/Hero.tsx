@@ -51,7 +51,7 @@ const Hero: FC<Props> = ({ section, event }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7, delay: 0.35 }}
-          className="mt-6 text-[11px] uppercase tracking-[0.34em] text-white/70"
+          className="mt-6 text-[13px] uppercase tracking-[0.3em] text-white/75 sm:text-sm"
           style={{ fontFamily: "var(--font-secondary)" }}
         >
           {formatDate(date, "DAY_D_MMMM_YYYY")}
