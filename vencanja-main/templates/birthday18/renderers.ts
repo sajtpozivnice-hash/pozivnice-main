@@ -4,7 +4,7 @@ import InviteText from "./sections/InviteText";
 import Countdown from "./sections/Countdown";
 import Locations from "./sections/Locations";
 import Schedule from "./sections/Schedule";
-import OurGallery from "./sections/OurGallery";
+
 import FeatureCards from "./sections/FeatureCards";
 import RSVP from "./sections/RSVP";
 import LoveQuote from "./sections/LoveQuote";
@@ -17,7 +17,7 @@ export const birthday18Renderers: SectionRendererMap = {
   countdown: Countdown,
   locations: Locations,
   schedule: Schedule,
-  ourGallery: OurGallery,
+
   featureCards: FeatureCards,
   rsvp: RSVP,
   loveQuote: LoveQuote,

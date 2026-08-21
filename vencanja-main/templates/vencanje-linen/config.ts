@@ -19,12 +19,7 @@ const IMG = {
     "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787087486/photo-1529636798458-92182e662485_qsfzlr.avif",
 };
 
-const GALLERY = [
-  IMG.hero,
-  IMG.story,
-  IMG.calendar,
-  IMG.schedule,
-];
+
 
 export const vencanjeLinenDefaultConfig: UniversalProjectConfig = {
   template: "vencanje-linen",
@@ -187,18 +182,6 @@ export const vencanjeLinenDefaultConfig: UniversalProjectConfig = {
             image: IMG.locationA,
           },
         ],
-      },
-    },
-    {
-      id: "ourGallery",
-      name: "Galerija",
-      type: "ourGallery",
-      visible: true,
-      order: 9,
-      data: {
-        title: "U kadrovima",
-        description: "Trenuci sakupljeni usput",
-        images: GALLERY.map((url) => ({ url })),
       },
     },
     {

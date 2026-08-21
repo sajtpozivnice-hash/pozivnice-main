@@ -6,7 +6,6 @@ import { ImageUploadSectionEdit } from "./ImageUploadSectionEdit";
 import { InviteTextSectionEdit } from "./InviteTextSectionEdit";
 import { LocationsSectionEdit } from "./LocationsSectionEdit";
 import { LoveQuoteSectionEdit } from "./LoveQuoteSectionEdit";
-import { OurGallerySectionEdit } from "./OurGallerySectionEdit";
 import { OurStorySectionEdit } from "./OurStorySectionEdit";
 import { RSVPSectionEdit } from "./RSVPSectionEdit";
 import { ScheduleSectionEdit } from "./ScheduleSectionEdit";
@@ -46,9 +45,6 @@ const Sections = () => {
       </MasonryItem>
       <MasonryItem>
         <LocationsSectionEdit />
-      </MasonryItem>
-      <MasonryItem>
-        <OurGallerySectionEdit />
       </MasonryItem>
       <MasonryItem>
         <RSVPSectionEdit />

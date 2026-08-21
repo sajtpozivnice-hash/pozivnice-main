@@ -9,7 +9,6 @@ import OurStoryPanel from "./panels/OurStoryPanel";
 import SchedulePanel from "./panels/SchedulePanel";
 import ImagesUpload from "./panels/ImagesUploadPanel";
 import InvitePanel from "./panels/InvitePanel";
-import OurGalleryPanel from "./panels/OurGalleryPanel";
 import RsvpPanel from "./panels/RsvpPanel";
 import FeatureCardsPanel from "./panels/FeatureCardsPanel";
 
@@ -24,7 +23,6 @@ export const panelRegistry: Partial<
   schedule: SchedulePanel,
   loveQuote: LoveQuotePanel,
   locations: LocationsPanel,
-  ourGallery: OurGalleryPanel,
   uploadImagesSection: ImagesUpload,
   rsvp: RsvpPanel,
   footer: FooterPanel,

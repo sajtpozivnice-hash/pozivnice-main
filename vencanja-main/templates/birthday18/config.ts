@@ -17,17 +17,7 @@ const IMG = {
   final:
     "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=2000&q=85",
   upload:
-    "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=1600&q=85",
-  gallery: [
-    "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=900&q=85",
-    "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=700&q=85",
-    "https://images.unsplash.com/photo-1566417713940-ae115709b8c4?auto=format&fit=crop&w=800&q=85",
-    "https://images.unsplash.com/photo-1571266028241-3748309911cd?auto=format&fit=crop&w=900&q=85",
-    "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=700&q=85",
-    "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=800&q=85",
-    "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=700&q=85",
-    "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=85",
-  ],
+    "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=1600&q=85",
 };
 
 export const birthday18DefaultConfig: UniversalProjectConfig = {
@@ -176,18 +166,6 @@ export const birthday18DefaultConfig: UniversalProjectConfig = {
             description: "Trenutak koji nećete zaboraviti.",
           },
         ],
-      },
-    },
-    {
-      id: "ourGallery",
-      name: "Galerija",
-      type: "ourGallery",
-      visible: true,
-      order: 6,
-      data: {
-        title: "ATMOSFERA",
-        description: "Ukus noći — crno, srebro i jak ritam.",
-        images: IMG.gallery.map((url) => ({ url })),
       },
     },
     {

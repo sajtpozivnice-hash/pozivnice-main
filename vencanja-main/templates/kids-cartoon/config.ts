@@ -8,13 +8,7 @@ const IMG = {
   venue:
     "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1200&q=85",
   gifts:
-    "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=900&q=85",
-  gallery: [
-    "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=900&q=85",
-    "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=900&q=85",
-    "https://images.unsplash.com/photo-1519689373023-dd07cfcfed98?auto=format&fit=crop&w=900&q=85",
-    "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=900&q=85",
-  ],
+    "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=900&q=85",
 };
 
 export const kidsCartoonDefaultConfig: UniversalProjectConfig = {
@@ -194,18 +188,6 @@ export const kidsCartoonDefaultConfig: UniversalProjectConfig = {
             image: IMG.venue,
           },
         ],
-      },
-    },
-    {
-      id: "ourGallery",
-      name: "Galerija",
-      type: "ourGallery",
-      visible: true,
-      order: 7,
-      data: {
-        title: "Kadrovi za smeh",
-        description: "Mali uvid u atmosferu",
-        images: IMG.gallery.map((url) => ({ url })),
       },
     },
     {

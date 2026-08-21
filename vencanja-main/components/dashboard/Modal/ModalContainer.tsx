@@ -20,7 +20,6 @@ import FooterSectionModalEdit from "./sections/FooterSectionModalEdit";
 import LocationsSectionEditModal from "./sections/LocationsSectionEditModal";
 import OurStorySectionEditModal from "./sections/OurStorySectionEditModal";
 import ScheduleSectionEditModal from "./sections/ScheduleSectionEditModal";
-import OurGallerySectionEditModal from "./sections/OurGallerySectionEditModal";
 import FeatureCardsSectionEditModal from "./sections/FeatureCardsSectionEditModal";
 import AddBudgetItemModal from "./budget/AddBudgetItemModal";
 import EditBudgetItemModal from "./budget/EditBudgetItemModal";
@@ -83,8 +82,6 @@ const ModalContainer = () => {
         return <OurStorySectionEditModal />;
       case "schedule_edit":
         return <ScheduleSectionEditModal />;
-      case "our_gallery_edit":
-        return <OurGallerySectionEditModal />;
       case "feature_cards_edit":
         return <FeatureCardsSectionEditModal />;
       case "add_budget_item":

@@ -163,37 +163,6 @@ Ako pripremate dečiji rođendan, ista nežna atmosfera radi jednako lepo — sa
       },
     },
     {
-      id: "ourGallery",
-      name: "Galerija",
-      type: "ourGallery",
-      visible: true,
-      order: 9,
-      data: {
-        title: "Trenuci",
-        description: "Mali fragmenti naše priče",
-        images: [
-          {
-            url: "https://images.unsplash.com/photo-1511285560929-80b4566047ec?auto=format&fit=crop&q=80&w=900",
-          },
-          {
-            url: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&q=80&w=900",
-          },
-          {
-            url: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&q=80&w=900",
-          },
-          {
-            url: "https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&q=80&w=900",
-          },
-          {
-            url: "https://images.unsplash.com/photo-1519225421980-715cb0215a07?auto=format&fit=crop&q=80&w=900",
-          },
-          {
-            url: "https://images.unsplash.com/photo-1606800052052-a08af7148863?auto=format&fit=crop&q=80&w=900",
-          },
-        ],
-      },
-    },
-    {
       id: "uploadImagesSection",
       name: "Dodavanje Slika",
       type: "uploadImagesSection",
