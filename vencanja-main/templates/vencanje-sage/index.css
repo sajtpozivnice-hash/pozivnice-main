@@ -14,6 +14,49 @@
   --color-vs-line: rgba(44, 42, 38, 0.12);
 }
 
+[data-template="vencanje-sage"] {
+  /* Theme bridge: editor primary / secondary / background */
+  --color-vs-sage: var(--color-primary, #6b7f6a);
+  --color-vs-ink: var(--color-secondary, #2c2a26);
+  --color-vs-oat: var(--color-background, #f4f0e8);
+  --color-vs-linen: color-mix(in srgb, var(--color-vs-oat) 55%, white);
+  --color-vs-oat-deep: color-mix(
+    in srgb,
+    var(--color-vs-oat) 88%,
+    var(--color-vs-ink)
+  );
+  --color-vs-sage-tint: color-mix(
+    in srgb,
+    var(--color-vs-sage) 14%,
+    var(--color-vs-linen)
+  );
+  --color-vs-sage-soft: color-mix(
+    in srgb,
+    var(--color-vs-sage) 28%,
+    var(--color-vs-oat)
+  );
+  --color-vs-terracotta: color-mix(
+    in srgb,
+    var(--color-vs-sage) 35%,
+    #c0764f
+  );
+  --color-vs-ink-soft: color-mix(
+    in srgb,
+    var(--color-vs-ink) 72%,
+    var(--color-vs-oat)
+  );
+  --color-vs-muted: color-mix(
+    in srgb,
+    var(--color-vs-ink) 42%,
+    var(--color-vs-oat)
+  );
+  --color-vs-line: color-mix(in srgb, var(--color-vs-ink) 12%, transparent);
+
+  background-color: var(--color-vs-oat);
+  color: var(--color-vs-ink);
+  overflow-x: hidden;
+}
+
 @layer components {
   .vs-section {
     @apply relative w-full overflow-hidden px-5 py-20 sm:px-8 sm:py-28 lg:px-14 lg:py-36;
@@ -59,7 +102,12 @@
   }
 
   .vs-fallback {
-    background: linear-gradient(150deg, #f3ede3 0%, #e2e7db 52%, #d3ddcc 100%);
+    background: linear-gradient(
+      150deg,
+      color-mix(in srgb, var(--color-vs-oat) 80%, white) 0%,
+      var(--color-vs-sage-tint) 52%,
+      var(--color-vs-sage-soft) 100%
+    );
   }
 
   .vs-input {

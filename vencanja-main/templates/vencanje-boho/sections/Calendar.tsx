@@ -76,7 +76,7 @@ const Calendar: FC<Props> = ({ section, event }) => {
                 key={`${day.date.toISOString()}-${index}`}
                 className={`flex aspect-square items-center justify-center rounded-full text-sm tabular-nums ${
                   day.isEventDay
-                    ? "bg-[var(--color-vb-clay)] text-[var(--color-vb-sand)]"
+                    ? "bg-[var(--color-vb-ink)] text-[var(--color-vb-sand)]"
                     : day.currentMonth
                       ? "text-[var(--color-vb-ink)]"
                       : "text-[var(--color-vb-muted)] opacity-40"

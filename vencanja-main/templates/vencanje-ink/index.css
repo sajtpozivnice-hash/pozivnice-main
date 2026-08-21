@@ -12,6 +12,27 @@
 }
 
 [data-template="vencanje-ink"] {
+  /* Theme bridge: editor primary / secondary / background */
+  --color-vi-ink: var(--color-primary, #111111);
+  --color-vi-body: var(--color-secondary, #33302c);
+  --color-vi-paper: var(--color-background, #f5f1ea);
+  --color-vi-ink-soft: color-mix(
+    in srgb,
+    var(--color-vi-ink) 88%,
+    var(--color-vi-paper)
+  );
+  --color-vi-paper-deep: color-mix(
+    in srgb,
+    var(--color-vi-paper) 88%,
+    var(--color-vi-ink)
+  );
+  --color-vi-muted: color-mix(
+    in srgb,
+    var(--color-vi-body) 48%,
+    var(--color-vi-paper)
+  );
+  --color-vi-line: color-mix(in srgb, var(--color-vi-ink) 16%, transparent);
+
   background-color: var(--color-vi-paper);
   color: var(--color-vi-ink-soft);
   overflow-x: hidden;

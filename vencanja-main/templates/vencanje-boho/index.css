@@ -1,40 +1,39 @@
-/* vencanje-boho — earthy terracotta + sage, script-led, no photography */
+/* vencanje-boho — soft two-tone: dusty clay + warm ink on derived paper */
 @import "tailwindcss";
 
 @theme {
-  --color-vb-sand: #f3ebe0;
-  --color-vb-sand-deep: #e8ddd0;
-  --color-vb-ink: #4a3f36;
-  --color-vb-ink-soft: #6b5e52;
-  --color-vb-muted: #9a8b7c;
-  --color-vb-clay: #c56a4a;
-  --color-vb-sage: #8b9a7e;
-  --color-vb-line: rgba(74, 63, 54, 0.12);
+  --color-vb-sand: #f7f2ec;
+  --color-vb-sand-deep: #efe7de;
+  --color-vb-ink: #6a5f55;
+  --color-vb-ink-soft: #7d7268;
+  --color-vb-muted: #9a9086;
+  --color-vb-clay: #b8957a;
+  --color-vb-line: rgba(106, 95, 85, 0.12);
 }
 
 [data-template="vencanje-boho"] {
-  --color-vb-clay: var(--color-primary, #c56a4a);
-  --color-vb-ink: var(--color-secondary, #4a3f36);
-  --color-vb-sand: var(--color-background, #f3ebe0);
+  /* Primary = accent (clay), secondary = ink — paper derives from both */
+  --color-vb-clay: var(--color-primary, #b8957a);
+  --color-vb-ink: var(--color-secondary, #6a5f55);
+  --color-vb-sand: color-mix(
+    in srgb,
+    var(--color-vb-clay) 7%,
+    color-mix(in srgb, var(--color-vb-ink) 4%, #faf7f3)
+  );
   --color-vb-sand-deep: color-mix(
     in srgb,
-    var(--color-vb-sand) 84%,
+    var(--color-vb-sand) 88%,
     var(--color-vb-ink)
   );
   --color-vb-ink-soft: color-mix(
     in srgb,
-    var(--color-vb-ink) 70%,
+    var(--color-vb-ink) 72%,
     var(--color-vb-sand)
   );
   --color-vb-muted: color-mix(
     in srgb,
-    var(--color-vb-ink) 42%,
+    var(--color-vb-ink) 38%,
     var(--color-vb-sand)
-  );
-  --color-vb-sage: color-mix(
-    in srgb,
-    var(--color-vb-clay) 18%,
-    #8b9a7e
   );
   --color-vb-line: color-mix(in srgb, var(--color-vb-ink) 12%, transparent);
 
@@ -62,7 +61,7 @@
 
   .vb-kicker {
     @apply text-[11px] uppercase tracking-[0.36em];
-    color: var(--color-vb-sage);
+    color: var(--color-vb-muted);
     font-family: var(--font-secondary);
     font-weight: 500;
   }
@@ -109,12 +108,13 @@
   .vb-arch {
     @apply mx-auto h-10 w-20 border-t-2 border-l-2 border-r-2 rounded-t-full;
     border-color: var(--color-vb-clay);
-    opacity: 0.7;
+    opacity: 0.55;
   }
 
   .vb-wave {
     @apply mx-auto block h-6 w-40;
-    color: var(--color-vb-sage);
+    color: var(--color-vb-clay);
+    opacity: 0.65;
   }
 
   .vb-dot-row {
@@ -124,20 +124,21 @@
   .vb-dot {
     @apply h-1.5 w-1.5 rounded-full;
     background: var(--color-vb-clay);
+    opacity: 0.7;
   }
 
-  /* Hero — soft sand field + script names */
+  /* Hero — soft paper + faint clay wash */
   .vb-hero {
     @apply relative flex min-h-[100svh] w-full flex-col items-center justify-center px-5 py-24 text-center sm:px-8;
     background:
       radial-gradient(
         ellipse 70% 50% at 50% 35%,
-        color-mix(in srgb, var(--color-vb-clay) 10%, transparent),
+        color-mix(in srgb, var(--color-vb-clay) 12%, transparent),
         transparent 70%
       ),
       radial-gradient(
         ellipse 50% 40% at 80% 80%,
-        color-mix(in srgb, var(--color-vb-sage) 12%, transparent),
+        color-mix(in srgb, var(--color-vb-ink) 5%, transparent),
         transparent 65%
       ),
       var(--color-vb-sand);
@@ -150,7 +151,7 @@
 
   .vb-count-cell {
     @apply flex flex-col items-center rounded-[1.5rem] px-2 py-5 sm:py-6;
-    background: color-mix(in srgb, var(--color-vb-sand-deep) 80%, white);
+    background: color-mix(in srgb, var(--color-vb-sand-deep) 70%, white);
   }
 
   .vb-count-num {
@@ -171,7 +172,7 @@
   /* Schedule — soft stacked cards */
   .vb-flow-item {
     @apply relative rounded-[1.75rem] px-6 py-7 sm:px-8;
-    background: color-mix(in srgb, var(--color-vb-sand-deep) 55%, white);
+    background: color-mix(in srgb, var(--color-vb-sand-deep) 50%, white);
   }
 
   /* Locations */
@@ -181,8 +182,14 @@
 
   .vb-loc-card {
     @apply rounded-[2rem] px-6 py-8 text-center sm:px-8;
-    background: color-mix(in srgb, var(--color-vb-sand-deep) 60%, white);
-    border: 1px solid color-mix(in srgb, var(--color-vb-sage) 35%, transparent);
+    background: color-mix(in srgb, var(--color-vb-sand-deep) 55%, white);
+    border: 1px solid color-mix(in srgb, var(--color-vb-clay) 22%, transparent);
+  }
+
+  /* Soft quote band — tinted paper, not a solid accent block */
+  .vb-quote-band {
+    background: color-mix(in srgb, var(--color-vb-clay) 14%, var(--color-vb-sand));
+    color: var(--color-vb-ink);
   }
 
   /* Forms */
@@ -197,7 +204,7 @@
     border-color: var(--color-vb-line);
     color: var(--color-vb-ink);
     font-family: var(--font-secondary);
-    background: color-mix(in srgb, white 55%, var(--color-vb-sand));
+    background: color-mix(in srgb, white 60%, var(--color-vb-sand));
   }
 
   .vb-input:focus {
@@ -206,27 +213,27 @@
 
   .vb-choice {
     @apply rounded-full border px-4 py-3.5 text-center text-[11px] uppercase tracking-[0.24em] transition;
-    border-color: color-mix(in srgb, var(--color-vb-sage) 45%, transparent);
+    border-color: color-mix(in srgb, var(--color-vb-ink) 22%, transparent);
     color: var(--color-vb-ink);
     font-family: var(--font-secondary);
   }
 
   .peer:checked + .vb-choice {
-    background: var(--color-vb-clay);
-    border-color: var(--color-vb-clay);
+    background: var(--color-vb-ink);
+    border-color: var(--color-vb-ink);
     color: var(--color-vb-sand);
   }
 
   .vb-btn {
     @apply inline-flex cursor-pointer items-center justify-center rounded-full px-8 py-3.5 text-[11px] font-medium uppercase tracking-[0.28em] transition disabled:cursor-wait disabled:opacity-55;
-    background: var(--color-vb-clay);
+    background: var(--color-vb-ink);
     color: var(--color-vb-sand);
     font-family: var(--font-secondary);
   }
 
   .vb-btn-ghost {
     @apply inline-flex cursor-pointer items-center justify-center rounded-full border px-8 py-3.5 text-[11px] font-medium uppercase tracking-[0.28em] transition;
-    border-color: var(--color-vb-sage);
+    border-color: color-mix(in srgb, var(--color-vb-ink) 28%, transparent);
     color: var(--color-vb-ink);
     font-family: var(--font-secondary);
     background: transparent;

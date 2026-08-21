@@ -17,11 +17,7 @@ const LoveQuote: FC<Props> = ({ section }) => {
   return (
     <section
       id={id}
-      className="relative w-full overflow-hidden px-5 py-20 sm:px-8 sm:py-28"
-      style={{
-        background: "var(--color-vb-clay)",
-        color: "var(--color-vb-sand)",
-      }}
+      className="vb-quote-band relative w-full overflow-hidden px-5 py-20 sm:px-8 sm:py-28"
     >
       <motion.figure
         initial={{ opacity: 0, y: 18 }}
@@ -30,20 +26,13 @@ const LoveQuote: FC<Props> = ({ section }) => {
         transition={{ duration: 0.9 }}
         className="vb-shell text-center"
       >
-        <div
-          className="vb-arch mx-auto opacity-90"
-          style={{ borderColor: "var(--color-vb-sand)" }}
-        />
+        <div className="vb-arch mx-auto" />
         <blockquote className="vb-script-sm mt-10 text-[clamp(2rem,5.5vw,3.25rem)]">
           {data.title}
         </blockquote>
         {data.description ? (
           <figcaption
-            className="mt-8 text-[12px] uppercase tracking-[0.32em]"
-            style={{
-              fontFamily: "var(--font-secondary)",
-              opacity: 0.85,
-            }}
+            className="vb-meta mt-8 tracking-[0.32em]"
           >
             — {data.description}
           </figcaption>

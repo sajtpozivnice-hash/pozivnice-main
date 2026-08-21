@@ -4,7 +4,7 @@ export const vencanjeBohoDefaultConfig = {
   template: "vencanje-boho",
   meta: {
     title: "Mila & Luka — Boho pozivnica",
-    description: "Terracotta, sage i script — zemljani boho, bez fotografija",
+    description: "Dve meke boje — prašnjavi clay i toplo mastilo, bez fotografija",
   },
   event: {
     date: "2027-07-24",
@@ -19,17 +19,13 @@ export const vencanjeBohoDefaultConfig = {
     colors: {
       base: {
         primary: {
-          name: "Terracotta",
-          value: "#C56A4A",
+          name: "Prašnjavi clay",
+          value: "#B8957A",
         },
         secondary: {
-          name: "Toplo braon",
-          value: "#4A3F36",
+          name: "Toplo mastilo",
+          value: "#6A5F55",
         },
-      },
-      background: {
-        name: "Pesak",
-        value: "#F3EBE0",
       },
     },
   },
@@ -102,27 +98,15 @@ export const vencanjeBohoDefaultConfig = {
         items: [
           {
             id: "1",
-            time: "15:00",
-            title: "Okupljanje",
-            description: "Osveženje i lagani razgovori",
+            time: "16:00",
+            title: "Crkveno venčanje",
+            description: "Svečani čin venčanja u crkvi",
           },
           {
             id: "2",
-            time: "16:00",
-            title: "Ceremonija",
-            description: "Zakletve na otvorenom",
-          },
-          {
-            id: "3",
             time: "18:00",
-            title: "Večera",
-            description: "Dugi stolovi, deljena jela",
-          },
-          {
-            id: "4",
-            time: "21:00",
-            title: "Ples",
-            description: "Bosih nogu do zore",
+            title: "Skup gostiju u sali",
+            description: "Doček, večera i slavlje",
           },
         ],
       },
@@ -150,17 +134,17 @@ export const vencanjeBohoDefaultConfig = {
         cards: [
           {
             id: 1,
-            title: "Ceremonija",
+            title: "Crkveno venčanje",
             time: "16:00",
-            location: "Vinograd Sunčeva dolina",
-            text: "Dolazak petnaest minuta ranije. Udobna obuća.",
+            location: "Crkva Svetog Marka, Beograd",
+            text: "Molimo Vas da stignete petnaest minuta ranije.",
           },
           {
             id: 2,
-            title: "Proslava",
+            title: "Skup gostiju u sali",
             time: "18:00",
-            location: "Isti vinograd — bašta",
-            text: "Večera i ples pod svetlima.",
+            location: "Restoran Sunčeva dolina",
+            text: "Doček, večera i ples.",
           },
         ],
       },

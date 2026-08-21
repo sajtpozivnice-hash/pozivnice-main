@@ -13,6 +13,28 @@
 }
 
 [data-template="vencanje-atelier"] {
+  /* Theme bridge: editor primary / secondary / background */
+  --color-va-accent: var(--color-primary, #9a8b7a);
+  --color-va-ink: var(--color-secondary, #1c1917);
+  --color-va-stone: var(--color-background, #f2efe9);
+  --color-va-stone-deep: color-mix(
+    in srgb,
+    var(--color-va-stone) 86%,
+    var(--color-va-ink)
+  );
+  --color-va-paper: color-mix(in srgb, var(--color-va-stone) 55%, white);
+  --color-va-ink-soft: color-mix(
+    in srgb,
+    var(--color-va-ink) 72%,
+    var(--color-va-stone)
+  );
+  --color-va-muted: color-mix(
+    in srgb,
+    var(--color-va-ink) 42%,
+    var(--color-va-stone)
+  );
+  --color-va-line: color-mix(in srgb, var(--color-va-ink) 12%, transparent);
+
   background-color: var(--color-va-stone);
   color: var(--color-va-ink);
   overflow-x: hidden;
