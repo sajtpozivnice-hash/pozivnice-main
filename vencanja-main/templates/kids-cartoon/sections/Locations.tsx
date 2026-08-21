@@ -23,7 +23,7 @@ const Locations: FC<Props> = ({ section }) => {
           <h2 className="kcart-heading">{data.title}</h2>
         </div>
 
-        <div className="mx-auto grid max-w-4xl gap-5 md:grid-cols-2">
+        <div className="mx-auto flex max-w-4xl flex-wrap justify-center gap-5">
           {cards.map((card, index) => (
             <motion.article
               key={card.id}
@@ -31,7 +31,7 @@ const Locations: FC<Props> = ({ section }) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.08 }}
-              className="kcart-panel overflow-hidden"
+              className="kcart-panel w-full max-w-lg overflow-hidden"
             >
               {card.image ? (
                 <div className="aspect-[16/10] border-b-[3.5px] border-[var(--color-kcart-ink)]">

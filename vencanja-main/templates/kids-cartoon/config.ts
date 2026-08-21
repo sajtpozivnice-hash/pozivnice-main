@@ -1,14 +1,13 @@
 import { UniversalProjectConfig } from "@/types/config";
 
 const IMG = {
-  hero: "https://images.unsplash.com/photo-1519689373023-dd07cfcfed98?auto=format&fit=crop&w=1400&q=85",
+  hero: "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787324323/wang-binghua-zSvkokr_yw0-unsplash_qz1ao3.jpg",
   party:
-    "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=1200&q=85",
-  cake: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=1200&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023489/photo-1530103862676-de8c9debad1d_rxuitz.avif",
+  cake: "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787324433/photo-1464349095431-e9a21285b5f3_p9xkdl.avif",
   venue:
-    "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1200&q=85",
-  gifts:
-    "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=900&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787324719/pexels-helenalopes-10336820_oglw0q.jpg",
+
 };
 
 export const kidsCartoonDefaultConfig: UniversalProjectConfig = {
@@ -143,7 +142,6 @@ export const kidsCartoonDefaultConfig: UniversalProjectConfig = {
               "Ako želite poklon — knjige, kocke i male avanture su hit.",
             icon: "gift",
             accent: "#FF6B4A",
-            image: IMG.gifts,
           },
           {
             id: "2",

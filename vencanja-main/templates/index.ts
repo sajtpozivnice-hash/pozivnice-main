@@ -496,7 +496,7 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       price: 3999,
       featured: true,
       imageLink:
-        "https://images.unsplash.com/photo-1519689373023-dd07cfcfed98?auto=format&fit=crop&w=1200&q=80",
+        "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787324323/wang-binghua-zSvkokr_yw0-unsplash_qz1ao3.jpg",
     },
   },
   "krstenje-classic": {
