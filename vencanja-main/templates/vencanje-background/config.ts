@@ -1,6 +1,6 @@
 import { UniversalProjectConfig } from "@/types/config";
 
-/** Royalty-free Unsplash images — only in config, never in components */
+/** Demo images — Cloudinary only */
 const IMG = {
   sharedBackground:
     "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787067139/alvin-mahmudov-NSVJAAXOYHs-unsplash_szart3.jpg",
@@ -42,8 +42,7 @@ export const vencanjeBackgroundDefaultConfig: UniversalProjectConfig = {
         },
       },
     },
-    backgroundImage:
-      "https://images.unsplash.com/photo-1511285560929-80b4566047ec?auto=format&fit=crop&w=2400&q=85",
+    backgroundImage: IMG.sharedBackground,
   },
   sections: [
     {
