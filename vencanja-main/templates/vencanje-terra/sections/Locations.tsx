@@ -64,7 +64,7 @@ const Locations: FC<Props> = ({ section, theme }) => {
         <div className="grid gap-8 md:grid-cols-2">
           {cards.map((card, index) => (
             <motion.article
-              key={card.id}
+              key={`location-${card.id ?? "x"}-${index}`}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -78,19 +78,19 @@ const Locations: FC<Props> = ({ section, theme }) => {
               />
               <div className="px-6 py-8 sm:px-8">
                 <p
-                  className="text-[10px] uppercase tracking-[0.36em]"
+                  className="text-xs uppercase tracking-[0.32em] sm:text-sm"
                   style={{ color: accent }}
                 >
                   {card.time}
                 </p>
                 <h3
-                  className="mt-3 text-2xl sm:text-3xl"
+                  className="mt-3 text-3xl sm:text-4xl"
                   style={{ fontFamily: "var(--font-primary)", color: ink }}
                 >
                   {card.title}
                 </h3>
                 {card.location ? (
-                  <p className="mt-3 text-sm tracking-[0.06em] text-vt-ink-soft">
+                  <p className="mt-3 text-base tracking-[0.06em] text-vt-ink-soft sm:text-lg">
                     {card.location}
                   </p>
                 ) : null}

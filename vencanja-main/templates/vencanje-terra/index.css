@@ -14,6 +14,37 @@
 }
 
 [data-template="vencanje-terra"] {
+  /* Theme bridge: editor primary / secondary / ternary / background */
+  --color-vt-terracotta: var(--color-primary, #c45c26);
+  --color-vt-ink: var(--color-secondary, #3d3429);
+  --color-vt-olive: var(--color-ternary, #5c6b4a);
+  --color-vt-sand: var(--color-background, #ede4d7);
+  --color-vt-cream: color-mix(
+    in srgb,
+    var(--color-vt-sand) 72%,
+    white
+  );
+  --color-vt-ink-soft: color-mix(
+    in srgb,
+    var(--color-vt-ink) 78%,
+    var(--color-vt-sand)
+  );
+  --color-vt-muted: color-mix(
+    in srgb,
+    var(--color-vt-ink) 48%,
+    var(--color-vt-sand)
+  );
+  --color-vt-olive-soft: color-mix(
+    in srgb,
+    var(--color-vt-olive) 28%,
+    var(--color-vt-sand)
+  );
+  --color-vt-line: color-mix(
+    in srgb,
+    var(--color-vt-ink) 14%,
+    transparent
+  );
+
   background-color: var(--color-vt-sand);
   color: var(--color-vt-ink-soft);
   overflow-x: hidden;
@@ -29,7 +60,7 @@
   }
 
   .vt-eyebrow {
-    @apply text-[10px] font-medium uppercase tracking-[0.42em] text-vt-muted;
+    @apply text-[13px] font-medium uppercase tracking-[0.36em] text-vt-muted sm:text-sm;
     font-family: var(--font-secondary);
   }
 
@@ -39,7 +70,7 @@
   }
 
   .vt-body {
-    @apply text-[15px] leading-[1.85] text-vt-ink-soft sm:text-lg;
+    @apply text-[17px] leading-[1.85] text-vt-ink-soft sm:text-xl;
     font-family: var(--font-secondary);
   }
 
@@ -52,11 +83,16 @@
   }
 
   .vt-fallback {
-    background: linear-gradient(145deg, #f7f1e8 0%, #ede4d7 45%, #d8dfd0 100%);
+    background: linear-gradient(
+      145deg,
+      var(--color-vt-cream) 0%,
+      var(--color-vt-sand) 45%,
+      var(--color-vt-olive-soft) 100%
+    );
   }
 
   .vt-input {
-    @apply w-full rounded-2xl border border-vt-line bg-vt-cream px-4 py-3.5 text-[15px] text-vt-ink outline-none transition placeholder:text-vt-muted/55 focus:border-vt-terracotta;
+    @apply w-full rounded-2xl border border-vt-line bg-vt-cream px-4 py-3.5 text-[17px] text-vt-ink outline-none transition placeholder:text-vt-muted/55 focus:border-vt-terracotta;
     font-family: var(--font-secondary);
   }
 

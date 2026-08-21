@@ -62,7 +62,7 @@ const Hero: FC<Props> = ({ section, event, theme }) => {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.4 }}
-        className="mt-5 text-center text-sm uppercase tracking-[0.32em] text-vt-ink-soft"
+        className="mt-5 text-center text-base uppercase tracking-[0.32em] text-vt-ink-soft"
         style={{ fontFamily: "var(--font-secondary)" }}
       >
         {formatDate(date, "DAY_D_MMMM_YYYY")}
@@ -73,7 +73,7 @@ const Hero: FC<Props> = ({ section, event, theme }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.55 }}
-          className="mt-6 max-w-sm text-center text-lg italic text-vt-muted"
+          className="mt-6 max-w-sm text-center text-xl italic text-vt-muted"
           style={{ fontFamily: "var(--font-primary)" }}
         >
           {data.title}

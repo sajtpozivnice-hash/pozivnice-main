@@ -1,38 +1,31 @@
 import { UniversalProjectConfig } from "@/types/config";
 
 const IMG = {
-  hero: "https://images.unsplash.com/photo-1721635513009-4bd5d277c437?auto=format&fit=crop&w=2000&q=85",
+  hero: "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787146696/photo-1721635513009-4bd5d277c437_zhohbj.avif",
   story:
-    "https://images.unsplash.com/photo-1537633552985-cf699e1542d0?auto=format&fit=crop&w=1600&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787311758/heather-mount-8c3zjKrkkBA-unsplash_kctdj0.jpg",
   invite:
-    "https://images.unsplash.com/photo-1510076857177-7470076d4098?auto=format&fit=crop&w=1600&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787146655/photo-1510076857177-7470076d4098_srlt0i.avif",
   calendar:
-    "https://images.unsplash.com/photo-1460978812857-470ed1c77af0?auto=format&fit=crop&w=1600&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787146485/hisu-lee-FTW8ADj5igs-unsplash_vwsxdb.jpg",
   schedule:
-    "https://images.unsplash.com/photo-1502635385003-ee052e304ee8?auto=format&fit=crop&w=1600&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787300923/markus-spiske-9Qv774YDKbA-unsplash_dfgzyk.jpg",
   quote:
-    "https://images.unsplash.com/photo-1606216794074-7417dc8b62a0?auto=format&fit=crop&w=1600&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787226825/photo-1545232979-8bf68ee9b1af_1_c8gpgy.avif",
   locationA:
-    "https://images.unsplash.com/photo-1494951334922-3a4b05f9d350?auto=format&fit=crop&w=1200&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787300845/david-goldman-wPoydPieDUI-unsplash_mijg17.jpg",
+    locationC:
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787312096/jeremy-wong-weddings-YyvpmN6PB3I-unsplash_slaylp.jpg",
   locationB:
-    "https://images.unsplash.com/photo-1545232979-8bf68ee9b1af?auto=format&fit=crop&w=1200&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787311996/raspopova-marina-NWsG6pcsxt4-unsplash_bng1h7.jpg",
   locationsBg:
-    "https://images.unsplash.com/photo-1502635385003-ee052e304ee8?auto=format&fit=crop&w=1600&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787311946/engin-akyurt-3IN8pjVpDw0_wgstac.jpg",
   upload:
-    "https://images.unsplash.com/photo-1510076857177-7470076d4098?auto=format&fit=crop&w=1600&q=85",
-  rsvp: "https://images.unsplash.com/photo-1460978812857-470ed1c77af0?auto=format&fit=crop&w=1600&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787146655/photo-1510076857177-7470076d4098_srlt0i.avif",
+  rsvp: "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787300845/david-goldman-wPoydPieDUI-unsplash_mijg17.jpg",
   footer:
-    "https://images.unsplash.com/photo-1721635513009-4bd5d277c437?auto=format&fit=crop&w=2000&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787146696/photo-1721635513009-4bd5d277c437_zhohbj.avif",
 };
-
-const GALLERY = [
-  IMG.hero,
-  IMG.story,
-  IMG.invite,
-  IMG.calendar,
-  IMG.schedule,
-  IMG.quote,
-];
 
 export const vencanjeTerraDefaultConfig: UniversalProjectConfig = {
   template: "vencanje-terra",
@@ -42,8 +35,8 @@ export const vencanjeTerraDefaultConfig: UniversalProjectConfig = {
       "Mediteranska pozivnica u tonovima terakote, peska i masline",
   },
   event: {
-    date: "2026-09-19",
-    rsvpDate: "2026-08-20",
+    date: "2027-09-19",
+    rsvpDate: "2027-08-20",
     names: "Sara & Petar",
   },
   theme: {
@@ -155,27 +148,27 @@ export const vencanjeTerraDefaultConfig: UniversalProjectConfig = {
           },
           {
             id: "2",
-            time: "16:30",
-            title: "Ceremonija",
-            description: "Zavet pod starim maslinama, uz tihu muziku.",
+            time: "16:00",
+            title: "Crkveno Vencanje",
+            description: "Svecani cin vencanja u crkvi.",
           },
           {
             id: "3",
-            time: "18:00",
-            title: "Koktel i fotografije",
-            description: "Zalazak sunca je najbolji fotograf.",
+            time: "17:00",
+            title: "Gradjansko vencanje",
+            description: "Vencanje u kamenoj sali.",
           },
           {
             id: "4",
-            time: "19:30",
-            title: "Večera",
-            description: "Dugi stolovi, domaća jela i zdravice.",
+            time: "17:30",
+            title: "Prvi ples",
+            description: "Ples sa nama.",
           },
           {
             id: "5",
             time: "22:00",
-            title: "Prvi ples",
-            description: "A onda muzika do jutra.",
+            title: "Torta",
+            description: "Sladak završetak dana.",
           },
         ],
       },
@@ -207,16 +200,24 @@ export const vencanjeTerraDefaultConfig: UniversalProjectConfig = {
         cards: [
           {
             id: 1,
-            title: "Ceremonija",
-            time: "16:30",
+            title: "Crkveno vencanje",
+            time: "16:00",
+            location: "Crkva Svetog Marka, Bulevar Kralja Aleksandra 17",
+            text: "Svecani cin vencanja u crkvi.",
+            image: IMG.locationC,
+          },
+          {
+            id: 2,
+            title: "Gradjansko vencanje",
+            time: "17:00",
             location: "Vrt imanja Terra, Fruška gora",
             text: "Otvoreni vrt sa maslinama i lavandom. Preporučujemo ravnije cipele — staza je posuta šljunkom.",
             image: IMG.locationA,
           },
           {
-            id: 2,
+            id: 3,
             title: "Proslava",
-            time: "19:30",
+            time: "17:30",
             location: "Kamena sala imanja, isto dvorište",
             text: "Večera i ples u sali sa dugim stolovima i svećama. Parking je u okviru imanja.",
             image: IMG.locationB,
@@ -225,23 +226,11 @@ export const vencanjeTerraDefaultConfig: UniversalProjectConfig = {
       },
     },
     {
-      id: "ourGallery",
-      name: "Galerija",
-      type: "ourGallery",
-      visible: true,
-      order: 9,
-      data: {
-        title: "Naši kadrovi",
-        description: "Nekoliko trenutaka koje smo usput sačuvali.",
-        images: GALLERY.map((url) => ({ url })),
-      },
-    },
-    {
       id: "uploadImagesSection",
       name: "Dodavanje Slika",
       type: "uploadImagesSection",
       visible: true,
-      order: 10,
+      order: 9,
       data: {
         title: "Podelite svoj kadar",
         subtitle: "Galerija gostiju",
@@ -256,7 +245,7 @@ export const vencanjeTerraDefaultConfig: UniversalProjectConfig = {
       name: "Potvrda Prisutnosti",
       type: "rsvp",
       visible: true,
-      order: 11,
+      order: 10,
       data: {
         title: "Javite nam da li dolazite",
         description: "Molimo Vas da potvrdite dolazak do ",
@@ -271,7 +260,7 @@ export const vencanjeTerraDefaultConfig: UniversalProjectConfig = {
       name: "Završna poruka",
       type: "footer",
       visible: true,
-      order: 12,
+      order: 11,
       data: {
         title: "Hvala što ste deo naše priče.",
         subtitle: "Vidimo se u septembru.",

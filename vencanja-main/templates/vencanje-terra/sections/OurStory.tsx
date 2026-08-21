@@ -57,7 +57,7 @@ const OurStory: FC<Props> = ({ section, theme }) => {
 
           {data.subtitle ? (
             <p
-              className="mt-5 text-lg italic text-vt-muted"
+              className="mt-5 text-xl italic text-vt-muted"
               style={{ fontFamily: "var(--font-primary)" }}
             >
               {data.subtitle}
@@ -67,7 +67,7 @@ const OurStory: FC<Props> = ({ section, theme }) => {
           <div className="mt-9 space-y-5">
             {paragraphs.map((paragraph, index) => (
               <motion.p
-                key={paragraph.slice(0, 24)}
+                key={`story-p-${index}`}
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

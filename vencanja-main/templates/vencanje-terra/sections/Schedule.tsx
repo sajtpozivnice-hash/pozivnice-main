@@ -70,7 +70,7 @@ const Schedule: FC<Props> = ({ section, theme }) => {
             <ul className="space-y-4">
               {items.map((item, index) => (
                 <motion.li
-                  key={item.id}
+                  key={`schedule-${item.id ?? "x"}-${index}`}
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -78,14 +78,14 @@ const Schedule: FC<Props> = ({ section, theme }) => {
                   className="vt-soft flex flex-col gap-3 border border-vt-line bg-vt-sand px-6 py-6 sm:flex-row sm:items-start sm:gap-8 sm:px-8"
                 >
                   <span
-                    className="shrink-0 text-sm uppercase tracking-[0.28em]"
+                    className="shrink-0 text-base uppercase tracking-[0.28em]"
                     style={{ color: accent }}
                   >
                     {item.time}
                   </span>
                   <div>
                     <h3
-                      className="text-xl sm:text-2xl"
+                      className="text-2xl sm:text-3xl"
                       style={{
                         fontFamily: "var(--font-primary)",
                         color: ink,

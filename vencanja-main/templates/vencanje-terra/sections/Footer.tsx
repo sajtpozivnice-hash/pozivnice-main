@@ -45,7 +45,7 @@ const Footer: FC<Props> = ({ section, event, theme }) => {
         </p>
 
         <h2
-          className="mt-8 text-2xl leading-snug text-vt-cream sm:text-3xl"
+          className="mt-8 text-3xl leading-snug text-vt-cream sm:text-4xl"
           style={{ fontFamily: "var(--font-primary)" }}
         >
           {data.title}

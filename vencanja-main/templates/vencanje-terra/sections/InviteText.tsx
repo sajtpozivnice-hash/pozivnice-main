@@ -52,14 +52,14 @@ const InviteText: FC<Props> = ({ section, event, theme }) => {
           <div className="space-y-5">
             {paragraphs.map((paragraph, index) => (
               <motion.p
-                key={paragraph.slice(0, 24)}
+                key={`invite-p-${index}`}
                 initial={{ opacity: 0, y: 14 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.08, duration: 0.55 }}
                 className={
                   index === 0
-                    ? "text-xl leading-[1.7] sm:text-2xl"
+                    ? "text-2xl leading-[1.7] sm:text-3xl"
                     : "vt-body text-vt-muted"
                 }
                 style={

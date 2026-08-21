@@ -48,18 +48,18 @@ const Calendar: FC<Props> = ({ section, event, theme }) => {
                 </span>
                 <div className="pb-2">
                   <p
-                    className="text-2xl capitalize leading-none sm:text-3xl"
+                    className="text-3xl capitalize leading-none sm:text-4xl"
                     style={{ fontFamily: "var(--font-primary)", color: ink }}
                   >
                     {formatDate(event.date, "MMMM")}
                   </p>
-                  <p className="mt-3 text-sm uppercase tracking-[0.36em] text-vt-muted">
+                  <p className="mt-3 text-base uppercase tracking-[0.36em] text-vt-muted">
                     {year}
                   </p>
                 </div>
               </div>
 
-              <p className="mt-8 text-sm capitalize tracking-[0.2em] text-vt-ink-soft">
+              <p className="mt-8 text-base capitalize tracking-[0.2em] text-vt-ink-soft">
                 {weekday}
               </p>
 
