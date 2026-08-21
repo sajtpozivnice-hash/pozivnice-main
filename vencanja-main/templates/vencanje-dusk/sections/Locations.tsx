@@ -49,14 +49,14 @@ const Locations: FC<Props> = ({ section }) => {
                 <p className="vd-eyebrow">{card.subtitle || "Scena"}</p>
                 <h3 className="vd-title vd-title--sm">{card.title}</h3>
                 {card.time ? (
-                  <p className="vd-place__row">
-                    <Clock className="h-4 w-4 shrink-0" />
+                  <p className="vd-place__time">
+                    <Clock className="shrink-0" />
                     {card.time}
                   </p>
                 ) : null}
                 {card.location ? (
                   <p className="vd-place__row">
-                    <MapPin className="h-4 w-4 shrink-0" />
+                    <MapPin className="h-5 w-5 shrink-0" />
                     {card.location}
                   </p>
                 ) : null}

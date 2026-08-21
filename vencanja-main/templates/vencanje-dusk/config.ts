@@ -1,29 +1,22 @@
 import { UniversalProjectConfig } from "@/types/config";
 
-/** Royalty-free Unsplash images — only in config, never in components */
 const IMG = {
-  hero: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=2000&q=85",
+  hero: "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787300802/veikko-venemies-RtFSn0I2zi8-unsplash_f7rdgt.jpg",
   story:
-    "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1600&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787300643/vows-on-the-move-p0vZplFhKYI-unsplash_lcpgj5.jpg",
+    story2:
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787300738/abdul-gani-m-DJ_kZaITX78-unsplash_iexmed.jpg",
   invite:
-    "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85",
-  calendar:
-    "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1600&q=85",
-  schedule:
-    "https://images.unsplash.com/photo-1492684223066-81342ee5ff7c?auto=format&fit=crop&w=1600&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787300845/david-goldman-wPoydPieDUI-unsplash_mijg17.jpg",
   quote:
-    "https://images.unsplash.com/photo-1504198453319-8ceacb77e65d?auto=format&fit=crop&w=1600&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787300685/d-ng-h-u-CCjgYjUudxE-unsplash_vnckr6.jpg",
   locationA:
-    "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787150836/beatriz-perez-moya-M2T1j-6Fn8w-unsplash_rc0b1t.jpg",
   locationB:
-    "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=85",
-  locationsBg:
-    "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1600&q=85",
-  upload:
-    "https://images.unsplash.com/photo-1492684223066-81342ee5ff7c?auto=format&fit=crop&w=1600&q=85",
-  rsvp: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1600&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787146655/photo-1510076857177-7470076d4098_srlt0i.avif",
+  rsvp: "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787300643/vows-on-the-move-p0vZplFhKYI-unsplash_lcpgj5.jpg",
   footer:
-    "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=2000&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787300923/markus-spiske-9Qv774YDKbA-unsplash_dfgzyk.jpg",
 };
 
 export const vencanjeDuskDefaultConfig: UniversalProjectConfig = {
@@ -51,7 +44,7 @@ export const vencanjeDuskDefaultConfig: UniversalProjectConfig = {
         },
         secondary: {
           name: "Slonovača",
-          value: "#F3EDE4",
+          value: "#6d502c",
         },
       },
     },
@@ -103,7 +96,6 @@ export const vencanjeDuskDefaultConfig: UniversalProjectConfig = {
       data: {
         title: "Zabeležite datum",
         description: "Jedno veče, jedan datum, jedna zajednička priča.",
-        imageUrl: IMG.calendar,
       },
     },
     {
@@ -127,7 +119,7 @@ export const vencanjeDuskDefaultConfig: UniversalProjectConfig = {
           {
             id: 2,
             title: "Naš grad",
-            image: IMG.invite,
+            image: IMG.story2,
           },
         ],
       },
@@ -141,7 +133,6 @@ export const vencanjeDuskDefaultConfig: UniversalProjectConfig = {
       data: {
         title: "Tok dana",
         subtitle: "Od dolaska do slavlja",
-        imageUrl: IMG.schedule,
         items: [
           {
             id: "1",
@@ -197,7 +188,6 @@ export const vencanjeDuskDefaultConfig: UniversalProjectConfig = {
       data: {
         title: "Gde se sve dešava",
         subtitle: "Dve scene jedne večeri, na deset minuta hoda jedna od druge.",
-        imageUrl: IMG.locationsBg,
         cards: [
           {
             id: 1,
@@ -221,37 +211,17 @@ export const vencanjeDuskDefaultConfig: UniversalProjectConfig = {
       },
     },
     {
-      id: "ourGallery",
-      name: "Galerija",
-      type: "ourGallery",
-      visible: true,
-      order: 9,
-      data: {
-        title: "Kadrovi pre kadra",
-        description: "Nekoliko trenutaka koje smo usput sačuvali.",
-        images: [
-          { url: IMG.story },
-          { url: IMG.invite },
-          { url: IMG.quote },
-          { url: IMG.schedule },
-          { url: IMG.calendar },
-          { url: IMG.hero },
-        ],
-      },
-    },
-    {
       id: "uploadImagesSection",
       name: "Dodavanje Slika",
       type: "uploadImagesSection",
       visible: true,
-      order: 10,
+      order: 9,
       data: {
         title: "Podelite svoj kadar",
         subtitle: "Vaš pogled",
         description:
           "Ako te večeri uslikate nešto što vredi pamtiti, pošaljite nam — želimo da vidimo naše venčanje i Vašim očima.",
         buttonText: "Dodaj fotografiju",
-        imageUrl: IMG.upload,
       },
     },
     {
@@ -259,7 +229,7 @@ export const vencanjeDuskDefaultConfig: UniversalProjectConfig = {
       name: "Potvrda Prisutnosti",
       type: "rsvp",
       visible: true,
-      order: 11,
+      order: 10,
       data: {
         title: "Hoćete li biti sa nama?",
         description: "Molimo Vas da potvrdite dolazak do ",
@@ -274,7 +244,7 @@ export const vencanjeDuskDefaultConfig: UniversalProjectConfig = {
       name: "Završna poruka",
       type: "footer",
       visible: true,
-      order: 12,
+      order: 11,
       data: {
         title:
           "Hvala Vam što ćete biti deo večeri koju ćemo pamtiti ceo život.",
