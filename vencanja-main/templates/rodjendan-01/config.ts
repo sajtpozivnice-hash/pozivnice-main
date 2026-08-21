@@ -3,21 +3,17 @@ import { UniversalProjectConfig } from "@/types/config";
 /** Royalty-free Unsplash placeholders — only in config, never hardcoded in components */
 const IMG = {
   hero:
-    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023489/photo-1530103862676-de8c9debad1d_rxuitz.avif",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787343638/shayna-douglas-9ou4URp__0s-unsplash_helzyu.jpg",
   portrait:
-    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023223/pexels-matheus-rodrigues-672111387-18212443_mr0hd2.jpg",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787343638/shayna-douglas-9ou4URp__0s-unsplash_helzyu.jpg",
   balloons:
-    "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787343762/henley-design-studio-XbZgARqXROc-unsplash_qndiux.jpg",
   cake:
     "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023931/pexels-junielly-oliveira-2736244-4960960_migtwt.jpg",
   party:
     "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023854/photo-1513151233558-d860c5398176_xvejar.avif",
   venue:
-    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023813/photo-1464366400600-7168b8af9bc3_dmpg2x.avif",
-  gifts:
-    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023699/photo-1549465220-1a8b9238cd48_avxoqq.avif",
-  activities:
-    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023761/photo-1527529482837-4698179dc6ce_x4mmyo.avif",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787343829/onkar-singh-D31ZvQgI9z8-unsplash_acxqip.jpg",
 };
 
 export const rodjendan01DefaultConfig: UniversalProjectConfig = {
@@ -28,8 +24,8 @@ export const rodjendan01DefaultConfig: UniversalProjectConfig = {
     description: "Moderna pozivnica za rođendansku proslavu",
   },
   event: {
-    date: "2026-09-20",
-    rsvpDate: "2026-09-10",
+    date: "2027-09-20",
+    rsvpDate: "2027-09-10",
     names: "Mila",
   },
   theme: {
@@ -161,7 +157,6 @@ export const rodjendan01DefaultConfig: UniversalProjectConfig = {
               "Ako želite da donesete poklon, Mila voli kreativne setove, knjige i male avanture.",
             icon: "gift",
             accent: "#FF5C8A",
-            image: IMG.gifts,
           },
           {
             id: "2",
@@ -178,7 +173,6 @@ export const rodjendan01DefaultConfig: UniversalProjectConfig = {
               "Bojenje lica, piñata, karaoke ugao i foto-booth sa rekvizitima.",
             icon: "party",
             accent: "#FFB703",
-            image: IMG.activities,
           },
           {
             id: "4",

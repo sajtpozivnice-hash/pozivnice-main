@@ -28,30 +28,6 @@ function replaceBetween(src, startMarker, endMarker, replacement) {
 
 /** Kids packs: rewrite @theme block colors + page background */
 const kidsThemes = {
-  "kids-pastel": {
-    themeCss: `@theme {
-  --color-kpas-coral: #c4a1e0;
-  --color-kpas-sky: #9ec9ff;
-  --color-kpas-mint: #9fe3d0;
-  --color-kpas-sun: #f7d6a8;
-  --color-kpas-violet: #b8a4e8;
-  --color-kpas-ink: #3a3550;
-  --color-kpas-cream: #fbf7ff;
-  --color-kpas-cloud: #f0f4ff;
-}`,
-    bg: `background:
-      radial-gradient(ellipse at 12% 0%, rgba(196, 161, 224, 0.22), transparent 42%),
-      radial-gradient(ellipse at 88% 10%, rgba(159, 227, 208, 0.18), transparent 40%),
-      linear-gradient(180deg, #fbf7ff 0%, #f7f2ff 45%, #eef6ff 100%);`,
-    primary: "#c4a1e0",
-    secondary: "#3a3550",
-    ternary: "#9fe3d0",
-    background: "#fbf7ff",
-    backgroundSecondary: "#f0f4ff",
-    names: "Lena",
-    title: "Lena — pastelni rođendan",
-    metaDesc: "Nežna pastelna pozivnica za dečiji rođendan",
-  },
   "kids-safari": {
     themeCss: `@theme {
   --color-ksaf-coral: #d97706;

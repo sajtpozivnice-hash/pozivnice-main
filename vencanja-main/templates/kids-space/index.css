@@ -4,7 +4,7 @@
    portrait with orbit ring, condensed uppercase name. No blobs, no confetti. */
 
 @theme {
-  --color-kspc-ink: #e7eaf6;
+  --color-kspc-ink: #ffffff;
   --color-kspc-night: #0b0e1a;
   --color-kspc-night-deep: #05060d;
   --color-kspc-cyan: #5eead4;
@@ -13,25 +13,56 @@
   --color-kspc-line: #ffffff;
 }
 
+[data-template="kids-space"] {
+  /* Theme bridge: editor primary / secondary / ternary / backgrounds */
+  --color-kspc-cyan: var(--color-primary, #5eead4);
+  --color-kspc-magenta: var(--color-secondary, #f472b6);
+  --color-kspc-amber: var(--color-ternary, #fbbf24);
+  --color-kspc-night: var(--color-background, #0b0e1a);
+  --color-kspc-night-deep: var(
+    --color-background-secondary,
+    #05060d
+  );
+  /* Default body/heading text: white */
+  --color-kspc-ink: #ffffff;
+  --color-kspc-line: #ffffff;
+
+  @apply relative overflow-x-hidden;
+  color: var(--color-kspc-ink);
+  background-color: var(--color-kspc-night);
+  background-image:
+    radial-gradient(1.5px 1.5px at 12% 18%, rgba(255, 255, 255, 0.9), transparent),
+    radial-gradient(1px 1px at 28% 62%, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(2px 2px at 44% 32%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 62% 78%, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(1.5px 1.5px at 78% 22%, rgba(255, 255, 255, 0.9), transparent),
+    radial-gradient(1px 1px at 88% 55%, rgba(255, 255, 255, 0.65), transparent),
+    radial-gradient(1.5px 1.5px at 8% 85%, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1px 1px at 95% 90%, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(
+      ellipse at 20% 0%,
+      color-mix(in srgb, var(--color-kspc-cyan) 14%, transparent),
+      transparent 45%
+    ),
+    radial-gradient(
+      ellipse at 85% 20%,
+      color-mix(in srgb, var(--color-kspc-magenta) 12%, transparent),
+      transparent 45%
+    ),
+    linear-gradient(
+      180deg,
+      var(--color-kspc-night) 0%,
+      color-mix(in srgb, var(--color-kspc-night) 85%, var(--color-kspc-night-deep))
+        55%,
+      var(--color-kspc-night-deep) 100%
+    );
+  background-size:
+    340px 340px, 260px 260px, 300px 300px, 220px 220px, 380px 380px, 260px 260px,
+    300px 300px, 240px 240px, 100% 100%, 100% 100%, 100% 100%;
+  font-family: var(--font-secondary);
+}
+
 @layer components {
-  [data-template="kids-space"] {
-    @apply relative overflow-x-hidden text-kspc-ink;
-    background-color: var(--color-kspc-night);
-    background-image:
-      radial-gradient(1.5px 1.5px at 12% 18%, rgba(255, 255, 255, 0.9), transparent),
-      radial-gradient(1px 1px at 28% 62%, rgba(255, 255, 255, 0.7), transparent),
-      radial-gradient(2px 2px at 44% 32%, rgba(255, 255, 255, 0.8), transparent),
-      radial-gradient(1px 1px at 62% 78%, rgba(255, 255, 255, 0.6), transparent),
-      radial-gradient(1.5px 1.5px at 78% 22%, rgba(255, 255, 255, 0.9), transparent),
-      radial-gradient(1px 1px at 88% 55%, rgba(255, 255, 255, 0.65), transparent),
-      radial-gradient(1.5px 1.5px at 8% 85%, rgba(255, 255, 255, 0.7), transparent),
-      radial-gradient(1px 1px at 95% 90%, rgba(255, 255, 255, 0.6), transparent),
-      radial-gradient(ellipse at 20% 0%, rgba(94, 234, 212, 0.14), transparent 45%),
-      radial-gradient(ellipse at 85% 20%, rgba(244, 114, 182, 0.12), transparent 45%),
-      linear-gradient(180deg, #0b0e1a 0%, #090b16 55%, #05060d 100%);
-    background-size: 340px 340px, 260px 260px, 300px 300px, 220px 220px, 380px 380px, 260px 260px, 300px 300px, 240px 240px, 100% 100%, 100% 100%, 100% 100%;
-    font-family: var(--font-secondary);
-  }
 
   .kspc-shell {
     @apply relative mx-auto w-full max-w-5xl px-6 sm:px-10 lg:px-12;
@@ -60,6 +91,7 @@
     font-family: var(--font-primary);
     text-transform: uppercase;
     font-weight: 700;
+    color: var(--color-kspc-ink);
   }
 
   .kspc-card {

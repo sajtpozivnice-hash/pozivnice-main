@@ -14,11 +14,10 @@ type Props = {
   theme: ThemeConfig;
 };
 
-type Attendance = "yes" | "no" | "maybe";
+type Attendance = "yes" | "no";
 
 type FormState = {
   fullName: string;
-  email: string;
   attendance: Attendance;
   guests: number;
   message: string;
@@ -30,7 +29,6 @@ const RSVP: FC<Props> = ({ section, event }) => {
     usePublicRsvpSubmit();
   const [formData, setFormData] = useState<FormState>({
     fullName: "",
-    email: "",
     attendance: "yes",
     guests: 1,
     message: "",
@@ -39,9 +37,8 @@ const RSVP: FC<Props> = ({ section, event }) => {
   const handleSubmit = (e: FormEvent) => {
     void submitRsvp(e, {
       fullName: formData.fullName,
-      email: formData.email,
       attendance: formData.attendance,
-      guests: formData.guests,
+      guests: formData.attendance === "yes" ? formData.guests : 0,
       message: formData.message,
     });
   };
@@ -106,32 +103,14 @@ const RSVP: FC<Props> = ({ section, event }) => {
                 />
               </div>
               <div>
-                <label className="mb-1.5 block text-[11px] font-semibold tracking-[0.18em] text-white/40 uppercase">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  required
-                  className="b18-input"
-                  value={formData.email}
-                  onChange={(e) =>
-                    setFormData((prev) => ({
-                      ...prev,
-                      email: e.target.value,
-                    }))
-                  }
-                />
-              </div>
-              <div>
                 <label className="mb-2 block text-[11px] font-semibold tracking-[0.18em] text-white/40 uppercase">
                   Dolaziš?
                 </label>
-                <div className="grid grid-cols-3 gap-2">
+                <div className="grid grid-cols-2 gap-2">
                   {(
                     [
                       ["yes", "Da"],
-                      ["no", "Ne"],
-                      ["maybe", "Možda"],
+                      ["no", "Ne"]
                     ] as const
                   ).map(([value, label]) => (
                     <button
@@ -151,7 +130,8 @@ const RSVP: FC<Props> = ({ section, event }) => {
                   ))}
                 </div>
               </div>
-              <div>
+              {formData.attendance === "yes" ? (
+                  <div>
                 <label className="mb-1.5 block text-[11px] font-semibold tracking-[0.18em] text-white/40 uppercase">
                   Broj osoba
                 </label>
@@ -169,6 +149,7 @@ const RSVP: FC<Props> = ({ section, event }) => {
                   }
                 />
               </div>
+                ) : null}
               <div>
                 <label className="mb-1.5 block text-[11px] font-semibold tracking-[0.18em] text-white/40 uppercase">
                   {data.messageLabel || "Poruka za slavljenika"}

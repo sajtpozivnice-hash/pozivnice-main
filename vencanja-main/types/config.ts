@@ -16,7 +16,6 @@ export type TemplateKey =
   | "vencanje-opal"
   | "vencanje-atelier"
   | "rodjendan-01"
-  | "kids-pastel"
   | "kids-safari"
   | "kids-space"
   | "kids-candy"

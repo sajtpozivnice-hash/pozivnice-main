@@ -14,11 +14,10 @@ type Props = {
   theme: ThemeConfig;
 };
 
-type Attendance = "yes" | "no" | "maybe";
+type Attendance = "yes" | "no";
 
 type FormState = {
   fullName: string;
-  email: string;
   attendance: Attendance;
   guests: number;
   message: string;
@@ -31,7 +30,6 @@ const RSVP: FC<Props> = ({ section, event }) => {
     usePublicRsvpSubmit();
   const [formData, setFormData] = useState<FormState>({
     fullName: "",
-    email: "",
     attendance: "yes",
     guests: 1,
     message: "",
@@ -40,9 +38,8 @@ const RSVP: FC<Props> = ({ section, event }) => {
   const handleSubmit = (e: FormEvent) => {
     void submitRsvp(e, {
       fullName: formData.fullName,
-      email: formData.email,
       attendance: formData.attendance,
-      guests: formData.guests,
+      guests: formData.attendance === "yes" ? formData.guests : 0,
       message: formData.message,
     });
   };
@@ -111,21 +108,6 @@ const RSVP: FC<Props> = ({ section, event }) => {
                   />
                 </div>
                 <div className="kspc-panel-row">
-                  <label>Email</label>
-                  <input
-                    type="email"
-                    required
-                    className="kspc-input"
-                    value={formData.email}
-                    onChange={(e) =>
-                      setFormData((prev) => ({
-                        ...prev,
-                        email: e.target.value,
-                      }))
-                    }
-                  />
-                </div>
-                <div className="kspc-panel-row">
                   <label>Dolazak</label>
                   <select
                     className="kspc-input"
@@ -138,11 +120,11 @@ const RSVP: FC<Props> = ({ section, event }) => {
                     }
                   >
                     <option value="yes">Dolazim</option>
-                    <option value="maybe">Možda</option>
-                    <option value="no">Ne mogu</option>
+<option value="no">Ne mogu</option>
                   </select>
                 </div>
-                <div className="kspc-panel-row">
+                {formData.attendance === "yes" ? (
+                  <div className="kspc-panel-row">
                   <label>Broj gostiju</label>
                   <input
                     type="number"
@@ -157,6 +139,7 @@ const RSVP: FC<Props> = ({ section, event }) => {
                     }
                   />
                 </div>
+                ) : null}
                 <div className="kspc-panel-row kspc-panel-row--full">
                   <label>{data.messageLabel ?? "Poruka"}</label>
                   <textarea

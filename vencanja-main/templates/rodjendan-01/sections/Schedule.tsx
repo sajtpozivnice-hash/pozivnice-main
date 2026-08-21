@@ -11,11 +11,12 @@ type Props = {
   theme: ThemeConfig;
 };
 
-const COLORS = ["#FF5C8A", "#3D8BFF", "#2EC4B6", "#FFB703", "#9B5DE5"];
-
 const Schedule: FC<Props> = ({ section, theme }) => {
   const { data, id, name } = section;
   const accent = theme.colors?.base?.primary?.value ?? "#FF5C8A";
+  const secondary = theme.colors?.base?.secondary?.value ?? "#3D8BFF";
+  const ternary = theme.colors?.base?.ternary?.value ?? "#2EC4B6";
+  const colors = [accent, secondary, ternary, "#FFB703", "#9B5DE5"];
   const items = data.items ?? [];
 
   return (
@@ -43,7 +44,7 @@ const Schedule: FC<Props> = ({ section, theme }) => {
 
         <div className="-mx-5 flex gap-4 overflow-x-auto px-5 pb-4 snap-x snap-mandatory sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 lg:grid-cols-4">
           {items.map((item, index) => {
-            const color = COLORS[index % COLORS.length] ?? accent;
+            const color = colors[index % colors.length] ?? accent;
 
             return (
               <motion.article

@@ -20,9 +20,9 @@ type TimeLeft = {
 
 const Countdown: FC<Props> = ({ section, event, theme }) => {
   const { data, id, name } = section;
-  const accent = theme.colors?.base?.primary?.value ?? "#FF5C8A";
-  const secondary = theme.colors?.base?.secondary?.value ?? "#3D8BFF";
-  const mint = theme.colors?.base?.ternary?.value ?? "#2EC4B6";
+  const accent = theme.colors?.base?.primary?.value ?? "#5EEAD4";
+  const secondary = theme.colors?.base?.secondary?.value ?? "#F472B6";
+  const mint = theme.colors?.base?.ternary?.value ?? "#FBBF24";
   const targetDate = new Date(event.date).getTime();
 
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({

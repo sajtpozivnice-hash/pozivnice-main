@@ -28,26 +28,6 @@ const SPECS = {
     ],
     activities: "Senzorne igračke, mekane kocke i mirne pesmice.",
   },
-  "kids-pastel": {
-    age: 3,
-    ordinal: "3.",
-    names: "Lena",
-    title: "Lena — 3. rođendan",
-    metaDesc: "Storybook pozivnica za treći rođendan",
-    heroTitle: "Tri godine magije",
-    heroSub: "Pozivamo te na",
-    heroDesc:
-      "Priče, boje i mala avantura. Dođi da proslavimo Lenine treće godine.",
-    invite:
-      "Dragi prijatelji, pozivamo vas na Lenin 3. rođendan — popodne puno priča, crtanja i slatkih iznenađenja.",
-    program: [
-      ["16:00", "Dobrodošlica", "Nalepnice i kratko upoznavanje."],
-      ["16:20", "Priča i crtanje", "Čitamo zajedno i bojimo stranice."],
-      ["17:00", "Torta", "Tri svećice i želja."],
-      ["17:30", "Igre u bašti", "Blage trke i loptice."],
-    ],
-    activities: "Crtanje, nalepnice i male poklon-kese.",
-  },
   "kids-safari": {
     age: 5,
     ordinal: "5.",
@@ -218,10 +198,6 @@ let index = fs.readFileSync(indexFile, "utf8");
 index = index.replace(
   /"rodjendan-01": \{[\s\S]*?catalog: \{\s*title: "[^"]+"/,
   (m) => m.replace(/title: "[^"]+"/, 'title: "1. rođendan — klasik"'),
-);
-index = index.replace(
-  /"kids-pastel": \{[\s\S]*?catalog: \{\s*title: "[^"]+"/,
-  (m) => m.replace(/title: "[^"]+"/, 'title: "3. rođendan — pastel"'),
 );
 index = index.replace(
   /"kids-safari": \{[\s\S]*?catalog: \{\s*title: "[^"]+"/,

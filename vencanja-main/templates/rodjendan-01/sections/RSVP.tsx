@@ -14,11 +14,10 @@ type Props = {
   theme: ThemeConfig;
 };
 
-type Attendance = "yes" | "no" | "maybe";
+type Attendance = "yes" | "no";
 
 type FormState = {
   fullName: string;
-  email: string;
   attendance: Attendance;
   guests: number;
   message: string;
@@ -33,7 +32,6 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
     usePublicRsvpSubmit();
   const [formData, setFormData] = useState<FormState>({
     fullName: "",
-    email: "",
     attendance: "yes",
     guests: 1,
     message: "",
@@ -42,9 +40,8 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
   const handleSubmit = (e: FormEvent) => {
     void submitRsvp(e, {
       fullName: formData.fullName,
-      email: formData.email,
       attendance: formData.attendance,
-      guests: formData.guests,
+      guests: formData.attendance === "yes" ? formData.guests : 0,
       message: formData.message,
     });
   };
@@ -117,23 +114,6 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
                     }
                   />
                 </div>
-                <div>
-                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-black/45">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    className="bday-input"
-                    value={formData.email}
-                    onChange={(e) =>
-                      setFormData((prev) => ({
-                        ...prev,
-                        email: e.target.value,
-                      }))
-                    }
-                  />
-                </div>
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div>
                     <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-black/45">
@@ -150,11 +130,11 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
                       }
                     >
                       <option value="yes">Dolazim</option>
-                      <option value="maybe">Možda</option>
-                      <option value="no">Ne mogu</option>
+<option value="no">Ne mogu</option>
                     </select>
                   </div>
-                  <div>
+                  {formData.attendance === "yes" ? (
+                    <div>
                     <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-black/45">
                       Broj gostiju
                     </label>
@@ -171,6 +151,7 @@ const RSVP: FC<Props> = ({ section, event, theme }) => {
                       }
                     />
                   </div>
+                  ) : null}
                 </div>
                 <div>
                   <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-black/45">

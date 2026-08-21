@@ -90,15 +90,6 @@
     "style": "premium"
   },
   {
-    "key": "kids-pastel",
-    "title": "Pastelni rođendan",
-    "description": "Nežni pastelni tonovi za dečiji rođendan — mek, vedar i topao utisak.",
-    "eventTypes": [
-      "kidsBirthday"
-    ],
-    "style": "playful"
-  },
-  {
     "key": "kids-safari",
     "title": "Safari avantura",
     "description": "Topli safari tonovi i avanturistički osećaj za dečiju proslavu.",

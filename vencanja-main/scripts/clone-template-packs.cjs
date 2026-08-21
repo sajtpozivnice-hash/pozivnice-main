@@ -29,17 +29,7 @@ const PACKS = [
     cssVarFrom: "--b18b-",
     cssVarTo: "--b18g-",
   },
-  // kidsBirthday (+4)
-  {
-    source: "rodjendan-01",
-    key: "kids-pastel",
-    exportFrom: "rodjendan01",
-    exportTo: "kidsPastel",
-    classFrom: "bday-",
-    classTo: "kpas-",
-    cssVarFrom: "--color-bday-",
-    cssVarTo: "--color-kpas-",
-  },
+  // kidsBirthday
   {
     source: "rodjendan-01",
     key: "kids-safari",

@@ -4,7 +4,7 @@ import { FormEvent, useState } from "react";
 import { useInvitationProject } from "@/components/invitation/InvitationProjectContext";
 import { submitPublicRsvp } from "@/lib/rsvp/submitPublicRsvp";
 
-type Attendance = "yes" | "no" | "maybe";
+type Attendance = "yes" | "no";
 
 type RsvpFormValues = {
   fullName: string;

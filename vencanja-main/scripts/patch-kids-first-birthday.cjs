@@ -20,18 +20,6 @@ const packs = {
       "Dragi prijatelji i porodico, sa velikom ljubavlju vas pozivamo na Milin 1. rođendan — topao popodnevni skup uz tortu, pesmu i osmehe.",
     cakeItem: "Torta i jedna svećica",
   },
-  "kids-pastel": {
-    metaTitle: "Lena — 1. rođendan",
-    metaDesc: "Nežna storybook pozivnica za prvi dečiji rođendan",
-    heroTitle: "Prva godina magije",
-    heroSubtitle: "Pozivamo te na",
-    heroDesc:
-      "Priče, boje i prva mala avantura. Dođi da proslavimo Leninu prvu godinu.",
-    badge: "1 godina",
-    invite:
-      "Dragi prijatelji, pozivamo vas na Lenin 1. rođendan — popodne puno priča, crtanja i slatkih iznenađenja.",
-    cakeItem: "Torta i jedna svećica",
-  },
   "kids-safari": {
     metaTitle: "Luka — 1. rođendan ekspedicija",
     metaDesc: "Safari ekspedicija pozivnica za prvi dečiji rođendan",
@@ -153,14 +141,9 @@ for (const [key, p] of Object.entries(packs)) {
 const indexFile = path.join(__dirname, "..", "templates", "index.ts");
 let index = fs.readFileSync(indexFile, "utf8");
 index = index
-  .replace(/title: "3\. rođendan — pastel"/, 'title: "1. rođendan — pastel"')
   .replace(/title: "5\. rođendan — safari"/, 'title: "1. rođendan — safari"')
   .replace(/title: "8\. rođendan — svemir"/, 'title: "1. rođendan — svemir"')
   .replace(/title: "10\. rođendan — candy"/, 'title: "1. rođendan — candy"')
-  .replace(
-    /("kids-pastel":[\s\S]*?description:\s*")[^"]*(")/,
-    '$1Nežni pastelni tonovi za prvi dečiji rođendan — mek, vedar i topao utisak.$2',
-  )
   .replace(
     /("kids-safari":[\s\S]*?description:\s*")[^"]*(")/,
     '$1Topli safari tonovi i avanturistički osećaj za prvi dečiji rođendan.$2',

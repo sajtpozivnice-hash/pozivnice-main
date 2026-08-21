@@ -20,7 +20,6 @@ type Props = {
 
 type FormState = {
   fullName: string;
-  email: string;
   attendance: Attendance;
   guests: number;
   message: string;
@@ -43,7 +42,6 @@ const RSVP: FC<Props> = ({ section, event }) => {
 
   const [formData, setFormData] = useState<FormState>({
     fullName: "",
-    email: "",
     attendance: "yes",
     guests: 1,
     message: "",
@@ -52,9 +50,8 @@ const RSVP: FC<Props> = ({ section, event }) => {
   const handleSubmit = (e: FormEvent) => {
     void submitRsvp(e, {
       fullName: formData.fullName,
-      email: formData.email,
       attendance: formData.attendance,
-      guests: formData.guests,
+      guests: formData.attendance === "yes" ? formData.guests : 0,
       message: formData.message,
     });
   };
@@ -98,23 +95,6 @@ const RSVP: FC<Props> = ({ section, event }) => {
                   }
                   className="vd-input"
                   placeholder="Vaše ime i prezime"
-                />
-              </div>
-
-              <div className="vd-field">
-                <label className="vd-label" htmlFor="vd-email">
-                  Email
-                </label>
-                <input
-                  id="vd-email"
-                  required
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
-                  className="vd-input"
-                  placeholder="vas@email.com"
                 />
               </div>
 

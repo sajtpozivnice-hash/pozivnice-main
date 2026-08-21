@@ -15,7 +15,6 @@ import { birthday18GoldDefaultConfig } from "../templates/birthday18-gold/config
 import { birthday18InkDefaultConfig } from "../templates/birthday18-ink/config";
 import { birthday18CoastDefaultConfig } from "../templates/birthday18-coast/config";
 import { birthday18AtelierDefaultConfig } from "../templates/birthday18-atelier/config";
-import { kidsPastelDefaultConfig } from "../templates/kids-pastel/config";
 import { kidsSafariDefaultConfig } from "../templates/kids-safari/config";
 import { kidsSpaceDefaultConfig } from "../templates/kids-space/config";
 import { kidsCandyDefaultConfig } from "../templates/kids-candy/config";
@@ -144,18 +143,6 @@ const packs = [
     config: {
       ...birthday18AtelierDefaultConfig,
       eventType: "comingOfAge" as const,
-    },
-  },
-  {
-    key: "kids-pastel",
-    title: "Pastelni rođendan",
-    description:
-      "Nežni pastelni tonovi za dečiji rođendan — mek, vedar i topao utisak.",
-    eventTypes: ["kidsBirthday"],
-    style: "playful",
-    config: {
-      ...kidsPastelDefaultConfig,
-      eventType: "kidsBirthday" as const,
     },
   },
   {

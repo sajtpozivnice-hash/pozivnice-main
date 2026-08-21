@@ -9,7 +9,7 @@ type Body = {
   email?: string;
   guestsCount?: number;
   message?: string;
-  attendance?: "yes" | "no" | "maybe";
+  attendance?: "yes" | "no";
 };
 
 export async function POST(req: Request) {
@@ -37,7 +37,7 @@ export async function POST(req: Request) {
       );
     }
 
-    if (!["yes", "no", "maybe"].includes(attendance)) {
+    if (!["yes", "no"].includes(attendance)) {
       return NextResponse.json(
         { error: "Neispravan status dolaska." },
         { status: 400 },

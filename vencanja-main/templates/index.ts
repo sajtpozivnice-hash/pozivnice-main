@@ -40,8 +40,6 @@ import { birthday18CoastDefaultConfig } from "./birthday18-coast/config";
 import { birthday18CoastRenderers } from "./birthday18-coast/renderers";
 import { birthday18AtelierDefaultConfig } from "./birthday18-atelier/config";
 import { birthday18AtelierRenderers } from "./birthday18-atelier/renderers";
-import { kidsPastelDefaultConfig } from "./kids-pastel/config";
-import { kidsPastelRenderers } from "./kids-pastel/renderers";
 import { kidsSafariDefaultConfig } from "./kids-safari/config";
 import { kidsSafariRenderers } from "./kids-safari/renderers";
 import { kidsSpaceDefaultConfig } from "./kids-space/config";
@@ -415,22 +413,6 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       description:
         "Minimalna fashion lookbook pozivnica za punoletstvo: visoka portretna traka i editorial tipografija.",
       style: "premium",
-      price: 3999,
-      featured: true,
-    },
-  },
-  "kids-pastel": {
-    renderers: kidsPastelRenderers,
-    defaultConfig: {
-      ...kidsPastelDefaultConfig,
-      eventType: "kidsBirthday",
-    },
-    eventTypes: ["kidsBirthday"],
-    catalog: {
-      title: "1. rođendan — pastel",
-      description:
-        "Nežni pastelni tonovi za prvi dečiji rođendan — mek, vedar i topao utisak.",
-      style: "playful",
       price: 3999,
       featured: true,
     },

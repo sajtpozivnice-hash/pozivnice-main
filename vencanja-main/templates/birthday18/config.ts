@@ -3,21 +3,14 @@ import { UniversalProjectConfig } from "@/types/config";
 /** Demo images live only in config — never hardcoded in section components */
 const IMG = {
   hero:
-    "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=2000&q=85",
-  intro:
-    "https://images.unsplash.com/photo-1566417713940-ae115709b8c4?auto=format&fit=crop&w=1600&q=85",
-  countdown:
-    "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1600&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787344571/photo-1514525253161-7a46d19cd819_nwm8cf.avif",
   venue:
-    "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=85",
-  schedule:
-    "https://images.unsplash.com/photo-1571266028241-3748309911cd?auto=format&fit=crop&w=1600&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787344680/photo-1566073771259-6a8506099945_p0zdwz.avif",
   dress:
-    "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1200&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787344715/photo-1490481651871-ab68de25d43d_kv82pi.avif",
   final:
-    "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=2000&q=85",
-  upload:
-    "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=1600&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787344734/photo-1516450360452-9312f5e86fc7_pk7rqx.avif",
+
 };
 
 export const birthday18DefaultConfig: UniversalProjectConfig = {
@@ -28,8 +21,8 @@ export const birthday18DefaultConfig: UniversalProjectConfig = {
     description: "Premium digitalna pozivnica za noć punoletstva",
   },
   event: {
-    date: "2026-09-12",
-    rsvpDate: "2026-09-01",
+    date: "2027-09-12",
+    rsvpDate: "2027-09-01",
     names: "Lena",
     location: {
       name: "Club Belvedere",
@@ -92,7 +85,6 @@ export const birthday18DefaultConfig: UniversalProjectConfig = {
       data: {
         description:
           "Jedna noć.\nJedan veliki trenutak.\n\nOsamnaesti rođendan se slavi samo jednom. Zato želim da ovu noć provedemo zajedno — uz dobru muziku, drage ljude i uspomene koje ostaju.",
-        imageUrl: IMG.intro,
       },
     },
     {
@@ -104,7 +96,6 @@ export const birthday18DefaultConfig: UniversalProjectConfig = {
       data: {
         title: "DO POČETKA",
         description: "Odbrojavanje do noći za pamćenje",
-        imageUrl: IMG.countdown,
       },
     },
     {
@@ -139,7 +130,6 @@ export const birthday18DefaultConfig: UniversalProjectConfig = {
       data: {
         title: "PLAN VEČERI",
         subtitle: "Ritam noći",
-        imageUrl: IMG.schedule,
         items: [
           {
             id: "1",
@@ -231,7 +221,6 @@ export const birthday18DefaultConfig: UniversalProjectConfig = {
         description:
           "Snimi kadar sa podijuma, sa prijateljima ili sa tortom — i pošalji u privatnu galeriju.",
         buttonText: "Pošalji fotografiju",
-        imageUrl: IMG.upload,
       },
     },
     {

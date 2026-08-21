@@ -11,17 +11,41 @@
   --color-bday-cloud: #eef6ff;
 }
 
-@layer components {
-  [data-template="rodjendan-01"] {
-    @apply relative overflow-x-hidden text-bday-ink;
-    background:
-      radial-gradient(ellipse at 10% 0%, rgba(255, 92, 138, 0.14), transparent 42%),
-      radial-gradient(ellipse at 90% 8%, rgba(61, 139, 255, 0.14), transparent 40%),
-      radial-gradient(ellipse at 50% 100%, rgba(46, 196, 182, 0.12), transparent 45%),
-      linear-gradient(180deg, #fff8f3 0%, #fff6f0 40%, #eef6ff 100%);
-    font-family: var(--font-secondary);
-  }
+[data-template="rodjendan-01"] {
+  /* Theme bridge: editor primary / secondary / ternary / backgrounds */
+  --color-bday-coral: var(--color-primary, #ff5c8a);
+  --color-bday-sky: var(--color-secondary, #3d8bff);
+  --color-bday-mint: var(--color-ternary, #2ec4b6);
+  --color-bday-cream: var(--color-background, #fff6f0);
+  --color-bday-cloud: var(--color-background-secondary, #eef6ff);
 
+  @apply relative overflow-x-hidden text-bday-ink;
+  background:
+    radial-gradient(
+      ellipse at 10% 0%,
+      color-mix(in srgb, var(--color-bday-coral) 14%, transparent),
+      transparent 42%
+    ),
+    radial-gradient(
+      ellipse at 90% 8%,
+      color-mix(in srgb, var(--color-bday-sky) 14%, transparent),
+      transparent 40%
+    ),
+    radial-gradient(
+      ellipse at 50% 100%,
+      color-mix(in srgb, var(--color-bday-mint) 12%, transparent),
+      transparent 45%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-bday-cream) 92%, white) 0%,
+      var(--color-bday-cream) 40%,
+      var(--color-bday-cloud) 100%
+    );
+  font-family: var(--font-secondary);
+}
+
+@layer components {
   .bday-shell {
     @apply relative mx-auto w-full max-w-6xl px-5 sm:px-8 lg:px-10;
   }
@@ -32,8 +56,8 @@
 
   .bday-eyebrow {
     @apply inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em];
-    background: color-mix(in srgb, var(--color-primary, #ff5c8a) 12%, white);
-    color: var(--color-primary, #ff5c8a);
+    background: color-mix(in srgb, var(--color-bday-coral) 12%, white);
+    color: var(--color-bday-coral);
   }
 
   .bday-heading {
@@ -54,17 +78,17 @@
   }
 
   .bday-input {
-    @apply w-full rounded-2xl border border-black/8 bg-white px-4 py-3.5 text-sm outline-none transition placeholder:text-black/35 focus:border-[color:var(--color-primary,#ff5c8a)] focus:ring-4 focus:ring-[color:color-mix(in_srgb,var(--color-primary,#ff5c8a)_18%,transparent)];
+    @apply w-full rounded-2xl border border-black/8 bg-white px-4 py-3.5 text-sm outline-none transition placeholder:text-black/35 focus:border-[color:var(--color-bday-coral,#ff5c8a)] focus:ring-4 focus:ring-[color:color-mix(in_srgb,var(--color-bday-coral,#ff5c8a)_18%,transparent)];
   }
 
   .bday-btn {
     @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold text-white transition hover:scale-[1.03] active:scale-[0.98];
     background: linear-gradient(
       135deg,
-      var(--color-primary, #ff5c8a),
-      color-mix(in srgb, var(--color-primary, #ff5c8a) 55%, #3d8bff)
+      var(--color-bday-coral),
+      color-mix(in srgb, var(--color-bday-coral) 55%, var(--color-bday-sky))
     );
-    box-shadow: 0 14px 30px -12px color-mix(in srgb, var(--color-primary, #ff5c8a) 65%, transparent);
+    box-shadow: 0 14px 30px -12px color-mix(in srgb, var(--color-bday-coral) 65%, transparent);
   }
 
   .bday-confetti span {
@@ -107,7 +131,7 @@
     background:
       linear-gradient(rgba(31, 36, 48, 0.06) 1px, transparent 1px) 0 0 / 100% 22px,
       linear-gradient(90deg, rgba(31, 36, 48, 0.06) 1px, transparent 1px) 0 0 / 22px 100%,
-      #eef6ff;
+      var(--color-bday-cloud);
   }
 
   .bday-map-media img {
@@ -184,9 +208,13 @@
   /* Footer — centered wax stamp closing */
   .bday-stamp-seal {
     @apply relative flex h-16 w-16 items-center justify-center rounded-full border-2 text-white;
-    border-color: color-mix(in srgb, var(--color-primary, #ff5c8a) 60%, white);
-    background: linear-gradient(135deg, var(--color-primary, #ff5c8a), var(--color-secondary, #3d8bff));
-    box-shadow: 0 14px 30px -14px color-mix(in srgb, var(--color-primary, #ff5c8a) 65%, transparent);
+    border-color: color-mix(in srgb, var(--color-bday-coral) 60%, white);
+    background: linear-gradient(
+      135deg,
+      var(--color-bday-coral),
+      var(--color-bday-sky)
+    );
+    box-shadow: 0 14px 30px -14px color-mix(in srgb, var(--color-bday-coral) 65%, transparent);
   }
 
   .bday-stamp-seal::before {
@@ -199,8 +227,8 @@
 
   .bday-stamp-line {
     @apply mx-auto inline-flex items-center gap-2 rounded-full border border-dashed px-5 py-2 text-xs font-semibold uppercase tracking-[0.28em];
-    border-color: color-mix(in srgb, var(--color-primary, #ff5c8a) 45%, transparent);
-    color: var(--color-primary, #ff5c8a);
+    border-color: color-mix(in srgb, var(--color-bday-coral) 45%, transparent);
+    color: var(--color-bday-coral);
   }
 
   /* RSVP — soft two-panel card (intro + form) */
@@ -210,7 +238,7 @@
 
   .bday-rsvp-intro {
     @apply relative overflow-hidden p-6 sm:p-10;
-    background: color-mix(in srgb, var(--color-primary, #ff5c8a) 6%, white);
+    background: color-mix(in srgb, var(--color-bday-coral) 6%, white);
   }
 
   .bday-rsvp-blob {
