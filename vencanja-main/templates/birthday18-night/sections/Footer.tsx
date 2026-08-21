@@ -15,7 +15,7 @@ const Footer: FC<Props> = ({ section, event }) => {
   const { data, id } = section;
   const year = useMemo(() => {
     const match = /^(\d{4})/.exec(event.date || "");
-    return match?.[1] || String(new Date().getFullYear());
+    return match?.[1] || "2027";
   }, [event.date]);
 
   return (

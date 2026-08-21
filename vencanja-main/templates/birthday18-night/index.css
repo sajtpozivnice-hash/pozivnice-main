@@ -5,13 +5,14 @@
   --bn-surface: var(--color-background-secondary, #161b22);
   --bn-accent: var(--color-primary, #3df0e0);
   --bn-text: var(--color-secondary, #f2f5f8);
+  /* Keep muted readable on dark — lean toward text, not gray */
   --bn-muted: color-mix(
     in srgb,
-    var(--color-ternary, #a8b2bf) 88%,
-    var(--color-secondary, #f2f5f8)
+    var(--color-secondary, #f2f5f8) 72%,
+    var(--color-ternary, #a8b2bf)
   );
-  --bn-line: color-mix(in srgb, var(--bn-text) 22%, transparent);
-  --bn-glow: color-mix(in srgb, var(--bn-accent) 40%, transparent);
+  --bn-line: color-mix(in srgb, var(--bn-text) 28%, transparent);
+  --bn-glow: color-mix(in srgb, var(--bn-accent) 45%, transparent);
   color: var(--bn-text);
   background: var(--bn-bg);
   font-family: var(--font-secondary, system-ui, sans-serif);
@@ -32,7 +33,7 @@
   font-weight: 700;
   letter-spacing: 0.38em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--bn-text) 72%, var(--bn-muted));
+  color: color-mix(in srgb, var(--bn-text) 88%, var(--bn-accent));
 }
 
 [data-template="birthday18-night"] .bn-display {
@@ -139,16 +140,6 @@
   }
 }
 
-[data-template="birthday18-night"] .bn-hero__media img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: grayscale(1) contrast(1.08);
-  transform: scale(1.06);
-}
-
 [data-template="birthday18-night"] .bn-hero__media::after {
   content: "";
   position: absolute;
@@ -156,15 +147,25 @@
   background:
     linear-gradient(
       180deg,
-      color-mix(in srgb, var(--bn-bg) 25%, transparent) 0%,
-      color-mix(in srgb, var(--bn-bg) 82%, transparent) 100%
+      color-mix(in srgb, var(--bn-bg) 15%, transparent) 0%,
+      color-mix(in srgb, var(--bn-bg) 70%, transparent) 100%
     ),
     linear-gradient(
       90deg,
-      color-mix(in srgb, var(--bn-bg) 78%, transparent) 0%,
-      color-mix(in srgb, var(--bn-bg) 35%, transparent) 45%,
-      transparent 70%
+      color-mix(in srgb, var(--bn-bg) 88%, transparent) 0%,
+      color-mix(in srgb, var(--bn-bg) 45%, transparent) 40%,
+      transparent 72%
     );
+}
+
+[data-template="birthday18-night"] .bn-hero__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.55) contrast(1.12) brightness(0.72);
+  transform: scale(1.06);
 }
 
 [data-template="birthday18-night"] .bn-hero__content {
@@ -186,7 +187,6 @@
   line-height: 0.78;
   letter-spacing: -0.07em;
   color: var(--bn-text);
-  opacity: 0;
   transform: translateY(28px);
   animation: bn-rise 900ms cubic-bezier(0.22, 1, 0.36, 1) 0.05s forwards;
 }
@@ -200,7 +200,6 @@
   text-transform: uppercase;
   color: var(--bn-accent);
   text-shadow: 0 0 24px var(--bn-glow);
-  opacity: 0;
   transform: translateY(18px);
   animation: bn-rise 850ms cubic-bezier(0.22, 1, 0.36, 1) 0.28s forwards;
 }
@@ -216,7 +215,6 @@
   text-transform: uppercase;
   white-space: pre-line;
   color: var(--bn-text);
-  opacity: 0;
   transform: translateY(14px);
   animation: bn-rise 850ms cubic-bezier(0.22, 1, 0.36, 1) 0.45s forwards;
 }
@@ -227,7 +225,6 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.75rem;
   max-width: 28rem;
-  opacity: 0;
   animation: bn-rise 800ms cubic-bezier(0.22, 1, 0.36, 1) 0.65s forwards;
 }
 
@@ -250,7 +247,6 @@
   flex-wrap: wrap;
   gap: 0.65rem;
   margin-bottom: 1.25rem;
-  opacity: 0;
   animation: bn-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) 0.55s forwards;
 }
 
@@ -291,6 +287,7 @@
   letter-spacing: -0.05em;
   text-transform: uppercase;
   white-space: pre-line;
+  color: var(--bn-text);
 }
 
 /* —— DETAILS —— */
@@ -412,7 +409,7 @@
   font-weight: 700;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--bn-text) 68%, var(--bn-muted));
+  color: color-mix(in srgb, var(--bn-text) 82%, var(--bn-accent));
 }
 
 /* —— SCHEDULE —— */

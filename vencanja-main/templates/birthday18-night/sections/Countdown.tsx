@@ -17,6 +17,8 @@ type Parts = {
   seconds: number;
 };
 
+const EMPTY: Parts = { days: 0, hours: 0, minutes: 0, seconds: 0 };
+
 function getParts(target: Date): Parts {
   const diff = Math.max(0, target.getTime() - Date.now());
   const days = Math.floor(diff / 86400000);
@@ -33,10 +35,13 @@ function pad(n: number) {
 const Countdown: FC<Props> = ({ section, event }) => {
   const { data, id } = section;
   const target = useMemo(() => new Date(event.date), [event.date]);
-  const [parts, setParts] = useState<Parts>(() => getParts(target));
+  // Start empty on SSR + first client paint to avoid Date.now() hydration mismatch
+  const [parts, setParts] = useState<Parts>(EMPTY);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     setParts(getParts(target));
+    setReady(true);
     const timer = window.setInterval(() => setParts(getParts(target)), 1000);
     return () => window.clearInterval(timer);
   }, [target]);
@@ -56,7 +61,11 @@ const Countdown: FC<Props> = ({ section, event }) => {
           {data.title || "DO POČETKA NOĆI"}
         </h2>
 
-        <div className="bn-count bn-mono" aria-live="polite">
+        <div
+          className="bn-count bn-mono"
+          aria-live="polite"
+          aria-busy={!ready}
+        >
           {cells.map((cell, index) => (
             <div key={cell.label} className="contents">
               {index > 0 ? <span className="bn-count__sep">:</span> : null}

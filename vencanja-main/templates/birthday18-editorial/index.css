@@ -7,10 +7,13 @@
   --ed-cobalt: var(--color-ternary, #1d4ed8);
   --ed-lime: #d4ff00;
   --ed-ink: var(--color-secondary, #0a0a0a);
+  /* Fixed light ink for dark panels — never tied to page background */
+  --ed-on-dark: #f4efe6;
   --ed-muted: color-mix(in srgb, var(--color-secondary, #0a0a0a) 40%, #9a9288);
   --ed-line: color-mix(in srgb, var(--color-secondary, #0a0a0a) 18%, transparent);
   color: var(--ed-ink);
   background: var(--ed-ivory);
+  font-family: var(--font-secondary);
   overflow-x: hidden;
 }
 
@@ -185,7 +188,6 @@
   line-height: 0.72;
   letter-spacing: -0.07em;
   color: var(--ed-ink);
-  mix-blend-mode: multiply;
 }
 
 .ed-hero__name {
@@ -316,8 +318,12 @@
 /* —— INTRO —— */
 .ed-intro {
   background: var(--ed-ink);
-  color: var(--ed-ivory);
+  color: var(--ed-on-dark);
   overflow: hidden;
+}
+
+.ed-intro .ed-label {
+  color: color-mix(in srgb, var(--ed-on-dark) 55%, transparent);
 }
 
 .ed-intro__grid {
@@ -341,6 +347,7 @@
   letter-spacing: -0.04em;
   text-transform: uppercase;
   white-space: pre-line;
+  color: var(--ed-on-dark);
 }
 
 .ed-intro__title em {
@@ -352,7 +359,7 @@
   max-width: 28rem;
   font-size: 1.05rem;
   line-height: 1.65;
-  color: rgba(244, 239, 230, 0.78);
+  color: color-mix(in srgb, var(--ed-on-dark) 78%, transparent);
   white-space: pre-line;
 }
 

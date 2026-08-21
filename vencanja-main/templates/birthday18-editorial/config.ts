@@ -3,15 +3,15 @@ import { UniversalProjectConfig } from "@/types/config";
 /** Demo images live only in config — never hardcoded in section components */
 const IMG = {
   hero:
-    "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1400&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787345123/photo-1534528741775-53994a69daeb_sfbdns.avif",
   intro:
-    "https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=1200&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787345141/photo-1469334031218-e382a71b716b_y1hoxo.avif",
   night:
-    "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1400&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787345169/photo-1515886657613-9f3515b0c78f_jghsda.avif",
   schedule:
-    "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1200&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787345186/photo-1509631179647-0177331693ae_auxni6.avif",
   dress:
-    "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787345204/photo-1483985988355-763728e1935b_i4g8pj.avif",
 };
 
 export const birthday18EditorialDefaultConfig: UniversalProjectConfig = {
@@ -22,8 +22,8 @@ export const birthday18EditorialDefaultConfig: UniversalProjectConfig = {
     description: "Editorial digitalna pozivnica za 18. rođendan",
   },
   event: {
-    date: "2026-09-18",
-    rsvpDate: "2026-09-05",
+    date: "2027-09-18",
+    rsvpDate: "2027-09-05",
     names: "Lena",
     location: {
       name: "Studio 18",

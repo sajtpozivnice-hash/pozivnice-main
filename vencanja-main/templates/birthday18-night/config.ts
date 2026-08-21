@@ -3,11 +3,11 @@ import { UniversalProjectConfig } from "@/types/config";
 /** Demo images live only in config — never hardcoded in section components */
 const IMG = {
   hero:
-    "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=1400&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787345364/fidel-fernando-249DzAuJTqQ-unsplash_n7asm2.jpg",
   venue:
-    "https://images.unsplash.com/photo-1566737236500-c8ac43014a67?auto=format&fit=crop&w=1400&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787345422/photo-1566737236500-c8ac43014a67_vauy18.avif",
   dress:
-    "https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=1200&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787345364/fidel-fernando-249DzAuJTqQ-unsplash_n7asm2.jpg",
 };
 
 export const birthday18NightDefaultConfig: UniversalProjectConfig = {
@@ -18,8 +18,8 @@ export const birthday18NightDefaultConfig: UniversalProjectConfig = {
     description: "Premium dark nightlife pozivnica za 18. rođendan",
   },
   event: {
-    date: "2026-09-18",
-    rsvpDate: "2026-09-05",
+    date: "2027-09-18",
+    rsvpDate: "2027-09-05",
     names: "Marko",
     location: {
       name: "Skyline Club",
@@ -39,20 +39,20 @@ export const birthday18NightDefaultConfig: UniversalProjectConfig = {
         },
         secondary: {
           name: "Svetla",
-          value: "#F2F5F8",
+          value: "#FFFFFF",
         },
         ternary: {
           name: "Siva",
-          value: "#A8B2BF",
+          value: "#C5CDD8",
         },
       },
       background: {
         name: "Tamna",
-        value: "#0B0D10",
+        value: "#07090C",
       },
       backgroundSecondary: {
         name: "Grafit",
-        value: "#161B22",
+        value: "#12171E",
       },
     },
   },

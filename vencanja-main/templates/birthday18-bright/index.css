@@ -14,6 +14,7 @@
   --b18b-white: #ffffff;
   color: var(--b18b-ink);
   background: var(--b18b-cream);
+  font-family: var(--font-secondary);
   overflow-x: hidden;
 }
 

@@ -3,11 +3,11 @@ import { UniversalProjectConfig } from "@/types/config";
 /** Demo images live only in config — never hardcoded in section components */
 const IMG = {
   hero:
-    "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=1400&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787344853/photo-1529626455594-4ff0802cfb7e_knhxfx.avif",
   venue:
-    "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1600&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787344891/andrea-mininni-VLlkOJdzLG0-unsplash_s7vrjm.jpg",
   dress:
-    "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787344976/fernando-lavin-fi5YSQfxbVk-unsplash_n8k4xt.jpg",
 };
 
 export const birthday18BrightDefaultConfig: UniversalProjectConfig = {
@@ -18,8 +18,8 @@ export const birthday18BrightDefaultConfig: UniversalProjectConfig = {
     description: "Vesela moderna digitalna pozivnica za 18. rođendan",
   },
   event: {
-    date: "2026-09-18",
-    rsvpDate: "2026-09-05",
+    date: "2027-09-18",
+    rsvpDate: "2027-09-05",
     names: "Lena",
     location: {
       name: "Sky Garden",
