@@ -12,10 +12,9 @@ type Props = {
   theme: ThemeConfig;
 };
 
-const Calendar: FC<Props> = ({ section, event, theme }) => {
+const Calendar: FC<Props> = ({ section, event }) => {
   const { data, id } = section;
   const { date } = event;
-  const ink = theme.colors?.base?.secondary?.value;
   const dateObj = new Date(date);
   const dow = dateObj.getDay();
   const mondayOffset = dow === 0 ? -6 : 1 - dow;
@@ -26,7 +25,7 @@ const Calendar: FC<Props> = ({ section, event, theme }) => {
   });
 
   return (
-    <section id={id} className="kd-section bg-kd-ivory">
+    <section id={id} className="kd-section">
       <div className="kd-glow -top-16 left-1/2 h-72 w-72 -translate-x-1/2" />
 
       <div className="kd-container-narrow relative z-10 text-center">
@@ -43,12 +42,10 @@ const Calendar: FC<Props> = ({ section, event, theme }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="kd-heading mb-12"
-          style={{ color: ink }}
         >
           {data.title}
         </motion.h2>
 
-        {/* Vertical ribbon of the ceremony week — only the event day's flame is lit */}
         <div className="kd-ribbon">
           {week.map((d, index) => {
             const isLit =
@@ -68,10 +65,7 @@ const Calendar: FC<Props> = ({ section, event, theme }) => {
                 <span className="kd-ribbon-flame">
                   <Flame className="h-3.5 w-3.5" />
                 </span>
-                <p
-                  className="kd-ribbon-day"
-                  style={isLit ? { color: ink } : undefined}
-                >
+                <p className="kd-ribbon-day">
                   {d.getDate()}.{" "}
                   {new Intl.DateTimeFormat("sr-Latn-RS", {
                     month: "short",

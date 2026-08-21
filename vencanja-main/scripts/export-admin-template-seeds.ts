@@ -11,17 +11,12 @@ import { birthday18DefaultConfig } from "../templates/birthday18/config";
 import { birthday18BrightDefaultConfig } from "../templates/birthday18-bright/config";
 import { birthday18EditorialDefaultConfig } from "../templates/birthday18-editorial/config";
 import { birthday18NightDefaultConfig } from "../templates/birthday18-night/config";
-import { birthday18GoldDefaultConfig } from "../templates/birthday18-gold/config";
 import { birthday18InkDefaultConfig } from "../templates/birthday18-ink/config";
-import { birthday18CoastDefaultConfig } from "../templates/birthday18-coast/config";
-import { birthday18AtelierDefaultConfig } from "../templates/birthday18-atelier/config";
 import { kidsSafariDefaultConfig } from "../templates/kids-safari/config";
 import { kidsSpaceDefaultConfig } from "../templates/kids-space/config";
 import { kidsCandyDefaultConfig } from "../templates/kids-candy/config";
 import { krstenjeClassicDefaultConfig } from "../templates/krstenje-classic/config";
-import { krstenjeSoftDefaultConfig } from "../templates/krstenje-soft/config";
 import { krstenjeGardenDefaultConfig } from "../templates/krstenje-garden/config";
-import { krstenjeModernDefaultConfig } from "../templates/krstenje-modern/config";
 import { krstenjeCandleDefaultConfig } from "../templates/krstenje-candle/config";
 
 const packs = [
@@ -98,18 +93,6 @@ const packs = [
     },
   },
   {
-    key: "birthday18-gold",
-    title: "18 — Zlatno izdanje",
-    description:
-      "Elegantna champagne/gold pozivnica za punoletstvo: topli tonovi, svečani utisak i jasna potvrda prisustva.",
-    eventTypes: ["comingOfAge"],
-    style: "premium",
-    config: {
-      ...birthday18GoldDefaultConfig,
-      eventType: "comingOfAge" as const,
-    },
-  },
-  {
     key: "birthday18-ink",
     title: "18 — Novinsko izdanje",
     description:
@@ -118,30 +101,6 @@ const packs = [
     style: "editorial",
     config: {
       ...birthday18InkDefaultConfig,
-      eventType: "comingOfAge" as const,
-    },
-  },
-  {
-    key: "birthday18-coast",
-    title: "18 — Obalsko izdanje",
-    description:
-      "Vazdušasta dnevna pozivnica za punoletstvo: horizontalni pojasevi, ime kao vodeni žig i raspored kao plima.",
-    eventTypes: ["comingOfAge"],
-    style: "modern",
-    config: {
-      ...birthday18CoastDefaultConfig,
-      eventType: "comingOfAge" as const,
-    },
-  },
-  {
-    key: "birthday18-atelier",
-    title: "18 — Atelje izdanje",
-    description:
-      "Minimalna fashion lookbook pozivnica za punoletstvo: visoka portretna traka i editorial tipografija.",
-    eventTypes: ["comingOfAge"],
-    style: "premium",
-    config: {
-      ...birthday18AtelierDefaultConfig,
       eventType: "comingOfAge" as const,
     },
   },
@@ -194,18 +153,6 @@ const packs = [
     },
   },
   {
-    key: "krstenje-soft",
-    title: "Nežno krštenje",
-    description:
-      "Meki blush tonovi za nežnu i toplu pozivnicu za krštenje.",
-    eventTypes: ["baptism", "kidsBirthday"],
-    style: "classic",
-    config: {
-      ...krstenjeSoftDefaultConfig,
-      eventType: "baptism" as const,
-    },
-  },
-  {
     key: "krstenje-garden",
     title: "Krštenje u bašti",
     description:
@@ -214,18 +161,6 @@ const packs = [
     style: "modern",
     config: {
       ...krstenjeGardenDefaultConfig,
-      eventType: "baptism" as const,
-    },
-  },
-  {
-    key: "krstenje-modern",
-    title: "Moderno krštenje",
-    description:
-      "Čista moderna pozivnica za krštenje — jednostavno, svetlo i jasno.",
-    eventTypes: ["baptism", "kidsBirthday"],
-    style: "modern",
-    config: {
-      ...krstenjeModernDefaultConfig,
       eventType: "baptism" as const,
     },
   },

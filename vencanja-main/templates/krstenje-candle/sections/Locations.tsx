@@ -17,7 +17,7 @@ const Locations: FC<Props> = ({ section }) => {
   const cards = data.cards ?? [];
 
   return (
-    <section id={id} className="kd-section bg-kd-sand">
+    <section id={id} className="kd-section kd-section--sand">
       <div className="kd-glow top-10 right-10 h-64 w-64" />
 
       <div className="kd-container-narrow">
@@ -68,7 +68,7 @@ const Locations: FC<Props> = ({ section }) => {
                   </p>
                 ) : null}
                 {card.text ? (
-                  <p className="mt-2 text-sm leading-relaxed text-kd-muted">
+                  <p className="mt-2 text-sm leading-relaxed text-kd-ink-soft">
                     {card.text}
                   </p>
                 ) : null}

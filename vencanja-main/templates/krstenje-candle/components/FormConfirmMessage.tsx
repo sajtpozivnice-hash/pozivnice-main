@@ -23,7 +23,7 @@ const FormConfirmMessage: FC<Props> = ({ attendance, onClick }) => {
           ? "Vaša potvrda je uspešno poslata."
           : "Hvala što ste nas obavestili."}
       </h3>
-      <p className="mt-4 text-sm text-kd-muted">
+      <p className="mt-4 text-sm text-kd-ink-soft">
         {isYes
           ? "Jedva čekamo da slavimo sa Vama."
           : "Biće nam žao što ne možete doći, ali hvala na poruci."}

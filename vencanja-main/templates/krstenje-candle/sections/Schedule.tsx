@@ -12,9 +12,8 @@ type Props = {
   theme: ThemeConfig;
 };
 
-const Schedule: FC<Props> = ({ section, theme }) => {
+const Schedule: FC<Props> = ({ section }) => {
   const { data, id } = section;
-  const ink = theme.colors?.base?.secondary?.value;
   const items = data.items ?? [];
 
   return (
@@ -33,8 +32,7 @@ const Schedule: FC<Props> = ({ section, theme }) => {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="kd-heading"
-            style={{ color: ink }}
+            className="kd-heading" 
           >
             {data.title}
           </motion.h2>
@@ -43,32 +41,35 @@ const Schedule: FC<Props> = ({ section, theme }) => {
           ) : null}
         </div>
 
-        {/* Horizontal scroll of time cards */}
-        <div className="kd-time-rail">
+        <div className="kd-timeline">
           {items.map((item, index) => (
             <motion.div
               key={item.id}
-              initial={{ opacity: 0, x: 24 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.06 }}
-              className="kd-time-card"
+              className="kd-time-step"
             >
-              <Flame className="h-4 w-4 text-kd-champagne" />
-              <p className="kd-time-card__time">{item.time}</p>
-              <h3 className="kd-time-card__title" style={{ color: ink }}>
-                {item.title}
-              </h3>
-              {item.description ? (
-                <p className="kd-time-card__desc">{item.description}</p>
-              ) : null}
+              <span className="kd-time-step__marker" aria-hidden>
+                <Flame className="h-4 w-4" />
+              </span>
+              <div className="kd-time-step__body">
+                <p className="kd-time-step__time">{item.time}</p>
+                <h3 className="kd-time-step__title" >
+                  {item.title}
+                </h3>
+                {item.description ? (
+                  <p className="kd-time-step__desc">{item.description}</p>
+                ) : null}
+              </div>
             </motion.div>
           ))}
         </div>
-        <p className="kd-time-rail-hint">Prevucite za više →</p>
       </div>
     </section>
   );
 };
 
 export default Schedule;
+

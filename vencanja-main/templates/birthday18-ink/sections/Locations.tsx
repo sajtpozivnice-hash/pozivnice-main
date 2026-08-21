@@ -30,7 +30,7 @@ const Locations: FC<Props> = ({ section, event }) => {
 
   return (
     <section id={id} className="b18i-section">
-      <div className="b18i-shell">
+      <div className="b18i-shell max-w-3xl">
         <p className="b18i-eyebrow mb-3">Rubrika</p>
         <h2 className="b18i-display mb-8 text-3xl sm:text-4xl">
           {data.title || "Kada & gde"}
@@ -60,32 +60,29 @@ const Locations: FC<Props> = ({ section, event }) => {
           viewport={{ once: true }}
           className="b18i-loc__panel"
         >
-          <div className="b18i-loc__media">
-            {card?.image ? (
-              <img src={card.image} alt="" referrerPolicy="no-referrer" />
-            ) : null}
-          </div>
-          <div className="flex flex-col justify-center gap-5">
-            <div>
-              <p className="b18i-eyebrow mb-2">Adresa</p>
-              <p className="flex items-start gap-2 text-lg">
-                <MapPin className="mt-1 h-4 w-4 shrink-0 text-[var(--ink-red)]" />
-                <span>
-                  {card?.location ||
-                    event.location?.address ||
-                    "Adresa će biti potvrđena"}
-                </span>
-              </p>
-            </div>
-            {card?.text ? (
-              <p className="text-[var(--ink-muted)]">{card.text}</p>
-            ) : null}
-            {mapsUrl ? (
-              <a href={mapsUrl} target="_blank" rel="noopener noreferrer" className="b18i-btn-ghost">
-                Kako stići
-              </a>
-            ) : null}
-          </div>
+          <p className="b18i-eyebrow mb-3">Adresa redakcije</p>
+          <p className="b18i-loc__city">
+            {card?.title || event.location?.name || "Beograd"}
+          </p>
+          <p className="b18i-loc__address">
+            <MapPin className="mt-1 h-4 w-4 shrink-0 text-[var(--ink-red)]" />
+            <span>
+              {card?.location ||
+                event.location?.address ||
+                "Adresa će biti potvrđena"}
+            </span>
+          </p>
+          {card?.text ? <p className="b18i-loc__note">{card.text}</p> : null}
+          {mapsUrl ? (
+            <a
+              href={mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="b18i-btn-ghost mt-5"
+            >
+              Kako stići
+            </a>
+          ) : null}
         </motion.div>
       </div>
     </section>

@@ -7,20 +7,10 @@ const stories = {
     overline: "Porodični blagoslov",
     text: "Sa verom i ljubavlju pozivamo vas da budete uz nas na danu krštenja. Ovaj trenutak je početak novog puta — blagosloven, topao i pun porodične radosti.\n\nTekstove lako prilagodite i za dečiji rođendan: promenite naslov, raspored i poruku u editoru.",
   },
-  "krstenje-soft": {
-    title: "Mali početak",
-    overline: "Sa nežnošću",
-    text: "U nežnom ritmu dana želimo da podelimo radost sa vama. Krštenje je za nas trenutak bliskosti, zahvalnosti i novog početka.\n\nAko pripremate dečiji rođendan, ista nežna atmosfera radi jednako lepo — samo prilagodite tekstove u editoru.",
-  },
   "krstenje-garden": {
     title: "Pod otvorenim nebom",
     overline: "Porodična proslava",
     text: "Okupljamo se napolju, među zelenilom i smehom, da proslavimo blagoslovljen dan. Krštenje i okupljanje posle toga su jedno: porodica, prijatelji i lagani trenuci.\n\nŠablon takođe možete pretvoriti u rođendansku pozivnicu — promenite hero, program i lokacije.",
-  },
-  "krstenje-modern": {
-    title: "Čist početak",
-    overline: "Jednostavno i jasno",
-    text: "Verujemo u jednostavne stvari: jasan poziv, toplu poruku i drage goste. Ovaj dan je krštenje — miran, svetao i iskren.\n\nIsti minimalni ritam odlično stoji i za dečiji rođendan; uredite sadržaj kako vama odgovara.",
   },
   "krstenje-candle": {
     title: "U svetlosti",

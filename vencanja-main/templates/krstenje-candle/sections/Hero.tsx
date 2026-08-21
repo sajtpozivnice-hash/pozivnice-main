@@ -20,7 +20,7 @@ const Hero: FC<Props> = ({ section, event }) => {
   return (
     <section
       id={id}
-      className="relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden bg-kd-ivory px-5 py-24 sm:px-8"
+      className="kd-hero relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden px-5 py-24 sm:px-8"
     >
       {/* Ambient texture — heavily blurred/darkened, never a crisp photographic hero */}
       {data.backgroundImage ? (
@@ -60,8 +60,8 @@ const Hero: FC<Props> = ({ section, event }) => {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.15 }}
-          className="mt-5 text-5xl leading-[1.05] tracking-tight sm:text-6xl"
-          style={{ fontFamily: "var(--font-primary)", color: "var(--color-kd-ink)" }}
+          className="mt-5 text-5xl leading-[1.05] tracking-tight text-kd-ink sm:text-6xl"
+          style={{ fontFamily: "var(--font-primary)" }}
         >
           {names}
         </motion.h1>
@@ -72,7 +72,7 @@ const Hero: FC<Props> = ({ section, event }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.45, duration: 0.7 }}
-          className="mt-6 text-xs uppercase tracking-[0.3em] text-kd-muted"
+          className="mt-6 text-xs uppercase tracking-[0.3em] text-kd-ink-soft"
         >
           {formatDate(date, "DAY_D_MMMM_YYYY")}
         </motion.p>

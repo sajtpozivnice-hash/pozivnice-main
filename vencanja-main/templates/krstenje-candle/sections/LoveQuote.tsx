@@ -35,15 +35,12 @@ const LoveQuote: FC<Props> = ({ section, theme }) => {
             <Flame className="h-5 w-5" />
           </span>
 
-          <blockquote
-            className="text-2xl leading-relaxed sm:text-3xl sm:leading-snug"
-            style={{ fontFamily: "var(--font-primary)" }}
-          >
+          <blockquote className="kd-quote text-2xl leading-relaxed sm:text-3xl sm:leading-snug">
             {data.title}
           </blockquote>
 
           {data.description ? (
-            <p className="mt-6 text-xs uppercase tracking-[0.3em] text-kd-muted">
+            <p className="mt-6 text-xs uppercase tracking-[0.3em] text-kd-ink-soft">
               {data.description}
             </p>
           ) : null}

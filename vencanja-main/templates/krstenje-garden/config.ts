@@ -28,6 +28,14 @@ export const krstenjeGardenDefaultConfig: UniversalProjectConfig = {
           value: "#223226",
         },
       },
+      background: {
+        name: "Ivory",
+        value: "#f7f8f2",
+      },
+      backgroundSecondary: {
+        name: "Sand",
+        value: "#eaf0e2",
+      },
     },
   },
   sections: [

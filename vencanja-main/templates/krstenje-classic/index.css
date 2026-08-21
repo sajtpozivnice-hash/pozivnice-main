@@ -10,6 +10,33 @@
   --color-kc-muted: #7d7362;
 }
 
+/* Bridge editor theme → local tokens (Tailwind utilities + components) */
+[data-template="krstenje-classic"] {
+  --color-kc-champagne: var(--color-primary, #9c7a3f);
+  --color-kc-champagne-soft: color-mix(
+    in srgb,
+    var(--color-primary, #9c7a3f) 68%,
+    #ffffff
+  );
+  --color-kc-ink: var(--color-secondary, #2a2319);
+  --color-kc-ink-soft: color-mix(
+    in srgb,
+    var(--color-secondary, #2a2319) 72%,
+    var(--color-background, #fbf7ee)
+  );
+  --color-kc-ivory: var(--color-background, #fbf7ee);
+  --color-kc-sand: var(--color-background-secondary, #f2ecdd);
+  --color-kc-muted: color-mix(
+    in srgb,
+    var(--color-secondary, #2a2319) 48%,
+    var(--color-background, #fbf7ee)
+  );
+
+  color: var(--color-kc-ink);
+  background-color: var(--color-kc-ivory);
+  font-family: var(--font-secondary, system-ui, sans-serif);
+}
+
 @layer components {
   .kc-section {
     @apply relative overflow-hidden bg-kc-ivory px-5 py-20 sm:px-8 md:px-12 lg:px-20 lg:py-28;

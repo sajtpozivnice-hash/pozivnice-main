@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { CSSProperties, FC, useEffect, useState } from "react";
 import { motion } from "framer-motion";
@@ -22,8 +22,6 @@ const Countdown: FC<Props> = ({ section, event, theme }) => {
   const { data, id } = section;
   const targetDate = new Date(event.date).getTime();
   const accent = theme.colors?.base?.primary?.value;
-  const ink = theme.colors?.base?.secondary?.value;
-
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({
     days: 0,
     hours: 0,
@@ -52,14 +50,15 @@ const Countdown: FC<Props> = ({ section, event, theme }) => {
     return () => clearInterval(timer);
   }, [targetDate]);
 
+  const flame = accent ?? "var(--color-kd-champagne, #d1a15c)";
   const votives = [
-    { label: "Sati", value: timeLeft.hours, color: "#e6c48a" },
-    { label: "Minuta", value: timeLeft.minutes, color: "#d1a15c" },
-    { label: "Sekundi", value: timeLeft.seconds, color: "#f3d9a8" },
+    { label: "Sati", value: timeLeft.hours, color: flame },
+    { label: "Minuta", value: timeLeft.minutes, color: flame },
+    { label: "Sekundi", value: timeLeft.seconds, color: flame },
   ];
 
   return (
-    <section id={id} className="kd-section bg-kd-ivory">
+    <section id={id} className="kd-section">
       <div className="kd-container-narrow text-center">
         <motion.p
           initial={{ opacity: 0, y: 12 }}
@@ -73,20 +72,19 @@ const Countdown: FC<Props> = ({ section, event, theme }) => {
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="kd-heading mb-14"
-          style={{ color: ink }}
+          className="kd-heading mb-14" 
         >
           {data.title}
         </motion.h2>
 
-        {/* Vigil — one tall pillar candle burning down the day count, small votives for H:M:S */}
+        {/* Vigil â€” one tall pillar candle burning down the day count, small votives for H:M:S */}
         <div className="kd-vigil">
           <motion.div
             initial={{ opacity: 0, y: -12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="kd-vigil-pillar"
-            style={{ "--flame-color": accent ?? "#d1a15c" } as CSSProperties}
+            style={{ "--flame-color": flame } as CSSProperties}
           >
             <span className="kd-vigil-pillar__flame" />
             <span className="kd-vigil-pillar__wax">
@@ -121,3 +119,4 @@ const Countdown: FC<Props> = ({ section, event, theme }) => {
 };
 
 export default Countdown;
+

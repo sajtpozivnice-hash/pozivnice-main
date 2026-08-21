@@ -18,17 +18,6 @@ const ROOT = path.join(__dirname, "..", "templates");
  *  cssVarTo?: string,
  * }>} */
 const PACKS = [
-  // comingOfAge (+1)
-  {
-    source: "birthday18-bright",
-    key: "birthday18-gold",
-    exportFrom: "birthday18Bright",
-    exportTo: "birthday18Gold",
-    classFrom: "b18b-",
-    classTo: "b18g-",
-    cssVarFrom: "--b18b-",
-    cssVarTo: "--b18g-",
-  },
   // kidsBirthday
   {
     source: "rodjendan-01",

@@ -52,11 +52,12 @@ const Countdown: FC<Props> = ({ section, event, theme }) => {
     return () => clearInterval(timer);
   }, [targetDate]);
 
+  const sage = accent ?? "var(--color-kg-champagne, #5b7d52)";
   const items = [
-    { label: "Dana", value: timeLeft.days, color: accent ?? "#5b7d52" },
-    { label: "Sati", value: timeLeft.hours, color: "#9db98e" },
-    { label: "Minuta", value: timeLeft.minutes, color: "#5b7d52" },
-    { label: "Sekundi", value: timeLeft.seconds, color: "#7d9a6e" },
+    { label: "Dana", value: timeLeft.days, color: sage },
+    { label: "Sati", value: timeLeft.hours, color: sage },
+    { label: "Minuta", value: timeLeft.minutes, color: sage },
+    { label: "Sekundi", value: timeLeft.seconds, color: sage },
   ];
 
   return (

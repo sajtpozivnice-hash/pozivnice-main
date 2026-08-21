@@ -4,18 +4,18 @@ export const krstenjeClassicDefaultConfig: UniversalProjectConfig = {
   template: "krstenje-classic",
   eventType: "baptism",
   meta: {
-    title: "Mina — Krštenje",
-    description: "Pozivnica za krštenje",
+    title: "Teodor — svečano krštenje",
+    description: "Pozivnica za krštenje"
   },
   event: {
-    date: "2026-08-08",
-    rsvpDate: "2026-07-08",
-    names: "Mina",
+    date: "2027-08-08",
+    rsvpDate: "2027-07-08",
+    names: "Teodor"
   },
   theme: {
     fonts: {
       primary: "playfair",
-      secondary: "inter",
+      secondary: "inter"
     },
     colors: {
       base: {
@@ -28,6 +28,14 @@ export const krstenjeClassicDefaultConfig: UniversalProjectConfig = {
           value: "#2a2319",
         },
       },
+      background: {
+        name: "Ivory",
+        value: "#fbf7ee",
+      },
+      backgroundSecondary: {
+        name: "Sand",
+        value: "#f2ecdd",
+      },
     },
   },
   sections: [
@@ -38,11 +46,10 @@ export const krstenjeClassicDefaultConfig: UniversalProjectConfig = {
       visible: true,
       order: 1,
       data: {
-        title: "Sa verom i radošću vas pozivamo",
-        subtitle: "Krštenje",
-        backgroundImage:
-          "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2000",
-      },
+        title: "U svetlosti sveće",
+        subtitle: "Sveta tajna krštenja",
+        backgroundImage: "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787350317/2026-01-17-04-45-55-960x640_eed5a3.jpg"
+      }
     },
     {
       id: "countdown",
@@ -50,7 +57,9 @@ export const krstenjeClassicDefaultConfig: UniversalProjectConfig = {
       type: "countdown",
       visible: true,
       order: 2,
-      data: { title: "Do dana krštenja" },
+      data: {
+        title: "Do svečanog dana"
+      }
     },
     {
       id: "inviteText",
@@ -59,9 +68,8 @@ export const krstenjeClassicDefaultConfig: UniversalProjectConfig = {
       visible: true,
       order: 3,
       data: {
-        description:
-          "Sa velikom radošću pozivamo vas da budete uz nas na dan krštenja naše male Mine. Biće nam čast da podelite taj poseban trenutak sa nama.",
-      },
+        description: "U toploj atmosferi i uz najbliže, pozivamo vas na krštenje našeg sina Teodora."
+      }
     },
     {
       id: "calendar",
@@ -69,23 +77,24 @@ export const krstenjeClassicDefaultConfig: UniversalProjectConfig = {
       type: "calendar",
       visible: true,
       order: 4,
-      data: { title: "Sačuvajte datum" },
+      data: {
+        title: "Sačuvajte datum"
+      }
     },
     {
       id: "ourStory",
-      name: "Naša Priča",
+      name: "Krštenje priča",
       type: "ourStory",
       visible: true,
       order: 5,
       data: {
-        title: "O našoj radosti",
-        overline: "Porodični blagoslov",
-        text: `Sa verom i ljubavlju pozivamo vas da budete uz nas na danu krštenja. Ovaj trenutak je početak novog puta — blagosloven, topao i pun porodične radosti.
+        title: "U svetlosti",
+        overline: "Svečani trenutak",
+        text: `U tišini sveće i toplom sjaju okupljamo one koji su nam najdraži. Krštenje je naš svečani trenutak zahvalnosti i vere.
 
-Tekstove lako prilagodite i za dečiji rođendan: promenite naslov, raspored i poruku u editoru.`,
-        image:
-          "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=1200",
-      },
+Ako želite svečani dečiji rođendan, zadržite atmosferu — promenite samo tekstove i program u editoru.`,
+        image: "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787350317/2026-01-17-04-45-55-960x640_eed5a3.jpg"
+      }
     },
     {
       id: "schedule",
@@ -100,40 +109,39 @@ Tekstove lako prilagodite i za dečiji rođendan: promenite naslov, raspored i p
           {
             id: "1",
             time: "15:00",
-            title: "Ceremonija",
-            description: "Vrt vile Atina",
+            title: "Krstenje",
+            description: "Crkva Sv. Jovana"
           },
           {
             id: "2",
             time: "16:30",
-            title: "Koktel",
-            description: "Terasa uz bazen",
+            title: "Skup gostiju u svečanoj sali",
+            description: "Svečana sala"
           },
           {
             id: "3",
-            time: "18:00",
+            time: "17:30",
             title: "Večera",
-            description: "Svečana sala",
+            description: "Večera u svečanoj sali"
           },
           {
             id: "4",
-            time: "21:00",
+            time: "18:30",
             title: "Žurka",
-            description: "Do kasnih sati",
-          },
-        ],
-      },
+            description: "Do kasnih sati"
+          }
+        ]
+      }
     },
     {
       id: "loveQuote",
-      name: "Ljubavni Citat",
+      name: "Krštenje citat",
       type: "loveQuote",
       visible: true,
       order: 7,
       data: {
-        title:
-          "Ljubav nije nešto što pronalazimo. Ljubav je nešto što gradimo — zajedno.",
-      },
+        title: "Danas primam najlepši dar – Božji blagoslov, ljubav svojih najmilijih i put ispunjen verom."
+      }
     },
     {
       id: "locations",
@@ -147,20 +155,20 @@ Tekstove lako prilagodite i za dečiji rođendan: promenite naslov, raspored i p
         cards: [
           {
             id: 1,
-            title: "Ceremonija",
+            title: "Krstenje",
             time: "15:00",
-            location: "Vila Atina, Beograd",
-            text: "Jer gde je ljubav, tu je i Bog.",
+            location: "Crkva Sv. Jovana",
+            text: "Neka svetlost vodi njegov put."
           },
           {
             id: 2,
             title: "Proslava",
-            time: "18:00",
+            time: "17:30",
             location: "Svečana sala Vila Atina",
-            text: "Večera, zdravice i ples do kasnih sati.",
-          },
-        ],
-      },
+            text: "Večera, zdravice i ples do kasnih sati."
+          }
+        ]
+      }
     },
     {
       id: "uploadImagesSection",
@@ -171,9 +179,8 @@ Tekstove lako prilagodite i za dečiji rođendan: promenite naslov, raspored i p
       data: {
         title: "Podelite uspomene",
         subtitle: "Vaše fotografije",
-        description:
-          "Pomozite nam da sačuvamo magične trenutke. Podelite omiljene fotografije sa našeg dana.",
-      },
+        description: "Pomozite nam da sačuvamo magične trenutke. Podelite omiljene fotografije sa našeg dana."
+      }
     },
     {
       id: "rsvp",
@@ -184,8 +191,8 @@ Tekstove lako prilagodite i za dečiji rođendan: promenite naslov, raspored i p
       data: {
         title: "Potvrdite dolazak",
         description: "Molimo Vas da potvrdite prisustvo do ",
-        buttonText: "Pošalji potvrdu",
-      },
+        buttonText: "Pošalji potvrdu"
+      }
     },
     {
       id: "footer",
@@ -194,8 +201,8 @@ Tekstove lako prilagodite i za dečiji rođendan: promenite naslov, raspored i p
       visible: true,
       order: 12,
       data: {
-        title: "Jedva čekamo da slavimo sa Vama.",
-      },
-    },
-  ],
+        title: "Jedva čekamo da slavimo sa Vama."
+      }
+    }
+  ]
 };

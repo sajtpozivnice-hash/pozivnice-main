@@ -53,7 +53,10 @@ const UploadImages: FC<Props> = ({ section, theme }) => {
         <div className="mx-auto mt-8 max-w-sm">
           <GuestPhotoUploadControl
             buttonText={data.buttonText || "Dodaj fotografije"}
-            buttonStyle={{ background: accent, color: "#17120d" }}
+            buttonStyle={{
+              background: accent,
+              color: "var(--color-kd-ivory, #17120d)",
+            }}
             buttonClassName="inline-flex w-full cursor-pointer items-center justify-center rounded-full px-8 py-3 text-sm font-medium transition hover:opacity-90 sm:w-auto"
             inputClassName="w-full rounded-full border border-black/10 bg-white px-4 py-3 text-sm outline-none"
           />

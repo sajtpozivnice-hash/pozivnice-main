@@ -46,7 +46,7 @@ const RSVP: FC<Props> = ({ section, event }) => {
   };
 
   return (
-    <section id={id} className="kd-section bg-kd-sand">
+    <section id={id} className="kd-section kd-section--sand">
       <div className="kd-glow -bottom-16 -left-16 h-72 w-72" />
 
       <div className="kd-container">
@@ -71,7 +71,7 @@ const RSVP: FC<Props> = ({ section, event }) => {
                   <Flame className="h-4 w-4" />
                 </span>
                 <p className="kd-script mt-4">Knjiga gostiju</p>
-                <p className="mt-3 text-sm leading-relaxed text-kd-muted">
+                <p className="mt-3 text-sm leading-relaxed text-kd-ink-soft">
                   {data.description}
                   {formatDate(event.rsvpDate, "DD_MMM_YYYY")}
                 </p>

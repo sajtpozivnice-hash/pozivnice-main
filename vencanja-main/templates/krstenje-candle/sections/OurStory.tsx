@@ -12,16 +12,15 @@ type Props = {
   theme: ThemeConfig;
 };
 
-const OurStory: FC<Props> = ({ section, theme }) => {
+const OurStory: FC<Props> = ({ section }) => {
   const { data, id } = section;
-  const ink = theme.colors?.base?.secondary?.value;
   const paragraphs = (data.text ?? "")
     .split("\n")
     .map((part) => part.trim())
     .filter(Boolean);
 
   return (
-    <section id={id} className="kd-section bg-kd-ivory">
+    <section id={id} className="kd-section">
       <div className="kd-glow top-1/2 -right-24 h-72 w-72 -translate-y-1/2" />
 
       <div className="kd-container-narrow relative z-10">
@@ -51,15 +50,13 @@ const OurStory: FC<Props> = ({ section, theme }) => {
             ) : null}
 
             <p className="kd-eyebrow mb-3">{data.overline}</p>
-            <h2 className="kd-heading mb-6" style={{ color: ink }}>
-              {data.title}
-            </h2>
+            <h2 className="kd-heading mb-6">{data.title}</h2>
 
             <div className="space-y-5">
               {paragraphs.map((paragraph) => (
                 <p
                   key={paragraph.slice(0, 24)}
-                  className="text-base leading-relaxed text-kd-muted sm:text-lg"
+                  className="text-base leading-relaxed text-[#e5d6b6] sm:text-lg"
                   style={{ fontFamily: "var(--font-secondary)" }}
                 >
                   {paragraph}

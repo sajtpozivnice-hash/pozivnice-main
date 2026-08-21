@@ -1,18 +1,62 @@
 @import "tailwindcss";
 
+/*
+  Candle defaults stay in @theme.
+  Theme bridging happens on [data-template] (same element as
+  TemplateRenderer CSS vars) — never inside @theme itself.
+*/
 @theme {
   --color-kd-ink: #f3e8d4;
-  --color-kd-ink-soft: #d9c7a8;
+  --color-kd-ink-soft: #e5d6b6;
   --color-kd-ivory: #17120d;
   --color-kd-sand: #221a12;
   --color-kd-champagne: #d1a15c;
   --color-kd-champagne-soft: #e6c48a;
-  --color-kd-muted: #a89679;
+  --color-kd-muted: #d2c09a;
+}
+
+[data-template="krstenje-candle"] {
+  --color-kd-champagne: var(--color-primary, #d1a15c);
+  --color-kd-champagne-soft: color-mix(
+    in srgb,
+    var(--color-kd-champagne) 70%,
+    #fff6da
+  );
+  --color-kd-ink: var(--color-secondary, #f3e8d4);
+  --color-kd-ink-soft: color-mix(
+    in srgb,
+    var(--color-secondary, #f3e8d4) 85%,
+    var(--color-background, #17120d)
+  );
+  --color-kd-ivory: var(--color-background, #17120d);
+  --color-kd-sand: var(--color-background-secondary, #221a12);
+  --color-kd-muted: color-mix(
+    in srgb,
+    var(--color-secondary, #f3e8d4) 72%,
+    var(--color-background, #17120d)
+  );
+
+  color: var(--color-kd-ink);
+  background-color: var(--color-kd-ivory);
+  font-family: var(--font-secondary, system-ui, sans-serif);
+  min-height: 100%;
 }
 
 @layer components {
+  .kd-hero,
   .kd-section {
-    @apply relative overflow-hidden bg-kd-ivory px-5 py-20 sm:px-8 md:px-12 lg:px-20 lg:py-28;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-kd-ivory, #17120d);
+    color: var(--color-kd-ink, #f3e8d4);
+  }
+
+  .kd-section {
+    @apply px-5 py-20 sm:px-8 md:px-12 lg:px-20 lg:py-28;
+  }
+
+  .kd-section.kd-section--sand {
+    background-color: var(--color-kd-sand, #221a12);
   }
 
   .kd-container {
@@ -25,32 +69,39 @@
 
   .kd-eyebrow {
     @apply text-[11px] font-medium uppercase tracking-[0.4em];
-    color: var(--color-primary, var(--color-kd-champagne));
+    color: var(--color-kd-champagne, #d1a15c);
     font-family: var(--font-secondary);
   }
 
   .kd-script {
     font-family: var(--font-dancingscript);
     @apply text-2xl sm:text-3xl;
-    color: var(--color-primary, var(--color-kd-champagne));
+    color: var(--color-kd-champagne, #d1a15c);
   }
 
   .kd-heading {
     @apply text-4xl leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl;
     font-family: var(--font-primary);
-    color: var(--color-secondary, var(--color-kd-ink));
+    color: var(--color-kd-ink, #f3e8d4);
   }
 
   .kd-subheading {
     @apply mt-4 text-base leading-relaxed sm:text-lg;
     font-family: var(--font-secondary);
-    color: var(--color-kd-muted);
+    color: var(--color-kd-ink-soft, #e5d6b6);
   }
 
-  /* Glass-glow panel — small centered content block, not a full-bleed hero */
+  .kd-quote {
+    font-family: var(--font-primary);
+    color: var(--color-kd-ink, #f3e8d4);
+  }
+
   .kd-glow-panel {
     @apply relative rounded-3xl border border-kd-champagne/20 bg-white/[0.03] backdrop-blur-sm;
-    box-shadow: 0 0 0 1px rgba(209, 161, 92, 0.05), 0 30px 80px -30px rgba(0, 0, 0, 0.8), 0 0 60px -20px rgba(209, 161, 92, 0.25);
+    box-shadow:
+      0 0 0 1px rgba(209, 161, 92, 0.05),
+      0 30px 80px -30px rgba(0, 0, 0, 0.8),
+      0 0 60px -20px rgba(209, 161, 92, 0.25);
   }
 
   .kd-card {
@@ -59,26 +110,39 @@
 
   .kd-divider {
     @apply mx-auto h-px w-16;
-    background: var(--color-primary, var(--color-kd-champagne));
+    background: var(--color-kd-champagne, #d1a15c);
     opacity: 0.6;
   }
 
   .kd-glow {
     @apply pointer-events-none absolute rounded-full blur-3xl;
-    background: radial-gradient(circle, rgba(209, 161, 92, 0.35), transparent 70%);
+    background: radial-gradient(
+      circle,
+      rgba(209, 161, 92, 0.35),
+      transparent 70%
+    );
   }
 
   .kd-input {
-    @apply w-full rounded-xl border border-kd-champagne/20 bg-white/5 px-4 py-3 text-sm text-kd-ink outline-none transition placeholder:text-kd-muted/60 focus:border-[color:var(--color-primary,#d1a15c)];
+    @apply w-full rounded-xl border border-kd-champagne/20 bg-white/5 px-4 py-3 text-sm outline-none transition;
+    color: var(--color-kd-ink, #f3e8d4);
     font-family: var(--font-secondary);
+  }
+
+  .kd-input::placeholder {
+    color: rgb(210 192 154 / 0.6);
+  }
+
+  .kd-input:focus {
+    border-color: var(--color-kd-champagne, #d1a15c);
   }
 
   .kd-label {
-    @apply mb-2 block text-[11px] font-medium uppercase tracking-[0.22em] text-kd-muted;
+    @apply mb-2 block text-[11px] font-medium uppercase tracking-[0.22em];
+    color: var(--color-kd-muted, #d2c09a);
     font-family: var(--font-secondary);
   }
 
-  /* InviteText — liturgy reading block, a cross breaks the horizontal rule instead of an icon-in-card */
   .kd-cross-rule {
     @apply relative mx-auto flex h-6 w-full max-w-xs items-center justify-center;
   }
@@ -87,11 +151,19 @@
   .kd-cross-rule::after {
     content: "";
     @apply h-px flex-1;
-    background: linear-gradient(90deg, transparent, var(--color-kd-champagne));
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-kd-champagne, #d1a15c)
+    );
   }
 
   .kd-cross-rule::after {
-    background: linear-gradient(90deg, var(--color-kd-champagne), transparent);
+    background: linear-gradient(
+      90deg,
+      var(--color-kd-champagne, #d1a15c),
+      transparent
+    );
   }
 
   .kd-cross-rule--end::before,
@@ -106,7 +178,8 @@
   .kd-cross-rule__cross::before,
   .kd-cross-rule__cross::after {
     content: "";
-    @apply absolute bg-kd-champagne;
+    @apply absolute;
+    background: var(--color-kd-champagne, #d1a15c);
   }
 
   .kd-cross-rule__cross::before {
@@ -118,17 +191,17 @@
   }
 
   .kd-liturgy-kicker {
-    @apply mt-6 text-center text-[11px] uppercase tracking-[0.4em] text-kd-champagne;
+    @apply mt-6 text-center text-[11px] uppercase tracking-[0.4em];
+    color: var(--color-kd-champagne, #d1a15c);
     font-family: var(--font-secondary);
   }
 
   .kd-liturgy-text {
     @apply mx-auto mt-6 max-w-2xl text-center text-xl leading-relaxed italic sm:text-2xl sm:leading-relaxed;
     font-family: var(--font-primary);
-    color: var(--color-kd-ink);
+    color: var(--color-kd-ink, #f3e8d4);
   }
 
-  /* Countdown — one tall pillar candle burning down the day count, small votives keep H:M:S */
   .kd-vigil {
     @apply mx-auto flex max-w-sm flex-col items-center gap-8;
   }
@@ -139,16 +212,27 @@
 
   .kd-vigil-pillar__flame {
     @apply relative block h-10 w-6 rounded-[50%_50%_50%_50%/60%_60%_40%_40%];
-    background: radial-gradient(circle at 50% 30%, #fff6da, var(--flame-color) 75%);
+    background: radial-gradient(
+      circle at 50% 30%,
+      #fff6da,
+      var(--flame-color, #d1a15c) 75%
+    );
     box-shadow:
-      0 0 24px 6px color-mix(in srgb, var(--flame-color) 60%, transparent),
-      0 0 55px 18px color-mix(in srgb, var(--flame-color) 30%, transparent);
+      0 0 24px 6px
+        color-mix(in srgb, var(--flame-color, #d1a15c) 60%, transparent),
+      0 0 55px 18px
+        color-mix(in srgb, var(--flame-color, #d1a15c) 30%, transparent);
     animation: kd-flame-flicker 2.6s ease-in-out infinite;
   }
 
   @keyframes kd-flame-flicker {
-    0%, 100% { transform: scaleY(1) rotate(-1deg); }
-    50% { transform: scaleY(1.08) rotate(1.5deg); }
+    0%,
+    100% {
+      transform: scaleY(1) rotate(-1deg);
+    }
+    50% {
+      transform: scaleY(1.08) rotate(1.5deg);
+    }
   }
 
   .kd-vigil-pillar__wax {
@@ -158,11 +242,12 @@
   .kd-vigil-pillar__num {
     @apply text-7xl font-black leading-none sm:text-8xl;
     font-family: var(--font-primary);
-    color: var(--flame-color);
+    color: var(--flame-color, #d1a15c);
   }
 
   .kd-vigil-pillar__label {
-    @apply mt-3 text-[11px] uppercase tracking-[0.28em] text-kd-muted;
+    @apply mt-3 text-[11px] uppercase tracking-[0.28em];
+    color: var(--color-kd-muted, #d2c09a);
   }
 
   .kd-vigil-votives {
@@ -175,39 +260,48 @@
 
   .kd-vigil-votive__flame {
     @apply relative block h-4 w-3 rounded-[50%_50%_50%_50%/60%_60%_40%_40%];
-    background: radial-gradient(circle at 50% 30%, #fff6da, var(--flame-color) 75%);
-    box-shadow: 0 0 12px 2px color-mix(in srgb, var(--flame-color) 55%, transparent);
+    background: radial-gradient(
+      circle at 50% 30%,
+      #fff6da,
+      var(--flame-color, #d1a15c) 75%
+    );
+    box-shadow: 0 0 12px 2px
+      color-mix(in srgb, var(--flame-color, #d1a15c) 55%, transparent);
   }
 
   .kd-vigil-votive__num {
     @apply text-xl font-bold sm:text-2xl;
     font-family: var(--font-primary);
-    color: var(--flame-color);
+    color: var(--flame-color, #d1a15c);
   }
 
   .kd-vigil-votive__label {
-    @apply text-[9px] uppercase tracking-[0.22em] text-kd-muted;
+    @apply text-[9px] uppercase tracking-[0.22em];
+    color: var(--color-kd-muted, #d2c09a);
   }
 
-  /* Calendar — vertical ribbon of the event week, one flame lit on the event day */
   .kd-ribbon {
     @apply mx-auto flex max-w-xs flex-col gap-2;
   }
 
   .kd-ribbon-row {
-    @apply flex items-center gap-4 rounded-xl border border-kd-champagne/10 bg-white/[0.02] px-5 py-3 text-kd-muted transition;
+    @apply flex items-center gap-4 rounded-xl border border-kd-champagne/10 bg-white/[0.02] px-5 py-3 transition;
+    color: var(--color-kd-ink-soft, #e5d6b6);
   }
 
   .kd-ribbon-row--lit {
     @apply border-kd-champagne/40 bg-white/[0.05];
+    color: var(--color-kd-ink, #f3e8d4);
   }
 
   .kd-ribbon-flame {
-    @apply flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-kd-champagne/20 text-kd-champagne/30;
+    @apply flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-kd-champagne/20;
+    color: rgb(209 161 92 / 0.3);
   }
 
   .kd-ribbon-row--lit .kd-ribbon-flame {
-    @apply border-kd-champagne text-kd-champagne;
+    @apply border-kd-champagne;
+    color: var(--color-kd-champagne, #d1a15c);
     box-shadow: 0 0 16px -4px rgba(209, 161, 92, 0.6);
   }
 
@@ -220,7 +314,6 @@
     @apply ml-auto text-[10px] uppercase tracking-[0.25em];
   }
 
-  /* Our Story — single column with a glowing vertical ornament rail */
   .kd-story-rail {
     @apply relative flex w-8 shrink-0 flex-col items-center pt-2 sm:w-10;
   }
@@ -228,11 +321,16 @@
   .kd-story-rail::before {
     content: "";
     @apply absolute top-9 bottom-0 left-1/2 w-px -translate-x-1/2;
-    background: linear-gradient(180deg, var(--color-kd-champagne), transparent);
+    background: linear-gradient(
+      180deg,
+      var(--color-kd-champagne, #d1a15c),
+      transparent
+    );
   }
 
   .kd-story-rail-flame {
-    @apply flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-kd-champagne/40 text-kd-champagne;
+    @apply flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-kd-champagne/40;
+    color: var(--color-kd-champagne, #d1a15c);
     box-shadow: 0 0 18px -4px rgba(209, 161, 92, 0.55);
   }
 
@@ -244,40 +342,53 @@
     @apply h-full w-full object-cover;
   }
 
-  /* Schedule — horizontal scrolling rail of time cards, no vertical spine */
-  .kd-time-rail {
-    @apply flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4;
-    scrollbar-width: thin;
+  .kd-timeline {
+    @apply relative mx-auto flex max-w-md flex-col gap-0;
   }
 
-  .kd-time-card {
-    @apply relative flex w-64 shrink-0 snap-start flex-col gap-3 rounded-2xl border border-kd-champagne/15 bg-white/[0.03] px-6 py-6 backdrop-blur-sm sm:w-72;
-  }
-
-  .kd-time-card::before {
+  .kd-timeline::before {
     content: "";
-    @apply absolute inset-x-6 top-0 h-[2px] rounded-full;
-    background: linear-gradient(90deg, var(--color-kd-champagne), transparent);
+    @apply absolute top-3 bottom-3 left-[1.15rem] w-px sm:left-[1.35rem];
+    background: linear-gradient(
+      180deg,
+      var(--color-kd-champagne, #d1a15c),
+      transparent
+    );
   }
 
-  .kd-time-card__time {
-    @apply text-xs uppercase tracking-[0.28em] text-kd-champagne;
+  .kd-time-step {
+    @apply relative flex gap-5 py-4 first:pt-0 last:pb-0 sm:gap-6;
   }
 
-  .kd-time-card__title {
-    @apply text-xl sm:text-2xl;
+  .kd-time-step__marker {
+    @apply relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-kd-champagne/40 sm:h-11 sm:w-11;
+    background-color: var(--color-kd-ivory, #17120d);
+    color: var(--color-kd-champagne, #d1a15c);
+    box-shadow: 0 0 18px -4px rgba(209, 161, 92, 0.55);
+  }
+
+  .kd-time-step__body {
+    @apply flex-1 rounded-2xl border border-kd-champagne/15 bg-white/[0.03] px-5 py-5 backdrop-blur-sm;
+  }
+
+  .kd-time-step__time {
+    @apply text-xs uppercase tracking-[0.28em];
+    color: var(--color-kd-champagne, #d1a15c);
+    font-family: var(--font-secondary);
+  }
+
+  .kd-time-step__title {
+    @apply mt-1 text-xl sm:text-2xl;
     font-family: var(--font-primary);
+    color: var(--color-kd-ink, #f3e8d4);
   }
 
-  .kd-time-card__desc {
-    @apply text-sm text-kd-muted;
+  .kd-time-step__desc {
+    @apply mt-2 text-sm leading-relaxed;
+    color: var(--color-kd-ink-soft, #e5d6b6);
+    font-family: var(--font-secondary);
   }
 
-  .kd-time-rail-hint {
-    @apply mt-4 text-center text-[10px] uppercase tracking-[0.3em] text-kd-muted/60;
-  }
-
-  /* Locations — vertical rack of glowing venue panels, like votives along an aisle */
   .kd-venue-list {
     @apply flex flex-col gap-5;
   }
@@ -291,17 +402,17 @@
     @apply absolute inset-y-3 left-0 w-[3px] rounded-full;
     background: linear-gradient(
       180deg,
-      var(--color-kd-champagne),
+      var(--color-kd-champagne, #d1a15c),
       transparent
     );
   }
 
   .kd-venue-flame {
-    @apply flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-kd-champagne/30 text-kd-champagne;
+    @apply flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-kd-champagne/30;
+    color: var(--color-kd-champagne, #d1a15c);
     box-shadow: 0 0 22px -6px rgba(209, 161, 92, 0.55);
   }
 
-  /* Upload images — one glowing spotlight frame with dim thumbnails gathered below */
   .kd-focal-stage {
     @apply mx-auto mt-10 flex max-w-xs flex-col items-center gap-5;
   }
@@ -326,12 +437,11 @@
     @apply h-9 w-9 rounded-lg border border-kd-champagne/15 bg-white/[0.03];
   }
 
-  /* Footer — row of votive flames above the closing message */
   .kd-vigil-row {
-    @apply flex items-center justify-center gap-4 text-kd-champagne;
+    @apply flex items-center justify-center gap-4;
+    color: var(--color-kd-champagne, #d1a15c);
   }
 
-  /* RSVP — open chapel register book: left page of vigil rules, right page of numbered signing lines */
   .kd-book {
     @apply relative mx-auto grid max-w-4xl grid-cols-1 gap-0 overflow-hidden rounded-2xl border border-kd-champagne/15 bg-white/[0.03] backdrop-blur-sm lg:grid-cols-2;
   }
@@ -360,7 +470,8 @@
   }
 
   .kd-book-rules {
-    @apply mt-8 flex list-none flex-col gap-3 border-t border-dashed border-kd-champagne/20 pt-6 text-sm text-kd-muted;
+    @apply mt-8 flex list-none flex-col gap-3 border-t border-dashed border-kd-champagne/20 pt-6 text-sm;
+    color: var(--color-kd-ink-soft, #e5d6b6);
     counter-reset: kd-rule;
   }
 
@@ -371,7 +482,8 @@
 
   .kd-book-rules li::before {
     content: counter(kd-rule, decimal-leading-zero);
-    @apply absolute top-0 left-0 text-[11px] text-kd-champagne;
+    @apply absolute top-0 left-0 text-[11px];
+    color: var(--color-kd-champagne, #d1a15c);
     font-family: var(--font-primary);
   }
 
@@ -392,7 +504,8 @@
   }
 
   .kd-signing-num {
-    @apply mt-1 shrink-0 text-xs text-kd-champagne/50;
+    @apply mt-1 shrink-0 text-xs;
+    color: rgb(209 161 92 / 0.5);
     font-family: var(--font-primary);
   }
 
@@ -401,8 +514,17 @@
   }
 
   .kd-register-input {
-    @apply w-full border-0 border-b border-kd-champagne/25 bg-transparent px-1 py-2 text-sm text-kd-ink outline-none transition placeholder:text-kd-muted/60 focus:border-[color:var(--color-primary,#d1a15c)];
+    @apply w-full border-0 border-b border-kd-champagne/25 bg-transparent px-1 py-2 text-sm outline-none transition;
+    color: var(--color-kd-ink, #f3e8d4);
     font-family: var(--font-secondary);
+  }
+
+  .kd-register-input::placeholder {
+    color: rgb(210 192 154 / 0.6);
+  }
+
+  .kd-register-input:focus {
+    border-color: var(--color-kd-champagne, #d1a15c);
   }
 
   .kd-register-flame {
@@ -413,4 +535,36 @@
     @apply mx-auto flex h-10 w-10 border-kd-champagne bg-kd-champagne/15 text-kd-champagne;
     box-shadow: 0 0 20px -4px rgba(209, 161, 92, 0.6);
   }
+}
+
+/* Hard color utilities — follow bridged tokens */
+[data-template="krstenje-candle"] .text-kd-ink {
+  color: var(--color-kd-ink, #f3e8d4);
+}
+[data-template="krstenje-candle"] .text-kd-ink-soft {
+  color: var(--color-kd-ink-soft, #e5d6b6);
+}
+[data-template="krstenje-candle"] .text-kd-champagne {
+  color: var(--color-kd-champagne, #d1a15c);
+}
+[data-template="krstenje-candle"] .text-kd-muted {
+  color: var(--color-kd-muted, #d2c09a);
+}
+[data-template="krstenje-candle"] .bg-kd-ivory {
+  background-color: var(--color-kd-ivory, #17120d);
+}
+[data-template="krstenje-candle"] .bg-kd-sand {
+  background-color: var(--color-kd-sand, #221a12);
+}
+[data-template="krstenje-candle"] .border-kd-champagne {
+  border-color: var(--color-kd-champagne, #d1a15c);
+}
+[data-template="krstenje-candle"] .border-kd-champagne\/40 {
+  border-color: color-mix(in srgb, var(--color-kd-champagne, #d1a15c) 40%, transparent);
+}
+[data-template="krstenje-candle"] .bg-kd-champagne\/15 {
+  background-color: color-mix(in srgb, var(--color-kd-champagne, #d1a15c) 15%, transparent);
+}
+[data-template="krstenje-candle"] .bg-kd-champagne\/25 {
+  background-color: color-mix(in srgb, var(--color-kd-champagne, #d1a15c) 25%, transparent);
 }

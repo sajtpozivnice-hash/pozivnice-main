@@ -121,34 +121,6 @@ for (const [key, t] of Object.entries(kidsThemes)) {
   });
 }
 
-/** birthday18-gold palette */
-patchFile("birthday18-gold/index.css", (raw) =>
-  raw
-    .replace(/#ff5c7a/g, "#c4a574")
-    .replace(/#ffb08a/g, "#e2c59a")
-    .replace(/#a78bfa/g, "#8b7355")
-    .replace(/#1f1630/g, "#2a2118")
-    .replace(/#fff7f2/g, "#faf6f0")
-    .replace(/#ffe8ef/g, "#f3e8d8")
-    .replace(/#6ee7c5/g, "#d4b896")
-    .replace(/#ffd56a/g, "#e8c98a"),
-);
-
-patchFile("birthday18-gold/config.ts", (raw) =>
-  raw
-    .replace(/title: "[^"]+"/, 'title: "Sofija — 18 · Zlatno izdanje"')
-    .replace(
-      /description: "[^"]+"/,
-      'description: "Elegantna champagne/gold pozivnica za punoletstvo"',
-    )
-    .replace(/names: "[^"]+"/, 'names: "Sofija"')
-    .replace(/#ff5c7a/g, "#c4a574")
-    .replace(/#1f1630/g, "#2a2118")
-    .replace(/#a78bfa/g, "#8b7355")
-    .replace(/#fff7f2/g, "#faf6f0")
-    .replace(/#ffe8ef/g, "#f3e8d8"),
-);
-
 /** Baptism packs: theme CSS + Serbian seed identity */
 const baptism = {
   "krstenje-classic": {
@@ -168,23 +140,6 @@ const baptism = {
     storyTitle: "O našoj radosti",
     quote: "Jer gde je ljubav, tu je i Bog.",
   },
-  "krstenje-soft": {
-    ink: "#4a3f45",
-    ivory: "#fff8f6",
-    sand: "#f8ece8",
-    accent: "#d4a5a5",
-    accentSoft: "#e8cfcf",
-    muted: "#8a7a80",
-    names: "Tara",
-    title: "Tara — nežno krštenje",
-    heroTitle: "Blagoslovljen početak",
-    heroSubtitle: "Pozivamo vas na krštenje",
-    invite:
-      "Sa ljubavlju vas pozivamo na krštenje naše ćerke Tare. Podelite sa nama tihi, svečani dan pun topline.",
-    countdown: "Do krštenja",
-    storyTitle: "Naša zahvalnost",
-    quote: "Najveći dar je ljubav koju delimo.",
-  },
   "krstenje-garden": {
     ink: "#243028",
     ivory: "#f5f7f2",
@@ -201,23 +156,6 @@ const baptism = {
     countdown: "Do proslave",
     storyTitle: "Porodični krug",
     quote: "Neka raste u miru, radosti i ljubavi.",
-  },
-  "krstenje-modern": {
-    ink: "#1a1a1a",
-    ivory: "#ffffff",
-    sand: "#f4f4f5",
-    accent: "#5b6cff",
-    accentSoft: "#a5b0ff",
-    muted: "#71717a",
-    names: "Una",
-    title: "Una — moderno krštenje",
-    heroTitle: "Čist početak",
-    heroSubtitle: "Pozivnica za krštenje",
-    invite:
-      "Sa radošću vas pozivamo na krštenje naše Une — jednostavno, toplo i u krugu najbližih.",
-    countdown: "Do datuma",
-    storyTitle: "Zašto nam je važno",
-    quote: "Početak ispunjen ljubavlju.",
   },
   "krstenje-candle": {
     ink: "#f3e9d7",
@@ -241,9 +179,7 @@ const baptism = {
 for (const [key, t] of Object.entries(baptism)) {
   const prefix = {
     "krstenje-classic": "kc",
-    "krstenje-soft": "ks",
     "krstenje-garden": "kg",
-    "krstenje-modern": "km",
     "krstenje-candle": "kd",
   }[key];
 

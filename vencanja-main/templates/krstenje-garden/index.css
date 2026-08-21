@@ -10,6 +10,33 @@
   --color-kg-muted: #5f6b5f;
 }
 
+/* Bridge editor theme → local tokens (Tailwind utilities + components) */
+[data-template="krstenje-garden"] {
+  --color-kg-champagne: var(--color-primary, #5b7d52);
+  --color-kg-champagne-soft: color-mix(
+    in srgb,
+    var(--color-primary, #5b7d52) 62%,
+    #ffffff
+  );
+  --color-kg-ink: var(--color-secondary, #223226);
+  --color-kg-ink-soft: color-mix(
+    in srgb,
+    var(--color-secondary, #223226) 72%,
+    var(--color-background, #f7f8f2)
+  );
+  --color-kg-ivory: var(--color-background, #f7f8f2);
+  --color-kg-sand: var(--color-background-secondary, #eaf0e2);
+  --color-kg-muted: color-mix(
+    in srgb,
+    var(--color-secondary, #223226) 48%,
+    var(--color-background, #f7f8f2)
+  );
+
+  color: var(--color-kg-ink);
+  background-color: var(--color-kg-ivory);
+  font-family: var(--font-secondary, system-ui, sans-serif);
+}
+
 @layer components {
   .kg-section {
     @apply relative overflow-hidden bg-kg-ivory px-5 py-20 sm:px-8 md:px-12 lg:px-20 lg:py-28;

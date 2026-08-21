@@ -1,25 +1,17 @@
 import { UniversalProjectConfig } from "@/types/config";
 
-/** Demo images live only in config — never hardcoded in section components */
-const IMG = {
-  hero:
-    "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1400&q=85",
-  venue:
-    "https://images.unsplash.com/photo-1449034446853-66c86144b0ad?auto=format&fit=crop&w=1600&q=85",
-  feature:
-    "https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1200&q=85",
-};
-
 export const birthday18InkDefaultConfig: UniversalProjectConfig = {
   template: "birthday18-ink",
   eventType: "comingOfAge",
   meta: {
     title: "Aleksa — 18 · Novinsko izdanje",
     description: "Monohromatska broadsheet pozivnica za punoletstvo",
+    ogImage:
+      "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787347709/rishabh-sharma-R-js25Pv1LQ-unsplash_k1l2w2.jpg",
   },
   event: {
-    date: "2026-10-03",
-    rsvpDate: "2026-09-20",
+    date: "2027-10-03",
+    rsvpDate: "2027-09-20",
     names: "Aleksa",
     location: {
       name: "Klub Preporod",
@@ -55,6 +47,8 @@ export const birthday18InkDefaultConfig: UniversalProjectConfig = {
         value: "#EAE2CC",
       },
     },
+    backgroundImage:
+      "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787347709/rishabh-sharma-R-js25Pv1LQ-unsplash_k1l2w2.jpg",
   },
   sections: [
     {
@@ -70,7 +64,6 @@ export const birthday18InkDefaultConfig: UniversalProjectConfig = {
         badge: "18",
         ctaText: "Potvrdi dolazak",
         ctaHref: "#rsvp",
-        backgroundImage: IMG.hero,
       },
     },
     {
@@ -111,7 +104,6 @@ export const birthday18InkDefaultConfig: UniversalProjectConfig = {
             location: "Bulevar Kralja Aleksandra 73, Beograd",
             time: "20:00",
             text: "Ulaz od 20:00 časova. Adresa je potvrđena, parking dostupan u okolnim ulicama.",
-            image: IMG.venue,
           },
         ],
       },
@@ -172,7 +164,6 @@ export const birthday18InkDefaultConfig: UniversalProjectConfig = {
               "Tamni tonovi, uglačane cipele i po želji jedan upečatljiv detalj. Fotoreporter je na zadatku cele večeri.",
             icon: "shirt",
             accent: "#9C2A22",
-            image: IMG.feature,
           },
         ],
       },

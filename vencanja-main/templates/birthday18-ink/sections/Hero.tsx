@@ -12,10 +12,11 @@ type Props = {
   theme: ThemeConfig;
 };
 
-/** Broadsheet masthead: name is the nameplate, photo is an inline front-page image — never a background stage. */
+/** Typography-only broadsheet masthead — name is the nameplate, no photo. */
 const Hero: FC<Props> = ({ section, event }) => {
   const { data, id } = section;
-  const photo = data.backgroundImage || data.image;
+  const edition =
+    (data.badge || "18").replace(/^VOL\.\s*/i, "").trim() || "18";
   const dateLabel = useMemo(
     () => formatDate(event.date, "DAY_D_MMMM_YYYY"),
     [event.date],
@@ -29,12 +30,23 @@ const Hero: FC<Props> = ({ section, event }) => {
     <section id={id} className="b18i-hero">
       <div className="b18i-shell">
         <div className="b18i-hero__meta">
-          <span>Br. 18 · {data.description || "Specijalno izdanje"}</span>
+          <span>
+            Br. {edition} · {data.description || "Specijalno izdanje"}
+          </span>
           <span>{shortDate}</span>
         </div>
-        <div className="b18i-rule" />
+        <div className="b18i-rule b18i-rule--double" />
 
         <div className="b18i-hero__masthead">
+          <motion.span
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="b18i-hero__folio"
+            aria-hidden
+          >
+            {edition}
+          </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -57,8 +69,10 @@ const Hero: FC<Props> = ({ section, event }) => {
 
         <div className="b18i-hero__strip">
           <div>
-            <p className="b18i-hero__strip-label">Godina</p>
-            <p className="b18i-hero__strip-value">{data.title || "18"}</p>
+            <p className="b18i-hero__strip-label">Izdanje</p>
+            <p className="b18i-hero__strip-value">
+              {data.title || `Br. ${edition}`}
+            </p>
           </div>
           <div>
             <p className="b18i-hero__strip-label">Datum</p>
@@ -72,6 +86,8 @@ const Hero: FC<Props> = ({ section, event }) => {
           </div>
         </div>
 
+        <div className="b18i-rule" />
+
         {data.ctaText ? (
           <div className="b18i-hero__cta">
             <a href={data.ctaHref || "#rsvp"} className="b18i-btn">
@@ -80,18 +96,6 @@ const Hero: FC<Props> = ({ section, event }) => {
           </div>
         ) : null}
       </div>
-
-      {photo ? (
-        <>
-          <div className="b18i-hero__photo">
-            <img src={photo} alt="" referrerPolicy="no-referrer" />
-          </div>
-          <div className="b18i-shell b18i-hero__caption">
-            <span>Naslovna fotografija</span>
-            <span>Redakcija · {event.names}</span>
-          </div>
-        </>
-      ) : null}
     </section>
   );
 };

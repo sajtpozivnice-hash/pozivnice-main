@@ -42,7 +42,7 @@ const Footer: FC<Props> = ({ section, event }) => {
         </motion.h2>
 
         {data.description ? (
-          <p className="mt-4 text-sm text-kd-muted">{data.description}</p>
+          <p className="mt-4 text-sm text-kd-ink-soft">{data.description}</p>
         ) : null}
 
         <p className="mt-8 text-xs uppercase tracking-[0.32em] text-kd-champagne">

@@ -32,14 +32,8 @@ import { birthday18EditorialDefaultConfig } from "./birthday18-editorial/config"
 import { birthday18EditorialRenderers } from "./birthday18-editorial/renderers";
 import { birthday18NightDefaultConfig } from "./birthday18-night/config";
 import { birthday18NightRenderers } from "./birthday18-night/renderers";
-import { birthday18GoldDefaultConfig } from "./birthday18-gold/config";
-import { birthday18GoldRenderers } from "./birthday18-gold/renderers";
 import { birthday18InkDefaultConfig } from "./birthday18-ink/config";
 import { birthday18InkRenderers } from "./birthday18-ink/renderers";
-import { birthday18CoastDefaultConfig } from "./birthday18-coast/config";
-import { birthday18CoastRenderers } from "./birthday18-coast/renderers";
-import { birthday18AtelierDefaultConfig } from "./birthday18-atelier/config";
-import { birthday18AtelierRenderers } from "./birthday18-atelier/renderers";
 import { kidsSafariDefaultConfig } from "./kids-safari/config";
 import { kidsSafariRenderers } from "./kids-safari/renderers";
 import { kidsSpaceDefaultConfig } from "./kids-space/config";
@@ -52,12 +46,8 @@ import { kidsHoneyDefaultConfig } from "./kids-honey/config";
 import { kidsHoneyRenderers } from "./kids-honey/renderers";
 import { krstenjeClassicDefaultConfig } from "./krstenje-classic/config";
 import { krstenjeClassicRenderers } from "./krstenje-classic/renderers";
-import { krstenjeSoftDefaultConfig } from "./krstenje-soft/config";
-import { krstenjeSoftRenderers } from "./krstenje-soft/renderers";
 import { krstenjeGardenDefaultConfig } from "./krstenje-garden/config";
 import { krstenjeGardenRenderers } from "./krstenje-garden/renderers";
-import { krstenjeModernDefaultConfig } from "./krstenje-modern/config";
-import { krstenjeModernRenderers } from "./krstenje-modern/renderers";
 import { krstenjeCandleDefaultConfig } from "./krstenje-candle/config";
 import { krstenjeCandleRenderers } from "./krstenje-candle/renderers";
 import { EventType, TemplateKey, UniversalProjectConfig } from "@/types/config";
@@ -353,22 +343,6 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       featured: true,
     },
   },
-  "birthday18-gold": {
-    renderers: birthday18GoldRenderers,
-    defaultConfig: {
-      ...birthday18GoldDefaultConfig,
-      eventType: "comingOfAge",
-    },
-    eventTypes: ["comingOfAge"],
-    catalog: {
-      title: "18 — Zlatno izdanje",
-      description:
-        "Elegantna champagne/gold pozivnica za punoletstvo: topli tonovi, svečani utisak i jasna potvrda prisustva.",
-      style: "premium",
-      price: 3999,
-      featured: true,
-    },
-  },
   "birthday18-ink": {
     renderers: birthday18InkRenderers,
     defaultConfig: {
@@ -383,38 +357,9 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       style: "editorial",
       price: 3999,
       featured: true,
-    },
-  },
-  "birthday18-coast": {
-    renderers: birthday18CoastRenderers,
-    defaultConfig: {
-      ...birthday18CoastDefaultConfig,
-      eventType: "comingOfAge",
-    },
-    eventTypes: ["comingOfAge"],
-    catalog: {
-      title: "18 — Obalsko izdanje",
-      description:
-        "Vazdušasta dnevna pozivnica za punoletstvo: horizontalni pojasevi, ime kao vodeni žig i raspored kao plima.",
-      style: "modern",
-      price: 3999,
-      featured: true,
-    },
-  },
-  "birthday18-atelier": {
-    renderers: birthday18AtelierRenderers,
-    defaultConfig: {
-      ...birthday18AtelierDefaultConfig,
-      eventType: "comingOfAge",
-    },
-    eventTypes: ["comingOfAge"],
-    catalog: {
-      title: "18 — Atelje izdanje",
-      description:
-        "Minimalna fashion lookbook pozivnica za punoletstvo: visoka portretna traka i editorial tipografija.",
-      style: "premium",
-      price: 3999,
-      featured: true,
+      // Catalog cover only — invite itself stays typography-only
+      imageLink:
+        "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787347709/rishabh-sharma-R-js25Pv1LQ-unsplash_k1l2w2.jpg",
     },
   },
   "kids-safari": {
@@ -515,22 +460,8 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       style: "classic",
       price: 3999,
       featured: true,
-    },
-  },
-  "krstenje-soft": {
-    renderers: krstenjeSoftRenderers,
-    defaultConfig: {
-      ...krstenjeSoftDefaultConfig,
-      eventType: "baptism",
-    },
-    eventTypes: ["baptism", "kidsBirthday"],
-    catalog: {
-      title: "Nežno krštenje",
-      description:
-        "Meki blush tonovi za krštenje ili nežni dečiji rođendan.",
-      style: "classic",
-      price: 3999,
-      featured: true,
+      imageLink:
+        "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787348109/2026-04-08-07-23-30-960x640_hmlazn.jpg",
     },
   },
   "krstenje-garden": {
@@ -544,22 +475,6 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       title: "Krštenje u bašti",
       description:
         "Zeleni tonovi za krštenje ili porodični rođendan na otvorenom.",
-      style: "modern",
-      price: 3999,
-      featured: true,
-    },
-  },
-  "krstenje-modern": {
-    renderers: krstenjeModernRenderers,
-    defaultConfig: {
-      ...krstenjeModernDefaultConfig,
-      eventType: "baptism",
-    },
-    eventTypes: ["baptism", "kidsBirthday"],
-    catalog: {
-      title: "Moderno krštenje",
-      description:
-        "Čista moderna pozivnica za krštenje — jednako dobra i za dečiji rođendan.",
       style: "modern",
       price: 3999,
       featured: true,
