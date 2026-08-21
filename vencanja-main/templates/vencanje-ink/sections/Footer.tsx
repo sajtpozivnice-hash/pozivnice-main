@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { FooterSection } from "@/types/sections";
 import { EventConfig, ThemeConfig } from "@/types/config";
 import { formatDate } from "@/helpers/formatDate";
-import { Media } from "../components/Media";
 
 type Props = {
   section: FooterSection;
@@ -20,14 +19,11 @@ const Footer: FC<Props> = ({ section, event, theme }) => {
   return (
     <section id={id} className="vi-section-tight pb-16">
       <div className="vi-shell">
-        <Media src={data.imageUrl} alt="" className="vi-plate-strip" />
-
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.8 }}
-          className="mt-12"
         >
           <div className="vi-rule-ink" />
 

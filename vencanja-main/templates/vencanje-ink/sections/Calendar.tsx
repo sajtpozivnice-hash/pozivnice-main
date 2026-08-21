@@ -6,7 +6,6 @@ import { CalendarSection } from "@/types/sections";
 import { EventConfig, ThemeConfig } from "@/types/config";
 import { formatDate, parseDate } from "@/helpers/formatDate";
 import { generateCalendar } from "@/helpers/generateCalendar";
-import { Media } from "../components/Media";
 
 type Props = {
   section: CalendarSection;
@@ -88,15 +87,6 @@ const Calendar: FC<Props> = ({ section, event, theme }) => {
                   {day.day}
                 </span>
               ))}
-            </div>
-
-            <div className="mt-8 w-28">
-              <Media
-                src={data.imageUrl}
-                alt=""
-                className="vi-plate-square"
-                caption="Mesto"
-              />
             </div>
           </div>
         </div>

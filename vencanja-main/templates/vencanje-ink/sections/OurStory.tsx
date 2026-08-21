@@ -52,10 +52,13 @@ const OurStory: FC<Props> = ({ section, theme }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.9, delay: 0.1 }}
-            className="lg:col-span-8"
+            className="flex flex-col items-center text-center lg:col-span-8"
           >
             <h2 className="vi-display max-w-xl">{data.title}</h2>
-            <div className="vi-accent mt-8" style={{ background: accent }} />
+            <div
+              className="vi-accent mt-8"
+              style={{ background: accent }}
+            />
 
             <div className="mt-8 max-w-2xl space-y-6">
               {paragraphs.map((paragraph, index) => (
@@ -66,7 +69,7 @@ const OurStory: FC<Props> = ({ section, theme }) => {
             </div>
 
             {data.subtitle ? (
-              <p className="vi-caption mt-10 border-t border-vi-line pt-4">
+              <p className="vi-caption mt-10 max-w-2xl border-t border-vi-line pt-4">
                 {data.subtitle}
               </p>
             ) : null}

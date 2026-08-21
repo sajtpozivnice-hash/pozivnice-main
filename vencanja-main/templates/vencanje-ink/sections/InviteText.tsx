@@ -49,7 +49,6 @@ const InviteText: FC<Props> = ({ section, event, theme }) => {
               src={data.imageUrl}
               alt=""
               className="vi-plate-strip"
-              caption="Fotografija — pre godinu dana"
             />
           </div>
           <p className="vi-caption lg:col-span-4 lg:pt-2">

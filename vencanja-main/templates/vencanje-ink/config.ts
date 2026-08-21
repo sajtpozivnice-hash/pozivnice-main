@@ -1,36 +1,14 @@
 import { UniversalProjectConfig } from "@/types/config";
 
 const IMG = {
-  hero: "https://images.unsplash.com/photo-1504198453319-8ceacb77e65d?auto=format&fit=crop&w=2000&q=85",
+  hero: "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787150836/beatriz-perez-moya-M2T1j-6Fn8w-unsplash_rc0b1t.jpg",
   story:
-    "https://images.unsplash.com/photo-1492684223066-81342ee5ff7c?auto=format&fit=crop&w=1600&q=85",
-  invite:
-    "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85",
-  calendar:
-    "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1600&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787150836/beatriz-perez-moya-M2T1j-6Fn8w-unsplash_rc0b1t.jpg",
   schedule:
-    "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1600&q=85",
-  quote:
-    "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1600&q=85",
-  locationA:
-    "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=85",
-  locationB:
-    "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=85",
-  locationsBg:
-    "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1600&q=85",
-  upload:
-    "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1600&q=85",
-  rsvp: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1600&q=85",
-  footer:
-    "https://images.unsplash.com/photo-1504198453319-8ceacb77e65d?auto=format&fit=crop&w=2000&q=85",
-  gallery: [
-    "https://images.unsplash.com/photo-1504198453319-8ceacb77e65d?auto=format&fit=crop&w=1000&q=85",
-    "https://images.unsplash.com/photo-1492684223066-81342ee5ff7c?auto=format&fit=crop&w=1000&q=85",
-    "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1000&q=85",
-    "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1000&q=85",
-    "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1000&q=85",
-    "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1000&q=85",
-  ],
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787298576/elisabeth-arnold-QL5PgKelw4s-unsplash_febw9c.jpg",
+  invite: 'https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787226825/photo-1545232979-8bf68ee9b1af_1_c8gpgy.avif',
+
+  rsvp: "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787238104/photo-1519167758481-83f550bb49b3_t2jkum.avif",
 };
 
 export const vencanjeInkDefaultConfig: UniversalProjectConfig = {
@@ -94,9 +72,9 @@ export const vencanjeInkDefaultConfig: UniversalProjectConfig = {
       visible: true,
       order: 3,
       data: {
+        imageUrl: IMG.invite,
         description:
           "Dragi naši, sa tihom radošću pozivamo Vas da budete uz nas onog dana kada dve priče postaju jedna.\n\nBez velikih reči i bez viška ukrasa — samo ljudi koje volimo, jedan dugačak stol i večera koja se ne završava na vreme. Vaše prisustvo je jedini poklon koji nam je zaista potreban.",
-        imageUrl: IMG.invite,
       },
     },
     {
@@ -108,7 +86,6 @@ export const vencanjeInkDefaultConfig: UniversalProjectConfig = {
       data: {
         title: "Zapišite datum",
         description: "Subota, popodne koje počinje mirno i završava se u igri.",
-        imageUrl: IMG.calendar,
       },
     },
     {
@@ -137,27 +114,27 @@ export const vencanjeInkDefaultConfig: UniversalProjectConfig = {
         items: [
           {
             id: "1",
-            time: "16:00",
-            title: "Ceremonija",
-            description: "Zakletve u maloj sali, uz svetlost sa zapada",
+            time: "15:30",
+            title: "Crkveno Vencanje",
+            description: "Svecani cin vencanja u crkvi.",
           },
           {
             id: "2",
-            time: "17:30",
-            title: "Koktel",
+            time: "17:00",
+            title: "Proslava",
             description: "Šampanjac, fotografije i prvi zagrljaji",
           },
           {
             id: "3",
             time: "19:30",
-            title: "Večera",
+            title: "Vecera",
             description: "Jedan dugačak stol, zdravice bez scenarija",
           },
           {
             id: "4",
             time: "22:00",
-            title: "Prvi ples",
-            description: "Pa onda sve ostalo, do jutra",
+            title: "Torta",
+            description: "Sladak završetak dana.",
           },
         ],
       },
@@ -171,7 +148,6 @@ export const vencanjeInkDefaultConfig: UniversalProjectConfig = {
       data: {
         title: "Ljubav se ne meri rečima, nego godinama koje ostanu tihe i pune.",
         description: "Iva & Nikola",
-        imageUrl: IMG.quote,
       },
     },
     {
@@ -183,37 +159,22 @@ export const vencanjeInkDefaultConfig: UniversalProjectConfig = {
       data: {
         title: "Mesta",
         subtitle: "Dve adrese, deset minuta hoda",
-        imageUrl: IMG.locationsBg,
         cards: [
           {
             id: 1,
-            title: "Ceremonija",
-            time: "16:00",
-            location: "Dom kulture, Kralja Petra 14",
-            text: "Kamena sala sa visokim prozorima. Molimo Vas da dođete petnaest minuta ranije.",
-            image: IMG.locationA,
+            title: "Crkveno Vencanje",
+            time: "15:30",
+            location: "Crkva Svetog Marka, Bulevar Kralja Aleksandra 17",
+            text: "Svecani cin vencanja u crkvi.",
           },
           {
             id: 2,
             title: "Proslava",
-            time: "19:30",
+            time: "17:00",
             location: "Restoran Papir, Gospodar Jevremova 3",
             text: "Večera i ples u dvorištu pokrivenom staklom. Parking je u dvorišnoj ulici.",
-            image: IMG.locationB,
           },
         ],
-      },
-    },
-    {
-      id: "ourGallery",
-      name: "Galerija",
-      type: "ourGallery",
-      visible: true,
-      order: 9,
-      data: {
-        title: "Kadrovi",
-        description: "Šest slika, bez filtera i bez reda",
-        images: IMG.gallery.map((url) => ({ url })),
       },
     },
     {
@@ -221,14 +182,13 @@ export const vencanjeInkDefaultConfig: UniversalProjectConfig = {
       name: "Dodavanje Slika",
       type: "uploadImagesSection",
       visible: true,
-      order: 10,
+      order: 9,
       data: {
         title: "Pošaljite nam kadar",
         subtitle: "Galerija gostiju",
         description:
           "Ako tokom dana uhvatite trenutak koji nam je promakao — ostavite ga ovde.",
         buttonText: "Dodajte fotografiju",
-        imageUrl: IMG.upload,
       },
     },
     {
@@ -236,7 +196,7 @@ export const vencanjeInkDefaultConfig: UniversalProjectConfig = {
       name: "Potvrda Prisutnosti",
       type: "rsvp",
       visible: true,
-      order: 11,
+      order: 10,
       data: {
         title: "Potvrdite prisustvo",
         description: "Molimo Vas da odgovorite do ",
@@ -249,11 +209,10 @@ export const vencanjeInkDefaultConfig: UniversalProjectConfig = {
       name: "Završna poruka",
       type: "footer",
       visible: true,
-      order: 12,
+      order: 11,
       data: {
         title: "Hvala što ste deo naše priče.",
         subtitle: "Vidimo se u novembru",
-        imageUrl: IMG.footer,
       },
     },
   ],

@@ -4,7 +4,6 @@ import { FC } from "react";
 import { motion } from "framer-motion";
 import { LocationsSection } from "@/types/sections";
 import { EventConfig, ThemeConfig } from "@/types/config";
-import { Media } from "../components/Media";
 
 type Props = {
   section: LocationsSection;
@@ -26,11 +25,8 @@ const Locations: FC<Props> = ({ section, theme }) => {
           <p className="vi-caption">{data.subtitle}</p>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 items-end gap-8 lg:grid-cols-12">
-          <h2 className="vi-display lg:col-span-5">{data.title}</h2>
-          <div className="lg:col-span-7">
-            <Media src={data.imageUrl} alt="" className="vi-plate-strip" />
-          </div>
+        <div className="mt-10">
+          <h2 className="vi-display max-w-2xl">{data.title}</h2>
         </div>
 
         <div className="vi-accent mt-12" style={{ background: accent }} />
@@ -45,20 +41,11 @@ const Locations: FC<Props> = ({ section, theme }) => {
               transition={{ duration: 0.7, delay: index * 0.06 }}
               className="grid grid-cols-1 gap-6 border-t border-vi-line py-10 lg:grid-cols-12"
             >
-              <div className="flex items-start gap-5 lg:col-span-4">
-                <div className="w-20 shrink-0">
-                  <Media
-                    src={card.image}
-                    alt={card.title ?? ""}
-                    className="vi-plate-square"
-                  />
-                </div>
-                <div>
-                  <p className="vi-row-index">
-                    {String(index + 1).padStart(2, "0")}
-                  </p>
-                  <h3 className="vi-display-sm mt-2">{card.title}</h3>
-                </div>
+              <div className="lg:col-span-4">
+                <p className="vi-row-index">
+                  {String(index + 1).padStart(2, "0")}
+                </p>
+                <h3 className="vi-display-sm mt-2">{card.title}</h3>
               </div>
 
               <div className="lg:col-span-3">

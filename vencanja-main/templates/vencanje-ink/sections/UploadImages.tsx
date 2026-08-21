@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { UploadImagesSection } from "@/types/sections";
 import { EventConfig, ThemeConfig } from "@/types/config";
 import GuestPhotoUploadControl from "@/components/shared/GuestPhotoUploadControl";
-import { Media } from "../components/Media";
 
 type Props = {
   section: UploadImagesSection;
@@ -31,34 +30,21 @@ const UploadImages: FC<Props> = ({ section, theme }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.85 }}
-          className="vi-grid mt-10 items-start"
+          className="mt-10 max-w-xl"
         >
-          <div className="lg:col-span-7">
-            <h2 className="vi-display max-w-lg">{data.title}</h2>
-            <div className="vi-accent mt-8" style={{ background: accent }} />
-            {data.description ? (
-              <p className="vi-body mt-6 max-w-md">{data.description}</p>
-            ) : null}
+          <h2 className="vi-display max-w-lg">{data.title}</h2>
+          <div className="vi-accent mt-8" style={{ background: accent }} />
+          {data.description ? (
+            <p className="vi-body mt-6 max-w-md">{data.description}</p>
+          ) : null}
 
-            <div className="mt-10 border-t border-vi-line pt-8">
-              <GuestPhotoUploadControl
-                buttonText={data.buttonText || "Dodajte fotografiju"}
-                stackClassName="flex w-full max-w-sm flex-col gap-5"
-                buttonClassName="vi-btn w-full"
-                inputClassName="vi-input"
-              />
-            </div>
-          </div>
-
-          <div className="lg:col-span-5">
-            <div className="w-40 sm:w-52 lg:ml-auto lg:w-full lg:max-w-xs">
-              <Media
-                src={data.imageUrl}
-                alt=""
-                className="vi-plate-portrait"
-                caption="Vaš kadar ide ovde"
-              />
-            </div>
+          <div className="mt-10 border-t border-vi-line pt-8">
+            <GuestPhotoUploadControl
+              buttonText={data.buttonText || "Dodajte fotografiju"}
+              stackClassName="flex w-full max-w-sm flex-col gap-5"
+              buttonClassName="vi-btn w-full"
+              inputClassName="vi-input"
+            />
           </div>
         </motion.div>
       </div>

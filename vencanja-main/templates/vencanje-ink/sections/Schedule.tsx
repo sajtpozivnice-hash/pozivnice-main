@@ -41,7 +41,6 @@ const Schedule: FC<Props> = ({ section, theme }) => {
                 src={data.imageUrl}
                 alt=""
                 className="vi-plate-portrait"
-                caption="Sala, prošlog leta"
               />
             </div>
           </div>
