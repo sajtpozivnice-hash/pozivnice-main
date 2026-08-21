@@ -3,11 +3,6 @@ import { FontKey } from "@/helpers/fontMap";
 
 /** Keep in sync when registering new packs in templates/index.ts */
 export type TemplateKey =
-  | "vencanje"
-  | "vencanje3"
-  | "vencanje4"
-  | "vencanje-premium"
-  | "vencanje-cinematic"
   | "vencanje-background"
   | "vencanje-dusk"
   | "vencanje-ink"

@@ -8,11 +8,6 @@ export type EventType =
 export type LegacyEventType = EventType | "birthday";
 
 export type TemplateKey =
-  | "vencanje"
-  | "vencanje3"
-  | "vencanje4"
-  | "vencanje-premium"
-  | "vencanje-cinematic"
   | "vencanje-background"
   | "rodjendan-01"
   | "kids-pastel"

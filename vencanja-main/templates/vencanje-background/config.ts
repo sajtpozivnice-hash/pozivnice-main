@@ -5,13 +5,13 @@ const IMG = {
   sharedBackground:
     "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787067139/alvin-mahmudov-NSVJAAXOYHs-unsplash_szart3.jpg",
   story:
-    "https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=1400&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787314339/alejandra-quiroz-F5hTTI4Hlv4-unsplash_yuoe8o.jpg",
   locationA:
-    "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1200&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787090506/wedding/jaakko-perala-norway-elopement-photographer-71BLG9XJtHk-unsplash.jpg",
   locationB:
-    "https://images.unsplash.com/photo-1519225421980-715cb0215a07?auto=format&fit=crop&w=1200&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023761/photo-1527529482837-4698179dc6ce_x4mmyo.avif",
   footerAccent:
-    "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=1400&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787311946/engin-akyurt-3IN8pjVpDw0_wgstac.jpg",
  
 };
 
@@ -22,8 +22,8 @@ export const vencanjeBackgroundDefaultConfig: UniversalProjectConfig = {
     description: "Venčana pozivnica sa jednom pozadinom i staklenim panelima",
   },
   event: {
-    date: "2026-11-14",
-    rsvpDate: "2026-10-14",
+    date: "2027-11-14",
+    rsvpDate: "2027-10-14",
     names: "Ema & Nikola",
   },
   theme: {
@@ -35,6 +35,10 @@ export const vencanjeBackgroundDefaultConfig: UniversalProjectConfig = {
         primary: {
           name: "Champagne",
           value: "#e2c4a0",
+        },
+        secondary: {
+          name: "Staklo",
+          value: "#0c0a09",
         },
       },
     },

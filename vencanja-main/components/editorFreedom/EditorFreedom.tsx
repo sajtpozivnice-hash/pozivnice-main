@@ -96,7 +96,7 @@ const EditorFreedom = () => {
 
             <div className={styles.actions}>
               <Button icon={AnimatedArrowRight}>
-                <Link href="/editor/vencanje-cinematic" className="white-color">
+                <Link href="/editor/vencanje-terra" className="white-color">
                   Otvori editor
                 </Link>
               </Button>

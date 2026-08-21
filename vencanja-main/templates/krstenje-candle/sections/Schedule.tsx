@@ -43,7 +43,7 @@ const Schedule: FC<Props> = ({ section, theme }) => {
           ) : null}
         </div>
 
-        {/* Horizontal scroll of time cards — not the vencanje3 vertical spine */}
+        {/* Horizontal scroll of time cards */}
         <div className="kd-time-rail">
           {items.map((item, index) => (
             <motion.div

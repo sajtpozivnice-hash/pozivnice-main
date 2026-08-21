@@ -1,4 +1,4 @@
-import { vencanjeDefaultConfig } from "@/templates/vencanje/config";
+import { vencanjeTerraDefaultConfig } from "@/templates/vencanje-terra/config";
 import type {
   BudgetCategory,
   BudgetItem,
@@ -23,7 +23,7 @@ const NOW = "2026-06-15T10:00:00.000Z";
 const id = (suffix: string) => `demo-${suffix}`;
 
 function buildConfig() {
-  const config = structuredClone(vencanjeDefaultConfig);
+  const config = structuredClone(vencanjeTerraDefaultConfig);
   config.eventType = "wedding";
   config.meta = {
     title: "Ana & Marko",

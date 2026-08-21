@@ -2,6 +2,13 @@
 
 @theme {
   --color-vb-bronze: #e2c4a0;
+  --color-vb-glass: #0c0a09;
+}
+
+[data-template="vencanje-background"] {
+  /* Theme bridge: primary = accent, secondary = glass tint */
+  --color-vb-bronze: var(--color-primary, #e2c4a0);
+  --color-vb-glass: var(--color-secondary, #0c0a09);
 }
 
 @layer components {
@@ -22,11 +29,13 @@
   }
 
   .vb-glass {
-    @apply rounded-[1.75rem] border border-white/25 bg-[#0c0a09]/72 shadow-[0_30px_80px_-28px_rgba(0,0,0,0.85)] backdrop-blur-2xl;
+    @apply rounded-[1.75rem] border border-white/25 shadow-[0_30px_80px_-28px_rgba(0,0,0,0.85)] backdrop-blur-2xl;
+    background: color-mix(in srgb, var(--color-vb-glass) 72%, transparent);
   }
 
   .vb-glass-soft {
-    @apply rounded-[1.5rem] border border-white/20 bg-[#0c0a09]/55 backdrop-blur-xl;
+    @apply rounded-[1.5rem] border border-white/20 backdrop-blur-xl;
+    background: color-mix(in srgb, var(--color-vb-glass) 55%, transparent);
   }
 
   .vb-eyebrow {

@@ -5,11 +5,6 @@
  */
 import fs from "fs";
 import path from "path";
-import { vencanjeDefaultConfig } from "../templates/vencanje/config";
-import { vencanje3DefaultConfig } from "../templates/vencanje3/config";
-import { vencanje4DefaultConfig } from "../templates/vencanje4/config";
-import { vencanjePremiumDefaultConfig } from "../templates/vencanje-premium/config";
-import { vencanjeCinematicDefaultConfig } from "../templates/vencanje-cinematic/config";
 import { vencanjeBackgroundDefaultConfig } from "../templates/vencanje-background/config";
 import { rodjendan01DefaultConfig } from "../templates/rodjendan-01/config";
 import { birthday18DefaultConfig } from "../templates/birthday18/config";
@@ -31,54 +26,6 @@ import { krstenjeModernDefaultConfig } from "../templates/krstenje-modern/config
 import { krstenjeCandleDefaultConfig } from "../templates/krstenje-candle/config";
 
 const packs = [
-  {
-    key: "vencanje",
-    title: "Večna ljubav",
-    description:
-      "Klasičan venčani dizajn. Menjate tekstove, slike i sadržaj; uz pozivnicu dobijate i nalog za organizaciju.",
-    eventTypes: ["wedding"],
-    style: "classic",
-    config: { ...vencanjeDefaultConfig, eventType: "wedding" as const },
-  },
-  {
-    key: "vencanje3",
-    title: "Minimalna elegancija",
-    description:
-      "Čist raspored sa jakim tipografskim fokusom. Potpuno prilagodljiv, uz praćenje gostiju u vašem nalogu.",
-    eventTypes: ["wedding"],
-    style: "modern",
-    config: { ...vencanje3DefaultConfig, eventType: "wedding" as const },
-  },
-  {
-    key: "vencanje4",
-    title: "Filmski kadrovi",
-    description:
-      "Veliki kadrovi preko celog ekrana. Prilagodite sadržaj, a goste i stolove vodite u nalogu.",
-    eventTypes: ["wedding"],
-    style: "cinematic",
-    config: { ...vencanje4DefaultConfig, eventType: "wedding" as const },
-  },
-  {
-    key: "vencanje-premium",
-    title: "Premijum editorial",
-    description:
-      "Svečani editorial stil. Boje, fontovi i galerija ostaju promenljivi i kasnije.",
-    eventTypes: ["wedding"],
-    style: "premium",
-    config: { ...vencanjePremiumDefaultConfig, eventType: "wedding" as const },
-  },
-  {
-    key: "vencanje-cinematic",
-    title: "Filmski kadar",
-    description:
-      "Filmski utisak sa jakim fotografijama. Otvorite primer i javite nam se ako vam se dopada.",
-    eventTypes: ["wedding"],
-    style: "cinematic",
-    config: {
-      ...vencanjeCinematicDefaultConfig,
-      eventType: "wedding" as const,
-    },
-  },
   {
     key: "vencanje-background",
     title: "Staklo na pozadini",

@@ -95,7 +95,7 @@ export default function ProjectDetailPage() {
     normalized === "unknown" ? "wedding" : normalized
   ) as EventType;
   const inviteUrl = getInvitationUrl(project.subdomain);
-  const editorUrl = getEditorUrl(config?.template || "vencanje");
+  const editorUrl = getEditorUrl(config?.template || "vencanje-terra");
   const clientName = project.clients?.name || project.client_name || "—";
   const clientEmail = project.clients?.email || "—";
 

@@ -70,57 +70,6 @@ const PACKS = [
     cssVarFrom: "--color-bday-",
     cssVarTo: "--color-kcan-",
   },
-  // baptism (+5) from soft wedding base
-  {
-    source: "vencanje3",
-    key: "krstenje-classic",
-    exportFrom: "vencanje3",
-    exportTo: "krstenjeClassic",
-    classFrom: "v3-",
-    classTo: "kc-",
-    cssVarFrom: "--color-v3-",
-    cssVarTo: "--color-kc-",
-  },
-  {
-    source: "vencanje3",
-    key: "krstenje-soft",
-    exportFrom: "vencanje3",
-    exportTo: "krstenjeSoft",
-    classFrom: "v3-",
-    classTo: "ks-",
-    cssVarFrom: "--color-v3-",
-    cssVarTo: "--color-ks-",
-  },
-  {
-    source: "vencanje3",
-    key: "krstenje-garden",
-    exportFrom: "vencanje3",
-    exportTo: "krstenjeGarden",
-    classFrom: "v3-",
-    classTo: "kg-",
-    cssVarFrom: "--color-v3-",
-    cssVarTo: "--color-kg-",
-  },
-  {
-    source: "vencanje3",
-    key: "krstenje-modern",
-    exportFrom: "vencanje3",
-    exportTo: "krstenjeModern",
-    classFrom: "v3-",
-    classTo: "km-",
-    cssVarFrom: "--color-v3-",
-    cssVarTo: "--color-km-",
-  },
-  {
-    source: "vencanje3",
-    key: "krstenje-candle",
-    exportFrom: "vencanje3",
-    exportTo: "krstenjeCandle",
-    classFrom: "v3-",
-    classTo: "kd-",
-    cssVarFrom: "--color-v3-",
-    cssVarTo: "--color-kd-",
-  },
 ];
 
 function walk(dir) {
@@ -169,15 +118,6 @@ function transformContent(content, pack) {
     next = next.split(`from-${fromUtil}-`).join(`from-${toUtil}-`);
     next = next.split(`to-${fromUtil}-`).join(`to-${toUtil}-`);
     next = next.split(`via-${fromUtil}-`).join(`via-${toUtil}-`);
-  }
-  if (pack.source === "vencanje3") {
-    const fromUtil = pack.classFrom.replace(/-$/, "");
-    const toUtil = pack.classTo.replace(/-$/, "");
-    next = next.split(`bg-${fromUtil}-`).join(`bg-${toUtil}-`);
-    next = next.split(`text-${fromUtil}-`).join(`text-${toUtil}-`);
-    next = next.split(`border-${fromUtil}-`).join(`border-${toUtil}-`);
-    next = next.split(`from-${fromUtil}-`).join(`from-${toUtil}-`);
-    next = next.split(`to-${fromUtil}-`).join(`to-${toUtil}-`);
   }
   return next;
 }

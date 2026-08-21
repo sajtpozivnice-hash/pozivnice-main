@@ -1,13 +1,3 @@
-import { vencanjeDefaultConfig } from "./vencanje/config";
-import { vencanjeRenderers } from "./vencanje/renderers";
-import { vencanje3DefaultConfig } from "./vencanje3/config";
-import { vencanje3Renderers } from "./vencanje3/renderers";
-import { vencanje4DefaultConfig } from "./vencanje4/config";
-import { vencanje4Renderers } from "./vencanje4/renderers";
-import { vencanjePremiumDefaultConfig } from "./vencanje-premium/config";
-import { vencanjePremiumRenderers } from "./vencanje-premium/renderers";
-import { vencanjeCinematicDefaultConfig } from "./vencanje-cinematic/config";
-import { vencanjeCinematicRenderers } from "./vencanje-cinematic/renderers";
 import { vencanjeBackgroundDefaultConfig } from "./vencanje-background/config";
 import { vencanjeBackgroundRenderers } from "./vencanje-background/renderers";
 import { vencanjeSageDefaultConfig } from "./vencanje-sage/config";
@@ -82,76 +72,6 @@ type TemplatePack = {
 };
 
 export const templates: Record<TemplateKey, TemplatePack> = {
-  vencanje: {
-    renderers: vencanjeRenderers,
-    defaultConfig: { ...vencanjeDefaultConfig, eventType: "wedding" },
-    eventTypes: ["wedding"],
-    catalog: {
-      title: "Večna ljubav",
-      description:
-        "Klasičan venčani dizajn. Menjate tekstove, slike i sadržaj; uz pozivnicu dobijate i nalog za organizaciju.",
-      style: "classic",
-      price: 3999,
-      featured: true,
-    },
-  },
-  vencanje3: {
-    renderers: vencanje3Renderers,
-    defaultConfig: { ...vencanje3DefaultConfig, eventType: "wedding" },
-    eventTypes: ["wedding"],
-    catalog: {
-      title: "Minimalna elegancija",
-      description:
-        "Čist raspored sa jakim tipografskim fokusom. Potpuno prilagodljiv, uz praćenje gostiju u vašem nalogu.",
-      style: "modern",
-      price: 3999,
-      featured: true,
-    },
-  },
-  vencanje4: {
-    renderers: vencanje4Renderers,
-    defaultConfig: { ...vencanje4DefaultConfig, eventType: "wedding" },
-    eventTypes: ["wedding"],
-    catalog: {
-      title: "Filmski kadrovi",
-      description:
-        "Veliki kadrovi preko celog ekrana. Prilagodite sadržaj, a goste i stolove vodite u nalogu.",
-      style: "cinematic",
-      price: 3999,
-      featured: true,
-    },
-  },
-  "vencanje-premium": {
-    renderers: vencanjePremiumRenderers,
-    defaultConfig: {
-      ...vencanjePremiumDefaultConfig,
-      eventType: "wedding",
-    },
-    eventTypes: ["wedding"],
-    catalog: {
-      title: "Premijum editorial",
-      description:
-        "Svečani editorial stil. Boje, fontovi i galerija ostaju promenljivi i kasnije.",
-      style: "premium",
-      price: 3999,
-      featured: true,
-    },
-  },
-  "vencanje-cinematic": {
-    renderers: vencanjeCinematicRenderers,
-    defaultConfig: {
-      ...vencanjeCinematicDefaultConfig,
-      eventType: "wedding",
-    },
-    eventTypes: ["wedding"],
-    catalog: {
-      title: "Filmski kadar",
-      description:
-        "Filmski utisak sa jakim fotografijama. Otvorite primer i javite nam se ako vam se dopada.",
-      style: "cinematic",
-      price: 3999,
-    },
-  },
   "vencanje-background": {
     renderers: vencanjeBackgroundRenderers,
     defaultConfig: {
@@ -679,8 +599,8 @@ export function getDefaultProject(templateKey: string) {
   }
 
   if (!template) {
-    console.warn(`Template "${templateKey}" not found, fallback to "vencanje"`);
-    return templates.vencanje.defaultConfig;
+    console.warn(`Template "${templateKey}" not found, fallback to "vencanje-terra"`);
+    return templates["vencanje-terra"].defaultConfig;
   }
 
   return template.defaultConfig;

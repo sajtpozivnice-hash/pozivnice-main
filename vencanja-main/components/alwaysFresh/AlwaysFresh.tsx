@@ -78,7 +78,7 @@ const AlwaysFresh = () => {
 
             <div className={styles.actions}>
               <Button icon={AnimatedArrowRight}>
-                <Link href="/editor/vencanje-cinematic" className="white-color">
+                <Link href="/editor/vencanje-terra" className="white-color">
                   Isprobaj izmenu
                 </Link>
               </Button>

@@ -37,7 +37,7 @@ const VisualProof = () => {
             </p>
             <div className={styles.actions}>
               <Button icon={AnimatedArrowRight}>
-                <Link href="/editor/vencanje-cinematic" className="white-color">
+                <Link href="/editor/vencanje-terra" className="white-color">
                   Isprobaj u editoru
                 </Link>
               </Button>
