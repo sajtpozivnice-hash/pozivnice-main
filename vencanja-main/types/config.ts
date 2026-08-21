@@ -21,6 +21,7 @@ export type TemplateKey =
   | "kids-space"
   | "kids-candy"
   | "kids-cartoon"
+  | "kids-honey"
   | "birthday18"
   | "birthday18-bright"
   | "birthday18-editorial"

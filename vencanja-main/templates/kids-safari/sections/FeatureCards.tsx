@@ -1,6 +1,6 @@
 "use client";
 
-import { CSSProperties, FC } from "react";
+import { FC } from "react";
 import { motion } from "framer-motion";
 import { FeatureCardsSection } from "@/types/sections";
 import { EventConfig, ThemeConfig } from "@/types/config";
@@ -14,13 +14,13 @@ type Props = {
 
 const FeatureCards: FC<Props> = ({ section, theme }) => {
   const { data, id, name } = section;
-  const accent = theme.colors?.base?.primary?.value ?? "#FF5C8A";
+  const accent = theme.colors?.base?.primary?.value ?? "#C1801F";
   const cards = data.cards ?? [];
 
   return (
     <section id={id} className="ksaf-section">
       <div className="ksaf-shell">
-        <div className="mb-10 max-w-2xl">
+        <div className="mx-auto mb-10 max-w-2xl text-center">
           <p className="ksaf-eyebrow mb-4">{name}</p>
           <h2 className="ksaf-heading">{data.title}</h2>
           {data.subtitle ? (
@@ -37,7 +37,6 @@ const FeatureCards: FC<Props> = ({ section, theme }) => {
           {cards.map((card, index) => {
             const Icon = resolveFeatureIcon(card.icon);
             const color = card.accent || accent;
-            const tilt = index % 2 === 0 ? -2 : 1.5;
 
             return (
               <motion.article
@@ -47,7 +46,6 @@ const FeatureCards: FC<Props> = ({ section, theme }) => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.07 }}
                 className="ksaf-journal-card"
-                style={{ "--tilt": `${tilt}deg` } as CSSProperties}
               >
                 <div
                   className={`ksaf-journal-photo ${

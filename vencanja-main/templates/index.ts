@@ -50,6 +50,8 @@ import { kidsCandyDefaultConfig } from "./kids-candy/config";
 import { kidsCandyRenderers } from "./kids-candy/renderers";
 import { kidsCartoonDefaultConfig } from "./kids-cartoon/config";
 import { kidsCartoonRenderers } from "./kids-cartoon/renderers";
+import { kidsHoneyDefaultConfig } from "./kids-honey/config";
+import { kidsHoneyRenderers } from "./kids-honey/renderers";
 import { krstenjeClassicDefaultConfig } from "./krstenje-classic/config";
 import { krstenjeClassicRenderers } from "./krstenje-classic/renderers";
 import { krstenjeSoftDefaultConfig } from "./krstenje-soft/config";
@@ -497,6 +499,24 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       featured: true,
       imageLink:
         "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787324323/wang-binghua-zSvkokr_yw0-unsplash_qz1ao3.jpg",
+    },
+  },
+  "kids-honey": {
+    renderers: kidsHoneyRenderers,
+    defaultConfig: {
+      ...kidsHoneyDefaultConfig,
+      eventType: "kidsBirthday",
+    },
+    eventTypes: ["kidsBirthday"],
+    catalog: {
+      title: "1. rođendan — medeni picnic",
+      description:
+        "Medena tegla, honeycomb i crveni balon — topao, dečiji picnic za prvi rođendan.",
+      style: "playful",
+      price: 3999,
+      featured: true,
+      imageLink:
+        "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023931/pexels-junielly-oliveira-2736244-4960960_migtwt.jpg",
     },
   },
   "krstenje-classic": {

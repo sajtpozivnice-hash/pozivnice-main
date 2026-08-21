@@ -3,21 +3,18 @@ import { UniversalProjectConfig } from "@/types/config";
 /** Royalty-free Unsplash placeholders — only in config, never hardcoded in components */
 const IMG = {
   hero:
-    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023489/photo-1530103862676-de8c9debad1d_rxuitz.avif",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787326450/behnam-mohsenzadeh-3q_47uOolcw-unsplash_jonnnu.jpg",
   portrait:
-    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023223/pexels-matheus-rodrigues-672111387-18212443_mr0hd2.jpg",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787326450/behnam-mohsenzadeh-3q_47uOolcw-unsplash_jonnnu.jpg",
   balloons:
-    "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787326525/brian-mcgowan-zmkZWG6r4dw-unsplash_gqhedx.jpg",
   cake:
-    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023931/pexels-junielly-oliveira-2736244-4960960_migtwt.jpg",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787326599/nikki-watson-QbiY6wXvY7Q-unsplash_unoq1q.jpg",
   party:
     "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023854/photo-1513151233558-d860c5398176_xvejar.avif",
   venue:
-    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023813/photo-1464366400600-7168b8af9bc3_dmpg2x.avif",
-  gifts:
-    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023699/photo-1549465220-1a8b9238cd48_avxoqq.avif",
-  activities:
-    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023761/photo-1527529482837-4698179dc6ce_x4mmyo.avif",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787326757/winston-chen-VCbUP4OBIVw-unsplash_bmwl3s.jpg",
+
 };
 
 export const kidsSafariDefaultConfig: UniversalProjectConfig = {
@@ -28,8 +25,8 @@ export const kidsSafariDefaultConfig: UniversalProjectConfig = {
     description: "Safari ekspedicija pozivnica za prvi dečiji rođendan"
   },
   event: {
-    date: "2026-09-20",
-    rsvpDate: "2026-09-10",
+    date: "2027-09-20",
+    rsvpDate: "2027-09-10",
     names: "Luka",
   },
   theme: {
@@ -160,8 +157,6 @@ export const kidsSafariDefaultConfig: UniversalProjectConfig = {
             description:
               "Ako želite da donesete poklon, Mila voli kreativne setove, knjige i male avanture.",
             icon: "gift",
-            accent: "#FF5C8A",
-            image: IMG.gifts,
           },
           {
             id: "2",
@@ -169,7 +164,6 @@ export const kidsSafariDefaultConfig: UniversalProjectConfig = {
             description:
               "Udobna, šarena odeća! Predlažemo pastalne boje i patike za igre.",
             icon: "shirt",
-            accent: "#3D8BFF",
           },
           {
             id: "3",
@@ -177,16 +171,6 @@ export const kidsSafariDefaultConfig: UniversalProjectConfig = {
             description:
               "Bojenje lica, piñata, karaoke ugao i foto-booth sa rekvizitima.",
             icon: "party",
-            accent: "#FFB703",
-            image: IMG.activities,
-          },
-          {
-            id: "4",
-            title: "Info za roditelje",
-            description:
-              "Proslava traje do 20:00. Roditelji su dobrodošli da ostanu ili se vrate po decu.",
-            icon: "baby",
-            accent: "#2EC4B6",
           },
           {
             id: "5",
@@ -194,7 +178,6 @@ export const kidsSafariDefaultConfig: UniversalProjectConfig = {
             description:
               "Molimo vas da potvrdite dolazak do 10. septembra zbog organizacije hrane i torti.",
             icon: "info",
-            accent: "#9B5DE5",
           },
         ],
       },

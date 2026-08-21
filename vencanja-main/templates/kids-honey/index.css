@@ -1,0 +1,233 @@
+@import "tailwindcss";
+
+/* kids-honey — medeni picnic: honey jar, honeycomb, bees, soft storybook (1. rođendan) */
+
+@theme {
+  --color-khny-cream: #fff6e8;
+  --color-khny-honey: #e9a825;
+  --color-khny-amber: #c47a12;
+  --color-khny-red: #c23b2e;
+  --color-khny-sky: #b7d9ea;
+  --color-khny-moss: #7f9b5e;
+  --color-khny-ink: #4a3728;
+  --color-khny-paper: #fffaf1;
+}
+
+[data-template="kids-honey"] {
+  --color-khny-honey: var(--color-primary, #e9a825);
+  --color-khny-red: var(--color-secondary, #c23b2e);
+  --color-khny-sky: var(--color-ternary, #b7d9ea);
+  --color-khny-cream: var(--color-background, #fff6e8);
+  --color-khny-amber: color-mix(
+    in srgb,
+    var(--color-khny-honey) 70%,
+    #8a4b00
+  );
+  --color-khny-moss: color-mix(
+    in srgb,
+    var(--color-khny-sky) 25%,
+    #6f8f4e
+  );
+  --color-khny-ink: #4a3728;
+  --color-khny-paper: color-mix(in srgb, var(--color-khny-cream) 55%, white);
+
+  background-color: var(--color-khny-cream);
+  color: var(--color-khny-ink);
+  overflow-x: hidden;
+  font-family: var(--font-secondary);
+
+  /* Soft honeycomb field */
+  background-image:
+    radial-gradient(
+      ellipse 55% 40% at 50% -5%,
+      color-mix(in srgb, var(--color-khny-sky) 55%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      circle at 12% 70%,
+      color-mix(in srgb, var(--color-khny-honey) 22%, transparent),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 90% 40%,
+      color-mix(in srgb, var(--color-khny-red) 10%, transparent),
+      transparent 22%
+    ),
+    url("data:image/svg+xml,%3Csvg width='56' height='100' viewBox='0 0 56 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='%23e9a825' stroke-opacity='0.16' stroke-width='1'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='%23e9a825' stroke-opacity='0.1' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: auto, auto, auto, 56px 100px;
+}
+
+@layer components {
+  .khny-shell {
+    @apply relative mx-auto w-full max-w-3xl px-5 sm:px-8;
+  }
+
+  .khny-section {
+    @apply relative py-14 sm:py-20 lg:py-24;
+  }
+
+  .khny-lid {
+    @apply inline-flex items-center justify-center rounded-full px-5 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em];
+    background: var(--color-khny-honey);
+    color: var(--color-khny-ink);
+    border: 2px solid color-mix(in srgb, var(--color-khny-ink) 18%, transparent);
+    box-shadow: inset 0 -2px 0 color-mix(in srgb, var(--color-khny-amber) 45%, transparent);
+  }
+
+  .khny-script {
+    font-family: var(--font-primary);
+    color: var(--color-khny-ink);
+    font-size: clamp(2.8rem, 10vw, 5.2rem);
+    line-height: 1.05;
+    font-weight: 400;
+  }
+
+  .khny-heading {
+    font-family: var(--font-secondary);
+    color: var(--color-khny-ink);
+    font-size: clamp(1.7rem, 4vw, 2.4rem);
+    font-weight: 700;
+    line-height: 1.15;
+  }
+
+  .khny-body {
+    @apply text-base leading-relaxed sm:text-lg;
+    color: color-mix(in srgb, var(--color-khny-ink) 78%, white);
+    font-family: var(--font-secondary);
+  }
+
+  /* Honey jar panel */
+  .khny-jar {
+    @apply relative overflow-hidden;
+    background: var(--color-khny-paper);
+    border: 3px solid color-mix(in srgb, var(--color-khny-ink) 16%, transparent);
+    border-radius: 2.5rem 2.5rem 3.25rem 3.25rem;
+    box-shadow:
+      0 18px 40px -24px color-mix(in srgb, var(--color-khny-amber) 55%, transparent),
+      inset 0 0 0 6px color-mix(in srgb, var(--color-khny-honey) 18%, transparent);
+  }
+
+  .khny-jar-lid {
+    @apply absolute left-1/2 top-0 z-10 h-3 w-[42%] -translate-x-1/2 -translate-y-1/2 rounded-full;
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-khny-honey) 70%, white),
+      var(--color-khny-amber)
+    );
+    border: 2px solid color-mix(in srgb, var(--color-khny-ink) 15%, transparent);
+  }
+
+  .khny-btn {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full px-8 py-3.5 text-sm font-bold uppercase tracking-[0.08em] transition hover:-translate-y-0.5 active:translate-y-0 disabled:cursor-wait disabled:opacity-55;
+    background: var(--color-khny-red);
+    color: #fff8f0;
+    box-shadow: 0 10px 22px -10px color-mix(in srgb, var(--color-khny-red) 70%, transparent);
+  }
+
+  .khny-input {
+    @apply w-full rounded-[1.35rem] border-2 bg-[var(--color-khny-cream)] px-4 py-3.5 text-base outline-none transition placeholder:opacity-40 focus:bg-white;
+    border-color: color-mix(in srgb, var(--color-khny-ink) 16%, transparent);
+    color: var(--color-khny-ink);
+    font-family: var(--font-secondary);
+  }
+
+  .khny-input:focus {
+    border-color: var(--color-khny-honey);
+  }
+
+  .khny-label {
+    @apply mb-2 block text-[11px] font-bold uppercase tracking-[0.2em];
+    color: color-mix(in srgb, var(--color-khny-ink) 55%, transparent);
+  }
+
+  .khny-choice {
+    @apply block rounded-full border-2 px-4 py-3.5 text-center text-sm font-bold transition;
+    border-color: color-mix(in srgb, var(--color-khny-ink) 16%, transparent);
+    background: var(--color-khny-cream);
+    color: var(--color-khny-ink);
+  }
+
+  .peer:checked + .khny-choice {
+    background: var(--color-khny-honey);
+    border-color: var(--color-khny-amber);
+  }
+
+  /* Floating red balloon */
+  .khny-balloon {
+    @apply absolute pointer-events-none;
+    width: 2.6rem;
+    height: 3.2rem;
+    border-radius: 50% 50% 50% 50% / 42% 42% 58% 58%;
+    background: radial-gradient(
+      circle at 35% 30%,
+      #f07168,
+      var(--color-khny-red)
+    );
+    box-shadow: inset -6px -8px 12px rgba(0, 0, 0, 0.12);
+  }
+
+  .khny-balloon::after {
+    content: "";
+    @apply absolute left-1/2 top-full h-16 w-px -translate-x-1/2;
+    background: color-mix(in srgb, var(--color-khny-ink) 35%, transparent);
+  }
+
+  /* Tiny bee */
+  .khny-bee {
+    @apply absolute pointer-events-none;
+    width: 1.1rem;
+    height: 0.75rem;
+    border-radius: 999px;
+    background: repeating-linear-gradient(
+      90deg,
+      #2b2118 0 3px,
+      var(--color-khny-honey) 3px 6px
+    );
+    animation: khny-buzz 3.6s ease-in-out infinite;
+  }
+
+  .khny-bee::before,
+  .khny-bee::after {
+    content: "";
+    @apply absolute -top-1 h-2 w-2.5 rounded-full;
+    background: color-mix(in srgb, white 70%, var(--color-khny-sky));
+    opacity: 0.9;
+  }
+
+  .khny-bee::before {
+    left: 0;
+  }
+
+  .khny-bee::after {
+    right: 0;
+  }
+
+  @keyframes khny-buzz {
+    0%,
+    100% {
+      transform: translate(0, 0) rotate(-6deg);
+    }
+    50% {
+      transform: translate(8px, -6px) rotate(8deg);
+    }
+  }
+
+  .khny-drip {
+    @apply mx-auto h-3 w-8 rounded-b-full;
+    background: var(--color-khny-honey);
+    opacity: 0.85;
+  }
+
+  .khny-pot {
+    @apply relative rounded-[1.75rem] border-2 p-5 text-center sm:p-6;
+    background: var(--color-khny-paper);
+    border-color: color-mix(in srgb, var(--color-khny-honey) 55%, transparent);
+  }
+
+  .khny-hex {
+    @apply flex aspect-square flex-col items-center justify-center;
+    clip-path: polygon(25% 6%, 75% 6%, 100% 50%, 75% 94%, 25% 94%, 0% 50%);
+    background: var(--color-khny-honey);
+    color: var(--color-khny-ink);
+  }
+}

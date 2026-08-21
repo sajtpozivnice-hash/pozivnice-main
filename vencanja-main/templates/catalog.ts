@@ -11,6 +11,7 @@ import { templates } from "./index";
 
 /** Newest premium wedding packs — shown first on /pozivnice. */
 const CATALOG_PRIORITY: TemplateKey[] = [
+  "kids-honey",
   "vencanje-navy",
   "kids-cartoon",
   "vencanje-boho",

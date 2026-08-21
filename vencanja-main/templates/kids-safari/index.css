@@ -13,15 +13,47 @@
   --color-ksaf-line: #24321f;
 }
 
+[data-template="kids-safari"] {
+  /* Theme bridge: editor primary / secondary / ternary / backgrounds */
+  --color-ksaf-ochre: var(--color-primary, #c1801f);
+  --color-ksaf-teal: var(--color-secondary, #2f6e5e);
+  --color-ksaf-rust: var(--color-ternary, #a4552c);
+  --color-ksaf-khaki: var(--color-background, #e7e0c4);
+  --color-ksaf-khaki-deep: var(
+    --color-background-secondary,
+    #ddd3ab
+  );
+  --color-ksaf-ink: color-mix(
+    in srgb,
+    var(--color-ksaf-teal) 55%,
+    #12180f
+  );
+  --color-ksaf-line: var(--color-ksaf-ink);
+
+  @apply relative overflow-x-hidden text-ksaf-ink;
+  background:
+    linear-gradient(
+        color-mix(in srgb, var(--color-ksaf-ink) 5%, transparent) 1px,
+        transparent 1px
+      )
+      0 0 / 100% 26px,
+    linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--color-ksaf-ink) 5%, transparent) 1px,
+        transparent 1px
+      )
+      0 0 / 26px 100%,
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-ksaf-khaki) 70%, white) 0%,
+      var(--color-ksaf-khaki) 45%,
+      var(--color-ksaf-khaki-deep) 100%
+    );
+  color: var(--color-ksaf-ink);
+  font-family: var(--font-secondary);
+}
+
 @layer components {
-  [data-template="kids-safari"] {
-    @apply relative overflow-x-hidden text-ksaf-ink;
-    background:
-      linear-gradient(rgba(36, 50, 31, 0.05) 1px, transparent 1px) 0 0 / 100% 26px,
-      linear-gradient(90deg, rgba(36, 50, 31, 0.05) 1px, transparent 1px) 0 0 / 26px 100%,
-      linear-gradient(180deg, #ece5c9 0%, #e7e0c4 45%, #ded6b3 100%);
-    font-family: var(--font-secondary);
-  }
 
   .ksaf-shell {
     @apply relative mx-auto w-full max-w-6xl px-6 sm:px-10 lg:px-14;
@@ -224,18 +256,16 @@
     opacity: 0.55;
   }
 
-  /* FeatureCards — field journal horizontal scroll */
+  /* FeatureCards — centered field-journal grid */
   .ksaf-journal {
-    @apply -mx-6 flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 pb-4 sm:mx-0 sm:px-0;
+    @apply mx-auto grid max-w-5xl justify-items-center gap-5 sm:grid-cols-2 lg:grid-cols-4;
   }
 
   .ksaf-journal-card {
-    @apply relative shrink-0 snap-start border-2 p-3 pb-4;
-    width: min(72vw, 15.5rem);
+    @apply relative w-full max-w-sm border-2 p-3 pb-4 text-center sm:max-w-none;
     background: #fbf8ee;
     border-color: var(--color-ksaf-ink);
     box-shadow: 0 16px 32px -20px rgba(36, 50, 31, 0.55);
-    transform: rotate(var(--tilt, 0deg));
   }
 
   .ksaf-journal-photo {
@@ -254,7 +284,7 @@
   }
 
   .ksaf-journal-icon {
-    @apply mb-2 inline-flex h-9 w-9 items-center justify-center rounded-full border-2;
+    @apply mx-auto mb-2 inline-flex h-9 w-9 items-center justify-center rounded-full border-2;
     border-color: var(--color-ksaf-ochre);
     color: var(--color-ksaf-teal);
   }

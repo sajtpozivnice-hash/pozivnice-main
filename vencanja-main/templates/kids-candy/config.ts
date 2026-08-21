@@ -3,11 +3,11 @@ import { UniversalProjectConfig } from "@/types/config";
 /** Royalty-free Unsplash placeholders — only in config, never hardcoded in components */
 const IMG = {
   hero:
-    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023489/photo-1530103862676-de8c9debad1d_rxuitz.avif",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787327398/katie-rainbow-U21WOE0jB0E-unsplash_n9pimf.jpg",
   portrait:
-    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023223/pexels-matheus-rodrigues-672111387-18212443_mr0hd2.jpg",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787327398/katie-rainbow-U21WOE0jB0E-unsplash_n9pimf.jpg",
   balloons:
-    "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=85",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787327481/jonathan-borba-37HRziPIeAw-unsplash_aq0u5k.jpg",
   cake:
     "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023931/pexels-junielly-oliveira-2736244-4960960_migtwt.jpg",
   party:
@@ -17,7 +17,8 @@ const IMG = {
   gifts:
     "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023699/photo-1549465220-1a8b9238cd48_avxoqq.avif",
   activities:
-    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023761/photo-1527529482837-4698179dc6ce_x4mmyo.avif",
+    "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023761/photo-1527529482837-4698179dc6ce_x4mmyo.avif",
+
 };
 
 export const kidsCandyDefaultConfig: UniversalProjectConfig = {

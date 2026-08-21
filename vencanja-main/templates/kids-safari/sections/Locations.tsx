@@ -14,7 +14,7 @@ type Props = {
 
 const Locations: FC<Props> = ({ section, theme }) => {
   const { data, id, name } = section;
-  const accent = theme.colors?.base?.primary?.value ?? "#FF5C8A";
+  const accent = theme.colors?.base?.primary?.value ?? "#C1801F";
   const card = data.cards?.[0];
   const image = card?.image || data.imageUrl;
 
