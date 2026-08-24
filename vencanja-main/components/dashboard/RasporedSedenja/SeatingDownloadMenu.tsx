@@ -57,12 +57,15 @@ const SeatingDownloadMenu = () => {
 
   return (
     <Popover>
-      <PopoverTrigger className="w-full">
-        <Button variant="outline" className="h-9 w-full cursor-pointer">
-          <Download className="h-4 w-4" />
-          <span className="min-[420px]:hidden">Preuzmi</span>
-          <span className="hidden min-[420px]:inline">Preuzmi raspored</span>
-        </Button>
+      <PopoverTrigger
+        className="w-full"
+        render={
+          <Button variant="outline" className="h-9 w-full cursor-pointer" />
+        }
+      >
+        <Download className="h-4 w-4" />
+        <span className="min-[420px]:hidden">Preuzmi</span>
+        <span className="hidden min-[420px]:inline">Preuzmi raspored</span>
       </PopoverTrigger>
       <PopoverContent
         align="start"

@@ -4,13 +4,13 @@ export const krstenjeGardenDefaultConfig: UniversalProjectConfig = {
   template: "krstenje-garden",
   eventType: "baptism",
   meta: {
-    title: "Vuk — krštenje u bašti",
+    title: "Teodor — svečano krštenje",
     description: "Pozivnica za krštenje",
   },
   event: {
-    date: "2026-08-08",
-    rsvpDate: "2026-07-08",
-    names: "Vuk",
+    date: "2027-08-08",
+    rsvpDate: "2027-07-08",
+    names: "Teodor",
   },
   theme: {
     fonts: {
@@ -46,10 +46,10 @@ export const krstenjeGardenDefaultConfig: UniversalProjectConfig = {
       visible: true,
       order: 1,
       data: {
-        title: "Pod otvorenim nebom",
-        subtitle: "Krštenje i porodična proslava",
+        title: "U svetlosti sveće",
+        subtitle: "Sveta tajna krštenja",
         backgroundImage:
-          "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2000",
+          "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787350317/2026-01-17-04-45-55-960x640_eed5a3.jpg",
       },
     },
     {
@@ -58,7 +58,7 @@ export const krstenjeGardenDefaultConfig: UniversalProjectConfig = {
       type: "countdown",
       visible: true,
       order: 2,
-      data: { title: "Do proslave" },
+      data: { title: "Do svečanog dana" },
     },
     {
       id: "inviteText",
@@ -68,7 +68,7 @@ export const krstenjeGardenDefaultConfig: UniversalProjectConfig = {
       order: 3,
       data: {
         description:
-          "Pozivamo vas na krštenje našeg sina Vuka, a zatim na druženje u zelenilu i miru bašte.",
+          "U toploj atmosferi i uz najbliže, pozivamo vas na krštenje našeg sina Teodora.",
       },
     },
     {
@@ -81,18 +81,18 @@ export const krstenjeGardenDefaultConfig: UniversalProjectConfig = {
     },
     {
       id: "ourStory",
-      name: "Naša Priča",
+      name: "Krštenje priča",
       type: "ourStory",
       visible: true,
       order: 5,
       data: {
-        title: "Pod otvorenim nebom",
-        overline: "Porodična proslava",
-        text: `Okupljamo se napolju, među zelenilom i smehom, da proslavimo blagoslovljen dan. Krštenje i okupljanje posle toga su jedno: porodica, prijatelji i lagani trenuci.
+        title: "U svetlosti",
+        overline: "Svečani trenutak",
+        text: `U tišini sveće i toplom sjaju okupljamo one koji su nam najdraži. Krštenje je naš svečani trenutak zahvalnosti i vere.
 
-Šablon takođe možete pretvoriti u rođendansku pozivnicu — promenite hero, program i lokacije.`,
+Ako želite svečani dečiji rođendan, zadržite atmosferu — promenite samo tekstove i program u editoru.`,
         image:
-          "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=1200",
+          "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787348109/2026-04-08-07-23-30-960x640_hmlazn.jpg",
       },
     },
     {
@@ -108,24 +108,24 @@ export const krstenjeGardenDefaultConfig: UniversalProjectConfig = {
           {
             id: "1",
             time: "15:00",
-            title: "Ceremonija",
-            description: "Vrt vile Atina",
+            title: "Krstenje",
+            description: "Crkva Sv. Jovana",
           },
           {
             id: "2",
             time: "16:30",
-            title: "Koktel",
-            description: "Terasa uz bazen",
-          },
-          {
-            id: "3",
-            time: "18:00",
-            title: "Večera",
+            title: "Skup gostiju u svečanoj sali",
             description: "Svečana sala",
           },
           {
+            id: "3",
+            time: "17:30",
+            title: "Večera",
+            description: "Večera u svečanoj sali",
+          },
+          {
             id: "4",
-            time: "21:00",
+            time: "18:30",
             title: "Žurka",
             description: "Do kasnih sati",
           },
@@ -134,13 +134,13 @@ export const krstenjeGardenDefaultConfig: UniversalProjectConfig = {
     },
     {
       id: "loveQuote",
-      name: "Ljubavni Citat",
+      name: "Krštenje citat",
       type: "loveQuote",
       visible: true,
       order: 7,
       data: {
         title:
-          "Ljubav nije nešto što pronalazimo. Ljubav je nešto što gradimo — zajedno.",
+          "Danas primam najlepši dar – Božji blagoslov, ljubav svojih najmilijih i put ispunjen verom.",
       },
     },
     {
@@ -155,15 +155,15 @@ export const krstenjeGardenDefaultConfig: UniversalProjectConfig = {
         cards: [
           {
             id: 1,
-            title: "Ceremonija",
+            title: "Krstenje",
             time: "15:00",
-            location: "Vila Atina, Beograd",
-            text: "Neka raste u miru, radosti i ljubavi.",
+            location: "Crkva Sv. Jovana",
+            text: "Neka svetlost vodi njegov put.",
           },
           {
             id: 2,
             title: "Proslava",
-            time: "18:00",
+            time: "17:30",
             location: "Svečana sala Vila Atina",
             text: "Večera, zdravice i ples do kasnih sati.",
           },

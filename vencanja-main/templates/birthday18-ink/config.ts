@@ -6,8 +6,6 @@ export const birthday18InkDefaultConfig: UniversalProjectConfig = {
   meta: {
     title: "Aleksa — 18 · Novinsko izdanje",
     description: "Monohromatska broadsheet pozivnica za punoletstvo",
-    ogImage:
-      "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787347709/rishabh-sharma-R-js25Pv1LQ-unsplash_k1l2w2.jpg",
   },
   event: {
     date: "2027-10-03",
@@ -47,8 +45,6 @@ export const birthday18InkDefaultConfig: UniversalProjectConfig = {
         value: "#EAE2CC",
       },
     },
-    backgroundImage:
-      "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787347709/rishabh-sharma-R-js25Pv1LQ-unsplash_k1l2w2.jpg",
   },
   sections: [
     {

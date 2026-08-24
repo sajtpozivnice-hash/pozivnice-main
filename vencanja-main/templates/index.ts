@@ -478,6 +478,8 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       style: "modern",
       price: 3999,
       featured: true,
+      imageLink:
+        "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787350317/2026-01-17-04-45-55-960x640_eed5a3.jpg",
     },
   },
   "krstenje-candle": {
