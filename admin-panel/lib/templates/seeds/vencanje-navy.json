@@ -1,31 +1,35 @@
 {
-  "template": "vencanje-background",
+  "template": "vencanje-navy",
   "meta": {
-    "title": "Ema & Nikola — Pozivnica sa pozadinom",
-    "description": "Venčana pozivnica sa jednom pozadinom i staklenim panelima"
+    "title": "Teodora & Mihajlo — Formalna pozivnica",
+    "description": "Navy i champagne black-tie pozivnica za večernje venčanje"
   },
   "event": {
-    "date": "2027-11-14",
-    "rsvpDate": "2027-10-14",
-    "names": "Ema & Nikola"
+    "date": "2027-10-17",
+    "rsvpDate": "2027-09-17",
+    "names": "Teodora & Mihajlo"
   },
   "theme": {
     "fonts": {
-      "primary": "playfair"
+      "primary": "playfair",
+      "secondary": "inter"
     },
     "colors": {
       "base": {
         "primary": {
-          "name": "Champagne",
-          "value": "#e2c4a0"
+          "name": "Champagne brass",
+          "value": "#D4AF7A"
         },
         "secondary": {
-          "name": "Staklo",
-          "value": "#0c0a09"
+          "name": "Ivory",
+          "value": "#F6F1E8"
         }
+      },
+      "background": {
+        "name": "Navy",
+        "value": "#0B1C2C"
       }
-    },
-    "backgroundImage": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787067139/alvin-mahmudov-NSVJAAXOYHs-unsplash_szart3.jpg"
+    }
   },
   "sections": [
     {
@@ -35,9 +39,8 @@
       "visible": true,
       "order": 1,
       "data": {
-        "title": "Jedna fotografija. Cela priča.",
-        "subtitle": "Sa ljubavlju Vas pozivamo",
-        "backgroundImage": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787067139/alvin-mahmudov-NSVJAAXOYHs-unsplash_szart3.jpg"
+        "title": "Crno-bela večer",
+        "subtitle": "Venčanje"
       }
     },
     {
@@ -47,7 +50,7 @@
       "visible": true,
       "order": 2,
       "data": {
-        "title": "Do našeg dana"
+        "title": "Do svečanog trenutka"
       }
     },
     {
@@ -57,7 +60,7 @@
       "visible": true,
       "order": 3,
       "data": {
-        "description": "Budite sa nama dok naše dve priče postaju jedna — u svetlosti, smehu i zahvalnosti."
+        "description": "Sa velikim poštovanjem molimo za čast Vašeg prisustva na svečanosti našeg venčanja — u krugu porodice i najbližih prijatelja."
       }
     },
     {
@@ -78,9 +81,8 @@
       "order": 5,
       "data": {
         "title": "Naša priča",
-        "overline": "Kako je počelo",
-        "text": "Sve je počelo jednostavno — razgovorom koji je trajao duže od očekivanog.\n\nZatim su došli dani ispunjeni putovanjima, tihim jutrima i osećajem da smo stigli kući.\n\nSada otvaramo novo poglavlje i želimo da ga podelimo sa Vama.",
-        "image": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787314339/alejandra-quiroz-F5hTTI4Hlv4-unsplash_yuoe8o.jpg"
+        "overline": "Poglavlja",
+        "text": "Upoznavanje je bilo tiho — večera, razgovor koji nije hteo da se završi, i osećaj da smo već negde bili zajedno.\n\nGodine su prošle u putovanjima, zdravicama i malim ritualima koji su nas učinili nama.\n\nSada otvaramo večernje poglavlje i želimo da ga podelimo sa Vama — formalno, ali od srca."
       }
     },
     {
@@ -90,8 +92,8 @@
       "visible": true,
       "order": 6,
       "data": {
-        "title": "Tok dana",
-        "subtitle": "Lagano, lepo, naše",
+        "title": "Program večeri",
+        "subtitle": "Crno-beli dress code. Formalna atmosfera.",
         "items": [
           {
             "id": "1",
@@ -115,7 +117,8 @@
       "visible": true,
       "order": 7,
       "data": {
-        "title": "U tebi sam pronašao/la svoj mir i svoj smeh."
+        "title": "Gde god si ti — tamo je i moj mir.",
+        "description": "—"
       }
     },
     {
@@ -125,24 +128,22 @@
       "visible": true,
       "order": 8,
       "data": {
-        "title": "Gde se nalazimo",
-        "subtitle": "Dve scene istog dana",
+        "title": "Adrese",
+        "subtitle": "Program lokacija",
         "cards": [
           {
             "id": 1,
             "title": "Crkveno venčanje",
             "time": "16:00",
             "location": "Crkva Svetog Marka, Beograd",
-            "text": "Molimo Vas da stignete petnaest minuta ranije.",
-            "image": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787090506/wedding/jaakko-perala-norway-elopement-photographer-71BLG9XJtHk-unsplash.jpg"
+            "text": "Molimo Vas da stignete petnaest minuta ranije."
           },
           {
             "id": 2,
             "title": "Skup gostiju u sali",
             "time": "18:00",
-            "location": "Vila Aurora — sala",
-            "text": "Doček, večera i ples.",
-            "image": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023761/photo-1527529482837-4698179dc6ce_x4mmyo.avif"
+            "location": "Hotel Metropol Palace — Svečana sala",
+            "text": "Doček, večera i ples. Dress code: black-tie / večernja toaleta."
           }
         ]
       }
@@ -152,11 +153,12 @@
       "name": "Dodavanje Slika",
       "type": "uploadImagesSection",
       "visible": true,
-      "order": 10,
+      "order": 9,
       "data": {
         "title": "Podelite kadar",
-        "subtitle": "Vaš pogled",
-        "description": "Ako uslikate trenutak — podelite ga sa nama."
+        "subtitle": "Galerija gostiju",
+        "description": "Ako uhvatite trenutak sa naše večeri — ostavite ga u našoj galeriji.",
+        "buttonText": "Dodajte fotografiju"
       }
     },
     {
@@ -164,11 +166,11 @@
       "name": "Potvrda Prisutnosti",
       "type": "rsvp",
       "visible": true,
-      "order": 11,
+      "order": 10,
       "data": {
-        "title": "Hoćete li biti tu?",
-        "description": "Potvrdite dolazak do ",
-        "buttonText": "Pošalji potvrdu"
+        "title": "Potvrdite prisustvo",
+        "description": "Ljubazno odgovorite do ",
+        "buttonText": "Pošalji odgovor"
       }
     },
     {
@@ -176,10 +178,9 @@
       "name": "Završna poruka",
       "type": "footer",
       "visible": true,
-      "order": 12,
+      "order": 11,
       "data": {
-        "title": "Hvala što ste deo naše priče.",
-        "imageUrl": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787311946/engin-akyurt-3IN8pjVpDw0_wgstac.jpg"
+        "title": "Sa poštovanjem"
       }
     }
   ],

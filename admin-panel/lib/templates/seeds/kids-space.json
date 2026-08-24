@@ -65,7 +65,7 @@
       "order": 2,
       "data": {
         "description": "Pozivamo posadu na Matejin 1. rođendan — svemirska žurka sa misijama, kodovima i zvezdanoj torti.",
-        "imageUrl": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=85"
+        "imageUrl": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787327689/tao-yuan-OvE_WEhkLkQ-unsplash_hrao8g.jpg"
       }
     },
     {
@@ -195,37 +195,6 @@
       }
     },
     {
-      "id": "ourGallery",
-      "name": "Galerija",
-      "type": "ourGallery",
-      "visible": true,
-      "order": 7,
-      "data": {
-        "title": "Trenuci za pamćenje",
-        "description": "Mali uvid u atmosferu koju volimo",
-        "images": [
-          {
-            "url": "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=900&q=85"
-          },
-          {
-            "url": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023699/photo-1549465220-1a8b9238cd48_avxoqq.avif"
-          },
-          {
-            "url": "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=900&q=85"
-          },
-          {
-            "url": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023813/photo-1464366400600-7168b8af9bc3_dmpg2x.avif"
-          },
-          {
-            "url": "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=900&q=85"
-          },
-          {
-            "url": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=85"
-          }
-        ]
-      }
-    },
-    {
       "id": "uploadImagesSection",
       "name": "Dodavanje slika",
       "type": "uploadImagesSection",
@@ -251,7 +220,7 @@
         "buttonText": "Pošalji potvrdu",
         "messageLabel": "Poruka za slavljenika",
         "messagePlaceholder": "Napiši kratku čestitku ili poruku…",
-        "imageUrl": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=85"
+        "imageUrl": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787327689/tao-yuan-OvE_WEhkLkQ-unsplash_hrao8g.jpg"
       }
     },
     {

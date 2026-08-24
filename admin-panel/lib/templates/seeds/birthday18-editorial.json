@@ -6,8 +6,8 @@
     "description": "Editorial digitalna pozivnica za 18. rođendan"
   },
   "event": {
-    "date": "2026-09-18",
-    "rsvpDate": "2026-09-05",
+    "date": "2027-09-18",
+    "rsvpDate": "2027-09-05",
     "names": "Lena",
     "location": {
       "name": "Studio 18",
@@ -58,7 +58,7 @@
         "badge": "VOL. 18",
         "ctaText": "DOLAZIM",
         "ctaHref": "#rsvp",
-        "backgroundImage": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1400&q=85"
+        "backgroundImage": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787345123/photo-1534528741775-53994a69daeb_sfbdns.avif"
       }
     },
     {
@@ -69,7 +69,7 @@
       "order": 2,
       "data": {
         "description": "18 GODINA\nU NASTAJANJU.\n\nJedna noć. Jedan veliki broj. I ekipa bez koje ne bi bilo isto.",
-        "imageUrl": "https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=1200&q=85"
+        "imageUrl": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787345141/photo-1469334031218-e382a71b716b_y1hoxo.avif"
       }
     },
     {
@@ -89,7 +89,7 @@
             "subtitle": "VAŠ NAJBOLJI IZGLED",
             "location": "Knez Mihailova 18, Beograd",
             "time": "20:00",
-            "image": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1400&q=85"
+            "image": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787345169/photo-1515886657613-9f3515b0c78f_jghsda.avif"
           }
         ]
       }
@@ -159,7 +159,7 @@
             "description": "Obuci ono u čemu se osećaš najbolje. Večeras si na naslovnoj.",
             "icon": "shirt",
             "accent": "#E11D48",
-            "image": "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=85"
+            "image": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787345204/photo-1483985988355-763728e1935b_i4g8pj.avif"
           }
         ]
       }

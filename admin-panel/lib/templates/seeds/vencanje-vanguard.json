@@ -1,31 +1,35 @@
 {
-  "template": "vencanje-background",
+  "template": "vencanje-vanguard",
   "meta": {
-    "title": "Ema & Nikola — Pozivnica sa pozadinom",
-    "description": "Venčana pozivnica sa jednom pozadinom i staklenim panelima"
+    "title": "Lana & Marko — Letterpress pozivnica",
+    "description": "Wood-type tipografija, papir i mastilo — bez fotografija"
   },
   "event": {
-    "date": "2027-11-14",
-    "rsvpDate": "2027-10-14",
-    "names": "Ema & Nikola"
+    "date": "2027-06-12",
+    "rsvpDate": "2027-05-12",
+    "names": "Lana & Marko"
   },
   "theme": {
     "fonts": {
-      "primary": "playfair"
+      "primary": "robotoCondensed",
+      "secondary": "lora"
     },
     "colors": {
       "base": {
         "primary": {
-          "name": "Champagne",
-          "value": "#e2c4a0"
+          "name": "Oxblood",
+          "value": "#8B2E2E"
         },
         "secondary": {
-          "name": "Staklo",
-          "value": "#0c0a09"
+          "name": "Mastilo",
+          "value": "#121212"
         }
+      },
+      "background": {
+        "name": "Papir",
+        "value": "#F3EFE6"
       }
-    },
-    "backgroundImage": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787067139/alvin-mahmudov-NSVJAAXOYHs-unsplash_szart3.jpg"
+    }
   },
   "sections": [
     {
@@ -35,9 +39,8 @@
       "visible": true,
       "order": 1,
       "data": {
-        "title": "Jedna fotografija. Cela priča.",
-        "subtitle": "Sa ljubavlju Vas pozivamo",
-        "backgroundImage": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787067139/alvin-mahmudov-NSVJAAXOYHs-unsplash_szart3.jpg"
+        "title": "Subota u junu",
+        "subtitle": "Venčanje"
       }
     },
     {
@@ -47,7 +50,8 @@
       "visible": true,
       "order": 2,
       "data": {
-        "title": "Do našeg dana"
+        "title": "Do dana",
+        "description": "Brojimo u crnom mastilu."
       }
     },
     {
@@ -57,7 +61,7 @@
       "visible": true,
       "order": 3,
       "data": {
-        "description": "Budite sa nama dok naše dve priče postaju jedna — u svetlosti, smehu i zahvalnosti."
+        "description": "Pozivamo Vas da budete uz nas — jednostavno, jasno i od srca. Bez buke, sa punom pažnjom prema trenutku."
       }
     },
     {
@@ -67,7 +71,8 @@
       "visible": true,
       "order": 4,
       "data": {
-        "title": "Sačuvajte datum"
+        "title": "Datum",
+        "description": "Zabeležite dan u kalendaru."
       }
     },
     {
@@ -77,10 +82,9 @@
       "visible": true,
       "order": 5,
       "data": {
-        "title": "Naša priča",
-        "overline": "Kako je počelo",
-        "text": "Sve je počelo jednostavno — razgovorom koji je trajao duže od očekivanog.\n\nZatim su došli dani ispunjeni putovanjima, tihim jutrima i osećajem da smo stigli kući.\n\nSada otvaramo novo poglavlje i želimo da ga podelimo sa Vama.",
-        "image": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787314339/alejandra-quiroz-F5hTTI4Hlv4-unsplash_yuoe8o.jpg"
+        "title": "Priča",
+        "overline": "Folio",
+        "text": "Počelo je kao kratka rečenica. Zatim druga. Zatim godine koje su se složile kao listovi u štampi.\n\nNismo tražili spektakl. Tražili smo jasnoću — ko smo jedno uz drugo.\n\nOvaj dan je naslovna strana. Vi ste deo izdanja."
       }
     },
     {
@@ -90,8 +94,8 @@
       "visible": true,
       "order": 6,
       "data": {
-        "title": "Tok dana",
-        "subtitle": "Lagano, lepo, naše",
+        "title": "Redosled",
+        "subtitle": "Četiri stavke",
         "items": [
           {
             "id": "1",
@@ -115,7 +119,8 @@
       "visible": true,
       "order": 7,
       "data": {
-        "title": "U tebi sam pronašao/la svoj mir i svoj smeh."
+        "title": "Najjače stvari se kažu najmanje reči.",
+        "description": "Lana & Marko"
       }
     },
     {
@@ -125,24 +130,22 @@
       "visible": true,
       "order": 8,
       "data": {
-        "title": "Gde se nalazimo",
-        "subtitle": "Dve scene istog dana",
+        "title": "Adrese",
+        "subtitle": "Dva mesta",
         "cards": [
           {
             "id": 1,
             "title": "Crkveno venčanje",
             "time": "16:00",
             "location": "Crkva Svetog Marka, Beograd",
-            "text": "Molimo Vas da stignete petnaest minuta ranije.",
-            "image": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787090506/wedding/jaakko-perala-norway-elopement-photographer-71BLG9XJtHk-unsplash.jpg"
+            "text": "Molimo Vas da dođete petnaest minuta ranije."
           },
           {
             "id": 2,
             "title": "Skup gostiju u sali",
             "time": "18:00",
-            "location": "Vila Aurora — sala",
-            "text": "Doček, večera i ples.",
-            "image": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023761/photo-1527529482837-4698179dc6ce_x4mmyo.avif"
+            "location": "Restoran Press, Obilićev venac 12",
+            "text": "Doček, večera i ples. Parking u dvorišnoj ulici."
           }
         ]
       }
@@ -152,11 +155,12 @@
       "name": "Dodavanje Slika",
       "type": "uploadImagesSection",
       "visible": true,
-      "order": 10,
+      "order": 9,
       "data": {
-        "title": "Podelite kadar",
-        "subtitle": "Vaš pogled",
-        "description": "Ako uslikate trenutak — podelite ga sa nama."
+        "title": "Vaš kadar",
+        "subtitle": "Gosti",
+        "description": "Ako uhvatite trenutak — pošaljite ga ovde.",
+        "buttonText": "Pošalji fotografiju"
       }
     },
     {
@@ -164,11 +168,11 @@
       "name": "Potvrda Prisutnosti",
       "type": "rsvp",
       "visible": true,
-      "order": 11,
+      "order": 10,
       "data": {
-        "title": "Hoćete li biti tu?",
-        "description": "Potvrdite dolazak do ",
-        "buttonText": "Pošalji potvrdu"
+        "title": "Odgovor",
+        "description": "Molimo do ",
+        "buttonText": "Pošalji"
       }
     },
     {
@@ -176,10 +180,10 @@
       "name": "Završna poruka",
       "type": "footer",
       "visible": true,
-      "order": 12,
+      "order": 11,
       "data": {
-        "title": "Hvala što ste deo naše priče.",
-        "imageUrl": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787311946/engin-akyurt-3IN8pjVpDw0_wgstac.jpg"
+        "title": "Vidimo se",
+        "subtitle": "Lana & Marko"
       }
     }
   ],

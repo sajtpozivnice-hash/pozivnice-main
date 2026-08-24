@@ -75,6 +75,9 @@ export const templates: Record<TemplateKey, TemplatePack> = {
         "Prozirni paneli preko jedne pozadine. Menjajte sadržaj i pošaljite link gostima.",
       style: "modern",
       price: 3999,
+    
+      imageLink:
+        "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787067139/alvin-mahmudov-NSVJAAXOYHs-unsplash_szart3.jpg",
     },
   },
   "vencanje-sage": {
@@ -109,6 +112,9 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       style: "editorial",
       price: 3999,
       featured: true,
+    
+      imageLink:
+        "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787150836/beatriz-perez-moya-M2T1j-6Fn8w-unsplash_rc0b1t.jpg",
     },
   },
   "vencanje-dusk": {
@@ -125,6 +131,9 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       style: "cinematic",
       price: 3999,
       featured: true,
+    
+      imageLink:
+        "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787300802/veikko-venemies-RtFSn0I2zi8-unsplash_f7rdgt.jpg",
     },
   },
   "vencanje-terra": {
@@ -141,6 +150,9 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       style: "modern",
       price: 3999,
       featured: true,
+    
+      imageLink:
+        "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787146696/photo-1721635513009-4bd5d277c437_zhohbj.avif",
     },
   },
   "vencanje-linen": {
@@ -157,6 +169,9 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       style: "premium",
       price: 3999,
       featured: true,
+    
+      imageLink:
+        "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787087127/photo-1522673607200-164d1b6ce486_esxvqd.avif",
     },
   },
   "vencanje-navy": {
@@ -245,6 +260,9 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       style: "editorial",
       price: 3999,
       featured: true,
+    
+      imageLink:
+        "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787146485/hisu-lee-FTW8ADj5igs-unsplash_vwsxdb.jpg",
     },
   },
   "vencanje-atelier": {
@@ -261,6 +279,9 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       style: "editorial",
       price: 3999,
       featured: true,
+    
+      imageLink:
+        "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787150836/beatriz-perez-moya-M2T1j-6Fn8w-unsplash_rc0b1t.jpg",
     },
   },
   "rodjendan-01": {
@@ -277,6 +298,9 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       style: "playful",
       price: 3999,
       featured: true,
+    
+      imageLink:
+        "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787343638/shayna-douglas-9ou4URp__0s-unsplash_helzyu.jpg",
     },
   },
   birthday18: {
@@ -293,6 +317,9 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       style: "premium",
       price: 3999,
       featured: true,
+    
+      imageLink:
+        "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787344571/photo-1514525253161-7a46d19cd819_nwm8cf.avif",
     },
   },
   "birthday18-bright": {
@@ -309,6 +336,9 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       style: "playful",
       price: 3999,
       featured: true,
+    
+      imageLink:
+        "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787344853/photo-1529626455594-4ff0802cfb7e_knhxfx.avif",
     },
   },
   "birthday18-editorial": {
@@ -325,6 +355,9 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       style: "editorial",
       price: 3999,
       featured: true,
+    
+      imageLink:
+        "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787345123/photo-1534528741775-53994a69daeb_sfbdns.avif",
     },
   },
   "birthday18-night": {
@@ -341,6 +374,9 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       style: "premium",
       price: 3999,
       featured: true,
+    
+      imageLink:
+        "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787345364/fidel-fernando-249DzAuJTqQ-unsplash_n7asm2.jpg",
     },
   },
   "birthday18-ink": {
@@ -376,6 +412,9 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       style: "playful",
       price: 3999,
       featured: true,
+    
+      imageLink:
+        "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787326450/behnam-mohsenzadeh-3q_47uOolcw-unsplash_jonnnu.jpg",
     },
   },
   "kids-space": {
@@ -392,6 +431,9 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       style: "playful",
       price: 3999,
       featured: true,
+    
+      imageLink:
+        "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023489/photo-1530103862676-de8c9debad1d_rxuitz.avif",
     },
   },
   "kids-candy": {
@@ -408,6 +450,9 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       style: "playful",
       price: 3999,
       featured: true,
+    
+      imageLink:
+        "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787327398/katie-rainbow-U21WOE0jB0E-unsplash_n9pimf.jpg",
     },
   },
   "kids-cartoon": {
@@ -496,6 +541,9 @@ export const templates: Record<TemplateKey, TemplatePack> = {
       style: "premium",
       price: 3999,
       featured: true,
+    
+      imageLink:
+        "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787348109/2026-04-08-07-23-30-960x640_hmlazn.jpg",
     },
   },
 };

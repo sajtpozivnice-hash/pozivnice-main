@@ -54,7 +54,7 @@
         "badge": "1 godina",
         "ctaText": "Potvrdi dolazak",
         "ctaHref": "#rsvp",
-        "image": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023223/pexels-matheus-rodrigues-672111387-18212443_mr0hd2.jpg"
+        "image": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787327398/katie-rainbow-U21WOE0jB0E-unsplash_n9pimf.jpg"
       }
     },
     {
@@ -65,7 +65,7 @@
       "order": 2,
       "data": {
         "description": "Pozivamo te na Milin 1. rođendan — candy žurka, muzika, photo corner i torta kao naslovnica magazina.",
-        "imageUrl": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=85"
+        "imageUrl": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787327481/jonathan-borba-37HRziPIeAw-unsplash_aq0u5k.jpg"
       }
     },
     {
@@ -195,37 +195,6 @@
       }
     },
     {
-      "id": "ourGallery",
-      "name": "Galerija",
-      "type": "ourGallery",
-      "visible": true,
-      "order": 7,
-      "data": {
-        "title": "Trenuci za pamćenje",
-        "description": "Mali uvid u atmosferu koju volimo",
-        "images": [
-          {
-            "url": "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=900&q=85"
-          },
-          {
-            "url": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023699/photo-1549465220-1a8b9238cd48_avxoqq.avif"
-          },
-          {
-            "url": "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=900&q=85"
-          },
-          {
-            "url": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023813/photo-1464366400600-7168b8af9bc3_dmpg2x.avif"
-          },
-          {
-            "url": "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=900&q=85"
-          },
-          {
-            "url": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=85"
-          }
-        ]
-      }
-    },
-    {
       "id": "uploadImagesSection",
       "name": "Dodavanje slika",
       "type": "uploadImagesSection",
@@ -251,7 +220,7 @@
         "buttonText": "Pošalji potvrdu",
         "messageLabel": "Poruka za slavljenika",
         "messagePlaceholder": "Napiši kratku čestitku ili poruku…",
-        "imageUrl": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=85"
+        "imageUrl": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787327481/jonathan-borba-37HRziPIeAw-unsplash_aq0u5k.jpg"
       }
     },
     {

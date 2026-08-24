@@ -1,0 +1,202 @@
+{
+  "template": "vencanje-atelier",
+  "meta": {
+    "title": "Nina & Filip — Pozivnica",
+    "description": "Editorial pozivnica — kamen, mastilo, tihi ritam"
+  },
+  "event": {
+    "date": "2027-09-05",
+    "rsvpDate": "2027-08-05",
+    "names": "Nina & Filip"
+  },
+  "theme": {
+    "fonts": {
+      "primary": "playfair",
+      "secondary": "cormorant"
+    },
+    "colors": {
+      "base": {
+        "primary": {
+          "name": "Kamen",
+          "value": "#9A8B7A"
+        },
+        "secondary": {
+          "name": "Topla crna",
+          "value": "#1C1917"
+        }
+      },
+      "background": {
+        "name": "Papir",
+        "value": "#F2EFE9"
+      }
+    }
+  },
+  "sections": [
+    {
+      "id": "hero",
+      "name": "Naslovna sekcija",
+      "type": "hero",
+      "visible": true,
+      "order": 1,
+      "data": {
+        "title": "Nina & Filip",
+        "subtitle": "Venčanje",
+        "backgroundImage": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787150836/beatriz-perez-moya-M2T1j-6Fn8w-unsplash_rc0b1t.jpg"
+      }
+    },
+    {
+      "id": "countdown",
+      "name": "Odbrojavanje",
+      "type": "countdown",
+      "visible": true,
+      "order": 2,
+      "data": {
+        "title": "Do našeg dana",
+        "description": "Peti septembar — tišina pre „da“."
+      }
+    },
+    {
+      "id": "inviteText",
+      "name": "Tekst Pozivnice",
+      "type": "inviteText",
+      "visible": true,
+      "order": 3,
+      "data": {
+        "description": "Sa tihom radošću pozivamo Vas da budete uz nas petog septembra — bez vike, bez viška, samo ljudi koje volimo i večer koja traje.",
+        "imageUrl": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787087165/shardayyy-photography-fJzmPe-a0eU-unsplash_ehe3fj.jpg"
+      }
+    },
+    {
+      "id": "calendar",
+      "name": "Kalendar",
+      "type": "calendar",
+      "visible": true,
+      "order": 4,
+      "data": {
+        "title": "Sačuvajte datum",
+        "description": "Subota u septembru — meka svetlost, duga večer.",
+        "imageUrl": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787087227/felipe-bustillo-7NO4GHOb9k0-unsplash_dn40e7.jpg"
+      }
+    },
+    {
+      "id": "ourStory",
+      "name": "Naša Priča",
+      "type": "ourStory",
+      "visible": true,
+      "order": 5,
+      "data": {
+        "title": "Naša priča",
+        "overline": "Početak",
+        "text": "Upoznali smo se bez buke. Jedna večera, pa druga — i onda godine u kojima je tišina postala dom.\n\nNismo žurili. Naučili smo da se najvažnije stvari kažu polako.\n\nSada otvaramo novo poglavlje. Želimo da ga pročitate sa nama.",
+        "image": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787067285/olivia-bauso-30UOqDM5QW0-unsplash_flsbrf.jpg"
+      }
+    },
+    {
+      "id": "schedule",
+      "name": "Raspored",
+      "type": "schedule",
+      "visible": true,
+      "order": 6,
+      "data": {
+        "title": "Tok dana",
+        "subtitle": "Četiri trenutka",
+        "imageUrl": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787087263/wedding-dreamz-wki4KKlMGvc-unsplash_bhjfxs.jpg",
+        "items": [
+          {
+            "id": "1",
+            "time": "16:00",
+            "title": "Crkveno venčanje",
+            "description": "Svečani čin venčanja u crkvi"
+          },
+          {
+            "id": "2",
+            "time": "18:00",
+            "title": "Skup gostiju u sali",
+            "description": "Doček, večera i slavlje"
+          }
+        ]
+      }
+    },
+    {
+      "id": "loveQuote",
+      "name": "Ljubavni Citat",
+      "type": "loveQuote",
+      "visible": true,
+      "order": 7,
+      "data": {
+        "title": "Tišina između nas govori više od reči.",
+        "description": "Nina & Filip",
+        "imageUrl": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787087305/jakob-owens-BMNTl3Svxbo-unsplash_mgdqcr.jpg"
+      }
+    },
+    {
+      "id": "locations",
+      "name": "Lokacije",
+      "type": "locations",
+      "visible": true,
+      "order": 8,
+      "data": {
+        "title": "Gde se sastajemo",
+        "subtitle": "Dva mesta",
+        "cards": [
+          {
+            "id": 1,
+            "title": "Crkveno venčanje",
+            "time": "16:00",
+            "location": "Crkva Svetog Marka, Beograd",
+            "text": "Molimo Vas da dođete petnaest minuta ranije.",
+            "image": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787087360/jordan-arnold-Ul07QK2AR-0-unsplash_ank1xa.jpg"
+          },
+          {
+            "id": 2,
+            "title": "Skup gostiju u sali",
+            "time": "18:00",
+            "location": "Salon Stone, Gospodar Jevremova 8",
+            "text": "Doček, večera i ples. Parking u dvorišnoj ulici.",
+            "image": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787087387/katrien-sterckx-fn0xXL9szcU-unsplash_uzfljg.jpg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "uploadImagesSection",
+      "name": "Dodavanje Slika",
+      "type": "uploadImagesSection",
+      "visible": true,
+      "order": 10,
+      "data": {
+        "title": "Vaš kadar",
+        "subtitle": "Gosti",
+        "description": "Ako uhvatite trenutak — ostavite ga ovde.",
+        "buttonText": "Pošalji fotografiju",
+        "imageUrl": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787087409/photo-1523438885200-e635ba2c371e_pgullm.avif"
+      }
+    },
+    {
+      "id": "rsvp",
+      "name": "Potvrda Prisutnosti",
+      "type": "rsvp",
+      "visible": true,
+      "order": 11,
+      "data": {
+        "title": "Potvrdite dolazak",
+        "description": "Ljubazno do ",
+        "buttonText": "Pošalji",
+        "imageUrl": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787087450/jaakko-perala-norway-elopement-photographer-71BLG9XJtHk-unsplash_etp1c6.jpg"
+      }
+    },
+    {
+      "id": "footer",
+      "name": "Završna poruka",
+      "type": "footer",
+      "visible": true,
+      "order": 12,
+      "data": {
+        "title": "Vidimo se",
+        "subtitle": "Nina & Filip",
+        "imageUrl": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787087486/photo-1529636798458-92182e662485_qsfzlr.avif"
+      }
+    }
+  ],
+  "eventType": "wedding"
+}

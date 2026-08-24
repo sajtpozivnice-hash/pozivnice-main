@@ -6,16 +6,128 @@
     "eventTypes": [
       "wedding"
     ],
-    "style": "modern"
+    "style": "modern",
+    "imageLink": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787067139/alvin-mahmudov-NSVJAAXOYHs-unsplash_szart3.jpg"
+  },
+  {
+    "key": "vencanje-sage",
+    "title": "Tiha kadulja",
+    "description": "Quiet luxury tipografija — sage i oat, bez fotografija. Asimetrija zamenjena tihim, centriranim ritmom.",
+    "eventTypes": [
+      "wedding"
+    ],
+    "style": "editorial",
+    "imageLink": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787226228/ulyana-tim-AbnCRgL2DNs-unsplash_yhvslu.jpg"
+  },
+  {
+    "key": "vencanje-ink",
+    "title": "Editorial mastilo",
+    "description": "Tipografski fokus kao u magazinu. Krema i crno, veliki naslovi, tanak hairline ritam.",
+    "eventTypes": [
+      "wedding"
+    ],
+    "style": "editorial",
+    "imageLink": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787150836/beatriz-perez-moya-M2T1j-6Fn8w-unsplash_rc0b1t.jpg"
+  },
+  {
+    "key": "vencanje-dusk",
+    "title": "Večernji bakar",
+    "description": "Tamni cinematic pejzaž sa bakarnim akcentom. Filmski kadar za večernja venčanja.",
+    "eventTypes": [
+      "wedding"
+    ],
+    "style": "cinematic",
+    "imageLink": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787300802/veikko-venemies-RtFSn0I2zi8-unsplash_f7rdgt.jpg"
+  },
+  {
+    "key": "vencanje-terra",
+    "title": "Mediteranska terakota",
+    "description": "Topla zemljana paleta — terakota, pesak i maslina. Lučni kadar i organski raspored.",
+    "eventTypes": [
+      "wedding"
+    ],
+    "style": "modern",
+    "imageLink": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787146696/photo-1721635513009-4bd5d277c437_zhohbj.avif"
+  },
+  {
+    "key": "vencanje-linen",
+    "title": "Šampanjac lan",
+    "description": "Quiet luxury stationery — krem lan, šampanjac i monogram. Izgleda kao skup papir, digitalno.",
+    "eventTypes": [
+      "wedding"
+    ],
+    "style": "premium",
+    "imageLink": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787087127/photo-1522673607200-164d1b6ce486_esxvqd.avif"
+  },
+  {
+    "key": "vencanje-navy",
+    "title": "Formalni navy",
+    "description": "Navy i mesing za black-tie večeri. Monogram, ceremonijalni ton, jak kontrast.",
+    "eventTypes": [
+      "wedding"
+    ],
+    "style": "premium",
+    "imageLink": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1772187509/wedding/qvui0cbpivfwkyiyfpy6.jpg"
+  },
+  {
+    "key": "vencanje-vanguard",
+    "title": "Letterpress vanguard",
+    "description": "Wood-type tipografija na papiru — velika imena, oxblood akcent, bez fotografija.",
+    "eventTypes": [
+      "wedding"
+    ],
+    "style": "premium",
+    "imageLink": "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "key": "vencanje-deco",
+    "title": "Art Deco zlato",
+    "description": "Geometrijska elegancija Jazz Age-a — italic serif, zlatni okviri, bez fotografija.",
+    "eventTypes": [
+      "wedding"
+    ],
+    "style": "premium",
+    "imageLink": "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "key": "vencanje-boho",
+    "title": "Boho terracotta",
+    "description": "Pesak, terracotta i sage — script tipografija, lukovi i talasi, bez fotografija.",
+    "eventTypes": [
+      "wedding"
+    ],
+    "style": "premium",
+    "imageLink": "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "key": "vencanje-opal",
+    "title": "Biserasti vellum",
+    "description": "Pearl i blush slojevi kao vellum. Mekani frosted paneli — premium mixed-materials osećaj.",
+    "eventTypes": [
+      "wedding"
+    ],
+    "style": "editorial",
+    "imageLink": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787146485/hisu-lee-FTW8ADj5igs-unsplash_vwsxdb.jpg"
+  },
+  {
+    "key": "vencanje-atelier",
+    "title": "Atelje tišina",
+    "description": "The Row quiet luxury — kamen, topli crni, ogromni belina. Najskuplji utisak kroz redukciju.",
+    "eventTypes": [
+      "wedding"
+    ],
+    "style": "editorial",
+    "imageLink": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787150836/beatriz-perez-moya-M2T1j-6Fn8w-unsplash_rc0b1t.jpg"
   },
   {
     "key": "rodjendan-01",
-    "title": "Dečiji rođendan",
+    "title": "1. rođendan — klasik",
     "description": "Živahan dizajn za dečiji rođendan. Menjate sadržaj i pratite goste i pripreme u nalogu.",
     "eventTypes": [
       "kidsBirthday"
     ],
-    "style": "playful"
+    "style": "playful",
+    "imageLink": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787343638/shayna-douglas-9ou4URp__0s-unsplash_helzyu.jpg"
   },
   {
     "key": "birthday18",
@@ -24,7 +136,8 @@
     "eventTypes": [
       "comingOfAge"
     ],
-    "style": "premium"
+    "style": "premium",
+    "imageLink": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787344571/photo-1514525253161-7a46d19cd819_nwm8cf.avif"
   },
   {
     "key": "birthday18-bright",
@@ -33,7 +146,8 @@
     "eventTypes": [
       "comingOfAge"
     ],
-    "style": "playful"
+    "style": "playful",
+    "imageLink": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787344853/photo-1529626455594-4ff0802cfb7e_knhxfx.avif"
   },
   {
     "key": "birthday18-editorial",
@@ -42,7 +156,8 @@
     "eventTypes": [
       "comingOfAge"
     ],
-    "style": "editorial"
+    "style": "editorial",
+    "imageLink": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787345123/photo-1534528741775-53994a69daeb_sfbdns.avif"
   },
   {
     "key": "birthday18-night",
@@ -51,7 +166,8 @@
     "eventTypes": [
       "comingOfAge"
     ],
-    "style": "premium"
+    "style": "premium",
+    "imageLink": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787345364/fidel-fernando-249DzAuJTqQ-unsplash_n7asm2.jpg"
   },
   {
     "key": "birthday18-ink",
@@ -60,63 +176,90 @@
     "eventTypes": [
       "comingOfAge"
     ],
-    "style": "editorial"
+    "style": "editorial",
+    "imageLink": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787347709/rishabh-sharma-R-js25Pv1LQ-unsplash_k1l2w2.jpg"
   },
   {
     "key": "kids-safari",
-    "title": "Safari avantura",
-    "description": "Topli safari tonovi i avanturistički osećaj za dečiju proslavu.",
+    "title": "1. rođendan — safari",
+    "description": "Topli safari tonovi i avanturistički osećaj za prvi dečiji rođendan.",
     "eventTypes": [
       "kidsBirthday"
     ],
-    "style": "playful"
+    "style": "playful",
+    "imageLink": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787326450/behnam-mohsenzadeh-3q_47uOolcw-unsplash_jonnnu.jpg"
   },
   {
     "key": "kids-space",
-    "title": "Svemirska misija",
-    "description": "Tamna svemirska pozivnica za male istraživače — zvezde, boje i avantura.",
+    "title": "1. rođendan — svemir",
+    "description": "Tamna svemirska pozivnica za prvi rođendan malih istraživača.",
     "eventTypes": [
       "kidsBirthday"
     ],
-    "style": "playful"
+    "style": "playful",
+    "imageLink": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023489/photo-1530103862676-de8c9debad1d_rxuitz.avif"
   },
   {
     "key": "kids-candy",
-    "title": "Candy party",
-    "description": "Šarena candy estetika za veseli dečiji rođendan pun boja.",
+    "title": "1. rođendan — candy",
+    "description": "Šarena candy estetika za veseli prvi dečiji rođendan pun boja.",
     "eventTypes": [
       "kidsBirthday"
     ],
-    "style": "playful"
+    "style": "playful",
+    "imageLink": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787327398/katie-rainbow-U21WOE0jB0E-unsplash_n9pimf.jpg"
+  },
+  {
+    "key": "kids-cartoon",
+    "title": "1. rođendan — cartoon",
+    "description": "Comic strip stil — speech bubble, oblačići i šarene epizode za prvi rođendan.",
+    "eventTypes": [
+      "kidsBirthday"
+    ],
+    "style": "playful",
+    "imageLink": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787324323/wang-binghua-zSvkokr_yw0-unsplash_qz1ao3.jpg"
+  },
+  {
+    "key": "kids-honey",
+    "title": "1. rođendan — medeni picnic",
+    "description": "Medena tegla, honeycomb i crveni balon — topao, dečiji picnic za prvi rođendan.",
+    "eventTypes": [
+      "kidsBirthday"
+    ],
+    "style": "playful",
+    "imageLink": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023931/pexels-junielly-oliveira-2736244-4960960_migtwt.jpg"
   },
   {
     "key": "krstenje-classic",
     "title": "Klasično krštenje",
-    "description": "Svečana klasična pozivnica za krštenje — champagne tonovi i miran ritam.",
+    "description": "Svečana klasična pozivnica za krštenje — lako se prilagodi i za dečiji rođendan.",
     "eventTypes": [
       "baptism",
       "kidsBirthday"
     ],
-    "style": "classic"
+    "style": "classic",
+    "imageLink": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787348109/2026-04-08-07-23-30-960x640_hmlazn.jpg"
   },
   {
     "key": "krstenje-garden",
     "title": "Krštenje u bašti",
-    "description": "Zeleni, spokojni tonovi za krštenje i porodičnu proslavu na otvorenom.",
+    "description": "Zeleni tonovi za krštenje ili porodični rođendan na otvorenom.",
     "eventTypes": [
       "baptism",
       "kidsBirthday"
     ],
-    "style": "modern"
+    "style": "modern",
+    "imageLink": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787350317/2026-01-17-04-45-55-960x640_eed5a3.jpg"
   },
   {
     "key": "krstenje-candle",
     "title": "Svečano krštenje",
-    "description": "Topla candlelight atmosfera za svečanu pozivnicu za krštenje.",
+    "description": "Topla candlelight atmosfera za krštenje ili svečani dečiji rođendan.",
     "eventTypes": [
       "baptism",
       "kidsBirthday"
     ],
-    "style": "premium"
+    "style": "premium",
+    "imageLink": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787348109/2026-04-08-07-23-30-960x640_hmlazn.jpg"
   }
 ]

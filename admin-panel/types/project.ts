@@ -9,10 +9,23 @@ export type LegacyEventType = EventType | "birthday";
 
 export type TemplateKey =
   | "vencanje-background"
+  | "vencanje-dusk"
+  | "vencanje-ink"
+  | "vencanje-sage"
+  | "vencanje-terra"
+  | "vencanje-linen"
+  | "vencanje-navy"
+  | "vencanje-vanguard"
+  | "vencanje-deco"
+  | "vencanje-boho"
+  | "vencanje-opal"
+  | "vencanje-atelier"
   | "rodjendan-01"
   | "kids-safari"
   | "kids-space"
   | "kids-candy"
+  | "kids-cartoon"
+  | "kids-honey"
   | "birthday18"
   | "birthday18-bright"
   | "birthday18-editorial"
@@ -149,6 +162,7 @@ export type TemplateCatalogItem = {
   description: string;
   eventTypes: EventType[];
   style: string;
+  imageLink?: string;
 };
 
 export const EVENT_TYPE_LABELS: Record<EventType, string> = {

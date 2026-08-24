@@ -1,0 +1,196 @@
+{
+  "template": "vencanje-ink",
+  "meta": {
+    "title": "Iva & Nikola — Pozivnica",
+    "description": "Tipografska pozivnica za venčanje — crno mastilo na kremastom papiru"
+  },
+  "event": {
+    "date": "2026-11-14",
+    "rsvpDate": "2026-10-14",
+    "names": "Iva & Nikola"
+  },
+  "theme": {
+    "fonts": {
+      "primary": "playfair",
+      "secondary": "inter"
+    },
+    "colors": {
+      "base": {
+        "primary": {
+          "name": "Mastilo",
+          "value": "#111111"
+        },
+        "secondary": {
+          "name": "Tekst",
+          "value": "#33302C"
+        }
+      },
+      "background": {
+        "name": "Papir",
+        "value": "#F5F1EA"
+      }
+    }
+  },
+  "sections": [
+    {
+      "id": "hero",
+      "name": "Naslovna sekcija",
+      "type": "hero",
+      "visible": true,
+      "order": 1,
+      "data": {
+        "title": "Dva imena, jedan datum",
+        "subtitle": "Pozivnica",
+        "backgroundImage": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787150836/beatriz-perez-moya-M2T1j-6Fn8w-unsplash_rc0b1t.jpg"
+      }
+    },
+    {
+      "id": "countdown",
+      "name": "Odbrojavanje",
+      "type": "countdown",
+      "visible": true,
+      "order": 2,
+      "data": {
+        "title": "Još malo",
+        "description": "Vreme do prvog zajedničkog potpisa."
+      }
+    },
+    {
+      "id": "inviteText",
+      "name": "Tekst Pozivnice",
+      "type": "inviteText",
+      "visible": true,
+      "order": 3,
+      "data": {
+        "imageUrl": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787226825/photo-1545232979-8bf68ee9b1af_1_c8gpgy.avif",
+        "description": "Dragi naši, sa tihom radošću pozivamo Vas da budete uz nas onog dana kada dve priče postaju jedna.\n\nBez velikih reči i bez viška ukrasa — samo ljudi koje volimo, jedan dugačak stol i večera koja se ne završava na vreme. Vaše prisustvo je jedini poklon koji nam je zaista potreban."
+      }
+    },
+    {
+      "id": "calendar",
+      "name": "Kalendar",
+      "type": "calendar",
+      "visible": true,
+      "order": 4,
+      "data": {
+        "title": "Zapišite datum",
+        "description": "Subota, popodne koje počinje mirno i završava se u igri."
+      }
+    },
+    {
+      "id": "ourStory",
+      "name": "Naša Priča",
+      "type": "ourStory",
+      "visible": true,
+      "order": 5,
+      "data": {
+        "title": "Naša priča",
+        "overline": "Poglavlje prvo",
+        "text": "Upoznali smo se u knjižari, oboje tražeći isto izdanje koje je ostalo samo u jednom primerku. Nikola ga je pustio, ja sam mu ostavila broj na margini računa.\n\nZatim su došle godine sitnica: kafe koje se hlade dok govorimo, vozovi u pola šest, stanovi koji su postajali dom. Naučili smo da se najvažnije stvari kažu tiho.\n\nSada, deset zima kasnije, otvaramo novo poglavlje. Volimo da ga pročitate sa nama — naglas, uz čašu vina i previše smeha.",
+        "image": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787150836/beatriz-perez-moya-M2T1j-6Fn8w-unsplash_rc0b1t.jpg"
+      }
+    },
+    {
+      "id": "schedule",
+      "name": "Raspored",
+      "type": "schedule",
+      "visible": true,
+      "order": 6,
+      "data": {
+        "title": "Tok dana",
+        "subtitle": "Četiri trenutka, po redu",
+        "imageUrl": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787298576/elisabeth-arnold-QL5PgKelw4s-unsplash_febw9c.jpg",
+        "items": [
+          {
+            "id": "1",
+            "time": "16:00",
+            "title": "Crkveno venčanje",
+            "description": "Svečani čin venčanja u crkvi."
+          },
+          {
+            "id": "2",
+            "time": "18:00",
+            "title": "Skup gostiju u sali",
+            "description": "Doček, večera i slavlje."
+          }
+        ]
+      }
+    },
+    {
+      "id": "loveQuote",
+      "name": "Ljubavni Citat",
+      "type": "loveQuote",
+      "visible": true,
+      "order": 7,
+      "data": {
+        "title": "Ljubav se ne meri rečima, nego godinama koje ostanu tihe i pune.",
+        "description": "Iva & Nikola"
+      }
+    },
+    {
+      "id": "locations",
+      "name": "Lokacije",
+      "type": "locations",
+      "visible": true,
+      "order": 8,
+      "data": {
+        "title": "Mesta",
+        "subtitle": "Dve adrese, deset minuta hoda",
+        "cards": [
+          {
+            "id": 1,
+            "title": "Crkveno venčanje",
+            "time": "16:00",
+            "location": "Crkva Svetog Marka, Bulevar Kralja Aleksandra 17",
+            "text": "Molimo Vas da stignete petnaest minuta ranije."
+          },
+          {
+            "id": 2,
+            "title": "Skup gostiju u sali",
+            "time": "18:00",
+            "location": "Restoran Papir, Gospodar Jevremova 3",
+            "text": "Doček, večera i ples. Parking je u dvorišnoj ulici."
+          }
+        ]
+      }
+    },
+    {
+      "id": "uploadImagesSection",
+      "name": "Dodavanje Slika",
+      "type": "uploadImagesSection",
+      "visible": true,
+      "order": 9,
+      "data": {
+        "title": "Pošaljite nam kadar",
+        "subtitle": "Galerija gostiju",
+        "description": "Ako tokom dana uhvatite trenutak koji nam je promakao — ostavite ga ovde.",
+        "buttonText": "Dodajte fotografiju"
+      }
+    },
+    {
+      "id": "rsvp",
+      "name": "Potvrda Prisutnosti",
+      "type": "rsvp",
+      "visible": true,
+      "order": 10,
+      "data": {
+        "title": "Potvrdite prisustvo",
+        "description": "Molimo Vas da odgovorite do ",
+        "buttonText": "Pošalji odgovor",
+        "imageUrl": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787238104/photo-1519167758481-83f550bb49b3_t2jkum.avif"
+      }
+    },
+    {
+      "id": "footer",
+      "name": "Završna poruka",
+      "type": "footer",
+      "visible": true,
+      "order": 11,
+      "data": {
+        "title": "Hvala što ste deo naše priče.",
+        "subtitle": "Vidimo se u novembru"
+      }
+    }
+  ],
+  "eventType": "wedding"
+}

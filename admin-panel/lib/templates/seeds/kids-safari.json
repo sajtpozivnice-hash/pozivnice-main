@@ -6,8 +6,8 @@
     "description": "Safari ekspedicija pozivnica za prvi dečiji rođendan"
   },
   "event": {
-    "date": "2026-09-20",
-    "rsvpDate": "2026-09-10",
+    "date": "2027-09-20",
+    "rsvpDate": "2027-09-10",
     "names": "Luka"
   },
   "theme": {
@@ -54,7 +54,7 @@
         "badge": "1 godina",
         "ctaText": "Potvrdi dolazak",
         "ctaHref": "#rsvp",
-        "image": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023223/pexels-matheus-rodrigues-672111387-18212443_mr0hd2.jpg"
+        "image": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787326450/behnam-mohsenzadeh-3q_47uOolcw-unsplash_jonnnu.jpg"
       }
     },
     {
@@ -65,7 +65,7 @@
       "order": 2,
       "data": {
         "description": "Dragi istraživači, pozivamo vas na Lukin 1. rođendan — safari staza, tragovi i potraga za blagom.",
-        "imageUrl": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=85"
+        "imageUrl": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787326525/brian-mcgowan-zmkZWG6r4dw-unsplash_gqhedx.jpg"
       }
     },
     {
@@ -89,7 +89,7 @@
       "data": {
         "title": "Program dana",
         "subtitle": "Šta nas čeka",
-        "imageUrl": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023931/pexels-junielly-oliveira-2736244-4960960_migtwt.jpg",
+        "imageUrl": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787326599/nikki-watson-QbiY6wXvY7Q-unsplash_unoq1q.jpg",
         "items": [
           {
             "id": "1",
@@ -133,38 +133,25 @@
             "id": "1",
             "title": "Pokloni",
             "description": "Ako želite da donesete poklon, Mila voli kreativne setove, knjige i male avanture.",
-            "icon": "gift",
-            "accent": "#FF5C8A",
-            "image": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023699/photo-1549465220-1a8b9238cd48_avxoqq.avif"
+            "icon": "gift"
           },
           {
             "id": "2",
             "title": "Kodeks odevanja",
             "description": "Udobna, šarena odeća! Predlažemo pastalne boje i patike za igre.",
-            "icon": "shirt",
-            "accent": "#3D8BFF"
+            "icon": "shirt"
           },
           {
             "id": "3",
             "title": "Zabavne aktivnosti",
             "description": "Bojenje lica, piñata, karaoke ugao i foto-booth sa rekvizitima.",
-            "icon": "party",
-            "accent": "#FFB703",
-            "image": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023761/photo-1527529482837-4698179dc6ce_x4mmyo.avif"
-          },
-          {
-            "id": "4",
-            "title": "Info za roditelje",
-            "description": "Proslava traje do 20:00. Roditelji su dobrodošli da ostanu ili se vrate po decu.",
-            "icon": "baby",
-            "accent": "#2EC4B6"
+            "icon": "party"
           },
           {
             "id": "5",
             "title": "Napomena za goste",
             "description": "Molimo vas da potvrdite dolazak do 10. septembra zbog organizacije hrane i torti.",
-            "icon": "info",
-            "accent": "#9B5DE5"
+            "icon": "info"
           }
         ]
       }
@@ -179,7 +166,7 @@
         "title": "Gde se družimo",
         "subtitle": "Lokacija proslave",
         "description": "Lako dostupno, parking u blizini.",
-        "imageUrl": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023813/photo-1464366400600-7168b8af9bc3_dmpg2x.avif",
+        "imageUrl": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787326757/winston-chen-VCbUP4OBIVw-unsplash_bmwl3s.jpg",
         "cards": [
           {
             "id": 1,
@@ -188,39 +175,8 @@
             "location": "Bulevar umetnosti 12, Beograd",
             "time": "Od 16:00",
             "text": "Prostrana bašta sa igralištem i zatvorenim prostorom za loše vreme.",
-            "image": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023813/photo-1464366400600-7168b8af9bc3_dmpg2x.avif",
+            "image": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787326757/winston-chen-VCbUP4OBIVw-unsplash_bmwl3s.jpg",
             "icon": "map-pin"
-          }
-        ]
-      }
-    },
-    {
-      "id": "ourGallery",
-      "name": "Galerija",
-      "type": "ourGallery",
-      "visible": true,
-      "order": 7,
-      "data": {
-        "title": "Trenuci za pamćenje",
-        "description": "Mali uvid u atmosferu koju volimo",
-        "images": [
-          {
-            "url": "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=900&q=85"
-          },
-          {
-            "url": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023699/photo-1549465220-1a8b9238cd48_avxoqq.avif"
-          },
-          {
-            "url": "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=900&q=85"
-          },
-          {
-            "url": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023813/photo-1464366400600-7168b8af9bc3_dmpg2x.avif"
-          },
-          {
-            "url": "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=900&q=85"
-          },
-          {
-            "url": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=85"
           }
         ]
       }
@@ -251,7 +207,7 @@
         "buttonText": "Pošalji potvrdu",
         "messageLabel": "Poruka za slavljenika",
         "messagePlaceholder": "Napiši kratku čestitku ili poruku…",
-        "imageUrl": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=85"
+        "imageUrl": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787326525/brian-mcgowan-zmkZWG6r4dw-unsplash_gqhedx.jpg"
       }
     },
     {

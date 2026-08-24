@@ -6,8 +6,8 @@
     "description": "Monohromatska broadsheet pozivnica za punoletstvo"
   },
   "event": {
-    "date": "2026-10-03",
-    "rsvpDate": "2026-09-20",
+    "date": "2027-10-03",
+    "rsvpDate": "2027-09-20",
     "names": "Aleksa",
     "location": {
       "name": "Klub Preporod",
@@ -57,8 +57,7 @@
         "description": "SPECIJALNO IZDANJE · JEDNOM GODIŠNJE",
         "badge": "18",
         "ctaText": "Potvrdi dolazak",
-        "ctaHref": "#rsvp",
-        "backgroundImage": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1400&q=85"
+        "ctaHref": "#rsvp"
       }
     },
     {
@@ -97,8 +96,7 @@
             "title": "BEOGRAD",
             "location": "Bulevar Kralja Aleksandra 73, Beograd",
             "time": "20:00",
-            "text": "Ulaz od 20:00 časova. Adresa je potvrđena, parking dostupan u okolnim ulicama.",
-            "image": "https://images.unsplash.com/photo-1449034446853-66c86144b0ad?auto=format&fit=crop&w=1600&q=85"
+            "text": "Ulaz od 20:00 časova. Adresa je potvrđena, parking dostupan u okolnim ulicama."
           }
         ]
       }
@@ -156,8 +154,7 @@
             "title": "SVEČANO, BEZ IZUZETKA",
             "description": "Tamni tonovi, uglačane cipele i po želji jedan upečatljiv detalj. Fotoreporter je na zadatku cele večeri.",
             "icon": "shirt",
-            "accent": "#9C2A22",
-            "image": "https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1200&q=85"
+            "accent": "#9C2A22"
           }
         ]
       }

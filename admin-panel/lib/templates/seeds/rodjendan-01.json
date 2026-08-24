@@ -6,8 +6,8 @@
     "description": "Moderna pozivnica za rođendansku proslavu"
   },
   "event": {
-    "date": "2026-09-20",
-    "rsvpDate": "2026-09-10",
+    "date": "2027-09-20",
+    "rsvpDate": "2027-09-10",
     "names": "Mila"
   },
   "theme": {
@@ -54,7 +54,7 @@
         "badge": "1 godina",
         "ctaText": "Potvrdi dolazak",
         "ctaHref": "#rsvp",
-        "image": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023223/pexels-matheus-rodrigues-672111387-18212443_mr0hd2.jpg"
+        "image": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787343638/shayna-douglas-9ou4URp__0s-unsplash_helzyu.jpg"
       }
     },
     {
@@ -65,7 +65,7 @@
       "order": 2,
       "data": {
         "description": "Dragi prijatelji i porodico, sa velikom ljubavlju vas pozivamo na Milin 1. rođendan — topao popodnevni skup uz tortu, pesmu i osmehe.",
-        "imageUrl": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=85"
+        "imageUrl": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787343762/henley-design-studio-XbZgARqXROc-unsplash_qndiux.jpg"
       }
     },
     {
@@ -134,8 +134,7 @@
             "title": "Pokloni",
             "description": "Ako želite da donesete poklon, Mila voli kreativne setove, knjige i male avanture.",
             "icon": "gift",
-            "accent": "#FF5C8A",
-            "image": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023699/photo-1549465220-1a8b9238cd48_avxoqq.avif"
+            "accent": "#FF5C8A"
           },
           {
             "id": "2",
@@ -149,8 +148,7 @@
             "title": "Zabavne aktivnosti",
             "description": "Bojenje lica, piñata, karaoke ugao i foto-booth sa rekvizitima.",
             "icon": "party",
-            "accent": "#FFB703",
-            "image": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023761/photo-1527529482837-4698179dc6ce_x4mmyo.avif"
+            "accent": "#FFB703"
           },
           {
             "id": "4",
@@ -179,7 +177,7 @@
         "title": "Gde se družimo",
         "subtitle": "Lokacija proslave",
         "description": "Lako dostupno, parking u blizini.",
-        "imageUrl": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023813/photo-1464366400600-7168b8af9bc3_dmpg2x.avif",
+        "imageUrl": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787343829/onkar-singh-D31ZvQgI9z8-unsplash_acxqip.jpg",
         "cards": [
           {
             "id": 1,
@@ -188,39 +186,8 @@
             "location": "Bulevar umetnosti 12, Beograd",
             "time": "Od 16:00",
             "text": "Prostrana bašta sa igralištem i zatvorenim prostorom za loše vreme.",
-            "image": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023813/photo-1464366400600-7168b8af9bc3_dmpg2x.avif",
+            "image": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787343829/onkar-singh-D31ZvQgI9z8-unsplash_acxqip.jpg",
             "icon": "map-pin"
-          }
-        ]
-      }
-    },
-    {
-      "id": "ourGallery",
-      "name": "Galerija",
-      "type": "ourGallery",
-      "visible": true,
-      "order": 7,
-      "data": {
-        "title": "Trenuci za pamćenje",
-        "description": "Mali uvid u atmosferu koju volimo",
-        "images": [
-          {
-            "url": "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=900&q=85"
-          },
-          {
-            "url": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023699/photo-1549465220-1a8b9238cd48_avxoqq.avif"
-          },
-          {
-            "url": "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=900&q=85"
-          },
-          {
-            "url": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1786023813/photo-1464366400600-7168b8af9bc3_dmpg2x.avif"
-          },
-          {
-            "url": "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=900&q=85"
-          },
-          {
-            "url": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=85"
           }
         ]
       }
@@ -251,7 +218,7 @@
         "buttonText": "Pošalji potvrdu",
         "messageLabel": "Poruka za slavljenika",
         "messagePlaceholder": "Napiši kratku čestitku ili poruku…",
-        "imageUrl": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=85"
+        "imageUrl": "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787343762/henley-design-studio-XbZgARqXROc-unsplash_qndiux.jpg"
       }
     },
     {
