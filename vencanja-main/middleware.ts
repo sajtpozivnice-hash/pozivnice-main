@@ -2,8 +2,11 @@ import { NextResponse, type NextRequest } from "next/server";
 // Relative imports only — Vercel Edge does not resolve `@/` in middleware.
 import { updateSession } from "./lib/supabase/middleware";
 import {
+  getCanonicalInvitationHostname,
+  getHostname,
   getInvitationSubdomain,
   getRequestHost,
+  getRootHostname,
   INVITATION_SITE_HEADER,
 } from "./lib/domain";
 
@@ -50,8 +53,26 @@ function rewriteToSite(
 
 export async function middleware(request: NextRequest) {
   const host = getRequestHost(request.headers);
-  const subdomain = getInvitationSubdomain(host);
   const { pathname } = request.nextUrl;
+  const hostname = getHostname(host);
+  const root = getRootHostname();
+
+  // www.vasdogadjaj.com → vasdogadjaj.com (then /i/slug works the same)
+  if (hostname === `www.${root}` && root !== "localhost") {
+    const url = new URL(request.url);
+    url.hostname = root;
+    return NextResponse.redirect(url, 308);
+  }
+
+  // www.{slug}.{root} → {slug}.{root} (if DNS ever reaches us)
+  const canonicalInviteHost = getCanonicalInvitationHostname(host);
+  if (canonicalInviteHost) {
+    const url = new URL(request.url);
+    url.hostname = canonicalInviteHost;
+    return NextResponse.redirect(url, 308);
+  }
+
+  const subdomain = getInvitationSubdomain(host);
 
   if (!subdomain && (pathname === "/sites" || pathname.startsWith("/sites/"))) {
     const home = request.nextUrl.clone();

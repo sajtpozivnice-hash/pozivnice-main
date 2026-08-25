@@ -1,14 +1,15 @@
 import { TemplateRenderer } from "@/engine/TemplateRenderer";
 import { loadInvitationProject } from "@/lib/loadInvitationProject";
 
-export default async function SitePage({
+/** Apex / www-safe invitation URL: /i/{subdomain-slug} */
+export default async function InvitationPathPage({
   params,
 }: {
   params: Promise<{ site: string }>;
 }) {
   const { site } = await params;
   const project = await loadInvitationProject(site, {
-    requireTenantHeader: true,
+    requireTenantHeader: false,
   });
 
   return (

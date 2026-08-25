@@ -4,6 +4,9 @@
  * - ana-marko.localhost:3000
  * - ana-marko.vasdogadjaj.com
  * - apex: localhost:3000 / vasdogadjaj.com / www.vasdogadjaj.com
+ *
+ * Never use www in NEXT_PUBLIC_ROOT_DOMAIN — invitation hosts are
+ * `{slug}.{root}`, and `www.{slug}.{root}` is not covered by `*.{root}` DNS.
  */
 
 const RESERVED_SUBDOMAINS = new Set([
@@ -45,16 +48,49 @@ export function getHostname(hostHeader: string): string {
   return raw.split(":")[0] ?? "";
 }
 
-/** Root domain host without port (from env or fallback). */
+/**
+ * Apex root domain without port and without leading `www.`.
+ * Invitation URLs must be `{slug}.{root}`, never `{slug}.www.{root}`.
+ */
 export function getRootHostname(): string {
   const configured =
     process.env.NEXT_PUBLIC_ROOT_DOMAIN?.trim().toLowerCase() ?? "localhost";
-  return configured.split(":")[0] ?? "localhost";
+  const host = configured.split(":")[0] ?? "localhost";
+  return stripLeadingWww(host);
+}
+
+function stripLeadingWww(hostname: string): string {
+  return hostname.startsWith("www.") ? hostname.slice(4) : hostname;
+}
+
+/**
+ * If host is `www.{slug}.{root}`, return canonical `{slug}.{root}`.
+ * Apex `www.{root}` is left as-is (marketing site).
+ */
+export function getCanonicalInvitationHostname(
+  hostHeader: string,
+): string | null {
+  const hostname = getHostname(hostHeader);
+  if (!hostname || hostname.startsWith("[")) return null;
+
+  const root = getRootHostname();
+  if (hostname === root || hostname === `www.${root}`) return null;
+
+  const rootSuffix = `.${root}`;
+  if (!hostname.endsWith(rootSuffix)) return null;
+
+  const label = hostname.slice(0, -rootSuffix.length);
+  if (!label.startsWith("www.") || label === "www") return null;
+
+  const slug = label.slice(4);
+  if (!slug || slug.includes(".")) return null;
+
+  return `${slug}.${root}`;
 }
 
 /**
  * Returns invitation subdomain slug, or null on apex / reserved / invalid.
- * Generic: no hardcoded client names.
+ * Accepts `www.{slug}.{root}` as `{slug}` (middleware should redirect to canonical).
  */
 export function getInvitationSubdomain(hostHeader: string): string | null {
   const hostname = getHostname(hostHeader);
@@ -68,12 +104,21 @@ export function getInvitationSubdomain(hostHeader: string): string | null {
 
   const rootSuffix = `.${root}`;
   if (hostname.endsWith(rootSuffix)) {
-    return normalizeSubdomainLabel(hostname.slice(0, -rootSuffix.length));
+    let label = hostname.slice(0, -rootSuffix.length);
+    // www.ana-marko.vasdogadjaj.com → ana-marko
+    if (label.startsWith("www.")) {
+      label = label.slice(4);
+    }
+    return normalizeSubdomainLabel(label);
   }
 
   // Local dev: *.localhost even when ROOT_DOMAIN is a production host
   if (hostname.endsWith(".localhost")) {
-    return normalizeSubdomainLabel(hostname.slice(0, -".localhost".length));
+    let label = hostname.slice(0, -".localhost".length);
+    if (label.startsWith("www.")) {
+      label = label.slice(4);
+    }
+    return normalizeSubdomainLabel(label);
   }
 
   return null;
