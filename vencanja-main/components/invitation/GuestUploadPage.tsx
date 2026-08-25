@@ -48,22 +48,18 @@ export default function GuestUploadPage({
             ) : null}
 
             <p className="mt-5 text-center text-sm leading-relaxed text-slate-600">
-              Podelite trenutak sa nama — izaberite ili snimite fotografiju.
-              Pojaviće se u našoj galeriji.
+              Podelite trenutak sa nama — izaberite jednu ili više fotografija
+              odjednom. Pojaviće se u našoj galeriji.
             </p>
 
             <div className="mt-8">
               <GuestPhotoUploadControl
-                buttonText="Pošalji fotografiju"
+                buttonText="Pošalji fotografije"
                 buttonClassName="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-2xl bg-teal-700 px-6 py-4 text-sm font-semibold text-white shadow-sm transition hover:bg-teal-800"
                 inputClassName="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-sm outline-none transition focus:border-teal-600 focus:ring-2 focus:ring-teal-600/20"
                 stackClassName="flex w-full flex-col gap-3"
               />
             </div>
-
-            <p className="mt-6 text-center text-xs text-slate-400">
-              Jedna fotografija po slanju. Možete poslati više puta.
-            </p>
           </div>
         </div>
       </div>

@@ -19,7 +19,6 @@ import EmptyMessage from "../EmptyMessage";
 import { GuestStatusBadge } from "./GuestStatusBadge";
 import { formatGuestDate, guestStatusLabel } from "../guestOptions";
 import {
-  Download,
   Pencil,
   Trash2,
   Users,
@@ -29,6 +28,8 @@ import {
   Baby,
   UserRound,
   AlertTriangle,
+  FileDown,
+  FileText,
 } from "lucide-react";
 import SectionLoader from "../loaders/SectionLoader";
 import SelectInput, { SelectOption } from "../SelectInput";
@@ -44,7 +45,7 @@ import {
   isRsvpContact,
   partyNeedsNameResolution,
 } from "../utils/guestParty";
-import { downloadGuestsCsv } from "./guestExport";
+import { downloadGuestsCsv, downloadGuestsPdf } from "./guestExport";
 import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
 
@@ -312,9 +313,22 @@ const PotvrdjeniDolasci = () => {
     );
   }
 
-  const onExport = () => {
+  const onExportCsv = () => {
     downloadGuestsCsv(sortedGuests, activeProject?.title ?? "Gosti");
-    toast.success("Spisak gostiju je preuzet.", { position: "top-center" });
+    toast.success("CSV spisak gostiju je preuzet.", { position: "top-center" });
+  };
+
+  const onExportPdf = async () => {
+    try {
+      await downloadGuestsPdf(sortedGuests, activeProject?.title ?? "Gosti");
+      toast.success("PDF spisak gostiju je preuzet.", {
+        position: "top-center",
+      });
+    } catch {
+      toast.error("PDF nije mogao da se generiše. Pokušajte ponovo.", {
+        position: "top-center",
+      });
+    }
   };
 
   const renderPartyHint = (guest: Guest) => {
@@ -370,14 +384,22 @@ const PotvrdjeniDolasci = () => {
         <p className="text-sm text-muted-foreground">
           Pregled potvrda, pojedinačnih osoba, dece i rasporeda.
         </p>
-        <div className="grid w-full grid-cols-1 gap-2 min-[420px]:grid-cols-2 sm:w-auto">
+        <div className="grid w-full grid-cols-1 gap-2 min-[420px]:grid-cols-2 sm:w-auto lg:grid-cols-3">
           <Button
             variant="outline"
             className="h-9 w-full cursor-pointer"
-            onClick={onExport}
+            onClick={onExportCsv}
           >
-            <Download className="h-4 w-4" />
+            <FileText className="h-4 w-4" />
             Preuzmi CSV
+          </Button>
+          <Button
+            variant="outline"
+            className="h-9 w-full cursor-pointer"
+            onClick={() => void onExportPdf()}
+          >
+            <FileDown className="h-4 w-4" />
+            Preuzmi PDF
           </Button>
           <Button className="h-9 w-full cursor-pointer" onClick={handleNewGuestModal}>
             Dodaj gosta

@@ -15,6 +15,8 @@ type GuestPhotoUploadControlProps = {
   inputId?: string;
 };
 
+const MAX_FILES = 10;
+
 function toErrorMessage(err: unknown): string {
   if (err instanceof Error && err.message) return err.message;
   if (typeof err === "string" && err.trim()) return err;
@@ -29,6 +31,40 @@ function toErrorMessage(err: unknown): string {
   return "Upload nije uspeo. Pokušajte ponovo.";
 }
 
+async function uploadOne(
+  projectId: string,
+  file: File,
+  guestName: string | null,
+): Promise<void> {
+  const prepared = await prepareImageDataUrl(file);
+
+  const res = await fetch("/api/guest-photos", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    credentials: "same-origin",
+    body: JSON.stringify({
+      projectId,
+      image: prepared.dataUrl,
+      fileName: prepared.fileName,
+      guestName,
+    }),
+  });
+
+  const body = (await res.json().catch(() => null)) as {
+    error?: string;
+    success?: boolean;
+  } | null;
+
+  if (!res.ok || !body?.success) {
+    throw new Error(
+      body?.error ||
+        (res.status === 413
+          ? "Fotografija je prevelika."
+          : `Upload nije uspeo (${res.status}).`),
+    );
+  }
+}
+
 const GuestPhotoUploadControl = ({
   buttonText,
   buttonClassName,
@@ -40,52 +76,60 @@ const GuestPhotoUploadControl = ({
   const { projectId } = useInvitationProject();
   const [guestName, setGuestName] = useState("");
   const [uploading, setUploading] = useState(false);
+  const [progress, setProgress] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const disabled = !projectId || uploading;
 
-  const handleFile = async (file: File | null) => {
-    if (!file || !projectId) return;
+  const handleFiles = async (fileList: FileList | null) => {
+    if (!fileList?.length || !projectId) return;
+
+    const images = Array.from(fileList)
+      .filter((f) => f.type.startsWith("image/"))
+      .slice(0, MAX_FILES);
+
+    if (images.length === 0) {
+      setError("Izaberite barem jednu sliku.");
+      return;
+    }
 
     setUploading(true);
     setError(null);
     setMessage(null);
+    setProgress(null);
+
+    const name = guestName.trim() || null;
+    let ok = 0;
+    const failures: string[] = [];
 
     try {
-      const prepared = await prepareImageDataUrl(file);
-
-      const res = await fetch("/api/guest-photos", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "same-origin",
-        body: JSON.stringify({
-          projectId,
-          image: prepared.dataUrl,
-          fileName: prepared.fileName,
-          guestName: guestName.trim() || null,
-        }),
-      });
-
-      const body = (await res.json().catch(() => null)) as {
-        error?: string;
-        success?: boolean;
-      } | null;
-
-      if (!res.ok || !body?.success) {
-        throw new Error(
-          body?.error ||
-            (res.status === 413
-              ? "Fotografija je prevelika."
-              : `Upload nije uspeo (${res.status}).`),
-        );
+      for (let i = 0; i < images.length; i++) {
+        const file = images[i]!;
+        setProgress(`Slanje ${i + 1}/${images.length}…`);
+        try {
+          await uploadOne(projectId, file, name);
+          ok += 1;
+        } catch (err) {
+          failures.push(`${file.name}: ${toErrorMessage(err)}`);
+        }
       }
 
-      setMessage("Hvala! Fotografija je poslata.");
-      setGuestName("");
-    } catch (err) {
-      setError(toErrorMessage(err));
+      if (ok > 0 && failures.length === 0) {
+        setMessage(
+          ok === 1
+            ? "Hvala! Fotografija je poslata."
+            : `Hvala! Poslato je ${ok} fotografija.`,
+        );
+        setGuestName("");
+      } else if (ok > 0) {
+        setMessage(`Poslato ${ok} od ${images.length}.`);
+        setError(failures.slice(0, 3).join(" · "));
+      } else {
+        setError(failures[0] || "Upload nije uspeo. Pokušajte ponovo.");
+      }
     } finally {
+      setProgress(null);
       setUploading(false);
     }
   };
@@ -122,22 +166,26 @@ const GuestPhotoUploadControl = ({
         ) : (
           <Upload className="h-4 w-4" />
         )}
-        <span>{uploading ? "Slanje…" : buttonText}</span>
+        <span>{progress ?? (uploading ? "Slanje…" : buttonText)}</span>
       </label>
 
       <input
         id={inputId}
         type="file"
         accept="image/*"
-        capture="environment"
+        multiple
         className="hidden"
         disabled={disabled}
         onChange={(event) => {
-          const file = event.target.files?.[0] ?? null;
-          void handleFile(file);
+          const files = event.target.files;
+          void handleFiles(files);
           event.target.value = "";
         }}
       />
+
+      <p className="text-center text-xs opacity-60">
+        Možete izabrati do {MAX_FILES} fotografija odjednom.
+      </p>
 
       {!projectId ? (
         <p className="text-center text-xs opacity-70">
