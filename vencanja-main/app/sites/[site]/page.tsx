@@ -26,6 +26,10 @@ export default async function SitePage({
   }
 
   return (
-    <TemplateRenderer config={project.config_json} projectId={project.id} />
+    <TemplateRenderer
+      config={project.config_json}
+      projectId={project.id}
+      showBrandCredit
+    />
   );
 }

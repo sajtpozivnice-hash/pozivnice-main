@@ -17,6 +17,7 @@ import {
 } from "@/fonts";
 import { InvitationProjectProvider } from "@/components/invitation/InvitationProjectContext";
 import { InvitationOpening } from "@/components/invitation/InvitationOpening";
+import { InvitationBrandCredit } from "@/components/invitation/InvitationBrandCredit";
 
 type Props = {
   config: UniversalProjectConfig;
@@ -26,6 +27,8 @@ type Props = {
    * Premium invitation reveal overlay. Defaults to true (editor + live site).
    */
   enableOpening?: boolean;
+  /** Brand credit under the invite — live subdomain only, never editor. */
+  showBrandCredit?: boolean;
 };
 
 function getPageBackgroundUrl(config: UniversalProjectConfig): string {
@@ -40,6 +43,7 @@ export function TemplateRenderer({
   config,
   projectId = null,
   enableOpening = true,
+  showBrandCredit = false,
 }: Props) {
   const renderers = getTemplateRenderers(config.template);
   const pageBackgroundUrl = getPageBackgroundUrl(config);
@@ -98,6 +102,7 @@ export function TemplateRenderer({
       >
         <InvitationOpening config={config} enabled={enableOpening}>
           <ConfigRenderer config={config} renderers={renderers} />
+          {showBrandCredit ? <InvitationBrandCredit /> : null}
         </InvitationOpening>
       </div>
     </InvitationProjectProvider>
