@@ -27,9 +27,23 @@ export function isAllowedBrowserOrigin(req: Request): boolean {
     return false;
   }
 
-  const root = getRootHostname();
-  if (hostname === root || hostname === `www.${root}`) return true;
-  if (hostname.endsWith(`.${root}`)) return true;
+  const roots = new Set<string>([getRootHostname()]);
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (siteUrl) {
+    try {
+      const siteHost = new URL(siteUrl).hostname.toLowerCase();
+      roots.add(siteHost.startsWith("www.") ? siteHost.slice(4) : siteHost);
+    } catch {
+      /* ignore bad SITE_URL */
+    }
+  }
+
+  for (const root of roots) {
+    if (!root) continue;
+    if (hostname === root || hostname === `www.${root}`) return true;
+    if (hostname.endsWith(`.${root}`)) return true;
+  }
+
   if (hostname === "localhost" || hostname.endsWith(".localhost")) return true;
   if (hostname.endsWith(".vercel.app")) return true;
 
@@ -74,8 +88,8 @@ export function consumeRateLimit(
   return true;
 }
 
-/** Approx max base64 payload (~7–8MB binary). */
-export const MAX_UPLOAD_DATA_URL_CHARS = 10_000_000;
+/** Keep under Vercel ~4.5MB function body (JSON + base64 overhead). */
+export const MAX_UPLOAD_DATA_URL_CHARS = 3_500_000;
 
 export const MAX_CONTACT_FORM_TEXT = 4_000;
 export const MAX_CONTACT_CONFIG_CHARS = 150_000;

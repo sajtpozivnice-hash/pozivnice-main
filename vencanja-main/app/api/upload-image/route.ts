@@ -107,7 +107,7 @@ export async function POST(req: Request) {
 
     if (image.length > MAX_UPLOAD_DATA_URL_CHARS) {
       return NextResponse.json(
-        { error: "Fajl je prevelik (max ~7MB)." },
+        { error: "Fajl je prevelik. Pokušajte sa manjom slikom." },
         { status: 413 },
       );
     }

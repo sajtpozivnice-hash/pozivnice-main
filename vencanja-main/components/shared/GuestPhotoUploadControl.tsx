@@ -3,8 +3,7 @@
 import { CSSProperties, useState } from "react";
 import { Loader2, Upload } from "lucide-react";
 import { useInvitationProject } from "@/components/invitation/InvitationProjectContext";
-import { uploadImageToCloudinaryDetailed } from "@/helpers/uploadImageToCloudinary";
-import { createGuestPhotoService } from "@/components/dashboard/services/guestPhotos.service";
+import { prepareImageDataUrl } from "@/helpers/prepareImageForUpload";
 
 type GuestPhotoUploadControlProps = {
   buttonText: string;
@@ -15,6 +14,20 @@ type GuestPhotoUploadControlProps = {
   /** Stable id — avoid useId() (SSR/client mismatch in editor tree). */
   inputId?: string;
 };
+
+function toErrorMessage(err: unknown): string {
+  if (err instanceof Error && err.message) return err.message;
+  if (typeof err === "string" && err.trim()) return err;
+  if (
+    err &&
+    typeof err === "object" &&
+    "message" in err &&
+    typeof (err as { message: unknown }).message === "string"
+  ) {
+    return (err as { message: string }).message;
+  }
+  return "Upload nije uspeo. Pokušajte ponovo.";
+}
 
 const GuestPhotoUploadControl = ({
   buttonText,
@@ -40,31 +53,38 @@ const GuestPhotoUploadControl = ({
     setMessage(null);
 
     try {
-      const uploaded = await uploadImageToCloudinaryDetailed(file, {
-        fileName: file.name,
-        purpose: "guest-photo",
-        projectId,
+      const prepared = await prepareImageDataUrl(file);
+
+      const res = await fetch("/api/guest-photos", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "same-origin",
+        body: JSON.stringify({
+          projectId,
+          image: prepared.dataUrl,
+          fileName: prepared.fileName,
+          guestName: guestName.trim() || null,
+        }),
       });
 
-      await createGuestPhotoService(projectId, {
-        public_id: uploaded.public_id,
-        secure_url: uploaded.secure_url,
-        file_name: file.name,
-        guest_name: guestName.trim() || null,
-        width: uploaded.width ?? null,
-        height: uploaded.height ?? null,
-        bytes: uploaded.bytes ?? null,
-        format: uploaded.format ?? null,
-      });
+      const body = (await res.json().catch(() => null)) as {
+        error?: string;
+        success?: boolean;
+      } | null;
+
+      if (!res.ok || !body?.success) {
+        throw new Error(
+          body?.error ||
+            (res.status === 413
+              ? "Fotografija je prevelika."
+              : `Upload nije uspeo (${res.status}).`),
+        );
+      }
 
       setMessage("Hvala! Fotografija je poslata.");
       setGuestName("");
     } catch (err) {
-      setError(
-        err instanceof Error
-          ? err.message
-          : "Upload nije uspeo. Pokušajte ponovo.",
-      );
+      setError(toErrorMessage(err));
     } finally {
       setUploading(false);
     }
