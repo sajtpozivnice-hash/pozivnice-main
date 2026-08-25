@@ -49,14 +49,30 @@ export function getHostname(hostHeader: string): string {
 }
 
 /**
- * Apex root domain without port and without leading `www.`.
- * Invitation URLs must be `{slug}.{root}`, never `{slug}.www.{root}`.
+ * Apex root without www — used for `{slug}.{root}` subdomain math.
  */
 export function getRootHostname(): string {
   const configured =
     process.env.NEXT_PUBLIC_ROOT_DOMAIN?.trim().toLowerCase() ?? "localhost";
   const host = configured.split(":")[0] ?? "localhost";
   return stripLeadingWww(host);
+}
+
+/**
+ * Public marketing / path-invite origin.
+ * Prefer NEXT_PUBLIC_SITE_URL; else www.{root} (matches Vercel "Redirect apex to www").
+ */
+export function getPublicSiteOrigin(): string {
+  const configured = process.env.NEXT_PUBLIC_SITE_URL?.trim().replace(/\/$/, "");
+  if (configured) return configured;
+
+  const root = getRootHostname();
+  if (root === "localhost" || root.endsWith(".localhost")) {
+    const port = process.env.NEXT_PUBLIC_INVITE_PORT || "3000";
+    return `http://localhost:${port}`;
+  }
+
+  return `https://www.${root}`;
 }
 
 function stripLeadingWww(hostname: string): string {

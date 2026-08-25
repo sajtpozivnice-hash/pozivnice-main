@@ -1,11 +1,9 @@
 import { getRootHostname } from "@/lib/domain";
 
 /**
- * Public invitation site base URL for a subdomain slug.
- * Local: http://{slug}.localhost:3000
- * Prod:  https://{ROOT}/i/{slug}  (apex path — works with www via redirect)
- *
- * Subdomain hosts `{slug}.{ROOT}` still work as an alias via middleware.
+ * Invitation URL = subdomain only (no /i/ path).
+ * Prod: https://{slug}.vasdogadjaj.com
+ * Never generate www.{slug}.… — phones that add www need DNS + middleware redirect.
  */
 export function getInvitationSiteUrl(subdomain: string): string {
   const slug = subdomain.trim().toLowerCase();
@@ -17,10 +15,9 @@ export function getInvitationSiteUrl(subdomain: string): string {
     return `http://${slug}.localhost:${port}`;
   }
 
-  return `https://${root}/i/${slug}`;
+  return `https://${slug}.${root}`;
 }
 
-/** Dedicated guest photo upload page (QR target). */
 export function getGuestUploadUrl(subdomain: string): string {
   return `${getInvitationSiteUrl(subdomain)}/upload`;
 }

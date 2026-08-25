@@ -3,10 +3,8 @@ import { NextResponse, type NextRequest } from "next/server";
 import { updateSession } from "./lib/supabase/middleware";
 import {
   getCanonicalInvitationHostname,
-  getHostname,
   getInvitationSubdomain,
   getRequestHost,
-  getRootHostname,
   INVITATION_SITE_HEADER,
 } from "./lib/domain";
 
@@ -54,17 +52,11 @@ function rewriteToSite(
 export async function middleware(request: NextRequest) {
   const host = getRequestHost(request.headers);
   const { pathname } = request.nextUrl;
-  const hostname = getHostname(host);
-  const root = getRootHostname();
 
-  // www.vasdogadjaj.com → vasdogadjaj.com (then /i/slug works the same)
-  if (hostname === `www.${root}` && root !== "localhost") {
-    const url = new URL(request.url);
-    url.hostname = root;
-    return NextResponse.redirect(url, 308);
-  }
+  // Do NOT redirect www↔apex here — that fights Vercel Domains
+  // ("Redirect apex to www"). Both hosts must serve the same app.
 
-  // www.{slug}.{root} → {slug}.{root} (if DNS ever reaches us)
+  // www.{slug}.{root} → {slug}.{root} (nested www is not in *.root DNS)
   const canonicalInviteHost = getCanonicalInvitationHostname(host);
   if (canonicalInviteHost) {
     const url = new URL(request.url);

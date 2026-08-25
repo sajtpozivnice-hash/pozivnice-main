@@ -13,7 +13,7 @@ const OG_IMAGE =
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://vasdogadjaj.com",
+    process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://www.vasdogadjaj.com",
   ),
   title: {
     default: "Vaš događaj — digitalne pozivnice i organizacija događaja",

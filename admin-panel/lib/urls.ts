@@ -3,7 +3,6 @@ const rawRoot =
   process.env.NEXT_PUBLIC_INVITE_ROOT_DOMAIN ||
   "localhost";
 
-/** Apex without www. */
 const ROOT_DOMAIN = rawRoot
   .trim()
   .toLowerCase()
@@ -26,16 +25,13 @@ export function isValidSubdomain(value: string): boolean {
   return /^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$/.test(value);
 }
 
-/**
- * Prod invitation links use apex path `/i/{slug}` so www never breaks.
- * Local keeps `{slug}.localhost`.
- */
+/** https://{slug}.vasdogadjaj.com — no www, no /i/ path */
 export function getInvitationUrl(subdomain: string): string {
   const slug = normalizeSubdomain(subdomain);
   if (ROOT_DOMAIN === "localhost" || ROOT_DOMAIN.endsWith(".localhost")) {
     return `http://${slug}.localhost:${INVITE_PORT}`;
   }
-  return `https://${ROOT_DOMAIN}/i/${slug}`;
+  return `https://${slug}.${ROOT_DOMAIN}`;
 }
 
 export function getEditorUrl(templateKey: string): string {
