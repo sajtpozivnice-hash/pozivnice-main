@@ -22,12 +22,16 @@ export const metadata: Metadata = {
   description:
     "Digitalna pozivnica i privatni nalog: menjate tekstove i slike, pratite ko dolazi, pravite raspored sedenja, vodite budžet i primáte fotografije od gostiju. Kontaktirajte nas za izradu.",
   icons: {
-    icon: [{ url: "/brand/logo-mark.svg", type: "image/svg+xml" }],
-    apple: [{ url: "/brand/logo-mark.svg", type: "image/svg+xml" }],
+    icon: [
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+      { url: "/favicon.ico", sizes: "48x48" },
+    ],
+    apple: [{ url: "/apple-icon.png", type: "image/png", sizes: "180x180" }],
   },
   openGraph: {
     type: "website",
     locale: "sr_RS",
+    url: "/",
     siteName: "Vaš događaj",
     title: "Vaš događaj — digitalne pozivnice i organizacija događaja",
     description:
@@ -38,6 +42,7 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: "Vaš događaj — digitalne pozivnice",
+        type: "image/jpeg",
       },
     ],
   },
