@@ -6,6 +6,7 @@ type MediaProps = {
   src?: string;
   alt?: string;
   className?: string;
+  imgClassName?: string;
   caption?: string;
 };
 
@@ -14,6 +15,7 @@ export const Media: FC<MediaProps> = ({
   src,
   alt = "",
   className = "",
+  imgClassName = "",
   caption,
 }) => {
   const imageSrc = src?.trim() ?? "";
@@ -22,9 +24,14 @@ export const Media: FC<MediaProps> = ({
     <figure className="w-full">
       <div className={`va-media ${className}`}>
         {imageSrc ? (
-          <img src={imageSrc} alt={alt} referrerPolicy="no-referrer" />
+          <img
+            src={imageSrc}
+            alt={alt}
+            className={imgClassName}
+            referrerPolicy="no-referrer"
+          />
         ) : (
-          <div className="va-fallback h-full w-full" />
+          <div className={`va-fallback h-full w-full ${imgClassName}`} />
         )}
       </div>
       {caption ? (
