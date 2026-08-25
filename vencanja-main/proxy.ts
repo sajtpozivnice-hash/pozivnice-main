@@ -46,7 +46,11 @@ function rewriteToSite(request: NextRequest, subdomain: string, pathname: string
   });
 }
 
-export async function middleware(request: NextRequest) {
+/**
+ * Next.js 16: proxy.ts (Node.js) replaces deprecated middleware.ts (Edge).
+ * Needed on Vercel so subdomain rewrite + Supabase session work without Edge limits.
+ */
+export async function proxy(request: NextRequest) {
   const host = getRequestHost(request.headers);
   const subdomain = getInvitationSubdomain(host);
   const { pathname } = request.nextUrl;
