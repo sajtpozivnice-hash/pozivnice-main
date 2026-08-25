@@ -2,13 +2,11 @@ import { NextResponse, type NextRequest } from "next/server";
 // Relative imports only — Vercel Edge does not resolve `@/` in middleware.
 import { updateSession } from "./lib/supabase/middleware";
 import {
-  getCanonicalInvitationHostname,
   getInvitationSubdomain,
   getRequestHost,
   INVITATION_SITE_HEADER,
 } from "./lib/domain";
 
-/** Paths that exist under /sites/[site] besides the invitation root. */
 const TENANT_NESTED_ALLOWLIST = [/^\/upload(?:\/|$)/];
 
 function buildSitePath(subdomain: string, pathname: string): string {
@@ -51,20 +49,11 @@ function rewriteToSite(
 
 export async function middleware(request: NextRequest) {
   const host = getRequestHost(request.headers);
+  const subdomain = getInvitationSubdomain(host);
   const { pathname } = request.nextUrl;
 
-  // Do NOT redirect www↔apex here — that fights Vercel Domains
-  // ("Redirect apex to www"). Both hosts must serve the same app.
-
-  // www.{slug}.{root} → {slug}.{root} (nested www is not in *.root DNS)
-  const canonicalInviteHost = getCanonicalInvitationHostname(host);
-  if (canonicalInviteHost) {
-    const url = new URL(request.url);
-    url.hostname = canonicalInviteHost;
-    return NextResponse.redirect(url, 308);
-  }
-
-  const subdomain = getInvitationSubdomain(host);
+  // Do not redirect www↔apex (fights Vercel Domains).
+  // Invitation hosts are only {slug}.{root} — never www.{slug}.{root}.
 
   if (!subdomain && (pathname === "/sites" || pathname.startsWith("/sites/"))) {
     const home = request.nextUrl.clone();

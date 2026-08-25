@@ -13,7 +13,7 @@ import {
   formatDate,
   formatDateTime,
 } from "@/components/ui/Page";
-import { getEditorUrl, getInvitationUrl, getInvitationSubdomainUrl } from "@/lib/urls";
+import { getEditorUrl, getInvitationUrl } from "@/lib/urls";
 import { adminFetch } from "@/lib/adminFetch";
 import {
   EVENT_TYPE_LABELS,
@@ -95,7 +95,6 @@ export default function ProjectDetailPage() {
     normalized === "unknown" ? "wedding" : normalized
   ) as EventType;
   const inviteUrl = getInvitationUrl(project.subdomain);
-  const subdomainUrl = getInvitationSubdomainUrl(project.subdomain);
   const editorUrl = getEditorUrl(config?.template || "vencanje-terra");
   const clientName = project.clients?.name || project.client_name || "—";
   const clientEmail = project.clients?.email || "—";
@@ -151,12 +150,7 @@ export default function ProjectDetailPage() {
         <InfoCard label="Klijent" value={clientName} />
         <InfoCard label="Email" value={clientEmail} />
         <InfoCard label="Subdomain" value={project.subdomain} mono />
-        <InfoCard label="Link za slanje (www OK)" value={inviteUrl} link />
-        <InfoCard
-          label="Subdomain (samo bez www)"
-          value={subdomainUrl}
-          link
-        />
+        <InfoCard label="Link pozivnice" value={inviteUrl} link />
         <InfoCard
           label="Datum događaja"
           value={formatDate(config?.event?.date)}

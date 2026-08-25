@@ -12,22 +12,6 @@ const INVITE_PORT = process.env.NEXT_PUBLIC_INVITE_PORT || "3000";
 const EDITOR_BASE =
   process.env.NEXT_PUBLIC_EDITOR_BASE_URL || `http://localhost:${INVITE_PORT}`;
 
-function getPublicSiteOrigin(): string {
-  const configured = (
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    process.env.NEXT_PUBLIC_CLIENT_APP_URL ||
-    ""
-  )
-    .trim()
-    .replace(/\/$/, "");
-  if (configured) return configured;
-  if (ROOT_DOMAIN === "localhost" || ROOT_DOMAIN.endsWith(".localhost")) {
-    return `http://localhost:${INVITE_PORT}`;
-  }
-  // Vercel "Redirect apex → www" — canonical is www
-  return `https://www.${ROOT_DOMAIN}`;
-}
-
 export function normalizeSubdomain(value: string): string {
   return value
     .trim()
@@ -41,20 +25,8 @@ export function isValidSubdomain(value: string): boolean {
   return /^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$/.test(value);
 }
 
-/**
- * Canonical invite (www + non-www both work via apex):
- *   https://www.vasdogadjaj.com/i/{subdomain}
- */
+/** https://jelena-dejan.vasdogadjaj.com */
 export function getInvitationUrl(subdomain: string): string {
-  const slug = normalizeSubdomain(subdomain);
-  if (ROOT_DOMAIN === "localhost" || ROOT_DOMAIN.endsWith(".localhost")) {
-    return `http://${slug}.localhost:${INVITE_PORT}`;
-  }
-  return `${getPublicSiteOrigin()}/i/${slug}`;
-}
-
-/** Pretty alias — only without www: https://{subdomain}.vasdogadjaj.com */
-export function getInvitationSubdomainUrl(subdomain: string): string {
   const slug = normalizeSubdomain(subdomain);
   if (ROOT_DOMAIN === "localhost" || ROOT_DOMAIN.endsWith(".localhost")) {
     return `http://${slug}.localhost:${INVITE_PORT}`;
