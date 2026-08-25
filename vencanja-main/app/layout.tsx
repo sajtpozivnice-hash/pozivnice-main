@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { playfair, lora } from "../fonts";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { ToastProvider } from "@/components/Toast/ToastContext";
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
@@ -70,6 +71,7 @@ export default function RootLayout({
       )}
     >
       <body>
+        <GoogleAnalytics />
         <ToastProvider>{children}</ToastProvider>
       </body>
     </html>
