@@ -7,7 +7,9 @@ import {
   extractConfigHints,
   parseConfigJson,
 } from "@/lib/configParse";
+import { adminFetch } from "@/lib/adminFetch";
 import { normalizeSubdomain } from "@/lib/subdomain";
+import { getInvitationUrl } from "@/lib/urls";
 import {
   EVENT_TYPE_LABELS,
   type Client,
@@ -33,6 +35,8 @@ export type ProjectFormValues = {
 
 type Props = {
   mode: "create" | "edit";
+  /** Current project id — used to ignore self when checking subdomain on edit. */
+  projectId?: string;
   initial: ProjectFormValues;
   clients: Client[];
   templates: TemplateCatalogItem[];
@@ -48,8 +52,15 @@ type Props = {
   onCancel?: () => void;
 };
 
+type SubdomainStatus =
+  | { state: "idle" }
+  | { state: "checking" }
+  | { state: "available" }
+  | { state: "unavailable"; reason: string };
+
 export function ProjectForm({
   mode,
+  projectId,
   initial,
   clients,
   templates,
@@ -63,10 +74,78 @@ export function ProjectForm({
   const [touchedSubdomain, setTouchedSubdomain] = useState(mode === "edit");
   const [configHint, setConfigHint] = useState("");
   const [configError, setConfigError] = useState("");
+  const [subdomainStatus, setSubdomainStatus] = useState<SubdomainStatus>({
+    state: "idle",
+  });
 
   useEffect(() => {
     setValues(initial);
   }, [initial]);
+
+  const invitePreviewUrl = useMemo(() => {
+    if (!values.subdomain) return null;
+    return getInvitationUrl(values.subdomain);
+  }, [values.subdomain]);
+
+  useEffect(() => {
+    const slug = values.subdomain.trim();
+    if (!slug) {
+      setSubdomainStatus({ state: "idle" });
+      return;
+    }
+
+    // Unchanged on edit — no need to re-check
+    if (mode === "edit" && slug === initial.subdomain) {
+      setSubdomainStatus({ state: "available" });
+      return;
+    }
+
+    let cancelled = false;
+    setSubdomainStatus({ state: "checking" });
+
+    const timer = window.setTimeout(async () => {
+      try {
+        const params = new URLSearchParams({ subdomain: slug });
+        if (projectId) params.set("excludeId", projectId);
+        const res = await adminFetch(
+          `/api/admin/projects/check-subdomain?${params}`,
+        );
+        const data = (await res.json()) as {
+          available?: boolean;
+          reason?: string;
+          error?: string;
+        };
+        if (cancelled) return;
+        if (!res.ok) {
+          setSubdomainStatus({
+            state: "unavailable",
+            reason: data.error || "Provera nije uspela.",
+          });
+          return;
+        }
+        if (data.available) {
+          setSubdomainStatus({ state: "available" });
+        } else {
+          setSubdomainStatus({
+            state: "unavailable",
+            reason: data.reason || "Subdomain nije dostupan.",
+          });
+        }
+      } catch {
+        if (!cancelled) {
+          setSubdomainStatus({
+            state: "unavailable",
+            reason: "Provera nije uspela.",
+          });
+        }
+      }
+    }, 400);
+
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timer);
+    };
+  }, [values.subdomain, projectId, mode, initial.subdomain]);
 
   const filteredTemplates = useMemo(
     () => templates.filter((t) => t.eventTypes.includes(values.eventType)),
@@ -138,6 +217,10 @@ export function ProjectForm({
     e.preventDefault();
     setConfigError("");
 
+    if (subdomainStatus.state === "unavailable") {
+      return;
+    }
+
     if (templateChanged && !confirmReset) {
       return;
     }
@@ -165,6 +248,17 @@ export function ProjectForm({
 
     onSubmit(values, { resetConfig: templateChanged ? true : undefined });
   };
+
+  const subdomainHint =
+    subdomainStatus.state === "unavailable"
+      ? subdomainStatus.reason
+      : subdomainStatus.state === "checking"
+        ? "Provera dostupnosti…"
+        : subdomainStatus.state === "available" && invitePreviewUrl
+          ? `Slobodan — pozivnica: ${invitePreviewUrl} (bez www)`
+          : invitePreviewUrl
+            ? `Pozivnica: ${invitePreviewUrl} (bez www)`
+            : "npr. ana-marko → https://ana-marko.vasdogadjaj.com";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
@@ -235,7 +329,7 @@ export function ProjectForm({
           setField("subdomain", normalizeSubdomain(v));
         }}
         placeholder="ana-marko"
-        hint="Pozivnica: https://jelena-dejan.vasdogadjaj.com (bez www)"
+        hint={subdomainHint}
       />
 
       <Field
@@ -307,7 +401,7 @@ export function ProjectForm({
                 setConfigError("");
                 setField("configText", v);
               }}
-              placeholder='Nalepi sadržaj invite-config.json ovde…'
+              placeholder="Nalepi sadržaj invite-config.json ovde…"
               rows={14}
               mono
               required
@@ -359,7 +453,14 @@ export function ProjectForm({
       ) : null}
 
       <div className="flex flex-wrap gap-2 pt-2">
-        <Button type="submit" disabled={submitting}>
+        <Button
+          type="submit"
+          disabled={
+            submitting ||
+            subdomainStatus.state === "unavailable" ||
+            subdomainStatus.state === "checking"
+          }
+        >
           {submitting
             ? "Čuvanje…"
             : mode === "create"

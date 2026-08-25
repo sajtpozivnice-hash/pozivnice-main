@@ -12,6 +12,21 @@ const INVITE_PORT = process.env.NEXT_PUBLIC_INVITE_PORT || "3000";
 const EDITOR_BASE =
   process.env.NEXT_PUBLIC_EDITOR_BASE_URL || `http://localhost:${INVITE_PORT}`;
 
+const RESERVED_SUBDOMAINS = new Set([
+  "www",
+  "app",
+  "api",
+  "admin",
+  "dashboard",
+  "mail",
+  "ftp",
+  "static",
+  "assets",
+  "cdn",
+  "staging",
+  "preview",
+]);
+
 export function normalizeSubdomain(value: string): string {
   return value
     .trim()
@@ -21,8 +36,16 @@ export function normalizeSubdomain(value: string): string {
     .replace(/^-|-$/g, "");
 }
 
+export function isReservedSubdomain(value: string): boolean {
+  return RESERVED_SUBDOMAINS.has(normalizeSubdomain(value));
+}
+
 export function isValidSubdomain(value: string): boolean {
-  return /^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$/.test(value);
+  const slug = normalizeSubdomain(value);
+  return (
+    /^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$/.test(slug) &&
+    !isReservedSubdomain(slug)
+  );
 }
 
 /** https://jelena-dejan.vasdogadjaj.com */

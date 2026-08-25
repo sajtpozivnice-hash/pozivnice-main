@@ -146,6 +146,7 @@ export default function EditProjectPage() {
       <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
         <ProjectForm
           mode="edit"
+          projectId={project.id}
           initial={initial}
           clients={clients}
           templates={templates}

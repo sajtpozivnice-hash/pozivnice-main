@@ -10,6 +10,7 @@ import {
   isTemplateKey,
 } from "@/lib/templates";
 import {
+  isReservedSubdomain,
   isValidSubdomain,
   normalizeSubdomain,
 } from "@/lib/urls";
@@ -51,14 +52,27 @@ function toListItem(row: ProjectWithClient): ProjectListItem {
   };
 }
 
-async function assertSubdomainAvailable(
+export async function isSubdomainAvailable(
   subdomain: string,
   excludeId?: string,
-): Promise<void> {
+): Promise<{ available: boolean; reason?: string }> {
+  const slug = normalizeSubdomain(subdomain);
+  if (!slug) {
+    return { available: false, reason: "Unesite subdomain." };
+  }
+  if (!isValidSubdomain(slug)) {
+    return {
+      available: false,
+      reason: isReservedSubdomain(slug)
+        ? `Subdomain "${slug}" je rezervisan.`
+        : "Subdomain mora biti slug (mala slova, brojevi, crtice), npr. ana-marko",
+    };
+  }
+
   let query = supabaseAdmin
     .from("projects")
     .select("id")
-    .ilike("subdomain", subdomain)
+    .ilike("subdomain", slug)
     .limit(1);
 
   if (excludeId) {
@@ -68,7 +82,18 @@ async function assertSubdomainAvailable(
   const { data, error } = await query;
   if (error) throw new Error(error.message);
   if (data && data.length > 0) {
-    throw new Error(`Subdomain "${subdomain}" je već zauzet`);
+    return { available: false, reason: `Subdomain "${slug}" je već zauzet.` };
+  }
+  return { available: true };
+}
+
+async function assertSubdomainAvailable(
+  subdomain: string,
+  excludeId?: string,
+): Promise<void> {
+  const result = await isSubdomainAvailable(subdomain, excludeId);
+  if (!result.available) {
+    throw new Error(result.reason || `Subdomain "${subdomain}" nije dostupan`);
   }
 }
 
@@ -191,7 +216,9 @@ export async function createProject(
   const subdomain = normalizeSubdomain(input.subdomain);
   if (!isValidSubdomain(subdomain)) {
     throw new Error(
-      "Subdomain mora biti slug (mala slova, brojevi, crtice), npr. ana-marko",
+      isReservedSubdomain(subdomain)
+        ? `Subdomain "${subdomain}" je rezervisan`
+        : "Subdomain mora biti slug (mala slova, brojevi, crtice), npr. ana-marko",
     );
   }
 
@@ -302,7 +329,9 @@ export async function updateProject(
     const subdomain = normalizeSubdomain(input.subdomain);
     if (!isValidSubdomain(subdomain)) {
       throw new Error(
-        "Subdomain mora biti slug (mala slova, brojevi, crtice), npr. ana-marko",
+        isReservedSubdomain(subdomain)
+          ? `Subdomain "${subdomain}" je rezervisan`
+          : "Subdomain mora biti slug (mala slova, brojevi, crtice), npr. ana-marko",
       );
     }
     if (subdomain !== existing.subdomain) {
