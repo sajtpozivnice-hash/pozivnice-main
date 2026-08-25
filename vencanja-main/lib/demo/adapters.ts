@@ -101,7 +101,14 @@ export function demoUpdateConfig(
   projectId: string,
   config: UniversalProjectConfig,
 ): Project {
-  return demoUpdateProject(projectId, { config_json: config });
+  const title =
+    config.meta?.title?.trim() ||
+    config.event?.names?.trim() ||
+    undefined;
+  return demoUpdateProject(projectId, {
+    config_json: config,
+    ...(title ? { title } : {}),
+  });
 }
 
 /* ─── Guests ──────────────────────────────────────────────── */

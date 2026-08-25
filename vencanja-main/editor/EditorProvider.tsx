@@ -14,6 +14,10 @@ import {
   SetStateAction,
 } from "react";
 import { pruneUnusedEditorFields } from "@/helpers/pruneUnusedEditorFields";
+import {
+  syncMetaWithEvent,
+  withSyncedMeta,
+} from "@/helpers/syncMetaWithEvent";
 
 type EditorContextType = {
   config: UniversalProjectConfig;
@@ -44,7 +48,7 @@ export function EditorProvider({
   children: ReactNode;
 }) {
   const [config, setConfig] = useState(() =>
-    pruneUnusedEditorFields(initialConfig),
+    withSyncedMeta(pruneUnusedEditorFields(initialConfig)),
   );
   const [activePanel, setActivePanel] = useState<string | null>(null);
   const [previewFocusId, setPreviewFocusId] = useState<string | null>(null);
@@ -62,13 +66,23 @@ export function EditorProvider({
   };
 
   const updateEvent = (changes: Partial<EventConfig>) => {
-    setConfig((prev: any) => ({
-      ...prev,
-      event: {
+    setConfig((prev: UniversalProjectConfig) => {
+      const previousNames = prev.event.names;
+      const event = {
         ...prev.event,
         ...changes,
-      },
-    }));
+      };
+      const meta =
+        changes.names !== undefined
+          ? syncMetaWithEvent(prev.meta, event, previousNames)
+          : prev.meta;
+
+      return {
+        ...prev,
+        event,
+        meta,
+      };
+    });
   };
 
   const updateTheme = (changes: Partial<ThemeConfig>) => {

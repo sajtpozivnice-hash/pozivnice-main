@@ -66,7 +66,13 @@ export const updateConfig = async (
 ): Promise<Project> => {
   if (isDemoMode(projectId)) return demoUpdateConfig(projectId, config);
 
+  const title =
+    config.meta?.title?.trim() ||
+    config.event?.names?.trim() ||
+    undefined;
+
   return updateProject(projectId, {
     config_json: config,
+    ...(title ? { title } : {}),
   });
 };

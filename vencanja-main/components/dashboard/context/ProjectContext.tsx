@@ -14,6 +14,7 @@ import {
 import { useDashboard } from "./DashboardContext";
 import { SectionConfig } from "@/types/sections";
 import { getProject, updateConfig } from "../services/project.service";
+import { withSyncedMeta } from "@/helpers/syncMetaWithEvent";
 
 type ProjectContextType = {
   project: Project | null;
@@ -62,7 +63,8 @@ export function ProjectProvider({ children }: { children: ReactNode }) {
     try {
       setSaving(true);
 
-      const updatedProject = await updateConfig(project.id, newConfig);
+      const synced = withSyncedMeta(newConfig);
+      const updatedProject = await updateConfig(project.id, synced);
 
       applyProject(updatedProject);
     } finally {
