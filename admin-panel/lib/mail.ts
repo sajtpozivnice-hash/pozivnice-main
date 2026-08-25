@@ -1,18 +1,20 @@
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 
-function getTransporter() {
-  const user = process.env.EMAIL_USER;
-  const pass = process.env.EMAIL_PASS;
-  if (!user || !pass) {
-    throw new Error(
-      "EMAIL_USER i EMAIL_PASS nisu podešeni u admin-panel .env (kopiraj iz vencanja-main)",
-    );
+function getResend() {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    throw new Error("RESEND_API_KEY nije podešen u admin-panel .env");
   }
+  return new Resend(apiKey);
+}
 
-  return nodemailer.createTransport({
-    service: "gmail",
-    auth: { user, pass },
-  });
+function getFromAddress() {
+  const from = process.env.EMAIL_FROM?.trim();
+  if (!from) {
+    throw new Error("EMAIL_FROM nije podešen (npr. office@vasdogadjaj.com)");
+  }
+  if (from.includes("<")) return from;
+  return `"Vaš događaj" <${from}>`;
 }
 
 export async function sendEmail(params: {
@@ -21,16 +23,18 @@ export async function sendEmail(params: {
   text: string;
   html?: string;
 }): Promise<void> {
-  const from = process.env.EMAIL_USER!;
-  const transporter = getTransporter();
-
-  await transporter.sendMail({
-    from: `"Vaš događaj" <${from}>`,
+  const resend = getResend();
+  const { error } = await resend.emails.send({
+    from: getFromAddress(),
     to: params.to,
     subject: params.subject,
     text: params.text,
     html: params.html,
   });
+
+  if (error) {
+    throw new Error(error.message);
+  }
 }
 
 export async function sendClientInviteEmail(params: {

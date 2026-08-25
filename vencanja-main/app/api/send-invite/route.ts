@@ -1,4 +1,3 @@
-import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
 import {
   consumeRateLimit,
@@ -7,6 +6,7 @@ import {
   MAX_CONTACT_CONFIG_CHARS,
   MAX_CONTACT_FORM_TEXT,
 } from "@/lib/api/security";
+import { isMailConfigured, sendContactEmail } from "@/lib/mail";
 
 type Body = {
   formText?: unknown;
@@ -30,7 +30,7 @@ export async function POST(req: Request) {
       );
     }
 
-    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+    if (!isMailConfigured()) {
       return NextResponse.json(
         { error: "Email nije konfigurisan." },
         { status: 503 },
@@ -61,12 +61,8 @@ export async function POST(req: Request) {
       );
     }
 
-    let attachments:
-      | Array<{
-          filename: string;
-          content: string;
-          contentType: string;
-        }>
+    let attachment:
+      | { filename: string; content: string; contentType: string }
       | undefined;
 
     if (body.config != null) {
@@ -77,38 +73,26 @@ export async function POST(req: Request) {
           { status: 413 },
         );
       }
-      attachments = [
-        {
-          filename: "invite-config.json",
-          content: serialized,
-          contentType: "application/json",
-        },
-      ];
+      attachment = {
+        filename: "invite-config.json",
+        content: serialized,
+        contentType: "application/json",
+      };
     }
 
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
-
     const bodyText =
-      attachments != null
+      attachment != null
         ? `${formText}\n\nU prilogu se nalazi JSON konfiguracija pozivnice.`
         : formText;
 
-    await transporter.sendMail({
-      from: `"Web Pozivnice" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER,
-      replyTo: extractReplyTo(formText) ?? undefined,
+    await sendContactEmail({
       subject:
-        attachments != null
+        attachment != null
           ? "Nova porudžbina pozivnice – Vaš događaj"
           : "Novi kontakt upit – Vaš događaj",
       text: bodyText,
-      attachments,
+      replyTo: extractReplyTo(formText) ?? undefined,
+      attachment,
     });
 
     return NextResponse.json({ success: true });
