@@ -4,14 +4,14 @@ import {
   loadInvitationProject,
 } from "@/lib/loadInvitationProject";
 
-export default async function SiteUploadPage({
+export default async function InvitationPathUploadPage({
   params,
 }: {
   params: Promise<{ site: string }>;
 }) {
   const { site } = await params;
   const project = await loadInvitationProject(site, {
-    requireTenantHeader: true,
+    requireTenantHeader: false,
   });
 
   return (

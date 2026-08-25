@@ -235,7 +235,7 @@ export function ProjectForm({
           setField("subdomain", normalizeSubdomain(v));
         }}
         placeholder="ana-marko"
-        hint="Pozivnica: https://subdomain.vasdogadjaj.com (bez www ispred imena)"
+        hint="Šalji gostima: www.vasdogadjaj.com/i/subdomain (radi i bez www). Lepši alias bez www: subdomain.vasdogadjaj.com"
       />
 
       <Field
