@@ -1,10 +1,11 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { updateSession } from "@/lib/supabase/middleware";
+// Relative imports only — Vercel Edge does not resolve `@/` in middleware.
+import { updateSession } from "./lib/supabase/middleware";
 import {
   getInvitationSubdomain,
   getRequestHost,
   INVITATION_SITE_HEADER,
-} from "@/lib/domain";
+} from "./lib/domain";
 
 /** Paths that exist under /sites/[site] besides the invitation root. */
 const TENANT_NESTED_ALLOWLIST = [/^\/upload(?:\/|$)/];
@@ -12,7 +13,6 @@ const TENANT_NESTED_ALLOWLIST = [/^\/upload(?:\/|$)/];
 function buildSitePath(subdomain: string, pathname: string): string {
   const siteRoot = `/sites/${subdomain}`;
 
-  // Wrong /sites/... on a tenant host always maps to this tenant
   if (pathname === "/sites" || pathname.startsWith("/sites/")) {
     const rest = pathname.replace(/^\/sites\/[^/]+/, "") || "/";
     if (rest === "/" || rest === "") return siteRoot;
@@ -23,16 +23,18 @@ function buildSitePath(subdomain: string, pathname: string): string {
     return siteRoot;
   }
 
-  // Allow known nested tenant routes (e.g. /admin → /sites/slug/admin)
   if (TENANT_NESTED_ALLOWLIST.some((re) => re.test(pathname))) {
     return `${siteRoot}${pathname}`;
   }
 
-  // Unknown marketing/app paths on tenant → invitation home (avoid confusing 404)
   return siteRoot;
 }
 
-function rewriteToSite(request: NextRequest, subdomain: string, pathname: string) {
+function rewriteToSite(
+  request: NextRequest,
+  subdomain: string,
+  pathname: string,
+) {
   const url = request.nextUrl.clone();
   url.pathname = buildSitePath(subdomain, pathname);
 
@@ -46,16 +48,11 @@ function rewriteToSite(request: NextRequest, subdomain: string, pathname: string
   });
 }
 
-/**
- * Next.js 16: proxy.ts (Node.js) replaces deprecated middleware.ts (Edge).
- * Needed on Vercel so subdomain rewrite + Supabase session work without Edge limits.
- */
-export async function proxy(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const host = getRequestHost(request.headers);
   const subdomain = getInvitationSubdomain(host);
   const { pathname } = request.nextUrl;
 
-  // Apex / www: never expose internal /sites/* routes
   if (!subdomain && (pathname === "/sites" || pathname.startsWith("/sites/"))) {
     const home = request.nextUrl.clone();
     home.pathname = "/";
@@ -63,8 +60,6 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(home);
   }
 
-  // API / Next internals must never be rewritten to the invitation page.
-  // Otherwise POST /api/rsvp on *.localhost returns 200 HTML and RSVP is lost.
   if (
     pathname.startsWith("/api/") ||
     pathname.startsWith("/_next/") ||
@@ -73,7 +68,6 @@ export async function proxy(request: NextRequest) {
     return updateSession(request);
   }
 
-  // Tenant host → internal /sites/[subdomain] (browser URL stays on subdomain)
   if (subdomain) {
     const response = rewriteToSite(request, subdomain, pathname);
     return updateSession(request, response);
