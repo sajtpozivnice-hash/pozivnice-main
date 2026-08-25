@@ -235,7 +235,7 @@ export function ProjectForm({
           setField("subdomain", normalizeSubdomain(v));
         }}
         placeholder="ana-marko"
-        hint="Pozivnica: subdomain.localhost:3000 (lokalno) / subdomain.pozivnice.com"
+        hint="Pozivnica: https://vasdogadjaj.com/i/subdomain (lokalno: subdomain.localhost:3000)"
       />
 
       <Field
