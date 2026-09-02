@@ -1,13 +1,7 @@
-type LeadEventParams = {
-  event_category: string;
-  event_label: string;
-  form_source: string;
-};
-
 type GtagFunction = (
   command: "event" | "config" | "js" | "set",
   targetOrEventName: string | Date,
-  params?: LeadEventParams | Record<string, unknown>,
+  params?: Record<string, unknown>,
 ) => void;
 
 declare global {
@@ -20,15 +14,15 @@ declare global {
 export type LeadFormSource = "editor" | "contact";
 
 /**
- * GA4 recommended event for lead forms — import into Google Ads as a conversion.
- * No-ops when analytics is not loaded.
+ * GA4 recommended lead event — mark as Key event in GA4, then import into Google Ads.
+ * @see https://developers.google.com/analytics/devguides/collection/ga4/reference/events#generate_lead
  */
 export function trackGenerateLead(source: LeadFormSource): void {
   if (typeof window === "undefined") return;
 
-  const params: LeadEventParams = {
-    event_category: "lead",
-    event_label: source,
+  const params: Record<string, unknown> = {
+    currency: "RSD",
+    value: 1,
     form_source: source,
   };
 
@@ -39,9 +33,5 @@ export function trackGenerateLead(source: LeadFormSource): void {
     return;
   }
 
-  // Fallback if gtag helper is not on window yet
-  window.dataLayer.push({
-    event: "generate_lead",
-    ...params,
-  });
+  window.dataLayer.push(["event", "generate_lead", params]);
 }
