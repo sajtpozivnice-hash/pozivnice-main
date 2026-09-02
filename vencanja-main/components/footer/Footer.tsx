@@ -32,6 +32,7 @@ const Footer = () => {
               <Link href="/pozivnice">Pozivnice</Link>
               <Link href="/#cenovnik">Cenovnik</Link>
               <Link href="/kontakt">Kontakt</Link>
+              <Link href="/privatnost">Privatnost</Link>
               <Link href="/login">Prijava</Link>
             </nav>
           </div>
@@ -69,7 +70,8 @@ const Footer = () => {
       </Section>
       <div className={`${styles.footerBottom} text-center`}>
         <p className={styles.description} suppressHydrationWarning>
-          © {new Date().getFullYear()} Vaš događaj. Sva prava zadržana.
+          © {new Date().getFullYear()} Vaš događaj. Sva prava zadržana.{" "}
+          <Link href="/privatnost">Politika privatnosti</Link>
         </p>
       </div>
     </div>

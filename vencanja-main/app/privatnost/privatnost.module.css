@@ -1,0 +1,95 @@
+.page {
+  background:
+    radial-gradient(
+      1200px 500px at 10% -10%,
+      color-mix(in srgb, var(--color-accent) 18%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      900px 420px at 100% 0%,
+      color-mix(in srgb, var(--color-hot) 12%, transparent),
+      transparent 55%
+    ),
+    var(--color-primary, #fff);
+  padding: 72px 20px 96px;
+}
+
+.inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  font-family: var(--font-playfair), serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  color: var(--color-accent);
+  margin: 0 0 10px;
+}
+
+.title {
+  font-family: var(--font-playfair), serif;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  line-height: 1.15;
+  color: var(--color-text);
+  margin: 0 0 16px;
+}
+
+.lead {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: color-mix(in srgb, var(--color-text) 82%, transparent);
+  margin: 0 0 40px;
+}
+
+.section {
+  margin-bottom: 32px;
+}
+
+.section h2 {
+  font-family: var(--font-playfair), serif;
+  font-size: 1.35rem;
+  margin: 0 0 12px;
+  color: var(--color-text);
+}
+
+.section p,
+.section li {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: color-mix(in srgb, var(--color-text) 88%, transparent);
+  margin: 0 0 12px;
+}
+
+.section ul {
+  margin: 0 0 12px;
+  padding-left: 1.2rem;
+}
+
+.section a {
+  color: var(--color-hot);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.section code {
+  font-size: 0.9em;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--color-text) 8%, transparent);
+}
+
+.back {
+  margin-top: 48px;
+  font-size: 0.95rem;
+}
+
+.back a {
+  color: var(--color-hot);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.back a:hover {
+  text-decoration: underline;
+}

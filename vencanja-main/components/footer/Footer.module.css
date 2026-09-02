@@ -57,6 +57,17 @@
   margin: 0;
 }
 
+.description a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  margin-left: 6px;
+}
+
+.description a:hover {
+  color: var(--color-hot);
+}
+
 .footerBottom {
   border-top: 1px solid color-mix(in srgb, var(--color-primary) 35%, transparent);
   padding: 22px 0;
