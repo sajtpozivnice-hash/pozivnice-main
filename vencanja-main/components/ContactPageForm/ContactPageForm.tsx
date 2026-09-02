@@ -70,11 +70,17 @@ const ContactPageForm: FC<InviteContactFormProps> = ({ config = null }) => {
         else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value))
           error = "Email nije validan";
         break;
-      case "phoneNumber":
-        if (!value.trim()) error = "Broj telefona je obavezan";
-        else if (!/^\+?\d{6,15}$/.test(value))
+      case "phoneNumber": {
+        if (!value.trim()) {
+          error = "Broj telefona je obavezan";
+          break;
+        }
+        const digits = value.replace(/[\s()-]/g, "");
+        if (!/^\+?\d{6,15}$/.test(digits)) {
           error = "Broj telefona nije validan";
+        }
         break;
+      }
     }
 
     setErrors((prev) => ({ ...prev, [name]: error }));
@@ -106,7 +112,15 @@ const ContactPageForm: FC<InviteContactFormProps> = ({ config = null }) => {
         credentials: "same-origin",
       });
 
-      if (!res.ok) throw new Error("Slanje nije uspelo");
+      const data = (await res.json().catch(() => null)) as {
+        success?: boolean;
+        error?: string;
+      } | null;
+
+      if (!res.ok || !data?.success) {
+        throw new Error(data?.error || "Slanje nije uspelo");
+      }
+
       trackGenerateLead("contact");
       addToast("Poruka je poslata. Javićemo vam se uskoro.", "success");
       setFormData({
