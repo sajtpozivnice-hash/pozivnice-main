@@ -7,6 +7,7 @@ import FormLabel from "../FormLabel/FormLabel";
 import { useToast } from "@/components/Toast/ToastContext";
 import Heading from "../typography/Heading";
 import { isDemoMode } from "@/lib/demo/mode";
+import { trackGenerateLead } from "@/lib/analytics";
 
 interface InviteContactFormProps {
   config: unknown;
@@ -115,6 +116,7 @@ const InvitationContactForm: FC<InviteContactFormProps> = ({
       });
 
       if (!res.ok) throw new Error("Slanje nije uspelo");
+      trackGenerateLead("editor");
       addToast("Porudžbina je poslata. Javićemo vam se uskoro.", "success");
       setFormData({
         name: "",

@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import FormSelectDropdown from "../shared/FormSelectDropdwon/FormSelectDropdown";
 import { useToast } from "../Toast/ToastContext";
 import type { UniversalProjectConfig } from "@/types/config";
+import { trackGenerateLead } from "@/lib/analytics";
 
 interface InviteContactFormProps {
   config?: UniversalProjectConfig | null;
@@ -106,6 +107,7 @@ const ContactPageForm: FC<InviteContactFormProps> = ({ config = null }) => {
       });
 
       if (!res.ok) throw new Error("Slanje nije uspelo");
+      trackGenerateLead("contact");
       addToast("Poruka je poslata. Javićemo vam se uskoro.", "success");
       setFormData({
         name: "",
