@@ -58,7 +58,7 @@ const ContactContent = () => {
                   Email
                 </Heading>
                 <motion.a
-                  href="mailto:hello@eventplanner.com"
+                  href="mailto:office@vasdogadjaj.com"
                   initial="offscreen"
                   whileInView="onscreen"
                   viewport={{ once: true }}
@@ -75,7 +75,7 @@ const ContactContent = () => {
                   }}
                   style={{ fontWeight: 400 }}
                 >
-                  hello@eventplanner.com
+                  office@vasdogadjaj.com
                 </motion.a>
               </div>
             </div>
@@ -88,10 +88,12 @@ const ContactContent = () => {
                   variant={HeadingVariant.H3}
                   className={styles.smallHeading}
                 >
-                  Telefon
+                  Instagram
                 </Heading>
                 <motion.a
-                  href="tel:+38165888888"
+                  href="https://www.instagram.com/vasdogadjaj/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   initial="offscreen"
                   whileInView="onscreen"
                   viewport={{ once: true }}
@@ -108,7 +110,7 @@ const ContactContent = () => {
                   }}
                   style={{ fontWeight: 400 }}
                 >
-                  +381 65 888 888
+                  @vasdogadjaj
                 </motion.a>
               </div>
             </div>

@@ -19,7 +19,6 @@ const requiredFieldNames: Record<string, string> = {
   name: "Ime",
   lastname: "Prezime",
   email: "Email",
-  phoneNumber: "Broj telefona",
 };
 
 const options = ["Venčanje", "Rođendan", "Krštenje"];
@@ -72,7 +71,7 @@ const ContactPageForm: FC<InviteContactFormProps> = ({ config = null }) => {
         break;
       case "phoneNumber": {
         if (!value.trim()) {
-          error = "Broj telefona je obavezan";
+          error = "";
           break;
         }
         const digits = value.replace(/[\s()-]/g, "");
@@ -94,7 +93,7 @@ const ContactPageForm: FC<InviteContactFormProps> = ({ config = null }) => {
       Ime: ${formData.name}
       Prezime: ${formData.lastname}
       Email: ${formData.email}
-      Telefon: ${formData.phoneNumber}
+      Telefon: ${formData.phoneNumber.trim() || "—"}
       Vrsta Događaja: ${formData.type}
       Poruka: ${formData.message}
       
@@ -280,7 +279,7 @@ const ContactPageForm: FC<InviteContactFormProps> = ({ config = null }) => {
             <FormError message={errors.email} />
           </div>
           <div className={styles.inputWrapper}>
-            <FormLabel text={"Broj Telefona"} required />
+            <FormLabel text={"Broj Telefona"} />
             <motion.input
               initial="offscreen"
               whileInView="onscreen"
@@ -301,7 +300,7 @@ const ContactPageForm: FC<InviteContactFormProps> = ({ config = null }) => {
               type="tel"
               value={formData.phoneNumber}
               name="phoneNumber"
-              placeholder="Vaš Broj Telefona"
+              placeholder="Opciono"
               onChange={(e) => {
                 const { name, value } = e.target;
                 setFormData((prev) => ({ ...prev, [name]: value }));

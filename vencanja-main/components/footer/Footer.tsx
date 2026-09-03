@@ -65,6 +65,14 @@ const Footer = () => {
             <Link className={styles.inlineLink} href="/kontakt">
               Idi na kontakt
             </Link>
+            <a
+              className={styles.inlineLink}
+              href="https://www.instagram.com/vasdogadjaj/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Instagram @vasdogadjaj
+            </a>
           </div>
         </div>
       </Section>

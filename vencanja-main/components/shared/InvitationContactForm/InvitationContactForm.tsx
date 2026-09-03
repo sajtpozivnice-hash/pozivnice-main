@@ -18,7 +18,6 @@ interface InviteContactFormProps {
 const requiredFieldNames: Record<string, string> = {
   name: "Ime i Prezime",
   email: "Email",
-  phoneNumber: "Broj telefona",
 };
 
 const InvitationContactForm: FC<InviteContactFormProps> = ({
@@ -66,7 +65,7 @@ const InvitationContactForm: FC<InviteContactFormProps> = ({
         break;
       case "phoneNumber": {
         if (!value.trim()) {
-          error = "Broj telefona je obavezan";
+          error = "";
           break;
         }
         const digits = value.replace(/[\s()-]/g, "");
@@ -87,7 +86,7 @@ const InvitationContactForm: FC<InviteContactFormProps> = ({
       formText: `
       Ime i Prezime: ${formData.name}
       Email: ${formData.email}
-      Telefon: ${formData.phoneNumber}
+      Telefon: ${formData.phoneNumber.trim() || "—"}
       Poruka: ${formData.message}
     `,
       config,
@@ -230,13 +229,13 @@ const InvitationContactForm: FC<InviteContactFormProps> = ({
             <FormError message={errors.email} />
           </div>
           <div>
-            <FormLabel text={"Broj Telefona"} required />
+            <FormLabel text={"Broj Telefona"} />
             <input
               className={`${styles.inputStyle} ${errors.phoneNumber ? styles.inputError : ""}`}
               type="tel"
               value={formData.phoneNumber}
               name="phoneNumber"
-              placeholder="Vaš Broj Telefona"
+              placeholder="Opciono"
               onChange={(e) => {
                 const { name, value } = e.target;
                 setFormData((prev) => ({ ...prev, [name]: value }));
