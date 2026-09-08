@@ -2,7 +2,6 @@
 
 import Button from "../button/Button";
 import AnimatedArrowRight from "../icons/AnimatedArrowRight";
-import AnimatedMail from "../icons/AnimatedMail";
 import { motion } from "framer-motion";
 
 import styles from "./Hero.module.css";
@@ -15,19 +14,22 @@ const Hero = () => {
   return (
     <div className={styles.background}>
       <div className={styles.heroContent}>
-        <HeroBadge text="Digitalna pozivnica + privatni nalog · 3.999 RSD" />
+        <HeroBadge text="Digitalna pozivnica · 3.999 RSD" />
         <Heading className={styles.mainTitle}>
-          <span className={styles.brand}>Vaša pozivnica. Vaš sajt.</span>
+          <span className={styles.brand}>Vaš događaj</span>
           <span className={styles.mainTitleSpan}>
-            Vaš događaj.
+            Digitalna pozivnica
             <br />
-            Sve na jednom mestu.
+            za vaš najvažniji dan.
           </span>
         </Heading>
         <Paragraph center={false} variant="subtitle">
-          Online pozivnica koju prilagodite sami — plus RSVP, gosti, stolovi,
-          budžet, planer i fotografije. Jednokratno 3.999 RSD, bez pretplate.
+          Izaberite dizajn, unesite svoje podatke i podelite link sa gostima.
+          Plaćate jednom — 3.999 RSD — bez mesečne pretplate.
         </Paragraph>
+        <p className={styles.priceLine}>
+          3.999 RSD · jednokratno · ostaje aktivna
+        </p>
         <motion.div
           className={styles.heroButtons}
           initial={{ opacity: 0, y: 40 }}
@@ -41,23 +43,10 @@ const Hero = () => {
             iconDelay={0.6}
             buttonDelay={0.1}
             buttonDuration={0.7}
-            maxWidth={300}
+            maxWidth={320}
           >
             <Link href="/pozivnice" className="white-color">
-              Pogledaj dizajne
-            </Link>
-          </Button>
-          <Button
-            variant="secondary"
-            icon={AnimatedMail}
-            iconSize={30}
-            iconDelay={0.6}
-            buttonDelay={0.1}
-            buttonDuration={0.7}
-            maxWidth={300}
-          >
-            <Link href="/kontakt" className="white-color">
-              Pošalji upit
+              Pogledaj dizajne i naruči
             </Link>
           </Button>
         </motion.div>

@@ -6,19 +6,16 @@ import styles from "./Pozivnice.module.css";
 import Heading from "@/components/shared/typography/Heading";
 import { motion } from "framer-motion";
 import Button from "@/components/button/Button";
-import AnimatedMail from "@/components/icons/AnimatedMail";
+import AnimatedArrowRight from "@/components/icons/AnimatedArrowRight";
 
 const PozivniceHeader = () => {
   return (
     <div className={styles.pozivniceContainer}>
       <div className={styles.contactHeroContent}>
-        <HeroBadge text="Primeri · 3.999 RSD jednokratno" />
+        <HeroBadge text="Izaberite dizajn · 3.999 RSD" />
         <Heading className={styles.pozivniceMainTitle}>
-          Izaberite pozivnicu koja vam se
-          <span className={styles.pozivniceMainTitleSpan}>
-            {" "}
-            najviše dopada
-          </span>
+          Koja pozivnica vam se
+          <span className={styles.pozivniceMainTitleSpan}> dopada?</span>
         </Heading>
         <motion.p
           className={styles.pozivniceMainDescription}
@@ -31,9 +28,8 @@ const PozivniceHeader = () => {
             ease: [0.25, 0.46, 0.45, 0.94],
           }}
         >
-          Otvorite dizajn, isprobajte editor i pošaljite upit kad ste spremni.
-          U cenu ulazi pozivnica + privatni nalog (RSVP, stolovi, budžet, planer,
-          fotografije) — bez mesečne pretplate.
+          Kliknite na dizajn → promenite tekst i slike → pošaljite porudžbinu.
+          Zatim dobijate uputstvo za uplatu.
         </motion.p>
         <motion.div
           className={styles.pozivniceHeaderActions}
@@ -42,9 +38,9 @@ const PozivniceHeader = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.45, duration: 0.45 }}
         >
-          <Button variant="secondary" icon={AnimatedMail} maxWidth={280}>
-            <Link href="/kontakt" className="white-color">
-              Pošalji upit
+          <Button icon={AnimatedArrowRight} maxWidth={280}>
+            <Link href="#katalog" className="white-color">
+              Skroluj do dizajna
             </Link>
           </Button>
         </motion.div>

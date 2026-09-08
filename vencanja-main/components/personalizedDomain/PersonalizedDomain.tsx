@@ -72,13 +72,13 @@ const PersonalizedDomain = () => {
               ease: [0.25, 0.46, 0.45, 0.94],
             }}
           >
-            <p className={styles.eyebrow}>Personalizovani domen</p>
+            <p className={styles.eyebrow}>Vaš link</p>
             <Heading className={styles.title}>
-              Vaša priča ima svoju adresu.
+              Jedan link za sve goste.
             </Heading>
             <Paragraph variant="subtitle" center={false} className={styles.lead}>
-              Umesto generičkog linka, dobijate personalizovanu adresu za vašu
-              pozivnicu.
+              Dobijate adresu tipa ime.vasdogadjaj.com — pošaljete je na
+              WhatsApp ili Viber.
             </Paragraph>
 
             <p className={styles.domainExample}>
@@ -86,18 +86,15 @@ const PersonalizedDomain = () => {
             </p>
 
             <Paragraph variant="subtitle" center={false} className={styles.share}>
-              Lako je podelite sa gostima putem WhatsApp-a, Vibera, Instagrama
-              ili QR koda.
+              Gosti otvore link i vide sve što treba.
             </Paragraph>
 
-            <p className={styles.assurance}>
-              Jedan link. Sve informacije. Svi gosti.
-            </p>
+            <p className={styles.assurance}>Jednostavno za vas i za njih.</p>
 
             <div className={styles.actions}>
               <Button icon={AnimatedArrowRight}>
                 <Link href="/pozivnice" className="white-color">
-                  Pogledaj primere
+                  Pogledaj dizajne
                 </Link>
               </Button>
             </div>

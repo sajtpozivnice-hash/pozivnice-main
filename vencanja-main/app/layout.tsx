@@ -17,11 +17,11 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://www.vasdogadjaj.com",
   ),
   title: {
-    default: "Vaš događaj — digitalne pozivnice i organizacija događaja",
+    default: "Vaš događaj — digitalne pozivnice · 3.999 RSD",
     template: "%s | Vaš događaj",
   },
   description:
-    "Digitalna pozivnica i privatni nalog: menjate tekstove i slike, pratite ko dolazi, pravite raspored sedenja, vodite budžet i primáte fotografije od gostiju. Kontaktirajte nas za izradu.",
+    "Digitalna pozivnica za venčanje, rođendan i krštenje. Izaberite dizajn, prilagodite ga i naručite. 3.999 RSD jednokratno, bez pretplate.",
   icons: {
     icon: [
       { url: "/icon.png", type: "image/png", sizes: "512x512" },
@@ -34,9 +34,9 @@ export const metadata: Metadata = {
     locale: "sr_RS",
     url: "/",
     siteName: "Vaš događaj",
-    title: "Vaš događaj — digitalne pozivnice i organizacija događaja",
+    title: "Vaš događaj — digitalne pozivnice · 3.999 RSD",
     description:
-      "Digitalna pozivnica i privatni nalog: menjate tekstove i slike, pratite ko dolazi, pravite raspored sedenja, vodite budžet i primáte fotografije od gostiju.",
+      "Izaberite dizajn, unesite svoje podatke i podelite link sa gostima. Jednokratno 3.999 RSD.",
     images: [
       {
         url: OG_IMAGE,
@@ -49,9 +49,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vaš događaj — digitalne pozivnice i organizacija događaja",
+    title: "Vaš događaj — digitalne pozivnice · 3.999 RSD",
     description:
-      "Digitalna pozivnica i privatni nalog za organizaciju događaja.",
+      "Izaberite dizajn i naručite. 3.999 RSD jednokratno, bez pretplate.",
     images: [OG_IMAGE],
   },
 };

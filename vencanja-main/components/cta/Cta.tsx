@@ -3,7 +3,6 @@
 import Link from "next/link";
 import Button from "../button/Button";
 import AnimatedArrowRight from "../icons/AnimatedArrowRight";
-import AnimatedMail from "../icons/AnimatedMail";
 import Section from "../layout/Section";
 import styles from "./Cta.module.css";
 
@@ -18,19 +17,19 @@ type CtaProps = {
 };
 
 const Cta = ({
-  title = "Spremni da naručite?",
-  description = "Izaberite dizajn ili odmah pošaljite upit — javljamo se lično i dogovorimo izradu. Jednokratno 3.999 RSD, bez pretplate.",
+  title = "Spremni za svoju pozivnicu?",
+  description = "Izaberite dizajn, prilagodite ga i pošaljite porudžbinu. Javićemo vam se sa uputstvom za uplatu.",
   primaryLabel = "Pogledaj dizajne",
   primaryHref = "/pozivnice",
-  secondaryLabel = "Pošalji upit",
-  secondaryHref = "/kontakt",
-  meta = "3.999 RSD · Bez mesečne pretplate · Neograničeno trajanje",
+  secondaryLabel,
+  secondaryHref,
+  meta = "3.999 RSD · jednokratno · bez pretplate",
 }: CtaProps) => {
   return (
     <div className={styles.wrapper}>
       <Section>
         <div className={styles.inner}>
-          <p className={styles.eyebrow}>Sledeći korak</p>
+          <p className={styles.eyebrow}>Kako naručiti</p>
           <h2 className={styles.title}>{title}</h2>
           <p className={styles.description}>{description}</p>
 
@@ -41,7 +40,7 @@ const Cta = ({
               </Link>
             </Button>
             {secondaryLabel && secondaryHref ? (
-              <Button variant="secondary" icon={AnimatedMail}>
+              <Button variant="secondary" icon={AnimatedArrowRight}>
                 <Link href={secondaryHref} className="white-color">
                   {secondaryLabel}
                 </Link>

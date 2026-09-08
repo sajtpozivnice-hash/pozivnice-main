@@ -29,11 +29,10 @@ const OrderCta = () => {
         >
           <div className="pointer-events-auto mx-auto flex w-full max-w-3xl flex-col gap-2 rounded-2xl border border-black/8 bg-white/95 p-3 shadow-[0_8px_40px_rgba(0,0,0,0.14)] backdrop-blur-md sm:flex-row sm:items-center sm:gap-4 sm:p-3.5">
             <p className="text-center text-[12px] leading-snug text-black/60 sm:flex-1 sm:text-left sm:text-[13px]">
-              Pre porudžbine unesite svoja{" "}
-              <strong className="font-semibold text-black/80">imena</strong>,{" "}
-              <strong className="font-semibold text-black/80">datume</strong>,{" "}
-              <strong className="font-semibold text-black/80">tekstove</strong>,
-              fotografije i ostale detalje u editoru.
+              Unesite imena, datum i tekstove, pa naručite. Šaljemo uputstvo za
+              uplatu ({" "}
+              <strong className="font-semibold text-black/80">3.999 RSD</strong>
+              ).
             </p>
             <div className="flex shrink-0 items-stretch gap-2">
               <button
@@ -74,18 +73,9 @@ const OrderCta = () => {
               </SheetDescription>
               <div className="space-y-2 text-[13px] leading-relaxed text-black/65">
                 <p>
-                  Pre nego što pošaljete porudžbinu, proverite da ste uneli sve
-                  svoje podatke u editoru:
-                </p>
-                <ul className="list-disc space-y-1 pl-4 font-medium text-black/75">
-                  <li>imena (npr. mladenaca / slavljenika)</li>
-                  <li>datume i lokacije</li>
-                  <li>tekstove i poruke</li>
-                  <li>fotografije i ostale detalje</li>
-                </ul>
-                <p>
-                  Pozivnica treba da izgleda tačno kako želite — to kasnije i
-                  dalje možete menjati iz naloga.
+                  Unesite imena, datum, tekstove i slike. Posle porudžbine
+                  šaljemo uputstvo za uplatu (3.999 RSD). Posle uplate dobijate
+                  link — izmene i dalje možete raditi iz naloga.
                 </p>
               </div>
               <button

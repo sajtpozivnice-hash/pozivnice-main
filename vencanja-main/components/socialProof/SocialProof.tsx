@@ -26,15 +26,14 @@ const SocialProof = () => {
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.5 }}
         >
-          <p className={styles.eyebrow}>Social proof</p>
+          <p className={styles.eyebrow}>Primeri</p>
           <h2 className={styles.title}>
-            Napravljeno za vaše najvažnije
+            Ovako izgledaju
             <br />
-            trenutke.
+            naše pozivnice.
           </h2>
           <p className={styles.lead}>
-            Pogledajte kako izgledaju pozivnice koje možete potpuno prilagoditi
-            sebi.
+            Kliknite i pogledajte — pa izaberite onu koja vam se dopada.
           </p>
         </motion.div>
 

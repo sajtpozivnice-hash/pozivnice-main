@@ -56,11 +56,11 @@ const EventOs = () => {
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
-          <p className={styles.step}>01</p>
-          <h2 className={styles.megaTitle}>Nije samo pozivnica.</h2>
+          <p className={styles.step}>Bonus</p>
+          <h2 className={styles.megaTitle}>Uz pozivnicu ide i nalog.</h2>
           <p className={styles.heroLead}>
-            Jednom je napravite. Posle toga je koristite kao svoj digitalni
-            centar za organizaciju događaja.
+            Kad platite, dobijate i mesto gde pratite goste i ostalo — ako vam
+            zatreba. Prvo birate lepu pozivnicu.
           </p>
 
           <div className={styles.inviteStage}>
@@ -326,7 +326,7 @@ const EventOs = () => {
         <div className={styles.actions}>
           <Button icon={AnimatedArrowRight} maxWidth={280}>
             <Link href="/pozivnice" className="white-color">
-              Pogledaj kako radi
+              Pogledaj dizajne
             </Link>
           </Button>
         </div>

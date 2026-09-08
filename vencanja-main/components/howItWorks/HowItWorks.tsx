@@ -9,29 +9,24 @@ import styles from "./HowItWorks.module.css";
 
 const STEPS = [
   {
-    num: "01",
+    num: "1",
     title: "Izaberite dizajn",
-    body: "Pronađite template koji vam se dopada.",
+    body: "Otvorite katalog i kliknite na pozivnicu koja vam se dopada.",
   },
   {
-    num: "02",
-    title: "Prilagodite ga",
-    body: "Dodajte svoje fotografije, tekstove, boje, fontove i sekcije.",
+    num: "2",
+    title: "Unesite svoje podatke",
+    body: "U editoru promenite imena, datum, tekstove i slike — kao u Wordu, samo lepše.",
   },
   {
-    num: "03",
-    title: "Objavite",
-    body: "Dobijate svoju online pozivnicu i personalizovani link.",
+    num: "3",
+    title: "Pošaljite porudžbinu",
+    body: "Popunite kratku formu. Mi vam pošaljemo uputstvo za uplatu.",
   },
   {
-    num: "04",
-    title: "Upravljajte",
-    body: "Pratite RSVP, goste, budžet, planer, fotografije i raspored sedenja.",
-  },
-  {
-    num: "05",
-    title: "Uživajte",
-    body: "Sve je spremno. Vi se bavite gostima i događajem, ne tabelama i papirima.",
+    num: "4",
+    title: "Podelite sa gostima",
+    body: "Posle uplate dobijate link i nalog. Pošaljete link gostima — gotovo.",
   },
 ];
 
@@ -46,11 +41,9 @@ const HowItWorks = () => {
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.5 }}
         >
-          <p className={styles.eyebrow}>Kako funkcioniše</p>
+          <p className={styles.eyebrow}>Kako naručiti</p>
           <h2 className={styles.title}>
-            Jednostavno od početka
-            <br />
-            do kraja.
+            Četiri jednostavna koraka.
           </h2>
         </motion.div>
 
@@ -70,9 +63,7 @@ const HowItWorks = () => {
             >
               <div className={styles.rail} aria-hidden>
                 <span className={styles.node}>{step.num}</span>
-                {index < STEPS.length - 1 && (
-                  <span className={styles.line} />
-                )}
+                {index < STEPS.length - 1 && <span className={styles.line} />}
               </div>
 
               <div className={styles.content}>
@@ -92,7 +83,7 @@ const HowItWorks = () => {
         >
           <Button icon={AnimatedArrowRight}>
             <Link href="/pozivnice" className="white-color">
-              Započnite sa dizajnom
+              Pogledaj dizajne
             </Link>
           </Button>
         </motion.div>

@@ -22,27 +22,28 @@ const ContactContent = () => {
       <div className={styles.contentContainer}>
         <div className={styles.infoContainer}>
           <div className={styles.infoContainerInner}>
-            <Heading>Kako možemo da vam pomognemo</Heading>
+            <Heading>Kako naručiti</Heading>
             <Paragraph center={false}>
-            Ako imate pitanje u vezi sa digitalnim pozivnicama, editorom, privatnim nalogom ili bilo kojom funkcijom platforme, slobodno nam pošaljite poruku. Trudimo se da odgovorimo u najkraćem mogućem roku.
+              1) Otvorite Pozivnice · 2) Izaberite dizajn · 3) Pošaljite
+              porudžbinu · 4) Platite po uputstvu koje vam pošaljemo.
             </Paragraph>
 
             <div className={styles.scenario}>
               <Heading variant={HeadingVariant.H3} className={styles.smallHeading}>
-              Treba vam dodatna informacija?
+                Imate pitanje?
               </Heading>
               <Paragraph center={false}>
-              Ako niste sigurni kako funkcionišu digitalne pozivnice ili vas zanima neka od funkcija platforme, rado ćemo odgovoriti na sva vaša pitanja i pomoći vam da pronađete odgovarajuće rešenje.
+                Pišite nam ovde — odgovaramo lično, obično brzo.
               </Paragraph>
             </div>
 
             <div className={styles.scenario}>
               <Heading variant={HeadingVariant.H3} className={styles.smallHeading}>
-              Već ste odabrali pozivnicu?
+                Već znate koji dizajn želite?
               </Heading>
               <Paragraph center={false}>
-                Ako ste pronašli pozivnicu koja vam se dopada i imate pitanje pre
-                porudžbine, slobodno nam pišite. Tu smo da pomognemo.
+                Idite na Pozivnice, otvorite taj dizajn i naručite iz editora —
+                tako nam stigne i vaša konfiguracija.
               </Paragraph>
             </div>
 
@@ -117,25 +118,25 @@ const ContactContent = () => {
           </div>
           <div className={styles.info}>
             <div>
-              <Heading variant={HeadingVariant.H3}>Šta sve možete da očekujete?</Heading>
+              <Heading variant={HeadingVariant.H3}>Šta dobijate?</Heading>
               <Paragraph center={false}>
-                Više od same digitalne pozivnice. Nakon porudžbine dobijate
-                privatni nalog iz kog uređujete sadržaj, pratite RSVP, raspored
-                sedenja, budžet, planer i fotografije gostiju.
+                Digitalnu pozivnicu sa vašim linkom (3.999 RSD). Uz to i nalog
+                za goste i organizaciju — ako vam zatreba.
               </Paragraph>
               <Button
                 onClick={() => router.push("/pozivnice")}
                 icon={AnimatedArrowRight}
               >
-                Pogledaj primere
+                Pogledaj dizajne
               </Button>
             </div>
           </div>
           <div className={styles.info}>
             <div>
-              <Heading variant={HeadingVariant.H3}>Imate pitanja?</Heading>
+              <Heading variant={HeadingVariant.H3}>Sledeći korak</Heading>
               <Paragraph center={false}>
-              Pošaljite nam poruku putem forme. Bilo da vam treba dodatna informacija ili savet, odgovorićemo vam u najkraćem mogućem roku.
+                Izaberite dizajn i pošaljite porudžbinu. Mi šaljemo uputstvo za
+                uplatu.
               </Paragraph>
             </div>
           </div>

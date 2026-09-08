@@ -133,7 +133,10 @@ const InvitationContactForm: FC<InviteContactFormProps> = ({
       if (!data.skipTracking) {
         trackGenerateLead("editor");
       }
-      addToast("Porudžbina je poslata. Javićemo vam se uskoro.", "success");
+      addToast(
+        "Porudžbina je poslata. Javićemo vam se sa uputstvom za uplatu.",
+        "success",
+      );
       setFormData({
         name: "",
         email: "",
@@ -187,12 +190,10 @@ const InvitationContactForm: FC<InviteContactFormProps> = ({
         </div>
         {!compact ? (
           <div>
-            <Heading className="text-center">Naručite svoju pozivnicu</Heading>
+            <Heading className="text-center">Naručite ovu pozivnicu</Heading>
             <p className="text-center margin-bottom30">
-              Izabrali ste dizajn — ostaje još korak. Pošaljite podatke ispod i
-              javićemo vam se sa detaljima porudžbine. Nakon uplate dobijate
-              personalizovani link, potpuno prilagodljivu pozivnicu i privatni
-              nalog za goste, RSVP, budžet, planer i sve ostalo.
+              Unesite podatke ispod. Pošaljemo vam uputstvo za uplatu (3.999
+              RSD). Posle uplate dobijate link za goste i svoj nalog.
             </p>
           </div>
         ) : null}

@@ -102,11 +102,14 @@ const Header = () => {
             </Link>
           ))}
           <div className={styles.actions}>
+            <Link href="/pozivnice" className={styles.loginLink}>
+              Pogledaj dizajne
+            </Link>
             <Link
               href="/demo"
               className={`${styles.demoLink} ${isActive("/demo") ? styles.demoActive : ""}`}
             >
-              Pogledaj demo nalog
+              Demo
             </Link>
             <Link href="/login" className={styles.loginLink}>
               Prijava
@@ -120,7 +123,7 @@ const Header = () => {
             className={`${styles.demoLinkCompact} ${isActive("/demo") ? styles.demoActive : ""}`}
             onClick={() => setOpen(false)}
           >
-            Pogledaj demo nalog
+            Demo
           </Link>
           <button
             type="button"
@@ -173,7 +176,7 @@ const Header = () => {
                   className={styles.mobileDemo}
                   onClick={() => setOpen(false)}
                 >
-                  Pogledaj demo nalog
+                  Demo
                 </Link>
                 <Link
                   href="/login"

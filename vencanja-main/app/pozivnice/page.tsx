@@ -16,13 +16,11 @@ const Pozivnice = () => {
         <PozivniceContent />
       </Suspense>
       <Cta
-        title="Izabrali ste dizajn?"
-        description="Pošaljite upit i javićemo vam se sa detaljima porudžbine. U cenu ulazi pozivnica + privatni nalog."
-        primaryLabel="Pošalji upit"
-        primaryHref="/kontakt"
-        secondaryLabel="Nazad na početnu"
-        secondaryHref="/"
-        meta="3.999 RSD · Bez mesečne pretplate · Neograničeno trajanje"
+        title="Našli ste dizajn?"
+        description="Otvorite ga, unesite svoje podatke i pošaljite porudžbinu. Šaljemo uputstvo za uplatu."
+        primaryLabel="Nazad na početak kataloga"
+        primaryHref="#katalog"
+        meta="3.999 RSD · jednokratno · bez pretplate"
       />
       <Footer />
     </div>

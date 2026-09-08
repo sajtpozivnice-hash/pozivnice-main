@@ -14,20 +14,21 @@ import SocialProof from "@/components/socialProof/SocialProof";
 import TemplateSection from "@/components/templateSection/TemplateSection";
 import VisualProof from "@/components/visualProof/VisualProof";
 
+/** Sales-first order: designs + price early, platform features as bonus later. */
 export default function Home() {
   return (
     <div>
       <Header />
       <Hero />
-      <VisualProof />
       <TemplateSection />
+      <ClearPricing />
+      <HowItWorks />
+      <VisualProof />
       <EditorFreedom />
       <EventOs />
       <BackofficePanel />
       <PersonalizedDomain />
       <AlwaysFresh />
-      <HowItWorks />
-      <ClearPricing />
       <SocialProof />
       <Faq />
       <Cta />

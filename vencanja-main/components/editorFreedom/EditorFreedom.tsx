@@ -79,10 +79,13 @@ const EditorFreedom = () => {
               ease: [0.25, 0.46, 0.45, 0.94],
             }}
           >
-            <p className={styles.eyebrow}>Editor</p>
-            <Heading className={styles.title}>Menjajte sve. Baš sve.</Heading>
+            <p className={styles.eyebrow}>Prilagođavanje</p>
+            <Heading className={styles.title}>
+              Promenite tekst i slike — gotovo.
+            </Heading>
             <Paragraph variant="subtitle" center={false} className={styles.lead}>
-              Ne morate da se uklopite u gotov dizajn.
+              Ne treba vam dizajner. Otvorite editor, kliknite na tekst ili
+              sliku i unesite svoje.
             </Paragraph>
 
             <ul className={styles.features}>

@@ -86,7 +86,7 @@ const PozivniceContent = () => {
   };
 
   return (
-    <Section>
+    <Section id="katalog">
       <SwitchToggle selected={filters.eventType} onChange={setEventType} />
       <PozivniceFilters
         filters={filters}

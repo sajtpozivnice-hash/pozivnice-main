@@ -49,17 +49,17 @@ const TemplateSection = () => {
           transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
           <Heading className={styles.title}>
-            Pronađite dizajn koji je baš vaš
+            Prvo izaberite kako izgleda
           </Heading>
           <Paragraph variant="subtitle" className={styles.lead}>
-            Od elegantnih i minimalističkih do romantičnih i modernih —
-            izaberite dizajn, a zatim ga prilagodite sebi.
+            Otvorite dizajn, pogledajte ga i prilagodite. Kad ste spremni —
+            naručite.
           </Paragraph>
           <p className={styles.meta}>
             {CATEGORIES.map((category) => category.label).join(" · ")}
           </p>
           <p className={styles.count}>
-            {total} pažljivo dizajnirana template-a
+            {total} gotovih dizajna · 3.999 RSD
           </p>
         </motion.div>
 

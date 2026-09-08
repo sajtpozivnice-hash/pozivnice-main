@@ -32,8 +32,8 @@ const AlwaysFresh = () => {
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
-          <p className={styles.eyebrow}>Uvek ažurno</p>
-          <h2 className={styles.title}>Promenili ste nešto?</h2>
+          <p className={styles.eyebrow}>Izmene</p>
+          <h2 className={styles.title}>Promenili ste datum ili tekst?</h2>
         </motion.div>
 
         <div className={styles.layout}>

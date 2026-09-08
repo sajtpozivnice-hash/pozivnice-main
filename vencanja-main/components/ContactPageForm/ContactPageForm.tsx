@@ -124,7 +124,10 @@ const ContactPageForm: FC<InviteContactFormProps> = ({ config = null }) => {
       if (!data.skipTracking) {
         trackGenerateLead("contact");
       }
-      addToast("Poruka je poslata. Javićemo vam se uskoro.", "success");
+      addToast(
+        "Poruka je poslata. Javićemo vam se uskoro — ako je porudžbina, i sa uputstvom za uplatu.",
+        "success",
+      );
       setFormData({
         name: "",
         lastname: "",
@@ -149,10 +152,11 @@ const ContactPageForm: FC<InviteContactFormProps> = ({ config = null }) => {
   return (
     <div className={styles.container}>
       <div>
-        <Heading>Pošaljite upit</Heading>
+        <Heading>Naručite ili pitajte</Heading>
         <p className={styles.formIntro}>
-          Recite nam za koji događaj vam treba pozivnica — javljamo se lično.
-          3.999 RSD, jednokratno, bez pretplate.
+          Za porudžbinu najlakše: izaberite dizajn na stranici Pozivnice, pa
+          pošaljite formu iz editora. Ovde možete i kratko pitati — 3.999 RSD,
+          jednokratno.
         </p>
       </div>
       <form

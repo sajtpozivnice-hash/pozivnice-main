@@ -13,13 +13,11 @@ const Kontakt = () => {
       <ContactHero />
       <ContactContent />
       <Cta
-        title="Spremni za pozivnicu?"
-        description="Pregledajte dizajne ili odmah pošaljite upit — dogovaramo izradu lično."
+        title="Bolje kroz dizajn?"
+        description="Izaberite pozivnicu, prilagodite je i naručite odatle — tako nam stigne i vaš izbor."
         primaryLabel="Pogledaj dizajne"
         primaryHref="/pozivnice"
-        secondaryLabel="Pošalji upit"
-        secondaryHref="/kontakt"
-        meta="3.999 RSD · Bez mesečne pretplate · Neograničeno trajanje"
+        meta="3.999 RSD · jednokratno · bez pretplate"
       />
       <Footer />
     </div>

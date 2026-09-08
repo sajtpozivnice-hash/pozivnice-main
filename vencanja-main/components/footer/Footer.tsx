@@ -15,8 +15,8 @@ const Footer = () => {
           <div className={styles.item}>
             <Logo className={styles.footerLogo} size="lg" />
             <Paragraph center={false} color="var(--color-primary)">
-              Digitalne pozivnice i privatni nalog za goste, stolove, budžet i
-              planiranje događaja.
+              Digitalne pozivnice za venčanje, rođendan i krštenje. 3.999 RSD,
+              jednokratno.
             </Paragraph>
           </div>
 
@@ -42,12 +42,12 @@ const Footer = () => {
               variant={HeadingVariant.H2}
               className={styles.footerSecondaryTitle}
             >
-              Sledeći korak
+              Naručivanje
             </Heading>
             <nav className={styles.linkList}>
-              <Link href="/pozivnice">Pogledaj primere</Link>
-              <Link href="/kontakt">Pošaljite upit</Link>
-              <Link href="/login">Uđite u svoj nalog</Link>
+              <Link href="/pozivnice">1. Izaberite dizajn</Link>
+              <Link href="/pozivnice">2. Prilagodite i naručite</Link>
+              <Link href="/login">Prijava u nalog</Link>
             </nav>
           </div>
 
@@ -59,11 +59,11 @@ const Footer = () => {
               Kontakt
             </Heading>
             <Paragraph center={false} color="var(--color-primary)">
-              Javite se zbog postojećeg dizajna ili potpuno prilagođene
-              pozivnice — odgovaramo lično i dogovorimo izradu.
+              Pišite nam ili naručite preko dizajna — šaljemo uputstvo za
+              uplatu.
             </Paragraph>
-            <Link className={styles.inlineLink} href="/kontakt">
-              Idi na kontakt
+            <Link className={styles.inlineLink} href="/pozivnice">
+              Pogledaj dizajne
             </Link>
             <a
               className={styles.inlineLink}
