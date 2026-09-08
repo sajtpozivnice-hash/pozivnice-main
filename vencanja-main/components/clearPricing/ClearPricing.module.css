@@ -121,6 +121,19 @@
   max-width: 320px;
 }
 
+@media (min-width: 641px) {
+  .footer {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer .tagline {
+    flex-basis: 100%;
+    text-align: center;
+  }
+}
+
 .tagline {
   margin: 0;
   font-family: var(--font-playfair);

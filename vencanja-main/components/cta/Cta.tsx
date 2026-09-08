@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Button from "../button/Button";
 import AnimatedArrowRight from "../icons/AnimatedArrowRight";
+import AnimatedMail from "../icons/AnimatedMail";
 import Section from "../layout/Section";
 import styles from "./Cta.module.css";
 
@@ -11,21 +12,25 @@ type CtaProps = {
   description?: string;
   primaryLabel?: string;
   primaryHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
   meta?: string;
 };
 
 const Cta = ({
-  title = "Vaš dan počinje jednom pozivnicom.",
-  description = "Kreirate mesto gde vaši gosti mogu da saznaju sve važne informacije, potvrde dolazak i podele uspomene — dok vi imate sve što vam treba za organizaciju na jednom mestu.",
-  primaryLabel = "Kreiraj svoju pozivnicu",
+  title = "Spremni da naručite?",
+  description = "Izaberite dizajn ili odmah pošaljite upit — javljamo se lično i dogovorimo izradu. Jednokratno 3.999 RSD, bez pretplate.",
+  primaryLabel = "Pogledaj dizajne",
   primaryHref = "/pozivnice",
-  meta = "Bez mesečne pretplate • 3.999 RSD • Neograničeno trajanje",
+  secondaryLabel = "Pošalji upit",
+  secondaryHref = "/kontakt",
+  meta = "3.999 RSD · Bez mesečne pretplate · Neograničeno trajanje",
 }: CtaProps) => {
   return (
     <div className={styles.wrapper}>
       <Section>
         <div className={styles.inner}>
-          <p className={styles.eyebrow}>Završni korak</p>
+          <p className={styles.eyebrow}>Sledeći korak</p>
           <h2 className={styles.title}>{title}</h2>
           <p className={styles.description}>{description}</p>
 
@@ -35,6 +40,13 @@ const Cta = ({
                 {primaryLabel}
               </Link>
             </Button>
+            {secondaryLabel && secondaryHref ? (
+              <Button variant="secondary" icon={AnimatedMail}>
+                <Link href={secondaryHref} className="white-color">
+                  {secondaryLabel}
+                </Link>
+              </Button>
+            ) : null}
           </div>
 
           {meta ? <p className={styles.meta}>{meta}</p> : null}

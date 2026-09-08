@@ -114,13 +114,16 @@ const ContactPageForm: FC<InviteContactFormProps> = ({ config = null }) => {
       const data = (await res.json().catch(() => null)) as {
         success?: boolean;
         error?: string;
+        skipTracking?: boolean;
       } | null;
 
       if (!res.ok || !data?.success) {
         throw new Error(data?.error || "Slanje nije uspelo");
       }
 
-      trackGenerateLead("contact");
+      if (!data.skipTracking) {
+        trackGenerateLead("contact");
+      }
       addToast("Poruka je poslata. Javićemo vam se uskoro.", "success");
       setFormData({
         name: "",
@@ -146,9 +149,10 @@ const ContactPageForm: FC<InviteContactFormProps> = ({ config = null }) => {
   return (
     <div className={styles.container}>
       <div>
-        <Heading>Pošaljite nam poruku</Heading>
+        <Heading>Pošaljite upit</Heading>
         <p className={styles.formIntro}>
-        Tu smo da pomognemo oko organizacije Vašeg događaja.
+          Recite nam za koji događaj vam treba pozivnica — javljamo se lično.
+          3.999 RSD, jednokratno, bez pretplate.
         </p>
       </div>
       <form

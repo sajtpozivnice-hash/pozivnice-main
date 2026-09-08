@@ -44,7 +44,8 @@ export async function POST(req: Request) {
       (typeof body.website === "string" && body.website.trim()) ||
       (typeof body.company === "string" && body.company.trim());
     if (honey) {
-      return NextResponse.json({ success: true });
+      // Fake OK for bots — client must NOT fire generate_lead (skipTracking).
+      return NextResponse.json({ success: true, skipTracking: true });
     }
 
     if (typeof body.formText !== "string" || !body.formText.trim()) {

@@ -123,13 +123,16 @@ const InvitationContactForm: FC<InviteContactFormProps> = ({
       const data = (await res.json().catch(() => null)) as {
         success?: boolean;
         error?: string;
+        skipTracking?: boolean;
       } | null;
 
       if (!res.ok || !data?.success) {
         throw new Error(data?.error || "Slanje nije uspelo");
       }
 
-      trackGenerateLead("editor");
+      if (!data.skipTracking) {
+        trackGenerateLead("editor");
+      }
       addToast("Porudžbina je poslata. Javićemo vam se uskoro.", "success");
       setFormData({
         name: "",

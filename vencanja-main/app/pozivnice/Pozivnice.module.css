@@ -8,6 +8,12 @@
   align-items: center;
   padding: 88px 30px 40px;
 }
+
+.contactHeroContent {
+  max-width: 920px;
+  width: 100%;
+}
+
 .pozivniceMainTitle {
   font-size: 64px;
   color: var(--color-bg);
@@ -21,6 +27,14 @@
   font-size: 22px;
   color: var(--color-bg);
 }
+
+.pozivniceHeaderActions {
+  margin-top: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
 .container {
   background-color: var(--color-muted);
   padding: 30px;
@@ -42,5 +56,10 @@
 
   .pozivniceMainDescription {
     font-size: 16px;
+  }
+
+  .pozivniceHeaderActions :global(button) {
+    width: 100% !important;
+    max-width: none !important;
   }
 }

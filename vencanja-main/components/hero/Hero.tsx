@@ -15,7 +15,7 @@ const Hero = () => {
   return (
     <div className={styles.background}>
       <div className={styles.heroContent}>
-        <HeroBadge text="Digitalne pozivnice sa privatnim nalogom." />
+        <HeroBadge text="Digitalna pozivnica + privatni nalog · 3.999 RSD" />
         <Heading className={styles.mainTitle}>
           <span className={styles.brand}>Vaša pozivnica. Vaš sajt.</span>
           <span className={styles.mainTitleSpan}>
@@ -25,7 +25,9 @@ const Hero = () => {
           </span>
         </Heading>
         <Paragraph center={false} variant="subtitle">
-        Kreirajte prelepu online pozivnicu, prilagodite je potpuno po svojoj meri i upravijajte gostima, RSVP-om, budžetom, rasporedom sedenja i fotografijama — sve iz jednog mesta.</Paragraph>
+          Online pozivnica koju prilagodite sami — plus RSVP, gosti, stolovi,
+          budžet, planer i fotografije. Jednokratno 3.999 RSD, bez pretplate.
+        </Paragraph>
         <motion.div
           className={styles.heroButtons}
           initial={{ opacity: 0, y: 40 }}
@@ -42,7 +44,7 @@ const Hero = () => {
             maxWidth={300}
           >
             <Link href="/pozivnice" className="white-color">
-              Pogledaj primere
+              Pogledaj dizajne
             </Link>
           </Button>
           <Button
@@ -55,7 +57,7 @@ const Hero = () => {
             maxWidth={300}
           >
             <Link href="/kontakt" className="white-color">
-              Kontaktirajte nas
+              Pošalji upit
             </Link>
           </Button>
         </motion.div>

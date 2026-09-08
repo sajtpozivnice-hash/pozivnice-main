@@ -9,10 +9,10 @@ const ContactHero = () => {
   return (
     <div className={styles.contactHeroContainer}>
       <div className={styles.contactHeroContent}>
-        <HeroBadge text="Razgovaramo o vašoj pozivnici" />
+        <HeroBadge text="Upit za pozivnicu · 3.999 RSD" />
         <Heading className={styles.contactMainTitle}>
-          Kontaktirajte nas
-          <span className={styles.contactMainTitleSpan}> kad god ste spremni</span>
+          Pošaljite upit
+          <span className={styles.contactMainTitleSpan}> — javljamo se lično</span>
         </Heading>
         <motion.p
           className={styles.contactMainDescription}
@@ -25,7 +25,9 @@ const ContactHero = () => {
             ease: [0.25, 0.46, 0.45, 0.94],
           }}
         >
-Tu smo da odgovorimo na sva vaša pitanja u vezi sa digitalnim pozivnicama, funkcijama platforme i načinom korišćenja. Pišite nam – rado ćemo pomoći.        </motion.p>
+          Recite nam za koji događaj vam treba pozivnica. Odgovaramo na email i
+          dogovorimo dizajn, link i nalog — jednokratno 3.999 RSD, bez pretplate.
+        </motion.p>
       </div>
     </div>
   );

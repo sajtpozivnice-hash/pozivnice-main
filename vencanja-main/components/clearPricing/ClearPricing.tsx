@@ -63,7 +63,12 @@ const ClearPricing = () => {
           <div className={styles.footer}>
             <Button icon={AnimatedArrowRight}>
               <Link href="/pozivnice" className="white-color">
-                Kreiraj svoju pozivnicu
+                Pogledaj dizajne
+              </Link>
+            </Button>
+            <Button variant="secondary" icon={AnimatedArrowRight}>
+              <Link href="/kontakt" className="white-color">
+                Pošalji upit
               </Link>
             </Button>
             <p className={styles.tagline}>Plati jednom. Koristi zauvek.</p>
