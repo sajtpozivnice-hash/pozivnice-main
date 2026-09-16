@@ -193,7 +193,8 @@ const InvitationContactForm: FC<InviteContactFormProps> = ({
             <Heading className="text-center">Naručite ovu pozivnicu</Heading>
             <p className="text-center margin-bottom30">
               Unesite podatke ispod. Pošaljemo vam uputstvo za uplatu (3.999
-              RSD). Posle uplate dobijate link za goste i svoj nalog.
+              RSD). Posle uplate dobijate link za goste i svoj nalog. Garancija
+              povrata novca u roku od 7 dana.
             </p>
           </div>
         ) : null}

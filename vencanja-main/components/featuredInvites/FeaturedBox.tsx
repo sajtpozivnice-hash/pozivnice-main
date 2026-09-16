@@ -64,16 +64,21 @@ const FeaturedBox: FC<FeaturedBoxProps> = ({
         <Paragraph variant="subtitle" center={false}>
           {description}
         </Paragraph>
-        <MotionLink href={projectLink} className={styles.link}>
-          <Button
-            icon={AnimatedArrowRight}
-            variant={buttonVariant}
-            className={styles.button}
-            maxWidth={300}
-          >
-            Pogledaj primer
-          </Button>
-        </MotionLink>
+        <div className={styles.actions}>
+          <MotionLink href={projectLink} className={styles.link}>
+            <Button
+              icon={AnimatedArrowRight}
+              variant={buttonVariant}
+              className={styles.button}
+              maxWidth={300}
+            >
+              Pogledaj i naruči
+            </Button>
+          </MotionLink>
+        </div>
+        <p className={styles.hint}>
+          Otvorite → po želji uredite → Naruči · povrat u 7 dana
+        </p>
       </div>
     </motion.article>
   );

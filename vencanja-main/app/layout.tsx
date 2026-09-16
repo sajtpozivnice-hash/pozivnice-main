@@ -3,6 +3,7 @@ import "./globals.css";
 import { playfair, lora } from "../fonts";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { ToastProvider } from "@/components/Toast/ToastContext";
+import { WhatsAppFloat } from "@/components/WhatsAppFloat/WhatsAppFloat";
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
 
@@ -72,7 +73,10 @@ export default function RootLayout({
     >
       <body>
         <GoogleAnalytics />
-        <ToastProvider>{children}</ToastProvider>
+        <ToastProvider>
+          {children}
+          <WhatsAppFloat />
+        </ToastProvider>
       </body>
     </html>
   );

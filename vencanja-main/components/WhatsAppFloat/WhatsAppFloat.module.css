@@ -1,0 +1,70 @@
+.float {
+  position: fixed;
+  z-index: 45;
+  right: 16px;
+  bottom: max(88px, calc(env(safe-area-inset-bottom) + 72px));
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px 10px 10px;
+  border-radius: 999px;
+  background: #25d366;
+  color: #fff;
+  text-decoration: none;
+  box-shadow:
+    0 8px 28px rgba(37, 211, 102, 0.45),
+    0 2px 8px rgba(0, 0, 0, 0.12);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.float:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 12px 32px rgba(37, 211, 102, 0.5),
+    0 2px 8px rgba(0, 0, 0, 0.14);
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  flex-shrink: 0;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+  font-weight: 700;
+  font-size: 13px;
+  padding-right: 4px;
+}
+
+.sub {
+  font-size: 11px;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+@media (max-width: 640px) {
+  .float {
+    right: 12px;
+    bottom: max(96px, calc(env(safe-area-inset-bottom) + 80px));
+    padding: 8px;
+  }
+
+  .label {
+    display: none;
+  }
+
+  .icon {
+    width: 52px;
+    height: 52px;
+  }
+}

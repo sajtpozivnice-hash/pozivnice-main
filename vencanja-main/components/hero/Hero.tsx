@@ -28,7 +28,7 @@ const Hero = () => {
           Plaćate jednom — 3.999 RSD — bez mesečne pretplate.
         </Paragraph>
         <p className={styles.priceLine}>
-          3.999 RSD · jednokratno · ostaje aktivna
+          3.999 RSD · jednokratno · povrat novca u 7 dana
         </p>
         <motion.div
           className={styles.heroButtons}

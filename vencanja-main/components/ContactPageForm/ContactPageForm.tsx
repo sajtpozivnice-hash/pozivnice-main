@@ -155,8 +155,8 @@ const ContactPageForm: FC<InviteContactFormProps> = ({ config = null }) => {
         <Heading>Naručite ili pitajte</Heading>
         <p className={styles.formIntro}>
           Za porudžbinu najlakše: izaberite dizajn na stranici Pozivnice, pa
-          pošaljite formu iz editora. Ovde možete i kratko pitati — 3.999 RSD,
-          jednokratno.
+          pošaljite formu iz editora. 3.999 RSD jednokratno — garancija povrata
+          novca u roku od 7 dana.
         </p>
       </div>
       <form

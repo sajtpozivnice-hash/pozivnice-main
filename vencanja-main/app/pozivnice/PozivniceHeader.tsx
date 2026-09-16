@@ -28,8 +28,8 @@ const PozivniceHeader = () => {
             ease: [0.25, 0.46, 0.45, 0.94],
           }}
         >
-          Kliknite na dizajn → promenite tekst i slike → pošaljite porudžbinu.
-          Zatim dobijate uputstvo za uplatu.
+          1) Kliknite dizajn · 2) Po želji promenite tekst · 3) Naruči · 4) Mi
+          šaljemo uputstvo za uplatu (3.999 RSD). Povrat novca u roku od 7 dana.
         </motion.p>
         <motion.div
           className={styles.pozivniceHeaderActions}

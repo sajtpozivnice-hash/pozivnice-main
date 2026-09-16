@@ -17,6 +17,11 @@ const FAQ_ITEMS = [
       "Izaberete dizajn, unesete svoje podatke u editoru i pošaljete porudžbinu. Mi vam pošaljemo uputstvo za uplatu. Posle uplate dobijate link i nalog.",
   },
   {
+    question: "Šta ako nisam zadovoljan/na?",
+    answer:
+      "Imate garanciju povrata novca u roku od 7 dana od uplate. Ako vam se ne sviđa, javite nam se — vraćamo novac.",
+  },
+  {
     question: "Mogu li da promenim tekst i slike?",
     answer:
       "Da. Pre porudžbine u editoru, a i posle uplate — kad god želite.",

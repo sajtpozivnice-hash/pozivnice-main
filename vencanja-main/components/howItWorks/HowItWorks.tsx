@@ -26,7 +26,7 @@ const STEPS = [
   {
     num: "4",
     title: "Podelite sa gostima",
-    body: "Posle uplate dobijate link i nalog. Pošaljete link gostima — gotovo.",
+    body: "Posle uplate dobijate link i nalog. Ako niste zadovoljni — povrat novca u roku od 7 dana.",
   },
 ];
 

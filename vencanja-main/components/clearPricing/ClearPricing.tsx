@@ -14,6 +14,7 @@ const INCLUDED = [
   "Potvrda dolaska (RSVP)",
   "Privatni nalog za organizaciju",
   "Bez mesečne pretplate",
+  "Garancija povrata novca u roku od 7 dana",
 ];
 
 const ClearPricing = () => {
@@ -36,6 +37,9 @@ const ClearPricing = () => {
             </p>
             <p className={styles.billing}>
               Plaćate jednom. Pozivnica ostaje aktivna.
+            </p>
+            <p className={styles.guarantee}>
+              Garancija povrata novca u roku od 7 dana ako niste zadovoljni.
             </p>
           </div>
 

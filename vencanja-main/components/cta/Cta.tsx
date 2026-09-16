@@ -18,12 +18,12 @@ type CtaProps = {
 
 const Cta = ({
   title = "Spremni za svoju pozivnicu?",
-  description = "Izaberite dizajn, prilagodite ga i pošaljite porudžbinu. Javićemo vam se sa uputstvom za uplatu.",
+  description = "Izaberite dizajn, prilagodite ga i pošaljite porudžbinu. Javićemo vam se sa uputstvom za uplatu. Garancija povrata novca u roku od 7 dana.",
   primaryLabel = "Pogledaj dizajne",
   primaryHref = "/pozivnice",
   secondaryLabel,
   secondaryHref,
-  meta = "3.999 RSD · jednokratno · bez pretplate",
+  meta = "3.999 RSD · jednokratno · povrat novca u 7 dana",
 }: CtaProps) => {
   return (
     <div className={styles.wrapper}>

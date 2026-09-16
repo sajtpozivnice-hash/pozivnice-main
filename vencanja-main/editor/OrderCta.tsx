@@ -14,34 +14,43 @@ import {
 const OrderCta = () => {
   const { config, viewMode, setViewMode } = useEditor();
   const [open, setOpen] = useState(false);
-
-  // Mobile edit is full-screen — hide bar. Desktop keeps it visible while editing.
-  const hideOnMobileEdit = viewMode === "edit";
+  const isMobileEdit = viewMode === "edit";
 
   return (
     <>
       {!open ? (
-        <div
-          className={`
-            pointer-events-none fixed inset-x-0 bottom-0 z-40 px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-2 lg:px-4
-            ${hideOnMobileEdit ? "hidden lg:block" : "block"}
-          `}
-        >
-          <div className="pointer-events-auto mx-auto flex w-full max-w-3xl flex-col gap-2 rounded-2xl border border-black/8 bg-white/95 p-3 shadow-[0_8px_40px_rgba(0,0,0,0.14)] backdrop-blur-md sm:flex-row sm:items-center sm:gap-4 sm:p-3.5">
-            <p className="text-center text-[12px] leading-snug text-black/60 sm:flex-1 sm:text-left sm:text-[13px]">
-              Unesite imena, datum i tekstove, pa naručite. Šaljemo uputstvo za
-              uplatu ({" "}
-              <strong className="font-semibold text-black/80">3.999 RSD</strong>
-              ).
-            </p>
-            <div className="flex shrink-0 items-stretch gap-2">
-              <button
-                type="button"
-                onClick={() => setViewMode("edit")}
-                className="rounded-xl border border-[color-mix(in_srgb,var(--color-hot)_45%,transparent)] px-3 py-3 text-sm font-bold text-[var(--color-hot)] transition hover:bg-[color-mix(in_srgb,var(--color-hot)_8%,transparent)]"
-              >
-                Uredi
-              </button>
+        <div className="pointer-events-none fixed inset-x-0 bottom-0 z-40 px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-2 lg:px-4">
+          <div
+            className={`pointer-events-auto mx-auto flex w-full max-w-3xl gap-2 rounded-2xl border border-black/8 bg-white/95 p-3 shadow-[0_8px_40px_rgba(0,0,0,0.14)] backdrop-blur-md ${
+              isMobileEdit
+                ? "flex-row items-center lg:flex-row lg:items-center lg:gap-4 lg:p-3.5"
+                : "flex-col sm:flex-row sm:items-center sm:gap-4 sm:p-3.5"
+            }`}
+          >
+            {!isMobileEdit ? (
+              <p className="text-center text-[14px] leading-snug text-black/65 sm:flex-1 sm:text-left sm:text-[15px]">
+                Unesite imena, datum i tekstove, pa naručite. Šaljemo uputstvo za
+                uplatu (
+                <strong className="font-semibold text-black/80">3.999 RSD</strong>
+                ). Posle porudžbine i dalje možete menjati sve iz svog naloga. Ako
+                niste zadovoljni — povrat novca u roku od 7 dana.
+              </p>
+            ) : (
+              <p className="hidden flex-1 text-[14px] text-black/65 lg:block">
+                Kad ste spremni — naručite. Posle uplate i dalje menjate iz
+                naloga.
+              </p>
+            )}
+            <div className="flex min-w-0 flex-1 shrink-0 items-stretch gap-2 lg:flex-none">
+              {!isMobileEdit ? (
+                <button
+                  type="button"
+                  onClick={() => setViewMode("edit")}
+                  className="rounded-xl border border-[color-mix(in_srgb,var(--color-hot)_45%,transparent)] px-3 py-3 text-sm font-bold text-[var(--color-hot)] transition hover:bg-[color-mix(in_srgb,var(--color-hot)_8%,transparent)]"
+                >
+                  Uredi
+                </button>
+              ) : null}
               <button
                 type="button"
                 onClick={() => setOpen(true)}
@@ -68,26 +77,28 @@ const OrderCta = () => {
                 Naručite pozivnicu
               </SheetTitle>
               <SheetDescription className="sr-only">
-                Forma za naručivanje pozivnice. Pre porudžbine unesite imena,
-                datume, tekstove i fotografije u editoru.
+                Forma za naručivanje pozivnice.
               </SheetDescription>
               <div className="space-y-2 text-[13px] leading-relaxed text-black/65">
                 <p>
-                  Unesite imena, datum, tekstove i slike. Posle porudžbine
-                  šaljemo uputstvo za uplatu (3.999 RSD). Posle uplate dobijate
-                  link — izmene i dalje možete raditi iz naloga.
+                  <strong>Šta sledi:</strong> pošaljete podatke → mi šaljemo
+                  uputstvo za uplatu (3.999 RSD) → posle uplate dobijate link za
+                  goste. Imate garanciju povrata novca u roku od 7 dana ako
+                  niste zadovoljni.
                 </p>
               </div>
-              <button
-                type="button"
-                onClick={() => {
-                  setOpen(false);
-                  setViewMode("edit");
-                }}
-                className="mt-1 w-fit text-left text-sm font-bold text-[var(--color-hot)] underline-offset-2 hover:underline"
-              >
-                Vrati se u editor i dopuni detalje
-              </button>
+              {isMobileEdit ? null : (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setOpen(false);
+                    setViewMode("edit");
+                  }}
+                  className="mt-1 w-fit text-left text-sm font-bold text-[var(--color-hot)] underline-offset-2 hover:underline"
+                >
+                  Još da doradim u editoru
+                </button>
+              )}
             </SheetHeader>
 
             <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 py-4 sm:px-5">

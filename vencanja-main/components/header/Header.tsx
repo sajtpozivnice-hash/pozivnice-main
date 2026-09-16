@@ -15,9 +15,11 @@ import styles from "./Header.module.css";
 
 const NAV_LINKS = [
   { label: "Početna", href: "/" },
-  { label: "Pozivnice", href: "/pozivnice" },
+  { label: "Pozivnice", href: "/pozivnice", primary: true },
   { label: "Cenovnik", href: "/#cenovnik" },
   { label: "Kontakt", href: "/kontakt" },
+  { label: "Demo", href: "/demo" },
+  { label: "Prijava", href: "/login" },
 ] as const;
 
 function subscribeHash(onStoreChange: () => void) {
@@ -50,7 +52,6 @@ const Header = () => {
     setScrolled(value > 20);
   });
 
-  // Close mobile menu when the route changes (adjust state during render).
   if (pathname !== menuPathname) {
     setMenuPathname(pathname);
     if (open) setOpen(false);
@@ -92,38 +93,27 @@ const Header = () => {
         <Logo className={styles.brand} size="md" />
 
         <nav className={styles.desktopNav} aria-label="Glavna navigacija">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`${styles.navLink} ${isActive(link.href) ? styles.active : ""}`}
-            >
-              {link.label}
-            </Link>
-          ))}
-          <div className={styles.actions}>
-            <Link href="/pozivnice" className={styles.loginLink}>
-              Pogledaj dizajne
-            </Link>
-            <Link
-              href="/demo"
-              className={`${styles.demoLink} ${isActive("/demo") ? styles.demoActive : ""}`}
-            >
-              Demo
-            </Link>
-            <Link href="/login" className={styles.loginLink}>
-              Prijava
-            </Link>
-          </div>
+          {NAV_LINKS.map((link) => {
+            const primary = "primary" in link && link.primary;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`${styles.navBtn} ${primary ? styles.navBtnPrimary : styles.navBtnOutline} ${isActive(link.href) ? styles.navBtnActive : ""}`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className={styles.mobileBar}>
           <Link
-            href="/demo"
-            className={`${styles.demoLinkCompact} ${isActive("/demo") ? styles.demoActive : ""}`}
+            href="/pozivnice"
+            className={styles.demoLinkCompact}
             onClick={() => setOpen(false)}
           >
-            Demo
+            Pozivnice
           </Link>
           <button
             type="button"
@@ -160,32 +150,19 @@ const Header = () => {
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.22, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              {NAV_LINKS.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`${styles.mobileLink} ${isActive(link.href) ? styles.active : ""}`}
-                  onClick={() => setOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              ))}
-              <div className={styles.mobileActions}>
-                <Link
-                  href="/demo"
-                  className={styles.mobileDemo}
-                  onClick={() => setOpen(false)}
-                >
-                  Demo
-                </Link>
-                <Link
-                  href="/login"
-                  className={styles.mobileLogin}
-                  onClick={() => setOpen(false)}
-                >
-                  Prijava
-                </Link>
-              </div>
+              {NAV_LINKS.map((link) => {
+                const primary = "primary" in link && link.primary;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`${styles.mobileBtn} ${primary ? styles.mobileBtnPrimary : styles.mobileBtnOutline} ${isActive(link.href) ? styles.mobileBtnActive : ""}`}
+                    onClick={() => setOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
             </motion.nav>
           </>
         ) : null}

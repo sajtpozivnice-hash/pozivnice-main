@@ -55,45 +55,15 @@
 .desktopNav {
   display: flex;
   align-items: center;
-  gap: 4px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
   min-width: 0;
 }
 
-.navLink {
+.navBtn {
   text-decoration: none;
-  color: var(--color-text);
-  font-size: 15px;
-  font-weight: 600;
-  padding: 8px 10px;
-  border-radius: 999px;
-  white-space: nowrap;
-  transition:
-    color 0.2s ease,
-    background 0.2s ease;
-}
-
-.navLink:hover {
-  color: var(--color-hot);
-  background: color-mix(in srgb, var(--color-hot) 8%, transparent);
-}
-
-.active {
-  color: var(--color-hot);
-}
-
-.actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-left: 8px;
-  flex-shrink: 0;
-}
-
-.demoLink,
-.loginLink,
-.demoLinkCompact {
-  text-decoration: none;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
   padding: 8px 14px;
   border-radius: 999px;
@@ -106,25 +76,26 @@
     border-color 0.2s ease;
 }
 
-.demoLink {
+.navBtnOutline {
   color: var(--color-hot);
   background: transparent;
   border: 1.5px solid color-mix(in srgb, var(--color-hot) 55%, transparent);
 }
 
-.demoLink:hover,
-.demoActive {
+.navBtnOutline:hover,
+.navBtnOutline.navBtnActive {
   background: color-mix(in srgb, var(--color-hot) 8%, transparent);
   border-color: var(--color-hot);
 }
 
-.loginLink {
+.navBtnPrimary {
   color: white;
   background: var(--color-hot);
   border: 1.5px solid var(--color-hot);
 }
 
-.loginLink:hover {
+.navBtnPrimary:hover,
+.navBtnPrimary.navBtnActive {
   transform: translateY(-1px);
   box-shadow: 0 8px 18px color-mix(in srgb, var(--color-hot) 35%, transparent);
 }
@@ -137,20 +108,18 @@
 }
 
 .demoLinkCompact {
-  color: var(--color-hot);
-  background: transparent;
-  border: 1.5px solid color-mix(in srgb, var(--color-hot) 55%, transparent);
-  padding: 8px 12px;
+  text-decoration: none;
   font-size: 13px;
+  font-weight: 700;
+  padding: 8px 12px;
+  border-radius: 999px;
+  white-space: nowrap;
+  color: white;
+  background: var(--color-hot);
+  border: 1.5px solid var(--color-hot);
   max-width: min(52vw, 190px);
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.demoLinkCompact:hover,
-.demoLinkCompact.demoActive {
-  background: color-mix(in srgb, var(--color-hot) 8%, transparent);
-  border-color: var(--color-hot);
 }
 
 .menuButton {
@@ -187,47 +156,45 @@
   display: none;
 }
 
-.mobileActions {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: 8px;
-}
-
-.mobileDemo,
-.mobileLogin {
+.mobileBtn {
   text-align: center;
   text-decoration: none;
   font-size: 15px;
   font-weight: 700;
   padding: 13px 16px;
-  border-radius: 12px;
+  border-radius: 999px;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
 }
 
-.mobileDemo {
+.mobileBtnOutline {
   color: var(--color-hot);
-  background: color-mix(in srgb, var(--color-hot) 8%, transparent);
-  border: 1.5px solid color-mix(in srgb, var(--color-hot) 40%, transparent);
+  background: transparent;
+  border: 1.5px solid color-mix(in srgb, var(--color-hot) 45%, transparent);
 }
 
-.mobileLogin {
+.mobileBtnOutline:hover,
+.mobileBtnOutline.mobileBtnActive {
+  background: color-mix(in srgb, var(--color-hot) 8%, transparent);
+  border-color: var(--color-hot);
+}
+
+.mobileBtnPrimary {
   color: white;
   background: var(--color-hot);
   border: 1.5px solid var(--color-hot);
 }
 
 @media (min-width: 1180px) {
-  .demoLink,
-  .loginLink {
+  .navBtn {
     padding: 8px 16px;
-  }
-
-  .navLink {
-    padding: 8px 12px;
+    font-size: 14px;
   }
 
   .desktopNav {
-    gap: 8px;
+    gap: 10px;
   }
 }
 
@@ -247,7 +214,7 @@
   .mobileNav {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
     position: fixed;
     top: 80px;
     left: 12px;
@@ -265,24 +232,6 @@
   .scrolled .mobileNav {
     top: 68px;
     max-height: calc(100dvh - 84px);
-  }
-
-  .mobileLink {
-    text-decoration: none;
-    color: var(--color-text);
-    font-size: 16px;
-    font-weight: 600;
-    padding: 14px 14px;
-    border-radius: 12px;
-    transition:
-      background 0.2s ease,
-      color 0.2s ease;
-  }
-
-  .mobileLink:hover,
-  .mobileLink.active {
-    color: var(--color-hot);
-    background: color-mix(in srgb, var(--color-hot) 8%, transparent);
   }
 }
 

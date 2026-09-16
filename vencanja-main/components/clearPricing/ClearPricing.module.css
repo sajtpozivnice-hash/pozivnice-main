@@ -73,6 +73,14 @@
   color: rgba(255, 250, 247, 0.65);
 }
 
+.guarantee {
+  margin: 14px 0 0;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.45;
+  color: color-mix(in srgb, var(--color-hot) 70%, white);
+}
+
 .features {
   list-style: none;
   margin: 28px 0 0;

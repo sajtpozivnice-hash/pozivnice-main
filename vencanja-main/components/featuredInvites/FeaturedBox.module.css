@@ -82,7 +82,21 @@
   margin-top: 8px;
 }
 
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
 .link {
   color: var(--color-bg);
   width: fit-content;
+}
+
+.hint {
+  margin: 4px 0 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: color-mix(in srgb, var(--color-bg) 78%, transparent);
 }
