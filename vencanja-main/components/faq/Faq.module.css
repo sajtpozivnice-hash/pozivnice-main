@@ -97,3 +97,24 @@
   line-height: 1.55;
   color: color-mix(in srgb, #14110f 65%, white);
 }
+
+.demoPrompt {
+  margin: 28px auto 0;
+  max-width: 58ch;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: color-mix(in srgb, #14110f 58%, transparent);
+}
+
+.inlineLink {
+  color: var(--color-hot);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 700;
+}
+
+.inlineLink:hover {
+  color: color-mix(in srgb, var(--color-hot) 85%, #14110f);
+}

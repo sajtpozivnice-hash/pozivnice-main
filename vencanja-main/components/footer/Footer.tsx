@@ -32,6 +32,7 @@ const Footer = () => {
               <Link href="/pozivnice">Pozivnice</Link>
               <Link href="/#cenovnik">Cenovnik</Link>
               <Link href="/kontakt">Kontakt</Link>
+              <Link href="/demo">Demo nalog</Link>
               <Link href="/privatnost">Privatnost</Link>
               <Link href="/login">Prijava</Link>
             </nav>
@@ -47,6 +48,7 @@ const Footer = () => {
             <nav className={styles.linkList}>
               <Link href="/pozivnice">1. Izaberite dizajn</Link>
               <Link href="/pozivnice">2. Prilagodite i naručite</Link>
+              <Link href="/demo">Isprobaj demo nalog</Link>
               <Link href="/login">Prijava u nalog</Link>
             </nav>
           </div>

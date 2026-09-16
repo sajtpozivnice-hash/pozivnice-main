@@ -49,6 +49,12 @@ const Cta = ({
           </div>
 
           {meta ? <p className={styles.meta}>{meta}</p> : null}
+          <p className={styles.demoPrompt}>
+            Niste sigurni?{" "}
+            <Link href="/demo" className={styles.demoLink}>
+              Isprobaj demo nalog
+            </Link>
+          </p>
         </div>
       </Section>
     </div>

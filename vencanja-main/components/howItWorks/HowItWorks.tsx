@@ -86,6 +86,12 @@ const HowItWorks = () => {
               Pogledaj dizajne
             </Link>
           </Button>
+          <p className={styles.demoPrompt}>
+            Želite prvo da probate?{" "}
+            <Link href="/demo" className={styles.demoLink}>
+              Isprobaj demo nalog
+            </Link>
+          </p>
         </motion.div>
       </Section>
     </div>

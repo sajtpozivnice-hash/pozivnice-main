@@ -69,6 +69,25 @@
   color: #a6687c;
 }
 
+.demoPrompt {
+  margin: 12px 0 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: #8a5366;
+}
+
+.demoLink {
+  color: var(--color-hot);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 700;
+}
+
+.demoLink:hover {
+  color: color-mix(in srgb, var(--color-hot) 85%, #6b3a4d);
+}
+
 @media (max-width: 640px) {
   .actions :global(button) {
     width: 100% !important;

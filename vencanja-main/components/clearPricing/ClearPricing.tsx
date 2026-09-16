@@ -75,6 +75,12 @@ const ClearPricing = () => {
               </Link>
             </Button>
             <p className={styles.tagline}>Bez skrivenih troškova.</p>
+            <p className={styles.demoPrompt}>
+              Niste sigurni?{" "}
+              <Link href="/demo" className={styles.demoLink}>
+                Isprobaj demo nalog
+              </Link>
+            </p>
           </div>
         </motion.div>
       </Section>

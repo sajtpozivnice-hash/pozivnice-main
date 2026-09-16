@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import Section from "../layout/Section";
 import styles from "./Faq.module.css";
 
-const FAQ_ITEMS = [
+const FAQ_ITEMS: { question: string; answer: ReactNode }[] = [
   {
     question: "Koliko košta?",
     answer:
@@ -15,6 +16,18 @@ const FAQ_ITEMS = [
     question: "Kako naručujem?",
     answer:
       "Izaberete dizajn, unesete svoje podatke u editoru i pošaljete porudžbinu. Mi vam pošaljemo uputstvo za uplatu. Posle uplate dobijate link i nalog.",
+  },
+  {
+    question: "Mogu li da probate pre kupovine?",
+    answer: (
+      <>
+        Da. Otvorite{" "}
+        <Link href="/demo" className={styles.inlineLink}>
+          demo nalog
+        </Link>{" "}
+        i isprobajte kako izgleda — bez registracije i bez uplate.
+      </>
+    ),
   },
   {
     question: "Šta ako nisam zadovoljan/na?",
@@ -91,6 +104,13 @@ const Faq = () => {
             );
           })}
         </div>
+
+        <p className={styles.demoPrompt}>
+          Niste sigurni?{" "}
+          <Link href="/demo" className={styles.inlineLink}>
+            Isprobaj demo nalog
+          </Link>
+        </p>
       </Section>
     </div>
   );
