@@ -4,6 +4,8 @@ import { playfair, lora } from "../fonts";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { ToastProvider } from "@/components/Toast/ToastContext";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat/WhatsAppFloat";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { getSiteUrl } from "@/lib/siteUrl";
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
 
@@ -13,16 +15,18 @@ const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 const OG_IMAGE =
   "https://res.cloudinary.com/dqqnpfbyf/image/upload/f_jpg,q_auto,w_1200/v1787146655/photo-1510076857177-7470076d4098_srlt0i.avif";
 
+const googleVerification =
+  process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION?.trim();
+
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://www.vasdogadjaj.com",
-  ),
+  metadataBase: new URL(getSiteUrl()),
   title: {
     default: "Vaš događaj — digitalne pozivnice · 3.999 RSD",
     template: "%s | Vaš događaj",
   },
   description:
     "Digitalna pozivnica za venčanje, rođendan i krštenje. Izaberite dizajn, prilagodite ga i naručite. 3.999 RSD jednokratno, bez pretplate.",
+  alternates: { canonical: "/" },
   icons: {
     icon: [
       { url: "/icon.png", type: "image/png", sizes: "512x512" },
@@ -55,6 +59,9 @@ export const metadata: Metadata = {
       "Izaberite dizajn i naručite. 3.999 RSD jednokratno, bez pretplate.",
     images: [OG_IMAGE],
   },
+  ...(googleVerification
+    ? { verification: { google: googleVerification } }
+    : {}),
 };
 
 export default function RootLayout({
@@ -72,6 +79,7 @@ export default function RootLayout({
       )}
     >
       <body>
+        <JsonLd />
         <GoogleAnalytics />
         <ToastProvider>
           {children}

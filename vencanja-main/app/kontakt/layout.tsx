@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "Kontakt",
   description:
     "Kontaktirajte nas zbog postojećeg dizajna ili potpuno prilagođene digitalne pozivnice. Odgovaramo lično i dogovorimo izradu.",
+  alternates: { canonical: "/kontakt" },
 };
 
 export default function KontaktLayout({
