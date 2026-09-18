@@ -33,13 +33,53 @@ export function JsonLd() {
         description:
           "Digitalna pozivnica sa RSVP i privatnim nalogom za goste, stolove, budžet, planer i fotografije. Jednokratna cena, bez mesečne pretplate.",
         image: OG_IMAGE,
-        brand: { "@id": `${site}/#organization` },
+        brand: {
+          "@type": "Brand",
+          name: "Vaš događaj",
+        },
         offers: {
           "@type": "Offer",
           url: `${site}/pozivnice`,
           priceCurrency: "RSD",
           price: "3999",
           availability: "https://schema.org/InStock",
+          itemCondition: "https://schema.org/NewCondition",
+          hasMerchantReturnPolicy: {
+            "@type": "MerchantReturnPolicy",
+            applicableCountry: "RS",
+            returnPolicyCategory:
+              "https://schema.org/MerchantReturnFiniteReturnWindow",
+            merchantReturnDays: 7,
+            returnMethod: "https://schema.org/ReturnByMail",
+            returnFees: "https://schema.org/FreeReturn",
+          },
+          shippingDetails: {
+            "@type": "OfferShippingDetails",
+            shippingRate: {
+              "@type": "MonetaryAmount",
+              value: "0",
+              currency: "RSD",
+            },
+            shippingDestination: {
+              "@type": "DefinedRegion",
+              addressCountry: "RS",
+            },
+            deliveryTime: {
+              "@type": "ShippingDeliveryTime",
+              handlingTime: {
+                "@type": "QuantitativeValue",
+                minValue: 0,
+                maxValue: 1,
+                unitCode: "DAY",
+              },
+              transitTime: {
+                "@type": "QuantitativeValue",
+                minValue: 0,
+                maxValue: 0,
+                unitCode: "DAY",
+              },
+            },
+          },
         },
       },
     ],
