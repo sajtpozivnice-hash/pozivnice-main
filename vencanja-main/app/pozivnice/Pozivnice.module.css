@@ -31,29 +31,14 @@
 .pozivniceHeaderActions {
   margin-top: 22px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
   flex-wrap: wrap;
   gap: 12px;
 }
 
-.demoPrompt {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1.45;
-  color: color-mix(in srgb, var(--color-bg) 78%, transparent);
-}
-
-.demoLink {
-  color: var(--color-hot);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  font-weight: 700;
-}
-
-.demoLink:hover {
-  color: color-mix(in srgb, var(--color-hot) 85%, white);
+.pozivniceHeaderActions :global(button) {
+  margin-top: 0;
 }
 
 .container {

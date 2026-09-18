@@ -24,26 +24,26 @@ const VisualProof = () => {
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            <p className={styles.eyebrow}>Kako izgleda</p>
+            <p className={styles.eyebrow}>Kako izgleda na telefonu</p>
             <Heading className={styles.title}>
-              Vidite pozivnicu pre nego što naručite.
+              Pogledajte pozivnicu na telefonu — pre porudžbine.
             </Heading>
             <Paragraph variant="subtitle" center={false} className={styles.lead}>
-              Kliknite na dizajn, promenite tekst i slike, pa pošaljite
-              porudžbinu kad ste zadovoljni.
+              Gosti skoro uvek otvaraju link sa mobilnog. Zato prvo vidite kako
+              izgleda, pa uredite tekst i naručite.
             </Paragraph>
             <p className={styles.assurance}>
-              3.999 RSD · jednokratno · bez pretplate
+              3.999 RSD · pozivnica + nalog · sve uključeno
             </p>
             <div className={styles.actions}>
               <Button icon={AnimatedArrowRight}>
-                <Link href="/pozivnice" className="white-color">
-                  Pogledaj dizajne
+                <Link href="/demo" className="white-color">
+                  Pogledaj demo
                 </Link>
               </Button>
               <Button variant="secondary">
-                <Link href="/editor/vencanje-terra" className="white-color">
-                  Probaj editor
+                <Link href="/pozivnice" className="white-color">
+                  Izaberi dizajn
                 </Link>
               </Button>
             </div>

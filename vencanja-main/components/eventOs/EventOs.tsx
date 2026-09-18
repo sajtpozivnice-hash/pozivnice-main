@@ -56,11 +56,11 @@ const EventOs = () => {
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
-          <p className={styles.step}>Bonus</p>
+          <p className={styles.step}>Sistem</p>
           <h2 className={styles.megaTitle}>Uz pozivnicu ide i nalog.</h2>
           <p className={styles.heroLead}>
-            Kad platite, dobijate i mesto gde pratite goste i ostalo — ako vam
-            zatreba. Prvo birate lepu pozivnicu.
+            Uz pozivnicu dobijate privatni nalog za organizaciju celog događaja:
+            gosti, RSVP, stolovi, budžet, planer i fotografije.
           </p>
 
           <div className={styles.inviteStage}>

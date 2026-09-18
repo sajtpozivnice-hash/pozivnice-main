@@ -58,6 +58,15 @@
   color: var(--color-hot);
 }
 
+.systemLine {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-text) 58%, transparent);
+}
+
 .heroButtons {
   display: flex;
   flex-direction: column;
@@ -66,23 +75,15 @@
   margin-top: 8px;
 }
 
-.demoPrompt {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1.45;
-  color: color-mix(in srgb, var(--color-text) 62%, transparent);
+.buttonRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
 }
 
-.demoLink {
-  color: var(--color-hot);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  font-weight: 700;
-}
-
-.demoLink:hover {
-  color: color-mix(in srgb, var(--color-hot) 85%, var(--color-text));
+.buttonRow :global(button) {
+  margin-top: 0;
 }
 
 @media (max-width: 640px) {
@@ -92,7 +93,13 @@
     padding-bottom: 48px;
   }
 
-  .heroButtons {
+  .heroButtons,
+  .buttonRow {
     width: 100%;
+  }
+
+  .buttonRow :global(button) {
+    width: 100% !important;
+    max-width: none !important;
   }
 }

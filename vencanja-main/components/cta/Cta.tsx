@@ -17,13 +17,13 @@ type CtaProps = {
 };
 
 const Cta = ({
-  title = "Spremni za svoju pozivnicu?",
-  description = "Izaberite dizajn, prilagodite ga i pošaljite porudžbinu. Javićemo vam se sa uputstvom za uplatu. Garancija povrata novca u roku od 7 dana.",
-  primaryLabel = "Pogledaj dizajne",
+  title = "Spremni za pozivnicu i organizaciju?",
+  description = "Izaberite dizajn, prilagodite ga i pošaljite porudžbinu. Dobijate digitalnu pozivnicu i privatni nalog — gosti, RSVP, stolovi, budžet i planer. Garancija povrata novca u roku od 7 dana.",
+  primaryLabel = "Izaberi dizajn",
   primaryHref = "/pozivnice",
-  secondaryLabel,
-  secondaryHref,
-  meta = "3.999 RSD · jednokratno · povrat novca u 7 dana",
+  secondaryLabel = "Pogledaj demo",
+  secondaryHref = "/demo",
+  meta = "3.999 RSD · sve uključeno · povrat novca u 7 dana",
 }: CtaProps) => {
   return (
     <div className={styles.wrapper}>

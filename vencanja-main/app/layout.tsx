@@ -21,11 +21,11 @@ const googleVerification =
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   title: {
-    default: "Vaš događaj — digitalne pozivnice · 3.999 RSD",
+    default: "Vaš događaj — pozivnica + organizacija · 3.999 RSD",
     template: "%s | Vaš događaj",
   },
   description:
-    "Digitalna pozivnica za venčanje, rođendan i krštenje. Izaberite dizajn, prilagodite ga i naručite. 3.999 RSD jednokratno, bez pretplate.",
+    "Digitalna pozivnica i privatni nalog za goste, RSVP, stolove, budžet i planer. 3.999 RSD jednokratno — sve uključeno.",
   alternates: { canonical: "/" },
   icons: {
     icon: [
@@ -39,9 +39,9 @@ export const metadata: Metadata = {
     locale: "sr_RS",
     url: "/",
     siteName: "Vaš događaj",
-    title: "Vaš događaj — digitalne pozivnice · 3.999 RSD",
+    title: "Vaš događaj — pozivnica + organizacija · 3.999 RSD",
     description:
-      "Izaberite dizajn, unesite svoje podatke i podelite link sa gostima. Jednokratno 3.999 RSD.",
+      "Pozivnica za goste. Organizacija za vas. Jednokratno 3.999 RSD — sve uključeno.",
     images: [
       {
         url: OG_IMAGE,
@@ -54,9 +54,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vaš događaj — digitalne pozivnice · 3.999 RSD",
+    title: "Vaš događaj — pozivnica + organizacija · 3.999 RSD",
     description:
-      "Izaberite dizajn i naručite. 3.999 RSD jednokratno, bez pretplate.",
+      "Pozivnica + nalog za organizaciju. 3.999 RSD jednokratno, sve uključeno.",
     images: [OG_IMAGE],
   },
   ...(googleVerification

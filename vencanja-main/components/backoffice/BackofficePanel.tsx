@@ -30,16 +30,16 @@ const BackofficePanel = () => {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            <p className={styles.eyebrow}>Bonus uz pozivnicu</p>
+            <p className={styles.eyebrow}>Privatni nalog</p>
             <Heading className={styles.title}>
               Posle uplate dobijate i privatni nalog.
             </Heading>
             <Paragraph variant="subtitle" center={false} className={styles.lead}>
-              Tu pratite ko dolazi, stolove i ostalo — ako vam zatreba. Glavna
-              stvar i dalje ostaje lepa pozivnica za goste.
+              Tu pratite goste, RSVP, stolove, budžet, planer i fotografije —
+              organizacija celog događaja na jednom mestu.
             </Paragraph>
 
-            <p className={styles.glance}>U nalogu možete da vidite:</p>
+            <p className={styles.glance}>U nalogu imate:</p>
 
             <ul className={styles.list}>
               {HIGHLIGHTS.map((item) => (

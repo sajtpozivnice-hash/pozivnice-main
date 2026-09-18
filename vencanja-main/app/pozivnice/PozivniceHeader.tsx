@@ -12,7 +12,7 @@ const PozivniceHeader = () => {
   return (
     <div className={styles.pozivniceContainer}>
       <div className={styles.contactHeroContent}>
-        <HeroBadge text="Izaberite dizajn · 3.999 RSD" />
+        <HeroBadge text="Pozivnica + nalog · 3.999 RSD" />
         <Heading className={styles.pozivniceMainTitle}>
           Koja pozivnica vam se
           <span className={styles.pozivniceMainTitleSpan}> dopada?</span>
@@ -28,8 +28,9 @@ const PozivniceHeader = () => {
             ease: [0.25, 0.46, 0.45, 0.94],
           }}
         >
-          1) Kliknite dizajn · 2) Po želji promenite tekst · 3) Naruči · 4) Mi
-          šaljemo uputstvo za uplatu (3.999 RSD). Povrat novca u roku od 7 dana.
+          Izaberite dizajn, uredite sami i naručite. Uz pozivnicu dobijate i
+          nalog: RSVP, gosti, stolovi, budžet i planer. 3.999 RSD · sve
+          uključeno · povrat u 7 dana.
         </motion.p>
         <motion.div
           className={styles.pozivniceHeaderActions}
@@ -43,12 +44,11 @@ const PozivniceHeader = () => {
               Skroluj do dizajna
             </Link>
           </Button>
-          <p className={styles.demoPrompt}>
-            Želite prvo da probate?{" "}
-            <Link href="/demo" className={styles.demoLink}>
-              Isprobaj demo nalog
+          <Button variant="secondary" icon={AnimatedArrowRight} maxWidth={280}>
+            <Link href="/demo" className="white-color">
+              Pogledaj demo
             </Link>
-          </p>
+          </Button>
         </motion.div>
       </div>
     </div>

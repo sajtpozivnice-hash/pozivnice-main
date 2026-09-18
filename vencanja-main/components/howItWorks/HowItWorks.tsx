@@ -11,22 +11,22 @@ const STEPS = [
   {
     num: "1",
     title: "Izaberite dizajn",
-    body: "Otvorite katalog i kliknite na pozivnicu koja vam se dopada.",
+    body: "Otvorite katalog i kliknite na pozivnicu koja vam se dopada — ili prvo pogledajte demo nalog.",
   },
   {
     num: "2",
-    title: "Unesite svoje podatke",
-    body: "U editoru promenite imena, datum, tekstove i slike — kao u Wordu, samo lepše.",
+    title: "Uredite sami u editoru",
+    body: "Promenite imena, datum, tekstove, slike, fontove i boje — bez slanja poruka nama.",
   },
   {
     num: "3",
     title: "Pošaljite porudžbinu",
-    body: "Popunite kratku formu. Mi vam pošaljemo uputstvo za uplatu.",
+    body: "Kratka forma, pa uputstvo za uplatu (3.999 RSD). Jednokratno, bez pretplate.",
   },
   {
     num: "4",
-    title: "Podelite sa gostima",
-    body: "Posle uplate dobijate link i nalog. Ako niste zadovoljni — povrat novca u roku od 7 dana.",
+    title: "Link za goste + nalog za vas",
+    body: "Posle uplate delite pozivnicu i koristite nalog: RSVP, gosti, stolovi, budžet i planer. Povrat novca u roku od 7 dana.",
   },
 ];
 
@@ -43,7 +43,7 @@ const HowItWorks = () => {
         >
           <p className={styles.eyebrow}>Kako naručiti</p>
           <h2 className={styles.title}>
-            Četiri jednostavna koraka.
+            Četiri koraka do pozivnice i naloga.
           </h2>
         </motion.div>
 
@@ -83,15 +83,14 @@ const HowItWorks = () => {
         >
           <Button icon={AnimatedArrowRight}>
             <Link href="/pozivnice" className="white-color">
-              Pogledaj dizajne
+              Izaberi dizajn
             </Link>
           </Button>
-          <p className={styles.demoPrompt}>
-            Želite prvo da probate?{" "}
-            <Link href="/demo" className={styles.demoLink}>
-              Isprobaj demo nalog
+          <Button variant="secondary" icon={AnimatedArrowRight}>
+            <Link href="/demo" className="white-color">
+              Pogledaj demo
             </Link>
-          </p>
+          </Button>
         </motion.div>
       </Section>
     </div>

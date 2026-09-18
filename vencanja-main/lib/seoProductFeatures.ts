@@ -32,7 +32,7 @@ export const SEO_PRODUCT_SECTIONS: SeoLandingSection[] = [
   {
     title: "Privatni nalog (bonus uz uplatu)",
     paragraphs: [
-      "Posle uplate dobijate nalog gde pratite organizaciju — ako vam zatreba. Glavna stvar i dalje ostaje lepa pozivnica za goste.",
+      "Posle uplate dobijate privatni nalog za organizaciju celog događaja: gosti, RSVP, stolovi, budžet, planer i fotografije.",
     ],
     bullets: [
       "Gosti — ko dolazi, ko još nije odgovorio, poruke uz RSVP",

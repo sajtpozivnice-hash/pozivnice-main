@@ -9,10 +9,14 @@ import styles from "./ClearPricing.module.css";
 
 const INCLUDED = [
   "Digitalna pozivnica po vašem izboru",
-  "Izmene tekstova i slika kad god želite",
-  "Lični link za goste",
   "Potvrda dolaska (RSVP)",
   "Privatni nalog za organizaciju",
+  "Gosti — ko dolazi i ko nije odgovorio",
+  "Stolovi i raspored sedenja",
+  "Budžet i praćenje troškova",
+  "Planer zadataka",
+  "Galerija / fotografije gostiju",
+  "Izmene u svakom trenutku",
   "Bez mesečne pretplate",
   "Garancija povrata novca u roku od 7 dana",
 ];
@@ -36,12 +40,14 @@ const ClearPricing = () => {
               3.999 <span>RSD</span>
             </p>
             <p className={styles.billing}>
-              Plaćate jednom. Pozivnica ostaje aktivna.
+              Plaćate jednom. Pozivnica i nalog ostaju aktivni.
             </p>
             <p className={styles.guarantee}>
               Garancija povrata novca u roku od 7 dana ako niste zadovoljni.
             </p>
           </div>
+
+          <p className={styles.includedLabel}>Sve uključeno:</p>
 
           <ul className={styles.features}>
             {INCLUDED.map((item, index) => (
@@ -64,23 +70,22 @@ const ClearPricing = () => {
           </ul>
 
           <p className={styles.bonusNote}>
-            Uz pozivnicu dobijate i nalog za goste, stolove, budžet, planer i
-            fotografije — ako vam zatreba.
+            Uz pozivnicu dobijate privatni nalog za organizaciju celog događaja:
+            gosti, RSVP, stolovi, budžet, planer i fotografije.
           </p>
 
           <div className={styles.footer}>
             <Button icon={AnimatedArrowRight}>
               <Link href="/pozivnice" className="white-color">
-                Pogledaj dizajne
+                Izaberi dizajn
+              </Link>
+            </Button>
+            <Button variant="secondary" icon={AnimatedArrowRight}>
+              <Link href="/demo" className="white-color">
+                Pogledaj demo
               </Link>
             </Button>
             <p className={styles.tagline}>Bez skrivenih troškova.</p>
-            <p className={styles.demoPrompt}>
-              Niste sigurni?{" "}
-              <Link href="/demo" className={styles.demoLink}>
-                Isprobaj demo nalog
-              </Link>
-            </p>
           </div>
         </motion.div>
       </Section>

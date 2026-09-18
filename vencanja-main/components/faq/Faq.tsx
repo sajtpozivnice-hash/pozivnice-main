@@ -47,7 +47,7 @@ const FAQ_ITEMS: { question: string; answer: ReactNode }[] = [
   {
     question: "Šta još dobijam uz pozivnicu?",
     answer:
-      "Privatni nalog: gosti, stolovi, budžet, planer i fotografije — ako vam zatreba. Glavna stvar je digitalna pozivnica.",
+      "Privatni nalog za organizaciju celog događaja: gosti, RSVP, stolovi, budžet, planer i fotografije. Pozivnica je ulaz — nalog je sistem.",
   },
 ];
 

@@ -14,21 +14,24 @@ const Hero = () => {
   return (
     <div className={styles.background}>
       <div className={styles.heroContent}>
-        <HeroBadge text="Digitalna pozivnica · 3.999 RSD" />
+        <HeroBadge text="Pozivnica + organizacija · 3.999 RSD" />
         <Heading className={styles.mainTitle}>
           <span className={styles.brand}>Vaš događaj</span>
           <span className={styles.mainTitleSpan}>
-            Digitalna pozivnica
+            Pozivnica za goste.
             <br />
-            za vaš najvažniji dan.
+            Organizacija za vas.
           </span>
         </Heading>
         <Paragraph center={false} variant="subtitle">
-          Izaberite dizajn, unesite svoje podatke i podelite link sa gostima.
-          Plaćate jednom — 3.999 RSD — bez mesečne pretplate.
+          Personalizovana digitalna pozivnica i privatni nalog za goste, RSVP,
+          raspored sedenja, budžet i planer — sve na jednom mestu.
         </Paragraph>
         <p className={styles.priceLine}>
-          3.999 RSD · jednokratno · povrat novca u 7 dana
+          3.999 RSD · jednokratno · bez pretplate · povrat u 7 dana
+        </p>
+        <p className={styles.systemLine}>
+          Gosti · RSVP · Stolovi · Budžet · Planer · Fotografije
         </p>
         <motion.div
           className={styles.heroButtons}
@@ -37,24 +40,33 @@ const Hero = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <Button
-            icon={AnimatedArrowRight}
-            iconSize={30}
-            iconDelay={0.6}
-            buttonDelay={0.1}
-            buttonDuration={0.7}
-            maxWidth={320}
-          >
-            <Link href="/pozivnice" className="white-color">
-              Pogledaj dizajne i naruči
-            </Link>
-          </Button>
-          <p className={styles.demoPrompt}>
-            Želite prvo da probate?{" "}
-            <Link href="/demo" className={styles.demoLink}>
-              Isprobaj demo nalog
-            </Link>
-          </p>
+          <div className={styles.buttonRow}>
+            <Button
+              icon={AnimatedArrowRight}
+              iconSize={28}
+              iconDelay={0.6}
+              buttonDelay={0.1}
+              buttonDuration={0.7}
+              maxWidth={280}
+            >
+              <Link href="/demo" className="white-color">
+                Pogledaj demo
+              </Link>
+            </Button>
+            <Button
+              variant="secondary"
+              icon={AnimatedArrowRight}
+              iconSize={28}
+              iconDelay={0.7}
+              buttonDelay={0.15}
+              buttonDuration={0.7}
+              maxWidth={280}
+            >
+              <Link href="/pozivnice" className="white-color">
+                Izaberi dizajn
+              </Link>
+            </Button>
+          </div>
         </motion.div>
       </div>
     </div>

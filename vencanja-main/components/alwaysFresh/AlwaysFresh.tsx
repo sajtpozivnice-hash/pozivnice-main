@@ -32,8 +32,10 @@ const AlwaysFresh = () => {
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
-          <p className={styles.eyebrow}>Izmene</p>
-          <h2 className={styles.title}>Promenili ste datum ili tekst?</h2>
+          <p className={styles.eyebrow}>Izmene bez stresa</p>
+          <h2 className={styles.title}>
+            Promenili ste restoran 7 dana pre svadbe?
+          </h2>
         </motion.div>
 
         <div className={styles.layout}>
@@ -64,7 +66,9 @@ const AlwaysFresh = () => {
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <p className={styles.solve}>Samo izmenite pozivnicu.</p>
+            <p className={styles.solve}>
+              Stara lokacija → klik → nova lokacija → gotovo.
+            </p>
 
             <ul className={styles.benefits}>
               {BENEFITS.map((item) => (
@@ -73,7 +77,8 @@ const AlwaysFresh = () => {
             </ul>
 
             <p className={styles.assurance}>
-              Vaša pozivnica je uvek ažurna.
+              Nema ponovnog štampanja. Nema slanja nove pozivnice. Nema
+              dodatnog troška. Vaša pozivnica je uvek ažurna.
             </p>
 
             <div className={styles.actions}>

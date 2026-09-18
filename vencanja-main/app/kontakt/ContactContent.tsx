@@ -120,8 +120,9 @@ const ContactContent = () => {
             <div>
               <Heading variant={HeadingVariant.H3}>Šta dobijate?</Heading>
               <Paragraph center={false}>
-                Digitalnu pozivnicu sa vašim linkom (3.999 RSD). Uz to i nalog
-                za goste i organizaciju — ako vam zatreba.
+                Digitalnu pozivnicu sa vašim linkom (3.999 RSD) i privatni nalog
+                za organizaciju: gosti, RSVP, stolovi, budžet, planer i
+                fotografije.
               </Paragraph>
               <Button
                 onClick={() => router.push("/pozivnice")}

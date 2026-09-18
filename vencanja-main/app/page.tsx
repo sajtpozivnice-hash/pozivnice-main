@@ -10,16 +10,18 @@ import PersonalizedDomain from "@/components/personalizedDomain/PersonalizedDoma
 import AlwaysFresh from "@/components/alwaysFresh/AlwaysFresh";
 import HowItWorks from "@/components/howItWorks/HowItWorks";
 import ClearPricing from "@/components/clearPricing/ClearPricing";
+import WhyVasDogadjaj from "@/components/whyVasDogadjaj/WhyVasDogadjaj";
 import SocialProof from "@/components/socialProof/SocialProof";
 import TemplateSection from "@/components/templateSection/TemplateSection";
 import VisualProof from "@/components/visualProof/VisualProof";
 
-/** Sales-first order: designs + price early, platform features as bonus later. */
+/** Sales-first order: system value early, then designs + price, then proof. */
 export default function Home() {
   return (
     <div>
       <Header />
       <Hero />
+      <WhyVasDogadjaj />
       <TemplateSection />
       <ClearPricing />
       <HowItWorks />

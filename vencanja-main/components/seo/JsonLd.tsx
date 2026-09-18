@@ -29,9 +29,9 @@ export function JsonLd() {
       {
         "@type": "Product",
         "@id": `${site}/#product`,
-        name: "Digitalna pozivnica",
+        name: "Digitalna pozivnica + organizacija događaja",
         description:
-          "Digitalna pozivnica za venčanje, rođendan i krštenje. Jednokratna cena, bez mesečne pretplate.",
+          "Digitalna pozivnica sa RSVP i privatnim nalogom za goste, stolove, budžet, planer i fotografije. Jednokratna cena, bez mesečne pretplate.",
         image: OG_IMAGE,
         brand: { "@id": `${site}/#organization` },
         offers: {

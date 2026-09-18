@@ -79,13 +79,13 @@ const EditorFreedom = () => {
               ease: [0.25, 0.46, 0.45, 0.94],
             }}
           >
-            <p className={styles.eyebrow}>Prilagođavanje</p>
+            <p className={styles.eyebrow}>Editor</p>
             <Heading className={styles.title}>
-              Promenite tekst i slike — gotovo.
+              Vi uređujete. Bez 20 poruka nama.
             </Heading>
             <Paragraph variant="subtitle" center={false} className={styles.lead}>
-              Ne treba vam dizajner. Otvorite editor, kliknite na tekst ili
-              sliku i unesite svoje.
+              Otvorite editor, kliknite na tekst ili sliku i unesite svoje.
+              Fontovi, boje, sekcije i redosled — sve menjate sami, odmah.
             </Paragraph>
 
             <ul className={styles.features}>
@@ -100,7 +100,12 @@ const EditorFreedom = () => {
             <div className={styles.actions}>
               <Button icon={AnimatedArrowRight}>
                 <Link href="/editor/vencanje-terra" className="white-color">
-                  Otvori editor
+                  Probaj editor sami
+                </Link>
+              </Button>
+              <Button variant="secondary" icon={AnimatedArrowRight}>
+                <Link href="/demo" className="white-color">
+                  Pogledaj demo nalog
                 </Link>
               </Button>
             </div>
