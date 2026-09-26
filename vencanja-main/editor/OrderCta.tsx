@@ -10,11 +10,17 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
+import { trackOrderSheetOpen } from "@/lib/analytics";
 
 const OrderCta = () => {
   const { config, viewMode, setViewMode } = useEditor();
   const [open, setOpen] = useState(false);
   const isMobileEdit = viewMode === "edit";
+
+  const handleOpenChange = (next: boolean) => {
+    if (next && !open) trackOrderSheetOpen();
+    setOpen(next);
+  };
 
   return (
     <>
@@ -53,7 +59,7 @@ const OrderCta = () => {
               ) : null}
               <button
                 type="button"
-                onClick={() => setOpen(true)}
+                onClick={() => handleOpenChange(true)}
                 className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-[var(--color-hot)] px-4 py-3 text-sm font-bold text-white shadow-md transition hover:brightness-105 sm:flex-none"
               >
                 Naruči
@@ -66,7 +72,7 @@ const OrderCta = () => {
         </div>
       ) : null}
 
-      <Sheet open={open} onOpenChange={setOpen}>
+      <Sheet open={open} onOpenChange={handleOpenChange}>
         <SheetContent
           side="right"
           className="w-full gap-0 overflow-hidden p-0 sm:max-w-lg"

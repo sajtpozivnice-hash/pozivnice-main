@@ -130,3 +130,20 @@ export function trackGenerateLead(source: LeadFormSource): void {
 
   sendCollectBeacon(source);
 }
+
+/** Funnel events — mark as Key events in GA4 for diagnosis (not for Ads bidding). */
+export function trackOrderSheetOpen(): void {
+  if (typeof window === "undefined") return;
+  const gtag = ensureGtag();
+  gtag?.("event", "order_sheet_open", {
+    transport_type: "beacon",
+  });
+}
+
+export function trackWhatsAppClick(): void {
+  if (typeof window === "undefined") return;
+  const gtag = ensureGtag();
+  gtag?.("event", "whatsapp_click", {
+    transport_type: "beacon",
+  });
+}

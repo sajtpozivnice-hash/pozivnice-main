@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { trackWhatsAppClick } from "@/lib/analytics";
 import styles from "./WhatsAppFloat.module.css";
 
 /** Digits only, country code included — e.g. 381641234567 */
@@ -37,6 +38,7 @@ export function WhatsAppFloat() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Pišite nam na WhatsApp"
+      onClick={() => trackWhatsAppClick()}
     >
       <span className={styles.icon} aria-hidden>
         <WhatsAppIcon />
