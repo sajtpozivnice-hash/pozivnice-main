@@ -7,6 +7,7 @@ import {
   eventTypeToTag,
 } from "@/types/catalog";
 import { EventType, TemplateKey, UniversalProjectConfig } from "@/types/config";
+import { cloudinaryThumbnailUrl } from "@/helpers/cloudinaryUrl";
 import { templates } from "./index";
 
 /** Newest premium wedding packs — shown first on /pozivnice. */
@@ -68,7 +69,10 @@ export function getCatalogTemplates(): CatalogCard[] {
       tag: eventTypeToTag(eventType),
       style: meta.style,
       price: meta.price,
-      imageLink: resolveCatalogImage(pack.defaultConfig, meta.imageLink),
+      imageLink: cloudinaryThumbnailUrl(
+        resolveCatalogImage(pack.defaultConfig, meta.imageLink),
+        { width: 900, crop: "limit" },
+      ),
       projectLink: `/editor/${key}`,
       featured: Boolean(meta.featured),
     };

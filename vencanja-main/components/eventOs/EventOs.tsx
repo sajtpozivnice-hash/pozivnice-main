@@ -5,10 +5,13 @@ import { motion } from "framer-motion";
 import Section from "../layout/Section";
 import Button from "../button/Button";
 import AnimatedArrowRight from "../icons/AnimatedArrowRight";
+import { cloudinaryThumbnailUrl } from "@/helpers/cloudinaryUrl";
 import styles from "./EventOs.module.css";
 
-const INVITE_IMG =
-  "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787046392/wedding/jeremy-wong-weddings-464ps_nOflw-unsplash.jpg";
+const INVITE_IMG = cloudinaryThumbnailUrl(
+  "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787046392/wedding/jeremy-wong-weddings-464ps_nOflw-unsplash.jpg",
+  { width: 900, crop: "limit" },
+);
 
 const GUEST_PHOTOS = [
   "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=700",

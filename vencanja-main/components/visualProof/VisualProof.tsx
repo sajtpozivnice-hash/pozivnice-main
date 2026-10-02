@@ -7,10 +7,13 @@ import Heading from "../shared/typography/Heading";
 import Paragraph from "../shared/typography/Paragraph";
 import Button from "../button/Button";
 import AnimatedArrowRight from "../icons/AnimatedArrowRight";
+import { cloudinaryThumbnailUrl } from "@/helpers/cloudinaryUrl";
 import styles from "./VisualProof.module.css";
 
-const INVITE_PREVIEW =
-  "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787046392/wedding/jeremy-wong-weddings-464ps_nOflw-unsplash.jpg";
+const INVITE_PREVIEW = cloudinaryThumbnailUrl(
+  "https://res.cloudinary.com/dqqnpfbyf/image/upload/v1787046392/wedding/jeremy-wong-weddings-464ps_nOflw-unsplash.jpg",
+  { width: 1200, crop: "limit" },
+);
 
 const VisualProof = () => {
   return (

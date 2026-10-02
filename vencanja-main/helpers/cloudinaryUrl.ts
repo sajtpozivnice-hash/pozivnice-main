@@ -14,6 +14,18 @@ export const cloudinaryThumbnailUrl = (
   const index = url.indexOf(marker);
   if (index === -1) return url;
 
+  // Already transformed — don't stack another transform chain.
+  const afterUpload = url.slice(index + marker.length);
+  if (!afterUpload.startsWith("v") && !afterUpload.startsWith("/v")) {
+    const firstSegment = afterUpload.split("/")[0] ?? "";
+    if (
+      firstSegment.includes(",") ||
+      /^(c_|w_|h_|q_|f_|e_)/.test(firstSegment)
+    ) {
+      return url;
+    }
+  }
+
   const transforms = [
     `c_${crop}`,
     `w_${width}`,
